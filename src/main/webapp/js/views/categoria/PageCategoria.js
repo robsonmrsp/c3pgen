@@ -13,8 +13,9 @@ define(function(require) {
 	var ActionsCell = require('views/components/ActionsCell');
 
 	var TemplateFormCategorias = require('text!views/categoria/tpl/FormCategoriaTemplate.html');
-	var BaseModel = require('models/BaseModel');
+	var EntityModel = require('models/TheEntityModel');
 	var BaseCollection = require('collections/BaseCollection');
+	var EntityCollection = require('collections/TheEntityCollection');
 	var PageCategoriaTemplate = require('text!views/categoria/tpl/PageCategoriaTemplate.html');
 
 	var Entidades = require('views/categoria/Entidades');
@@ -31,15 +32,20 @@ define(function(require) {
 		},
 
 		events : {
-			'click #novaEntidade' : 'novaEntidade'
+			'click #novaEntidade' : 'novaEntidade',
+			'click #salvaEntidades' : 'salvaEntidades'
+		},
+
+		salvaEntidades : function() {
+			console.log(this.entidadesCollection.toJSON());
 		},
 		novaEntidade : function() {
-			var endidade = new BaseModel();
+			var endidade = new EntityModel();
 
 			this.entidadesCollection.add(endidade);
 		},
 		initialize : function() {
-			this.entidadesCollection = new BaseCollection();
+			this.entidadesCollection = new EntityCollection();
 			this.entidadesContainer = new Entidades({
 				collection : this.entidadesCollection,
 			});

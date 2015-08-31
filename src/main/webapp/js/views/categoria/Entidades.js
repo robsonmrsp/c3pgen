@@ -11,6 +11,7 @@ define(function(require) {
 	var BaseCollection = require('collections/BaseCollection');
 	var BaseModel = require('models/BaseModel');
 	var AttributeModel = require('models/AttributeModel');
+	var AttributeCollection = require('collections/AttributeCollection');
 
 	var EntidadeTemplate = require('text!views/categoria/tpl/EntidadeTemplate.html');
 
@@ -113,7 +114,7 @@ define(function(require) {
 		events : {
 			'click .add-attr' : 'addAttribute',
 			'click .rem-entidade' : 'deleteEntidade',
-			'click .show-hide-ent' : 'hideShowEnt'
+			'click .show-hide-ent' : 'hideShowEnt',
 		},
 
 		deleteEntidade : function() {
@@ -121,11 +122,11 @@ define(function(require) {
 		},
 
 		addAttribute : function() {
-			this.attributesCollection.add(new BaseModel());
+			this.attributesCollection.add(new AttributeModel());
 		},
 
 		ui : {
-			inputEtityName : '.entity-name',
+			inputEntityName : '.entity-name',
 			widgetEntMain : '.widget-entidade',
 			showhide : '.show-hide-ent',
 			editable : '.editable-click',
@@ -135,20 +136,11 @@ define(function(require) {
 			showHideEntity : '.show-hide-ent',
 		},
 
-		hideShowEnt : function() {
-			this.ui.widgetEntMain.toggle();
-			if (this.ui.widgetEntMain.is(':visible')) {
-				this.ui.showhide.find('i').removeClass('fa-chevron-down').addClass('fa-chevron-up')
-			} else {
-				this.ui.showhide.find('i').removeClass('fa-chevron-up').addClass('fa-chevron-down')
-			}
-
-		},
-
 		initialize : function() {
 			var that = this;
-			this.attributesCollection = new BaseCollection();
 
+			this.attributesCollection = new AttributeCollection(this.model.get('attributes'));
+			this.attributesCollection.on('add', this.addOnCollectionAttribute, this)
 			this.attributes = new Attributes({
 				collection : this.attributesCollection,
 			});
@@ -163,6 +155,22 @@ define(function(require) {
 
 				this.attributesRegion.show(this.attributes);
 			});
+		},
+		this.addOnCollectionAttribute : function(model) {
+			
+			this.model.collection.set(model.collection.toJSON());
+		}, 
+		hideShowEnt : function() {
+			this.ui.widgetEntMain.toggle();
+			if (this.ui.widgetEntMain.is(':visible')) {
+				this.ui.showhide.find('i').removeClass('fa-chevron-down').addClass('fa-chevron-up')
+			} else {
+				this.ui.showhide.find('i').removeClass('fa-chevron-up').addClass('fa-chevron-down')
+			}
+		},
+
+		getModel : function() {
+			this.model.set('attributes', this.attributesCollection.toJSON());
 		},
 	});
 
