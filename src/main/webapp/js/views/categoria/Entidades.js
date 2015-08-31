@@ -27,7 +27,22 @@ define(function(require) {
 
 		ui : {
 			inputEtityName : '.entity-name',
+			inputDisplayName : '.displayName',
+
+			inputId : '.inputId',
+			inputName : '.inputName',
+			inputDisplayName : '.inputDisplayName',
+			inputMaxLen : '.inputMaxLen',
+			inputTableFieldName : '.inputTableFieldName',
+			inputMasc : '.inputMasc',
+			inputDefaultValue : '.inputDefaultValue',
+			inputPlaceholder : '.inputPlaceholder',
+			inputRequired : '.inputRequired',
+			inputUnique : '.inputUnique',
+
 			widgetMain : '.widget-main',
+
+			ediableFields : '.editable-click'
 		},
 
 		hideShow : function() {
@@ -37,7 +52,7 @@ define(function(require) {
 			var that = this;
 
 			this.on('show', function() {
-				this.ui.inputEtityName.editable();
+				this.ui.ediableFields.editable();
 			});
 		},
 	});
