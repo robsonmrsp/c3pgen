@@ -1,0 +1,84 @@
+<!-- generated: 30/08/2015 20:23:12 -->
+<!-- User´s form -->
+<div class="main-content-inner">
+	<div class="breadcrumbs" id="breadcrumbs">
+		<ul class="breadcrumb">
+			<li>
+				<i class="ace-icon fa fa-home home-icon"></i>
+				<a href="#">Home</a>
+			</li>
+			<li class="active">Cadastrar Usuário</li>
+		</ul>
+	</div>
+	
+	<div class="page-content">
+		<h1>Cadastrar Usuário</h1>
+		<div class="main-principal">
+			<div class="row">
+				<div class="col-xs-12 col-sm-12">
+				<div id="messages_div"></div>
+				</div>
+			</div>
+			<div class="hr-24"></div>
+			
+			<div class="panel panel-default plain">
+				<div class="">
+					<div class="col-xs-12 col-sm-12">
+			
+				<form role="form" id="formUser">
+				<br>
+				<input type="hidden" id="inputId" value="{{id}}">
+					<div id="groupInputName" class="form-group">
+						<label class="control-label" for="inputName">Nome</label>
+						<input type="text" id="inputName" placeholder="Nome" value="{{name}}" class="form-control  ">
+					</div>
+					
+					<div id="groupInputUsername" class="form-group">
+						<label class="control-label" for="inputUsername">Username</label>
+						<input type="text" id="inputUsername" placeholder="Username" value="{{username}}" class="form-control  validate[required]">
+					</div>
+					
+					<div id="groupInputPassword" class="form-group">
+						<label class="control-label" for="inputPassword">Password</label>
+						<input type="text" id="inputPassword" placeholder="Password" value="{{password}}" class="form-control  validate[required]">
+					</div>
+					
+					<div id="groupInputEnable" class="form-group checkbox ">
+						<label class="checkbox ">
+							<input id="inputEnable" type="checkbox" {{enable ? 'checked' :''}}>
+							Ativo
+						</label>
+					</div>
+					<div id="groupInputImage" class="form-group">
+						<label class="control-label" for="inputImage">Imagem</label>
+						<input type="text" id="inputImage" placeholder="Imagem" value="{{image}}" class="form-control  ">
+					</div>
+					
+
+					<div class="roles-container panel"></div>					
+				</form>
+				</div>
+			</div>
+			<div class="clearfix form-actions form-group mb15">
+				<div class="col-md-9">
+					<a href="javascript:void(0)" id="save"  class="save btn btn-primary">
+						<i class="ace-icon save fa fa-check bigger-110"></i>
+						Salvar
+					</a>
+					&nbsp;
+					<a href="javascript:void(0)" class=" saveAndContinue  btn btn-info" style="display: {{ id ? 'none' : 'inline-block' }} ">
+						<i class="ace-icon fa fa-check bigger-110"></i>
+						Salvar e Continuar
+					</a>
+					&nbsp;
+
+					<a class="go-back-link btn btn-default" href="#app/users">
+						<i class="ace-icon fa fa-undo bigger-110"></i>
+						Voltar para a listagem
+					</a>
+				</div>
+			</div>
+    	  </div>
+		</div>
+	</div>
+</div>				

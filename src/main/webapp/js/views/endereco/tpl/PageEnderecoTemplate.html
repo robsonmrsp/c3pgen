@@ -1,0 +1,77 @@
+<!-- generated: 30/08/2015 20:23:12 -->
+<!-- Endereco´s page -->
+<div class="main-content-inner">
+	<div class="breadcrumbs" id="breadcrumbs">
+		<ul class="breadcrumb">
+			<li>
+				<i class="ace-icon fa fa-home home-icon"></i>
+				<a href="#">Home</a>
+			</li>
+			<li class="active">Pesquisar Endereco</li>
+		</ul>
+	</div>
+	<div class="page-content">
+		<h1>Pesquisar Endereco</h1>
+		<div class="main-content">
+			<div class="panel panel-default plain">
+				<div class="">
+					<div class="col-xs-12 col-sm-12">
+				<form role="form" id="formEnderecoFilter">
+					<br>
+							<div id="groupInputComplemento" class="form-group">
+								<label class="control-label" for="inputComplemento">Complemento</label>
+								<input type="text" id="inputComplemento" placeholder="Pesquise pelo Complemento"  class="form-control">
+							</div>
+							<div id="groupInputNumero" class="form-group">
+								<label class="control-label" for="inputNumero">Número</label>
+								<input type="text" id="inputNumero" placeholder="Pesquise pelo Número"  class="form-control">
+							</div>
+						<div id="groupInputCepContainer" class="form-group">
+							<label class="control-label" for="inputCep">Cep</label>
+							<div id="groupInputCep" class="input-group">
+								<input id="inputCepId" type="hidden" class="form-control append-left"  />
+								<input id="inputCepCep" placeholder="Pesquise pelo Cep"  type="text" class="form-control append-left" />
+								<div class="input-group-addon append-right" id="searchCepModal" data-toggle="modal">
+									<span class="fa fa-search"></span>
+								</div>
+							</div>
+						</div>		
+					
+					</form>
+				</div>
+			</div>
+			<div class="clearfix form-actions form-group mb15">
+				<div class="col-md-9">
+					<a href="javascript:void(0)" id="query" class="btn btn-primary">
+						<i class="fa fa-search"></i>
+						Pesquisar
+					</a>
+					&nbsp;
+					<a href="#app/newEndereco" class="btn btn-info">
+						<i class="fa fa-plus "></i>
+						Novo
+					</a>
+					&nbsp;
+					<a href="javascript:void(0)" id="reset" class="btn btn-default">Limpar</a>
+				</div>
+			</div>
+			</div>
+			<div class="panel panel-default plain toggle panelClose panelRefresh">
+				<div class="panel-body">
+					<h3 class="header smaller lighter blue">Resultados</h3>
+					<div>
+						<div id="sample-table-2_wrapper" class="dataTables_wrapper form-inline no-footer">
+							<div id="messages_div"></div>
+							<div id="grid" class="table-responsive"></div>
+							<div class="">
+								<div id="counter" class=" pull-left"></div>
+								<div id="paginator" class=" pull-right"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div id='cepModal'></div>

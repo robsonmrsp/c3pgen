@@ -1,0 +1,212 @@
+/* generated: 30/08/2015 20:23:12 */
+define(function(require) {
+	// Start "Import´s" Definition"
+	var _ = require('adapters/underscore-adapter');
+	var $ = require('adapters/jquery-adapter');
+	var Col = require('adapters/col-adapter');
+	var Backbone = require('adapters/backbone-adapter');
+	var Marionette = require('marionette');
+	var Backgrid = require('adapters/backgrid-adapter');
+	var util = require('utilities/utils');
+	var RadioButtonCell = require('views/components/RadioButtonCell');
+	var Counter = require('views/components/Counter');
+	var RowClick = require('views/components/CustomClickedRow');
+	var Combobox = require('views/components/Combobox');
+	var CustomNumberCell = require('views/components/CustomNumberCell');
+
+	var UserModal = require('text!views/modalComponents/tpl/UserModalTemplate.html');
+	var UserPageCollection = require('collections/UserPageCollection');
+
+	// End of "Import´s" definition
+	// #####################################################################################################
+	// .............................................MAIN-BODY.............................................
+	// #####################################################################################################
+
+	var UserModal = Marionette.LayoutView.extend({
+		template : _.template(UserModal),
+
+		events : {
+			'click #btnSearchUser' : 'searchUser',
+			'click #btnClearUser' : 'clearModal',
+			'click tr' : 'selectRow',
+			'keypress' : 'treatKeypress',
+		},
+
+		regions : {
+			counterRegion : '#counter',
+			gridRegion : '#grid-user',
+			paginatorRegion : '#paginator-user',
+		},
+
+		ui : {
+    		inputModalName : '#inputModalName',
+    		inputModalUsername : '#inputModalUsername',
+    		inputModalPassword : '#inputModalPassword',
+    		inputModalEnable : '#inputModalEnable',
+    		inputModalImage : '#inputModalImage',
+		
+			form : '#formSearchUser',
+			modalScreen : '.modal',
+		},
+		treatKeypress : function (e){
+		    if (util.enterPressed(e)) {
+	    		e.preventDefault();
+	    		this.searchUser();
+	    	}
+		},
+
+		initialize : function(opt) {
+			var that = this;
+
+			this.onSelectModel = opt.onSelectModel;
+
+			this.userCollection = new UserPageCollection();
+			this.userCollection.state.pageSize = 5;
+			this.userCollection.on('fetching', this._startFetch, this);
+			this.userCollection.on('fetched', this._stopFetch, this);
+
+			this.grid = new Backgrid.Grid({
+				row : RowClick,
+				className : 'table backgrid table-striped table-bordered table-hover dataTable no-footer  ',
+				columns : this._getColumns(),
+				emptyText : "Sem registros",
+				collection : this.userCollection,
+				emptyText : "Sem registros para exibir."
+
+			});
+			
+			this.counter = new Counter({
+				collection : this.userCollection ,
+			});
+			
+
+			this.paginator = new Backgrid.Extension.Paginator({
+				columns : this._getColumns(),
+				collection : this.userCollection,
+				className : 'dataTables_paginate paging_simple_numbers',
+				uiClassName : 'pagination',
+			});
+
+			this.on('show', function() {
+				that.gridRegion.show(that.grid);
+				that.counterRegion.show(that.counter);
+				that.paginatorRegion.show(that.paginator);
+			});
+		},
+
+		selectRow : function(e) {
+			var modelUser = util.getWrappedModel(e);
+			if (modelUser)
+				this.onSelectModel(modelUser);
+		},
+		
+		_getColumns : function() {
+			var columns = [	
+
+			{
+				name : "name",
+				editable : false,
+				sortable : true,
+				label 	 : "Nome",
+				cell 	 : "string",
+			}, 
+			{
+				name : "username",
+				editable : false,
+				sortable : true,
+				label 	 : "Username",
+				cell 	 : "string",
+			}, 
+			{
+				name : "password",
+				editable : false,
+				sortable : true,
+				label 	 : "Password",
+				cell 	 : "string",
+			}, 
+			{
+				name : "enable",
+				editable : false,
+				sortable : true,
+				label 	 : "Ativo",
+				cell 	 : "string",
+			}, 
+			{
+				name : "image",
+				editable : false,
+				sortable : true,
+				label 	 : "Imagem",
+				cell 	 : "string",
+			}, 
+			];
+			return columns;
+		},
+
+		clearFields : function() {
+			util.clear('inputModalId');
+			util.clear('inputModalName'); 
+			util.clear('inputModalUsername'); 
+			util.clear('inputModalPassword'); 
+			util.clear('inputModalEnable'); 
+			util.clear('inputModalImage'); 
+			util.scrollUpModal();
+		},
+
+		searchUser : function() {
+			this.userCollection.filterQueryParams = {
+	    		name : util.escapeById('inputModalName'),
+	    		username : util.escapeById('inputModalUsername'),
+	    		password : util.escapeById('inputModalPassword'),
+	    		enable : util.escapeById('inputModalEnable'),
+	    		image : util.escapeById('inputModalImage'),
+			};
+
+			this.userCollection.fetch({
+				resetState : true,
+				success : function(_coll, _resp, _opt) {
+					//caso queira algum tratamento de sucesso adicional
+				},
+				error : function(_coll, _resp, _opt) {
+					console.error(_coll, _resp, _opt)
+				}
+			});
+		},
+
+		hidePage : function() {
+			this.ui.modalScreen.modal('hide');
+		},
+
+		showPage : function() {
+			this.clearModal();
+
+			this.ui.modalScreen.modal('show');
+			this.userCollection.getFirstPage({
+				success : function(_col, _resp, _opts) {
+					//caso queira algum tratamento de sucesso adicional
+				},
+				error : function(_col, _resp, _opts) {
+					console.error(_resp.responseText || (_resp.getResponseHeader && _resp.getResponseHeader('exception')));
+				}
+			});
+		},
+
+		clearModal : function() {
+			this.clearFields();
+			this.ui.form.get(0).reset();
+			this.userCollection.reset();
+		},
+		
+		// Executada depois da consulta concluida.
+		_stopFetch : function() {
+			util.stopSpinner();
+			util.scrollDownModal();
+		},
+		
+		// Executada Antes da realização da consulta.
+		_startFetch : function() {
+			util.showSpinner('spinUser');
+		},
+	});
+
+	return UserModal;
+});

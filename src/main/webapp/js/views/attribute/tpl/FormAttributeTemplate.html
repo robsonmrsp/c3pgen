@@ -1,0 +1,112 @@
+<!-- generated: 30/08/2015 20:23:12 -->
+<!-- Attribute´s form -->
+<div class="main-content-inner">
+	<div class="breadcrumbs" id="breadcrumbs">
+		<ul class="breadcrumb">
+			<li>
+				<i class="ace-icon fa fa-home home-icon"></i>
+				<a href="#">Home</a>
+			</li>
+			<li class="active">Cadastrar Attribute</li>
+		</ul>
+	</div>
+	
+	<div class="page-content">
+		<h1>Cadastrar Attribute</h1>
+		<div class="main-principal">
+			<div class="row">
+				<div class="col-xs-12 col-sm-12">
+				<div id="messages_div"></div>
+				</div>
+			</div>
+			<div class="hr-24"></div>
+			
+			<div class="panel panel-default plain">
+				<div class="">
+					<div class="col-xs-12 col-sm-12">
+			
+				<form role="form" id="formAttribute">
+				<br>
+				<input type="hidden" id="inputId" value="{{id}}">
+					<div id="groupInputName" class="form-group">
+						<label class="control-label" for="inputName">Nome</label>
+						<input type="text" id="inputName" placeholder="Nome" value="{{name}}" class="form-control  validate[required]">
+					</div>
+					
+					<div id="groupInputDisplayName" class="form-group">
+						<label class="control-label" for="inputDisplayName">Nome apresentado na tela</label>
+						<input type="text" id="inputDisplayName" placeholder="Nome apresentado na tela" value="{{displayName}}" class="form-control  ">
+					</div>
+					
+					<div id="groupInputMaxLen" class="form-group">
+						<label class="control-label" for="inputMaxLen">Tamanho máximo</label>
+						<input type="text" id="inputMaxLen" placeholder="Tamanho máximo" value="{{maxLen}}" class="form-control  ">
+					</div>
+					
+					<div id="groupInputTableFieldName" class="form-group">
+						<label class="control-label" for="inputTableFieldName">Nome da coluna na tabela</label>
+						<input type="text" id="inputTableFieldName" placeholder="Nome da coluna na tabela" value="{{tableFieldName}}" class="form-control  ">
+					</div>
+					
+					<div id="groupInputMasc" class="form-group">
+						<label class="control-label" for="inputMasc">Formato de Máscara</label>
+						<input type="text" id="inputMasc" placeholder="Formato de Máscara" value="{{masc}}" class="form-control  ">
+					</div>
+					
+					<div id="groupInputDefaultValue" class="form-group">
+						<label class="control-label" for="inputDefaultValue">Valor padrão</label>
+						<input type="text" id="inputDefaultValue" placeholder="Valor padrão" value="{{defaultValue}}" class="form-control  ">
+					</div>
+					
+					<div id="groupInputPlaceholder" class="form-group">
+						<label class="control-label" for="inputPlaceholder">Placeholder</label>
+						<input type="text" id="inputPlaceholder" placeholder="Placeholder" value="{{placeholder}}" class="form-control  ">
+					</div>
+					
+					<div id="groupInputRequired" class="form-group">
+						<label class="control-label" for="inputRequired">Obrigatório</label>
+						<input type="text" id="inputRequired" placeholder="Obrigatório" value="{{required}}" class="form-control  ">
+					</div>
+					
+					<div id="groupInputUnique" class="form-group">
+						<label class="control-label" for="inputUnique">Único</label>
+						<input type="text" id="inputUnique" placeholder="Único" value="{{unique}}" class="form-control  ">
+					</div>
+					
+					<div id="groupInputEntityContainer" class="form-group">
+						<label class="control-label" for="inputEntity">Entidade</label>
+						<div id="groupInputEntity" class="input-group">
+							<input id="inputEntityId" type="hidden" class="form-control append-left" value="{{entity && entity.id}}" />
+							<input id="inputEntityName"  placeholder="Escolha um Entidade" type="text" class="form-control append-left" value="{{entity && entity.name}}" />
+							<div class="input-group-addon append-right" id="searchEntityModal" data-toggle="modal">
+								<span class="fa fa-search"></span>
+							</div>
+						</div>
+					</div>		
+				</form>
+				</div>
+			</div>
+			<div class="clearfix form-actions form-group mb15">
+				<div class="col-md-9">
+					<a href="javascript:void(0)" id="save"  class="save btn btn-primary">
+						<i class="ace-icon save fa fa-check bigger-110"></i>
+						Salvar
+					</a>
+					&nbsp;
+					<a href="javascript:void(0)" class=" saveAndContinue  btn btn-info" style="display: {{ id ? 'none' : 'inline-block' }} ">
+						<i class="ace-icon fa fa-check bigger-110"></i>
+						Salvar e Continuar
+					</a>
+					&nbsp;
+
+					<a class="go-back-link btn btn-default" href="#app/attributes">
+						<i class="ace-icon fa fa-undo bigger-110"></i>
+						Voltar para a listagem
+					</a>
+				</div>
+			</div>
+    	  </div>
+		</div>
+	</div>
+</div>				
+<div id='entityModal'></div>
