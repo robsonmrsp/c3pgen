@@ -1,18 +1,25 @@
 <div class="hpanel hblue">
-	<div class="panel-heading hbuilt">
-		<div class="panel-tools">
-			<a class="showhide">
-				<i class="fa fa-chevron-up"></i>
-				<i class="fa fa-plus add-attr"></i>
+	<div class="panel-heading hbuilt" style="padding: 5px">
+		<div class="panel-tools" style="margin-top: 10px;">
+			<a class="show-hide-ent" data-toggle="tooltip" data-placement="top" title="" data-original-title="mostrar/esconder atributos">
+				<i class="fa fa-15x fa-chevron-up"></i>
 			</a>
-			<a class="closebox">
-				<i class="fa fa-times">att</i>
+			<a class="add-attribute" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Novo Atributo">
+				<i class="fa fa-15x fa-plus add-attr"></i>
+			</a>
+			<a class="add-relation" data-toggle="tooltip" data-placement="top" title="" data-original-title="Novo relacionamento">
+				<i class=" fa fa-15x fa-link "></i>
+			</a>
+			<a class="rem-entity" data-toggle="tooltip" data-placement="right" title="" data-original-title="Remove Entidade">
+				<i class="fa fa-15x fa-trash-o"></i>
 			</a>
 		</div>
-		<h5>
-			<a href="javascript:void(-1)" data-type="text" data-placement="right" data-title="Enter username" class="editable editable-click entity-name" data-original-title="" title=""> Entidade </a>
-		</h5>
+		<h4>
+			<a href="javascript:void(-1)" data-type="text" data-placement="right" data-title="Nome da Entidade" class="editable editable-click entity-name" data-original-title="" title=""> Entidade </a>
+		</h4>
 	</div>
-	<div class="panel-body attributes" style="padding: 5px"></div>
-	<div class="panel-footer">Observações</div>
+	<div class="panel-body widget-entidade attributes" style="padding: 5px"></div>
+	<div class="panel-footer ">
+		<p class="editable editable-click" data-title="Observações da entidade">Observações</p>
+	</div>
 </div>

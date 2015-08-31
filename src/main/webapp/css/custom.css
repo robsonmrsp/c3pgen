@@ -146,6 +146,7 @@ td-actions a {
 .backgrid .select-row-cell,.backgrid .select-all-header-cell {
 	text-align: center;
 }
+
 .splash {
 	position: absolute;
 	z-index: 2000;
@@ -167,6 +168,7 @@ td-actions a {
 .splash-title h1 {
 	font-size: 26px
 }
+
 .custom-number-cel {
 	max-width: 130px !important;
 	width: 130px !important;
@@ -177,4 +179,12 @@ td-actions a {
 	max-width: 170px !important;
 	width: 170px !important;
 	text-align: right !important;
+}
+
+.fa-15x {
+	font-size: 1.5em;
+}
+
+.editable-unsaved {
+	font-weight: 500 !important;
 }
