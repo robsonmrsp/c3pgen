@@ -24,19 +24,20 @@ define(function(require) {
 		},
 
 		ui : {
-			inputAtributeName : '.inputAtributeName',
-			inputDisplayName : '.displayName',
-
 			inputId : '.inputId',
-			inputName : '.inputName',
+
+			inputAtributeName : '.inputAtributeName',
 			inputDisplayName : '.inputDisplayName',
 			inputMaxLen : '.inputMaxLen',
+			inputType : '.inputType',
 			inputTableFieldName : '.inputTableFieldName',
-			inputMasc : '.inputMasc',
+			inputMask : '.inputMask',
 			inputDefaultValue : '.inputDefaultValue',
 			inputPlaceholder : '.inputPlaceholder',
 			inputRequired : '.inputRequired',
 			inputUnique : '.inputUnique',
+
+			inputViewApproach : '.inputViewApproach',
 
 			widgetMain : '.widget-main',
 			showhide : '.showhide',
@@ -59,13 +60,15 @@ define(function(require) {
 				displayName : this.ui.inputDisplayName.text(),
 				maxLen : this.ui.inputMaxLen.text(),
 				tableFieldName : this.ui.inputTableFieldName.text(),
-				masc : this.ui.inputMasc.text(),
+				masc : this.ui.inputMask.text(),
 				defaultValue : this.ui.inputDefaultValue.text(),
 				placeholder : this.ui.inputPlaceholder.text(),
 				required : this.ui.inputRequired.is(':checked'),
 				unique : this.ui.inputUnique.is(':checked'),
+				viewApproach : {
+					type : this.ui.inputViewApproach.text(),
+				}
 			};
-
 		},
 		hideShow : function() {
 			this.ui.widgetMain.toggle();
@@ -80,10 +83,79 @@ define(function(require) {
 			var that = this;
 
 			this.on('show', function() {
-				this.ui.editableFields.editable({	emptytext : '[[ -- ]]'});
+
+				this.ui.inputAtributeName.editable();
+				this.ui.inputDisplayName.editable();
+				this.ui.inputMaxLen.editable();
+				this.ui.inputTableFieldName.editable();
+				this.ui.inputMask.editable();
+
+				this.ui.inputType.editable({
+					value : 'string',
+					source : [ {
+						value : 'string',
+						text : 'String'
+					}, {
+						value : 'long',
+						text : 'Long'
+					}, {
+						value : 'boolean',
+						text : 'Boolean'
+					}, {
+						value : 'integer',
+						text : 'Integer'
+					}, {
+						value : 'double',
+						text : 'Double'
+					}, {
+						value : 'date',
+						text : 'Date'
+					}, {
+						value : 'datetime',
+						text : 'Datetime'
+					}, ]
+				})
+				this.ui.inputType.on('hidden', function() {
+					if (that.ui.inputType.text() == 'Boolean') {
+						that.ui.inputViewApproach.text('Check')
+					}
+					if (that.ui.inputType.text() == 'String') {
+						that.ui.inputViewApproach.text('Textfield')
+					}
+				})
+				this.ui.inputViewApproach.on('hidden', function() {
+					if ((that.ui.inputViewApproach.text() == 'Check') || (that.ui.inputViewApproach.text() == 'Radio')) {
+						that.ui.inputType.text('Boolean')
+					}
+					if ((that.ui.inputViewApproach.text() == 'Textfield')) {
+						that.ui.inputType.text('String')
+					}
+				})
+
+				this.ui.inputViewApproach.editable({
+					value : 'textfield',
+					source : [ {
+						value : 'check',
+						text : 'Check'
+					}, {
+						value : 'radio',
+						text : 'Radio'
+					}, {
+						value : 'textfield',
+						text : 'Textfield'
+					}, {
+						value : 'datepicker',
+						text : 'Datepicker'
+					} ]
+				});
+
+				this.ui.inputViewApproach.on('hidden', function() {
+
+				});
 
 				this.ui.editableFields.on('hidden', function() {
 					that.changeAttribute();
+					alert('teste');
 				})
 			});
 		},
@@ -91,4 +163,4 @@ define(function(require) {
 
 	return AttributesItemView;
 });
-///views/categoria/EntityItemView
+// /views/categoria/EntityItemView

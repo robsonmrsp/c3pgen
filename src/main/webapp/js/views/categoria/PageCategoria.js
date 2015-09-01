@@ -14,12 +14,12 @@ define(function(require) {
 
 	var TemplateFormCategorias = require('text!views/categoria/tpl/FormCategoriaTemplate.html');
 	var EntityModel = require('models/EntityModel');
+	var ApplicationModel = require('models/ApplicationModel');
 	var BaseCollection = require('collections/BaseCollection');
 	var EntityCollection = require('collections/EntityCollection');
 	var PageCategoriaTemplate = require('text!views/categoria/tpl/PageCategoriaTemplate.html');
 
 	var EntitiesCollectionView = require('views/categoria/EntitiesCollectionView');
-
 
 	var PageCategoria = Marionette.LayoutView.extend({
 		template : _.template(PageCategoriaTemplate),
@@ -34,14 +34,24 @@ define(function(require) {
 		},
 
 		salvaEntidades : function() {
-			console.log(JSON.stringify(this.entidadesCollection.toJSON()));
-			console.log(JSON.stringify(this.entidadesCollection));
+			var applicationModel = new ApplicationModel();
+			applicationModel.set('entities', this.entidadesCollection);
+			applicationModel.save({}, {
+				success : function() {
+					console.info('Sucesso ao salvar applicação')
+				},
+				error : function() {
+					console.error('Erro ao salvar applicação')
+				}
+			})
 		},
+
 		novaEntidade : function() {
 			var endidade = new EntityModel();
 
 			this.entidadesCollection.add(endidade);
 		},
+
 		initialize : function() {
 			this.entidadesCollection = new EntityCollection();
 			this.entidadesContainer = new EntitiesCollectionView({

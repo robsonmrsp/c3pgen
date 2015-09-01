@@ -496,7 +496,7 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 				text : options.text,
 				time : 10000,// 10 segundos
 				sticky : false,
-//				close_icon : 'fa fa-times',
+				// close_icon : 'fa fa-times',
 				icon : options.icon || 'fa fa-exclamation-circle',
 				class_name : options.className || 'warn-notice',
 			});
@@ -556,13 +556,17 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 				console.error(resp.responseText || (resp.getResponseHeader && resp.getResponseHeader('exception')));
 			}
 		},
-		//no futuro será verificado a melhor maneira de fazer isso
+		// no futuro será verificado a melhor maneira de fazer isso
 		getCurrencySymbol : function() {
 			return "R$";
 		},
 		formatNumeric : function(number, places) {
 			var _number = number || 0;
 			return _number.formatMoney(places, ',', '.')
+		},
+		refreshEditable : function($el, val) {
+			$el.val(val);
+			$el.removeClass('editable-empty');
 		}
 	};
 	return util;
