@@ -22,6 +22,7 @@ define(function(require) {
 	    	tableName : '',    	
 	    	hasOwner : '',    	
 	    	hasMobile : '',    	
+	    	notes  : '',    	
 			application : null,
 			attributes : null,
 			relationships : null,

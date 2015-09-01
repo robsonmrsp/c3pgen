@@ -1,4 +1,5 @@
 <div class="hpanel hyellow" style="padding: 5px; margin-bottom: 5px">
+	<input id="inputId" type="hidden" value={{id}}>
 	<div class="panel-heading hbuilt" style="padding: 3px;">
 		<div class="panel-tools" style="margin-top: 4px;">
 			<a class="showhide">
@@ -9,7 +10,8 @@
 			</a>
 		</div>
 		<h5>
-			<a href="javascript:void(-1)" data-type="text" data-placement="right" data-title="Digite o nome do atributo" class="editable editable-click inputName " data-original-title="" title=""> Atributo </a>
+			Atributo:&nbsp;
+			<a href="javascript:void(-1)" data-type="text" data-placement="right" data-title="Digite o nome do atributo" class="editable editable-click inputAtributeName " data-original-title="" title=""> {{name}} </a>
 		</h5>
 	</div>
 	<div class="panel-body " style="padding: 5px; border-bottom: 1px solid #e4e5e7;">
@@ -31,22 +33,22 @@
 			<br>
 			<span>
 				Obrigatório:&nbsp;
-				<input type="checkbox" class="inputRequired">
+				<input type="checkbox" class="inputRequired"{{required ? 'checked' :''}}>
 			</span>
 			<br>
 			<span>
 				Único:&nbsp;
-				<input style="margin: 0px" type="checkbox" class="inputUnique">
+				<input style="margin: 0px" type="checkbox" class="inputUnique"{{unique ? 'checked' :''}}>
 			</span>
 			<br>
 			<span>
 				Máscara:&nbsp;
-				<a class="editable editable-click inputMask" data-placement="right" data-title="digite uma máscara"> </a>
+				<a class="editable editable-click inputMask" data-placement="right" data-title="Digite uma máscara"> </a>
 			</span>
 			<br>
 			<span>
 				Tamanho Máximo:&nbsp;
-				<a class="editable editable-click inputMaxLen" data-placement="right" data-title="digite o tamanho máximo"></a>
+				<a class="editable editable-click inputMaxLen" data-placement="right" data-title="Digite o tamanho máximo"></a>
 			</span>
 		</div>
 	</div>

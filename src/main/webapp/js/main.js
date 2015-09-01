@@ -1,5 +1,5 @@
 require.config({
-	urlArgs : "bust=" + new Date().getTime(),
+	// urlArgs : "bust=" + new Date().getTime(),
 	paths : {
 		'jquery' : '../vendor/jquery/jquery-1.10.2',
 		'jqueryUI' : '../vendor/jquery.ui/jquery-ui-1.10.4.custom.min',
@@ -37,7 +37,7 @@ require.config({
 		'list' : '../vendor/jscf/list',
 		'map' : '../vendor/jscf/map',
 		'set' : '../vendor/jscf/set',
-		
+
 		'jqueryGritter' : '../vendor/jquery.gritter-1.7.4/js/jquery.gritter',
 		'metisMenu' : '../vendor/metisMenu/dist/metisMenu',
 		'editable' : '../vendor/bootstrap3-editable/js/bootstrap-editable',
@@ -121,7 +121,7 @@ require.config({
 		'slimscrollHorizontal' : [ 'jquery' ],
 
 		'jqueryGritter' : [ 'jquery' ],
-		
+
 		'metisMenu' : [ 'jquery' ],
 		'editable' : [ 'jquery' ],
 	},

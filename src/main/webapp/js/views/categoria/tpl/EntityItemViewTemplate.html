@@ -1,6 +1,7 @@
 <div class="hpanel hblue">
 	<div class="panel-heading hbuilt" style="padding: 5px">
 		<div class="panel-tools" style="margin-top: 10px;">
+			<input id="inputId" type="hidden" value={{id}}>
 			<a class="show-hide-ent" data-toggle="tooltip" data-placement="top" title="" data-original-title="mostrar/esconder atributos">
 				<i class="fa fa-15x fa-chevron-up"></i>
 			</a>
@@ -15,33 +16,30 @@
 			</a>
 		</div>
 		<h4>
-			<a href="javascript:void(-1)" data-type="text" data-placement="right" data-title="Nome da Entidade" class="editable editable-click entity-name" data-original-title="" title=""> Entidade </a>
+			<a href="javascript:void(-1)" data-type="text" data-placement="right" data-title="Nome da Entidade" class="editable editable-click inputEntityName" data-original-title="" title=""> {{name}} </a>
 		</h4>
 	</div>
 	<div class="panel-body " style="padding: 5px">
 		<span>
+			Mobile?:&nbsp;
+			<input style="margin: 0px" type="checkbox" class="inputHasMobile" {{hasMobile ? 'checked' :''}}>
+		</span>
+		<br>
+		<span>
 			Nome de exibição:&nbsp;
-			<a class="editable editable-click inputDisplayName" data-placement="right" data-title="Digite o nome a exibir"></a>
+			<a class="editable editable-click inputDisplayName" data-placement="right" data-title="Digite o nome a exibir">{{displayName}}</a>
 		</span>
 		<br>
 		<span>
 			Nome Tabela: &nbsp;
-			<a class="editable editable-click inputTableName " data-placement="right" data-title="Digite um nome para a tabela"> </a>
-		</span>
-		<!-- 		<br> -->
-		<!-- 		<span> -->
-		<!-- 			Dono?:&nbsp; -->
-		<!-- 			<input type="checkbox" class="inputHasOwner"> -->
-		<!-- 		</span> -->
-		<br>
-		<span>
-			Mobile?:&nbsp;
-			<input style="margin: 0px" type="checkbox" class="inputHasMobile">
+			<a class="editable editable-click inputTableName " data-placement="right" data-title="Digite um nome para a tabela">{{tableName}} </a>
 		</span>
 		<br>
 		<div class="widget-entidade attributes"></div>
+		<div class="widget-entidade relationships"></div>
 	</div>
 	<div class="panel-footer ">
-		<p class="editable editable-click" data-title="Observações da entidade">Observações</p>
+		Observações: &nbsp;
+		<p class="editable editable-click" data-title="Observações da entidade">{{notes}}</p>
 	</div>
 </div>
