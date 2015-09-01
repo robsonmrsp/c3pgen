@@ -23,6 +23,7 @@ define(function(require) {
 	// Filter import
 
 	// End of "Import´s" definition
+	console.log(JSON.stringify(this.entidadesCollection));
 
 	var PageCategoria = Marionette.LayoutView.extend({
 		template : _.template(PageCategoriaTemplate),
@@ -37,7 +38,8 @@ define(function(require) {
 		},
 
 		salvaEntidades : function() {
-			console.log(this.entidadesCollection.toJSON());
+			console.log(JSON.stringify(this.entidadesCollection.toJSON()));
+			console.log(JSON.stringify(this.entidadesCollection));
 		},
 		novaEntidade : function() {
 			var endidade = new EntityModel();

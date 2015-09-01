@@ -52,7 +52,7 @@ define(function(require) {
 			this.model.set(this.getModel());
 		},
 		deleteAtribute : function() {
-			this.$el.remove();
+			this.model.destroy();
 		},
 
 		getModel : function() {
@@ -113,11 +113,12 @@ define(function(require) {
 		},
 		events : {
 			'click .add-attr' : 'addAttribute',
-			'click .rem-entidade' : 'deleteEntidade',
+			'click .rem-entity' : 'deleteEntidade',
 			'click .show-hide-ent' : 'hideShowEnt',
 		},
 
 		deleteEntidade : function() {
+			this.model.destroy();
 			this.$el.remove();
 		},
 
@@ -140,7 +141,8 @@ define(function(require) {
 			var that = this;
 
 			this.attributesCollection = new AttributeCollection(this.model.get('attributes'));
-			this.attributesCollection.on('add', this.addOnCollectionAttribute, this)
+			this.model.set('attributes', this.attributesCollection);
+
 			this.attributes = new Attributes({
 				collection : this.attributesCollection,
 			});
@@ -156,10 +158,7 @@ define(function(require) {
 				this.attributesRegion.show(this.attributes);
 			});
 		},
-		this.addOnCollectionAttribute : function(model) {
-			
-			this.model.collection.set(model.collection.toJSON());
-		}, 
+
 		hideShowEnt : function() {
 			this.ui.widgetEntMain.toggle();
 			if (this.ui.widgetEntMain.is(':visible')) {
@@ -169,9 +168,6 @@ define(function(require) {
 			}
 		},
 
-		getModel : function() {
-			this.model.set('attributes', this.attributesCollection.toJSON());
-		},
 	});
 
 	var EntidadeCollection = Marionette.CollectionView.extend({
