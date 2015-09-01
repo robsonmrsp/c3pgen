@@ -42,7 +42,7 @@
      id="namedview14"
      showgrid="false"
      inkscape:zoom="7.375"
-     inkscape:cx="-30.169492"
+     inkscape:cx="-55.186441"
      inkscape:cy="16"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
@@ -52,7 +52,7 @@
      transform="translate(2)"
      d="M0 12 V20 H4 V12z"
      id="path4"
-     style="fill:#0070bb;fill-opacity:1">
+     style="fill:#28aae1;fill-opacity:1">
     <animate
        attributeName="d"
        values="M0 12 V20 H4 V12z; M0 4 V28 H4 V4z; M0 12 V20 H4 V12z; M0 12 V20 H4 V12z"
@@ -68,7 +68,7 @@
      transform="translate(8)"
      d="M0 12 V20 H4 V12z"
      id="path6"
-     style="fill:#0070bb;fill-opacity:1">
+     style="fill:#28aae1;fill-opacity:1">
     <animate
        attributeName="d"
        values="M0 12 V20 H4 V12z; M0 4 V28 H4 V4z; M0 12 V20 H4 V12z; M0 12 V20 H4 V12z"
@@ -84,7 +84,7 @@
      transform="translate(14)"
      d="M0 12 V20 H4 V12z"
      id="path8"
-     style="fill:#0070bb;fill-opacity:1">
+     style="fill:#28aae1;fill-opacity:1">
     <animate
        attributeName="d"
        values="M0 12 V20 H4 V12z; M0 4 V28 H4 V4z; M0 12 V20 H4 V12z; M0 12 V20 H4 V12z"
@@ -100,7 +100,7 @@
      transform="translate(20)"
      d="M0 12 V20 H4 V12z"
      id="path10"
-     style="fill:#0070bb;fill-opacity:1">
+     style="fill:#28aae1;fill-opacity:1">
     <animate
        attributeName="d"
        values="M0 12 V20 H4 V12z; M0 4 V28 H4 V4z; M0 12 V20 H4 V12z; M0 12 V20 H4 V12z"
@@ -116,7 +116,7 @@
      transform="translate(26)"
      d="M0 12 V20 H4 V12z"
      id="path12"
-     style="fill:#0070bb;fill-opacity:1">
+     style="fill:#28aae1;fill-opacity:1">
     <animate
        attributeName="d"
        values="M0 12 V20 H4 V12z; M0 4 V28 H4 V4z; M0 12 V20 H4 V12z; M0 12 V20 H4 V12z"

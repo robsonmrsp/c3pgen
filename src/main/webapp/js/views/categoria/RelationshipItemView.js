@@ -65,7 +65,7 @@ define(function(require) {
 			var that = this;
 
 			this.on('show', function() {
-				this.ui.editableFields.editable();
+				this.ui.editableFields.editable({	emptytext : '[[ -- ]]'});
 
 				this.ui.editableFields.on('hidden', function() {
 					that.changeRelationship();

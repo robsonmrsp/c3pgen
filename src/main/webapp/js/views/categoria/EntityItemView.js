@@ -37,6 +37,7 @@ define(function(require) {
 		},
 
 		ui : {
+			inputId : '#inputId',
 			inputEntityName : '.inputEntityName',
 			inputDisplayName : '.inputDisplayName',
 			inputTableName : '.inputTableName',
@@ -49,6 +50,7 @@ define(function(require) {
 			addAttribute : '.add-attribute',
 			remEntity : '.rem-entity',
 			showHideEntity : '.show-hide-ent',
+			panelBody : '.entity-content',
 		},
 
 		deleteEntidade : function() {
@@ -83,7 +85,9 @@ define(function(require) {
 			});
 
 			this.on('show', function() {
-				this.ui.editable.editable();
+				this.ui.editable.editable({
+					emptytext : '[[ -- ]]'
+				});
 
 				this.ui.editable.on('hidden', function() {
 					that.changeEntity();
@@ -109,8 +113,8 @@ define(function(require) {
 
 		getModel : function() {
 			return {
-				id : this.ui.inputId.text(),
-				name : this.ui.inputName.text(),
+				id : this.ui.inputId.val(),
+				name : this.ui.inputEntityName.text(),
 				displayName : this.ui.inputDisplayName.text(),
 				tableName : this.ui.inputTableName.text(),
 				hasMobile : this.ui.inputHasMobile.is(':checked'),
@@ -118,8 +122,9 @@ define(function(require) {
 		},
 
 		hideShowEnt : function() {
-			this.ui.widgetEntMain.toggle();
-			if (this.ui.widgetEntMain.is(':visible')) {
+			this.ui.panelBody.toggle();
+
+			if (this.ui.panelBody.is(':visible')) {
 				this.ui.showhide.find('i').removeClass('fa-chevron-down').addClass('fa-chevron-up')
 			} else {
 				this.ui.showhide.find('i').removeClass('fa-chevron-up').addClass('fa-chevron-down')

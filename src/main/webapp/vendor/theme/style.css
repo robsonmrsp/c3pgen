@@ -402,7 +402,7 @@ body {
 }
 
 .homer-notify.alert-success {
-	border-left: 6px solid #0070bb
+	border-left: 6px solid #28aae1
 }
 
 .homer-notify.alert-danger {
@@ -471,7 +471,7 @@ body {
 }
 
 .hmodal-success .color-line {
-	background: #0070bb
+	background: #28aae1
 }
 
 .hmodal-danger .color-line {
@@ -487,7 +487,7 @@ body {
 }
 
 .hmodal-success h4.modal-title {
-	color: #0070bb
+	color: #28aae1
 }
 
 .hmodal-danger h4.modal-title {
@@ -527,7 +527,7 @@ body {
 }
 
 .full .progress-bar-success {
-	background-color: #0070bb;
+	background-color: #28aae1;
 	border-right: 4px solid #58b62c
 }
 
@@ -692,7 +692,7 @@ body.blank {
 }
 
 .vertical-date small {
-	color: #0070bb;
+	color: #28aae1;
 	font-weight: 400
 }
 
@@ -1128,7 +1128,7 @@ body.blank {
 }
 
 .btn-success.btn-outline {
-	color: #0070bb
+	color: #28aae1
 }
 
 .btn-info.btn-outline {
@@ -1200,12 +1200,18 @@ body.blank {
 }
 
 .btn-success {
+	background-color: #28aae1;
+	border-color: #28aae1;
+	color: #FFFFFF
+}
+
+.btn-success:hover{
 	background-color: #0070bb;
 	border-color: #0070bb;
 	color: #FFFFFF
 }
 
-.btn-success:hover,.btn-success:focus,.btn-success:active,.btn-success.active,.open .dropdown-toggle.btn-success {
+.btn-success:focus,.btn-success:active,.btn-success.active,.open .dropdown-toggle.btn-success {
 	background-color: #22aae1;
 	border-color: #22aae1;
 	color: #FFFFFF
@@ -1589,11 +1595,11 @@ body {
 .color-line {
 	background: #f7f9fa;
 	height: 6px;
-	background-color: #0070bb;
-	/*     background-image: -webkit-linear-gradient(left, #34495e, #34495e 25%, #9b59b6 25%, #9b59b6 35%, #3498db 35%, #3498db 45%, #0070bb 45%, #0070bb 55%, #ffb606 55%, #ffb606 65%, #e67e22 65%, #e67e22 75%, #e74c3c 85%, #e74c3c 85%, #c0392b 85%, #c0392b 100%); */
-	/*     background-image: -moz-linear-gradient(left, #34495e, #34495e 25%, #9b59b6 25%, #9b59b6 35%, #3498db 35%, #3498db 45%, #0070bb 45%, #0070bb 55%, #ffb606 55%, #ffb606 65%, #e67e22 65%, #e67e22 75%, #e74c3c 85%, #e74c3c 85%, #c0392b 85%, #c0392b 100%); */
-	/*     background-image: -ms-linear-gradient(left, #34495e, #34495e 25%, #9b59b6 25%, #9b59b6 35%, #3498db 35%, #3498db 45%, #0070bb 45%, #0070bb 55%, #ffb606 55%, #ffb606 65%, #e67e22 65%, #e67e22 75%, #e74c3c 85%, #e74c3c 85%, #c0392b 85%, #c0392b 100%); */
-	/*     background-image: linear-gradient(to right, #34495e, #34495e 25%, #9b59b6 25%, #9b59b6 35%, #3498db 35%, #3498db 45%, #0070bb 45%, #0070bb 55%, #ffb606 55%, #ffb606 65%, #e67e22 65%, #e67e22 75%, #e74c3c 85%, #e74c3c 85%, #c0392b 85%, #c0392b 100%); */
+	background-color: #28aae1;
+	/*     background-image: -webkit-linear-gradient(left, #34495e, #34495e 25%, #9b59b6 25%, #9b59b6 35%, #3498db 35%, #3498db 45%, #28aae1 45%, #28aae1 55%, #ffb606 55%, #ffb606 65%, #e67e22 65%, #e67e22 75%, #e74c3c 85%, #e74c3c 85%, #c0392b 85%, #c0392b 100%); */
+	/*     background-image: -moz-linear-gradient(left, #34495e, #34495e 25%, #9b59b6 25%, #9b59b6 35%, #3498db 35%, #3498db 45%, #28aae1 45%, #28aae1 55%, #ffb606 55%, #ffb606 65%, #e67e22 65%, #e67e22 75%, #e74c3c 85%, #e74c3c 85%, #c0392b 85%, #c0392b 100%); */
+	/*     background-image: -ms-linear-gradient(left, #34495e, #34495e 25%, #9b59b6 25%, #9b59b6 35%, #3498db 35%, #3498db 45%, #28aae1 45%, #28aae1 55%, #ffb606 55%, #ffb606 65%, #e67e22 65%, #e67e22 75%, #e74c3c 85%, #e74c3c 85%, #c0392b 85%, #c0392b 100%); */
+	/*     background-image: linear-gradient(to right, #34495e, #34495e 25%, #9b59b6 25%, #9b59b6 35%, #3498db 35%, #3498db 45%, #28aae1 45%, #28aae1 55%, #ffb606 55%, #ffb606 65%, #e67e22 65%, #e67e22 75%, #e74c3c 85%, #e74c3c 85%, #c0392b 85%, #c0392b 100%); */
 	background-size: 100% 6px;
 	background-position: 50% 100%;
 	background-repeat: no-repeat
@@ -1736,7 +1742,7 @@ body {
 }
 
 .hpanel.hgreen .panel-body {
-	border-top: 2px solid #0070bb
+	border-top: 2px solid #28aae1
 }
 
 .hpanel.hblue .panel-body {
@@ -1768,7 +1774,7 @@ body {
 }
 
 .hpanel.hbggreen .panel-body {
-	background: #0070bb;
+	background: #28aae1;
 	color: #fff;
 	border: none
 }
@@ -2062,7 +2068,7 @@ body {
 }
 
 .h-bg-green {
-	background: #0070bb
+	background: #28aae1
 }
 
 .h-bg-yellow {
@@ -2094,7 +2100,7 @@ body {
 }
 
 .text-success {
-	color: #0070bb
+	color: #28aae1
 }
 
 .text-warning {
@@ -2439,7 +2445,7 @@ a:hover,a:focus {
 }
 
 .label-success {
-	background-color: #0070bb
+	background-color: #28aae1
 }
 
 a.list-group-item.active,a.list-group-item.active:hover,a.list-group-item.active:focus {
@@ -2844,8 +2850,8 @@ a.list-group-item.active,a.list-group-item.active:hover,a.list-group-item.active
 }
 
 .checkbox-success input[type="checkbox"]:checked+label::before {
-	background-color: #0070bb;
-	border-color: #0070bb
+	background-color: #28aae1;
+	border-color: #28aae1
 }
 
 .checkbox-success input[type="checkbox"]:checked+label::after {
@@ -2901,15 +2907,15 @@ a.list-group-item.active,a.list-group-item.active:hover,a.list-group-item.active
 }
 
 .radio-success input[type="radio"]+label::after {
-	background-color: #0070bb
+	background-color: #28aae1
 }
 
 .radio-success input[type="radio"]:checked+label::before {
-	border-color: #0070bb
+	border-color: #28aae1
 }
 
 .radio-success input[type="radio"]:checked+label::after {
-	background-color: #0070bb
+	background-color: #28aae1
 }
 
 .checkbox input:hover,.radio input:hover {
@@ -2931,7 +2937,7 @@ a.list-group-item.active,a.list-group-item.active:hover,a.list-group-item.active
 }
 
 .badge.badge-success {
-	background-color: #0070bb
+	background-color: #28aae1
 }
 
 .badge.badge-info {
@@ -3361,12 +3367,12 @@ ul.mailbox-list li:hover a {
 	border-radius: 5px;
 	color: #fff;
 	display: block;
-	background-color: #0070bb;
+	background-color: #28aae1;
 	margin-left: 0
 }
 
 .landing-page .navbar-default .navbar-toggle:hover,.landing-page .navbar-default .navbar-toggle:focus {
-	background: #0070bb
+	background: #28aae1
 }
 
 .landing-page .navbar-default .navbar-toggle:hover .icon-bar,.landing-page .navbar-default .navbar-toggle:focus .icon-bar {
@@ -3375,7 +3381,7 @@ ul.mailbox-list li:hover a {
 
 .landing-page .navbar-default .navbar-nav>.active>a,.landing-page .navbar-default .navbar-nav>.active>a:hover,.landing-page .navbar-default .navbar-nav>.active>a:focus {
 	background-color: transparent;
-	color: #0070bb;
+	color: #28aae1;
 	border: none
 }
 
@@ -3491,7 +3497,7 @@ ul.mailbox-list li:hover a {
 }
 
 .landing-page .social-icon a {
-	background: #0070bb;
+	background: #28aae1;
 	color: #fff;
 	text-align: center;
 	padding: 4px 8px;
@@ -3526,7 +3532,7 @@ ul.mailbox-list li:hover a {
 .landing-page .pricing-plan .pricing-price span {
 	font-weight: 700;
 	font-size: 30px;
-	color: #0070bb
+	color: #28aae1
 }
 
 .landing-page .pricing-title .label {
