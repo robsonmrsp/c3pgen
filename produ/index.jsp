@@ -22,12 +22,14 @@
 			<img src="images/loading-bars.svg" width="64" height="64">
 		</div>
 	</div>
-
 	<!-- Header -->
 	<div id="header">
 		<div class="color-line"></div>
 		<div id="logo" class="light-version">
-			<span> C3pgen </span>
+			<span>
+				<img src="images/icon.png" width="20">
+			</span>
+			<span> C3PGen </span>
 		</div>
 		<nav role="navigation">
 			<div class="header-link hide-menu">
@@ -69,7 +71,6 @@
 							</small>
 						</a>
 						<ul class="dropdown-menu animated fadeInRight m-t-xs">
-							
 							<li>
 								<a href="profile.html">Perfil</a>
 							</li>
@@ -92,63 +93,63 @@
 					</a>
 					<ul class="nav nav-second-level collapse" aria-expanded="true">
 						<li class="">
-							<a id="applications"  href="#app/applications">
+							<a id="applications" href="#app/applications">
 								<i class="en-arrow-right7"></i>
 								Application
 							</a>
 							<b class="arrow"></b>
 						</li>
 						<li class="">
-							<a id="attributes"  href="#app/attributes">
+							<a id="attributes" href="#app/attributes">
 								<i class="en-arrow-right7"></i>
 								Attribute
 							</a>
 							<b class="arrow"></b>
 						</li>
 						<li class="">
-							<a id="attributeTypes"  href="#app/attributeTypes">
+							<a id="attributeTypes" href="#app/attributeTypes">
 								<i class="en-arrow-right7"></i>
 								AttributeType
 							</a>
 							<b class="arrow"></b>
 						</li>
 						<li class="">
-							<a id="theEntitys"  href="#app/theEntitys">
+							<a id="theEntitys" href="#app/theEntitys">
 								<i class="en-arrow-right7"></i>
 								TheEntity
 							</a>
 							<b class="arrow"></b>
 						</li>
 						<li class="">
-							<a id="relationships"  href="#app/relationships">
+							<a id="relationships" href="#app/relationships">
 								<i class="en-arrow-right7"></i>
 								Relationship
 							</a>
 							<b class="arrow"></b>
 						</li>
 						<li class="">
-							<a id="viewApproachs"  href="#app/viewApproachs">
+							<a id="viewApproachs" href="#app/viewApproachs">
 								<i class="en-arrow-right7"></i>
 								ViewApproach
 							</a>
 							<b class="arrow"></b>
 						</li>
 						<li class="">
-							<a id="clientes"  href="#app/clientes">
+							<a id="clientes" href="#app/clientes">
 								<i class="en-arrow-right7"></i>
 								Cliente
 							</a>
 							<b class="arrow"></b>
 						</li>
 						<li class="">
-							<a id="roles"  href="#app/roles">
+							<a id="roles" href="#app/roles">
 								<i class="en-arrow-right7"></i>
 								Papel
 							</a>
 							<b class="arrow"></b>
 						</li>
 						<li class="">
-							<a id="users"  href="#app/users">
+							<a id="users" href="#app/users">
 								<i class="en-arrow-right7"></i>
 								Usuário
 							</a>
