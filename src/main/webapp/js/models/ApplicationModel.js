@@ -19,6 +19,7 @@ define(function(require) {
 			id: null,
 	    	name : '',    	
 	    	skin : '',    	
+	    	description : '',    	
 	    	rootPackage : '',    	
 			entities : null,
 		

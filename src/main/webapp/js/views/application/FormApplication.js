@@ -14,8 +14,8 @@ define(function(require) {
 	var ApplicationModel = require('models/ApplicationModel');
 	var ApplicationCollection = require('collections/ApplicationCollection');
 	var TheEntityCollection = require('collections/TheEntityCollection');
-	var MultiSelectTheEntity = require('views/theEntity/MultiSelectTheEntity');			
-	
+	var MultiSelectTheEntity = require('views/theEntity/MultiSelectTheEntity');
+
 	// End of "Import´s" definition
 
 	// #####################################################################################################
@@ -26,22 +26,22 @@ define(function(require) {
 		template : _.template(TemplateFormApplications),
 
 		regions : {
-			entitiesRegion : ".entities-container",
+		// entitiesRegion : ".entities-container",
 		},
 
 		events : {
 			'click 	.save' : 'save',
 			'click 	.saveAndContinue' : 'saveAndContinue',
-			'change  #inputSkin' : 'changeSkin',	
-			'change  #inputRootPackage' : 'changeRootPackage',	
+			'change  #inputSkin' : 'changeSkin',
+			'change  #inputRootPackage' : 'changeRootPackage',
 		},
-		
+
 		ui : {
 			inputId : '#inputId',
 			inputName : '#inputName',
 			inputSkin : '#inputSkin',
 			inputRootPackage : '#inputRootPackage',
-		
+
 			form : '#formApplication',
 		},
 
@@ -49,11 +49,11 @@ define(function(require) {
 			var that = this;
 			that.entities = new TheEntityCollection();
 			that.entities.add(this.model.get('entities'));
-			this.multiSelectTheEntity = new MultiSelectTheEntity({
-				collection : that.entities,
-			});
+			// this.multiSelectTheEntity = new MultiSelectTheEntity({
+			// collection : that.entities,
+			// });
 			this.on('show', function() {
-				this.entitiesRegion.show(this.multiSelectTheEntity);
+				// this.entitiesRegion.show(this.multiSelectTheEntity);
 				this.ui.form.validationEngine('attach', {
 					promptPosition : "topLeft",
 					isOverflown : false,
@@ -78,6 +78,8 @@ define(function(require) {
 
 						if (continua != true) {
 							util.goPage('app/applications');
+						} else {
+							util.goPage('app/application/' + _model.get('id') + '/entities');
 						}
 					},
 
@@ -91,14 +93,13 @@ define(function(require) {
 			}
 		},
 
-		
 		clearForm : function() {
 			util.clear('inputId');
-			util.clear('inputName'); 
-			util.clear('inputSkin'); 
-			util.clear('inputRootPackage'); 
+			util.clear('inputName');
+			util.clear('inputSkin');
+			util.clear('inputRootPackage');
 			this.entities.reset();
-			this.multiSelectTheEntity.clear();
+			// this.multiSelectTheEntity.clear();
 		},
 
 		possuiCamposInvalidos : function() {
@@ -115,45 +116,43 @@ define(function(require) {
 
 		_getModel : function() {
 			var that = this;
-			var application = that.model; 
+			var application = that.model;
 			application.set({
-				id: util.escapeById('inputId') || null,
-		    	name : util.escapeById('inputName'), 
-				
-		    	skin : util.escapeById('inputSkin'), 
-				
-		    	rootPackage : util.escapeById('inputRootPackage'), 
-				
-					entities : that.entities.toJSON(),
+				id : util.escapeById('inputId') || null,
+				name : util.escapeById('inputName'),
+
+				skin : util.escapeById('inputSkin'),
+
+				rootPackage : util.escapeById('inputRootPackage'),
+
+				entities : that.entities.toJSON(),
 			});
 			return application;
 		},
-		 
-		
-				
+
 		changeSkin : function() {
 			var that = this;
 			util.validateUnique({
 				element : that.ui.inputSkin,
 				fieldName : 'skin',
 				fieldDisplayName : 'Template',
-				//onlyNumber : true,     //caso queira que as mascaras sejam removidas e somente NUMEROS sejam enviados na consulta.
+				// onlyNumber : true, //caso queira que as mascaras sejam removidas e somente NUMEROS sejam enviados na consulta.
 				view : that,
 				collection : ApplicationCollection,
 			})
-		},				
+		},
 		changeRootPackage : function() {
 			var that = this;
 			util.validateUnique({
 				element : that.ui.inputRootPackage,
 				fieldName : 'rootPackage',
 				fieldDisplayName : 'Pacote raiz',
-				//onlyNumber : true,     //caso queira que as mascaras sejam removidas e somente NUMEROS sejam enviados na consulta.
+				// onlyNumber : true, //caso queira que as mascaras sejam removidas e somente NUMEROS sejam enviados na consulta.
 				view : that,
 				collection : ApplicationCollection,
 			})
-		},				
-		
+		},
+
 	});
 
 	return FormApplications;

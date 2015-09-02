@@ -94,6 +94,7 @@ define(function(require) {
 					util.refreshEditable(that.ui.inputDisplayName, util.toFrase(that.ui.inputAtributeName.text()));
 					util.refreshEditable(that.ui.inputTableFieldName, util.toUnderscore(that.ui.inputAtributeName.text(), true));
 				});
+				
 				this.ui.inputType.on('hidden', function() {
 					if (that.ui.inputType.text() == 'Boolean') {
 						that.ui.inputViewApproach.text('Check')

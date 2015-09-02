@@ -359,8 +359,7 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 		},
 
 		/*
-		 * Usage: breadcrumb({iconClass:'',itemLabel:'',
-		 * itemSubFolderName:'',url:''});
+		 * Usage: breadcrumb({iconClass:'',itemLabel:'', itemSubFolderName:'',url:''});
 		 */
 		breadcrumb : function(itemMenu) {
 			if (itemMenu) {
@@ -570,19 +569,27 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 			$el.removeClass('editable-empty').addClass('editable-unsaved');
 		},
 		toUnderscore : function(w, upper) {
-			var ret = w.replace(/([A-Z])/g, function($1) {
+			var ret = w.replace(/([A-Z])/g, function($1, $2, index) {
+				if (index == 0) {
+					return $1.toLowerCase();
+				}
 				return "_" + $1.toLowerCase();
 			});
 			if (upper)
 				return ret.toUpperCase();
 			return ret;
 		},
+
 		toFrase : function(w, upper) {
-			var ret = w.replace(/([A-Z])/g, function($1) {
+			var ret = w.replace(/([A-Z])/g, function($1, $2, index) {
+				if (index == 0) {
+					return $1.toLowerCase();
+				}
 				return " " + $1.toLowerCase();
 			});
 			return this.firstUpper(ret);
 		},
+
 		firstUpper : function(string) {
 			return string.charAt(0).toUpperCase() + string.slice(1);
 		}

@@ -48,10 +48,23 @@
 			</form>
 			<div class="navbar-right">
 				<ul class="nav navbar-nav no-borders">
-					<li class="dropdown">
-						<a href="j_spring_security_logout">
-							<i class="pe-7s-upload pe-rotate-90"></i>
+					<li class="dropdown ">
+						<a class="dropdown-toggle label-menu-corner" href="#" data-toggle="dropdown" aria-expanded="true">
+							<img src="http://webapplayers.com/homer_admin-v1.5/images/profile.jpg" class="img-circle m-b" alt="logo" style="height: 29px;">
+							<small style="font-size: 14px"> Chico de Toinha </small>
 						</a>
+						<ul class="dropdown-menu animated fadeInRight m-t-xs">
+							<li>
+								<a href="javascript:void(-1)">Perfil</a>
+							</li>
+							<li>
+								<a href="javascript:void(-1)">Configuração</a>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<a href="javascript:void(-1)">Logout</a>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</div>
@@ -73,32 +86,20 @@
 								<b class="caret"></b>
 							</small>
 						</a>
-						<ul class="dropdown-menu animated fadeInRight m-t-xs">
-							<li>
-								<a href="profile.html">Perfil</a>
-							</li>
-							<li>
-								<a href="analytics.html">Configuração</a>
-							</li>
-							<li class="divider"></li>
-							<li>
-								<a href="j_spring_security_logout">Logout</a>
-							</li>
-						</ul>
 					</div>
 				</div>
 			</div>
 			<ul class="nav" id="side-menu">
 				<li class="active">
 					<a href="#">
-						<span class="nav-label">Cadastros</span>
+						<span class="nav-label">Aplicações</span>
 						<span class="fa arrow"></span>
 					</a>
 					<ul class="nav nav-second-level collapse" aria-expanded="true">
 						<li class="">
 							<a id="applications" href="#app/applications">
 								<i class="en-arrow-right7"></i>
-								Application
+								Minhas Aplicações
 							</a>
 							<b class="arrow"></b>
 						</li>
@@ -116,55 +117,55 @@
 							</a>
 							<b class="arrow"></b>
 						</li>
-						<li class="">
-							<a id="attributeTypes" href="#app/attributeTypes">
-								<i class="en-arrow-right7"></i>
-								AttributeType
-							</a>
-							<b class="arrow"></b>
-						</li>
-						<li class="">
-							<a id="theEntitys" href="#app/theEntitys">
-								<i class="en-arrow-right7"></i>
-								TheEntity
-							</a>
-							<b class="arrow"></b>
-						</li>
-						<li class="">
-							<a id="relationships" href="#app/relationships">
-								<i class="en-arrow-right7"></i>
-								Relationship
-							</a>
-							<b class="arrow"></b>
-						</li>
-						<li class="">
-							<a id="viewApproachs" href="#app/viewApproachs">
-								<i class="en-arrow-right7"></i>
-								ViewApproach
-							</a>
-							<b class="arrow"></b>
-						</li>
-						<li class="">
-							<a id="clientes" href="#app/clientes">
-								<i class="en-arrow-right7"></i>
-								Cliente
-							</a>
-							<b class="arrow"></b>
-						</li>
-						<li class="">
-							<a id="roles" href="#app/roles">
-								<i class="en-arrow-right7"></i>
-								Papel
-							</a>
-							<b class="arrow"></b>
-						</li>
-						<li class="">
-							<a id="users" href="#app/users">
-								<i class="en-arrow-right7"></i>
-								Usuário
-							</a>
-							<b class="arrow"></b>
-						</li>
+						<!-- 						<li class=""> -->
+						<!-- 							<a id="attributeTypes" href="#app/attributeTypes"> -->
+						<!-- 								<i class="en-arrow-right7"></i> -->
+						<!-- 								AttributeType -->
+						<!-- 							</a> -->
+						<!-- 							<b class="arrow"></b> -->
+						<!-- 						</li> -->
+						<!-- 						<li class=""> -->
+						<!-- 							<a id="theEntitys" href="#app/theEntitys"> -->
+						<!-- 								<i class="en-arrow-right7"></i> -->
+						<!-- 								TheEntity -->
+						<!-- 							</a> -->
+						<!-- 							<b class="arrow"></b> -->
+						<!-- 						</li> -->
+						<!-- 						<li class=""> -->
+						<!-- 							<a id="relationships" href="#app/relationships"> -->
+						<!-- 								<i class="en-arrow-right7"></i> -->
+						<!-- 								Relationship -->
+						<!-- 							</a> -->
+						<!-- 							<b class="arrow"></b> -->
+						<!-- 						</li> -->
+						<!-- 						<li class=""> -->
+						<!-- 							<a id="viewApproachs" href="#app/viewApproachs"> -->
+						<!-- 								<i class="en-arrow-right7"></i> -->
+						<!-- 								ViewApproach -->
+						<!-- 							</a> -->
+						<!-- 							<b class="arrow"></b> -->
+						<!-- 						</li> -->
+						<!-- 						<li class=""> -->
+						<!-- 							<a id="clientes" href="#app/clientes"> -->
+						<!-- 								<i class="en-arrow-right7"></i> -->
+						<!-- 								Cliente -->
+						<!-- 							</a> -->
+						<!-- 							<b class="arrow"></b> -->
+						<!-- 						</li> -->
+						<!-- 						<li class=""> -->
+						<!-- 							<a id="roles" href="#app/roles"> -->
+						<!-- 								<i class="en-arrow-right7"></i> -->
+						<!-- 								Papel -->
+						<!-- 							</a> -->
+						<!-- 							<b class="arrow"></b> -->
+						<!-- 						</li> -->
+						<!-- 						<li class=""> -->
+						<!-- 							<a id="users" href="#app/users"> -->
+						<!-- 								<i class="en-arrow-right7"></i> -->
+						<!-- 								Usuário -->
+						<!-- 							</a> -->
+						<!-- 							<b class="arrow"></b> -->
+						<!-- 						</li> -->
 					</ul>
 				</li>
 			</ul>

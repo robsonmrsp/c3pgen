@@ -45,7 +45,7 @@ define(function(require) {
 
 			widgetEntMain : '.widget-entidade',
 			showhide : '.show-hide-ent',
-			editable : '.editable-click',
+			editableFields : '.editable-click',
 			addRelation : '.add-relation',
 			addAttribute : '.add-attribute',
 			remEntity : '.rem-entity',
@@ -85,11 +85,23 @@ define(function(require) {
 			});
 
 			this.on('show', function() {
-				this.ui.editable.editable({
-					emptytext : '[[ -- ]]'
+				this.ui.inputEntityName.editable();
+				this.ui.inputDisplayName.editable();
+				this.ui.inputTableName.editable();
+
+				this.ui.inputEntityName.on('hidden', function() {
+					util.refreshEditable(that.ui.inputDisplayName, util.toFrase(that.ui.inputEntityName.text()));
+					util.refreshEditable(that.ui.inputTableName, util.toUnderscore(that.ui.inputEntityName.text(), true));
 				});
 
-				this.ui.editable.on('hidden', function() {
+				this.ui.editableFields.on('shown', function(evt, editable) {
+					var value = $(evt.target).text();
+					if (value != editable.options.emptytext) {
+						editable.input.$input.val($(evt.target).text() || $(evt.target).val());
+					}
+				});
+
+				this.ui.editableFields.on('hidden', function() {
 					that.changeEntity();
 				})
 

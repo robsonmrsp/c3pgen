@@ -28,6 +28,7 @@ define(function(require) {
 			inputRelationshipName : '.inputRelationshipName',
 			inputDisplayName : '.inputDisplayName',
 			inputModel : '.inputModel',
+			inputType : '.inputType',
 			inputOwnerName : '.inputOwnerName',
 			inputUniDirecional : '.inputUniDirecional',
 
@@ -65,11 +66,34 @@ define(function(require) {
 			var that = this;
 
 			this.on('show', function() {
-				this.ui.editableFields.editable({	emptytext : '[[ -- ]]'});
+				this.ui.inputRelationshipName.editable();
+				this.ui.inputDisplayName.editable();
+				this.ui.inputModel.editable(); // popupada a partir dos nomes das entidades já cadastradas ou deixar em branco para o autocomplete ser feito via lista de já cadastrados.
+				this.ui.inputOwnerName.editable();// candidato a ser uma lista populada a partir da escolha do model
+
+				this.ui.inputRelationshipName.on('hidden', function() {
+					util.refreshEditable(that.ui.inputDisplayName, util.toFrase(that.ui.inputRelationshipName.text()));
+				});
 
 				this.ui.editableFields.on('hidden', function() {
 					that.changeRelationship();
 				})
+				this.ui.inputType.editable({
+					value : 'OneToMany',
+					source : [ {
+						value : 'OneToMany',
+						text : '1 > N'
+					}, {
+						value : 'ManyToOne',
+						text : 'M > 1'
+					}, {
+						value : 'OneToOne',
+						text : '1 > 1'
+					}, {
+						value : 'ManyToMany',
+						text : 'M > N'
+					}, ]
+				});
 			});
 		},
 	});

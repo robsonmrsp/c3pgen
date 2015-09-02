@@ -119,6 +119,7 @@ define(function(require) {
 			'' : 'index',
 			// hashs de Application
 			'app/applications' : 'applications',
+			'app/application/:idApp/entities' : 'entitiesByApplication',
 			'app/categoria' : 'categoria',
 			'app/newApplication' : 'newApplication',
 			'app/editApplication/:id' : 'editApplication',
@@ -232,8 +233,27 @@ define(function(require) {
 				url : 'app/applications'
 			});
 		},
+		entitiesByApplication : function(idApplication) {
+			var that = this;
+			var application = new ApplicationModel({
+				id : idApplication,
+			})
+			application.fetch({
+				success : function(model) {
+					that.pageCategoria = new PageCategoria({
+						application : application,
+					});
+					that.App.mainRegion.show(that.pageCategoria);
+				},
+				error : function(x, y, z) {
+					console.error(x, y, z);
+				}
+			})
+		},
 		categoria : function() {
-			this.pageCategoria = new PageCategoria();
+			this.pageCategoria = new PageCategoria({
+
+			});
 			this.App.mainRegion.show(this.pageCategoria);
 		},
 

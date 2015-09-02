@@ -33,10 +33,26 @@ define(function(require) {
 			'click #salvaEntidades' : 'salvaEntidades'
 		},
 
+		// TODO ver a possibilidade de o parser enviar TODA a arvore da aplicação.
+		initialize : function(opt) {
+			this.application = opt.application;
+
+			this.entidadesCollection = new EntityCollection(this.application.get('entities'));
+
+			this.application.set('entities', this.entidadesCollection);
+
+			this.entidadesContainer = new EntitiesCollectionView({
+				collection : this.entidadesCollection,
+			});
+
+			this.on('show', function() {
+				this.entidadesRegion.show(this.entidadesContainer);
+			});
+		},
+
 		salvaEntidades : function() {
-			var applicationModel = new ApplicationModel();
-			applicationModel.set('entities', this.entidadesCollection);
-			applicationModel.save({}, {
+			// this.application.set('entities', this.entidadesCollection);
+			this.application.save({}, {
 				success : function() {
 					console.info('Sucesso ao salvar applicação')
 				},
@@ -48,21 +64,9 @@ define(function(require) {
 
 		novaEntidade : function() {
 			var endidade = new EntityModel();
-
 			this.entidadesCollection.add(endidade);
 		},
 
-		initialize : function() {
-			this.entidadesCollection = new EntityCollection();
-			this.entidadesContainer = new EntitiesCollectionView({
-				collection : this.entidadesCollection,
-			});
-
-			this.on('show', function() {
-				this.entidadesRegion.show(this.entidadesContainer);
-
-			});
-		},
 	});
 
 	return PageCategoria;
