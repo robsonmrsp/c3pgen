@@ -90,37 +90,35 @@ define(function(require) {
 				this.ui.inputTableFieldName.editable();
 				this.ui.inputMask.editable();
 
-				this.ui.inputType.editable({
-					value : 'string',
-					source : [ {
-						value : 'string',
-						text : 'String'
-					}, {
-						value : 'long',
-						text : 'Long'
-					}, {
-						value : 'boolean',
-						text : 'Boolean'
-					}, {
-						value : 'integer',
-						text : 'Integer'
-					}, {
-						value : 'double',
-						text : 'Double'
-					}, {
-						value : 'date',
-						text : 'Date'
-					}, {
-						value : 'datetime',
-						text : 'Datetime'
-					}, ]
-				})
+				this.ui.inputAtributeName.on('hidden', function() {
+					util.refreshEditable(that.ui.inputDisplayName, util.toFrase(that.ui.inputAtributeName.text()));
+					util.refreshEditable(that.ui.inputTableFieldName, util.toUnderscore(that.ui.inputAtributeName.text(), true));
+				});
 				this.ui.inputType.on('hidden', function() {
 					if (that.ui.inputType.text() == 'Boolean') {
 						that.ui.inputViewApproach.text('Check')
+						util.refreshEditable(that.ui.inputMask, '');
+					}
+					if (that.ui.inputType.text() == 'Integer' || that.ui.inputType.text() == 'Long' || that.ui.inputType.text() == 'Double') {
+
+						util.refreshEditable(that.ui.inputMaxLen, 10)
+						util.refreshEditable(that.ui.inputMask, '');
 					}
 					if (that.ui.inputType.text() == 'String') {
 						that.ui.inputViewApproach.text('Textfield')
+						util.refreshEditable(that.ui.inputMask, '');
+						util.refreshEditable(that.ui.inputMaxLen, 255)
+					}
+					if (that.ui.inputType.text() == 'Date') {
+						that.ui.inputViewApproach.text('Datepicker')
+						util.refreshEditable(that.ui.inputMask, '99/99/9999');
+						util.refreshEditable(that.ui.inputMaxLen, 10)
+					}
+					if (that.ui.inputType.text() == 'Datetime') {
+						that.ui.inputViewApproach.text('DateTimepicker')
+						util.refreshEditable(that.ui.inputMask, '99/99/9999 99:99');
+
+						util.refreshEditable(that.ui.inputMaxLen, 16)
 					}
 				})
 				this.ui.inputViewApproach.on('hidden', function() {
@@ -129,34 +127,80 @@ define(function(require) {
 					}
 					if ((that.ui.inputViewApproach.text() == 'Textfield')) {
 						that.ui.inputType.text('String')
+						util.refreshEditable(that.ui.inputMask, '');
+						util.refreshEditable(that.ui.inputMaxLen, 255)
+					}
+
+					if ((that.ui.inputViewApproach.text() == 'Datepicker')) {
+						util.refreshEditable(that.ui.inputType, 'Date');
+						util.refreshEditable(that.ui.inputMask, '99/99/9999');
+						util.refreshEditable(that.ui.inputMaxLen, 10)
+
+					}
+					if ((that.ui.inputViewApproach.text() == 'DateTimepicker')) {
+						util.refreshEditable(that.ui.inputType, 'Datetime');
+						util.refreshEditable(that.ui.inputMask, '99/99/9999 99:99');
+						util.refreshEditable(that.ui.inputMaxLen, 16)
 					}
 				})
 
 				this.ui.inputViewApproach.editable({
-					value : 'textfield',
+					value : 'Textfield',
 					source : [ {
-						value : 'check',
+						value : 'Check',
 						text : 'Check'
 					}, {
-						value : 'radio',
+						value : 'Radio',
 						text : 'Radio'
 					}, {
-						value : 'textfield',
+						value : 'Textfield',
 						text : 'Textfield'
 					}, {
-						value : 'datepicker',
+						value : 'Datepicker',
 						text : 'Datepicker'
+					}, {
+						value : 'DateTimepicker',
+						text : 'DateTimepicker'
 					} ]
 				});
-
-				this.ui.inputViewApproach.on('hidden', function() {
-
-				});
+				this.ui.inputType.editable({
+					value : 'String',
+					source : [ {
+						value : 'String',
+						text : 'String'
+					}, {
+						value : 'Long',
+						text : 'Long'
+					}, {
+						value : 'Boolean',
+						text : 'Boolean'
+					}, {
+						value : 'Integer',
+						text : 'Integer'
+					}, {
+						value : 'Double',
+						text : 'Double'
+					}, {
+						value : 'Date',
+						text : 'Date'
+					}, {
+						value : 'Datetime',
+						text : 'Datetime'
+					}, ]
+				})
 
 				this.ui.editableFields.on('hidden', function() {
 					that.changeAttribute();
-					alert('teste');
 				})
+
+				// Quando clicar num campo que foi populado via util... deve
+				// carregar a informação no imput
+				this.ui.editableFields.on('shown', function(evt, editable) {
+					var value = $(evt.target).text();
+					if (value != editable.options.emptytext) {
+						editable.input.$input.val($(evt.target).text() || $(evt.target).val());
+					}
+				});
 			});
 		},
 	});

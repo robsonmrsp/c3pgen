@@ -566,7 +566,25 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 		},
 		refreshEditable : function($el, val) {
 			$el.val(val);
-			$el.removeClass('editable-empty');
+			$el.text(val)
+			$el.removeClass('editable-empty').addClass('editable-unsaved');
+		},
+		toUnderscore : function(w, upper) {
+			var ret = w.replace(/([A-Z])/g, function($1) {
+				return "_" + $1.toLowerCase();
+			});
+			if (upper)
+				return ret.toUpperCase();
+			return ret;
+		},
+		toFrase : function(w, upper) {
+			var ret = w.replace(/([A-Z])/g, function($1) {
+				return " " + $1.toLowerCase();
+			});
+			return this.firstUpper(ret);
+		},
+		firstUpper : function(string) {
+			return string.charAt(0).toUpperCase() + string.slice(1);
 		}
 	};
 	return util;
