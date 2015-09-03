@@ -126,33 +126,34 @@ public class Parser {
 		}
 		return null;
 	}
-	
-	//converte de entidade para json --------------------
+
+	// converte de entidade para json --------------------
 	private static JsonApplication toBasicJson(Application application) {
 		JsonApplication jsonApplication = new JsonApplication();
 		applyBasicJsonValues(jsonApplication, application);
 		return jsonApplication;
 	}
-	
+
 	private static Application toBasicEntity(JsonApplication jsonApplication) {
 		Application application = new Application();
 		applyBasicEntityValues(application, jsonApplication);
 		return application;
 	}
-	
+
 	private static void applyBasicJsonValues(JsonApplication jsonApplication, Application application) {
 		jsonApplication.setId(application.getId());
-	    jsonApplication.setName(application.getName());
-	    jsonApplication.setSkin(application.getSkin());
-	    jsonApplication.setRootPackage(application.getRootPackage());
-	}	
+		jsonApplication.setName(application.getName());
+		jsonApplication.setSkin(application.getSkin());
+		jsonApplication.setRootPackage(application.getRootPackage());
+	}
+
 	private static void applyBasicEntityValues(Application application, JsonApplication jsonApplication) {
 		application.setId(jsonApplication.getId());
 		application.setName(jsonApplication.getName());
 		application.setSkin(jsonApplication.getSkin());
 		application.setRootPackage(jsonApplication.getRootPackage());
-	}	
-	
+	}
+
 	public static JsonApplication toJson(Application application) {
 		JsonApplication jsonApplication = new JsonApplication();
 
@@ -161,19 +162,18 @@ public class Parser {
 		List<TheEntity> listEntities = application.getEntities();
 		if (listEntities != null) {
 			for (TheEntity loopTheEntity : listEntities) {
-				jsonApplication.getEntities().add(toBasicJson(loopTheEntity));
+				jsonApplication.getEntities().add(toJson(loopTheEntity));
 			}
 		}
 		return jsonApplication;
 	}
 
-
 	public static Application apply(Application application, JsonApplication jsonApplication) {
-	
-		if(application ==  null)
+
+		if (application == null)
 			application = new Application();
-		
-		applyBasicEntityValues(application, jsonApplication) ;
+
+		applyBasicEntityValues(application, jsonApplication);
 
 		ArrayList<JsonTheEntity> listEntities = jsonApplication.getEntities();
 		if (listEntities != null) {
@@ -181,16 +181,17 @@ public class Parser {
 				application.addEntities(toBasicEntity(loopJsonTheEntity));
 			}
 		}
-					
+
 		return application;
-		
-	}		
+
+	}
+
 	public static Application toEntity(JsonApplication jsonApplication) {
 		Application application = new Application();
-		
+
 		return apply(application, jsonApplication);
-	}		
-	
+	}
+
 	public static List<JsonApplication> toListJsonApplications(List<Application> all) {
 		List<JsonApplication> jsonApplications = new ArrayList<JsonApplication>();
 		for (Application application : all) {
@@ -198,31 +199,33 @@ public class Parser {
 		}
 		return jsonApplications;
 	}
-	//converte de entidade para json --------------------
+
+	// converte de entidade para json --------------------
 	private static JsonAttribute toBasicJson(Attribute attribute) {
 		JsonAttribute jsonAttribute = new JsonAttribute();
 		applyBasicJsonValues(jsonAttribute, attribute);
 		return jsonAttribute;
 	}
-	
+
 	private static Attribute toBasicEntity(JsonAttribute jsonAttribute) {
 		Attribute attribute = new Attribute();
 		applyBasicEntityValues(attribute, jsonAttribute);
 		return attribute;
 	}
-	
+
 	private static void applyBasicJsonValues(JsonAttribute jsonAttribute, Attribute attribute) {
 		jsonAttribute.setId(attribute.getId());
-	    jsonAttribute.setName(attribute.getName());
-	    jsonAttribute.setDisplayName(attribute.getDisplayName());
-	    jsonAttribute.setMaxLen(attribute.getMaxLen());
-	    jsonAttribute.setTableFieldName(attribute.getTableFieldName());
-	    jsonAttribute.setMasc(attribute.getMasc());
-	    jsonAttribute.setDefaultValue(attribute.getDefaultValue());
-	    jsonAttribute.setPlaceholder(attribute.getPlaceholder());
-	    jsonAttribute.setRequired(attribute.getRequired());
-	    jsonAttribute.setUnique(attribute.getUnique());
-	}	
+		jsonAttribute.setName(attribute.getName());
+		jsonAttribute.setDisplayName(attribute.getDisplayName());
+		jsonAttribute.setMaxLen(attribute.getMaxLen());
+		jsonAttribute.setTableFieldName(attribute.getTableFieldName());
+		jsonAttribute.setMasc(attribute.getMasc());
+		jsonAttribute.setDefaultValue(attribute.getDefaultValue());
+		jsonAttribute.setPlaceholder(attribute.getPlaceholder());
+		jsonAttribute.setRequired(attribute.getRequired());
+		jsonAttribute.setUnique(attribute.getUnique());
+	}
+
 	private static void applyBasicEntityValues(Attribute attribute, JsonAttribute jsonAttribute) {
 		attribute.setId(jsonAttribute.getId());
 		attribute.setName(jsonAttribute.getName());
@@ -234,8 +237,8 @@ public class Parser {
 		attribute.setPlaceholder(jsonAttribute.getPlaceholder());
 		attribute.setRequired(jsonAttribute.getRequired());
 		attribute.setUnique(jsonAttribute.getUnique());
-	}	
-	
+	}
+
 	public static JsonAttribute toJson(Attribute attribute) {
 		JsonAttribute jsonAttribute = new JsonAttribute();
 
@@ -243,48 +246,48 @@ public class Parser {
 
 		TheEntity entity = attribute.getEntity();
 		if (entity != null) {
-			jsonAttribute.setEntity(toJson(entity));
+			jsonAttribute.setEntity(toBasicJson(entity));
 		}
 		AttributeType type = attribute.getType();
 		if (type != null) {
-			jsonAttribute.setType(toJson(type));
+			jsonAttribute.setType(toBasicJson(type));
 		}
 		ViewApproach viewApproach = attribute.getViewApproach();
 		if (viewApproach != null) {
-			jsonAttribute.setViewApproach(toJson(viewApproach));
+			jsonAttribute.setViewApproach(toBasicJson(viewApproach));
 		}
 		return jsonAttribute;
 	}
 
-
 	public static Attribute apply(Attribute attribute, JsonAttribute jsonAttribute) {
-	
-		if(attribute ==  null)
+
+		if (attribute == null)
 			attribute = new Attribute();
-		
-		applyBasicEntityValues(attribute, jsonAttribute) ;
+
+		applyBasicEntityValues(attribute, jsonAttribute);
 
 		JsonTheEntity entity = jsonAttribute.getEntity();
 		if (entity != null) {
 			attribute.setEntity(toEntity(entity));
-		}	
+		}
 		JsonAttributeType type = jsonAttribute.getType();
 		if (type != null) {
 			attribute.setType(toEntity(type));
-		}	
+		}
 		JsonViewApproach viewApproach = jsonAttribute.getViewApproach();
 		if (viewApproach != null) {
 			attribute.setViewApproach(toEntity(viewApproach));
-		}	
+		}
 		return attribute;
-		
-	}		
+
+	}
+
 	public static Attribute toEntity(JsonAttribute jsonAttribute) {
 		Attribute attribute = new Attribute();
-		
+
 		return apply(attribute, jsonAttribute);
-	}		
-	
+	}
+
 	public static List<JsonAttribute> toListJsonAttributes(List<Attribute> all) {
 		List<JsonAttribute> jsonAttributes = new ArrayList<JsonAttribute>();
 		for (Attribute attribute : all) {
@@ -292,30 +295,32 @@ public class Parser {
 		}
 		return jsonAttributes;
 	}
-	//converte de entidade para json --------------------
+
+	// converte de entidade para json --------------------
 	private static JsonAttributeType toBasicJson(AttributeType attributeType) {
 		JsonAttributeType jsonAttributeType = new JsonAttributeType();
 		applyBasicJsonValues(jsonAttributeType, attributeType);
 		return jsonAttributeType;
 	}
-	
+
 	private static AttributeType toBasicEntity(JsonAttributeType jsonAttributeType) {
 		AttributeType attributeType = new AttributeType();
 		applyBasicEntityValues(attributeType, jsonAttributeType);
 		return attributeType;
 	}
-	
+
 	private static void applyBasicJsonValues(JsonAttributeType jsonAttributeType, AttributeType attributeType) {
 		jsonAttributeType.setId(attributeType.getId());
-	    jsonAttributeType.setClassName(attributeType.getClassName());
-	    jsonAttributeType.setFormat(attributeType.getFormat());
-	}	
+		jsonAttributeType.setClassName(attributeType.getClassName());
+		jsonAttributeType.setFormat(attributeType.getFormat());
+	}
+
 	private static void applyBasicEntityValues(AttributeType attributeType, JsonAttributeType jsonAttributeType) {
 		attributeType.setId(jsonAttributeType.getId());
 		attributeType.setClassName(jsonAttributeType.getClassName());
 		attributeType.setFormat(jsonAttributeType.getFormat());
-	}	
-	
+	}
+
 	public static JsonAttributeType toJson(AttributeType attributeType) {
 		JsonAttributeType jsonAttributeType = new JsonAttributeType();
 
@@ -328,27 +333,27 @@ public class Parser {
 		return jsonAttributeType;
 	}
 
-
 	public static AttributeType apply(AttributeType attributeType, JsonAttributeType jsonAttributeType) {
-	
-		if(attributeType ==  null)
+
+		if (attributeType == null)
 			attributeType = new AttributeType();
-		
-		applyBasicEntityValues(attributeType, jsonAttributeType) ;
+
+		applyBasicEntityValues(attributeType, jsonAttributeType);
 
 		JsonAttribute attribute = jsonAttributeType.getAttribute();
 		if (attribute != null) {
 			attributeType.setAttribute(toEntity(attribute));
-		}	
+		}
 		return attributeType;
-		
-	}		
+
+	}
+
 	public static AttributeType toEntity(JsonAttributeType jsonAttributeType) {
 		AttributeType attributeType = new AttributeType();
-		
+
 		return apply(attributeType, jsonAttributeType);
-	}		
-	
+	}
+
 	public static List<JsonAttributeType> toListJsonAttributeTypes(List<AttributeType> all) {
 		List<JsonAttributeType> jsonAttributeTypes = new ArrayList<JsonAttributeType>();
 		for (AttributeType attributeType : all) {
@@ -356,27 +361,29 @@ public class Parser {
 		}
 		return jsonAttributeTypes;
 	}
-	//converte de entidade para json --------------------
+
+	// converte de entidade para json --------------------
 	private static JsonTheEntity toBasicJson(TheEntity theEntity) {
 		JsonTheEntity jsonTheEntity = new JsonTheEntity();
 		applyBasicJsonValues(jsonTheEntity, theEntity);
 		return jsonTheEntity;
 	}
-	
+
 	private static TheEntity toBasicEntity(JsonTheEntity jsonTheEntity) {
 		TheEntity theEntity = new TheEntity();
 		applyBasicEntityValues(theEntity, jsonTheEntity);
 		return theEntity;
 	}
-	
+
 	private static void applyBasicJsonValues(JsonTheEntity jsonTheEntity, TheEntity theEntity) {
 		jsonTheEntity.setId(theEntity.getId());
-	    jsonTheEntity.setName(theEntity.getName());
-	    jsonTheEntity.setDisplayName(theEntity.getDisplayName());
-	    jsonTheEntity.setTableName(theEntity.getTableName());
-	    jsonTheEntity.setHasOwner(theEntity.getHasOwner());
-	    jsonTheEntity.setHasMobile(theEntity.getHasMobile());
-	}	
+		jsonTheEntity.setName(theEntity.getName());
+		jsonTheEntity.setDisplayName(theEntity.getDisplayName());
+		jsonTheEntity.setTableName(theEntity.getTableName());
+		jsonTheEntity.setHasOwner(theEntity.getHasOwner());
+		jsonTheEntity.setHasMobile(theEntity.getHasMobile());
+	}
+
 	private static void applyBasicEntityValues(TheEntity theEntity, JsonTheEntity jsonTheEntity) {
 		theEntity.setId(jsonTheEntity.getId());
 		theEntity.setName(jsonTheEntity.getName());
@@ -384,8 +391,8 @@ public class Parser {
 		theEntity.setTableName(jsonTheEntity.getTableName());
 		theEntity.setHasOwner(jsonTheEntity.getHasOwner());
 		theEntity.setHasMobile(jsonTheEntity.getHasMobile());
-	}	
-	
+	}
+
 	public static JsonTheEntity toJson(TheEntity theEntity) {
 		JsonTheEntity jsonTheEntity = new JsonTheEntity();
 
@@ -393,58 +400,58 @@ public class Parser {
 
 		Application application = theEntity.getApplication();
 		if (application != null) {
-			jsonTheEntity.setApplication(toJson(application));
+			jsonTheEntity.setApplication(toBasicJson(application));
 		}
 		List<Attribute> listAttributes = theEntity.getAttributes();
 		if (listAttributes != null) {
 			for (Attribute loopAttribute : listAttributes) {
-				jsonTheEntity.getAttributes().add(toBasicJson(loopAttribute));
+				jsonTheEntity.getAttributes().add(toJson(loopAttribute));
 			}
 		}
 		List<Relationship> listRelationships = theEntity.getRelationships();
 		if (listRelationships != null) {
 			for (Relationship loopRelationship : listRelationships) {
-				jsonTheEntity.getRelationships().add(toBasicJson(loopRelationship));
+				jsonTheEntity.getRelationships().add(toJson(loopRelationship));
 			}
 		}
 		return jsonTheEntity;
 	}
 
-
 	public static TheEntity apply(TheEntity theEntity, JsonTheEntity jsonTheEntity) {
-	
-		if(theEntity ==  null)
+
+		if (theEntity == null)
 			theEntity = new TheEntity();
-		
-		applyBasicEntityValues(theEntity, jsonTheEntity) ;
+
+		applyBasicEntityValues(theEntity, jsonTheEntity);
 
 		JsonApplication application = jsonTheEntity.getApplication();
 		if (application != null) {
 			theEntity.setApplication(toEntity(application));
-		}	
+		}
 		ArrayList<JsonAttribute> listAttributes = jsonTheEntity.getAttributes();
 		if (listAttributes != null) {
 			for (JsonAttribute loopJsonAttribute : listAttributes) {
 				theEntity.addAttributes(toBasicEntity(loopJsonAttribute));
 			}
 		}
-					
+
 		ArrayList<JsonRelationship> listRelationships = jsonTheEntity.getRelationships();
 		if (listRelationships != null) {
 			for (JsonRelationship loopJsonRelationship : listRelationships) {
 				theEntity.addRelationships(toBasicEntity(loopJsonRelationship));
 			}
 		}
-					
+
 		return theEntity;
-		
-	}		
+
+	}
+
 	public static TheEntity toEntity(JsonTheEntity jsonTheEntity) {
 		TheEntity theEntity = new TheEntity();
-		
+
 		return apply(theEntity, jsonTheEntity);
-	}		
-	
+	}
+
 	public static List<JsonTheEntity> toListJsonTheEntitys(List<TheEntity> all) {
 		List<JsonTheEntity> jsonTheEntitys = new ArrayList<JsonTheEntity>();
 		for (TheEntity theEntity : all) {
@@ -452,27 +459,29 @@ public class Parser {
 		}
 		return jsonTheEntitys;
 	}
-	//converte de entidade para json --------------------
+
+	// converte de entidade para json --------------------
 	private static JsonRelationship toBasicJson(Relationship relationship) {
 		JsonRelationship jsonRelationship = new JsonRelationship();
 		applyBasicJsonValues(jsonRelationship, relationship);
 		return jsonRelationship;
 	}
-	
+
 	private static Relationship toBasicEntity(JsonRelationship jsonRelationship) {
 		Relationship relationship = new Relationship();
 		applyBasicEntityValues(relationship, jsonRelationship);
 		return relationship;
 	}
-	
+
 	private static void applyBasicJsonValues(JsonRelationship jsonRelationship, Relationship relationship) {
 		jsonRelationship.setId(relationship.getId());
-	    jsonRelationship.setName(relationship.getName());
-	    jsonRelationship.setDisplayName(relationship.getDisplayName());
-	    jsonRelationship.setOwnerName(relationship.getOwnerName());
-	    jsonRelationship.setModel(relationship.getModel());
-	    jsonRelationship.setUniDirecional(relationship.getUniDirecional());
-	}	
+		jsonRelationship.setName(relationship.getName());
+		jsonRelationship.setDisplayName(relationship.getDisplayName());
+		jsonRelationship.setOwnerName(relationship.getOwnerName());
+		jsonRelationship.setModel(relationship.getModel());
+		jsonRelationship.setUniDirecional(relationship.getUniDirecional());
+	}
+
 	private static void applyBasicEntityValues(Relationship relationship, JsonRelationship jsonRelationship) {
 		relationship.setId(jsonRelationship.getId());
 		relationship.setName(jsonRelationship.getName());
@@ -480,8 +489,8 @@ public class Parser {
 		relationship.setOwnerName(jsonRelationship.getOwnerName());
 		relationship.setModel(jsonRelationship.getModel());
 		relationship.setUniDirecional(jsonRelationship.getUniDirecional());
-	}	
-	
+	}
+
 	public static JsonRelationship toJson(Relationship relationship) {
 		JsonRelationship jsonRelationship = new JsonRelationship();
 
@@ -489,40 +498,40 @@ public class Parser {
 
 		TheEntity entity = relationship.getEntity();
 		if (entity != null) {
-			jsonRelationship.setEntity(toJson(entity));
+			jsonRelationship.setEntity(toBasicJson(entity));
 		}
 		ViewApproach viewApproach = relationship.getViewApproach();
 		if (viewApproach != null) {
-			jsonRelationship.setViewApproach(toJson(viewApproach));
+			jsonRelationship.setViewApproach(toBasicJson(viewApproach));
 		}
 		return jsonRelationship;
 	}
 
-
 	public static Relationship apply(Relationship relationship, JsonRelationship jsonRelationship) {
-	
-		if(relationship ==  null)
+
+		if (relationship == null)
 			relationship = new Relationship();
-		
-		applyBasicEntityValues(relationship, jsonRelationship) ;
+
+		applyBasicEntityValues(relationship, jsonRelationship);
 
 		JsonTheEntity entity = jsonRelationship.getEntity();
 		if (entity != null) {
 			relationship.setEntity(toEntity(entity));
-		}	
+		}
 		JsonViewApproach viewApproach = jsonRelationship.getViewApproach();
 		if (viewApproach != null) {
 			relationship.setViewApproach(toEntity(viewApproach));
-		}	
+		}
 		return relationship;
-		
-	}		
+
+	}
+
 	public static Relationship toEntity(JsonRelationship jsonRelationship) {
 		Relationship relationship = new Relationship();
-		
+
 		return apply(relationship, jsonRelationship);
-	}		
-	
+	}
+
 	public static List<JsonRelationship> toListJsonRelationships(List<Relationship> all) {
 		List<JsonRelationship> jsonRelationships = new ArrayList<JsonRelationship>();
 		for (Relationship relationship : all) {
@@ -530,28 +539,30 @@ public class Parser {
 		}
 		return jsonRelationships;
 	}
-	//converte de entidade para json --------------------
+
+	// converte de entidade para json --------------------
 	private static JsonViewApproach toBasicJson(ViewApproach viewApproach) {
 		JsonViewApproach jsonViewApproach = new JsonViewApproach();
 		applyBasicJsonValues(jsonViewApproach, viewApproach);
 		return jsonViewApproach;
 	}
-	
+
 	private static ViewApproach toBasicEntity(JsonViewApproach jsonViewApproach) {
 		ViewApproach viewApproach = new ViewApproach();
 		applyBasicEntityValues(viewApproach, jsonViewApproach);
 		return viewApproach;
 	}
-	
+
 	private static void applyBasicJsonValues(JsonViewApproach jsonViewApproach, ViewApproach viewApproach) {
 		jsonViewApproach.setId(viewApproach.getId());
-	    jsonViewApproach.setType(viewApproach.getType());
-	    jsonViewApproach.setComboId(viewApproach.getComboId());
-	    jsonViewApproach.setComboName(viewApproach.getComboName());
-	    jsonViewApproach.setComboVal(viewApproach.getComboVal());
-	    jsonViewApproach.setTextField(viewApproach.getTextField());
-	    jsonViewApproach.setHiddenField(viewApproach.getHiddenField());
-	}	
+		jsonViewApproach.setType(viewApproach.getType());
+		jsonViewApproach.setComboId(viewApproach.getComboId());
+		jsonViewApproach.setComboName(viewApproach.getComboName());
+		jsonViewApproach.setComboVal(viewApproach.getComboVal());
+		jsonViewApproach.setTextField(viewApproach.getTextField());
+		jsonViewApproach.setHiddenField(viewApproach.getHiddenField());
+	}
+
 	private static void applyBasicEntityValues(ViewApproach viewApproach, JsonViewApproach jsonViewApproach) {
 		viewApproach.setId(jsonViewApproach.getId());
 		viewApproach.setType(jsonViewApproach.getType());
@@ -560,8 +571,8 @@ public class Parser {
 		viewApproach.setComboVal(jsonViewApproach.getComboVal());
 		viewApproach.setTextField(jsonViewApproach.getTextField());
 		viewApproach.setHiddenField(jsonViewApproach.getHiddenField());
-	}	
-	
+	}
+
 	public static JsonViewApproach toJson(ViewApproach viewApproach) {
 		JsonViewApproach jsonViewApproach = new JsonViewApproach();
 
@@ -578,31 +589,31 @@ public class Parser {
 		return jsonViewApproach;
 	}
 
-
 	public static ViewApproach apply(ViewApproach viewApproach, JsonViewApproach jsonViewApproach) {
-	
-		if(viewApproach ==  null)
+
+		if (viewApproach == null)
 			viewApproach = new ViewApproach();
-		
-		applyBasicEntityValues(viewApproach, jsonViewApproach) ;
+
+		applyBasicEntityValues(viewApproach, jsonViewApproach);
 
 		JsonAttribute attribute = jsonViewApproach.getAttribute();
 		if (attribute != null) {
 			viewApproach.setAttribute(toEntity(attribute));
-		}	
+		}
 		JsonRelationship relationship = jsonViewApproach.getRelationship();
 		if (relationship != null) {
 			viewApproach.setRelationship(toEntity(relationship));
-		}	
+		}
 		return viewApproach;
-		
-	}		
+
+	}
+
 	public static ViewApproach toEntity(JsonViewApproach jsonViewApproach) {
 		ViewApproach viewApproach = new ViewApproach();
-		
+
 		return apply(viewApproach, jsonViewApproach);
-	}		
-	
+	}
+
 	public static List<JsonViewApproach> toListJsonViewApproachs(List<ViewApproach> all) {
 		List<JsonViewApproach> jsonViewApproachs = new ArrayList<JsonViewApproach>();
 		for (ViewApproach viewApproach : all) {
@@ -610,28 +621,30 @@ public class Parser {
 		}
 		return jsonViewApproachs;
 	}
-	//converte de entidade para json --------------------
+
+	// converte de entidade para json --------------------
 	private static JsonBairro toBasicJson(Bairro bairro) {
 		JsonBairro jsonBairro = new JsonBairro();
 		applyBasicJsonValues(jsonBairro, bairro);
 		return jsonBairro;
 	}
-	
+
 	private static Bairro toBasicEntity(JsonBairro jsonBairro) {
 		Bairro bairro = new Bairro();
 		applyBasicEntityValues(bairro, jsonBairro);
 		return bairro;
 	}
-	
+
 	private static void applyBasicJsonValues(JsonBairro jsonBairro, Bairro bairro) {
 		jsonBairro.setId(bairro.getId());
-	    jsonBairro.setNome(bairro.getNome());
-	}	
+		jsonBairro.setNome(bairro.getNome());
+	}
+
 	private static void applyBasicEntityValues(Bairro bairro, JsonBairro jsonBairro) {
 		bairro.setId(jsonBairro.getId());
 		bairro.setNome(jsonBairro.getNome());
-	}	
-	
+	}
+
 	public static JsonBairro toJson(Bairro bairro) {
 		JsonBairro jsonBairro = new JsonBairro();
 
@@ -648,31 +661,31 @@ public class Parser {
 		return jsonBairro;
 	}
 
-
 	public static Bairro apply(Bairro bairro, JsonBairro jsonBairro) {
-	
-		if(bairro ==  null)
+
+		if (bairro == null)
 			bairro = new Bairro();
-		
-		applyBasicEntityValues(bairro, jsonBairro) ;
+
+		applyBasicEntityValues(bairro, jsonBairro);
 
 		JsonCidade cidade = jsonBairro.getCidade();
 		if (cidade != null) {
 			bairro.setCidade(toEntity(cidade));
-		}	
+		}
 		JsonEstado estado = jsonBairro.getEstado();
 		if (estado != null) {
 			bairro.setEstado(toEntity(estado));
-		}	
+		}
 		return bairro;
-		
-	}		
+
+	}
+
 	public static Bairro toEntity(JsonBairro jsonBairro) {
 		Bairro bairro = new Bairro();
-		
+
 		return apply(bairro, jsonBairro);
-	}		
-	
+	}
+
 	public static List<JsonBairro> toListJsonBairros(List<Bairro> all) {
 		List<JsonBairro> jsonBairros = new ArrayList<JsonBairro>();
 		for (Bairro bairro : all) {
@@ -680,30 +693,32 @@ public class Parser {
 		}
 		return jsonBairros;
 	}
-	//converte de entidade para json --------------------
+
+	// converte de entidade para json --------------------
 	private static JsonCep toBasicJson(Cep cep) {
 		JsonCep jsonCep = new JsonCep();
 		applyBasicJsonValues(jsonCep, cep);
 		return jsonCep;
 	}
-	
+
 	private static Cep toBasicEntity(JsonCep jsonCep) {
 		Cep cep = new Cep();
 		applyBasicEntityValues(cep, jsonCep);
 		return cep;
 	}
-	
+
 	private static void applyBasicJsonValues(JsonCep jsonCep, Cep cep) {
 		jsonCep.setId(cep.getId());
-	    jsonCep.setLogradouro(cep.getLogradouro());
-	    jsonCep.setNumero(cep.getNumero());
-	}	
+		jsonCep.setLogradouro(cep.getLogradouro());
+		jsonCep.setNumero(cep.getNumero());
+	}
+
 	private static void applyBasicEntityValues(Cep cep, JsonCep jsonCep) {
 		cep.setId(jsonCep.getId());
 		cep.setLogradouro(jsonCep.getLogradouro());
 		cep.setNumero(jsonCep.getNumero());
-	}	
-	
+	}
+
 	public static JsonCep toJson(Cep cep) {
 		JsonCep jsonCep = new JsonCep();
 
@@ -724,35 +739,35 @@ public class Parser {
 		return jsonCep;
 	}
 
-
 	public static Cep apply(Cep cep, JsonCep jsonCep) {
-	
-		if(cep ==  null)
+
+		if (cep == null)
 			cep = new Cep();
-		
-		applyBasicEntityValues(cep, jsonCep) ;
+
+		applyBasicEntityValues(cep, jsonCep);
 
 		JsonBairro bairro = jsonCep.getBairro();
 		if (bairro != null) {
 			cep.setBairro(toEntity(bairro));
-		}	
+		}
 		JsonCidade cidade = jsonCep.getCidade();
 		if (cidade != null) {
 			cep.setCidade(toEntity(cidade));
-		}	
+		}
 		JsonEstado estado = jsonCep.getEstado();
 		if (estado != null) {
 			cep.setEstado(toEntity(estado));
-		}	
+		}
 		return cep;
-		
-	}		
+
+	}
+
 	public static Cep toEntity(JsonCep jsonCep) {
 		Cep cep = new Cep();
-		
+
 		return apply(cep, jsonCep);
-	}		
-	
+	}
+
 	public static List<JsonCep> toListJsonCeps(List<Cep> all) {
 		List<JsonCep> jsonCeps = new ArrayList<JsonCep>();
 		for (Cep cep : all) {
@@ -760,30 +775,32 @@ public class Parser {
 		}
 		return jsonCeps;
 	}
-	//converte de entidade para json --------------------
+
+	// converte de entidade para json --------------------
 	private static JsonCidade toBasicJson(Cidade cidade) {
 		JsonCidade jsonCidade = new JsonCidade();
 		applyBasicJsonValues(jsonCidade, cidade);
 		return jsonCidade;
 	}
-	
+
 	private static Cidade toBasicEntity(JsonCidade jsonCidade) {
 		Cidade cidade = new Cidade();
 		applyBasicEntityValues(cidade, jsonCidade);
 		return cidade;
 	}
-	
+
 	private static void applyBasicJsonValues(JsonCidade jsonCidade, Cidade cidade) {
 		jsonCidade.setId(cidade.getId());
-	    jsonCidade.setNome(cidade.getNome());
-	    jsonCidade.setCep(cidade.getCep());
-	}	
+		jsonCidade.setNome(cidade.getNome());
+		jsonCidade.setCep(cidade.getCep());
+	}
+
 	private static void applyBasicEntityValues(Cidade cidade, JsonCidade jsonCidade) {
 		cidade.setId(jsonCidade.getId());
 		cidade.setNome(jsonCidade.getNome());
 		cidade.setCep(jsonCidade.getCep());
-	}	
-	
+	}
+
 	public static JsonCidade toJson(Cidade cidade) {
 		JsonCidade jsonCidade = new JsonCidade();
 
@@ -796,27 +813,27 @@ public class Parser {
 		return jsonCidade;
 	}
 
-
 	public static Cidade apply(Cidade cidade, JsonCidade jsonCidade) {
-	
-		if(cidade ==  null)
+
+		if (cidade == null)
 			cidade = new Cidade();
-		
-		applyBasicEntityValues(cidade, jsonCidade) ;
+
+		applyBasicEntityValues(cidade, jsonCidade);
 
 		JsonEstado estado = jsonCidade.getEstado();
 		if (estado != null) {
 			cidade.setEstado(toEntity(estado));
-		}	
+		}
 		return cidade;
-		
-	}		
+
+	}
+
 	public static Cidade toEntity(JsonCidade jsonCidade) {
 		Cidade cidade = new Cidade();
-		
+
 		return apply(cidade, jsonCidade);
-	}		
-	
+	}
+
 	public static List<JsonCidade> toListJsonCidades(List<Cidade> all) {
 		List<JsonCidade> jsonCidades = new ArrayList<JsonCidade>();
 		for (Cidade cidade : all) {
@@ -824,30 +841,32 @@ public class Parser {
 		}
 		return jsonCidades;
 	}
-	//converte de entidade para json --------------------
+
+	// converte de entidade para json --------------------
 	private static JsonEndereco toBasicJson(Endereco endereco) {
 		JsonEndereco jsonEndereco = new JsonEndereco();
 		applyBasicJsonValues(jsonEndereco, endereco);
 		return jsonEndereco;
 	}
-	
+
 	private static Endereco toBasicEntity(JsonEndereco jsonEndereco) {
 		Endereco endereco = new Endereco();
 		applyBasicEntityValues(endereco, jsonEndereco);
 		return endereco;
 	}
-	
+
 	private static void applyBasicJsonValues(JsonEndereco jsonEndereco, Endereco endereco) {
 		jsonEndereco.setId(endereco.getId());
-	    jsonEndereco.setComplemento(endereco.getComplemento());
-	    jsonEndereco.setNumero(endereco.getNumero());
-	}	
+		jsonEndereco.setComplemento(endereco.getComplemento());
+		jsonEndereco.setNumero(endereco.getNumero());
+	}
+
 	private static void applyBasicEntityValues(Endereco endereco, JsonEndereco jsonEndereco) {
 		endereco.setId(jsonEndereco.getId());
 		endereco.setComplemento(jsonEndereco.getComplemento());
 		endereco.setNumero(jsonEndereco.getNumero());
-	}	
-	
+	}
+
 	public static JsonEndereco toJson(Endereco endereco) {
 		JsonEndereco jsonEndereco = new JsonEndereco();
 
@@ -860,27 +879,27 @@ public class Parser {
 		return jsonEndereco;
 	}
 
-
 	public static Endereco apply(Endereco endereco, JsonEndereco jsonEndereco) {
-	
-		if(endereco ==  null)
+
+		if (endereco == null)
 			endereco = new Endereco();
-		
-		applyBasicEntityValues(endereco, jsonEndereco) ;
+
+		applyBasicEntityValues(endereco, jsonEndereco);
 
 		JsonCep cep = jsonEndereco.getCep();
 		if (cep != null) {
 			endereco.setCep(toEntity(cep));
-		}	
+		}
 		return endereco;
-		
-	}		
+
+	}
+
 	public static Endereco toEntity(JsonEndereco jsonEndereco) {
 		Endereco endereco = new Endereco();
-		
+
 		return apply(endereco, jsonEndereco);
-	}		
-	
+	}
+
 	public static List<JsonEndereco> toListJsonEnderecos(List<Endereco> all) {
 		List<JsonEndereco> jsonEnderecos = new ArrayList<JsonEndereco>();
 		for (Endereco endereco : all) {
@@ -888,27 +907,29 @@ public class Parser {
 		}
 		return jsonEnderecos;
 	}
-	//converte de entidade para json --------------------
+
+	// converte de entidade para json --------------------
 	private static JsonEstado toBasicJson(Estado estado) {
 		JsonEstado jsonEstado = new JsonEstado();
 		applyBasicJsonValues(jsonEstado, estado);
 		return jsonEstado;
 	}
-	
+
 	private static Estado toBasicEntity(JsonEstado jsonEstado) {
 		Estado estado = new Estado();
 		applyBasicEntityValues(estado, jsonEstado);
 		return estado;
 	}
-	
+
 	private static void applyBasicJsonValues(JsonEstado jsonEstado, Estado estado) {
 		jsonEstado.setId(estado.getId());
-	    jsonEstado.setNome(estado.getNome());
-	    jsonEstado.setFaixaCep1Ini(estado.getFaixaCep1Ini());
-	    jsonEstado.setFaixaCep1Fim(estado.getFaixaCep1Fim());
-	    jsonEstado.setFaixaCep2Ini(estado.getFaixaCep2Ini());
-	    jsonEstado.setFaixaCep2Fim(estado.getFaixaCep2Fim());
-	}	
+		jsonEstado.setNome(estado.getNome());
+		jsonEstado.setFaixaCep1Ini(estado.getFaixaCep1Ini());
+		jsonEstado.setFaixaCep1Fim(estado.getFaixaCep1Fim());
+		jsonEstado.setFaixaCep2Ini(estado.getFaixaCep2Ini());
+		jsonEstado.setFaixaCep2Fim(estado.getFaixaCep2Fim());
+	}
+
 	private static void applyBasicEntityValues(Estado estado, JsonEstado jsonEstado) {
 		estado.setId(jsonEstado.getId());
 		estado.setNome(jsonEstado.getNome());
@@ -916,8 +937,8 @@ public class Parser {
 		estado.setFaixaCep1Fim(jsonEstado.getFaixaCep1Fim());
 		estado.setFaixaCep2Ini(jsonEstado.getFaixaCep2Ini());
 		estado.setFaixaCep2Fim(jsonEstado.getFaixaCep2Fim());
-	}	
-	
+	}
+
 	public static JsonEstado toJson(Estado estado) {
 		JsonEstado jsonEstado = new JsonEstado();
 
@@ -926,23 +947,23 @@ public class Parser {
 		return jsonEstado;
 	}
 
-
 	public static Estado apply(Estado estado, JsonEstado jsonEstado) {
-	
-		if(estado ==  null)
+
+		if (estado == null)
 			estado = new Estado();
-		
-		applyBasicEntityValues(estado, jsonEstado) ;
+
+		applyBasicEntityValues(estado, jsonEstado);
 
 		return estado;
-		
-	}		
+
+	}
+
 	public static Estado toEntity(JsonEstado jsonEstado) {
 		Estado estado = new Estado();
-		
+
 		return apply(estado, jsonEstado);
-	}		
-	
+	}
+
 	public static List<JsonEstado> toListJsonEstados(List<Estado> all) {
 		List<JsonEstado> jsonEstados = new ArrayList<JsonEstado>();
 		for (Estado estado : all) {
@@ -950,30 +971,32 @@ public class Parser {
 		}
 		return jsonEstados;
 	}
-	//converte de entidade para json --------------------
+
+	// converte de entidade para json --------------------
 	private static JsonPais toBasicJson(Pais pais) {
 		JsonPais jsonPais = new JsonPais();
 		applyBasicJsonValues(jsonPais, pais);
 		return jsonPais;
 	}
-	
+
 	private static Pais toBasicEntity(JsonPais jsonPais) {
 		Pais pais = new Pais();
 		applyBasicEntityValues(pais, jsonPais);
 		return pais;
 	}
-	
+
 	private static void applyBasicJsonValues(JsonPais jsonPais, Pais pais) {
 		jsonPais.setId(pais.getId());
-	    jsonPais.setCodigo(pais.getCodigo());
-	    jsonPais.setNome(pais.getNome());
-	}	
+		jsonPais.setCodigo(pais.getCodigo());
+		jsonPais.setNome(pais.getNome());
+	}
+
 	private static void applyBasicEntityValues(Pais pais, JsonPais jsonPais) {
 		pais.setId(jsonPais.getId());
 		pais.setCodigo(jsonPais.getCodigo());
 		pais.setNome(jsonPais.getNome());
-	}	
-	
+	}
+
 	public static JsonPais toJson(Pais pais) {
 		JsonPais jsonPais = new JsonPais();
 
@@ -982,23 +1005,23 @@ public class Parser {
 		return jsonPais;
 	}
 
-
 	public static Pais apply(Pais pais, JsonPais jsonPais) {
-	
-		if(pais ==  null)
+
+		if (pais == null)
 			pais = new Pais();
-		
-		applyBasicEntityValues(pais, jsonPais) ;
+
+		applyBasicEntityValues(pais, jsonPais);
 
 		return pais;
-		
-	}		
+
+	}
+
 	public static Pais toEntity(JsonPais jsonPais) {
 		Pais pais = new Pais();
-		
+
 		return apply(pais, jsonPais);
-	}		
-	
+	}
+
 	public static List<JsonPais> toListJsonPaiss(List<Pais> all) {
 		List<JsonPais> jsonPaiss = new ArrayList<JsonPais>();
 		for (Pais pais : all) {
@@ -1006,27 +1029,29 @@ public class Parser {
 		}
 		return jsonPaiss;
 	}
-	//converte de entidade para json --------------------
+
+	// converte de entidade para json --------------------
 	private static JsonClient toBasicJson(Client client) {
 		JsonClient jsonClient = new JsonClient();
 		applyBasicJsonValues(jsonClient, client);
 		return jsonClient;
 	}
-	
+
 	private static Client toBasicEntity(JsonClient jsonClient) {
 		Client client = new Client();
 		applyBasicEntityValues(client, jsonClient);
 		return client;
 	}
-	
+
 	private static void applyBasicJsonValues(JsonClient jsonClient, Client client) {
 		jsonClient.setId(client.getId());
-	    jsonClient.setLogo(client.getLogo());
-	    jsonClient.setName(client.getName());
-	    jsonClient.setCnpj(client.getCnpj());
-	    jsonClient.setPhoneNumber(client.getPhoneNumber());
-	    jsonClient.setCorporateName(client.getCorporateName());
-	}	
+		jsonClient.setLogo(client.getLogo());
+		jsonClient.setName(client.getName());
+		jsonClient.setCnpj(client.getCnpj());
+		jsonClient.setPhoneNumber(client.getPhoneNumber());
+		jsonClient.setCorporateName(client.getCorporateName());
+	}
+
 	private static void applyBasicEntityValues(Client client, JsonClient jsonClient) {
 		client.setId(jsonClient.getId());
 		client.setLogo(jsonClient.getLogo());
@@ -1034,8 +1059,8 @@ public class Parser {
 		client.setCnpj(jsonClient.getCnpj());
 		client.setPhoneNumber(jsonClient.getPhoneNumber());
 		client.setCorporateName(jsonClient.getCorporateName());
-	}	
-	
+	}
+
 	public static JsonClient toJson(Client client) {
 		JsonClient jsonClient = new JsonClient();
 
@@ -1044,23 +1069,23 @@ public class Parser {
 		return jsonClient;
 	}
 
-
 	public static Client apply(Client client, JsonClient jsonClient) {
-	
-		if(client ==  null)
+
+		if (client == null)
 			client = new Client();
-		
-		applyBasicEntityValues(client, jsonClient) ;
+
+		applyBasicEntityValues(client, jsonClient);
 
 		return client;
-		
-	}		
+
+	}
+
 	public static Client toEntity(JsonClient jsonClient) {
 		Client client = new Client();
-		
+
 		return apply(client, jsonClient);
-	}		
-	
+	}
+
 	public static List<JsonClient> toListJsonClients(List<Client> all) {
 		List<JsonClient> jsonClients = new ArrayList<JsonClient>();
 		for (Client client : all) {
@@ -1068,27 +1093,29 @@ public class Parser {
 		}
 		return jsonClients;
 	}
-	//converte de entidade para json --------------------
+
+	// converte de entidade para json --------------------
 	private static JsonCliente toBasicJson(Cliente cliente) {
 		JsonCliente jsonCliente = new JsonCliente();
 		applyBasicJsonValues(jsonCliente, cliente);
 		return jsonCliente;
 	}
-	
+
 	private static Cliente toBasicEntity(JsonCliente jsonCliente) {
 		Cliente cliente = new Cliente();
 		applyBasicEntityValues(cliente, jsonCliente);
 		return cliente;
 	}
-	
+
 	private static void applyBasicJsonValues(JsonCliente jsonCliente, Cliente cliente) {
 		jsonCliente.setId(cliente.getId());
-	    jsonCliente.setNome(cliente.getNome());
-	    jsonCliente.setEmail(cliente.getEmail());
-	    jsonCliente.setCpf(cliente.getCpf());
-	    jsonCliente.setTelefone(cliente.getTelefone());
-	    jsonCliente.setOutroTelefone(cliente.getOutroTelefone());
-	}	
+		jsonCliente.setNome(cliente.getNome());
+		jsonCliente.setEmail(cliente.getEmail());
+		jsonCliente.setCpf(cliente.getCpf());
+		jsonCliente.setTelefone(cliente.getTelefone());
+		jsonCliente.setOutroTelefone(cliente.getOutroTelefone());
+	}
+
 	private static void applyBasicEntityValues(Cliente cliente, JsonCliente jsonCliente) {
 		cliente.setId(jsonCliente.getId());
 		cliente.setNome(jsonCliente.getNome());
@@ -1096,8 +1123,8 @@ public class Parser {
 		cliente.setCpf(jsonCliente.getCpf());
 		cliente.setTelefone(jsonCliente.getTelefone());
 		cliente.setOutroTelefone(jsonCliente.getOutroTelefone());
-	}	
-	
+	}
+
 	public static JsonCliente toJson(Cliente cliente) {
 		JsonCliente jsonCliente = new JsonCliente();
 
@@ -1110,27 +1137,27 @@ public class Parser {
 		return jsonCliente;
 	}
 
-
 	public static Cliente apply(Cliente cliente, JsonCliente jsonCliente) {
-	
-		if(cliente ==  null)
+
+		if (cliente == null)
 			cliente = new Cliente();
-		
-		applyBasicEntityValues(cliente, jsonCliente) ;
+
+		applyBasicEntityValues(cliente, jsonCliente);
 
 		JsonEndereco endereco = jsonCliente.getEndereco();
 		if (endereco != null) {
 			cliente.setEndereco(toEntity(endereco));
-		}	
+		}
 		return cliente;
-		
-	}		
+
+	}
+
 	public static Cliente toEntity(JsonCliente jsonCliente) {
 		Cliente cliente = new Cliente();
-		
+
 		return apply(cliente, jsonCliente);
-	}		
-	
+	}
+
 	public static List<JsonCliente> toListJsonClientes(List<Cliente> all) {
 		List<JsonCliente> jsonClientes = new ArrayList<JsonCliente>();
 		for (Cliente cliente : all) {
@@ -1138,30 +1165,32 @@ public class Parser {
 		}
 		return jsonClientes;
 	}
-	//converte de entidade para json --------------------
+
+	// converte de entidade para json --------------------
 	private static JsonItem toBasicJson(Item item) {
 		JsonItem jsonItem = new JsonItem();
 		applyBasicJsonValues(jsonItem, item);
 		return jsonItem;
 	}
-	
+
 	private static Item toBasicEntity(JsonItem jsonItem) {
 		Item item = new Item();
 		applyBasicEntityValues(item, jsonItem);
 		return item;
 	}
-	
+
 	private static void applyBasicJsonValues(JsonItem jsonItem, Item item) {
 		jsonItem.setId(item.getId());
-	    jsonItem.setName(item.getName());
-	    jsonItem.setDescription(item.getDescription());
-	}	
+		jsonItem.setName(item.getName());
+		jsonItem.setDescription(item.getDescription());
+	}
+
 	private static void applyBasicEntityValues(Item item, JsonItem jsonItem) {
 		item.setId(jsonItem.getId());
 		item.setName(jsonItem.getName());
 		item.setDescription(jsonItem.getDescription());
-	}	
-	
+	}
+
 	public static JsonItem toJson(Item item) {
 		JsonItem jsonItem = new JsonItem();
 
@@ -1180,34 +1209,34 @@ public class Parser {
 		return jsonItem;
 	}
 
-
 	public static Item apply(Item item, JsonItem jsonItem) {
-	
-		if(item ==  null)
+
+		if (item == null)
 			item = new Item();
-		
-		applyBasicEntityValues(item, jsonItem) ;
+
+		applyBasicEntityValues(item, jsonItem);
 
 		JsonItemType type = jsonItem.getType();
 		if (type != null) {
 			item.setType(toEntity(type));
-		}	
+		}
 		ArrayList<JsonPermission> listPermissions = jsonItem.getPermissions();
 		if (listPermissions != null) {
 			for (JsonPermission loopJsonPermission : listPermissions) {
 				item.addPermissions(toBasicEntity(loopJsonPermission));
 			}
 		}
-					
+
 		return item;
-		
-	}		
+
+	}
+
 	public static Item toEntity(JsonItem jsonItem) {
 		Item item = new Item();
-		
+
 		return apply(item, jsonItem);
-	}		
-	
+	}
+
 	public static List<JsonItem> toListJsonItems(List<Item> all) {
 		List<JsonItem> jsonItems = new ArrayList<JsonItem>();
 		for (Item item : all) {
@@ -1215,30 +1244,32 @@ public class Parser {
 		}
 		return jsonItems;
 	}
-	//converte de entidade para json --------------------
+
+	// converte de entidade para json --------------------
 	private static JsonItemType toBasicJson(ItemType itemType) {
 		JsonItemType jsonItemType = new JsonItemType();
 		applyBasicJsonValues(jsonItemType, itemType);
 		return jsonItemType;
 	}
-	
+
 	private static ItemType toBasicEntity(JsonItemType jsonItemType) {
 		ItemType itemType = new ItemType();
 		applyBasicEntityValues(itemType, jsonItemType);
 		return itemType;
 	}
-	
+
 	private static void applyBasicJsonValues(JsonItemType jsonItemType, ItemType itemType) {
 		jsonItemType.setId(itemType.getId());
-	    jsonItemType.setName(itemType.getName());
-	    jsonItemType.setDescription(itemType.getDescription());
-	}	
+		jsonItemType.setName(itemType.getName());
+		jsonItemType.setDescription(itemType.getDescription());
+	}
+
 	private static void applyBasicEntityValues(ItemType itemType, JsonItemType jsonItemType) {
 		itemType.setId(jsonItemType.getId());
 		itemType.setName(jsonItemType.getName());
 		itemType.setDescription(jsonItemType.getDescription());
-	}	
-	
+	}
+
 	public static JsonItemType toJson(ItemType itemType) {
 		JsonItemType jsonItemType = new JsonItemType();
 
@@ -1247,23 +1278,23 @@ public class Parser {
 		return jsonItemType;
 	}
 
-
 	public static ItemType apply(ItemType itemType, JsonItemType jsonItemType) {
-	
-		if(itemType ==  null)
+
+		if (itemType == null)
 			itemType = new ItemType();
-		
-		applyBasicEntityValues(itemType, jsonItemType) ;
+
+		applyBasicEntityValues(itemType, jsonItemType);
 
 		return itemType;
-		
-	}		
+
+	}
+
 	public static ItemType toEntity(JsonItemType jsonItemType) {
 		ItemType itemType = new ItemType();
-		
+
 		return apply(itemType, jsonItemType);
-	}		
-	
+	}
+
 	public static List<JsonItemType> toListJsonItemTypes(List<ItemType> all) {
 		List<JsonItemType> jsonItemTypes = new ArrayList<JsonItemType>();
 		for (ItemType itemType : all) {
@@ -1271,28 +1302,30 @@ public class Parser {
 		}
 		return jsonItemTypes;
 	}
-	//converte de entidade para json --------------------
+
+	// converte de entidade para json --------------------
 	private static JsonOperation toBasicJson(Operation operation) {
 		JsonOperation jsonOperation = new JsonOperation();
 		applyBasicJsonValues(jsonOperation, operation);
 		return jsonOperation;
 	}
-	
+
 	private static Operation toBasicEntity(JsonOperation jsonOperation) {
 		Operation operation = new Operation();
 		applyBasicEntityValues(operation, jsonOperation);
 		return operation;
 	}
-	
+
 	private static void applyBasicJsonValues(JsonOperation jsonOperation, Operation operation) {
 		jsonOperation.setId(operation.getId());
-	    jsonOperation.setName(operation.getName());
-	    jsonOperation.setCanEdit(operation.getCanEdit());
-	    jsonOperation.setCanRead(operation.getCanRead());
-	    jsonOperation.setCanUpdate(operation.getCanUpdate());
-	    jsonOperation.setCanDelete(operation.getCanDelete());
-	    jsonOperation.setCanExecute(operation.getCanExecute());
-	}	
+		jsonOperation.setName(operation.getName());
+		jsonOperation.setCanEdit(operation.getCanEdit());
+		jsonOperation.setCanRead(operation.getCanRead());
+		jsonOperation.setCanUpdate(operation.getCanUpdate());
+		jsonOperation.setCanDelete(operation.getCanDelete());
+		jsonOperation.setCanExecute(operation.getCanExecute());
+	}
+
 	private static void applyBasicEntityValues(Operation operation, JsonOperation jsonOperation) {
 		operation.setId(jsonOperation.getId());
 		operation.setName(jsonOperation.getName());
@@ -1301,8 +1334,8 @@ public class Parser {
 		operation.setCanUpdate(jsonOperation.getCanUpdate());
 		operation.setCanDelete(jsonOperation.getCanDelete());
 		operation.setCanExecute(jsonOperation.getCanExecute());
-	}	
-	
+	}
+
 	public static JsonOperation toJson(Operation operation) {
 		JsonOperation jsonOperation = new JsonOperation();
 
@@ -1317,13 +1350,12 @@ public class Parser {
 		return jsonOperation;
 	}
 
-
 	public static Operation apply(Operation operation, JsonOperation jsonOperation) {
-	
-		if(operation ==  null)
+
+		if (operation == null)
 			operation = new Operation();
-		
-		applyBasicEntityValues(operation, jsonOperation) ;
+
+		applyBasicEntityValues(operation, jsonOperation);
 
 		ArrayList<JsonPermission> listPermissions = jsonOperation.getPermissions();
 		if (listPermissions != null) {
@@ -1331,16 +1363,17 @@ public class Parser {
 				operation.addPermissions(toBasicEntity(loopJsonPermission));
 			}
 		}
-					
+
 		return operation;
-		
-	}		
+
+	}
+
 	public static Operation toEntity(JsonOperation jsonOperation) {
 		Operation operation = new Operation();
-		
+
 		return apply(operation, jsonOperation);
-	}		
-	
+	}
+
 	public static List<JsonOperation> toListJsonOperations(List<Operation> all) {
 		List<JsonOperation> jsonOperations = new ArrayList<JsonOperation>();
 		for (Operation operation : all) {
@@ -1348,28 +1381,30 @@ public class Parser {
 		}
 		return jsonOperations;
 	}
-	//converte de entidade para json --------------------
+
+	// converte de entidade para json --------------------
 	private static JsonPermission toBasicJson(Permission permission) {
 		JsonPermission jsonPermission = new JsonPermission();
 		applyBasicJsonValues(jsonPermission, permission);
 		return jsonPermission;
 	}
-	
+
 	private static Permission toBasicEntity(JsonPermission jsonPermission) {
 		Permission permission = new Permission();
 		applyBasicEntityValues(permission, jsonPermission);
 		return permission;
 	}
-	
+
 	private static void applyBasicJsonValues(JsonPermission jsonPermission, Permission permission) {
 		jsonPermission.setId(permission.getId());
-	    jsonPermission.setName(permission.getName());
-	}	
+		jsonPermission.setName(permission.getName());
+	}
+
 	private static void applyBasicEntityValues(Permission permission, JsonPermission jsonPermission) {
 		permission.setId(jsonPermission.getId());
 		permission.setName(jsonPermission.getName());
-	}	
-	
+	}
+
 	public static JsonPermission toJson(Permission permission) {
 		JsonPermission jsonPermission = new JsonPermission();
 
@@ -1380,7 +1415,7 @@ public class Parser {
 			for (Role loopRole : listRoles) {
 				jsonPermission.getRoles().add(toBasicJson(loopRole));
 			}
-		}			
+		}
 
 		Operation operation = permission.getOperation();
 		if (operation != null) {
@@ -1393,38 +1428,38 @@ public class Parser {
 		return jsonPermission;
 	}
 
-
 	public static Permission apply(Permission permission, JsonPermission jsonPermission) {
-	
-		if(permission ==  null)
-			permission = new Permission();
-		
-		applyBasicEntityValues(permission, jsonPermission) ;
 
-		ArrayList<JsonRole> listRoles = jsonPermission.getRoles();			
+		if (permission == null)
+			permission = new Permission();
+
+		applyBasicEntityValues(permission, jsonPermission);
+
+		ArrayList<JsonRole> listRoles = jsonPermission.getRoles();
 		if (listRoles != null) {
 			for (JsonRole loopJsonRole : listRoles) {
 				permission.addRoles(toBasicEntity(loopJsonRole));
 			}
 		}
-			
+
 		JsonOperation operation = jsonPermission.getOperation();
 		if (operation != null) {
 			permission.setOperation(toEntity(operation));
-		}	
+		}
 		JsonItem item = jsonPermission.getItem();
 		if (item != null) {
 			permission.setItem(toEntity(item));
-		}	
+		}
 		return permission;
-		
-	}		
+
+	}
+
 	public static Permission toEntity(JsonPermission jsonPermission) {
 		Permission permission = new Permission();
-		
+
 		return apply(permission, jsonPermission);
-	}		
-	
+	}
+
 	public static List<JsonPermission> toListJsonPermissions(List<Permission> all) {
 		List<JsonPermission> jsonPermissions = new ArrayList<JsonPermission>();
 		for (Permission permission : all) {
@@ -1432,30 +1467,32 @@ public class Parser {
 		}
 		return jsonPermissions;
 	}
-	//converte de entidade para json --------------------
+
+	// converte de entidade para json --------------------
 	private static JsonRole toBasicJson(Role role) {
 		JsonRole jsonRole = new JsonRole();
 		applyBasicJsonValues(jsonRole, role);
 		return jsonRole;
 	}
-	
+
 	private static Role toBasicEntity(JsonRole jsonRole) {
 		Role role = new Role();
 		applyBasicEntityValues(role, jsonRole);
 		return role;
 	}
-	
+
 	private static void applyBasicJsonValues(JsonRole jsonRole, Role role) {
 		jsonRole.setId(role.getId());
-	    jsonRole.setAuthority(role.getAuthority());
-	    jsonRole.setDescription(role.getDescription());
-	}	
+		jsonRole.setAuthority(role.getAuthority());
+		jsonRole.setDescription(role.getDescription());
+	}
+
 	private static void applyBasicEntityValues(Role role, JsonRole jsonRole) {
 		role.setId(jsonRole.getId());
 		role.setAuthority(jsonRole.getAuthority());
 		role.setDescription(jsonRole.getDescription());
-	}	
-	
+	}
+
 	public static JsonRole toJson(Role role) {
 		JsonRole jsonRole = new JsonRole();
 
@@ -1466,14 +1503,14 @@ public class Parser {
 			for (Session loopSession : listSessions) {
 				jsonRole.getSessions().add(toBasicJson(loopSession));
 			}
-		}			
+		}
 
 		List<User> listUsers = role.getUsers();
 		if (listUsers != null) {
 			for (User loopUser : listUsers) {
 				jsonRole.getUsers().add(toBasicJson(loopUser));
 			}
-		}			
+		}
 
 		List<Permission> listPermissions = role.getPermissions();
 		if (listPermissions != null) {
@@ -1485,43 +1522,43 @@ public class Parser {
 		return jsonRole;
 	}
 
-
 	public static Role apply(Role role, JsonRole jsonRole) {
-	
-		if(role ==  null)
-			role = new Role();
-		
-		applyBasicEntityValues(role, jsonRole) ;
 
-		ArrayList<JsonSession> listSessions = jsonRole.getSessions();			
+		if (role == null)
+			role = new Role();
+
+		applyBasicEntityValues(role, jsonRole);
+
+		ArrayList<JsonSession> listSessions = jsonRole.getSessions();
 		if (listSessions != null) {
 			for (JsonSession loopJsonSession : listSessions) {
 				role.addSessions(toBasicEntity(loopJsonSession));
 			}
 		}
-			
-		ArrayList<JsonUser> listUsers = jsonRole.getUsers();			
+
+		ArrayList<JsonUser> listUsers = jsonRole.getUsers();
 		if (listUsers != null) {
 			for (JsonUser loopJsonUser : listUsers) {
 				role.addUsers(toBasicEntity(loopJsonUser));
 			}
 		}
-			
-		ArrayList<JsonPermission> listPermissions = jsonRole.getPermissions();			
+
+		ArrayList<JsonPermission> listPermissions = jsonRole.getPermissions();
 		if (listPermissions != null) {
 			for (JsonPermission loopJsonPermission : listPermissions) {
 				role.addPermissions(toEntity(loopJsonPermission));
 			}
 		}
 		return role;
-		
-	}		
+
+	}
+
 	public static Role toEntity(JsonRole jsonRole) {
 		Role role = new Role();
-		
+
 		return apply(role, jsonRole);
-	}		
-	
+	}
+
 	public static List<JsonRole> toListJsonRoles(List<Role> all) {
 		List<JsonRole> jsonRoles = new ArrayList<JsonRole>();
 		for (Role role : all) {
@@ -1529,30 +1566,32 @@ public class Parser {
 		}
 		return jsonRoles;
 	}
-	//converte de entidade para json --------------------
+
+	// converte de entidade para json --------------------
 	private static JsonSession toBasicJson(Session session) {
 		JsonSession jsonSession = new JsonSession();
 		applyBasicJsonValues(jsonSession, session);
 		return jsonSession;
 	}
-	
+
 	private static Session toBasicEntity(JsonSession jsonSession) {
 		Session session = new Session();
 		applyBasicEntityValues(session, jsonSession);
 		return session;
 	}
-	
+
 	private static void applyBasicJsonValues(JsonSession jsonSession, Session session) {
 		jsonSession.setId(session.getId());
-	    jsonSession.setName(session.getName());
-	    jsonSession.setCreationDate(DateUtil.localDateTimeAsString(session.getCreationDate()));
-	}	
+		jsonSession.setName(session.getName());
+		jsonSession.setCreationDate(DateUtil.localDateTimeAsString(session.getCreationDate()));
+	}
+
 	private static void applyBasicEntityValues(Session session, JsonSession jsonSession) {
 		session.setId(jsonSession.getId());
 		session.setName(jsonSession.getName());
-	    session.setCreationDate(DateUtil.stringAsLocalDateTime(jsonSession.getCreationDate()));
-	}	
-	
+		session.setCreationDate(DateUtil.stringAsLocalDateTime(jsonSession.getCreationDate()));
+	}
+
 	public static JsonSession toJson(Session session) {
 		JsonSession jsonSession = new JsonSession();
 
@@ -1572,15 +1611,14 @@ public class Parser {
 		return jsonSession;
 	}
 
-
 	public static Session apply(Session session, JsonSession jsonSession) {
-	
-		if(session ==  null)
-			session = new Session();
-		
-		applyBasicEntityValues(session, jsonSession) ;
 
-		ArrayList<JsonRole> listRoles = jsonSession.getRoles();			
+		if (session == null)
+			session = new Session();
+
+		applyBasicEntityValues(session, jsonSession);
+
+		ArrayList<JsonRole> listRoles = jsonSession.getRoles();
 		if (listRoles != null) {
 			for (JsonRole loopJsonRole : listRoles) {
 				session.addRoles(toEntity(loopJsonRole));
@@ -1589,16 +1627,17 @@ public class Parser {
 		JsonUser user = jsonSession.getUser();
 		if (user != null) {
 			session.setUser(toEntity(user));
-		}	
+		}
 		return session;
-		
-	}		
+
+	}
+
 	public static Session toEntity(JsonSession jsonSession) {
 		Session session = new Session();
-		
+
 		return apply(session, jsonSession);
-	}		
-	
+	}
+
 	public static List<JsonSession> toListJsonSessions(List<Session> all) {
 		List<JsonSession> jsonSessions = new ArrayList<JsonSession>();
 		for (Session session : all) {
@@ -1606,27 +1645,29 @@ public class Parser {
 		}
 		return jsonSessions;
 	}
-	//converte de entidade para json --------------------
+
+	// converte de entidade para json --------------------
 	private static JsonUser toBasicJson(User user) {
 		JsonUser jsonUser = new JsonUser();
 		applyBasicJsonValues(jsonUser, user);
 		return jsonUser;
 	}
-	
+
 	private static User toBasicEntity(JsonUser jsonUser) {
 		User user = new User();
 		applyBasicEntityValues(user, jsonUser);
 		return user;
 	}
-	
+
 	private static void applyBasicJsonValues(JsonUser jsonUser, User user) {
 		jsonUser.setId(user.getId());
-	    jsonUser.setName(user.getName());
-	    jsonUser.setUsername(user.getUsername());
-	    jsonUser.setPassword(user.getPassword());
-	    jsonUser.setEnable(user.getEnable());
-	    jsonUser.setImage(user.getImage());
-	}	
+		jsonUser.setName(user.getName());
+		jsonUser.setUsername(user.getUsername());
+		jsonUser.setPassword(user.getPassword());
+		jsonUser.setEnable(user.getEnable());
+		jsonUser.setImage(user.getImage());
+	}
+
 	private static void applyBasicEntityValues(User user, JsonUser jsonUser) {
 		user.setId(jsonUser.getId());
 		user.setName(jsonUser.getName());
@@ -1634,8 +1675,8 @@ public class Parser {
 		user.setPassword(jsonUser.getPassword());
 		user.setEnable(jsonUser.getEnable());
 		user.setImage(jsonUser.getImage());
-	}	
-	
+	}
+
 	public static JsonUser toJson(User user) {
 		JsonUser jsonUser = new JsonUser();
 
@@ -1655,15 +1696,14 @@ public class Parser {
 		return jsonUser;
 	}
 
-
 	public static User apply(User user, JsonUser jsonUser) {
-	
-		if(user ==  null)
-			user = new User();
-		
-		applyBasicEntityValues(user, jsonUser) ;
 
-		ArrayList<JsonRole> listRoles = jsonUser.getRoles();			
+		if (user == null)
+			user = new User();
+
+		applyBasicEntityValues(user, jsonUser);
+
+		ArrayList<JsonRole> listRoles = jsonUser.getRoles();
 		if (listRoles != null) {
 			for (JsonRole loopJsonRole : listRoles) {
 				user.addRoles(toEntity(loopJsonRole));
@@ -1672,16 +1712,17 @@ public class Parser {
 		JsonClient owner = jsonUser.getOwner();
 		if (owner != null) {
 			user.setOwner(toEntity(owner));
-		}	
+		}
 		return user;
-		
-	}		
+
+	}
+
 	public static User toEntity(JsonUser jsonUser) {
 		User user = new User();
-		
+
 		return apply(user, jsonUser);
-	}		
-	
+	}
+
 	public static List<JsonUser> toListJsonUsers(List<User> all) {
 		List<JsonUser> jsonUsers = new ArrayList<JsonUser>();
 		for (User user : all) {
@@ -1689,6 +1730,5 @@ public class Parser {
 		}
 		return jsonUsers;
 	}
-
 
 }

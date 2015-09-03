@@ -1,36 +1,24 @@
-<div class="main-content-inner">
-	<div class="main-content-inner">
-		<div class="normalheader transition animated fadeIn small-header">
-			<div class="hpanel">
-				<div class="panel-body">
-					<div class="tooltip-demo text-center">
-						<a href="javascript:void(0)" id="save" class="save btn btn-primary">
-							<i class="ace-icon save fa fa-check bigger-110"></i>
-							Salvar
-						</a>
-						&nbsp;
-						<a href="javascript:void(0)" class=" saveAndContinue  btn btn-info">
-							<i class="ace-icon fa fa-check bigger-110"></i>
-							Salvar e criar entidades
-						</a>
-						&nbsp;
-						<a class="go-back-link btn btn-default" href="#app/applications">
-							<i class="ace-icon fa fa-undo bigger-110"></i>
-							Voltar para a listagem
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<div class="hpanel">
+
+<div class="hpanel hblue">
 	<div class="panel-heading hbuilt">
-		<!-- 		<div class="pull-right"> -->
-		<!-- 			<a class="btn btn-default btn-xs">Action 1</a> -->
-		<!-- 			<a class="btn btn-default btn-xs">Action 2</a> -->
-		<!-- 		</div> -->
-		Cadastro de Aplicações
+		<div class="pull-left">
+			<span style="padding-right: 20px">Cadastro de aplicação</span>
+			<a href="javascript:void(0)" id="save" class=" btn save btn-default btn-xs">
+				<i class="save fa fa-check fa-15x"></i>
+				Salvar
+			</a>
+			&nbsp;
+			<a href="javascript:void(0)" class=" saveAndContinue btn  btn-default btn-xs">
+				<i class="fa fa-check fa-15x"></i>
+				Salvar e criar entidades
+			</a>
+			&nbsp;
+			<a class="go-back-link btn-default btn btn-xs" href="#app/applications">
+				<i class="fa fa-undo fa-15x"></i>
+				Voltar para a listagem
+			</a>
+		</div>
+		&nbsp;
 	</div>
 	<div class="panel-body">
 		<form role="form" id="formApplication">
@@ -48,7 +36,5 @@
 				<input type="text" id="inputRootPackage" placeholder="Pacote raiz" value="{{rootPackage}}" class="form-control  validate[required]">
 			</div>
 		</form>
-		<!-- 		<div class="entities-container panel"></div> -->
 	</div>
-	<!-- 	<div class="panel-footer"></div> -->
 </div>

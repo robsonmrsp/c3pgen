@@ -276,10 +276,14 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 			}
 		},
 
-		goPage : function(hash) {
-			window.setTimeout(function() {
+		goPage : function(hash, now) {
+			if (now) {
 				window.location.hash = hash;
-			}, 1000);
+			} else {
+				window.setTimeout(function() {
+					window.location.hash = hash;
+				}, 1000);
+			}
 		},
 
 		uploadImage : function(elementName, successFunction, errorFunction) {
@@ -359,7 +363,8 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 		},
 
 		/*
-		 * Usage: breadcrumb({iconClass:'',itemLabel:'', itemSubFolderName:'',url:''});
+		 * Usage: breadcrumb({iconClass:'',itemLabel:'',
+		 * itemSubFolderName:'',url:''});
 		 */
 		breadcrumb : function(itemMenu) {
 			if (itemMenu) {

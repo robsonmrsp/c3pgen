@@ -19,7 +19,8 @@ define(function(require) {
 	// End of "Import´s" definition
 
 	// #####################################################################################################
-	// ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨MAIN BODY¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
+	// ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨MAIN
+	// BODY¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
 	// #####################################################################################################
 
 	var FormApplications = Marionette.LayoutView.extend({
@@ -77,9 +78,9 @@ define(function(require) {
 						that.clearForm();
 
 						if (continua != true) {
-							util.goPage('app/applications');
+							util.goPage('app/applications', true);
 						} else {
-							util.goPage('app/application/' + _model.get('id') + '/entities');
+							util.goPage('app/application/' + _model.get('id') + '/entities', true);
 						}
 					},
 
@@ -136,7 +137,8 @@ define(function(require) {
 				element : that.ui.inputSkin,
 				fieldName : 'skin',
 				fieldDisplayName : 'Template',
-				// onlyNumber : true, //caso queira que as mascaras sejam removidas e somente NUMEROS sejam enviados na consulta.
+				// onlyNumber : true, //caso queira que as mascaras sejam
+				// removidas e somente NUMEROS sejam enviados na consulta.
 				view : that,
 				collection : ApplicationCollection,
 			})
@@ -147,7 +149,8 @@ define(function(require) {
 				element : that.ui.inputRootPackage,
 				fieldName : 'rootPackage',
 				fieldDisplayName : 'Pacote raiz',
-				// onlyNumber : true, //caso queira que as mascaras sejam removidas e somente NUMEROS sejam enviados na consulta.
+				// onlyNumber : true, //caso queira que as mascaras sejam
+				// removidas e somente NUMEROS sejam enviados na consulta.
 				view : that,
 				collection : ApplicationCollection,
 			})

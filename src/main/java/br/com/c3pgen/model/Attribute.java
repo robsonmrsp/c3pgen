@@ -79,10 +79,12 @@ public class Attribute extends AbstractTimestampEntity{
 	
 	@OneToOne(optional=false, mappedBy="attribute")
 	@JoinColumn(name = "ID_TYPE")
+	@Cascade(CascadeType.ALL)
 	private AttributeType type;
 	
 	@OneToOne(optional=false, mappedBy="attribute")
 	@JoinColumn(name = "ID_VIEWAPPROACH")
+	@Cascade(CascadeType.ALL)
 	private ViewApproach viewApproach;
 	
 	@ManyToOne
