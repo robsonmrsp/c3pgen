@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 /**
-*  generated: 30/08/2015 20:23:12
+*  generated: 03/09/2015 14:51:48
 **/
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class JsonAttribute implements Serializable {
@@ -22,14 +22,14 @@ public class JsonAttribute implements Serializable {
 	private String displayName;
 	private Integer maxLen;
 	private String tableFieldName;
-	private String masc;
+	private String mask;
 	private String defaultValue;
 	private String placeholder;
 	private Boolean required;
 	private Boolean unique;
 	private JsonTheEntity entity;		
-	private JsonAttributeType type;	
-	private JsonViewApproach viewApproach;	
+	private JsonAttributeType type;		
+	private JsonViewApproach viewApproach;		
 	
 	public  JsonAttribute() {
 		
@@ -70,12 +70,12 @@ public class JsonAttribute implements Serializable {
 	public void setTableFieldName(String tableFieldName) {
 		this.tableFieldName = tableFieldName;
 	}
-	public String getMasc() {
-		return masc;
+	public String getmask() {
+		return mask;
 	}
 
-	public void setMasc(String masc) {
-		this.masc = masc;
+	public void setmask(String mask) {
+		this.mask = mask;
 	}
 	public String getDefaultValue() {
 		return defaultValue;
@@ -120,7 +120,6 @@ public class JsonAttribute implements Serializable {
 	public void setType(JsonAttributeType attributeType) {
 		this.type = attributeType;
 	}
-
 	public JsonViewApproach getViewApproach() {
 		return viewApproach;
 	}
@@ -128,7 +127,6 @@ public class JsonAttribute implements Serializable {
 	public void setViewApproach(JsonViewApproach viewApproach) {
 		this.viewApproach = viewApproach;
 	}
-
 	public SyncOperation getSyncOperation (){
 		if(syncOperation == null){
 			this.syncOperation = SyncOperation.NONE;

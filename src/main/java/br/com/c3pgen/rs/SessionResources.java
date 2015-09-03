@@ -34,7 +34,7 @@ import br.com.c3pgen.utils.Parser;
 import br.com.c3pgen.rs.exception.ValidationException;
 import br.com.c3pgen.security.SpringSecurityUserContext;
 /**
-*  generated: 30/08/2015 20:23:12
+*  generated: 03/09/2015 14:51:49
 **/
 
 @Path("/crud/sessions")

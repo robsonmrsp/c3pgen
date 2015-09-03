@@ -6,7 +6,7 @@ import br.com.c3pgen.model.Pais;
 import br.com.c3pgen.persistence.pagination.Pager;
 import br.com.c3pgen.persistence.pagination.PaginationParams;
 /**
-*  generated: 30/08/2015 20:23:12
+*  generated: 03/09/2015 14:51:48
 **/
 public interface PaisService {
 

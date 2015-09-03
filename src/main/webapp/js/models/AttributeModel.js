@@ -21,7 +21,7 @@ define(function(require) {
 	    	displayName : '',    	
 	    	maxLen : '',    	
 	    	tableFieldName : '',    	
-	    	masc : '',    	
+	    	mask : '',    	
 	    	defaultValue : '',    	
 	    	placeholder : '',    	
 	    	required : '',    	

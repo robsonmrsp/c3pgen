@@ -32,8 +32,8 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
 /**
-* generated: 30/08/2015 20:23:12
-Entity [name=Cep, displayName=Cep, hasOwner=false, attributes=[Attribute [name=logradouro, displayName=Logadouro, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=numero, displayName=Numero, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null]], relationships=[Relationship [name=bairro, model=Bairro, viewAproach=com.mr.codegenerator.entities.ViewAproach@48eff760, type=ManyToOne, displayName=Bairro, implementation=], Relationship [name=cidade, model=Cidade, viewAproach=com.mr.codegenerator.entities.ViewAproach@402f32ff, type=ManyToOne, displayName=Cidade, implementation=], Relationship [name=estado, model=Estado, viewAproach=com.mr.codegenerator.entities.ViewAproach@573f2bb1, type=ManyToOne, displayName=Estado, implementation=]]]
+* generated: 03/09/2015 14:51:48
+Entity [name=Cep, displayName=Cep, hasOwner=false, attributes=[Attribute [name=logradouro, displayName=Logadouro, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=numero, displayName=Numero, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null]], relationships=[Relationship [name=bairro, model=Bairro, viewAproach=com.mr.codegenerator.entities.ViewAproach@6a2bcfcb, type=ManyToOne, displayName=Bairro, implementation=], Relationship [name=cidade, model=Cidade, viewAproach=com.mr.codegenerator.entities.ViewAproach@4de8b406, type=ManyToOne, displayName=Cidade, implementation=], Relationship [name=estado, model=Estado, viewAproach=com.mr.codegenerator.entities.ViewAproach@3c756e4d, type=ManyToOne, displayName=Estado, implementation=]]]
 **/
 @Entity
 @Audited

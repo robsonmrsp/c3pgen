@@ -1,5 +1,9 @@
 <div class="hpanel hyellow" style="padding: 5px; margin-bottom: 5px">
-	<input id="inputId" type="hidden" value={{id}}>
+	<input class="inputId" type="hidden" value={{id}}>
+	
+	<input class="inputViewApproachId" type="hidden" value="{{viewApproach && viewApproach.id}}">
+	<input class="inputTypeId" type="hidden" value="{{type && type.id}}">
+	
 	<div class="panel-heading hbuilt" style="padding: 3px;">
 		<div class="panel-tools" style="margin-top: 4px;">
 			<a class="showhide">
@@ -18,22 +22,22 @@
 		<div class="widget-main">
 			<span>
 				Nome de exibição:&nbsp;
-				<a class="editable editable-click inputDisplayName" data-placement="right" data-title="Digite o nome a exibir"></a>
+				<a class="editable editable-click inputDisplayName" data-placement="right" data-title="Digite o nome a exibir">{{displayName}}</a>
 			</span>
 			<br>
 			<span>
 				Tipo:&nbsp;
-				<a class="editable editable-click  inputType" data-placement="right" data-title="Tipo do atributo" data-type="select" data-pk="1" data-title="Selecione o tipo"></a>
+				<a class="editable editable-click  inputType" data-placement="right" data-title="Tipo do atributo" data-type="select" data-pk="1" data-title="Selecione o tipo">{{type && type.className}}</a>
 			</span>
 			<br>
 			<span>
 				Tipo de elemento visual?:&nbsp;
-				<a class="editable  inputViewApproach" data-placement="right" data-title="Tipo de elemento" data-type="select" data-pk="1" data-title="Selecione o tipo de  componente"></a>
+				<a class="editable  inputViewApproach" data-placement="right" data-title="Tipo de elemento" data-type="select" data-pk="1" data-title="Selecione o tipo de  componente">{{viewApproach && viewApproach.type}}</a>
 			</span>
 			<br>
 			<span>
 				Coluna tabela: &nbsp;
-				<a class="editable editable-click inputTableFieldName " data-placement="right" data-title="Digite um nome para a coluna no BD"> </a>
+				<a class="editable editable-click inputTableFieldName " data-placement="right" data-title="Digite um nome para a coluna no BD">{{tableFieldName}} </a>
 			</span>
 			<br>
 			<span>
@@ -48,12 +52,12 @@
 			<br>
 			<span>
 				Máscara:&nbsp;
-				<a class="editable editable-click inputMask" data-placement="right" data-title="Digite uma máscara"> </a>
+				<a class="editable editable-click inputMask" data-placement="right" data-title="Digite uma máscara">{{mask}} </a>
 			</span>
 			<br>
 			<span>
 				Tamanho Máximo:&nbsp;
-				<a class="editable editable-click inputMaxLen" data-placement="right" data-title="Digite o tamanho máximo">255</a>
+				<a class="editable editable-click inputMaxLen" data-placement="right" data-title="Digite o tamanho máximo">{{maxLen}}</a>
 			</span>
 		</div>
 	</div>

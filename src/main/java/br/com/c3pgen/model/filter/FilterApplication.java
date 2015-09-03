@@ -15,7 +15,7 @@ import br.com.c3pgen.serialization.CustomLocalDateTimeDeserializer;
 
 
 /**
-*  generated: 30/08/2015 20:23:12
+*  generated: 03/09/2015 14:51:48
 **/
 public class FilterApplication implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -23,6 +23,8 @@ public class FilterApplication implements Serializable {
 	private String name;  			
 	
 	private String skin;  			
+	
+	private String description;  			
 	
 	private String rootPackage;  			
 
@@ -45,6 +47,13 @@ public class FilterApplication implements Serializable {
 
 	public void setSkin(String skin) {
 		this.skin = skin;
+	}
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	public String getRootPackage() {
 		return rootPackage;

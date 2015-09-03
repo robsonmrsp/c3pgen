@@ -32,8 +32,8 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
 /**
-* generated: 30/08/2015 20:23:12
-Entity [name=ViewApproach, displayName=null, hasOwner=true, attributes=[Attribute [name=type, displayName=Tipo, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=comboId, displayName=Id visto no combo, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=comboName, displayName=Nome visto no combo, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=comboVal, displayName=Valor visto no combo, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=textField, displayName=Campo de texto no modal, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=hiddenField, displayName=Campo de escondido do modal, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null]], relationships=[Relationship [name=attribute, model=Attribute, viewAproach=com.mr.codegenerator.entities.ViewAproach@6a2bcfcb, type=OneToOne, displayName=Atributo, implementation=], Relationship [name=relationship, model=Relationship, viewAproach=com.mr.codegenerator.entities.ViewAproach@4de8b406, type=OneToOne, displayName=Relacionamento, implementation=]]]
+* generated: 03/09/2015 14:51:48
+Entity [name=ViewApproach, displayName=Modo de Exibição, hasOwner=true, attributes=[Attribute [name=type, displayName=Tipo, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=comboId, displayName=Id visto no combo, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=comboName, displayName=Nome visto no combo, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=comboVal, displayName=Valor visto no combo, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=textField, displayName=Campo de texto no modal, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=hiddenField, displayName=Campo de escondido do modal, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null]], relationships=[]]
 **/
 @Entity
 @Audited
@@ -63,14 +63,6 @@ public class ViewApproach extends AbstractTimestampEntity{
 		
 	@Column(name = "HIDDEN_FIELD")
 	private String hiddenField;  			
-	
-	@OneToOne
-	@JoinColumn(name = "ID_ATTRIBUTE")
-	private Attribute attribute;
-	
-	@OneToOne
-	@JoinColumn(name = "ID_RELATIONSHIP")
-	private Relationship relationship;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_client")
@@ -136,20 +128,6 @@ public class ViewApproach extends AbstractTimestampEntity{
 
 	public void setHiddenField(String hiddenField) {
 		this.hiddenField = hiddenField;
-	}
-	public Attribute getAttribute() {
-		return attribute;
-	}
-	
-	public void setAttribute(Attribute attribute) {
-		this.attribute = attribute;
-	}
-	public Relationship getRelationship() {
-		return relationship;
-	}
-	
-	public void setRelationship(Relationship relationship) {
-		this.relationship = relationship;
 	}
 	
 }

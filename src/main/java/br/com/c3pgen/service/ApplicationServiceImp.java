@@ -19,7 +19,7 @@ import br.com.c3pgen.utils.DateUtil;
 import br.com.c3pgen.utils.Util;
 
 /**
-*  generated: 30/08/2015 20:23:11
+*  generated: 03/09/2015 14:51:47
 **/
 
 @Named

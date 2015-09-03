@@ -8,6 +8,7 @@ define(function(require) {
 	var Marionette = require('marionette');
 
 	var util = require('utilities/utils');
+	var C3P = require('utilities/C3pUtil');
 	var BaseCollection = require('collections/BaseCollection');
 	var BaseModel = require('models/BaseModel');
 	var AttributeModel = require('models/AttributeModel');
@@ -30,6 +31,7 @@ define(function(require) {
 			inputDisplayName : '.inputDisplayName',
 			inputMaxLen : '.inputMaxLen',
 			inputType : '.inputType',
+			inputTypeId : '.inputTypeId',
 			inputTableFieldName : '.inputTableFieldName',
 			inputMask : '.inputMask',
 			inputDefaultValue : '.inputDefaultValue',
@@ -38,6 +40,7 @@ define(function(require) {
 			inputUnique : '.inputUnique',
 
 			inputViewApproach : '.inputViewApproach',
+			inputViewApproachId : '.inputViewApproachId',
 
 			widgetMain : '.widget-main',
 			showhide : '.showhide',
@@ -55,18 +58,25 @@ define(function(require) {
 
 		getModel : function() {
 			return {
-				id : this.ui.inputId.text(),
+				id : this.ui.inputId.val(),
 				name : this.ui.inputAtributeName.text(),
-				displayName : this.ui.inputDisplayName.text(),
-				maxLen : this.ui.inputMaxLen.text(),
-				tableFieldName : this.ui.inputTableFieldName.text(),
-				masc : this.ui.inputMask.text(),
-				defaultValue : this.ui.inputDefaultValue.text(),
-				placeholder : this.ui.inputPlaceholder.text(),
+
+				displayName : C3P.notEmptyVal(this.ui.inputDisplayName),
+				maxLen : C3P.notEmptyVal(this.ui.inputMaxLen),
+				tableFieldName : C3P.notEmptyVal(this.ui.inputTableFieldName),
+				mask : C3P.notEmptyVal(this.ui.inputMask),
+				defaultValue : C3P.notEmptyVal(this.ui.inputDefaultValue),
+				placeholder : C3P.notEmptyVal(this.ui.inputPlaceholder),
 				required : this.ui.inputRequired.is(':checked'),
 				unique : this.ui.inputUnique.is(':checked'),
+				type : {
+					id : this.ui.inputTypeId.val(),
+					className : C3P.notEmptyVal(this.ui.inputType),
+				},
+
 				viewApproach : {
-					type : this.ui.inputViewApproach.text(),
+					id : this.ui.inputViewApproachId.val(),
+					type : C3P.notEmptyVal(this.ui.inputViewApproach),
 				}
 			};
 		},
@@ -94,7 +104,7 @@ define(function(require) {
 					util.refreshEditable(that.ui.inputDisplayName, util.toFrase(that.ui.inputAtributeName.text()));
 					util.refreshEditable(that.ui.inputTableFieldName, util.toUnderscore(that.ui.inputAtributeName.text(), true));
 				});
-				
+
 				this.ui.inputType.on('hidden', function() {
 					if (that.ui.inputType.text() == 'Boolean') {
 						that.ui.inputViewApproach.text('Check')

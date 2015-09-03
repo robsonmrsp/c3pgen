@@ -18,7 +18,7 @@ import br.com.c3pgen.persistence.pagination.Paginator;
 import br.com.c3pgen.model.Relationship;
 import br.com.c3pgen.model.Client;
 /**
-*  generated: 30/08/2015 20:23:12
+*  generated: 03/09/2015 14:51:48
 **/
 
 @Named
@@ -38,6 +38,10 @@ public class DaoRelationship extends AccessibleHibernateDao<Relationship> {
 		if (filterRelationship.getName() != null) {
 			searchCriteria.add(Restrictions.ilike("name", filterRelationship.getName(), MatchMode.ANYWHERE));
 			countCriteria.add(Restrictions.ilike("name", filterRelationship.getName(), MatchMode.ANYWHERE));
+		}
+		if (filterRelationship.getType() != null) {
+			searchCriteria.add(Restrictions.ilike("type", filterRelationship.getType(), MatchMode.ANYWHERE));
+			countCriteria.add(Restrictions.ilike("type", filterRelationship.getType(), MatchMode.ANYWHERE));
 		}
 		if (filterRelationship.getDisplayName() != null) {
 			searchCriteria.add(Restrictions.ilike("displayName", filterRelationship.getDisplayName(), MatchMode.ANYWHERE));
@@ -78,6 +82,9 @@ public class DaoRelationship extends AccessibleHibernateDao<Relationship> {
 		if (filterRelationship.getName() != null) {
 			searchCriteria.add(Restrictions.eq("name", filterRelationship.getName()));
 		}
+		if (filterRelationship.getType() != null) {
+			searchCriteria.add(Restrictions.eq("type", filterRelationship.getType()));
+		}
 		if (filterRelationship.getDisplayName() != null) {
 			searchCriteria.add(Restrictions.eq("displayName", filterRelationship.getDisplayName()));
 		}
@@ -113,6 +120,10 @@ public class DaoRelationship extends AccessibleHibernateDao<Relationship> {
 		if (filterRelationship.getName() != null) {
 			searchCriteria.add(Restrictions.ilike("name", filterRelationship.getName(), MatchMode.ANYWHERE));
 			countCriteria.add(Restrictions.ilike("name", filterRelationship.getName(), MatchMode.ANYWHERE));
+		}
+		if (filterRelationship.getType() != null) {
+			searchCriteria.add(Restrictions.ilike("type", filterRelationship.getType(), MatchMode.ANYWHERE));
+			countCriteria.add(Restrictions.ilike("type", filterRelationship.getType(), MatchMode.ANYWHERE));
 		}
 		if (filterRelationship.getDisplayName() != null) {
 			searchCriteria.add(Restrictions.ilike("displayName", filterRelationship.getDisplayName(), MatchMode.ANYWHERE));
@@ -153,6 +164,9 @@ public class DaoRelationship extends AccessibleHibernateDao<Relationship> {
 		searchCriteria.add(Restrictions.eq("owner", owner));
 		if (filterRelationship.getName() != null) {
 			searchCriteria.add(Restrictions.eq("name", filterRelationship.getName()));
+		}
+		if (filterRelationship.getType() != null) {
+			searchCriteria.add(Restrictions.eq("type", filterRelationship.getType()));
 		}
 		if (filterRelationship.getDisplayName() != null) {
 			searchCriteria.add(Restrictions.eq("displayName", filterRelationship.getDisplayName()));

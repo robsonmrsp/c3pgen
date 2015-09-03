@@ -24,7 +24,6 @@ import org.joda.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import br.com.c3pgen.serialization.CustomLocalDateSerializer;
 import br.com.c3pgen.serialization.CustomLocalDateTimeSerializer;
 
@@ -32,76 +31,107 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
 /**
-* generated: 30/08/2015 20:23:12
-Entity [name=Attribute, displayName=null, hasOwner=true, attributes=[Attribute [name=name, displayName=Nome, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=displayName, displayName=Nome apresentado na tela, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=maxLen, displayName=Tamanho máximo, type=AttributeType [className=Integer], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=tableFieldName, displayName=Nome da coluna na tabela, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=masc, displayName=Formato de Máscara, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=defaultValue, displayName=Valor padrão, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=placeholder, displayName=Placeholder, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=required, displayName=Obrigatório, type=AttributeType [className=Boolean], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=unique, displayName=Único, type=AttributeType [className=Boolean], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null]], relationships=[Relationship [name=entity, model=TheEntity, viewAproach=com.mr.codegenerator.entities.ViewAproach@6276ae34, type=ManyToOne, displayName=Entidade, implementation=], Relationship [name=type, model=AttributeType, viewAproach=com.mr.codegenerator.entities.ViewAproach@7946e1f4, type=OneToOne, displayName=Tipo, implementation=], Relationship [name=viewApproach, model=ViewApproach, viewAproach=com.mr.codegenerator.entities.ViewAproach@3c09711b, type=OneToOne, displayName=Tipo, implementation=]]]
-**/
+ * generated: 03/09/2015 14:51:48 Entity [name=Attribute, displayName=Atributo,
+ * hasOwner=true, attributes=[Attribute [name=name, displayName=Nome,
+ * type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy,
+ * placeholder=null, validationRules=null], Attribute [name=displayName,
+ * displayName=Nome apresentado na tela, type=AttributeType [className=String],
+ * mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null],
+ * Attribute [name=maxLen, displayName=Tamanho máximo, type=AttributeType
+ * [className=Integer], mask=, dateFormat=dd/MM/yyyy, placeholder=null,
+ * validationRules=null], Attribute [name=tableFieldName, displayName=Nome da
+ * coluna na tabela, type=AttributeType [className=String], mask=,
+ * dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute
+ * [name=masc, displayName=Formato de Máscara, type=AttributeType
+ * [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null,
+ * validationRules=null], Attribute [name=defaultValue, displayName=Valor
+ * padrão, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy,
+ * placeholder=null, validationRules=null], Attribute [name=placeholder,
+ * displayName=Placeholder, type=AttributeType [className=String], mask=,
+ * dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute
+ * [name=required, displayName=Obrigatório, type=AttributeType
+ * [className=Boolean], mask=, dateFormat=dd/MM/yyyy, placeholder=null,
+ * validationRules=null], Attribute [name=unique, displayName=Único,
+ * type=AttributeType [className=Boolean], mask=, dateFormat=dd/MM/yyyy,
+ * placeholder=null, validationRules=null]], relationships=[Relationship
+ * [name=entity, model=TheEntity,
+ * viewAproach=com.mr.codegenerator.entities.ViewAproach@6276ae34,
+ * type=ManyToOne, displayName=Entidade, implementation=], Relationship
+ * [name=type, model=AttributeType,
+ * viewAproach=com.mr.codegenerator.entities.ViewAproach@7946e1f4,
+ * type=ManyToOne, displayName=Tipo, implementation=], Relationship
+ * [name=viewApproach, model=ViewApproach,
+ * viewAproach=com.mr.codegenerator.entities.ViewAproach@3c09711b,
+ * type=ManyToOne, displayName=Tipo, implementation=]]]
+ **/
 @Entity
 @Audited
 @Table(name = "ATTRIBUTE")
 @SequenceGenerator(name = "ATTRIBUTE_SEQUENCE", sequenceName = "ATTRIBUTE_SEQUENCE")
-public class Attribute extends AbstractTimestampEntity{
+public class Attribute extends AbstractTimestampEntity {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ATTRIBUTE_SEQUENCE")	
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ATTRIBUTE_SEQUENCE")
 	private Integer id;
-		
+
 	@Column(name = "NAME")
-	private String name;  			
-		
+	private String name;
+
 	@Column(name = "DISPLAY_NAME")
-	private String displayName;  			
-		
+	private String displayName;
+
 	@Column(name = "MAX_LEN")
-	private Integer maxLen;  			
-		
+	private Integer maxLen;
+
 	@Column(name = "TABLE_FIELD_NAME")
-	private String tableFieldName;  			
-		
+	private String tableFieldName;
+
 	@Column(name = "MASK")
-	private String masc;  			
-		
+	private String mask;
+
 	@Column(name = "DEFAULT_VALUE")
-	private String defaultValue;  			
-		
+	private String defaultValue;
+
 	@Column(name = "PLACEHOLDER")
-	private String placeholder;  			
-		
+	private String placeholder;
+
 	@Column(name = "REQUIRED")
-	private Boolean required;  			
-		
+	private Boolean required;
+
 	@Column(name = "UNIQUE_FIELD")
-	private Boolean unique;  			
-	
+	private Boolean unique;
+
 	@ManyToOne
 	@JoinColumn(name = "ID_ENTITY")
-	private TheEntity entity;		
-	
-	@OneToOne(optional=false, mappedBy="attribute")
+	private TheEntity entity;
+
+	@ManyToOne
 	@JoinColumn(name = "ID_TYPE")
 	@Cascade(CascadeType.ALL)
 	private AttributeType type;
-	
-	@OneToOne(optional=false, mappedBy="attribute")
+
+	@ManyToOne
 	@JoinColumn(name = "ID_VIEWAPPROACH")
 	@Cascade(CascadeType.ALL)
 	private ViewApproach viewApproach;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "id_client")
 	private Client owner;
-	
-	public  Client getOwner() {
+
+	public Client getOwner() {
 		return owner;
 	}
-	
+
 	public void setOwner(Client owner) {
 		this.owner = owner;
 	}
-		
-	public  Attribute() {
-		
+
+	public Attribute() {
+
 	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -109,7 +139,7 @@ public class Attribute extends AbstractTimestampEntity{
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -117,6 +147,7 @@ public class Attribute extends AbstractTimestampEntity{
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public String getDisplayName() {
 		return displayName;
 	}
@@ -124,6 +155,7 @@ public class Attribute extends AbstractTimestampEntity{
 	public void setDisplayName(String displayName) {
 		this.displayName = displayName;
 	}
+
 	public Integer getMaxLen() {
 		return maxLen;
 	}
@@ -131,6 +163,7 @@ public class Attribute extends AbstractTimestampEntity{
 	public void setMaxLen(Integer maxLen) {
 		this.maxLen = maxLen;
 	}
+
 	public String getTableFieldName() {
 		return tableFieldName;
 	}
@@ -138,13 +171,15 @@ public class Attribute extends AbstractTimestampEntity{
 	public void setTableFieldName(String tableFieldName) {
 		this.tableFieldName = tableFieldName;
 	}
-	public String getMasc() {
-		return masc;
+
+	public String getMask() {
+		return mask;
 	}
 
-	public void setMasc(String masc) {
-		this.masc = masc;
+	public void setMask(String mask) {
+		this.mask = mask;
 	}
+
 	public String getDefaultValue() {
 		return defaultValue;
 	}
@@ -152,6 +187,7 @@ public class Attribute extends AbstractTimestampEntity{
 	public void setDefaultValue(String defaultValue) {
 		this.defaultValue = defaultValue;
 	}
+
 	public String getPlaceholder() {
 		return placeholder;
 	}
@@ -159,6 +195,7 @@ public class Attribute extends AbstractTimestampEntity{
 	public void setPlaceholder(String placeholder) {
 		this.placeholder = placeholder;
 	}
+
 	public Boolean getRequired() {
 		return required;
 	}
@@ -166,6 +203,7 @@ public class Attribute extends AbstractTimestampEntity{
 	public void setRequired(Boolean required) {
 		this.required = required;
 	}
+
 	public Boolean getUnique() {
 		return unique;
 	}
@@ -173,27 +211,29 @@ public class Attribute extends AbstractTimestampEntity{
 	public void setUnique(Boolean unique) {
 		this.unique = unique;
 	}
+
 	public TheEntity getEntity() {
 		return entity;
 	}
-	
+
 	public void setEntity(TheEntity theEntity) {
 		this.entity = theEntity;
 	}
-	
+
 	public AttributeType getType() {
 		return type;
 	}
-	
+
 	public void setType(AttributeType attributeType) {
 		this.type = attributeType;
 	}
+
 	public ViewApproach getViewApproach() {
 		return viewApproach;
 	}
-	
+
 	public void setViewApproach(ViewApproach viewApproach) {
 		this.viewApproach = viewApproach;
 	}
-	
+
 }

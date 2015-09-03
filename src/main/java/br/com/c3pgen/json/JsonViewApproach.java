@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 /**
-*  generated: 30/08/2015 20:23:12
+*  generated: 03/09/2015 14:51:48
 **/
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class JsonViewApproach implements Serializable {
@@ -24,8 +24,6 @@ public class JsonViewApproach implements Serializable {
 	private String comboVal;
 	private String textField;
 	private String hiddenField;
-	private JsonAttribute attribute;	
-	private JsonRelationship relationship;	
 	
 	public  JsonViewApproach() {
 		
@@ -81,22 +79,6 @@ public class JsonViewApproach implements Serializable {
 		this.hiddenField = hiddenField;
 	}
 	
-	public JsonAttribute getAttribute() {
-		return attribute;
-	}
-	
-	public void setAttribute(JsonAttribute attribute) {
-		this.attribute = attribute;
-	}
-
-	public JsonRelationship getRelationship() {
-		return relationship;
-	}
-	
-	public void setRelationship(JsonRelationship relationship) {
-		this.relationship = relationship;
-	}
-
 	public SyncOperation getSyncOperation (){
 		if(syncOperation == null){
 			this.syncOperation = SyncOperation.NONE;

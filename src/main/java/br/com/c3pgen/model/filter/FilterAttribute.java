@@ -15,7 +15,7 @@ import br.com.c3pgen.serialization.CustomLocalDateTimeDeserializer;
 
 
 /**
-*  generated: 30/08/2015 20:23:12
+*  generated: 03/09/2015 14:51:48
 **/
 public class FilterAttribute implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -39,6 +39,8 @@ public class FilterAttribute implements Serializable {
 	private Boolean unique;  			
 
 	private Integer entity;		
+	private Integer type;		
+	private Integer viewApproach;		
 	
 	public  FilterAttribute() {
 		
@@ -115,6 +117,20 @@ public class FilterAttribute implements Serializable {
 	
 	public void setEntity(Integer entity) {
 		this.entity = entity;
+	}
+	public Integer getType() {
+		return type;
+	}
+	
+	public void setType(Integer type) {
+		this.type = type;
+	}
+	public Integer getViewApproach() {
+		return viewApproach;
+	}
+	
+	public void setViewApproach(Integer viewApproach) {
+		this.viewApproach = viewApproach;
 	}
 	
 }

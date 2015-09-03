@@ -32,8 +32,8 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
 /**
-* generated: 30/08/2015 20:23:12
-Entity [name=Permission, displayName=Permissão, hasOwner=false, attributes=[Attribute [name=name, displayName=Nome, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null]], relationships=[Relationship [name=roles, model=Role, viewAproach=com.mr.codegenerator.entities.ViewAproach@32d992b2, type=ManyToMany, displayName=Papeis, implementation=], Relationship [name=operation, model=Operation, viewAproach=com.mr.codegenerator.entities.ViewAproach@215be6bb, type=ManyToOne, displayName=Operação, implementation=], Relationship [name=item, model=Item, viewAproach=com.mr.codegenerator.entities.ViewAproach@4439f31e, type=ManyToOne, displayName=Item, implementation=]]]
+* generated: 03/09/2015 14:51:49
+Entity [name=Permission, displayName=Permissão, hasOwner=false, attributes=[Attribute [name=name, displayName=Nome, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null]], relationships=[Relationship [name=roles, model=Role, viewAproach=com.mr.codegenerator.entities.ViewAproach@6d78f375, type=ManyToMany, displayName=Papeis, implementation=], Relationship [name=operation, model=Operation, viewAproach=com.mr.codegenerator.entities.ViewAproach@50c87b21, type=ManyToOne, displayName=Operação, implementation=], Relationship [name=item, model=Item, viewAproach=com.mr.codegenerator.entities.ViewAproach@5f375618, type=ManyToOne, displayName=Item, implementation=]]]
 **/
 @Entity
 @Audited

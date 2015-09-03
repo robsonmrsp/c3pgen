@@ -7,7 +7,7 @@ import br.com.c3pgen.model.Application;
 import br.com.c3pgen.persistence.pagination.Pager;
 import br.com.c3pgen.persistence.pagination.PaginationParams;
 /**
-*  generated: 30/08/2015 20:23:11
+*  generated: 03/09/2015 14:51:47
 **/
 public interface ApplicationService {
 

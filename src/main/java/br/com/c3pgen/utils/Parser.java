@@ -1,7 +1,6 @@
 package br.com.c3pgen.utils;
 
 import java.util.ArrayList;
-
 import java.util.List;
 
 import org.joda.time.DateTime;
@@ -10,49 +9,47 @@ import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
 import br.com.c3pgen.json.JsonApplication;
-import br.com.c3pgen.model.Application;
 import br.com.c3pgen.json.JsonAttribute;
-import br.com.c3pgen.model.Attribute;
 import br.com.c3pgen.json.JsonAttributeType;
-import br.com.c3pgen.model.AttributeType;
-import br.com.c3pgen.json.JsonTheEntity;
-import br.com.c3pgen.model.TheEntity;
-import br.com.c3pgen.json.JsonRelationship;
-import br.com.c3pgen.model.Relationship;
-import br.com.c3pgen.json.JsonViewApproach;
-import br.com.c3pgen.model.ViewApproach;
 import br.com.c3pgen.json.JsonBairro;
-import br.com.c3pgen.model.Bairro;
 import br.com.c3pgen.json.JsonCep;
-import br.com.c3pgen.model.Cep;
 import br.com.c3pgen.json.JsonCidade;
-import br.com.c3pgen.model.Cidade;
-import br.com.c3pgen.json.JsonEndereco;
-import br.com.c3pgen.model.Endereco;
-import br.com.c3pgen.json.JsonEstado;
-import br.com.c3pgen.model.Estado;
-import br.com.c3pgen.json.JsonPais;
-import br.com.c3pgen.model.Pais;
 import br.com.c3pgen.json.JsonClient;
-import br.com.c3pgen.model.Client;
 import br.com.c3pgen.json.JsonCliente;
-import br.com.c3pgen.model.Cliente;
+import br.com.c3pgen.json.JsonEndereco;
+import br.com.c3pgen.json.JsonEstado;
 import br.com.c3pgen.json.JsonItem;
-import br.com.c3pgen.model.Item;
 import br.com.c3pgen.json.JsonItemType;
-import br.com.c3pgen.model.ItemType;
 import br.com.c3pgen.json.JsonOperation;
-import br.com.c3pgen.model.Operation;
+import br.com.c3pgen.json.JsonPais;
 import br.com.c3pgen.json.JsonPermission;
-import br.com.c3pgen.model.Permission;
+import br.com.c3pgen.json.JsonRelationship;
 import br.com.c3pgen.json.JsonRole;
-import br.com.c3pgen.model.Role;
 import br.com.c3pgen.json.JsonSession;
+import br.com.c3pgen.json.JsonTheEntity;
+import br.com.c3pgen.json.JsonUser;
+import br.com.c3pgen.json.JsonViewApproach;
+import br.com.c3pgen.model.Application;
+import br.com.c3pgen.model.Attribute;
+import br.com.c3pgen.model.AttributeType;
+import br.com.c3pgen.model.Bairro;
+import br.com.c3pgen.model.Cep;
+import br.com.c3pgen.model.Cidade;
+import br.com.c3pgen.model.Client;
+import br.com.c3pgen.model.Cliente;
+import br.com.c3pgen.model.Endereco;
+import br.com.c3pgen.model.Estado;
+import br.com.c3pgen.model.Item;
+import br.com.c3pgen.model.ItemType;
+import br.com.c3pgen.model.Operation;
+import br.com.c3pgen.model.Pais;
+import br.com.c3pgen.model.Permission;
+import br.com.c3pgen.model.Relationship;
+import br.com.c3pgen.model.Role;
 import br.com.c3pgen.model.Session;
-import br.com.c3pgen.json.JsonUser;
+import br.com.c3pgen.model.TheEntity;
 import br.com.c3pgen.model.User;
-import br.com.c3pgen.model.User;
-import br.com.c3pgen.json.JsonUser;
+import br.com.c3pgen.model.ViewApproach;
 
 //saporra
 public class Parser {
@@ -144,6 +141,7 @@ public class Parser {
 		jsonApplication.setId(application.getId());
 		jsonApplication.setName(application.getName());
 		jsonApplication.setSkin(application.getSkin());
+		jsonApplication.setDescription(application.getDescription());
 		jsonApplication.setRootPackage(application.getRootPackage());
 	}
 
@@ -151,6 +149,7 @@ public class Parser {
 		application.setId(jsonApplication.getId());
 		application.setName(jsonApplication.getName());
 		application.setSkin(jsonApplication.getSkin());
+		application.setDescription(jsonApplication.getDescription());
 		application.setRootPackage(jsonApplication.getRootPackage());
 	}
 
@@ -178,7 +177,7 @@ public class Parser {
 		ArrayList<JsonTheEntity> listEntities = jsonApplication.getEntities();
 		if (listEntities != null) {
 			for (JsonTheEntity loopJsonTheEntity : listEntities) {
-				application.addEntities(toBasicEntity(loopJsonTheEntity));
+				application.addEntities(toEntity(loopJsonTheEntity));
 			}
 		}
 
@@ -219,7 +218,7 @@ public class Parser {
 		jsonAttribute.setDisplayName(attribute.getDisplayName());
 		jsonAttribute.setMaxLen(attribute.getMaxLen());
 		jsonAttribute.setTableFieldName(attribute.getTableFieldName());
-		jsonAttribute.setMasc(attribute.getMasc());
+		jsonAttribute.setmask(attribute.getMask());
 		jsonAttribute.setDefaultValue(attribute.getDefaultValue());
 		jsonAttribute.setPlaceholder(attribute.getPlaceholder());
 		jsonAttribute.setRequired(attribute.getRequired());
@@ -232,7 +231,7 @@ public class Parser {
 		attribute.setDisplayName(jsonAttribute.getDisplayName());
 		attribute.setMaxLen(jsonAttribute.getMaxLen());
 		attribute.setTableFieldName(jsonAttribute.getTableFieldName());
-		attribute.setMasc(jsonAttribute.getMasc());
+		attribute.setMask(jsonAttribute.getmask());
 		attribute.setDefaultValue(jsonAttribute.getDefaultValue());
 		attribute.setPlaceholder(jsonAttribute.getPlaceholder());
 		attribute.setRequired(jsonAttribute.getRequired());
@@ -250,11 +249,11 @@ public class Parser {
 		}
 		AttributeType type = attribute.getType();
 		if (type != null) {
-			jsonAttribute.setType(toBasicJson(type));
+			jsonAttribute.setType(toJson(type));
 		}
 		ViewApproach viewApproach = attribute.getViewApproach();
 		if (viewApproach != null) {
-			jsonAttribute.setViewApproach(toBasicJson(viewApproach));
+			jsonAttribute.setViewApproach(toJson(viewApproach));
 		}
 		return jsonAttribute;
 	}
@@ -268,7 +267,7 @@ public class Parser {
 
 		JsonTheEntity entity = jsonAttribute.getEntity();
 		if (entity != null) {
-			attribute.setEntity(toEntity(entity));
+			attribute.setEntity(toBasicEntity(entity));
 		}
 		JsonAttributeType type = jsonAttribute.getType();
 		if (type != null) {
@@ -326,10 +325,6 @@ public class Parser {
 
 		applyBasicJsonValues(jsonAttributeType, attributeType);
 
-		Attribute attribute = attributeType.getAttribute();
-		if (attribute != null) {
-			jsonAttributeType.setAttribute(toJson(attribute));
-		}
 		return jsonAttributeType;
 	}
 
@@ -340,10 +335,6 @@ public class Parser {
 
 		applyBasicEntityValues(attributeType, jsonAttributeType);
 
-		JsonAttribute attribute = jsonAttributeType.getAttribute();
-		if (attribute != null) {
-			attributeType.setAttribute(toEntity(attribute));
-		}
 		return attributeType;
 
 	}
@@ -426,19 +417,19 @@ public class Parser {
 
 		JsonApplication application = jsonTheEntity.getApplication();
 		if (application != null) {
-			theEntity.setApplication(toEntity(application));
+			theEntity.setApplication(toBasicEntity(application));
 		}
 		ArrayList<JsonAttribute> listAttributes = jsonTheEntity.getAttributes();
 		if (listAttributes != null) {
 			for (JsonAttribute loopJsonAttribute : listAttributes) {
-				theEntity.addAttributes(toBasicEntity(loopJsonAttribute));
+				theEntity.addAttributes(toEntity(loopJsonAttribute));
 			}
 		}
 
 		ArrayList<JsonRelationship> listRelationships = jsonTheEntity.getRelationships();
 		if (listRelationships != null) {
 			for (JsonRelationship loopJsonRelationship : listRelationships) {
-				theEntity.addRelationships(toBasicEntity(loopJsonRelationship));
+				theEntity.addRelationships(toEntity(loopJsonRelationship));
 			}
 		}
 
@@ -476,6 +467,7 @@ public class Parser {
 	private static void applyBasicJsonValues(JsonRelationship jsonRelationship, Relationship relationship) {
 		jsonRelationship.setId(relationship.getId());
 		jsonRelationship.setName(relationship.getName());
+		jsonRelationship.setType(relationship.getType());
 		jsonRelationship.setDisplayName(relationship.getDisplayName());
 		jsonRelationship.setOwnerName(relationship.getOwnerName());
 		jsonRelationship.setModel(relationship.getModel());
@@ -485,6 +477,7 @@ public class Parser {
 	private static void applyBasicEntityValues(Relationship relationship, JsonRelationship jsonRelationship) {
 		relationship.setId(jsonRelationship.getId());
 		relationship.setName(jsonRelationship.getName());
+		relationship.setType(jsonRelationship.getType());
 		relationship.setDisplayName(jsonRelationship.getDisplayName());
 		relationship.setOwnerName(jsonRelationship.getOwnerName());
 		relationship.setModel(jsonRelationship.getModel());
@@ -502,7 +495,7 @@ public class Parser {
 		}
 		ViewApproach viewApproach = relationship.getViewApproach();
 		if (viewApproach != null) {
-			jsonRelationship.setViewApproach(toBasicJson(viewApproach));
+			jsonRelationship.setViewApproach(toJson(viewApproach));
 		}
 		return jsonRelationship;
 	}
@@ -516,7 +509,7 @@ public class Parser {
 
 		JsonTheEntity entity = jsonRelationship.getEntity();
 		if (entity != null) {
-			relationship.setEntity(toEntity(entity));
+			relationship.setEntity(toBasicEntity(entity));
 		}
 		JsonViewApproach viewApproach = jsonRelationship.getViewApproach();
 		if (viewApproach != null) {
@@ -578,14 +571,6 @@ public class Parser {
 
 		applyBasicJsonValues(jsonViewApproach, viewApproach);
 
-		Attribute attribute = viewApproach.getAttribute();
-		if (attribute != null) {
-			jsonViewApproach.setAttribute(toJson(attribute));
-		}
-		Relationship relationship = viewApproach.getRelationship();
-		if (relationship != null) {
-			jsonViewApproach.setRelationship(toJson(relationship));
-		}
 		return jsonViewApproach;
 	}
 
@@ -596,14 +581,6 @@ public class Parser {
 
 		applyBasicEntityValues(viewApproach, jsonViewApproach);
 
-		JsonAttribute attribute = jsonViewApproach.getAttribute();
-		if (attribute != null) {
-			viewApproach.setAttribute(toEntity(attribute));
-		}
-		JsonRelationship relationship = jsonViewApproach.getRelationship();
-		if (relationship != null) {
-			viewApproach.setRelationship(toEntity(relationship));
-		}
 		return viewApproach;
 
 	}

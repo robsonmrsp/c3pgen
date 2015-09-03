@@ -17,7 +17,7 @@ import br.com.c3pgen.persistence.pagination.Paginator;
 
 import br.com.c3pgen.model.Estado;
 /**
-*  generated: 30/08/2015 20:23:12
+*  generated: 03/09/2015 14:51:48
 **/
 
 @Named

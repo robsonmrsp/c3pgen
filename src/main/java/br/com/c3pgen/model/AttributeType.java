@@ -32,8 +32,8 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
 /**
-* generated: 30/08/2015 20:23:12
-Entity [name=AttributeType, displayName=null, hasOwner=true, attributes=[Attribute [name=className, displayName=Nome, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=format, displayName=Formato, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null]], relationships=[Relationship [name=attribute, model=Attribute, viewAproach=com.mr.codegenerator.entities.ViewAproach@2344fc66, type=OneToOne, displayName=Tipo, implementation=]]]
+* generated: 03/09/2015 14:51:48
+Entity [name=AttributeType, displayName=Tipo do atributo, hasOwner=true, attributes=[Attribute [name=className, displayName=Nome, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=format, displayName=Formato, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null]], relationships=[]]
 **/
 @Entity
 @Audited
@@ -51,10 +51,6 @@ public class AttributeType extends AbstractTimestampEntity{
 		
 	@Column(name = "FORMAT")
 	private String format;  			
-	
-	@OneToOne
-	@JoinColumn(name = "ID_ATTRIBUTE")
-	private Attribute attribute;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_client")
@@ -92,13 +88,6 @@ public class AttributeType extends AbstractTimestampEntity{
 
 	public void setFormat(String format) {
 		this.format = format;
-	}
-	public Attribute getAttribute() {
-		return attribute;
-	}
-	
-	public void setAttribute(Attribute attribute) {
-		this.attribute = attribute;
 	}
 	
 }

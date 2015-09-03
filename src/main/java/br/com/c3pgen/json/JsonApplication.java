@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 /**
-*  generated: 30/08/2015 20:23:11
+*  generated: 03/09/2015 14:51:47
 **/
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class JsonApplication implements Serializable {
@@ -20,6 +20,7 @@ public class JsonApplication implements Serializable {
 	
 	private String name;
 	private String skin;
+	private String description;
 	private String rootPackage;
 	private ArrayList<JsonTheEntity> entities = new ArrayList<JsonTheEntity>();		
 	
@@ -47,6 +48,13 @@ public class JsonApplication implements Serializable {
 
 	public void setSkin(String skin) {
 		this.skin = skin;
+	}
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	public String getRootPackage() {
 		return rootPackage;

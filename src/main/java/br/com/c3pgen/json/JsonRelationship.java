@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 /**
-*  generated: 30/08/2015 20:23:12
+*  generated: 03/09/2015 14:51:48
 **/
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class JsonRelationship implements Serializable {
@@ -19,6 +19,7 @@ public class JsonRelationship implements Serializable {
 	private SyncOperation syncOperation;
 	
 	private String name;
+	private String type;
 	private String displayName;
 	private String ownerName;
 	private String model;
@@ -43,6 +44,13 @@ public class JsonRelationship implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 	public String getDisplayName() {
 		return displayName;

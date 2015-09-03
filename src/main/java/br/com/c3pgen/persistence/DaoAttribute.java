@@ -18,7 +18,7 @@ import br.com.c3pgen.persistence.pagination.Paginator;
 import br.com.c3pgen.model.Attribute;
 import br.com.c3pgen.model.Client;
 /**
-*  generated: 30/08/2015 20:23:12
+*  generated: 03/09/2015 14:51:48
 **/
 
 @Named
@@ -77,6 +77,18 @@ public class DaoAttribute extends AccessibleHibernateDao<Attribute> {
 			searchCriteria.add(Restrictions.eq("entity_.id", filterAttribute.getEntity()));
 			countCriteria.add(Restrictions.eq("entity_.id", filterAttribute.getEntity()));
 		}
+		if (filterAttribute.getType() != null) {
+			searchCriteria.createAlias("type", "type_");
+			countCriteria.createAlias("type", "type_");
+			searchCriteria.add(Restrictions.eq("type_.id", filterAttribute.getType()));
+			countCriteria.add(Restrictions.eq("type_.id", filterAttribute.getType()));
+		}
+		if (filterAttribute.getViewApproach() != null) {
+			searchCriteria.createAlias("viewApproach", "viewApproach_");
+			countCriteria.createAlias("viewApproach", "viewApproach_");
+			searchCriteria.add(Restrictions.eq("viewApproach_.id", filterAttribute.getViewApproach()));
+			countCriteria.add(Restrictions.eq("viewApproach_.id", filterAttribute.getViewApproach()));
+		}
 
 		return new Paginator<Attribute>(searchCriteria, countCriteria).paginate(paginationParams);
 	}
@@ -115,6 +127,14 @@ public class DaoAttribute extends AccessibleHibernateDao<Attribute> {
 		if (filterAttribute.getEntity() != null) {
 			searchCriteria.createAlias("entity", "entity_");
 			searchCriteria.add(Restrictions.eq("entity_.id", filterAttribute.getEntity()));
+		}
+		if (filterAttribute.getType() != null) {
+			searchCriteria.createAlias("type", "type_");
+			searchCriteria.add(Restrictions.eq("type_.id", filterAttribute.getType()));
+		}
+		if (filterAttribute.getViewApproach() != null) {
+			searchCriteria.createAlias("viewApproach", "viewApproach_");
+			searchCriteria.add(Restrictions.eq("viewApproach_.id", filterAttribute.getViewApproach()));
 		}
 
 		list.addAll(searchCriteria.list());
@@ -170,6 +190,18 @@ public class DaoAttribute extends AccessibleHibernateDao<Attribute> {
 			searchCriteria.add(Restrictions.eq("entity_.id", filterAttribute.getEntity()));
 			countCriteria.add(Restrictions.eq("entity_.id", filterAttribute.getEntity()));
 		}
+		if (filterAttribute.getType() != null) {
+			searchCriteria.createAlias("type", "type_");
+			countCriteria.createAlias("type", "type_");
+			searchCriteria.add(Restrictions.eq("type_.id", filterAttribute.getType()));
+			countCriteria.add(Restrictions.eq("type_.id", filterAttribute.getType()));
+		}
+		if (filterAttribute.getViewApproach() != null) {
+			searchCriteria.createAlias("viewApproach", "viewApproach_");
+			countCriteria.createAlias("viewApproach", "viewApproach_");
+			searchCriteria.add(Restrictions.eq("viewApproach_.id", filterAttribute.getViewApproach()));
+			countCriteria.add(Restrictions.eq("viewApproach_.id", filterAttribute.getViewApproach()));
+		}
 	return new Paginator<Attribute>(searchCriteria, countCriteria).paginate(paginationParams);
 	}
 	
@@ -209,6 +241,14 @@ public class DaoAttribute extends AccessibleHibernateDao<Attribute> {
 		if (filterAttribute.getEntity() != null) {
 			searchCriteria.createAlias("entity", "entity_");
 			searchCriteria.add(Restrictions.eq("entity_.id", filterAttribute.getEntity()));
+		}
+		if (filterAttribute.getType() != null) {
+			searchCriteria.createAlias("type", "type_");
+			searchCriteria.add(Restrictions.eq("type_.id", filterAttribute.getType()));
+		}
+		if (filterAttribute.getViewApproach() != null) {
+			searchCriteria.createAlias("viewApproach", "viewApproach_");
+			searchCriteria.add(Restrictions.eq("viewApproach_.id", filterAttribute.getViewApproach()));
 		}
 
 		list.addAll(searchCriteria.list());

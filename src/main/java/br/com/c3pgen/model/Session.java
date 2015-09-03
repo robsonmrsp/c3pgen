@@ -32,8 +32,8 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
 /**
-* generated: 30/08/2015 20:23:12
-Entity [name=Session, displayName=Sessão, hasOwner=false, attributes=[Attribute [name=name, displayName=Nome, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=creationDate, displayName=Data da criação, type=AttributeType [className=Datetime], mask=99/99/9999, dateFormat=DD/MM/YYYY DD:MM, placeholder=null, validationRules=null]], relationships=[Relationship [name=roles, model=Role, viewAproach=com.mr.codegenerator.entities.ViewAproach@56f4468b, type=ManyToMany, displayName=Papeis, implementation=], Relationship [name=user, model=User, viewAproach=com.mr.codegenerator.entities.ViewAproach@6cc4c815, type=ManyToOne, displayName=Usuario, implementation=]]]
+* generated: 03/09/2015 14:51:49
+Entity [name=Session, displayName=Sessão, hasOwner=false, attributes=[Attribute [name=name, displayName=Nome, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=creationDate, displayName=Data da criação, type=AttributeType [className=Datetime], mask=99/99/9999, dateFormat=DD/MM/YYYY DD:MM, placeholder=null, validationRules=null]], relationships=[Relationship [name=roles, model=Role, viewAproach=com.mr.codegenerator.entities.ViewAproach@4439f31e, type=ManyToMany, displayName=Papeis, implementation=], Relationship [name=user, model=User, viewAproach=com.mr.codegenerator.entities.ViewAproach@5dfcfece, type=ManyToOne, displayName=Usuario, implementation=]]]
 **/
 @Entity
 @Audited

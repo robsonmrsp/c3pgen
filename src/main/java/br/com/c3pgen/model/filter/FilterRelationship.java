@@ -15,12 +15,14 @@ import br.com.c3pgen.serialization.CustomLocalDateTimeDeserializer;
 
 
 /**
-*  generated: 30/08/2015 20:23:12
+*  generated: 03/09/2015 14:51:48
 **/
 public class FilterRelationship implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private String name;  			
+	
+	private String type;  			
 	
 	private String displayName;  			
 	
@@ -44,6 +46,13 @@ public class FilterRelationship implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 	public String getDisplayName() {
 		return displayName;

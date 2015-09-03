@@ -32,8 +32,8 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
 /**
-* generated: 30/08/2015 20:23:12
-Entity [name=Role, displayName=Papel, hasOwner=false, attributes=[Attribute [name=authority, displayName=Autoridade, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=description, displayName=Descrição, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null]], relationships=[Relationship [name=sessions, model=Session, viewAproach=com.mr.codegenerator.entities.ViewAproach@5dfcfece, type=ManyToMany, displayName=Sessões, implementation=], Relationship [name=users, model=User, viewAproach=com.mr.codegenerator.entities.ViewAproach@23ceabc1, type=ManyToMany, displayName=Usuários, implementation=], Relationship [name=permissions, model=Permission, viewAproach=com.mr.codegenerator.entities.ViewAproach@5d5eef3d, type=ManyToMany, displayName=Permissões, implementation=]]]
+* generated: 03/09/2015 14:51:49
+Entity [name=Role, displayName=Papel, hasOwner=false, attributes=[Attribute [name=authority, displayName=Autoridade, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=description, displayName=Descrição, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null]], relationships=[Relationship [name=sessions, model=Session, viewAproach=com.mr.codegenerator.entities.ViewAproach@1810399e, type=ManyToMany, displayName=Sessões, implementation=], Relationship [name=users, model=User, viewAproach=com.mr.codegenerator.entities.ViewAproach@32d992b2, type=ManyToMany, displayName=Usuários, implementation=], Relationship [name=permissions, model=Permission, viewAproach=com.mr.codegenerator.entities.ViewAproach@215be6bb, type=ManyToMany, displayName=Permissões, implementation=]]]
 **/
 @Entity
 @Audited

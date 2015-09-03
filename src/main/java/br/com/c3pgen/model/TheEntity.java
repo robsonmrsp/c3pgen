@@ -31,7 +31,7 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
 /**
- * generated: 30/08/2015 20:23:12 Entity [name=TheEntity, displayName=null,
+ * generated: 03/09/2015 14:51:48 Entity [name=TheEntity, displayName=Entidade,
  * hasOwner=true, attributes=[Attribute [name=name, displayName=null,
  * type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy,
  * placeholder=null, validationRules=null], Attribute [name=displayName,
@@ -45,13 +45,13 @@ import org.hibernate.annotations.CascadeType;
  * type=AttributeType [className=Boolean], mask=, dateFormat=dd/MM/yyyy,
  * placeholder=null, validationRules=null]], relationships=[Relationship
  * [name=application, model=Application,
- * viewAproach=com.mr.codegenerator.entities.ViewAproach@458ad742,
+ * viewAproach=com.mr.codegenerator.entities.ViewAproach@2669b199,
  * type=ManyToOne, displayName=Aplicação, implementation=], Relationship
  * [name=attributes, model=Attribute,
- * viewAproach=com.mr.codegenerator.entities.ViewAproach@5afa04c,
+ * viewAproach=com.mr.codegenerator.entities.ViewAproach@2344fc66,
  * type=OneToMany, displayName=Atributo, implementation=], Relationship
  * [name=relationships, model=Relationship,
- * viewAproach=com.mr.codegenerator.entities.ViewAproach@6ea12c19,
+ * viewAproach=com.mr.codegenerator.entities.ViewAproach@458ad742,
  * type=OneToMany, displayName=Relacionamento, implementation=]]]
  **/
 @Entity
@@ -88,8 +88,8 @@ public class TheEntity extends AbstractTimestampEntity {
 	@Cascade(CascadeType.ALL)
 	private List<Attribute> attributes;
 
-	@Cascade(CascadeType.ALL)
 	@OneToMany(mappedBy = "entity")
+	@Cascade(CascadeType.ALL)
 	private List<Relationship> relationships;
 
 	@ManyToOne

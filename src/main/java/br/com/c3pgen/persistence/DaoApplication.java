@@ -18,7 +18,7 @@ import br.com.c3pgen.persistence.pagination.Paginator;
 import br.com.c3pgen.model.Application;
 import br.com.c3pgen.model.Client;
 /**
-*  generated: 30/08/2015 20:23:11
+*  generated: 03/09/2015 14:51:47
 **/
 
 @Named
@@ -34,7 +34,7 @@ public class DaoApplication extends AccessibleHibernateDao<Application> {
 		try {
 			application = (Application) criteria().add(Restrictions.eq("skin", skin)).uniqueResult();
 		} catch (Exception e) {
-			LOGGER.error("Erro ao obter Application pelo skin," + skin, e);
+			LOGGER.error("Erro ao obter Aplicação pelo skin," + skin, e);
 		}
 		return application;
 	}
@@ -43,7 +43,7 @@ public class DaoApplication extends AccessibleHibernateDao<Application> {
 		try {
 			application = (Application) criteria().add(Restrictions.eq("rootPackage", rootPackage)).uniqueResult();
 		} catch (Exception e) {
-			LOGGER.error("Erro ao obter Application pelo rootPackage," + rootPackage, e);
+			LOGGER.error("Erro ao obter Aplicação pelo rootPackage," + rootPackage, e);
 		}
 		return application;
 	}
@@ -60,6 +60,10 @@ public class DaoApplication extends AccessibleHibernateDao<Application> {
 		if (filterApplication.getSkin() != null) {
 			searchCriteria.add(Restrictions.ilike("skin", filterApplication.getSkin(), MatchMode.ANYWHERE));
 			countCriteria.add(Restrictions.ilike("skin", filterApplication.getSkin(), MatchMode.ANYWHERE));
+		}
+		if (filterApplication.getDescription() != null) {
+			searchCriteria.add(Restrictions.ilike("description", filterApplication.getDescription(), MatchMode.ANYWHERE));
+			countCriteria.add(Restrictions.ilike("description", filterApplication.getDescription(), MatchMode.ANYWHERE));
 		}
 		if (filterApplication.getRootPackage() != null) {
 			searchCriteria.add(Restrictions.ilike("rootPackage", filterApplication.getRootPackage(), MatchMode.ANYWHERE));
@@ -78,6 +82,9 @@ public class DaoApplication extends AccessibleHibernateDao<Application> {
 		}
 		if (filterApplication.getSkin() != null) {
 			searchCriteria.add(Restrictions.eq("skin", filterApplication.getSkin()));
+		}
+		if (filterApplication.getDescription() != null) {
+			searchCriteria.add(Restrictions.eq("description", filterApplication.getDescription()));
 		}
 		if (filterApplication.getRootPackage() != null) {
 			searchCriteria.add(Restrictions.eq("rootPackage", filterApplication.getRootPackage()));
@@ -102,6 +109,10 @@ public class DaoApplication extends AccessibleHibernateDao<Application> {
 			searchCriteria.add(Restrictions.ilike("skin", filterApplication.getSkin(), MatchMode.ANYWHERE));
 			countCriteria.add(Restrictions.ilike("skin", filterApplication.getSkin(), MatchMode.ANYWHERE));
 		}
+		if (filterApplication.getDescription() != null) {
+			searchCriteria.add(Restrictions.ilike("description", filterApplication.getDescription(), MatchMode.ANYWHERE));
+			countCriteria.add(Restrictions.ilike("description", filterApplication.getDescription(), MatchMode.ANYWHERE));
+		}
 		if (filterApplication.getRootPackage() != null) {
 			searchCriteria.add(Restrictions.ilike("rootPackage", filterApplication.getRootPackage(), MatchMode.ANYWHERE));
 			countCriteria.add(Restrictions.ilike("rootPackage", filterApplication.getRootPackage(), MatchMode.ANYWHERE));
@@ -120,6 +131,9 @@ public class DaoApplication extends AccessibleHibernateDao<Application> {
 		}
 		if (filterApplication.getSkin() != null) {
 			searchCriteria.add(Restrictions.eq("skin", filterApplication.getSkin()));
+		}
+		if (filterApplication.getDescription() != null) {
+			searchCriteria.add(Restrictions.eq("description", filterApplication.getDescription()));
 		}
 		if (filterApplication.getRootPackage() != null) {
 			searchCriteria.add(Restrictions.eq("rootPackage", filterApplication.getRootPackage()));

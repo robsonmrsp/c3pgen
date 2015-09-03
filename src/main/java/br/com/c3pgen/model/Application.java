@@ -32,17 +32,19 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
 /**
- * generated: 30/08/2015 20:23:11 Entity [name=Application, displayName=null,
- * hasOwner=true, attributes=[Attribute [name=name, displayName=Nome,
- * type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy,
- * placeholder=null, validationRules=null], Attribute [name=skin,
- * displayName=Template, type=AttributeType [className=String], mask=,
+ * generated: 03/09/2015 14:51:47 Entity [name=Application,
+ * displayName=Aplicação, hasOwner=true, attributes=[Attribute [name=name,
+ * displayName=Nome, type=AttributeType [className=String], mask=,
  * dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute
- * [name=rootPackage, displayName=Pacote raiz, type=AttributeType
+ * [name=skin, displayName=Template, type=AttributeType [className=String],
+ * mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null],
+ * Attribute [name=description, displayName=Descrição, type=AttributeType
  * [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null,
- * validationRules=null]], relationships=[Relationship [name=entities,
- * model=TheEntity,
- * viewAproach=com.mr.codegenerator.entities.ViewAproach@153f5a29,
+ * validationRules=null], Attribute [name=rootPackage, displayName=Pacote raiz,
+ * type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy,
+ * placeholder=null, validationRules=null]], relationships=[Relationship
+ * [name=entities, model=TheEntity,
+ * viewAproach=com.mr.codegenerator.entities.ViewAproach@26f67b76,
  * type=OneToMany, displayName=Entidades, implementation=]]]
  **/
 @Entity
@@ -61,6 +63,9 @@ public class Application extends AbstractTimestampEntity {
 
 	@Column(name = "SKIN")
 	private String skin;
+
+	@Column(name = "DESCRIPTION")
+	private String description;
 
 	@Column(name = "ROOT_PACKAGE")
 	private String rootPackage;
@@ -107,6 +112,14 @@ public class Application extends AbstractTimestampEntity {
 
 	public void setSkin(String skin) {
 		this.skin = skin;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public String getRootPackage() {
