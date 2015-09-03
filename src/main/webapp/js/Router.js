@@ -19,9 +19,9 @@ define(function(require) {
 	var FormAttributeType = require('views/attributeType/FormAttributeType');
 	var AttributeTypeModel = require('models/AttributeTypeModel');
 
-	var PageTheEntity = require('views/theEntity/PageTheEntity');
-	var FormTheEntity = require('views/theEntity/FormTheEntity');
-	var TheEntityModel = require('models/TheEntityModel');
+	var PageEntity = require('views/entity/PageEntity');
+	var FormEntity = require('views/entity/FormEntity');
+	var EntityModel = require('models/EntityModel');
 
 	var PageRelationship = require('views/relationship/PageRelationship');
 	var FormRelationship = require('views/relationship/FormRelationship');
@@ -116,7 +116,7 @@ define(function(require) {
 
 	var AppRouter = Backbone.Router.extend({
 		routes : {
-			'' : 'index',
+			'' : 'applications',
 			// hashs de Application
 			'app/applications' : 'applications',
 			'app/application/:idApp/entities' : 'entitiesByApplication',
@@ -131,10 +131,10 @@ define(function(require) {
 			'app/attributeTypes' : 'attributeTypes',
 			'app/newAttributeType' : 'newAttributeType',
 			'app/editAttributeType/:id' : 'editAttributeType',
-			// hashs de TheEntity
-			'app/theEntitys' : 'theEntitys',
-			'app/newTheEntity' : 'newTheEntity',
-			'app/editTheEntity/:id' : 'editTheEntity',
+			// hashs de Entity
+			'app/entitys' : 'entitys',
+			'app/newEntity' : 'newEntity',
+			'app/editEntity/:id' : 'editEntity',
 			// hashs de Relationship
 			'app/relationships' : 'relationships',
 			'app/newRelationship' : 'newRelationship',
@@ -424,52 +424,52 @@ define(function(require) {
 			}
 		},
 
-		// configuração das rotas de TheEntity
-		theEntitys : function() {
-			util.markActiveItem('theEntitys');
-			this.pageTheEntity = new PageTheEntity();
-			this.App.mainRegion.show(this.pageTheEntity);
+		// configuração das rotas de Entity
+		entitys : function() {
+			util.markActiveItem('entitys');
+			this.pageEntity = new PageEntity();
+			this.App.mainRegion.show(this.pageEntity);
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
-				itemLabel : 'TheEntity',
+				itemLabel : 'Entity',
 				itemSubFolderName : 'Grid',
-				url : 'app/theEntitys'
+				url : 'app/entitys'
 			});
 		},
 
-		newTheEntity : function() {
-			util.markActiveItem('theEntitys');
-			var formTheEntity = new FormTheEntity({
-				model : new TheEntityModel(),
+		newEntity : function() {
+			util.markActiveItem('entitys');
+			var formEntity = new FormEntity({
+				model : new EntityModel(),
 			});
-			this.App.mainRegion.show(formTheEntity);
+			this.App.mainRegion.show(formEntity);
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
-				itemLabel : 'TheEntity',
+				itemLabel : 'Entity',
 				itemSubFolderName : 'Formulário de cadastro',
-				url : 'app/theEntitys'
+				url : 'app/entitys'
 			});
 		},
 
-		editTheEntity : function(idTheEntity) {
+		editEntity : function(idEntity) {
 			var that = this;
-			util.markActiveItem('theEntitys');
-			var formTheEntity = null;
-			if (this.pageTheEntity) {
-				formTheEntity = new FormTheEntity({
-					model : this.pageTheEntity.theEntitys.get(idTheEntity),
+			util.markActiveItem('entitys');
+			var formEntity = null;
+			if (this.pageEntity) {
+				formEntity = new FormEntity({
+					model : this.pageEntity.entitys.get(idEntity),
 				});
-				that.App.mainRegion.show(formTheEntity);
+				that.App.mainRegion.show(formEntity);
 			} else {
-				var model = new TheEntityModel({
-					id : idTheEntity,
+				var model = new EntityModel({
+					id : idEntity,
 				})
 				model.fetch({
 					success : function(model) {
-						formTheEntity = new FormTheEntity({
+						formEntity = new FormEntity({
 							model : model,
 						});
-						that.App.mainRegion.show(formTheEntity);
+						that.App.mainRegion.show(formEntity);
 					},
 					error : function(x, y, z) {
 						console.error(x, y, z);
@@ -477,9 +477,9 @@ define(function(require) {
 				})
 				util.breadcrumb({
 					iconClass : 'fa-calendar',
-					itemLabel : 'TheEntityos',
+					itemLabel : 'Entityos',
 					itemSubFolderName : 'Formulário de atualização',
-					url : 'app/theEntitys'
+					url : 'app/entitys'
 				});
 			}
 		},

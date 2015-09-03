@@ -68,6 +68,9 @@ public class TheEntity extends AbstractTimestampEntity {
 	@Column(name = "NAME")
 	private String name;
 
+	@Column(name = "NOTES")
+	private String notes;
+
 	@Column(name = "DISPLAY_NAME")
 	private String displayName;
 
@@ -204,6 +207,14 @@ public class TheEntity extends AbstractTimestampEntity {
 	public boolean removeRelationships(Relationship relationship) {
 		relationship.setEntity(null);
 		return getRelationships().remove(relationship);
+	}
+
+	public String getNotes() {
+		return notes;
+	}
+
+	public void setNotes(String notes) {
+		this.notes = notes;
 	}
 
 }

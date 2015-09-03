@@ -13,7 +13,7 @@ define(function(require) {
 	var TemplateFormAttributes = require('text!views/attribute/tpl/FormAttributeTemplate.html');
 	var AttributeModel = require('models/AttributeModel');
 	var AttributeCollection = require('collections/AttributeCollection');
-	var SearchEntityModal = require('views/modalComponents/TheEntityModal');
+	var SearchEntityModal = require('views/modalComponents/EntityModal');
 	
 	// End of "Import´s" definition
 

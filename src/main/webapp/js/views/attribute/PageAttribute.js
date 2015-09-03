@@ -21,7 +21,7 @@ define(function(require) {
 	var PageAttributeTemplate = require('text!views/attribute/tpl/PageAttributeTemplate.html');
 	
 	//Filter import
-	var SearchEntityModal = require('views/modalComponents/TheEntityModal');
+	var SearchEntityModal = require('views/modalComponents/EntityModal');
 	
 	// End of "Import´s" definition
 

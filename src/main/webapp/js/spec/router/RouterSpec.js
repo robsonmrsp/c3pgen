@@ -84,28 +84,28 @@ define(function(require) {
 			router.navigate('app/editattributeType/1', true);
 			expect(Router.prototype.editattributeType).toHaveBeenCalled();
 		});
-		it("Rota de \"TheEntitys\"", function() {
-			spyOn(Router.prototype, "TheEntitys")
+		it("Rota de \"Entitys\"", function() {
+			spyOn(Router.prototype, "Entitys")
 			var router = new Router();
 			Backbone.history.start();
-			router.navigate('app/TheEntitys', true);
-			expect(Router.prototype.TheEntitys).toHaveBeenCalled();
+			router.navigate('app/Entitys', true);
+			expect(Router.prototype.Entitys).toHaveBeenCalled();
 		});
 
-		it("Rota de \"newtheEntity\"", function() {
-			spyOn(Router.prototype, "newtheEntity")
+		it("Rota de \"newEntity\"", function() {
+			spyOn(Router.prototype, "newEntity")
 			var router = new Router();
 			Backbone.history.start();
-			router.navigate('app/newtheEntity', true);
-			expect(Router.prototype.newtheEntity).toHaveBeenCalled();
+			router.navigate('app/newEntity', true);
+			expect(Router.prototype.newEntity).toHaveBeenCalled();
 		});
 		
-		it("Rota de \"edittheEntity\"", function() {
-			spyOn(Router.prototype, "edittheEntity")
+		it("Rota de \"editEntity\"", function() {
+			spyOn(Router.prototype, "editEntity")
 			var router = new Router();
 			Backbone.history.start();
-			router.navigate('app/edittheEntity/1', true);
-			expect(Router.prototype.edittheEntity).toHaveBeenCalled();
+			router.navigate('app/editEntity/1', true);
+			expect(Router.prototype.editEntity).toHaveBeenCalled();
 		});
 		it("Rota de \"Relationships\"", function() {
 			spyOn(Router.prototype, "Relationships")

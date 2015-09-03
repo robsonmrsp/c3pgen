@@ -13,8 +13,8 @@ define(function(require) {
 	var TemplateFormApplications = require('text!views/application/tpl/FormApplicationTemplate.html');
 	var ApplicationModel = require('models/ApplicationModel');
 	var ApplicationCollection = require('collections/ApplicationCollection');
-	var TheEntityCollection = require('collections/TheEntityCollection');
-	var MultiSelectTheEntity = require('views/theEntity/MultiSelectTheEntity');
+	var EntityCollection = require('collections/EntityCollection');
+	var MultiSelectEntity = require('views/entity/MultiSelectEntity');
 
 	// End of "Import´s" definition
 
@@ -28,6 +28,7 @@ define(function(require) {
 
 		regions : {
 		// entitiesRegion : ".entities-container",
+
 		},
 
 		events : {
@@ -48,13 +49,11 @@ define(function(require) {
 
 		initialize : function() {
 			var that = this;
-			that.entities = new TheEntityCollection();
+			that.entities = new EntityCollection();
 			that.entities.add(this.model.get('entities'));
-			// this.multiSelectTheEntity = new MultiSelectTheEntity({
-			// collection : that.entities,
-			// });
 			this.on('show', function() {
-				// this.entitiesRegion.show(this.multiSelectTheEntity);
+
+				this.ui.inputSkin.val(this.model.get('skin'));
 				this.ui.form.validationEngine('attach', {
 					promptPosition : "topLeft",
 					isOverflown : false,
@@ -100,7 +99,7 @@ define(function(require) {
 			util.clear('inputSkin');
 			util.clear('inputRootPackage');
 			this.entities.reset();
-			// this.multiSelectTheEntity.clear();
+			// this.multiSelectEntity.clear();
 		},
 
 		possuiCamposInvalidos : function() {
@@ -121,11 +120,9 @@ define(function(require) {
 			application.set({
 				id : util.escapeById('inputId') || null,
 				name : util.escapeById('inputName'),
-
 				skin : util.escapeById('inputSkin'),
-
+				description : util.escapeById('inputDescription'),
 				rootPackage : util.escapeById('inputRootPackage'),
-
 				entities : that.entities.toJSON(),
 			});
 			return application;

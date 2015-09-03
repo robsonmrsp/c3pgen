@@ -13,7 +13,7 @@ define(function(require) {
 	var TemplateFormRelationships = require('text!views/relationship/tpl/FormRelationshipTemplate.html');
 	var RelationshipModel = require('models/RelationshipModel');
 	var RelationshipCollection = require('collections/RelationshipCollection');
-	var SearchEntityModal = require('views/modalComponents/TheEntityModal');
+	var SearchEntityModal = require('views/modalComponents/EntityModal');
 	var SearchViewApproachModal = require('views/modalComponents/ViewApproachModal');
 	
 	// End of "Import´s" definition

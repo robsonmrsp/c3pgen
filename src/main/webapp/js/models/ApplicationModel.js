@@ -8,7 +8,7 @@ define(function(require) {
 	// End of "Import´s definition"
 
 	// #####################################################################################################
-	// ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨ MAIN BODY  ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
+	// ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨ MAIN BODY ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
 	// #####################################################################################################
 
 	var ApplicationModel = BaseModel.extend({
@@ -16,14 +16,13 @@ define(function(require) {
 		urlRoot : 'rs/crud/applications',
 
 		defaults : {
-			id: null,
-	    	name : '',    	
-	    	skin : '',    	
-	    	description : '',    	
-	    	rootPackage : '',    	
+			id : null,
+			name : '',
+			skin : '',
+			description : '',
+			rootPackage : '',
 			entities : null,
-		
-		}
+		},
 	});
 	return ApplicationModel;
 });

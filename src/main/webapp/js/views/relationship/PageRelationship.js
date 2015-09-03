@@ -21,7 +21,7 @@ define(function(require) {
 	var PageRelationshipTemplate = require('text!views/relationship/tpl/PageRelationshipTemplate.html');
 	
 	//Filter import
-	var SearchEntityModal = require('views/modalComponents/TheEntityModal');
+	var SearchEntityModal = require('views/modalComponents/EntityModal');
 	var SearchViewApproachModal = require('views/modalComponents/ViewApproachModal');
 	
 	// End of "Import´s" definition

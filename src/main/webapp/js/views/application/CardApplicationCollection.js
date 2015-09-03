@@ -9,16 +9,27 @@ define(function(require) {
 	var Combobox = require('views/components/Combobox');
 
 	var CardApplicationItemTemplate = require('text!views/application/tpl/CardApplicationItemTemplate.html');
+	var EmptyCollectionTemplate = require('text!views/application/tpl/EmptyCollectionTemplate.html');
+	var skins = [];
+	skins['homer'] = 'https://wrapbootstrap.com/theme/homer-responsive-admin-theme-WB055J451';
+	skins['inspinia'] = 'https://wrapbootstrap.com/theme/inspinia-responsive-admin-theme-WB0R5L90S';
+	skins['ace'] = 'https://wrapbootstrap.com/theme/ace-responsive-admin-template-WB0B30DGR';
+	skins['sprflat'] = 'http://bootstrapbay.com/theme/sprflat-responsive-admin-template-B34CE2F';
 
 	var CardItem = Marionette.ItemView.extend({
 		template : _.template(CardApplicationItemTemplate),
 		className : "col-lg-3 animated-panel zoomIn",
 		ui : {
-			descEntities : 'desc-entities',
+			descEntities : '.desc-entities',
+			skinName : '.skin-name',
+			displaySkin : '.pe-7s-display1',
 		},
 		initialize : function(options) {
 			var that = this;
 			this.on('show', function() {
+
+				this.ui.skinName.attr('href', skins[this.model.get('skin')]);
+				this.ui.displaySkin.tooltip();
 				var entities = this.model.get('entities');
 				var content = "";
 				_.each(entities, function(ent) {
@@ -29,8 +40,8 @@ define(function(require) {
 		},
 	});
 	var NoChildsView = Backbone.Marionette.ItemView.extend({
-		className : 'nd2-card',
-		template : "<div > <p class='text-center'> Sem registros para exibir</p> </div>"
+		className : 'row show-grid',
+		template : _.template(EmptyCollectionTemplate),
 	});
 	var CardCollection = Marionette.CollectionView.extend({
 		childView : CardItem,

@@ -29,7 +29,17 @@
 			</div>
 			<div id="groupInputSkin" class="form-group">
 				<label class="control-label" for="inputSkin">Template</label>
-				<input type="text" id="inputSkin" placeholder="Template" value="{{skin}}" class="form-control  validate[required]">
+				<select id="inputSkin" placeholder="Template" value="{{skin}}" class="form-control  validate[required]">
+					<option value="">-- Selecione --</option>
+					<option value="ace">ace</option>
+					<option value="homer">homer</option>
+					<option value="inspinia">inspinia</option>
+					<option value="sprflat">sprflat</option>
+				</select>
+			</div>
+			<div id="groupInputName" class="form-group">
+				<label class="control-label" for="inputName">Descrição</label>
+				<textarea id="inputDescription" rows="4" placeholder="Nome" value="{{description}}" class="form-control  "> {{description}}</textarea>
 			</div>
 			<div id="groupInputRootPackage" class="form-group">
 				<label class="control-label" for="inputRootPackage">Pacote raiz</label>

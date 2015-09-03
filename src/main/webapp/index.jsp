@@ -13,7 +13,7 @@
 </style>
 <style type="text/css"></style>
 </head>
-<body>
+<body class="hide-sidebar">
 	<!-- Simple splash screen-->
 	<div class="splash" id="loadInitialPanel" class="fader" style="position: fixed; text-align: center; height: 100%; width: 100%; top: 0; right: 0; left: 0; z-index: 99999999999; opacity: 0.99;">
 		<div class="color-line"></div>
@@ -62,7 +62,7 @@
 							</li>
 							<li class="divider"></li>
 							<li>
-								<a href="javascript:void(-1)">Logout</a>
+								<a href="j_spring_security_logout">Logout</a>
 							</li>
 						</ul>
 					</li>
