@@ -103,20 +103,20 @@
 							</a>
 							<b class="arrow"></b>
 						</li>
-						<li class="">
-							<a id="categoria" href="#app/categoria">
-								<i class="en-arrow-right7"></i>
-								Categoria
-							</a>
-							<b class="arrow"></b>
-						</li>
-						<li class="">
-							<a id="attributes" href="#app/attributes">
-								<i class="en-arrow-right7"></i>
-								Attribute
-							</a>
-							<b class="arrow"></b>
-						</li>
+<!-- 						<li class=""> -->
+<!-- 							<a id="categoria" href="#app/categoria"> -->
+<!-- 								<i class="en-arrow-right7"></i> -->
+<!-- 								Categoria -->
+<!-- 							</a> -->
+<!-- 							<b class="arrow"></b> -->
+<!-- 						</li> -->
+<!-- 						<li class=""> -->
+<!-- 							<a id="attributes" href="#app/attributes"> -->
+<!-- 								<i class="en-arrow-right7"></i> -->
+<!-- 								Attribute -->
+<!-- 							</a> -->
+<!-- 							<b class="arrow"></b> -->
+<!-- 						</li> -->
 						<!-- 						<li class=""> -->
 						<!-- 							<a id="attributeTypes" href="#app/attributeTypes"> -->
 						<!-- 								<i class="en-arrow-right7"></i> -->
