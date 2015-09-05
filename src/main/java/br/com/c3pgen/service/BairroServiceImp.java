@@ -1,21 +1,20 @@
 package br.com.c3pgen.service;
 
+import java.util.ArrayList;
 import java.util.List;
-import org.apache.log4j.Logger;
+
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.util.ArrayList;
-import org.springframework.transaction.annotation.Transactional;
-import org.joda.time.LocalDateTime;
 
+import org.apache.log4j.Logger;
+import org.joda.time.LocalDateTime;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.c3pgen.model.Bairro;
 import br.com.c3pgen.persistence.DaoBairro;
 import br.com.c3pgen.persistence.pagination.Pager;
 import br.com.c3pgen.persistence.pagination.Pagination;
 import br.com.c3pgen.persistence.pagination.PaginationParams;
-import br.com.c3pgen.utils.DateUtil;
-import br.com.c3pgen.utils.Util;
 
 /**
 *  generated: 03/09/2015 14:51:48

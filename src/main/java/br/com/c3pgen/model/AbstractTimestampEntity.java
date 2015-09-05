@@ -4,13 +4,12 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
 
 import org.hibernate.annotations.Type;
 import org.joda.time.LocalDateTime;
 
 import br.com.c3pgen.serialization.CustomLocalDateTimeSerializer;
+
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @MappedSuperclass

@@ -1,13 +1,10 @@
 package br.com.c3pgen.persistence;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.Criteria;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
-import org.joda.time.LocalDateTime;
 
 import br.com.c3pgen.model.Client;
 import br.com.c3pgen.persistence.pagination.Pagination;

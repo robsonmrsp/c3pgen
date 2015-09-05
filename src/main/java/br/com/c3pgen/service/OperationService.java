@@ -1,7 +1,9 @@
 package br.com.c3pgen.service;
 
 import java.util.List;
+
 import org.joda.time.LocalDateTime;
+
 import br.com.c3pgen.model.Operation;
 import br.com.c3pgen.persistence.pagination.Pager;
 import br.com.c3pgen.persistence.pagination.PaginationParams;

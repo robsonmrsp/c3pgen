@@ -11,7 +11,6 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
-
 import br.com.c3pgen.utils.Util;
 public class Paginator<T> {
 

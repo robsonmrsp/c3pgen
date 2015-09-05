@@ -1,22 +1,21 @@
 package br.com.c3pgen.persistence;
 
-import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Named;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
+import br.com.c3pgen.model.Client;
 import br.com.c3pgen.model.Relationship;
 import br.com.c3pgen.model.filter.FilterRelationship;
 import br.com.c3pgen.persistence.pagination.Pagination;
 import br.com.c3pgen.persistence.pagination.PaginationParams;
 import br.com.c3pgen.persistence.pagination.Paginator;
-
-import br.com.c3pgen.model.Relationship;
-import br.com.c3pgen.model.Client;
 /**
 *  generated: 03/09/2015 14:51:48
 **/

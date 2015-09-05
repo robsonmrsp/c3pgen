@@ -7,8 +7,8 @@ import java.util.List;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
-import br.com.c3pgen.model.User;
 import br.com.c3pgen.model.Role;
+import br.com.c3pgen.model.User;
 
 //deverá mudar quando tivermos que implementar autorização.
 public final class UserAuthorityUtils {

@@ -13,27 +13,22 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
 import org.apache.log4j.Logger;
 
+import br.com.c3pgen.json.JsonAttributeType;
 import br.com.c3pgen.json.JsonError;
 import br.com.c3pgen.json.JsonPaginator;
-import br.com.c3pgen.json.JsonAttributeType;
-
 import br.com.c3pgen.model.AttributeType;
-
-import br.com.c3pgen.model.Client;
 import br.com.c3pgen.model.filter.FilterAttributeType;
 import br.com.c3pgen.persistence.pagination.Pager;
 import br.com.c3pgen.persistence.pagination.PaginationParams;
-import br.com.c3pgen.service.AttributeTypeService;
-import br.com.c3pgen.service.UserService;
-import br.com.c3pgen.utils.Parser;
 import br.com.c3pgen.rs.exception.ValidationException;
 import br.com.c3pgen.security.SpringSecurityUserContext;
+import br.com.c3pgen.service.AttributeTypeService;
+import br.com.c3pgen.utils.Parser;
 /**
 *  generated: 03/09/2015 14:51:48
 **/
