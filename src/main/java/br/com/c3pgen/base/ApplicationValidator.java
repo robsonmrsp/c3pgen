@@ -19,9 +19,8 @@ public class ApplicationValidator {
 	private Map<TheEntity, List<TheEntity>> mapRelationshipsPerTheEntity = new HashMap<TheEntity, List<TheEntity>>();
 	private Map<TheEntity, List<Relationship>> mapRelationships = new HashMap<TheEntity, List<Relationship>>();
 
-	public boolean validate(Application application) throws ValidationException {
-
-		List<String> validationMessages = new ArrayList<String>();
+	public ApplicationValidatorMessages validate(Application application) throws ValidationException {
+		ApplicationValidatorMessages applicationValidatorMessages = new ApplicationValidatorMessages();
 		Boolean returnValue = false;
 		// Guardando as entidades do sistema
 		for (TheEntity entity : application.getEntities()) {
@@ -58,12 +57,13 @@ public class ApplicationValidator {
 					// /*Eliminando a checagem em situações de auto
 					// relacionamento*/
 					if (main.getOwnerName() != null && reverse.getOwnerName() != null && !(entity.equals(entityRel))) {
-						validationMessages.add("No Relacionamento (" + entity.getName() + "/" + main.getName() + ") entre: " + entity.getName() + " e " + entityRel.getName() + " Voce deve definir APENAS uma das partes do relacionamento como \"O Dono\" do relacionamento.");
+						applicationValidatorMessages.addMessage("No Relacionamento (" + entity.getName() + "/" + main.getName() + ") entre: " + entity.getName() + " e " + entityRel.getName()
+								+ " Voce deve definir APENAS uma das partes do relacionamento como \"O Dono\" do relacionamento.");
 					}
 					// Verifica se Foi definido o DONO do relacionamento
 					if (!main.getUniDirecional() && main.getOwnerName() == null && reverse.getOwnerName() == null) {
-						validationMessages.add("No Relacionamento (" + entity.getName() + "/" + main.getName() + ")  entre: " + entity.getName() + " e " + entityRel.getName() + " Voce deve definir \"O Dono\" do relacionamento. OU definir no relacionamento " + main.getName()
-								+ "uniDirecional: true|Yes");
+						applicationValidatorMessages.addMessage("No Relacionamento (" + entity.getName() + "/" + main.getName() + ")  entre: " + entity.getName() + " e " + entityRel.getName() + " Voce deve definir \"O Dono\" do relacionamento. OU definir no relacionamento "
+								+ main.getName() + "uniDirecional: true|Yes");
 					}
 				}
 			}
@@ -73,7 +73,7 @@ public class ApplicationValidator {
 				TheEntity entityModel = mapEntities.get(main.getModel());
 				try {
 					if (entityModel == null) {
-						validationMessages.add("Erro analizando o relacionamento " + main.getName() + "na entidade " + entity.getName() + ". Não existe a entidade " + main.getModel());
+						applicationValidatorMessages.addMessage("Erro analizando o relacionamento " + main.getName() + "na entidade " + entity.getName() + ". Não existe a entidade " + main.getModel());
 					}
 					if (ownerName != null) {
 						Boolean ownerNotFound = true;
@@ -84,27 +84,26 @@ public class ApplicationValidator {
 							}
 						}
 						if (ownerNotFound) {
-							validationMessages.add("Erro analizando a entidade " + entityModel + ": Não existe o atributo/relacionamento de nome \"" + main.getOwnerName() + "\" na entidade \"" + entityModel + "\". Verifique o valor de 'ownerName' no relacionamento de nome  \""
-									+ main.getName() + "\" na entidade  \"" + entity + "\"");
+							applicationValidatorMessages.addMessage("Erro analizando a entidade " + entityModel + ": Não existe o atributo/relacionamento de nome \"" + main.getOwnerName() + "\" na entidade \"" + entityModel
+									+ "\". Verifique o valor de 'ownerName' no relacionamento de nome  \"" + main.getName() + "\" na entidade  \"" + entity + "\"");
 						}
 					}
 				} catch (Exception e) {
-					validationMessages.add("Erro analizando a entidade " + entityModel + "(modelName=" + main.getModel() + "): Não existe o atributo/relacionamento de nome \"" + main.getOwnerName() + "\" na entidade \"" + entityModel
+					applicationValidatorMessages.addMessage("Erro analizando a entidade " + entityModel + "(modelName=" + main.getModel() + "): Não existe o atributo/relacionamento de nome \"" + main.getOwnerName() + "\" na entidade \"" + entityModel
 							+ "\". Verifique o valor de 'ownerName' no relacionamento de nome  \"" + main.getName() + "\" na entidade  \"" + entity + "\"");
 
 				}
 			}
 		}
 
-		if (validationMessages.size() > 0) {
+		if (applicationValidatorMessages.isNotEmpty()) {
 			LOGGER.warn("Encontrados os seguintes problemas...");
-			for (String msg : validationMessages) {
+			for (String msg : applicationValidatorMessages.getMessages()) {
 				LOGGER.warn(msg);
 			}
 			LOGGER.warn("A aplicação não será gerada...");
-			return false;
 		}
-		return true;
+		return applicationValidatorMessages;
 	}
 
 	private Relationship reverseRelation(TheEntity main, TheEntity reverse) {

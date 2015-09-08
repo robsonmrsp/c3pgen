@@ -33,10 +33,10 @@ import org.hibernate.envers.Audited;
  * [className=Boolean], mask=, dateFormat=dd/MM/yyyy, placeholder=null,
  * validationRules=null]], relationships=[Relationship [name=entity,
  * model=TheEntity,
- * viewAproach=com.mr.codegenerator.entities.ViewAproach@6ea12c19,
+ * viewApproach=com.mr.codegenerator.entities.ViewApproach@6ea12c19,
  * type=ManyToOne, displayName=Entidade, implementation=], Relationship
  * [name=viewApproach, model=ViewApproach,
- * viewAproach=com.mr.codegenerator.entities.ViewAproach@6a024a67,
+ * viewApproach=com.mr.codegenerator.entities.ViewApproach@6a024a67,
  * type=ManyToOne, displayName=Tipo, implementation=]]]
  **/
 @Entity

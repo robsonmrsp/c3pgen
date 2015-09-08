@@ -33,7 +33,7 @@ public class Helper {
 			System.out.println("    - name: " + rel);
 			System.out.println("      type: ManyToOne");
 			System.out.println("      model: " + Util.firstUpperCase(rel));
-			System.out.println("      viewAproach:");
+			System.out.println("      viewApproach:");
 			System.out.println("         type: modal");
 			System.out.println("         textField: nome");
 			System.out.println("         hiddenField: id");

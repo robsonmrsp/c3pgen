@@ -30,10 +30,12 @@ define(function(require) {
 
 		events : {
 			'click #novaEntidade' : 'novaEntidade',
-			'click #salvaEntidades' : 'salvaEntidades'
+			'click #salvaEntidades' : 'salvaEntidades',
+			'click #validaEntidades' : 'validaEntidades'
 		},
 
-		// TODO ver a possibilidade de o parser enviar TODA a arvore da aplicação.
+		// TODO ver a possibilidade de o parser enviar TODA a arvore da
+		// aplicação.
 		initialize : function(opt) {
 			this.application = opt.application;
 
@@ -51,15 +53,32 @@ define(function(require) {
 		},
 
 		salvaEntidades : function() {
+			var that = this;
 			// this.application.set('entities', this.entidadesCollection);
 			this.application.save({}, {
-				success : function() {
-					console.info('Sucesso ao salvar applicação')
+				success : function(model, resp, opt) {
+					that.validaEntidades(model)
 				},
 				error : function() {
 					console.error('Erro ao salvar applicação')
 				}
 			})
+		},
+
+		validaEntidades : function(model) {
+			var old = model.url;
+			var that = this;
+			model.url = 'rs/crud/applications/validator/' + model.get('id');
+			model.fetch({
+				success : function(_model, _resp, _options) {
+					model.url = old;
+					util.showMessage('info', _resp);
+				},
+				error : function(_model, _resp, _options) {
+					util.showMessage('error', util.getJson(_resp.responseText).legalMessage || '');
+					model.url = old;
+				}
+			});
 		},
 
 		novaEntidade : function() {

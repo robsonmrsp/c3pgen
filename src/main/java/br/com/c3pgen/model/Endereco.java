@@ -14,7 +14,7 @@ import org.hibernate.envers.Audited;
 
 /**
 * generated: 03/09/2015 14:51:48
-Entity [name=Endereco, displayName=Endereco, hasOwner=false, attributes=[Attribute [name=complemento, displayName=Complemento, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=numero, displayName=Número, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null]], relationships=[Relationship [name=cep, model=Cep, viewAproach=com.mr.codegenerator.entities.ViewAproach@48eff760, type=ManyToOne, displayName=Cep, implementation=]]]
+Entity [name=Endereco, displayName=Endereco, hasOwner=false, attributes=[Attribute [name=complemento, displayName=Complemento, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=numero, displayName=Número, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null]], relationships=[Relationship [name=cep, model=Cep, viewApproach=com.mr.codegenerator.entities.ViewApproach@48eff760, type=ManyToOne, displayName=Cep, implementation=]]]
 **/
 @Entity
 @Audited

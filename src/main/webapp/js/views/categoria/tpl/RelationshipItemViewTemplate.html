@@ -1,5 +1,6 @@
 <div class="hpanel hviolet" style="padding: 5px; margin-bottom: 5px">
-	<input id="inputId" type="hidden" value={{id}}>
+	<input class="inputId" type="hidden" value={{id}}>
+	<input class="inputViewApproachId" type="hidden" value="{{viewApproach && viewApproach.id}}">
 	<div class="panel-heading hbuilt" style="padding: 3px;">
 		<div class="panel-tools" style="margin-top: 4px;">
 			<a class="showhide-rel	">
@@ -18,12 +19,12 @@
 		<div class="widget-main-rel">
 			<span>
 				Nome de exibição:&nbsp;
-				<a class="editable editable-click inputDisplayName" data-placement="right" data-title="Digite o nome a exibir"></a>
+				<a class="editable editable-click inputDisplayName" data-placement="right" data-title="Digite o nome a exibir">{{displayName}}</a>
 			</span>
 			<br>
 			<span>
 				Tipo de relacionamento:&nbsp;
-				<a class="editable editable-click inputType" data-placement="right" data-title="Tipo de elemento" data-type="select" data-pk="1" data-title="Selecione o tipo de  relacionamento"></a>
+				<a class="editable editable-click inputType" data-placement="right" data-title="Tipo de elemento" data-type="select" data-pk="1" data-title="Selecione o tipo de  relacionamento">{{type}}</a>
 			</span>
 			<br>
 			<span>
@@ -36,6 +37,35 @@
 				<a class="editable editable-click inputOwnerName" data-placement="right" data-title="Tipo do atributo">{{ownerName}}</a>
 			</span>
 			<br>
+			<span>
+				Tipo de elemento visual?:&nbsp;
+				<a class="editable  editable-click inputViewApproach" data-placement="right" data-title="Tipo de elemento" data-type="select" data-pk="1" data-title="Selecione o tipo de  componente">{{viewApproach && viewApproach.type}}</a>
+			</span>
+			<br>
+			<span class="combo-fields" style="display: none;">
+				<span>
+					Id no Combo?:&nbsp;
+					<a class="editable editable-click inputComboId" data-placement="right" data-title="Tipo do atributo">{{viewApproach && viewApproach.comboId}}</a>
+				</span>
+				<br>
+				<span>
+					Valor no Combo?:&nbsp;
+					<a class="editable editable-click inputComboName" data-placement="right" data-title="Tipo do atributo">{{viewApproach && viewApproach.comboName}}</a>
+				</span>
+				<br>
+			</span>
+			<span class="modal-fields" style="display: none;">
+				<span>
+					Id no Modal?:&nbsp;
+					<a class="editable editable-click inputTextField" data-placement="right" data-title="Tipo do atributo">{{viewApproach && viewApproach.textField}}</a>
+				</span>
+				<br>
+				<span>
+					Texto no Modal?:&nbsp;
+					<a class="editable editable-click inputHiddenField" data-placement="right" data-title="Tipo do atributo">{{viewApproach && viewApproach.hiddenField }}</a>
+				</span>
+				<br>
+			</span>
 			<span>
 				Unidirecional?:&nbsp;
 				<input style="margin: 0px" type="checkbox" class="inputUniDirecional"{{uniDirecional ? 'checked' :''}}>

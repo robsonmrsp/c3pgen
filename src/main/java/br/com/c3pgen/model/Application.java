@@ -32,7 +32,7 @@ import org.hibernate.envers.Audited;
  * type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy,
  * placeholder=null, validationRules=null]], relationships=[Relationship
  * [name=entities, model=TheEntity,
- * viewAproach=com.mr.codegenerator.entities.ViewAproach@26f67b76,
+ * viewApproach=com.mr.codegenerator.entities.ViewApproach@26f67b76,
  * type=OneToMany, displayName=Entidades, implementation=]]]
  **/
 @Entity

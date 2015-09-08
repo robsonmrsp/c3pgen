@@ -1,8 +1,11 @@
 package br.com.c3pgen.rs;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -18,8 +21,13 @@ import javax.ws.rs.core.UriInfo;
 
 import org.apache.log4j.Logger;
 
+import br.com.c3pgen.base.ApplicationValidatorMessages;
+import br.com.c3pgen.base.GenService;
+import br.com.c3pgen.base.GenerateFileInfo;
+import br.com.c3pgen.base.util.Util;
 import br.com.c3pgen.json.JsonApplication;
 import br.com.c3pgen.json.JsonError;
+import br.com.c3pgen.json.JsonOk;
 import br.com.c3pgen.json.JsonPaginator;
 import br.com.c3pgen.model.Application;
 import br.com.c3pgen.model.filter.FilterApplication;
@@ -43,6 +51,8 @@ public class ApplicationResources {
 	@Inject
 	private SpringSecurityUserContext context;
 
+	private GenService genService = new GenService();
+
 	public static final Logger LOGGER = Logger.getLogger(ApplicationResources.class);
 
 	@GET
@@ -65,15 +75,51 @@ public class ApplicationResources {
 	}
 
 	@GET
-	@Path("gera/{id}")
+	@Path("generator/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response gera(@PathParam("id") Integer id) {
+	public Response gera(@PathParam("id") Integer id, @Context HttpServletRequest httpServletRequest) {
 		Response response = null;
 		try {
+			String uploadFolder = httpServletRequest.getServletContext().getRealPath("/");
+			Util.setCurrentDir(uploadFolder);
 
-			response = Response.ok().build();
+			Application application = applicationService.get(id);
+
+			GenerateFileInfo pathFile = genService.generate(application);
+
+			if (pathFile.getGenerateSuccess()) {
+				response = Response.ok(new JsonOk(pathFile.getStaticFilePath())).build();
+			} else {
+				response = Response.serverError().entity(new JsonError(pathFile.getApplicationValidatorMessages().toString(), null, pathFile.getApplicationValidatorMessages().toString())).build();
+			}
 		} catch (Exception e) {
-			String message = String.format("Não foi possivel carregar todos os registros[%s]", e.getMessage());
+			String message = String.format("Não foi possivel gerar a aplicação [%s]", e.getMessage());
+			LOGGER.error(message, e);
+			response = Response.serverError().entity(new JsonError(message, null)).build();
+		}
+		return response;
+	}
+
+	@GET
+	@Path("validator/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response valida(@PathParam("id") Integer id, @Context HttpServletRequest httpServletRequest) {
+		Response response = null;
+		try {
+			String uploadFolder = httpServletRequest.getServletContext().getRealPath("/");
+			Util.setCurrentDir(uploadFolder);
+
+			Application application = applicationService.get(id);
+
+			ApplicationValidatorMessages validate = genService.Validate(application);
+
+			if (validate.isEmpty()) {
+				response = Response.ok(new JsonOk("Aplicação Ok")).build();
+			} else {
+				response = Response.serverError().entity(new JsonError(validate.toString(), null, validate.toString())).build();
+			}
+		} catch (Exception e) {
+			String message = String.format("Não foi possivel gerar a aplicação [%s]", e.getMessage());
 			LOGGER.error(message, e);
 			response = Response.serverError().entity(new JsonError(message, null)).build();
 		}

@@ -18,7 +18,7 @@ import org.hibernate.envers.Audited;
 
 /**
 * generated: 03/09/2015 14:51:49
-Entity [name=Permission, displayName=Permissão, hasOwner=false, attributes=[Attribute [name=name, displayName=Nome, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null]], relationships=[Relationship [name=roles, model=Role, viewAproach=com.mr.codegenerator.entities.ViewAproach@6d78f375, type=ManyToMany, displayName=Papeis, implementation=], Relationship [name=operation, model=Operation, viewAproach=com.mr.codegenerator.entities.ViewAproach@50c87b21, type=ManyToOne, displayName=Operação, implementation=], Relationship [name=item, model=Item, viewAproach=com.mr.codegenerator.entities.ViewAproach@5f375618, type=ManyToOne, displayName=Item, implementation=]]]
+Entity [name=Permission, displayName=Permissão, hasOwner=false, attributes=[Attribute [name=name, displayName=Nome, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null]], relationships=[Relationship [name=roles, model=Role, viewApproach=com.mr.codegenerator.entities.ViewApproach@6d78f375, type=ManyToMany, displayName=Papeis, implementation=], Relationship [name=operation, model=Operation, viewApproach=com.mr.codegenerator.entities.ViewApproach@50c87b21, type=ManyToOne, displayName=Operação, implementation=], Relationship [name=item, model=Item, viewApproach=com.mr.codegenerator.entities.ViewApproach@5f375618, type=ManyToOne, displayName=Item, implementation=]]]
 **/
 @Entity
 @Audited

@@ -14,7 +14,7 @@ import org.hibernate.envers.Audited;
 
 /**
 * generated: 03/09/2015 14:51:48
-Entity [name=Cidade, displayName=Cidade, hasOwner=false, attributes=[Attribute [name=nome, displayName=Nome, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=cep, displayName=Cep, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null]], relationships=[Relationship [name=estado, model=Estado, viewAproach=com.mr.codegenerator.entities.ViewAproach@7c0e2abd, type=ManyToOne, displayName=Cidade, implementation=]]]
+Entity [name=Cidade, displayName=Cidade, hasOwner=false, attributes=[Attribute [name=nome, displayName=Nome, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=cep, displayName=Cep, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null]], relationships=[Relationship [name=estado, model=Estado, viewApproach=com.mr.codegenerator.entities.ViewApproach@7c0e2abd, type=ManyToOne, displayName=Cidade, implementation=]]]
 **/
 @Entity
 @Audited

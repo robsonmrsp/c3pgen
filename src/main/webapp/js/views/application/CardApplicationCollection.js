@@ -29,11 +29,17 @@ define(function(require) {
 			displaySkin : '.pe-7s-display1',
 		},
 		geraAplicacao : function() {
-			this.model.url = 'rs/crud/applications/gera/' + this.model.get('id');
+			var old = this.model.url;
+			var that = this;
+			this.model.url = 'rs/crud/applications/generator/' + this.model.get('id');
 			this.model.fetch({
-				success : function() {
+				success : function(_model, _resp, _options) {
+					that.model.url = old;
+					util.showMessage('info', _resp);
 				},
-				error : function() {
+				error : function(_model, _resp, _options) {
+					util.showMessage('error', util.getJson(_resp.responseText).legalMessage || '');
+					that.model.url = old;
 				}
 			});
 		},

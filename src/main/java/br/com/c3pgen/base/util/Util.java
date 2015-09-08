@@ -19,8 +19,14 @@ import com.esotericsoftware.yamlbeans.YamlReader;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Util {
+	private static String currentDir = Paths.get(".").toAbsolutePath().toString();
+
+	public static void setCurrentDir(String a) {
+		currentDir = a;
+	}
+
 	public static String currentDir() {
-		return Paths.get("").toAbsolutePath().toString();
+		return currentDir;
 	}
 
 	public static String firstLowerCase(String verb) {

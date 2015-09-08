@@ -18,36 +18,14 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 import org.hibernate.envers.Audited;
 
-/**
- * generated: 03/09/2015 14:51:48 Entity [name=TheEntity, displayName=Entidade,
- * hasOwner=true, attributes=[Attribute [name=name, displayName=null,
- * type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy,
- * placeholder=null, validationRules=null], Attribute [name=displayName,
- * displayName=null, type=AttributeType [className=String], mask=,
- * dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute
- * [name=tableName, displayName=null, type=AttributeType [className=String],
- * mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null],
- * Attribute [name=hasOwner, displayName=null, type=AttributeType
- * [className=Boolean], mask=, dateFormat=dd/MM/yyyy, placeholder=null,
- * validationRules=null], Attribute [name=hasMobile, displayName=null,
- * type=AttributeType [className=Boolean], mask=, dateFormat=dd/MM/yyyy,
- * placeholder=null, validationRules=null]], relationships=[Relationship
- * [name=application, model=Application,
- * viewAproach=com.mr.codegenerator.entities.ViewAproach@2669b199,
- * type=ManyToOne, displayName=Aplicação, implementation=], Relationship
- * [name=attributes, model=Attribute,
- * viewAproach=com.mr.codegenerator.entities.ViewAproach@2344fc66,
- * type=OneToMany, displayName=Atributo, implementation=], Relationship
- * [name=relationships, model=Relationship,
- * viewAproach=com.mr.codegenerator.entities.ViewAproach@458ad742,
- * type=OneToMany, displayName=Relacionamento, implementation=]]]
- **/
 @Entity
 @Audited
 @Table(name = "ENTITY")
 @SequenceGenerator(name = "THEENTITY_SEQUENCE", sequenceName = "THEENTITY_SEQUENCE")
 public class TheEntity extends AbstractTimestampEntity {
 	private static final long serialVersionUID = 1L;
+
+	private static String CORE_ENTITIES = "BairroCepCidadeEnderecoEstadoPaisClientItemItemTypeOperationPermissionSession";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "THEENTITY_SEQUENCE")
@@ -66,7 +44,7 @@ public class TheEntity extends AbstractTimestampEntity {
 	private String tableName;
 
 	@Column(name = "HAS_OWNER")
-	private Boolean hasOwner;
+	private Boolean hasOwner = Boolean.FALSE;
 
 	@Column(name = "HAS_MOBILE")
 	private Boolean hasMobile;
@@ -131,13 +109,13 @@ public class TheEntity extends AbstractTimestampEntity {
 		this.tableName = tableName;
 	}
 
-	public Boolean getHasOwner() {
-		return hasOwner;
-	}
-
-	public void setHasOwner(Boolean hasOwner) {
-		this.hasOwner = hasOwner;
-	}
+	// public Boolean getHasOwner() {
+	// return hasOwner;
+	// }
+	//
+	// public void setHasOwner(Boolean hasOwner) {
+	// this.hasOwner = hasOwner;
+	// }
 
 	public Boolean getHasMobile() {
 		return hasMobile;
@@ -205,4 +183,51 @@ public class TheEntity extends AbstractTimestampEntity {
 		this.notes = notes;
 	}
 
+	public Attribute getPrimaryAttribute() {
+		if (getAttributes().size() > 0)
+			return getAttributes().get(0);
+		else
+			return null;
+	}
+
+	public Attribute getSecondaryAttribute() {
+		if (getAttributes().size() > 1)
+			return getAttributes().get(1);
+		else
+			return null;
+	}
+
+	public Boolean getIsAppEntity() {
+		return !CORE_ENTITIES.contains(getName());
+	}
+
+	public Attribute getTertiaryAttribute() {
+		if (getAttributes().size() > 2)
+			return getAttributes().get(2);
+		else
+			return null;
+	}
+
+	public Boolean getUniqueConstraints() {
+
+		for (Attribute attribute : getAttributes()) {
+			if (attribute.getUnique()) {
+				return Boolean.TRUE;
+			}
+		}
+		return Boolean.FALSE;
+	}
+
+	public Boolean getHasOwner() {
+		return hasOwner;
+	}
+
+	public void setHasOwner(Boolean hasOwner) {
+		this.hasOwner = hasOwner;
+	}
+
+	@Override
+	public String toString() {
+		return name;
+	}
 }

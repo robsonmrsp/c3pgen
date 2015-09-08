@@ -18,6 +18,7 @@ define(function(require) {
 		defaults : {
 			id: null,
 	    	name : '',    	
+	    	type : '',    	
 	    	displayName : '',    	
 	    	ownerName : '',    	
 	    	model : '',    	
