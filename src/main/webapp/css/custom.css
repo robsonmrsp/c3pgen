@@ -190,10 +190,9 @@ td-actions a {
 }
 
 .drag-item {
-	margin: 10px;
+	margin: 6px;
 	position: relative !important;
 	display: inline-table;
-	width: 240px;
-	box-shadow: 0 0 6px rgba(0, 33, 50, 0.1), 0 7px 25px rgba(17, 38, 60, 0.4);
-	x position: relative !important;
+	width: 270px;
+	box-shadow: 0 0 4px rgba(0, 33, 50, 0.1), 0 7px 10px rgba(17, 38, 60, 0.4);
 }

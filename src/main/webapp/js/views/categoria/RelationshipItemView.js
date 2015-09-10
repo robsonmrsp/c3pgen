@@ -58,11 +58,11 @@ define(function(require) {
 		getModel : function() {
 			return {
 				id : this.ui.inputId.val(),
-				name : this.ui.inputRelationshipName.text(),
-				type : this.ui.inputType.text(),
-				displayName : this.ui.inputDisplayName.text(),
-				model : this.ui.inputModel.text(),
-				ownerName : this.ui.inputOwnerName.text(),
+				name : C3P.notEmptyVal(this.ui.inputRelationshipName),
+				type : C3P.notEmptyVal(this.ui.inputType),
+				displayName : C3P.notEmptyVal(this.ui.inputDisplayName),
+				model : C3P.notEmptyVal(this.ui.inputModel),
+				ownerName : C3P.notEmptyVal(this.ui.inputOwnerName),
 				uniDirecional : this.ui.inputUniDirecional.is(':checked'),
 				viewApproach : {
 					id : this.ui.inputViewApproachId.val(),
@@ -143,16 +143,16 @@ define(function(require) {
 					value : 'OneToMany',
 					source : [ {
 						value : 'OneToMany',
-						text : '1 > N'
+						text : 'OneToMany'
 					}, {
 						value : 'ManyToOne',
-						text : 'M > 1'
+						text : 'ManyToOne'
 					}, {
 						value : 'OneToOne',
-						text : '1 > 1'
+						text : 'OneToOne'
 					}, {
 						value : 'ManyToMany',
-						text : 'M > N'
+						text : 'ManyToMany'
 					}, ]
 				});
 			});

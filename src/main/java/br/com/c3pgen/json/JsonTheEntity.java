@@ -17,6 +17,8 @@ public class JsonTheEntity implements Serializable {
 
 	@JsonDeserialize(using = CustomSyncObjectIdDeserializer.class)
 	private Integer id;
+	private Integer posX;
+	private Integer posY;
 	private SyncOperation syncOperation;
 
 	private String name;
@@ -25,6 +27,7 @@ public class JsonTheEntity implements Serializable {
 	private String tableName;
 	private Boolean hasOwner;
 	private Boolean hasMobile;
+
 	private JsonApplication application;
 	private ArrayList<JsonAttribute> attributes = new ArrayList<JsonAttribute>();
 	private ArrayList<JsonRelationship> relationships = new ArrayList<JsonRelationship>();
@@ -122,6 +125,22 @@ public class JsonTheEntity implements Serializable {
 
 	public void setNotes(String notes) {
 		this.notes = notes;
+	}
+
+	public Integer getPosX() {
+		return posX;
+	}
+
+	public void setPosX(Integer posX) {
+		this.posX = posX;
+	}
+
+	public Integer getPosY() {
+		return posY;
+	}
+
+	public void setPosY(Integer posY) {
+		this.posY = posY;
 	}
 
 }

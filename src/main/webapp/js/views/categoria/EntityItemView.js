@@ -70,16 +70,22 @@ define(function(require) {
 
 		initialize : function() {
 			var that = this;
-			// configuração dos Atributos.
-			// $("#sortable").sortable({
-			// revert : true
-			// });
 
+			// Configuração do draggable
 			this.$el.draggable({
 				handle : '.panel-heading',
 				containment : ".entidades",
 				scroll : false,
+				stop : function() {
+					var offset = $(this).offset();
+					var xPos = offset.left;
+					var yPos = offset.top;
+					that.model.set('posX', xPos);
+					that.model.set('posY', yPos);
+					console.log(xPos, yPos);
+				}
 			});
+
 			this.attributesCollection = new AttributeCollection(this.model.get('attributes'));
 			this.model.set('attributes', this.attributesCollection);
 
@@ -96,20 +102,12 @@ define(function(require) {
 			});
 
 			this.on('show', function() {
-				var that = this;
-				// this.panel = $.jsPanel({
-				// // removeHeader : header,
-				// theme : 'primary',
-				// size : {
-				// width : 400,
-				// },
-				// title : '',
-				// overflow : 'scroll',
-				// content : that.$el,
-				// position : 'center',
-				// theme : 'medium'
-				// });
 
+				this.$el.offset({
+					top : this.model.get('posY') || 100,
+					left : this.model.get('posX') || 100
+				})
+				var that = this;
 				this.ui.inputEntityName.editable();
 				this.ui.inputDisplayName.editable();
 				this.ui.inputTableName.editable();
@@ -117,7 +115,6 @@ define(function(require) {
 				this.ui.inputEntityName.on('hidden', function() {
 					util.refreshEditable(that.ui.inputDisplayName, util.toFrase(that.ui.inputEntityName.text()));
 					util.refreshEditable(that.ui.inputTableName, util.toUnderscore(that.ui.inputEntityName.text(), true));
-					that.panel.title(that.ui.inputEntityName.text());
 				});
 
 				this.ui.editableFields.on('shown', function(evt, editable) {

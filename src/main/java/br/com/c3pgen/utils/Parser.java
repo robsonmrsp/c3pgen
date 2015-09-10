@@ -368,6 +368,9 @@ public class Parser {
 
 	private static void applyBasicJsonValues(JsonTheEntity jsonTheEntity, TheEntity theEntity) {
 		jsonTheEntity.setId(theEntity.getId());
+		jsonTheEntity.setPosX(theEntity.getPosX());
+		jsonTheEntity.setPosY(theEntity.getPosY());
+
 		jsonTheEntity.setName(theEntity.getName());
 		jsonTheEntity.setNotes(theEntity.getNotes());
 		jsonTheEntity.setDisplayName(theEntity.getDisplayName());
@@ -378,6 +381,8 @@ public class Parser {
 
 	private static void applyBasicEntityValues(TheEntity theEntity, JsonTheEntity jsonTheEntity) {
 		theEntity.setId(jsonTheEntity.getId());
+		theEntity.setPosX(jsonTheEntity.getPosX());
+		theEntity.setPosY(jsonTheEntity.getPosY());
 		theEntity.setName(jsonTheEntity.getName());
 		theEntity.setNotes(jsonTheEntity.getNotes());
 		theEntity.setDisplayName(jsonTheEntity.getDisplayName());

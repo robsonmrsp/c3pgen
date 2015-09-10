@@ -41,7 +41,7 @@ require.config({
 		'jqueryGritter' : '../vendor/jquery.gritter-1.7.4/js/jquery.gritter',
 		'metisMenu' : '../vendor/metisMenu/dist/metisMenu',
 		'editable' : '../vendor/bootstrap3-editable/js/bootstrap-editable',
-		'jqueryJspanel' : '../vendor/jspanel/jquery.jspanel',
+//		'jqueryJspanel' : '../vendor/jspanel/jquery.jspanel',
 	},
 	shim : {
 		'underscore' : {
@@ -125,7 +125,7 @@ require.config({
 
 		'metisMenu' : [ 'jquery' ],
 		'editable' : [ 'jquery' ],
-		'jqueryJspanel' : [ 'jquery' ],
+//		'jqueryJspanel' : [ 'jquery' ],
 	},
 	wrapShim : true,
 });
