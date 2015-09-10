@@ -94,7 +94,6 @@ define(function(require) {
 
 			this.on('show', function() {
 
-				
 				this.ui.inputAtributeName.editable();
 				this.ui.inputDisplayName.editable();
 				this.ui.inputMaxLen.editable();

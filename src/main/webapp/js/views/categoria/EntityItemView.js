@@ -22,7 +22,7 @@ define(function(require) {
 
 	var EntidadeItem = Marionette.LayoutView.extend({
 		template : _.template(EntityItemViewTemplate),
-		className : 'col-xs-12 col-sm-3 ',
+		className : ' drag-item',
 
 		regions : {
 			attributesRegion : '.attributes',
@@ -59,16 +59,27 @@ define(function(require) {
 		},
 
 		addAttribute : function() {
+			this.ui.panelBody.show();
 			this.attributesCollection.add(new AttributeModel());
 		},
 
 		addRelationship : function() {
+			this.ui.panelBody.show();
 			this.relationshipsCollection.add(new RelationshipModel());
 		},
 
 		initialize : function() {
 			var that = this;
 			// configuração dos Atributos.
+			// $("#sortable").sortable({
+			// revert : true
+			// });
+
+			this.$el.draggable({
+				handle : '.panel-heading',
+				containment : ".entidades",
+				scroll : false,
+			});
 			this.attributesCollection = new AttributeCollection(this.model.get('attributes'));
 			this.model.set('attributes', this.attributesCollection);
 
@@ -85,6 +96,20 @@ define(function(require) {
 			});
 
 			this.on('show', function() {
+				var that = this;
+				// this.panel = $.jsPanel({
+				// // removeHeader : header,
+				// theme : 'primary',
+				// size : {
+				// width : 400,
+				// },
+				// title : '',
+				// overflow : 'scroll',
+				// content : that.$el,
+				// position : 'center',
+				// theme : 'medium'
+				// });
+
 				this.ui.inputEntityName.editable();
 				this.ui.inputDisplayName.editable();
 				this.ui.inputTableName.editable();
@@ -92,6 +117,7 @@ define(function(require) {
 				this.ui.inputEntityName.on('hidden', function() {
 					util.refreshEditable(that.ui.inputDisplayName, util.toFrase(that.ui.inputEntityName.text()));
 					util.refreshEditable(that.ui.inputTableName, util.toUnderscore(that.ui.inputEntityName.text(), true));
+					that.panel.title(that.ui.inputEntityName.text());
 				});
 
 				this.ui.editableFields.on('shown', function(evt, editable) {

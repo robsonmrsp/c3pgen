@@ -35,12 +35,13 @@ require.config({
 		'async' : '../vendor/require/async-0.1.1',
 		'moment' : '../vendor/moment/moment-2.7',
 		'list' : '../vendor/jscf/list',
-		'map' : '../vendor/jscf/map',	
+		'map' : '../vendor/jscf/map',
 		'set' : '../vendor/jscf/set',
 
 		'jqueryGritter' : '../vendor/jquery.gritter-1.7.4/js/jquery.gritter',
 		'metisMenu' : '../vendor/metisMenu/dist/metisMenu',
 		'editable' : '../vendor/bootstrap3-editable/js/bootstrap-editable',
+		'jqueryJspanel' : '../vendor/jspanel/jquery.jspanel',
 	},
 	shim : {
 		'underscore' : {
@@ -124,6 +125,7 @@ require.config({
 
 		'metisMenu' : [ 'jquery' ],
 		'editable' : [ 'jquery' ],
+		'jqueryJspanel' : [ 'jquery' ],
 	},
 	wrapShim : true,
 });
