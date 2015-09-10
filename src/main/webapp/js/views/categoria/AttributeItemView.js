@@ -21,7 +21,7 @@ define(function(require) {
 		events : {
 			'click .showhide' : 'hideShow',
 			'click .delete-attribute' : 'deleteAtribute',
-			'click checkbox' : 'changeAttribute'
+			'click .check-box' : 'changeAttribute'
 		},
 
 		ui : {
@@ -94,6 +94,7 @@ define(function(require) {
 
 			this.on('show', function() {
 
+				
 				this.ui.inputAtributeName.editable();
 				this.ui.inputDisplayName.editable();
 				this.ui.inputMaxLen.editable();
@@ -103,6 +104,7 @@ define(function(require) {
 				this.ui.inputAtributeName.on('hidden', function() {
 					util.refreshEditable(that.ui.inputDisplayName, util.toFrase(that.ui.inputAtributeName.text()));
 					util.refreshEditable(that.ui.inputTableFieldName, util.toUnderscore(that.ui.inputAtributeName.text(), true));
+					util.refreshEditable(that.ui.inputMaxLen, 255)
 				});
 
 				this.ui.inputType.on('hidden', function() {

@@ -49,6 +49,7 @@ define(function(require) {
 
 			this.on('show', function() {
 				this.entidadesRegion.show(this.entidadesContainer);
+
 			});
 		},
 
@@ -72,7 +73,7 @@ define(function(require) {
 			model.fetch({
 				success : function(_model, _resp, _options) {
 					model.url = old;
-					util.showMessage('info', _resp);
+					util.showMessage('success', 'Entidades validadas com sucesso!');
 				},
 				error : function(_model, _resp, _options) {
 					util.showMessage('error', util.getJson(_resp.responseText).legalMessage || '');

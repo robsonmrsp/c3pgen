@@ -17,8 +17,8 @@ require.config({
 		'raphael' : '../vendor/raphael/raphael',
 		'underscore' : '../vendor/underscore/underscore-1.5.1',
 		'backbone' : '../vendor/backbone/backbone-1.1.2',
-		'backgrid' : '../vendor/backgrid/backgrid-0.3.5',
 		'backboneLocalstorage' : '../vendor/backbone.localStorage/backbone.localStorage',
+		'backgrid' : '../vendor/backgrid/backgrid-0.3.5',
 		'backgridMomentCell' : '../vendor/backgrid/extensions/backgrid-moment-cell',
 		'backboneSelectAll' : '../vendor/backgrid/extensions/backgrid-select-all',
 
@@ -35,7 +35,7 @@ require.config({
 		'async' : '../vendor/require/async-0.1.1',
 		'moment' : '../vendor/moment/moment-2.7',
 		'list' : '../vendor/jscf/list',
-		'map' : '../vendor/jscf/map',
+		'map' : '../vendor/jscf/map',	
 		'set' : '../vendor/jscf/set',
 
 		'jqueryGritter' : '../vendor/jquery.gritter-1.7.4/js/jquery.gritter',
