@@ -213,6 +213,8 @@ define(function(require) {
 						editable.input.$input.val($(evt.target).text() || $(evt.target).val());
 					}
 				});
+				
+				this.hideShow();
 			});
 		},
 	});

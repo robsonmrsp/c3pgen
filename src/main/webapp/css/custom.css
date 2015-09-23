@@ -192,7 +192,17 @@ td-actions a {
 .drag-item {
 	margin: 6px;
 	position: relative !important;
+	background-color: white !important;
 	display: inline-table;
 	width: 270px;
 	box-shadow: 0 0 4px rgba(0, 33, 50, 0.1), 0 7px 10px rgba(17, 38, 60, 0.4);
+	display: inline-table;
+}
+
+body {
+	font-size: 12px !important;
+}
+
+.drag-entities span {
+	font-size: 11px !important;
 }

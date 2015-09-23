@@ -155,6 +155,7 @@ define(function(require) {
 						text : 'ManyToMany'
 					}, ]
 				});
+				this.hideShow();
 			});
 		},
 	});

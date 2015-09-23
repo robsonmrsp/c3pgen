@@ -19,7 +19,7 @@ define(function(require) {
 
 		initialize : function(opt) {
 			this.on('show', function() {
-				$('.entidades').css('min-height', '800px');
+				$('.entidades').css('min-height', '1200px');
 			});
 		},
 	})

@@ -135,6 +135,9 @@ define(function(require) {
 
 				this.attributesRegion.show(this.attributesCollectionView);
 				this.relationshipsRegion.show(this.relationshipsCollectionView);
+
+				// abrindo com os atributos escondidos.
+				this.hideShowEnt();
 			});
 		},
 
@@ -158,7 +161,6 @@ define(function(require) {
 
 		hideShowEnt : function() {
 			this.ui.panelBody.toggle();
-
 			if (this.ui.panelBody.is(':visible')) {
 				this.ui.showhide.find('i').removeClass('fa-chevron-down').addClass('fa-chevron-up')
 			} else {
