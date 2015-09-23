@@ -74,7 +74,7 @@ define(function(require) {
 			// Configuração do draggable
 			this.$el.draggable({
 				handle : '.panel-heading',
-				containment : ".entidades",
+				containment : ".drag-entities",
 				scroll : false,
 				stop : function() {
 					var offset = $(this).offset();
