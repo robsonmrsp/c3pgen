@@ -32,18 +32,35 @@
 			<span>
 				<img src="images/icon.png" width="20">
 			</span>
-			<span> C3PGen </span>
+			<!-- 			<span> C3PGen </span> -->
 		</div>
 		<nav role="navigation">
 			<div class="header-link hide-menu">
 				<i class="fa fa-bars"></i>
 			</div>
-			<div class="small-logo">
-				<span class="text-primary">C3pgen APP</span>
+			<div class="toolbar">
+				<div class="header-link">
+					<i class="fa fa-plus "></i>
+				</div>
+				<div class="header-link">
+					<i class="fa fa-plus "></i>
+				</div>
+				<div class="header-link">
+					<i class="fa fa-plus "></i>
+				</div>
+				<div class="header-link">
+					<i class="fa fa-plus "></i>
+				</div>
+				<div class="header-link">
+					<i class="fa fa-plus "></i>
+				</div>
 			</div>
-			<form role="search" class="navbar-form-custom" method="post" action="#">
-				<div class="form-group">
-					<input type="text" placeholder="Search something special" class="form-control" name="search">
+			<div class="small-logo">
+				<!-- 				<span class="text-primary">C3pgen APP</span> -->
+			</div>
+			<form role="search" class="navbar-form-custom" method="post" action="javascript:void(-1)">
+				<div class="form-group tools-per-page">
+					<!-- 					<input type="text" placeholder="Search something special" class="form-control" name="search"> -->
 				</div>
 			</form>
 			<div class="navbar-right">
@@ -74,98 +91,34 @@
 	<aside id="menu">
 		<div id="navigation">
 			<div class="profile-picture">
-				<a href="index.html">
-					<img src="http://webapplayers.com/homer_admin-v1.5/images/profile.jpg" class="img-circle m-b" alt="logo">
+				<a href="index.jsp">
+					<!-- 					<img src="http://webapplayers.com/homer_admin-v1.5/images/profile.jpg" class="img-circle m-b" alt="logo"> -->
 				</a>
 				<div class="stats-label text-color">
-					<span class="font-extra-bold font-uppercase">Chico de Toinha</span>
+					<!-- 					<span class="font-extra-bold font-uppercase">Chico de Toinha</span> -->
 					<div class="dropdown">
-						<a class="dropdown-toggle" href="#" data-toggle="dropdown">
-							<small class="text-muted">
-								Usuário
-								<b class="caret"></b>
-							</small>
-						</a>
+						<!-- 						<a class="dropdown-toggle" href="#" data-toggle="dropdown"> -->
+						<!-- 							<small class="text-muted"> -->
+						<!-- 								Usuário -->
+						<!-- 								<b class="caret"></b> -->
+						<!-- 							</small> -->
+						<!-- 						</a> -->
 					</div>
 				</div>
 			</div>
 			<ul class="nav" id="side-menu">
 				<li class="active">
-					<a href="#">
-						<span class="nav-label">Aplicações</span>
-						<span class="fa arrow"></span>
-					</a>
+					<!-- 					<a href="#"> -->
+					<!-- 						<span class="nav-label">Aplicações</span> -->
+					<!-- 												<span class="fa arrow"></span> -->
+					<!-- 					</a> -->
 					<ul class="nav nav-second-level collapse" aria-expanded="true">
 						<li class="">
 							<a id="applications" href="#app/applications">
-								<i class="en-arrow-right7"></i>
-								Minhas Aplicações
+								<i class="fa fa-file-text-o fa-3x"></i>
 							</a>
 							<b class="arrow"></b>
 						</li>
-<!-- 						<li class=""> -->
-<!-- 							<a id="categoria" href="#app/categoria"> -->
-<!-- 								<i class="en-arrow-right7"></i> -->
-<!-- 								Categoria -->
-<!-- 							</a> -->
-<!-- 							<b class="arrow"></b> -->
-<!-- 						</li> -->
-<!-- 						<li class=""> -->
-<!-- 							<a id="attributes" href="#app/attributes"> -->
-<!-- 								<i class="en-arrow-right7"></i> -->
-<!-- 								Attribute -->
-<!-- 							</a> -->
-<!-- 							<b class="arrow"></b> -->
-<!-- 						</li> -->
-						<!-- 						<li class=""> -->
-						<!-- 							<a id="attributeTypes" href="#app/attributeTypes"> -->
-						<!-- 								<i class="en-arrow-right7"></i> -->
-						<!-- 								AttributeType -->
-						<!-- 							</a> -->
-						<!-- 							<b class="arrow"></b> -->
-						<!-- 						</li> -->
-						<!-- 						<li class=""> -->
-						<!-- 							<a id="theEntitys" href="#app/theEntitys"> -->
-						<!-- 								<i class="en-arrow-right7"></i> -->
-						<!-- 								TheEntity -->
-						<!-- 							</a> -->
-						<!-- 							<b class="arrow"></b> -->
-						<!-- 						</li> -->
-						<!-- 						<li class=""> -->
-						<!-- 							<a id="relationships" href="#app/relationships"> -->
-						<!-- 								<i class="en-arrow-right7"></i> -->
-						<!-- 								Relationship -->
-						<!-- 							</a> -->
-						<!-- 							<b class="arrow"></b> -->
-						<!-- 						</li> -->
-						<!-- 						<li class=""> -->
-						<!-- 							<a id="viewApproachs" href="#app/viewApproachs"> -->
-						<!-- 								<i class="en-arrow-right7"></i> -->
-						<!-- 								ViewApproach -->
-						<!-- 							</a> -->
-						<!-- 							<b class="arrow"></b> -->
-						<!-- 						</li> -->
-						<!-- 						<li class=""> -->
-						<!-- 							<a id="clientes" href="#app/clientes"> -->
-						<!-- 								<i class="en-arrow-right7"></i> -->
-						<!-- 								Cliente -->
-						<!-- 							</a> -->
-						<!-- 							<b class="arrow"></b> -->
-						<!-- 						</li> -->
-						<!-- 						<li class=""> -->
-						<!-- 							<a id="roles" href="#app/roles"> -->
-						<!-- 								<i class="en-arrow-right7"></i> -->
-						<!-- 								Papel -->
-						<!-- 							</a> -->
-						<!-- 							<b class="arrow"></b> -->
-						<!-- 						</li> -->
-						<!-- 						<li class=""> -->
-						<!-- 							<a id="users" href="#app/users"> -->
-						<!-- 								<i class="en-arrow-right7"></i> -->
-						<!-- 								Usuário -->
-						<!-- 							</a> -->
-						<!-- 							<b class="arrow"></b> -->
-						<!-- 						</li> -->
 					</ul>
 				</li>
 			</ul>

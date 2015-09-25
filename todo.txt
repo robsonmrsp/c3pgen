@@ -1,0 +1,6 @@
+1-  Criar uma toolbar que possa ser adicionada por cada tela dinamicamente de modo que possa controlar todas as 
+	atividades desta tela, seria uma especie de menu. onde cada botão teria um tamanho fixo e sua posição seria 
+	calculada levando-se em conta a quantidade de elementos nesta toolbar.
+	
+2-  Acredito que baste ficar no começo, como um menu mesmo. Afinal de contas, o menu sidebar só aparecerá para 
+	desenhar as entidades
