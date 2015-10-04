@@ -37,7 +37,6 @@ import org.hibernate.envers.Audited;
  **/
 @Entity
 @Audited
-@Table(name = "APPLICATION", uniqueConstraints = { @UniqueConstraint(name = "APPLICATION_SKIN", columnNames = { "SKIN" }), @UniqueConstraint(name = "APPLICATION_ROOT_PACKAGE", columnNames = { "ROOT_PACKAGE" }), })
 @SequenceGenerator(name = "APPLICATION_SEQUENCE", sequenceName = "APPLICATION_SEQUENCE")
 public class Application extends AbstractTimestampEntity {
 	private static final long serialVersionUID = 1L;
@@ -140,7 +139,7 @@ public class Application extends AbstractTimestampEntity {
 	}
 
 	public boolean hasMobApp() {
-		
+
 		return false;
 	}
 

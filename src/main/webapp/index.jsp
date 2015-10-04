@@ -12,6 +12,9 @@
 <style type="text/css">
 </style>
 <style type="text/css"></style>
+<style>
+
+</style>
 </head>
 <body class="hide-sidebar">
 	<!-- Simple splash screen-->
