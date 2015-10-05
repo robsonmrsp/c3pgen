@@ -170,8 +170,7 @@ public class ${entity.name}Resources {
 	@Path("{id}")
 	public Response update(@PathParam("id") Integer id, Json${entity.name} json${entity.name}) {
 		try {
-			${entity.name} ${firstLower(entity.name)} = ${firstLower(entity.name)}Service.get(id);
-			Parser.apply(${firstLower(entity.name)}, json${entity.name});
+			${entity.name} ${firstLower(entity.name)} = Parser.toEntity(json${entity.name});
 
 			<#if  entity.hasOwner?? && entity.hasOwner>
 			${firstLower(entity.name)}.setOwner(context.getCurrentUser().getOwner());
