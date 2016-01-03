@@ -23,9 +23,6 @@ define(function(require) {
 
 		initialize : function() {
 			var that = this;
-			
-
-
 
 			this.bloodgroup = new Joint.shapes.uml.Class({
 				position : {
@@ -33,8 +30,8 @@ define(function(require) {
 					y : 190
 				},
 				size : {
-					width : 800,
-					height : 600
+					width : 200,
+					height : 120
 				},
 				name : 'BloodGroup',
 				attributes : [ 'bloodGroup: String' ],
