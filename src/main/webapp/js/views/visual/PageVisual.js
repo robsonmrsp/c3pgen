@@ -9,57 +9,57 @@ define(function(require) {
 	var Backgrid = require('adapters/backgrid-adapter');
 	var util = require('utilities/utils');
 	var Joint = require('joint');
+	var AttributeModel = require('models/AttributeModel');
 
 	var PageVisualTemplate = require('text!views/visual/tpl/PageVisualTemplate.html');
+	var VisualEntity = require('views/visual/models/VisualEntity');
 
 	var PageVisual = Marionette.LayoutView.extend({
 		template : _.template(PageVisualTemplate),
 
 		regions : {},
 
-		events : {},
+		events : {
+			'click #clickAki' : 'addAttribute',
+		},
+		addAttribute : function() {
+			this.address.addAttribute(new AttributeModel({
+				name : 'nome',
+				type : {
+					className : 'String'
+				}
+			}));
+		},
 
 		ui : {},
 
 		initialize : function() {
 			var that = this;
 
-			this.bloodgroup = new Joint.shapes.uml.Class({
+			this.address = new VisualEntity({
 				position : {
-					x : 20,
-					y : 190
+					x : 30,
+					y : 90
 				},
 				size : {
-					width : 200,
-					height : 120
+					width : 160,
+					height : 100
 				},
-				name : 'BloodGroup',
-				attributes : [ 'bloodGroup: String' ],
-				methods : [ '+ isCompatible(bG: String): Boolean' ],
-				attrs : {
-					'.uml-class-name-rect' : {
-						fill : '#ff8450',
-						stroke : '#fff',
-						'stroke-width' : 0.5,
-					},
-					'.uml-class-attrs-rect, .uml-class-methods-rect' : {
-						fill : '#fe976a',
-						stroke : '#fff',
-						'stroke-width' : 0.5
-					},
-					'.uml-class-attrs-text' : {
-						ref : '.uml-class-attrs-rect',
-						'ref-y' : 0.5,
-						'y-alignment' : 'middle'
-					},
-					'.uml-class-methods-text' : {
-						ref : '.uml-class-methods-rect',
-						'ref-y' : 0.5,
-						'y-alignment' : 'middle'
-					}
-				}
+				name : 'Pessoa',
+			// attributes : [ 'houseNumber: Integer', 'streetName: String',
+			// 'town: String', 'postcode: String' ],
 			});
-
+			this.address.addAttribute(new AttributeModel({
+				name : 'nome',
+				type : {
+					className : 'String'
+				}
+			}));
+			// this.address.addAttribute('aaa');
+			// this.address.addAttribute('aaa');
+			// this.address.addAttribute('aaa');
+			// this.address.addAttribute('aaa');
+			//
 			this.on('show', function() {
 				this.graph = new Joint.dia.Graph();
 				this.paper = new Joint.dia.Paper({
@@ -69,7 +69,11 @@ define(function(require) {
 					gridSize : 1,
 					model : that.graph
 				});
-				this.graph.addCell(this.bloodgroup);
+				this.paper.on('cell:pointerclick', function(cellView, evt, x, y) {
+					console.log(cellView, evt, x, y)
+				});
+
+				this.graph.addCell(this.address);
 			});
 		},
 	});

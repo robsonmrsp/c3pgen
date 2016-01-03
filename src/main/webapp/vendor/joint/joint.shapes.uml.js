@@ -393,6 +393,6 @@ define(function(require) {
 			}
 		}
 	});
-//	window.joint.shapes.uml = joint.shapes.uml;
+	// window.joint.shapes.uml = joint.shapes.uml;
 	return joint.shapes.uml;
 });
