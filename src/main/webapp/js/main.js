@@ -41,7 +41,10 @@ require.config({
 		'jqueryGritter' : '../vendor/jquery.gritter-1.7.4/js/jquery.gritter',
 		'metisMenu' : '../vendor/metisMenu/dist/metisMenu',
 		'editable' : '../vendor/bootstrap3-editable/js/bootstrap-editable',
-//		'jqueryJspanel' : '../vendor/jspanel/jquery.jspanel',
+		'joint' : '../vendor/joint/joint',
+		'shapesUml' : '../vendor/joint/joint.shapes.uml',
+//		'shapesErd' : '../vendor/joint/joint.shapes.erd',
+		'lodash' : '../vendor/lodash/lodash',
 	},
 	shim : {
 		'underscore' : {
@@ -103,7 +106,14 @@ require.config({
 			deps : [ 'jquery', 'moment' ],
 			exports : 'datetimepicker_lang_pt_BR'
 		},
+		'joint' : {
+			deps : [ 'jquery', 'backbone','underscore'],
+			exports : 'joint'
+		},
 		'jqueryNumeric' : [ 'jquery' ],
+		
+		'shapesUml' : [ 'joint' ],
+//		'shapesErd' : [ 'joint' ],
 
 		'multiselect' : [ 'jquery' ],
 		'list' : {

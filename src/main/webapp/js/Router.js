@@ -90,6 +90,8 @@ define(function(require) {
 	var PageUser = require('views/user/PageUser');
 	var FormUser = require('views/user/FormUser');
 	var UserModel = require('models/UserModel');
+	
+	var PageVisual = require('views/visual/PageVisual');
 
 	util.NProgress.setBlockerPanel('block_panel');
 
@@ -116,8 +118,9 @@ define(function(require) {
 
 	var AppRouter = Backbone.Router.extend({
 		routes : {
-			'' : 'applications',
+			'' : 'visual',
 			// hashs de Application
+//			'app/visual' : 'visual',
 			'app/applications' : 'applications',
 			'app/application/:idApp/entities' : 'entitiesByApplication',
 			'app/categoria' : 'categoria',
@@ -231,6 +234,17 @@ define(function(require) {
 				itemLabel : 'Application',
 				itemSubFolderName : 'Grid',
 				url : 'app/applications'
+			});
+		},
+		visual : function() {
+			util.markActiveItem('visual');
+			this.pageVisual= new PageVisual();
+			this.App.mainRegion.show(this.pageVisual);
+			util.breadcrumb({
+				iconClass : 'fa-desktop',
+				itemLabel : 'Application',
+				itemSubFolderName : 'Grid',
+				url : 'app/visual'
 			});
 		},
 		entitiesByApplication : function(idApplication) {
