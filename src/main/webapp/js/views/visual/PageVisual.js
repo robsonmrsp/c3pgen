@@ -64,8 +64,8 @@ define(function(require) {
 				this.graph = new Joint.dia.Graph();
 				this.paper = new Joint.dia.Paper({
 					el : $('#paper'),
-					width : 800,
-					height : 600,
+					width : 1800,
+					height : 1600,
 					gridSize : 1,
 					model : that.graph
 				});
