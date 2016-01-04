@@ -10,70 +10,74 @@ define(function(require) {
 	var util = require('utilities/utils');
 	var Joint = require('joint');
 	var AttributeModel = require('models/AttributeModel');
+	var EntityModel = require('models/EntityModel');
 
 	var PageVisualTemplate = require('text!views/visual/tpl/PageVisualTemplate.html');
 	var VisualEntity = require('views/visual/models/VisualEntity');
+	var InspetorEntidadesView = require('views/visual/InspetorEntidadesView');
 
+	var lastPositionX = 200;
+	var entities = [];
 	var PageVisual = Marionette.LayoutView.extend({
 		template : _.template(PageVisualTemplate),
 
-		regions : {},
-
+		regions : {
+			inspectorRegion : '.inspector'
+		},
 		events : {
+			'click #addEntity' : 'addEntity',
 			'click #clickAki' : 'addAttribute',
 		},
-		addAttribute : function() {
-			this.address.addAttribute(new AttributeModel({
-				name : 'nome',
-				type : {
-					className : 'String'
-				}
-			}));
+		ui : {},
+
+		_lastPosition : function() {
+
+			if (lastPositionX < (window.innerWidth - 160)) {
+				lastPositionX += 160;
+			} else {
+				lastPositionX = 200;
+			}
+			return lastPositionX
 		},
 
-		ui : {},
+		addEntity : function() {
+			entity = new VisualEntity({
+				position : {
+					x : this._lastPosition(),
+					y : 200
+				},
+
+				size : {
+					width : 120,
+					height : 100
+				},
+				name : 'NO_NAME',
+			});
+
+			entities.push(entity)
+
+			this.graph.addCell(entity);
+		},
 
 		initialize : function() {
 			var that = this;
-
-			this.address = new VisualEntity({
-				position : {
-					x : 30,
-					y : 90
-				},
-				size : {
-					width : 160,
-					height : 100
-				},
-				name : 'Pessoa',
-			// attributes : [ 'houseNumber: Integer', 'streetName: String',
-			// 'town: String', 'postcode: String' ],
+			var inspetorView = new InspetorEntidadesView({
+				model : new EntityModel(),
 			});
-			this.address.addAttribute(new AttributeModel({
-				name : 'nome',
-				type : {
-					className : 'String'
-				}
-			}));
-			// this.address.addAttribute('aaa');
-			// this.address.addAttribute('aaa');
-			// this.address.addAttribute('aaa');
-			// this.address.addAttribute('aaa');
-			//
+
 			this.on('show', function() {
+				this.inspectorRegion.show(inspetorView);
 				this.graph = new Joint.dia.Graph();
 				this.paper = new Joint.dia.Paper({
 					el : $('#paper'),
-					width : 800,
-					height : 600,
+					height : window.innerHeight,
+					width : window.innerWidth,
 					gridSize : 1,
 					model : that.graph
 				});
 				this.paper.on('cell:pointerclick', function(cellView, evt, x, y) {
 					console.log(cellView, evt, x, y)
 				});
-
-				this.graph.addCell(this.address);
 			});
 		},
 	});
