@@ -14,6 +14,7 @@ define(function(require) {
 
 	var PageVisualTemplate = require('text!views/visual/tpl/PageVisualTemplate.html');
 	var VisualEntity = require('views/visual/models/VisualEntity');
+	var VisualRelationship = require('views/visual/models/VisualRelationship');
 	var InspetorEntidadesView = require('views/visual/InspetorEntidadesView');
 
 	var lastPositionX = 200;
@@ -26,7 +27,7 @@ define(function(require) {
 		},
 		events : {
 			'click #addEntity' : 'addEntity',
-			'click #clickAki' : 'addAttribute',
+			'click #addRelation' : 'addRelation',
 		},
 		ui : {},
 
@@ -40,8 +41,15 @@ define(function(require) {
 			return lastPositionX
 		},
 
+		addRelation : function() {
+			var that = this;
+			var relation = new VisualRelationship();
+			that.graph.addCell(relation);
+		},
+
 		addEntity : function() {
-			entity = new VisualEntity({
+			var that = this;
+			var visualEntity = new VisualEntity({
 				position : {
 					x : this._lastPosition(),
 					y : 200
@@ -51,22 +59,31 @@ define(function(require) {
 					width : 120,
 					height : 100
 				},
-				name : 'NO_NAME',
+				entity : new EntityModel({
+					name : 'NO_NAME_' + lastPositionX,
+				}),
 			});
 
-			entities.push(entity)
+			entities.push(visualEntity)
 
-			this.graph.addCell(entity);
+			visualEntity.setOnSelect(function(entity) {
+
+			});
+			that.inspetorView.setVisualEntity(visualEntity)
+			that.graph.addCell(visualEntity);
 		},
 
 		initialize : function() {
 			var that = this;
-			var inspetorView = new InspetorEntidadesView({
-				model : new EntityModel(),
+
+			this.inspetorView = new InspetorEntidadesView({
+				model : new EntityModel({
+					name : 'Chico de Toinha Junior',
+				}),
 			});
 
 			this.on('show', function() {
-				this.inspectorRegion.show(inspetorView);
+				this.inspectorRegion.show(this.inspetorView);
 				this.graph = new Joint.dia.Graph();
 				this.paper = new Joint.dia.Paper({
 					el : $('#paper'),
@@ -75,8 +92,53 @@ define(function(require) {
 					gridSize : 1,
 					model : that.graph
 				});
-				this.paper.on('cell:pointerclick', function(cellView, evt, x, y) {
-					console.log(cellView, evt, x, y)
+				// Here is the real deal. Listen on cell:pointerup and link to an element found below.
+				this.paper.on('cell:pointerup', function(cellView, evt, x, y) {
+
+					// Find the first element below that is not a link nor the dragged element itself.
+					var elementBelow = that.graph.get('cells').find(function(cell) {
+						if (cell instanceof Joint.dia.Link)
+							return false; // Not interested in links.
+						if (cell.id === cellView.model.id)
+							return false; // The same element as the dropped one.
+						if (cell.getBBox().containsPoint({
+							x : x,
+							y : y
+						})) {
+							return true;
+						}
+						return false;
+					});
+
+					// If the two elements are connected already, don't
+					// connect them again (this is application specific though).
+					if (elementBelow && !_.contains(that.graph.getNeighbors(elementBelow), cellView.model)) {
+
+						console.log('cellView ', cellView); // elemento que está sendo arrastado, no nosso caso as setas do relacionamento
+						console.log('elementBelow ', elementBelow);
+						// that.graph.addCell(new Joint.dia.Link({
+						// source : {
+						// id : cellView.model.id
+						// },
+						// target : {
+						// id : elementBelow.id
+						// },
+						// attrs : {
+						// '.marker-source' : {
+						// d : 'M 10 0 L 0 5 L 10 10 z'
+						// }
+						// }
+						// }));
+						// // Move the element a bit to the side.
+						// cellView.model.translate(-200, 0);
+					}
+				});
+				this.paper.on('cell:pointerclick', function(_cellView, evt, x, y) {
+					if (_cellView.model.get('type') == 'uml.Class') {
+
+						that.inspetorView.setVisualEntity(_cellView.model);
+
+					}
 				});
 			});
 		},

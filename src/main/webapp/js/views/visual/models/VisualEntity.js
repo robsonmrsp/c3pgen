@@ -1,6 +1,8 @@
 /* generated: 30/08/2015 20:23:12 */
 define(function(require) {
 	var Joint = require('joint');
+	var AttributeModel = require('models/AttributeModel');
+	var EntityModel = require('models/EntityModel');
 
 	var VisualEntity = Joint.shapes.basic.Generic.extend({
 
@@ -18,6 +20,7 @@ define(function(require) {
 
 				'.uml-class-name-rect' : {
 					fill : '#ff8450',
+					'max-height' : '45px',
 					stroke : '#fff',
 					'stroke-width' : 0.5
 				},
@@ -63,10 +66,11 @@ define(function(require) {
 					'fill' : 'black',
 					'font-size' : 12,
 					'font-family' : 'Times New Roman'
-				}
+				},
+
 			},
 
-			name : [],
+			name : 'NO_NAME_ON_VISUAL',
 			attributes : [ 'id: Integer (+)' ],
 			relationships : []
 
@@ -79,20 +83,25 @@ define(function(require) {
 			var attrs = this.get('attributes');
 			attrs.push(attrModel.get('name') + ':' + attrModel.get('type').className);
 			this.set('attributes', attrs);
-
-			this.updateRectangles();
-			this.trigger('uml-update');
 		},
 
-		initialize : function() {
+		initialize : function(opt) {
+			this.entity = new EntityModel();
+
+			this.entity.set(opt.entity.attributes);
+
 			this.attributeModels = [];
 			this.on('cell:pointerclick', function(a, b, c) {
 				console.log(a, b, c)
 			});
 
+			this.updateViewWithEntity(this.entity);
+
 			this.on('change:name change:attributes change:relationships', function() {
+				console.log(this.entity);
 				this.updateRectangles();
 				this.trigger('uml-update');
+
 			}, this);
 
 			this.updateRectangles();
@@ -100,6 +109,27 @@ define(function(require) {
 			Joint.shapes.basic.Generic.prototype.initialize.apply(this, arguments);
 		},
 
+		setOnSelect : function(_onSel) {
+			this.onSelect = _onSel;
+		},
+
+		updateViewWithEntity : function(entity) {
+			var that = this;
+
+			// nome
+			this.set('name', entity.get('name'));
+			//
+
+			var attrs = entity.get('attributes');
+			console.log(attrs);
+
+			_.each(attrs, function(attr) {
+				that.addAttribute(new AttributeModel(attr));
+			});
+
+			// Depois de atualizar a view, atualizamos o core
+			this.entity.set(entity.attributes);
+		},
 		getClassName : function() {
 			return this.get('name');
 		},
@@ -133,10 +163,11 @@ define(function(require) {
 				offsetY += rectHeight;
 			});
 			var newH = that.get('size').height;
-			that.set('size', {
-				width : 160,
-				height : newH + 12,
-			});
+
+			// that.set('size', {
+			// width : 160,
+			// height : newH + 12,
+			// });
 
 		}
 

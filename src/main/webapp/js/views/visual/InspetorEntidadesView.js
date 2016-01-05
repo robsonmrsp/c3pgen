@@ -60,7 +60,9 @@ define(function(require) {
 
 		addAttribute : function() {
 			this.ui.panelBody.show();
-			this.attributesCollection.add(new AttributeModel());
+			var newAtribute = new AttributeModel();
+			this.attributesCollection.add(newAtribute);
+			this.visualEntity.addAttribute(newAtribute);
 		},
 
 		addRelationship : function() {
@@ -77,12 +79,7 @@ define(function(require) {
 				containment : ".drag-entities",
 				scroll : false,
 				stop : function() {
-					var offset = $(this).offset();
-					var xPos = offset.left;
-					var yPos = offset.top;
-					that.model.set('posX', xPos);
-					that.model.set('posY', yPos);
-					console.log(xPos, yPos);
+					// var offset = $(this).offset();
 				}
 			});
 
@@ -143,10 +140,24 @@ define(function(require) {
 
 		changeEntity : function() {
 			this.model.set(this.getModel());
+			this.visualEntity.updateViewWithEntity(this.model);
 		},
 
 		deleteAtribute : function() {
 			this.model.destroy();
+		},
+
+		setVisualEntity : function(visualEntity) {
+
+			var entity = visualEntity.entity;
+
+			this.visualEntity = visualEntity;
+
+			this.ui.inputId.val(entity.get('id'));
+			this.ui.inputEntityName.text(entity.get('name'));
+			this.ui.inputDisplayName.text(entity.get('displayName'));
+			this.ui.inputTableName.text(entity.get('tableName'));
+			this.ui.inputHasMobile.prop('checked', entity.get('hasMobile'));
 		},
 
 		getModel : function() {
