@@ -20,7 +20,10 @@ define(function(require) {
 		regions : {},
 
 		events : {
-			'click #clickAki' : 'addAttribute',
+			'click #clickAki' : 'addRelation',
+		},
+		addRelation : function() {
+			this.createRelation = true;
 		},
 		addAttribute : function() {
 			this.address.addAttribute(new AttributeModel({
@@ -35,7 +38,45 @@ define(function(require) {
 
 		initialize : function() {
 			var that = this;
+			that.link = new Joint.dia.Link({
+				source : {
+					x : 10,
+					y : 280
+				},
+				target : {
+					x : 740,
+					y : 280
+				},
 
+				smooth : false,
+				attrs : {
+					'.marker-source' : {
+						fill : '#4b4a67',
+						stroke : '#4b4a67',
+						d : 'M 10 0 L 0 5 L 10 10 z'
+					},
+					'.marker-target' : {
+						fill : '#4b4a67',
+						stroke : '#4b4a67',
+						d : 'M 10 0 L 0 5 L 10 10 z'
+					}
+				},
+				labels : [ {
+					position : 25,
+					attrs : {
+						text : {
+							text : '1'
+						}
+					}
+				}, {
+					position : -25,
+					attrs : {
+						text : {
+							text : 'n'
+						}
+					}
+				} ]
+			});
 			this.address = new VisualEntity({
 				position : {
 					x : 30,
@@ -55,12 +96,8 @@ define(function(require) {
 					className : 'String'
 				}
 			}));
-			// this.address.addAttribute('aaa');
-			// this.address.addAttribute('aaa');
-			// this.address.addAttribute('aaa');
-			// this.address.addAttribute('aaa');
-			//
 			this.on('show', function() {
+
 				this.graph = new Joint.dia.Graph();
 				this.paper = new Joint.dia.Paper({
 					el : $('#paper'),
@@ -70,10 +107,23 @@ define(function(require) {
 					model : that.graph
 				});
 				this.paper.on('cell:pointerclick', function(cellView, evt, x, y) {
-					console.log(cellView, evt, x, y)
+
+					if (that.createRelation) {
+						var rel = new Joint.shapes.uml.Composition({
+							source : {
+								id : cellView.model.id
+							},
+							target : {
+								x : x + 150,
+								y : y
+							}
+						});
+						that.graph.addCell(rel);
+					}
 				});
 
 				this.graph.addCell(this.address);
+				this.graph.addCell(this.link);
 			});
 		},
 	});
