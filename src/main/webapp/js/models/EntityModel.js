@@ -17,7 +17,7 @@ define(function(require) {
 
 		defaults : {
 			id: null,
-	    	name : '',    	
+	    	name : 'NO_NAME',    	
 	    	displayName : '',    	
 	    	tableName : '',    	
 	    	hasOwner : '',    	

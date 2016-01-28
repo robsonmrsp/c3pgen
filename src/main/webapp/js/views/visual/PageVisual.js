@@ -10,120 +10,136 @@ define(function(require) {
 	var util = require('utilities/utils');
 	var Joint = require('joint');
 	var AttributeModel = require('models/AttributeModel');
+	var EntityModel = require('models/EntityModel');
 
 	var PageVisualTemplate = require('text!views/visual/tpl/PageVisualTemplate.html');
 	var VisualEntity = require('views/visual/models/VisualEntity');
+	var VisualRelationship = require('views/visual/models/VisualRelationship');
+	var InspetorEntidadesView = require('views/visual/InspetorEntidadesView');
 
+	var lastPositionX = 200;
+	var entities = [];
 	var PageVisual = Marionette.LayoutView.extend({
 		template : _.template(PageVisualTemplate),
 
-		regions : {},
-
+		regions : {
+			inspectorRegion : '.inspector'
+		},
 		events : {
-			'click #clickAki' : 'addRelation',
+			'click #addEntity' : 'addEntity',
+			'click #addRelation' : 'addRelation',
 		},
-		addRelation : function() {
-			this.createRelation = true;
-		},
-		addAttribute : function() {
-			this.address.addAttribute(new AttributeModel({
-				name : 'nome',
-				type : {
-					className : 'String'
-				}
-			}));
+		ui : {},
+
+		_lastPosition : function() {
+
+			if (lastPositionX < (window.innerWidth - 160)) {
+				lastPositionX += 160;
+			} else {
+				lastPositionX = 200;
+			}
+			return lastPositionX
 		},
 
-		ui : {},
+		addRelation : function() {
+			var that = this;
+			var relation = new VisualRelationship();
+			that.graph.addCell(relation);
+		},
+
+		addEntity : function() {
+			var that = this;
+			var visualEntity = new VisualEntity({
+				position : {
+					x : this._lastPosition(),
+					y : 200
+				},
+
+				size : {
+					width : 120,
+					height : 100
+				},
+				entity : new EntityModel({
+					name : 'NO_NAME_' + lastPositionX,
+				}),
+			});
+
+			entities.push(visualEntity)
+
+			visualEntity.setOnSelect(function(entity) {
+
+			});
+			that.inspetorView.setVisualEntity(visualEntity)
+			that.graph.addCell(visualEntity);
+		},
 
 		initialize : function() {
 			var that = this;
-			that.link = new Joint.dia.Link({
-				source : {
-					x : 10,
-					y : 280
-				},
-				target : {
-					x : 740,
-					y : 280
-				},
 
-				smooth : false,
-				attrs : {
-					'.marker-source' : {
-						fill : '#4b4a67',
-						stroke : '#4b4a67',
-						d : 'M 10 0 L 0 5 L 10 10 z'
-					},
-					'.marker-target' : {
-						fill : '#4b4a67',
-						stroke : '#4b4a67',
-						d : 'M 10 0 L 0 5 L 10 10 z'
-					}
-				},
-				labels : [ {
-					position : 25,
-					attrs : {
-						text : {
-							text : '1'
-						}
-					}
-				}, {
-					position : -25,
-					attrs : {
-						text : {
-							text : 'n'
-						}
-					}
-				} ]
+			this.inspetorView = new InspetorEntidadesView({
+				model : new EntityModel({
+					name : 'Chico de Toinha Junior',
+				}),
 			});
-			this.address = new VisualEntity({
-				position : {
-					x : 30,
-					y : 90
-				},
-				size : {
-					width : 160,
-					height : 100
-				},
-				name : 'Pessoa',
-			// attributes : [ 'houseNumber: Integer', 'streetName: String',
-			// 'town: String', 'postcode: String' ],
-			});
-			this.address.addAttribute(new AttributeModel({
-				name : 'nome',
-				type : {
-					className : 'String'
-				}
-			}));
+
 			this.on('show', function() {
-
+				this.inspectorRegion.show(this.inspetorView);
 				this.graph = new Joint.dia.Graph();
 				this.paper = new Joint.dia.Paper({
 					el : $('#paper'),
-					width : 1800,
-					height : 1600,
+					height : window.innerHeight,
+					width : window.innerWidth,
 					gridSize : 1,
 					model : that.graph
 				});
-				this.paper.on('cell:pointerclick', function(cellView, evt, x, y) {
+				// Here is the real deal. Listen on cell:pointerup and link to an element found below.
+				this.paper.on('cell:pointerup', function(cellView, evt, x, y) {
 
-					if (that.createRelation) {
-						var rel = new Joint.shapes.uml.Composition({
-							source : {
-								id : cellView.model.id
-							},
-							target : {
-								x : x + 150,
-								y : y
-							}
-						});
-						that.graph.addCell(rel);
+					// Find the first element below that is not a link nor the dragged element itself.
+					var elementBelow = that.graph.get('cells').find(function(cell) {
+						if (cell instanceof Joint.dia.Link)
+							return false; // Not interested in links.
+						if (cell.id === cellView.model.id)
+							return false; // The same element as the dropped one.
+						if (cell.getBBox().containsPoint({
+							x : x,
+							y : y
+						})) {
+							return true;
+						}
+						return false;
+					});
+
+					// If the two elements are connected already, don't
+					// connect them again (this is application specific though).
+					if (elementBelow && !_.contains(that.graph.getNeighbors(elementBelow), cellView.model)) {
+
+						console.log('cellView ', cellView); // elemento que está sendo arrastado, no nosso caso as setas do relacionamento
+						console.log('elementBelow ', elementBelow);
+						// that.graph.addCell(new Joint.dia.Link({
+						// source : {
+						// id : cellView.model.id
+						// },
+						// target : {
+						// id : elementBelow.id
+						// },
+						// attrs : {
+						// '.marker-source' : {
+						// d : 'M 10 0 L 0 5 L 10 10 z'
+						// }
+						// }
+						// }));
+						// // Move the element a bit to the side.
+						// cellView.model.translate(-200, 0);
 					}
 				});
+				this.paper.on('cell:pointerclick', function(_cellView, evt, x, y) {
+					if (_cellView.model.get('type') == 'uml.Class') {
 
-				this.graph.addCell(this.address);
-				this.graph.addCell(this.link);
+						that.inspetorView.setVisualEntity(_cellView.model);
+
+					}
+				});
 			});
 		},
 	});

@@ -194,9 +194,8 @@ td-actions a {
 	position: relative !important;
 	background-color: white !important;
 	display: inline-table;
-	width: 220px;
-	box-shadow: 0 0 4px rgba(0, 33, 50, 0.1), 0 7px 10px
-		rgba(17, 38, 60, 0.4);
+	width: 300px;
+	box-shadow: 0 0 4px rgba(0, 33, 50, 0.1), 0 7px 10px rgba(17, 38, 60, 0.4);
 	display: inline-table;
 }
 
@@ -251,4 +250,21 @@ body {
 	background-color: none !important;
 	/* 	 linear-gradient(to right, rgba(0, 0, 0, 0.498039) 0%, */
 	/* 		rgba(0, 0, 0, 0) 100%); */
+}
+
+/* paineis e toolbars  */
+.toolbar {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	max-width: 80px !important;
+}
+/* paineis e toolbars  */
+.inspector {
+	position: fixed;
+	top: 62px;
+	right: 10px;
+	width: 300px;
+	height: 100px;
+	
 }

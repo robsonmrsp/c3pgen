@@ -1,5 +1,5 @@
 require.config({
-	// urlArgs : "bust=" + new Date().getTime(),
+	//urlArgs : "bust=" + new Date().getTime(),
 	paths : {
 		'jquery' : '../vendor/jquery/jquery-1.10.2',
 		'jqueryUI' : '../vendor/jquery.ui/jquery-ui-1.10.4.custom.min',
@@ -43,7 +43,7 @@ require.config({
 		'editable' : '../vendor/bootstrap3-editable/js/bootstrap-editable',
 		'joint' : '../vendor/joint/joint',
 		'shapesUml' : '../vendor/joint/joint.shapes.uml',
-//		'shapesErd' : '../vendor/joint/joint.shapes.erd',
+		// 'shapesErd' : '../vendor/joint/joint.shapes.erd',
 		'lodash' : '../vendor/lodash/lodash',
 	},
 	shim : {
@@ -107,13 +107,13 @@ require.config({
 			exports : 'datetimepicker_lang_pt_BR'
 		},
 		'joint' : {
-			deps : [ 'jquery', 'backbone','underscore'],
+			deps : [ 'jquery', 'backbone', 'underscore' ],
 			exports : 'joint'
 		},
 		'jqueryNumeric' : [ 'jquery' ],
-		
+
 		'shapesUml' : [ 'joint' ],
-//		'shapesErd' : [ 'joint' ],
+		// 'shapesErd' : [ 'joint' ],
 
 		'multiselect' : [ 'jquery' ],
 		'list' : {
@@ -135,7 +135,7 @@ require.config({
 
 		'metisMenu' : [ 'jquery' ],
 		'editable' : [ 'jquery' ],
-//		'jqueryJspanel' : [ 'jquery' ],
+	// 'jqueryJspanel' : [ 'jquery' ],
 	},
 	wrapShim : true,
 });
