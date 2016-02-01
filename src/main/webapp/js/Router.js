@@ -90,7 +90,7 @@ define(function(require) {
 	var PageUser = require('views/user/PageUser');
 	var FormUser = require('views/user/FormUser');
 	var UserModel = require('models/UserModel');
-	
+
 	var PageVisual = require('views/visual/PageVisual');
 
 	util.NProgress.setBlockerPanel('block_panel');
@@ -118,10 +118,10 @@ define(function(require) {
 
 	var AppRouter = Backbone.Router.extend({
 		routes : {
-			'' : 'visual',
+			'app/visual/:id' : 'visual',
 			// hashs de Application
-//			'app/visual' : 'visual',
-			'app/applications' : 'applications',
+			// 'app/visual' : 'visual',
+			'' : 'applications',
 			'app/application/:idApp/entities' : 'entitiesByApplication',
 			'app/categoria' : 'categoria',
 			'app/newApplication' : 'newApplication',
@@ -236,10 +236,27 @@ define(function(require) {
 				url : 'app/applications'
 			});
 		},
-		visual : function() {
+		visual : function(idApplication) {
 			util.markActiveItem('visual');
-			this.pageVisual= new PageVisual();
+
+			var model = new ApplicationModel({
+				id : idApplication,
+			})
+
+			model.fetch({
+				success : function(model) {
+					this.pageVisual = new PageVisual({
+						model : model,
+					});
+					that.App.mainRegion.show(formApplication);
+				},
+				error : function(x, y, z) {
+					console.error(x, y, z);
+				}
+			});
+
 			this.App.mainRegion.show(this.pageVisual);
+
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Application',
@@ -247,7 +264,7 @@ define(function(require) {
 				url : 'app/visual'
 			});
 		},
-		
+
 		entitiesByApplication : function(idApplication) {
 			var that = this;
 			var application = new ApplicationModel({

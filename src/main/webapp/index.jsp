@@ -85,9 +85,9 @@
 								<tbody>
 									<tr>
 										<td>
-											<a href="projects.html">
-												<i class="pe pe-7s-portfolio text-info"></i>
-												<h5>Projects</h5>
+											<a href="#app/applications">
+												<i class="pe pe-7s-display1 text-info"></i>
+												<h5>Applicações</h5>
 											</a>
 										</td>
 										<td>
@@ -103,26 +103,26 @@
 											</a>
 										</td>
 									</tr>
-									<tr>
-										<td>
-											<a href="forum.html">
-												<i class="pe pe-7s-comment text-info"></i>
-												<h5>Forum</h5>
-											</a>
-										</td>
-										<td>
-											<a href="analytics.html">
-												<i class="pe pe-7s-graph1 text-danger"></i>
-												<h5>Analytics</h5>
-											</a>
-										</td>
-										<td>
-											<a href="file_manager.html">
-												<i class="pe pe-7s-box1 text-success"></i>
-												<h5>Files</h5>
-											</a>
-										</td>
-									</tr>
+<!-- 									<tr> -->
+<!-- 										<td> -->
+<!-- 											<a href="forum.html"> -->
+<!-- 												<i class="pe pe-7s-comment text-info"></i> -->
+<!-- 												<h5>Forum</h5> -->
+<!-- 											</a> -->
+<!-- 										</td> -->
+<!-- 										<td> -->
+<!-- 											<a href="analytics.html"> -->
+<!-- 												<i class="pe pe-7s-graph1 text-danger"></i> -->
+<!-- 												<h5>Analytics</h5> -->
+<!-- 											</a> -->
+<!-- 										</td> -->
+<!-- 										<td> -->
+<!-- 											<a href="file_manager.html"> -->
+<!-- 												<i class="pe pe-7s-box1 text-success"></i> -->
+<!-- 												<h5>Files</h5> -->
+<!-- 											</a> -->
+<!-- 										</td> -->
+<!-- 									</tr> -->
 								</tbody>
 							</table>
 						</div>

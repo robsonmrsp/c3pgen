@@ -33,6 +33,7 @@ define(function(require) {
 
 		events : {
 			'click 	.save' : 'save',
+			'click 	.save' : 'save',
 			'click 	.saveAndContinue' : 'saveAndContinue',
 			'change  #inputSkin' : 'changeSkin',
 			'change  #inputRootPackage' : 'changeRootPackage',
@@ -42,8 +43,8 @@ define(function(require) {
 			inputId : '#inputId',
 			inputName : '#inputName',
 			inputSkin : '#inputSkin',
+			skinCarousel : '#skinCarousel',
 			inputRootPackage : '#inputRootPackage',
-
 			form : '#formApplication',
 		},
 
@@ -58,6 +59,10 @@ define(function(require) {
 					promptPosition : "topLeft",
 					isOverflown : false,
 					validationEventTrigger : "change"
+				});
+
+				this.ui.skinCarousel.on('slide.bs.carousel', function(elem) {
+					that.ui.inputSkin.val($(elem.relatedTarget).attr('skin'));
 				});
 			});
 		},

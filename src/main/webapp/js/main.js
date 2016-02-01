@@ -1,5 +1,5 @@
 require.config({
-	//urlArgs : "bust=" + new Date().getTime(),
+	// urlArgs : "bust=" + new Date().getTime(),
 	paths : {
 		'jquery' : '../vendor/jquery/jquery-1.10.2',
 		'jqueryUI' : '../vendor/jquery.ui/jquery-ui-1.10.4.custom.min',
@@ -134,12 +134,17 @@ require.config({
 		'jqueryGritter' : [ 'jquery' ],
 
 		'metisMenu' : [ 'jquery' ],
-		'editable' : [ 'jquery' ],
+		'editable' : [ 'jquery', 'bootstrap' ],
 	// 'jqueryJspanel' : [ 'jquery' ],
 	},
 	wrapShim : true,
 });
-
+requirejs.onResourceLoad = function(context, map, depArray) {
+	// var duration = new Date() - start;
+//	console.log("Carregando...", depArray);
+//	console.log("Carregando...", map.id);
+}
 require([ 'App' ], function(App) {
 	App.initialize();
+
 });

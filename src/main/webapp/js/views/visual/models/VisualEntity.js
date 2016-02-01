@@ -115,8 +115,14 @@ define(function(require) {
 		},
 
 		initialize : function(opt) {
+			var that = this;
 			this.entity = new EntityModel();
 			this.mapAtributes = new Col.Map();
+
+			this.on('change:position', function(el, chng) {
+				that.entity.set('posX', chng.x)
+				that.entity.set('posY', chng.y)
+			});
 
 			this.entity.set(opt.entity.attributes);
 

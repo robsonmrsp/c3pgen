@@ -56,15 +56,15 @@ define(function(require) {
 			var that = this;
 			var visualEntity = new VisualEntity({
 				position : {
-					x : (_entity && _entity.get('posX')) || this._lastPosition(),
-					y : (_entity && _entity.get('posY')) || 200
+					x : (_entity && _entity.get && _entity.get('posX')) || this._lastPosition(),
+					y : (_entity && _entity.get && _entity.get('posY')) || 200
 				},
 
 				size : {
 					width : 120,
 					height : 100
 				},
-				entity : _entity || new EntityModel({
+				entity : (_entity && _entity.get) || new EntityModel({
 					name : 'NO_NAME_' + lastPositionX,
 				}),
 			});

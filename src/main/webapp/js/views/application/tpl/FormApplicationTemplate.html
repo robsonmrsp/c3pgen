@@ -9,49 +9,49 @@
 						Escolha do visual da aplicação
 					</div>
 					<div class="panel-body">
-						<div id="myCarousel" class="carousel slide" data-interval="false">
+						<div id="skinCarousel" class="carousel slide" data-interval="false">
 							<!-- Indicators -->
 							<ol class="carousel-indicators" style="color: #6a6c6f; border-color: #6a6c6f">
-								<li data-target="#myCarousel" data-slide-to="0" class="active" style="background-color: #6a6c6f; color: #6a6c6f; border-color: #6a6c6f"></li>
+								<li data-target="#myCarousel" data-slide-to="0" style="background-color: #6a6c6f; color: #6a6c6f; border-color: #6a6c6f"></li>
 								<li data-target="#myCarousel" data-slide-to="1" style="background-color: #6a6c6f; color: #6a6c6f; border-color: #6a6c6f"></li>
 								<li data-target="#myCarousel" data-slide-to="2" style="background-color: #6a6c6f; color: #6a6c6f; border-color: #6a6c6f"></li>
 								<li data-target="#myCarousel" data-slide-to="3" style="background-color: #6a6c6f; color: #6a6c6f; border-color: #6a6c6f"></li>
 							</ol>
 							<!-- Wrapper for slides -->
 							<div class="carousel-inner" role="listbox">
-								<div class="item active">
-									<img src="images/templates/inspinia.png" alt="Chania">
+								<div class="item active" skin="Inspinia">
+									<img src="images/templates/inspinia.png" alt="Inspinia">
 									<div class="carousel-caption">
 										<h3 style="font-size: 60px; color: #6a6c6f">Inspinia</h3>
 									</div>
 								</div>
-								<div class="item">
-									<img src="images/templates/homer.png" alt="Chania">
+								<div class="item" skin="Homer">
+									<img src="images/templates/homer.png" alt="Homer">
 									<div class="carousel-caption">
 										<h3 style="font-size: 60px; color: #6a6c6f">Homer</h3>
 									</div>
 								</div>
-								<div class="item ">
-									<img src="images/templates/sprflat.png" alt="Flower" class="image_template_active">
+								<div class="item " skin="Sprflat">
+									<img src="images/templates/sprflat.png" alt="Sprflat">
 									<div class="carousel-caption">
 										<h3 style="font-size: 60px; color: #6a6c6f">Sprflat</h3>
 									</div>
 								</div>
-								<div class="item">
-									<img src="images/templates/ace.png" alt="Flower">
+								<div class="item" skin="Ace">
+									<img src="images/templates/ace.png" alt="Ace">
 									<div class="carousel-caption">
 										<h3 style="font-size: 60px; color: #6a6c6f">Ace</h3>
 									</div>
 								</div>
 							</div>
 							<!-- Left and right controls -->
-							<a class="left carousel-control custom-carrousel-control custom-carrousel-control" href="#myCarousel" role="button" data-slide="prev">
+							<a class="left carousel-control custom-carrousel-control custom-carrousel-control" href="#skinCarousel" role="button" data-slide="prev">
 								<i class="fa fa-fast-backward fa-2x"></i>
-								<span class="sr-only">Previous</span>
+								<span class="sr-only">Anterior</span>
 							</a>
-							<a class="right carousel-control custom-carrousel-control" href="#myCarousel" role="button" data-slide="next">
+							<a class="right carousel-control custom-carrousel-control" href="#skinCarousel" role="button" data-slide="next">
 								<i class="fa fa-fast-forward fa-2x"></i>
-								<span class="sr-only">Next</span>
+								<span class="sr-only">Próximo</span>
 							</a>
 						</div>
 					</div>
@@ -64,19 +64,13 @@
 				</div>
 				<div class="panel-body">
 					<input type="hidden" id="inputId" value="{{id}}">
+					<div id="groupInputSkin" class="form-group">
+						<label class="control-label" for="inputSkin">Template</label>
+						<input type="text" id="inputSkin" placeholder="Template" value="{{skin || 'Inspinia'}}" class="form-control" readonly="readonly">
+					</div>
 					<div id="groupInputName" class="form-group">
 						<label class="control-label" for="inputName">Nome</label>
 						<input type="text" id="inputName" placeholder="Nome" value="{{name}}" class="form-control  validate[required]">
-					</div>
-					<div id="groupInputSkin" class="form-group">
-						<label class="control-label" for="inputSkin">Template</label>
-						<select id="inputSkin" placeholder="Template" value="{{skin}}" class="form-control  validate[required]">
-							<option value="">-- Selecione --</option>
-							<option value="ace">ace</option>
-							<option value="homer">homer</option>
-							<option value="inspinia">inspinia</option>
-							<option value="sprflat">sprflat</option>
-						</select>
 					</div>
 					<div id="groupInputName" class="form-group">
 						<label class="control-label" for="inputName">Descrição</label>
