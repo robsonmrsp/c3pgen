@@ -247,6 +247,7 @@ define(function(require) {
 				url : 'app/visual'
 			});
 		},
+		
 		entitiesByApplication : function(idApplication) {
 			var that = this;
 			var application = new ApplicationModel({

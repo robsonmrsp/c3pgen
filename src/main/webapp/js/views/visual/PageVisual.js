@@ -28,8 +28,13 @@ define(function(require) {
 		events : {
 			'click #addEntity' : 'addEntity',
 			'click #addRelation' : 'addRelation',
+			'click #saveApp' : 'saveApplication',
 		},
 		ui : {},
+
+		saveApplication : function() {
+			console.log(entities);
+		},
 
 		_lastPosition : function() {
 
@@ -47,19 +52,19 @@ define(function(require) {
 			that.graph.addCell(relation);
 		},
 
-		addEntity : function() {
+		addEntity : function(_entity) {
 			var that = this;
 			var visualEntity = new VisualEntity({
 				position : {
-					x : this._lastPosition(),
-					y : 200
+					x : (_entity && _entity.get('posX')) || this._lastPosition(),
+					y : (_entity && _entity.get('posY')) || 200
 				},
 
 				size : {
 					width : 120,
 					height : 100
 				},
-				entity : new EntityModel({
+				entity : _entity || new EntityModel({
 					name : 'NO_NAME_' + lastPositionX,
 				}),
 			});
@@ -103,7 +108,7 @@ define(function(require) {
 							return false; // Not interested in links.
 						if (cell.id === cellView.model.id)
 							return false; // The same element as the dropped
-											// one.
+						// one.
 						if (cell.getBBox().containsPoint({
 							x : x,
 							y : y
@@ -118,10 +123,10 @@ define(function(require) {
 					if (elementBelow && !_.contains(that.graph.getNeighbors(elementBelow), cellView.model)) {
 
 						console.log('cellView ', cellView); // elemento que está
-															// sendo arrastado,
-															// no nosso caso as
-															// setas do
-															// relacionamento
+						// sendo arrastado,
+						// no nosso caso as
+						// setas do
+						// relacionamento
 						console.log('elementBelow ', elementBelow);
 
 					}
