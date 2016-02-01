@@ -3,6 +3,7 @@ define(function(require) {
 	var Joint = require('joint');
 	var AttributeModel = require('models/AttributeModel');
 	var EntityModel = require('models/EntityModel');
+	var Col = require('adapters/col-adapter');
 
 	var VisualEntity = Joint.shapes.basic.Generic.extend({
 
@@ -76,29 +77,56 @@ define(function(require) {
 
 		}, Joint.shapes.basic.Generic.prototype.defaults),
 
-		addAttribute : function(attrModel) {
+		addAttribute : function(modelAttribute) {
 
-			this.attributeModels.push(attrModel);
+			this.set('attributes', this._mergeAttributes(modelAttribute));
+			this.updateRectangles();
+			this.trigger('uml-update');
+		},
 
-			var attrs = this.get('attributes');
-			attrs.push(attrModel.get('name') + ':' + attrModel.get('type').className);
-			this.set('attributes', attrs);
+		update : function(modelEntity) {
+			this.mapAtributes.clear();
+			this.updateViewWithEntity(modelEntity);
+		},
+
+		updateViewWithEntity : function(entity) {
+			var that = this;
+			this.set('name', entity.get('name'));
+
+			if (entity.get('attributes')) {
+				entity.get('attributes').each(function(attr) {
+					that.addAttribute(attr);
+				});
+			}
+			// Depois de atualizar a view, atualizamos o core
+			this.entity.set(entity.attributes);
+		},
+
+		_mergeAttributes : function(modelAttribute) {
+
+			var returnArrayAtributes = [ 'id: Integer (+)' ];
+
+			this.mapAtributes.put(modelAttribute.get('name'), modelAttribute);
+
+			_.each(this.mapAtributes.values(), function(attrModel) {
+				returnArrayAtributes.push(attrModel.get('name') + ':' + attrModel.get('type').className);
+			})
+			return returnArrayAtributes;
 		},
 
 		initialize : function(opt) {
 			this.entity = new EntityModel();
+			this.mapAtributes = new Col.Map();
 
 			this.entity.set(opt.entity.attributes);
 
-			this.attributeModels = [];
 			this.on('cell:pointerclick', function(a, b, c) {
-				console.log(a, b, c)
+
 			});
 
 			this.updateViewWithEntity(this.entity);
 
 			this.on('change:name change:attributes change:relationships', function() {
-				console.log(this.entity);
 				this.updateRectangles();
 				this.trigger('uml-update');
 
@@ -113,23 +141,6 @@ define(function(require) {
 			this.onSelect = _onSel;
 		},
 
-		updateViewWithEntity : function(entity) {
-			var that = this;
-
-			// nome
-			this.set('name', entity.get('name'));
-			//
-
-			var attrs = entity.get('attributes');
-			console.log(attrs);
-
-			_.each(attrs, function(attr) {
-				that.addAttribute(new AttributeModel(attr));
-			});
-
-			// Depois de atualizar a view, atualizamos o core
-			this.entity.set(entity.attributes);
-		},
 		getClassName : function() {
 			return this.get('name');
 		},

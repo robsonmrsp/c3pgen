@@ -29,19 +29,20 @@ import br.com.c3pgen.rs.exception.ValidationException;
 import br.com.c3pgen.security.SpringSecurityUserContext;
 import br.com.c3pgen.service.AttributeService;
 import br.com.c3pgen.utils.Parser;
+
 /**
-*  generated: 03/09/2015 14:51:48
-**/
+ * generated: 03/09/2015 14:51:48
+ **/
 
 @Path("/crud/attributes")
 public class AttributeResources {
 
 	@Inject
 	AttributeService attributeService;
-	
+
 	@Inject
 	private SpringSecurityUserContext context;
-	
+
 	public static final Logger LOGGER = Logger.getLogger(AttributeResources.class);
 
 	@GET
@@ -161,6 +162,16 @@ public class AttributeResources {
 			String message = String.format("Não foi possivel salvar o registro [ %s ] parametros [ %s ]", e.getMessage(), jsonAttribute.toString());
 			LOGGER.error(message, e);
 			return Response.serverError().entity(new JsonError(message, jsonAttribute)).build();
+		}
+	}
+
+	@DELETE
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response delete() {
+		try {
+			return Response.ok(Boolean.TRUE).build();
+		} catch (ValidationException e) {
+			return Response.serverError().entity(new JsonError("Erro removendo lixo", null)).build();
 		}
 	}
 

@@ -78,7 +78,7 @@ define(function(require) {
 
 			this.inspetorView = new InspetorEntidadesView({
 				model : new EntityModel({
-					name : 'Chico de Toinha Junior',
+					name : '',
 				}),
 			});
 
@@ -92,15 +92,18 @@ define(function(require) {
 					gridSize : 1,
 					model : that.graph
 				});
-				// Here is the real deal. Listen on cell:pointerup and link to an element found below.
+				// Here is the real deal. Listen on cell:pointerup and link to
+				// an element found below.
 				this.paper.on('cell:pointerup', function(cellView, evt, x, y) {
 
-					// Find the first element below that is not a link nor the dragged element itself.
+					// Find the first element below that is not a link nor the
+					// dragged element itself.
 					var elementBelow = that.graph.get('cells').find(function(cell) {
 						if (cell instanceof Joint.dia.Link)
 							return false; // Not interested in links.
 						if (cell.id === cellView.model.id)
-							return false; // The same element as the dropped one.
+							return false; // The same element as the dropped
+											// one.
 						if (cell.getBBox().containsPoint({
 							x : x,
 							y : y
@@ -114,23 +117,13 @@ define(function(require) {
 					// connect them again (this is application specific though).
 					if (elementBelow && !_.contains(that.graph.getNeighbors(elementBelow), cellView.model)) {
 
-						console.log('cellView ', cellView); // elemento que está sendo arrastado, no nosso caso as setas do relacionamento
+						console.log('cellView ', cellView); // elemento que está
+															// sendo arrastado,
+															// no nosso caso as
+															// setas do
+															// relacionamento
 						console.log('elementBelow ', elementBelow);
-						// that.graph.addCell(new Joint.dia.Link({
-						// source : {
-						// id : cellView.model.id
-						// },
-						// target : {
-						// id : elementBelow.id
-						// },
-						// attrs : {
-						// '.marker-source' : {
-						// d : 'M 10 0 L 0 5 L 10 10 z'
-						// }
-						// }
-						// }));
-						// // Move the element a bit to the side.
-						// cellView.model.translate(-200, 0);
+
 					}
 				});
 				this.paper.on('cell:pointerclick', function(_cellView, evt, x, y) {

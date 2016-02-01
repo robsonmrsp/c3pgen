@@ -27,7 +27,7 @@ define(function(require) {
 	    	unique : '',    	
 			entity : null,
 			name : '',    	
-			type : null,
+			type : "String",
 			viewApproach : null,
 		
 		}

@@ -53,7 +53,14 @@ define(function(require) {
 		},
 
 		deleteAtribute : function() {
-			this.model.destroy();
+			this.model.destroy({
+				success : function(a, b, c) {
+					console.log('Removendo atributo ', a, b, c);
+				},
+				error : function(a, b, c) {
+					console.warn('Erro ao detelar atributo ', a, b, c);
+				}
+			});
 		},
 
 		getModel : function() {
@@ -154,6 +161,7 @@ define(function(require) {
 						util.refreshEditable(that.ui.inputMask, '99/99/9999 99:99');
 						util.refreshEditable(that.ui.inputMaxLen, 16)
 					}
+					this.trigger('attribute:change', this.model);
 				})
 
 				this.ui.inputViewApproach.editable({
@@ -213,7 +221,7 @@ define(function(require) {
 						editable.input.$input.val($(evt.target).text() || $(evt.target).val());
 					}
 				});
-				
+
 				this.hideShow();
 			});
 		},

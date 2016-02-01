@@ -62,7 +62,6 @@ define(function(require) {
 			this.ui.panelBody.show();
 			var newAtribute = new AttributeModel();
 			this.attributesCollection.add(newAtribute);
-			this.visualEntity.addAttribute(newAtribute);
 		},
 
 		addRelationship : function() {
@@ -84,14 +83,19 @@ define(function(require) {
 			});
 
 			this.attributesCollection = new AttributeCollection(this.model.get('attributes'));
-			this.model.set('attributes', this.attributesCollection);
+
+			this.attributesCollection.on('change', this.updateViewEntity, this);
+			this.attributesCollection.on('destroy', this.updateViewEntity, this);
 
 			this.attributesCollectionView = new AttributesCollectionView({
 				collection : this.attributesCollection,
 			});
 
+			this.model.set('attributes', this.attributesCollection);
+
 			// configuração dos relacionamentos
 			this.relationshipsCollection = new RelationshipCollection(this.model.get('relationships'));
+
 			this.model.set('relationships', this.relationshipsCollection);
 
 			this.relationshipsCollectionView = new RelationshipsCollectionView({
@@ -138,9 +142,14 @@ define(function(require) {
 			});
 		},
 
+		updateViewEntity : function(model, collection) {
+			this.visualEntity.update(this.model);
+		},
+
 		changeEntity : function() {
 			this.model.set(this.getModel());
-			this.visualEntity.updateViewWithEntity(this.model);
+
+			this.visualEntity.update(this.model);
 		},
 
 		deleteAtribute : function() {
