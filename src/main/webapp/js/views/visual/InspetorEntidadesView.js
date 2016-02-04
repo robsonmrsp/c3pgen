@@ -143,10 +143,12 @@ define(function(require) {
 		},
 
 		updateViewEntity : function(model, collection) {
+
 			this.visualEntity.update(this.model);
 		},
 
 		changeEntity : function() {
+
 			this.model.set(this.getModel());
 
 			this.visualEntity.update(this.model);

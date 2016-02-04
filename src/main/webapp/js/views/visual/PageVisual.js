@@ -64,16 +64,16 @@ define(function(require) {
 					width : 120,
 					height : 100
 				},
-				entity : (_entity && _entity.get) || new EntityModel({
+				entity : (_entity && _entity.get ) || new EntityModel({
 					name : 'NO_NAME_' + lastPositionX,
 				}),
 			});
 
 			entities.push(visualEntity)
 
-			visualEntity.setOnSelect(function(entity) {
-
-			});
+			// visualEntity.setOnSelect(function(entity) {
+			//
+			// });
 			that.inspetorView.setVisualEntity(visualEntity)
 			that.graph.addCell(visualEntity);
 		},
@@ -99,37 +99,47 @@ define(function(require) {
 				});
 				// Here is the real deal. Listen on cell:pointerup and link to
 				// an element found below.
-				this.paper.on('cell:pointerup', function(cellView, evt, x, y) {
+				this.paper.on('cell:pointerup', function(_cellView, evt, x, y) {
 
-					// Find the first element below that is not a link nor the
-					// dragged element itself.
-					var elementBelow = that.graph.get('cells').find(function(cell) {
-						if (cell instanceof Joint.dia.Link)
-							return false; // Not interested in links.
-						if (cell.id === cellView.model.id)
-							return false; // The same element as the dropped
-						// one.
-						if (cell.getBBox().containsPoint({
-							x : x,
-							y : y
-						})) {
-							return true;
-						}
-						return false;
-					});
+					if (_cellView.model.get('type') == 'uml.Class') {
 
-					// If the two elements are connected already, don't
-					// connect them again (this is application specific though).
-					if (elementBelow && !_.contains(that.graph.getNeighbors(elementBelow), cellView.model)) {
-
-						console.log('cellView ', cellView); // elemento que está
-						// sendo arrastado,
-						// no nosso caso as
-						// setas do
-						// relacionamento
-						console.log('elementBelow ', elementBelow);
+						that.inspetorView.setVisualEntity(_cellView.model);
 
 					}
+					// // Find the first element below that is not a link nor
+					// the
+					// // dragged element itself.
+					// var elementBelow =
+					// that.graph.get('cells').find(function(cell) {
+					// if (cell instanceof Joint.dia.Link)
+					// return false; // Not interested in links.
+					// if (cell.id === cellView.model.id)
+					// return false; // The same element as the dropped
+					// // one.
+					// if (cell.getBBox().containsPoint({
+					// x : x,
+					// y : y
+					// })) {
+					// return true;
+					// }
+					// return false;
+					// });
+					//
+					// // If the two elements are connected already, don't
+					// // connect them again (this is application specific
+					// though).
+					// if (elementBelow &&
+					// !_.contains(that.graph.getNeighbors(elementBelow),
+					// cellView.model)) {
+					//
+					// console.log('cellView ', cellView); // elemento que está
+					// // sendo arrastado,
+					// // no nosso caso as
+					// // setas do
+					// // relacionamento
+					// console.log('elementBelow ', elementBelow);
+					//
+					// }
 				});
 				this.paper.on('cell:pointerclick', function(_cellView, evt, x, y) {
 					if (_cellView.model.get('type') == 'uml.Class') {

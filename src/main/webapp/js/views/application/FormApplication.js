@@ -53,7 +53,6 @@ define(function(require) {
 			that.entities.add(this.model.get('entities'));
 			this.on('show', function() {
 
-				this.ui.inputSkin.val(this.model.get('skin'));
 				this.ui.form.validationEngine('attach', {
 					promptPosition : "topLeft",
 					isOverflown : false,

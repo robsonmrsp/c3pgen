@@ -80,6 +80,7 @@ define(function(require) {
 		addAttribute : function(modelAttribute) {
 
 			this.set('attributes', this._mergeAttributes(modelAttribute));
+
 			this.updateRectangles();
 			this.trigger('uml-update');
 		},
@@ -87,11 +88,16 @@ define(function(require) {
 		update : function(modelEntity) {
 			this.mapAtributes.clear();
 			this.updateViewWithEntity(modelEntity);
+
+			this.updateRectangles();
+			this.trigger('uml-update');
 		},
 
 		updateViewWithEntity : function(entity) {
 			var that = this;
 			this.set('name', entity.get('name'));
+
+			this.set('attributes', this._mergeAttributes());
 
 			if (entity.get('attributes')) {
 				entity.get('attributes').each(function(attr) {
@@ -106,23 +112,19 @@ define(function(require) {
 
 			var returnArrayAtributes = [ 'id: Integer (+)' ];
 
-			this.mapAtributes.put(modelAttribute.get('name'), modelAttribute);
+			if (modelAttribute) {
+				this.mapAtributes.put(modelAttribute.get('name'), modelAttribute);
 
-			_.each(this.mapAtributes.values(), function(attrModel) {
-				returnArrayAtributes.push(attrModel.get('name') + ':' + attrModel.get('type').className);
-			})
+				_.each(this.mapAtributes.values(), function(attrModel) {
+					returnArrayAtributes.push(attrModel.get('name') + ':' + attrModel.get('type').className);
+				})
+			}
 			return returnArrayAtributes;
 		},
 
 		initialize : function(opt) {
-			var that = this;
 			this.entity = new EntityModel();
 			this.mapAtributes = new Col.Map();
-
-			this.on('change:position', function(el, chng) {
-				that.entity.set('posX', chng.x)
-				that.entity.set('posY', chng.y)
-			});
 
 			this.entity.set(opt.entity.attributes);
 
@@ -181,10 +183,10 @@ define(function(require) {
 			});
 			var newH = that.get('size').height;
 
-			// that.set('size', {
-			// width : 160,
-			// height : newH + 12,
-			// });
+			that.set('size', {
+				width : 160,
+				height : newH + 0.7,
+			});
 
 		}
 
