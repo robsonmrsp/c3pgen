@@ -237,6 +237,7 @@ define(function(require) {
 			});
 		},
 		visual : function(idApplication) {
+			var that = this;
 			util.markActiveItem('visual');
 
 			var model = new ApplicationModel({
@@ -245,10 +246,10 @@ define(function(require) {
 
 			model.fetch({
 				success : function(model) {
-					this.pageVisual = new PageVisual({
+					that.pageVisual = new PageVisual({
 						model : model,
 					});
-					that.App.mainRegion.show(formApplication);
+					that.App.mainRegion.show(that.pageVisual);
 				},
 				error : function(x, y, z) {
 					console.error(x, y, z);

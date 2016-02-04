@@ -33,8 +33,7 @@ define(function(require) {
 
 		events : {
 			'click 	.save' : 'save',
-			'click 	.save' : 'save',
-			'click 	.saveAndContinue' : 'saveAndContinue',
+			'click 	#saveAndVisual' : 'saveAndVisual',
 			'change  #inputSkin' : 'changeSkin',
 			'change  #inputRootPackage' : 'changeRootPackage',
 		},
@@ -67,7 +66,7 @@ define(function(require) {
 			});
 		},
 
-		saveAndContinue : function() {
+		saveAndVisual : function() {
 			this.save(true)
 		},
 
@@ -84,7 +83,7 @@ define(function(require) {
 						if (continua != true) {
 							util.goPage('app/applications', true);
 						} else {
-							util.goPage('app/application/' + _model.get('id') + '/entities', true);
+							util.goPage('app/visual/' + _model.get('id'), true);
 						}
 					},
 
