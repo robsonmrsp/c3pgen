@@ -151,7 +151,7 @@ define(function(require) {
 
 		getModel : function() {
 			return {
-				id : this.ui.inputId.val(),
+				id : this.ui.inputId.val() || null,
 				name : this.ui.inputEntityName.text(),
 				displayName : this.ui.inputDisplayName.text(),
 				tableName : this.ui.inputTableName.text(),

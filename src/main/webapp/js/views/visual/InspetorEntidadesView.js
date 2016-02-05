@@ -18,6 +18,7 @@ define(function(require) {
 	var InspetorEntidadesViewTemplate = require('text!views/visual/tpl/InspetorEntidadesViewTemplate.html');
 
 	var AttributesCollectionView = require('views/categoria/AttributesCollectionView');
+
 	var RelationshipsCollectionView = require('views/categoria/RelationshipsCollectionView');
 
 	var EntidadeItem = Marionette.LayoutView.extend({
@@ -172,7 +173,7 @@ define(function(require) {
 
 		getModel : function() {
 			return {
-				id : this.ui.inputId.val(),
+				id : this.ui.inputId.val() || null,
 				name : this.ui.inputEntityName.text(),
 				displayName : this.ui.inputDisplayName.text(),
 				tableName : this.ui.inputTableName.text(),

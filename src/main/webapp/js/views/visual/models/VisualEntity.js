@@ -80,6 +80,10 @@ define(function(require) {
 		getAttributes : function() {
 			return this.mapAtributes.values();
 		},
+
+		getRelationships : function() {
+			return this.mapRelationships.values();
+		},
 		addAttribute : function(modelAttribute) {
 
 			this.set('attributes', this._mergeAttributes(modelAttribute));
@@ -90,6 +94,7 @@ define(function(require) {
 
 		update : function(modelEntity) {
 			this.mapAtributes.clear();
+			this.mapRelationships.clear();
 			this.updateViewWithEntity(modelEntity);
 
 			this.updateRectangles();
@@ -128,6 +133,7 @@ define(function(require) {
 		initialize : function(opt) {
 			this.entity = new EntityModel();
 			this.mapAtributes = new Col.Map();
+			this.mapRelationships = new Col.Map();
 
 			this.entity.set(opt.entity.attributes);
 
