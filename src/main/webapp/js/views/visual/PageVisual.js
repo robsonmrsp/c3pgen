@@ -52,6 +52,9 @@ define(function(require) {
 			that.graph.addCell(relation);
 		},
 
+		/**
+		 * Deve receber um EntityModel
+		 */
 		addEntity : function(_entity) {
 			var that = this;
 			var visualEntity = new VisualEntity({

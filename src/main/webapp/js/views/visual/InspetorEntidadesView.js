@@ -28,6 +28,7 @@ define(function(require) {
 			attributesRegion : '.attributes',
 			relationshipsRegion : '.relationships',
 		},
+
 		events : {
 			'click .add-attribute' : 'addAttribute',
 			'click .add-relation' : 'addRelationship',
@@ -104,10 +105,6 @@ define(function(require) {
 
 			this.on('show', function() {
 
-				// this.$el.offset({
-				// top : this.model.get('posY') || 100,
-				// left : this.model.get('posX') || 100
-				// })
 				var that = this;
 				this.ui.inputEntityName.editable();
 				this.ui.inputDisplayName.editable();
@@ -163,6 +160,8 @@ define(function(require) {
 			var entity = visualEntity.entity;
 
 			this.visualEntity = visualEntity;
+
+			this.attributesCollection.reset(visualEntity.getAttributes());
 
 			this.ui.inputId.val(entity.get('id'));
 			this.ui.inputEntityName.text(entity.get('name'));

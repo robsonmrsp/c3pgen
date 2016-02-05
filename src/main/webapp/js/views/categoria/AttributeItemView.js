@@ -65,7 +65,7 @@ define(function(require) {
 
 		getModel : function() {
 			return {
-				id : this.ui.inputId.val(),
+				id : this.ui.inputId.val() || null,
 				name : this.ui.inputAtributeName.text(),
 
 				displayName : C3P.notEmptyVal(this.ui.inputDisplayName),

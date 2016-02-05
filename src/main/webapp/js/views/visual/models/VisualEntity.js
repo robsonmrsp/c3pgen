@@ -77,6 +77,9 @@ define(function(require) {
 
 		}, Joint.shapes.basic.Generic.prototype.defaults),
 
+		getAttributes : function() {
+			return this.mapAtributes.values();
+		},
 		addAttribute : function(modelAttribute) {
 
 			this.set('attributes', this._mergeAttributes(modelAttribute));
