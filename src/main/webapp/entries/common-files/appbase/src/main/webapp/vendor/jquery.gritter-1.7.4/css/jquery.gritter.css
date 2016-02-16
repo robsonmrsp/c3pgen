@@ -1,0 +1,112 @@
+/* -----------------------------------------
+   Gritter notifications
+----------------------------------------- */
+#gritter-notice-wrapper {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 301px;
+  z-index: 9999;
+}
+#gritter-notice-wrapper.top-left {
+  left: 20px;
+  right: auto;
+}
+#gritter-notice-wrapper.bottom-right {
+  top: auto;
+  left: auto;
+  bottom: 20px;
+  right: 20px;
+}
+#gritter-notice-wrapper.bottom-left {
+  top: auto;
+  right: auto;
+  bottom: 20px;
+  left: 20px;
+}
+#gritter-notice-wrapper .gritter-item-wrapper {
+  position: relative;
+  margin: 0 0 10px 0;
+}
+#gritter-notice-wrapper .gritter-item-wrapper .gritter-item {
+  display: block;
+  background: #79859b;
+  border: 1px solid #555f72;
+  color: #ffffff;
+  padding: 10px 11px;
+  font-size: 12px;
+  border-radius: 4px;
+  transition: background;
+  transition-duration: 0.4s;
+}
+#gritter-notice-wrapper .gritter-item-wrapper .gritter-item:hover {
+  background: #8892a6;
+}
+#gritter-notice-wrapper .gritter-item-wrapper .gritter-item p {
+  padding: 0;
+  margin: 0;
+  word-wrap: break-word;
+}
+#gritter-notice-wrapper .gritter-item-wrapper .gritter-item .gritter-close {
+  position: absolute;
+  top: 5px;
+  right: 7px;
+  cursor: pointer;
+}
+#gritter-notice-wrapper .gritter-item-wrapper .gritter-item .gritter-close i {
+  font-size: 16px;
+  color: #ffffff;
+  transition: background;
+  transition-duration: 0.4s;
+}
+#gritter-notice-wrapper .gritter-item-wrapper .gritter-item .gritter-close:hover i {
+  color: #f7f7f7;
+}
+#gritter-notice-wrapper .gritter-item-wrapper .gritter-item .gritter-image {
+  width: 48px;
+  height: 48px;
+  float: left;
+  border-radius: 4px;
+}
+#gritter-notice-wrapper .gritter-item-wrapper .gritter-item .gritter-icon {
+  margin-top: 12px;
+  margin-right: 10px;
+  float: left;
+  font-size: 32px;
+}
+#gritter-notice-wrapper .gritter-item-wrapper .gritter-item .gritter-with-image {
+  width: 220px;
+  float: right;
+  padding: 0;
+}
+#gritter-notice-wrapper .gritter-item-wrapper .gritter-item .gritter-without-image {
+  padding: 0;
+}
+#gritter-notice-wrapper .gritter-item-wrapper .gritter-item .gritter-title {
+  font-size: 14px;
+  font-weight: bold;
+  padding: 0 0 5px 0;
+  display: block;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.4);
+}
+#gritter-notice-wrapper .gritter-item-wrapper.success-notice .gritter-item {
+  background: #71d398;
+  border: 1px solid #3bbd6e;
+}
+#gritter-notice-wrapper .gritter-item-wrapper.success-notice .gritter-item:hover {
+  background: #84d9a6;
+}
+#gritter-notice-wrapper .gritter-item-wrapper.info-notice .gritter-item {
+  background: #97d3c5;
+  border: 1px solid #61bca7;
+}
+#gritter-notice-wrapper .gritter-item-wrapper.info-notice .gritter-item:hover {
+  background: #a9dbcf;
+}
+#gritter-notice-wrapper .gritter-item-wrapper.error-notice .gritter-item {
+  background: #f68484;
+  border: 1px solid #f13d3d;
+}
+#gritter-notice-wrapper .gritter-item-wrapper.error-notice .gritter-item:hover {
+  background: #f89c9c;
+}

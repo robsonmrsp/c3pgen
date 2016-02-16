@@ -16,7 +16,6 @@ import org.hibernate.envers.Audited;
 
 import br.com.c3pgen.base.util.Util;
 
-
 @Entity
 @Audited
 @Table(name = "ATTRIBUTE")
@@ -55,9 +54,12 @@ public class Attribute extends AbstractTimestampEntity {
 	@Column(name = "UNIQUE_FIELD")
 	private Boolean unique;
 
+	@Column(name = "SHOW_IN_PAGES")
+	private Boolean showInPages;
+
 	@ManyToOne
 	@JoinColumn(name = "ID_ENTITY")
-	private TheEntity entity;
+	private ApplicationEntity entity;
 
 	@ManyToOne
 	@JoinColumn(name = "ID_TYPE")
@@ -161,11 +163,11 @@ public class Attribute extends AbstractTimestampEntity {
 		this.unique = unique;
 	}
 
-	public TheEntity getEntity() {
+	public ApplicationEntity getEntity() {
 		return entity;
 	}
 
-	public void setEntity(TheEntity theEntity) {
+	public void setEntity(ApplicationEntity theEntity) {
 		this.entity = theEntity;
 	}
 
@@ -190,6 +192,17 @@ public class Attribute extends AbstractTimestampEntity {
 			setDisplayName(Util.firstUpperCase(getName()));
 		}
 		return displayName;
+	}
+
+	public Boolean getShowInPages() {
+		if (showInPages == null) {
+			setShowInPages(Boolean.TRUE);
+		}
+		return showInPages;
+	}
+
+	public void setShowInPages(Boolean showInPages) {
+		this.showInPages = showInPages;
 	}
 
 }

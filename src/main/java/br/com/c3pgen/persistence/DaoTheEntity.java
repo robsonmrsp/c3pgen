@@ -11,7 +11,7 @@ import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
 import br.com.c3pgen.model.Client;
-import br.com.c3pgen.model.TheEntity;
+import br.com.c3pgen.model.ApplicationEntity;
 import br.com.c3pgen.model.filter.FilterTheEntity;
 import br.com.c3pgen.persistence.pagination.Pagination;
 import br.com.c3pgen.persistence.pagination.PaginationParams;
@@ -22,15 +22,15 @@ import br.com.c3pgen.persistence.pagination.Paginator;
 
 @Named
 @SuppressWarnings("rawtypes")
-public class DaoTheEntity extends AccessibleHibernateDao<TheEntity> {
+public class DaoTheEntity extends AccessibleHibernateDao<ApplicationEntity> {
 	private static final Logger LOGGER = Logger.getLogger(DaoTheEntity.class);
 
 	public DaoTheEntity() {
-		super(TheEntity.class);
+		super(ApplicationEntity.class);
 	}
 
 	@Override
-	public Pagination<TheEntity> getAll(PaginationParams paginationParams) {
+	public Pagination<ApplicationEntity> getAll(PaginationParams paginationParams) {
 		FilterTheEntity filterTheEntity = (FilterTheEntity) paginationParams.getFilter();
 		Criteria searchCriteria = criteria();
 		Criteria countCriteria = criteria();
@@ -61,11 +61,11 @@ public class DaoTheEntity extends AccessibleHibernateDao<TheEntity> {
 			countCriteria.add(Restrictions.eq("application_.id", filterTheEntity.getApplication()));
 		}
 
-		return new Paginator<TheEntity>(searchCriteria, countCriteria).paginate(paginationParams);
+		return new Paginator<ApplicationEntity>(searchCriteria, countCriteria).paginate(paginationParams);
 	}
 	
-	public List<TheEntity> filter(PaginationParams paginationParams) {
-		List<TheEntity> list = new ArrayList<TheEntity>();
+	public List<ApplicationEntity> filter(PaginationParams paginationParams) {
+		List<ApplicationEntity> list = new ArrayList<ApplicationEntity>();
 		FilterTheEntity filterTheEntity = (FilterTheEntity) paginationParams.getFilter();
 		Criteria searchCriteria = criteria();
 		if (filterTheEntity.getName() != null) {
@@ -92,7 +92,7 @@ public class DaoTheEntity extends AccessibleHibernateDao<TheEntity> {
 		return list;
 	}
 	@Override
-	public Pagination<TheEntity> getAll(PaginationParams paginationParams, Client owner) {
+	public Pagination<ApplicationEntity> getAll(PaginationParams paginationParams, Client owner) {
 		FilterTheEntity filterTheEntity = (FilterTheEntity) paginationParams.getFilter();
 		Criteria searchCriteria = criteria();
 		Criteria countCriteria = criteria();
@@ -125,12 +125,12 @@ public class DaoTheEntity extends AccessibleHibernateDao<TheEntity> {
 			searchCriteria.add(Restrictions.eq("application_.id", filterTheEntity.getApplication()));
 			countCriteria.add(Restrictions.eq("application_.id", filterTheEntity.getApplication()));
 		}
-	return new Paginator<TheEntity>(searchCriteria, countCriteria).paginate(paginationParams);
+	return new Paginator<ApplicationEntity>(searchCriteria, countCriteria).paginate(paginationParams);
 	}
 	
 
-	public List<TheEntity> filter(PaginationParams paginationParams, Client owner) {
-		List<TheEntity> list = new ArrayList<TheEntity>();
+	public List<ApplicationEntity> filter(PaginationParams paginationParams, Client owner) {
+		List<ApplicationEntity> list = new ArrayList<ApplicationEntity>();
 		FilterTheEntity filterTheEntity = (FilterTheEntity) paginationParams.getFilter();
 		Criteria searchCriteria = criteria();
 		searchCriteria.add(Restrictions.eq("owner", owner));

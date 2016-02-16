@@ -3,8 +3,6 @@ package br.com.c3pgen.base;
 import java.io.File;
 import java.io.IOException;
 
-import javax.inject.Named;
-
 import org.apache.commons.io.FileUtils;
 
 import br.com.c3pgen.base.util.Util;
@@ -27,7 +25,7 @@ public class BaseAppGenerator {
 
 		GenericGenerator genericGenerator = new GenericGenerator(freeMarkerConfig, application);
 
-		String javaRootFolder = Util.currentDir() + File.separator + "out/" + application.getName() + "/src/main/java/" + application.getRootPackage().replace(".", File.separator) + File.separator;
+		String javaRootFolder = Util.currentDir() + File.separator + "out/" + application.getAppName() + "/src/main/java/" + application.getRootPackage().replace(".", File.separator) + File.separator;
 
 		String serviceFolder = javaRootFolder;
 		new File(serviceFolder).mkdirs();
@@ -61,7 +59,7 @@ public class BaseAppGenerator {
 		String baseTemplateFolder = Util.currentDir() + File.separator + "entries" + File.separator + "mobile-templates" + File.separator + "nativedroid";
 		String fileInputWebApp = baseTemplateFolder + "/appbase/www";
 
-		String fileOutput = Util.currentDir() + File.separator + "out" + File.separator + "MobApp" + application.getName();
+		String fileOutput = Util.currentDir() + File.separator + "out" + File.separator + "MobApp" + application.getAppName();
 
 		FileUtils.copyDirectoryToDirectory(new File(fileInputWebApp), new File(fileOutput));
 
@@ -69,7 +67,7 @@ public class BaseAppGenerator {
 
 	private static void generateStaticFromMobileCommonFiles(Application application) throws IOException {
 		String baseCommonFolder = Util.currentDir() + File.separator + "entries" + File.separator + "mobile-common-files" + File.separator;
-		String fileOutput = Util.currentDir() + File.separator + "out" + File.separator + "MobApp" + application.getName();
+		String fileOutput = Util.currentDir() + File.separator + "out" + File.separator + "MobApp" + application.getAppName();
 		String fileInputWebApp = baseCommonFolder + "/appbase/www";
 		FileUtils.copyDirectoryToDirectory(new File(fileInputWebApp), new File(fileOutput));
 	}
@@ -84,7 +82,7 @@ public class BaseAppGenerator {
 		String baseCommonFolder = Util.currentDir() + File.separator + "entries" + File.separator + "common-files" + File.separator;
 		String fileInputResources = baseCommonFolder + "/appbase/src/main/resources";
 
-		String fileOutput = Util.currentDir() + File.separator + "out" + File.separator + application.getName() + "/src/main";
+		String fileOutput = Util.currentDir() + File.separator + "out" + File.separator + application.getAppName() + "/src/main";
 
 		String fileInputWebApp = baseCommonFolder + "/appbase/src/main/webapp";
 
@@ -97,7 +95,7 @@ public class BaseAppGenerator {
 		String fileInputResources = baseTemplateFolder + "/appbase/src/main/resources";
 		String fileInputWebApp = baseTemplateFolder + "/appbase/src/main/webapp";
 
-		String fileOutput = Util.currentDir() + File.separator + "out" + File.separator + application.getName() + "/src/main";
+		String fileOutput = Util.currentDir() + File.separator + "out" + File.separator + application.getAppName() + "/src/main";
 
 		FileUtils.copyDirectoryToDirectory(new File(fileInputWebApp), new File(fileOutput));
 	}

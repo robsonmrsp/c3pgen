@@ -56,8 +56,8 @@ public class GenService {
 
 				LOGGER.info("Concluida a geração da aplicação");
 			}
-			String a = Util.currentDir() + File.separator + "out/" + application.getName();
-			String webPath = "out/" + application.getName() + DateUtil.asString(LocalDateTime.now(), "_dd_MM_yyyy_HH_mm_ss") + ".zip";
+			String a = Util.currentDir() + File.separator + "out/" + application.getAppName();
+			String webPath = "out/" + application.getAppName() + DateUtil.asString(LocalDateTime.now(), "_dd_MM_yyyy_HH_mm_ss") + ".zip";
 			String zip = Util.currentDir() + File.separator + webPath;
 
 			ZipUtils.zipFiles(Arrays.asList(new File(a)), new File(zip));

@@ -70,7 +70,7 @@ public class Relationship extends AbstractTimestampEntity {
 
 	@ManyToOne
 	@JoinColumn(name = "ID_ENTITY")
-	private TheEntity entity;
+	private ApplicationEntity entity;
 
 	@ManyToOne
 	@JoinColumn(name = "ID_VIEWAPPROACH")
@@ -149,11 +149,11 @@ public class Relationship extends AbstractTimestampEntity {
 		this.uniDirecional = uniDirecional;
 	}
 
-	public TheEntity getEntity() {
+	public ApplicationEntity getEntity() {
 		return entity;
 	}
 
-	public void setEntity(TheEntity theEntity) {
+	public void setEntity(ApplicationEntity theEntity) {
 		this.entity = theEntity;
 	}
 

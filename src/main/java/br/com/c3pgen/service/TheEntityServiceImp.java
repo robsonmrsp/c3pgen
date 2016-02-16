@@ -11,7 +11,7 @@ import org.joda.time.LocalDateTime;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.c3pgen.model.Client;
-import br.com.c3pgen.model.TheEntity;
+import br.com.c3pgen.model.ApplicationEntity;
 import br.com.c3pgen.persistence.DaoTheEntity;
 import br.com.c3pgen.persistence.pagination.Pager;
 import br.com.c3pgen.persistence.pagination.Pagination;
@@ -31,69 +31,69 @@ public class TheEntityServiceImp implements TheEntityService {
 	DaoTheEntity daoTheEntity;
 
 	@Override
-	public TheEntity get(Integer id) {
+	public ApplicationEntity get(Integer id) {
 		return daoTheEntity.find(id);
 	}
 	
 	@Override
-	public TheEntity get(Integer id, Client client) {
+	public ApplicationEntity get(Integer id, Client client) {
 		return daoTheEntity.find(id, client);
 	}
 
 	@Override
-	public List<TheEntity> all(Client client) {
+	public List<ApplicationEntity> all(Client client) {
 		return daoTheEntity.getAll(client);
 	}
 	
 	
 
 	@Override
-	public Pager<TheEntity> all(PaginationParams paginationParams, Client owner) {
-		Pagination<TheEntity> pagination = daoTheEntity.getAll(paginationParams, owner);
-		return new Pager<TheEntity>(pagination.getResults(), 0, pagination.getTotalRecords());
+	public Pager<ApplicationEntity> all(PaginationParams paginationParams, Client owner) {
+		Pagination<ApplicationEntity> pagination = daoTheEntity.getAll(paginationParams, owner);
+		return new Pager<ApplicationEntity>(pagination.getResults(), 0, pagination.getTotalRecords());
 	}
 	
 		@Override
-	public List<TheEntity> filter(PaginationParams paginationParams, Client owner) {
-		List<TheEntity> list = daoTheEntity.filter(paginationParams, owner);
+	public List<ApplicationEntity> filter(PaginationParams paginationParams, Client owner) {
+		List<ApplicationEntity> list = daoTheEntity.filter(paginationParams, owner);
 		return list;
 	}
 	
 
 	@Override
-	public Pager<TheEntity> all(PaginationParams paginationParams) {
-		Pagination<TheEntity> pagination = daoTheEntity.getAll(paginationParams);
-		return new Pager<TheEntity>(pagination.getResults(), 0, pagination.getTotalRecords());
+	public Pager<ApplicationEntity> all(PaginationParams paginationParams) {
+		Pagination<ApplicationEntity> pagination = daoTheEntity.getAll(paginationParams);
+		return new Pager<ApplicationEntity>(pagination.getResults(), 0, pagination.getTotalRecords());
 	}
 	
 	
 	@Override
-	public List<TheEntity> filter(PaginationParams paginationParams) {
-		List<TheEntity> list = daoTheEntity.filter(paginationParams);
+	public List<ApplicationEntity> filter(PaginationParams paginationParams) {
+		List<ApplicationEntity> list = daoTheEntity.filter(paginationParams);
 		return list;
 	}
 	
 	@Override
-	public List<TheEntity> all() {
+	public List<ApplicationEntity> all() {
 		return daoTheEntity.getAll();
 	}
 
 	@Override
-	public List<TheEntity> search(String description) {
-		return new ArrayList<TheEntity>();
+	public List<ApplicationEntity> search(String description) {
+		return new ArrayList<ApplicationEntity>();
 	}
 	
-	public List<TheEntity> last(LocalDateTime lastSyncDate){
+	public List<ApplicationEntity> last(LocalDateTime lastSyncDate){
 		return daoTheEntity.last(lastSyncDate);
 	}
 			
 	@Override
-	public TheEntity save(TheEntity entity) {
+	public ApplicationEntity save(ApplicationEntity entity) {
 		return daoTheEntity.save(entity);
 	}
 
 	@Override
-	public TheEntity update(TheEntity entity) {
+	public ApplicationEntity update(ApplicationEntity entity) {
 		return daoTheEntity.save(entity);
 	}
 

@@ -45,6 +45,7 @@ require.config({
 		'shapesUml' : '../vendor/joint/joint.shapes.uml',
 		// 'shapesErd' : '../vendor/joint/joint.shapes.erd',
 		'lodash' : '../vendor/lodash/lodash',
+		'download' : '../vendor/download/download',
 	},
 	shim : {
 		'underscore' : {

@@ -14,8 +14,8 @@ public class MobileAppGeneratorHelper {
 	public static void criaMobApp(String rootFolder, Application application) {
 
 		CommandLine cmd0 = new CommandLine("cd " + rootFolder);
-		CommandLine cmd1 = new CommandLine("cordova create mob" + application.getName() + " " + application.getRootPackage() + " MobApp" + application.getName());
-		CommandLine cmd2 = new CommandLine("cd mob" + application.getName());
+		CommandLine cmd1 = new CommandLine("cordova create mob" + application.getAppName() + " " + application.getRootPackage() + " MobApp" + application.getAppName());
+		CommandLine cmd2 = new CommandLine("cd mob" + application.getAppName());
 		CommandLine cmd3 = new CommandLine("cordova platform add android");
 
 		DefaultExecutor executor = new DefaultExecutor();

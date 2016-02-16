@@ -46,7 +46,7 @@ public class Application extends AbstractTimestampEntity {
 	private Integer id;
 
 	@Column(name = "NAME")
-	private String name;
+	private String appName;
 
 	@Column(name = "SKIN")
 	private String skin;
@@ -57,9 +57,15 @@ public class Application extends AbstractTimestampEntity {
 	@Column(name = "ROOT_PACKAGE")
 	private String rootPackage;
 
+	@Column(name = "VIEW")
+	private String view;
+
+	@Column(name = "DATA_BASE_PREFIX")
+	private String dataBasePrefix;
+
 	@OneToMany(mappedBy = "application")
 	@Cascade(CascadeType.ALL)
-	private List<TheEntity> entities;
+	private List<ApplicationEntity> entities;
 
 	@ManyToOne
 	@JoinColumn(name = "id_client")
@@ -83,14 +89,6 @@ public class Application extends AbstractTimestampEntity {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public String getSkin() {
@@ -117,30 +115,64 @@ public class Application extends AbstractTimestampEntity {
 		this.rootPackage = rootPackage;
 	}
 
-	public void setEntities(List<TheEntity> entities) {
+	public void setEntities(List<ApplicationEntity> entities) {
 		this.entities = entities;
 	}
 
-	public List<TheEntity> getEntities() {
+	public List<ApplicationEntity> getEntities() {
 		if (this.entities == null) {
-			setEntities(new ArrayList<TheEntity>());
+			setEntities(new ArrayList<ApplicationEntity>());
 		}
 		return this.entities;
 	}
 
-	public boolean addEntities(TheEntity theEntity) {
+	public boolean addEntities(ApplicationEntity theEntity) {
 		theEntity.setApplication(this);
 		return getEntities().add(theEntity);
 	}
 
-	public boolean removeEntities(TheEntity theEntity) {
+	public boolean removeEntities(ApplicationEntity theEntity) {
 		theEntity.setApplication(null);
 		return getEntities().remove(theEntity);
 	}
 
-	public boolean hasMobApp() {
+	public String getView() {
+		if (view == null) {
+			setView("Backbone");
+		}
+		return view;
+	}
 
-		return false;
+	public void setView(String view) {
+		this.view = view;
+	}
+
+	public Boolean hasMobApp() {
+		if (entities != null) {
+			for (ApplicationEntity e : entities) {
+				if (e.getHasMobile()) {
+					return Boolean.TRUE;
+				}
+			}
+		}
+		return Boolean.FALSE;
+	}
+
+	public String getDataBasePrefix() {
+
+		return dataBasePrefix;
+	}
+
+	public void setDataBasePrefix(String dataBasePrefix) {
+		this.dataBasePrefix = dataBasePrefix;
+	}
+
+	public String getAppName() {
+		return appName;
+	}
+
+	public void setAppName(String appName) {
+		this.appName = appName;
 	}
 
 }

@@ -20,7 +20,7 @@ import br.com.c3pgen.base.methods.ToStringMethod;
 import br.com.c3pgen.base.methods.ToUpperCaseMethod;
 import br.com.c3pgen.base.util.Util;
 import br.com.c3pgen.model.Application;
-import br.com.c3pgen.model.TheEntity;
+import br.com.c3pgen.model.ApplicationEntity;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
@@ -60,7 +60,7 @@ public class MarkerGenerator {
 		new File(string).mkdirs();
 	}
 
-	public Boolean generateEntityFile(Application application, TheEntity entity) throws IOException, TemplateException {
+	public Boolean generateEntityFile(Application application, ApplicationEntity entity) throws IOException, TemplateException {
 
 		Template template = freeMarkerConfig.getTemplate(templateName);
 		String folderName = destinationFolder.replace("${entity.name}", Util.firstLowerCase(entity.getName()));
@@ -80,7 +80,7 @@ public class MarkerGenerator {
 		return Boolean.TRUE;
 	}
 
-	private Object adjustData(Application application, TheEntity object) {
+	private Object adjustData(Application application, ApplicationEntity object) {
 		Map<String, Object> data = new HashMap<String, Object>();
 		data.put("firstLower", new FirstLowerCaseMethod());
 		data.put("firstUpper", new FirstUpperCaseMethod());
@@ -97,7 +97,7 @@ public class MarkerGenerator {
 		return data;
 	}
 
-	private Object adjustData(List<TheEntity> object) {
+	private Object adjustData(List<ApplicationEntity> object) {
 		Map<String, Object> data = new HashMap<String, Object>();
 		data.put("firstLower", new FirstLowerCaseMethod());
 		data.put("firstUpper", new FirstUpperCaseMethod());
@@ -161,7 +161,7 @@ public class MarkerGenerator {
 		return Boolean.FALSE;
 	}
 
-	public Boolean generateAppFragmentFile(List<TheEntity> entities) throws IOException, TemplateException {
+	public Boolean generateAppFragmentFile(List<ApplicationEntity> entities) throws IOException, TemplateException {
 		Template template = freeMarkerConfig.getTemplate(templateName);
 		tryCreateFolder(destinationFolder);
 		FileWriter fileWriter = new FileWriter(destinationFolder + templateFileName.replace("${entity.name}", "Fragment") + "." + fileType.getSufix());

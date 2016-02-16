@@ -13,7 +13,7 @@ import org.apache.commons.io.FileUtils;
 import br.com.c3pgen.model.Application;
 import br.com.c3pgen.model.Attribute;
 import br.com.c3pgen.model.Relationship;
-import br.com.c3pgen.model.TheEntity;
+import br.com.c3pgen.model.ApplicationEntity;
 
 import com.esotericsoftware.yamlbeans.YamlReader;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -47,11 +47,11 @@ public class Util {
 		return currentDir() + File.separator + "out" + File.separator + pack.replace(".", File.separator) + File.separator + subfolder + File.separator + fileName;
 	}
 
-	public static TheEntity getTheEntity_() {
+	public static ApplicationEntity getTheEntity_() {
 		ObjectMapper mapper = new ObjectMapper();
-		TheEntity user = null;
+		ApplicationEntity user = null;
 		try {
-			user = mapper.readValue(new File(currentDir() + File.separator + "conf" + File.separator + "entities.js"), TheEntity.class);
+			user = mapper.readValue(new File(currentDir() + File.separator + "conf" + File.separator + "entities.js"), ApplicationEntity.class);
 			System.out.println("Main.main()" + user);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -68,9 +68,9 @@ public class Util {
 		try {
 			reader = new YamlReader(new FileReader(configFile));
 
-			reader.getConfig().setPropertyElementType(Application.class, "entities", TheEntity.class);
-			reader.getConfig().setPropertyElementType(TheEntity.class, "attributes", Attribute.class);
-			reader.getConfig().setPropertyElementType(TheEntity.class, "relationships", Relationship.class);
+			reader.getConfig().setPropertyElementType(Application.class, "entities", ApplicationEntity.class);
+			reader.getConfig().setPropertyElementType(ApplicationEntity.class, "attributes", Attribute.class);
+			reader.getConfig().setPropertyElementType(ApplicationEntity.class, "relationships", Relationship.class);
 
 			entities = reader.read(Application.class);
 
@@ -86,9 +86,9 @@ public class Util {
 		try {
 			reader = new YamlReader(new FileReader(currentDir() + File.separator + "conf" + File.separator + configFileName));
 
-			reader.getConfig().setPropertyElementType(Application.class, "entities", TheEntity.class);
-			reader.getConfig().setPropertyElementType(TheEntity.class, "attributes", Attribute.class);
-			reader.getConfig().setPropertyElementType(TheEntity.class, "relationships", Relationship.class);
+			reader.getConfig().setPropertyElementType(Application.class, "entities", ApplicationEntity.class);
+			reader.getConfig().setPropertyElementType(ApplicationEntity.class, "attributes", Attribute.class);
+			reader.getConfig().setPropertyElementType(ApplicationEntity.class, "relationships", Relationship.class);
 
 			entities = reader.read(Application.class);
 
@@ -165,16 +165,16 @@ public class Util {
 
 	}
 
-	public static List<TheEntity> getTheEntity() {
+	public static List<ApplicationEntity> getTheEntity() {
 		YamlReader reader;
-		List<TheEntity> entities = null;
+		List<ApplicationEntity> entities = null;
 		try {
 			reader = new YamlReader(new FileReader(currentDir() + File.separator + "conf" + File.separator + "entities.yaml"));
 
-			reader.getConfig().setPropertyElementType(TheEntity.class, "attributes", Attribute.class);
-			reader.getConfig().setPropertyElementType(TheEntity.class, "relationships", Relationship.class);
+			reader.getConfig().setPropertyElementType(ApplicationEntity.class, "attributes", Attribute.class);
+			reader.getConfig().setPropertyElementType(ApplicationEntity.class, "relationships", Relationship.class);
 
-			entities = reader.read(List.class, TheEntity.class);
+			entities = reader.read(List.class, ApplicationEntity.class);
 
 		} catch (Exception e) {
 			e.printStackTrace();

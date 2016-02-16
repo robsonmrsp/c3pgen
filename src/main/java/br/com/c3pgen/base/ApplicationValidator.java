@@ -9,27 +9,27 @@ import org.apache.log4j.Logger;
 
 import br.com.c3pgen.model.Application;
 import br.com.c3pgen.model.Relationship;
-import br.com.c3pgen.model.TheEntity;
+import br.com.c3pgen.model.ApplicationEntity;
 
 public class ApplicationValidator {
 	public static final Logger LOGGER = Logger.getLogger(ApplicationValidator.class);
 
-	private Map<String, TheEntity> mapEntities = new HashMap<String, TheEntity>();
+	private Map<String, ApplicationEntity> mapEntities = new HashMap<String, ApplicationEntity>();
 
-	private Map<TheEntity, List<TheEntity>> mapRelationshipsPerTheEntity = new HashMap<TheEntity, List<TheEntity>>();
-	private Map<TheEntity, List<Relationship>> mapRelationships = new HashMap<TheEntity, List<Relationship>>();
+	private Map<ApplicationEntity, List<ApplicationEntity>> mapRelationshipsPerTheEntity = new HashMap<ApplicationEntity, List<ApplicationEntity>>();
+	private Map<ApplicationEntity, List<Relationship>> mapRelationships = new HashMap<ApplicationEntity, List<Relationship>>();
 
 	public ApplicationValidatorMessages validate(Application application) throws ValidationException {
 		ApplicationValidatorMessages applicationValidatorMessages = new ApplicationValidatorMessages();
 		Boolean returnValue = false;
 		// Guardando as entidades do sistema
-		for (TheEntity entity : application.getEntities()) {
+		for (ApplicationEntity entity : application.getEntities()) {
 			mapEntities.put(entity.getName(), entity);
 		}
 
 		// Guardando os relacionamentos de cada entidade
-		for (TheEntity entity : application.getEntities()) {
-			List<TheEntity> entities = new ArrayList<TheEntity>();
+		for (ApplicationEntity entity : application.getEntities()) {
+			List<ApplicationEntity> entities = new ArrayList<ApplicationEntity>();
 			List<Relationship> relationships = new ArrayList<Relationship>();
 
 			for (Relationship relation : entity.getRelationships()) {
@@ -41,10 +41,10 @@ public class ApplicationValidator {
 		}
 
 		//
-		for (TheEntity entity : application.getEntities()) {
+		for (ApplicationEntity entity : application.getEntities()) {
 
-			TheEntity entityRel = null;
-			List<TheEntity> listRelations = mapRelationshipsPerTheEntity.get(entity);
+			ApplicationEntity entityRel = null;
+			List<ApplicationEntity> listRelations = mapRelationshipsPerTheEntity.get(entity);
 
 			for (Relationship main : entity.getRelationships()) {
 				entityRel = mapEntities.get(main.getModel());
@@ -70,7 +70,7 @@ public class ApplicationValidator {
 
 			for (Relationship main : entity.getRelationships()) {
 				String ownerName = main.getOwnerName();
-				TheEntity entityModel = mapEntities.get(main.getModel());
+				ApplicationEntity entityModel = mapEntities.get(main.getModel());
 				try {
 					if (entityModel == null) {
 						applicationValidatorMessages.addMessage("Erro analizando o relacionamento " + main.getName() + "na entidade " + entity.getName() + ". Não existe a entidade " + main.getModel());
@@ -106,7 +106,7 @@ public class ApplicationValidator {
 		return applicationValidatorMessages;
 	}
 
-	private Relationship reverseRelation(TheEntity main, TheEntity reverse) {
+	private Relationship reverseRelation(ApplicationEntity main, ApplicationEntity reverse) {
 		Relationship relationship = null;
 		if (reverse != null)
 			for (Relationship r : reverse.getRelationships()) {

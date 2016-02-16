@@ -8,6 +8,7 @@ define(function(require) {
 	var util = require('utilities/utils');
 	var ApplicationModel = require('models/ApplicationModel');
 	var Combobox = require('views/components/Combobox');
+	var download = require('download');
 
 	var CardApplicationItemTemplate = require('text!views/application/tpl/CardApplicationItemTemplate.html');
 	var EmptyCollectionTemplate = require('text!views/application/tpl/EmptyCollectionTemplate.html');
@@ -35,7 +36,9 @@ define(function(require) {
 			this.model.fetch({
 				success : function(_model, _resp, _options) {
 					that.model.url = old;
-					util.showMessage('info', _resp);
+					util.showMessage('info', _resp.resp);
+					console.log(download);
+					download(_resp.resp);
 				},
 				error : function(_model, _resp, _options) {
 					util.showMessage('error', util.getJson(_resp.responseText).legalMessage || '');

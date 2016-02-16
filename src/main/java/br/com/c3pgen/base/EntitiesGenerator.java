@@ -6,7 +6,7 @@ import org.apache.log4j.Logger;
 
 import br.com.c3pgen.base.util.Util;
 import br.com.c3pgen.model.Application;
-import br.com.c3pgen.model.TheEntity;
+import br.com.c3pgen.model.ApplicationEntity;
 import freemarker.template.TemplateException;
 
 public class EntitiesGenerator {
@@ -59,6 +59,21 @@ public class EntitiesGenerator {
 	private static MarkerGenerator htmlLeftPanelViewGenerator;
 	private static MarkerGenerator jsMobileDataBaseHelperGenerator;
 
+	// para o angular
+	private static MarkerGenerator jsAngularFormControllerGenerator;
+	private static MarkerGenerator jsAngularPageControllerGenerator;
+	private static MarkerGenerator jsAngularServiceGenerator;
+	private static MarkerGenerator htmlAngularFormTemplateGenerator;
+	private static MarkerGenerator htmlAngularPageTemplateGenerator;
+	private static MarkerGenerator htmlAngularModalTemplateGenerator;
+	private static MarkerGenerator jsAngularModalDirectiveGenerator;
+	private static MarkerGenerator jsAngularModalControllerGenerator;
+	private static MarkerGenerator jsAngularRouterGenerator;
+	private static MarkerGenerator jspAngularDesenvIndexGenerator;
+	private static MarkerGenerator jspAngularProduIndexGenerator;
+	private static MarkerGenerator htmlAngularDesenvLoginGenerator;
+	private static MarkerGenerator htmlAngularProduLoginGenerator;
+	private static MarkerGenerator xmlAngularPomGenerator;
 	private Application application;
 
 	private FreeMarkerConfig freeMarkerConfig;
@@ -70,7 +85,7 @@ public class EntitiesGenerator {
 
 	public void generate() throws Exception {
 
-		String appRootFolder = Util.currentDir() + File.separator + "out/" + application.getName();
+		String appRootFolder = Util.currentDir() + File.separator + "out/" + application.getAppName();
 
 		String webAppRootFolder = appRootFolder + "/src/main/webapp/";
 		String jsRootFolder = webAppRootFolder + "js/"; // js/spec/router
@@ -78,6 +93,7 @@ public class EntitiesGenerator {
 		String javaRootFolder = appRootFolder + "/src/main/java/" + application.getRootPackage().replace(".", File.separator);
 
 		javaModelGenerator = new MarkerGenerator(freeMarkerConfig, application, "JavaModelTemplate.tpl", javaRootFolder + "/model/", TemplateFileName.MODEL_JAVA, FileType.JAVA);
+
 		flterGenerator = new MarkerGenerator(freeMarkerConfig, application, "JavaFilterTemplate.tpl", javaRootFolder + "/model/filter/", TemplateFileName.FILTER_MODEL_JAVA, FileType.JAVA);
 		javaJsonGenerator = new MarkerGenerator(freeMarkerConfig, application, "JavaJsonTemplate.tpl", javaRootFolder + "/json/", TemplateFileName.JSON_JAVA, FileType.JAVA);
 		basicServiceGenerator = new MarkerGenerator(freeMarkerConfig, application, "JavaBasicServiceTemplate.tpl", javaRootFolder + "/service/", TemplateFileName.SERVICE_JAVA, FileType.JAVA);
@@ -90,6 +106,7 @@ public class EntitiesGenerator {
 		jsPageColelctionGenerator = new MarkerGenerator(freeMarkerConfig, application, "JsPageCollectionTemplate.tpl", jsRootFolder + "/collections/", TemplateFileName.PAGE_COLLECTION_JS, FileType.JAVASCRIPT);
 
 		jsModelGenerator = new MarkerGenerator(freeMarkerConfig, application, "JsModelTemplate.tpl", jsRootFolder + "/models/", TemplateFileName.MODEL_JS, FileType.JAVASCRIPT);
+
 		jsFormGenerator = new MarkerGenerator(freeMarkerConfig, application, "JsFormTemplate.tpl", jsRootFolder + "/views/${entity.name}/", TemplateFileName.BASIC_FORM_JS, FileType.JAVASCRIPT);
 
 		jsPageGenerator = new MarkerGenerator(freeMarkerConfig, application, "JsPageTemplate.tpl", jsRootFolder + "/views/${entity.name}/", TemplateFileName.PAGE_JS, FileType.JAVASCRIPT);
@@ -121,51 +138,105 @@ public class EntitiesGenerator {
 		buildXmlGenerator = new MarkerGenerator(freeMarkerConfig, application, "buildXml.tpl", appRootFolder + "/", TemplateFileName.BUILD_XML, FileType.XML);
 
 		desenvIndexGenerator = new MarkerGenerator(freeMarkerConfig, application, "desenv_index.tpl", webAppRootFolder, TemplateFileName.INDEX_JSP, FileType.JSP);
-
 		produIndexGenerator = new MarkerGenerator(freeMarkerConfig, application, "produ_index.tpl", appRootFolder + "/produ/", TemplateFileName.INDEX_JSP, FileType.JSP);
-
 		desenvLoginGenerator = new MarkerGenerator(freeMarkerConfig, application, "desenv_login.tpl", webAppRootFolder, TemplateFileName.LOGIN_HTML, FileType.HTML);
 		produLoginGenerator = new MarkerGenerator(freeMarkerConfig, application, "produ_login.tpl", appRootFolder + "/produ/", TemplateFileName.LOGIN_HTML, FileType.HTML);
 
+		// GERACAO DE ARQUIVOS ANGULAR
+		jsAngularRouterGenerator = new MarkerGenerator(freeMarkerConfig, application, "jsAngularRouter.tpl", jsRootFolder, TemplateFileName.ANGULAR_ROUTER, FileType.JAVASCRIPT);
+		jsAngularFormControllerGenerator = new MarkerGenerator(freeMarkerConfig, application, "jsAngularFormController.tpl", jsRootFolder + "/views/${entity.name}/", TemplateFileName.ANGULAR_FORM_CONTROLLER, FileType.JAVASCRIPT);
+		htmlAngularFormTemplateGenerator = new MarkerGenerator(freeMarkerConfig, application, "htmlAngularFormTemplate.tpl", jsRootFolder + "/views/${entity.name}/tpl/", TemplateFileName.ANGULAR_FORM_TEMPLATE, FileType.HTML);
+
+		jsAngularPageControllerGenerator = new MarkerGenerator(freeMarkerConfig, application, "jsAngularPageController.tpl", jsRootFolder + "/views/${entity.name}/", TemplateFileName.ANGULAR_PAGE_CONTROLLER, FileType.JAVASCRIPT);
+		htmlAngularPageTemplateGenerator = new MarkerGenerator(freeMarkerConfig, application, "htmlAngularPageTemplate.tpl", jsRootFolder + "/views/${entity.name}/tpl/", TemplateFileName.ANGULAR_PAGE_TEMPLATE, FileType.HTML);
+
+		jsAngularServiceGenerator = new MarkerGenerator(freeMarkerConfig, application, "jsAngularService.tpl", jsRootFolder + "/views/${entity.name}/", TemplateFileName.ANGULAR_SERVICE, FileType.JAVASCRIPT);
+
+		jsAngularModalDirectiveGenerator = new MarkerGenerator(freeMarkerConfig, application, "jsAngularModalDirective.tpl", jsRootFolder + "/views/modalComponents/", TemplateFileName.ANGULAR_MODAL_DIRECTIVE, FileType.JAVASCRIPT);
+		jsAngularModalControllerGenerator = new MarkerGenerator(freeMarkerConfig, application, "jsAngularModalController.tpl", jsRootFolder + "/views/modalComponents/", TemplateFileName.ANGULAR_MODAL_CONTROLLER, FileType.JAVASCRIPT);
+		htmlAngularModalTemplateGenerator = new MarkerGenerator(freeMarkerConfig, application, "htmlAngularModalTemplate.tpl", jsRootFolder + "/views/modalComponents/tpl/", TemplateFileName.ANGULAR_MODAL_TEMPLATE, FileType.HTML);
+
+		jspAngularDesenvIndexGenerator = new MarkerGenerator(freeMarkerConfig, application, "jspAngularDesenvIndex.tpl", webAppRootFolder, TemplateFileName.INDEX_JSP, FileType.JSP);
+		jspAngularProduIndexGenerator = new MarkerGenerator(freeMarkerConfig, application, "jspAngularProduIndex.tpl", appRootFolder + "/produ/", TemplateFileName.INDEX_JSP, FileType.JSP);
+		htmlAngularDesenvLoginGenerator = new MarkerGenerator(freeMarkerConfig, application, "htmlAngularDesenvLogin.tpl", webAppRootFolder, TemplateFileName.LOGIN_HTML, FileType.HTML);
+		htmlAngularProduLoginGenerator = new MarkerGenerator(freeMarkerConfig, application, "htmlAngularProduLogin.tpl", appRootFolder + "/produ/", TemplateFileName.LOGIN_HTML, FileType.HTML);
+
+		xmlAngularPomGenerator = new MarkerGenerator(freeMarkerConfig, application, "xmlAngularPom.tpl", appRootFolder + "/", TemplateFileName.POM_XML, FileType.XML);
 		try {
-			for (TheEntity ent : application.getEntities()) {
-				LOGGER.info("-------------------------------Processando entidade " + ent.getName() + "-------------------------------");
-				javaModelGenerator.generateEntityFile(application, ent);
-				javaJsonGenerator.generateEntityFile(application, ent);
-				basicServiceGenerator.generateEntityFile(application, ent);
-				basicServiceImpGenerator.generateEntityFile(application, ent);
-				daoGenerator.generateEntityFile(application, ent);
-				jsFormGenerator.generateEntityFile(application, ent);
-				resourcesGenerator.generateEntityFile(application, ent);
-				jsColelctionGenerator.generateEntityFile(application, ent);
-				jsModelGenerator.generateEntityFile(application, ent);
-				jsPageGenerator.generateEntityFile(application, ent);
-				jsPageColelctionGenerator.generateEntityFile(application, ent);
-				htmlFormGenerator.generateEntityFile(application, ent);
-				htmlPageGenerator.generateEntityFile(application, ent);
-				JsMultiSelectGenerator.generateEntityFile(application, ent);
-				JsModalMultiSelectGenerator.generateEntityFile(application, ent);
-				htmlModalMultiSelectGenerator.generateEntityFile(application, ent);
-				htmlMultiSelectGenerator.generateEntityFile(application, ent);
-				jsModalGenerator.generateEntityFile(application, ent);
-				htmlModalGenerator.generateEntityFile(application, ent);
-				flterGenerator.generateEntityFile(application, ent);
+			if (application.getView().equalsIgnoreCase("angular")) {
+				for (ApplicationEntity ent : application.getEntities()) {
+					LOGGER.info("-------------------------------Processando entidade " + ent.getName() + "-------------------------------");
+					javaModelGenerator.generateEntityFile(application, ent);
+					javaJsonGenerator.generateEntityFile(application, ent);
+					basicServiceGenerator.generateEntityFile(application, ent);
+					basicServiceImpGenerator.generateEntityFile(application, ent);
+					daoGenerator.generateEntityFile(application, ent);
+					flterGenerator.generateEntityFile(application, ent);
+					resourcesGenerator.generateEntityFile(application, ent);
+
+					// geração de particulares a tecnologia da view
+					jsAngularFormControllerGenerator.generateEntityFile(application, ent);
+					htmlAngularFormTemplateGenerator.generateEntityFile(application, ent);
+					jsAngularPageControllerGenerator.generateEntityFile(application, ent);
+					htmlAngularPageTemplateGenerator.generateEntityFile(application, ent);
+					jsAngularServiceGenerator.generateEntityFile(application, ent);
+					jsAngularModalDirectiveGenerator.generateEntityFile(application, ent);
+					htmlAngularModalTemplateGenerator.generateEntityFile(application, ent);
+					jsAngularModalControllerGenerator.generateEntityFile(application, ent);
+				}
+				jsAngularRouterGenerator.generate(application);
+				jspAngularDesenvIndexGenerator.generate(application);
+				jspAngularProduIndexGenerator.generate(application);
+				htmlAngularDesenvLoginGenerator.generate(application);
+				htmlAngularProduLoginGenerator.generate(application);
+
+				beansGenerator.generate(application);
+				xmlAngularPomGenerator.generate(application);
+
+				buildPropertiesGenerator.generate(application);
+				buildXmlGenerator.generate(application);
+			} else {
+				for (ApplicationEntity ent : application.getEntities()) {
+					LOGGER.info("-------------------------------Processando entidade " + ent.getName() + "-------------------------------");
+					javaModelGenerator.generateEntityFile(application, ent);
+					javaJsonGenerator.generateEntityFile(application, ent);
+					basicServiceGenerator.generateEntityFile(application, ent);
+					basicServiceImpGenerator.generateEntityFile(application, ent);
+					daoGenerator.generateEntityFile(application, ent);
+					flterGenerator.generateEntityFile(application, ent);
+					resourcesGenerator.generateEntityFile(application, ent);
+
+					// geração de particulares a tecnologia da view
+					jsFormGenerator.generateEntityFile(application, ent);
+					jsColelctionGenerator.generateEntityFile(application, ent);
+					jsModelGenerator.generateEntityFile(application, ent);
+					jsPageGenerator.generateEntityFile(application, ent);
+					jsPageColelctionGenerator.generateEntityFile(application, ent);
+					htmlFormGenerator.generateEntityFile(application, ent);
+					htmlPageGenerator.generateEntityFile(application, ent);
+					JsMultiSelectGenerator.generateEntityFile(application, ent);
+					JsModalMultiSelectGenerator.generateEntityFile(application, ent);
+					htmlModalMultiSelectGenerator.generateEntityFile(application, ent);
+					htmlMultiSelectGenerator.generateEntityFile(application, ent);
+					jsModalGenerator.generateEntityFile(application, ent);
+					htmlModalGenerator.generateEntityFile(application, ent);
+				}
+
+				fragmentsGenerator.generateAppFragmentFile(application.getEntities());
+
+				jsRouterGenerator.generate(application);
+				jsRouterSpecGenerator.generate(application);
+				beansGenerator.generate(application);
+				pomGenerator.generate(application);
+
+				buildPropertiesGenerator.generate(application);
+				buildXmlGenerator.generate(application);
+
+				produIndexGenerator.generate(application);
+				desenvIndexGenerator.generate(application);
+				produLoginGenerator.generate(application);
+				desenvLoginGenerator.generate(application);
 			}
-			fragmentsGenerator.generateAppFragmentFile(application.getEntities());
-			jsRouterGenerator.generate(application);
-			jsRouterSpecGenerator.generate(application);
-			beansGenerator.generate(application);
-			pomGenerator.generate(application);
-
-			buildPropertiesGenerator.generate(application);
-			buildXmlGenerator.generate(application);
-
-			produIndexGenerator.generate(application);
-			desenvIndexGenerator.generate(application);
-
-			produLoginGenerator.generate(application);
-			desenvLoginGenerator.generate(application);
-
 		} catch (TemplateException e) {
 			LOGGER.error(e);
 		}
@@ -173,7 +244,7 @@ public class EntitiesGenerator {
 
 	public void generateMobile() throws Exception {
 
-		String appRootFolder = Util.currentDir() + File.separator + "out/MobApp" + application.getName();
+		String appRootFolder = Util.currentDir() + File.separator + "out/MobApp" + application.getAppName();
 
 		String webAppRootFolder = appRootFolder + "/www/";
 		String jsRootFolder = webAppRootFolder + "js/";
@@ -192,7 +263,7 @@ public class EntitiesGenerator {
 		htmlMobilePageGenerator = new MarkerGenerator(freeMarkerConfig, application, "HtmlMobilePageTemplate.tpl", jsRootFolder + "/views/${entity.name}/tpl/", TemplateFileName.PAGE_TEMPLATE_HTML, FileType.HTML);
 
 		try {
-			for (TheEntity ent : application.getEntities()) {
+			for (ApplicationEntity ent : application.getEntities()) {
 				if (ent.getHasMobile()) {
 					LOGGER.info("-------------------------------Processando entidade " + ent.getName() + "-------------------------------");
 					jsMobileFormGenerator.generateEntityFile(application, ent);

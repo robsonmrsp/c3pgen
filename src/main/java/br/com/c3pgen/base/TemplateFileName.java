@@ -28,6 +28,7 @@ public interface TemplateFileName {
 
 	final String MODAL_TEMPLATE_HTML = "${entity.name}ModalTemplate";
 	final String MODAL_TEMPLATE_JS = "${entity.name}Modal";
+
 	final String BEANS_XML = "beans";
 	final String ROUTER_SPEC_JS = "RouterSpec";
 	final String ROUTER_JS = "Router";
@@ -57,5 +58,15 @@ public interface TemplateFileName {
 	final String PAGINATION = "Pagination";
 	final String PAGINATION_PARAMS = "PaginationParams";
 	final String PAGINATOR = "Paginator";
+
+	final String ANGULAR_FORM_CONTROLLER = "Form${entity.name}Controller";
+	final String ANGULAR_PAGE_CONTROLLER = "Page${entity.name}Controller";
+	final String ANGULAR_FORM_TEMPLATE = "Form${entity.name}Template";
+	final String ANGULAR_PAGE_TEMPLATE = "Page${entity.name}Template";
+	final String ANGULAR_MODAL_TEMPLATE = "Modal${entity.name}Template";
+	final String ANGULAR_MODAL_CONTROLLER = "Modal${entity.name}Controller";
+	final String ANGULAR_SERVICE = "${entity.name}Service";
+	final String ANGULAR_MODAL_DIRECTIVE = "Modal${entity.name}Directive";
+	final String ANGULAR_ROUTER = "Router";
 
 }
