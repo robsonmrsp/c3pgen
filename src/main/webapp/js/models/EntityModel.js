@@ -8,7 +8,8 @@ define(function(require) {
 	// End of "Import´s definition"
 
 	// #####################################################################################################
-	// ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨ MAIN BODY  ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
+	// ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨ MAIN BODY
+	// ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
 	// #####################################################################################################
 
 	var EntityModel = BaseModel.extend({
@@ -16,17 +17,17 @@ define(function(require) {
 		urlRoot : 'rs/crud/entitys',
 
 		defaults : {
-			id: null,
-	    	name : 'NO_NAME',    	
-	    	displayName : '',    	
-	    	tableName : '',    	
-	    	hasOwner : '',    	
-	    	hasMobile : '',    	
-	    	notes  : '',    	
+			id : null,
+			name : 'NO_NAME',
+			displayName : '',
+			tableName : '',
+			hasOwner : '',
+			hasMobile : '',
+			notes : '',
 			application : null,
 			attributes : null,
 			relationships : null,
-		
+
 		}
 	});
 	return EntityModel;

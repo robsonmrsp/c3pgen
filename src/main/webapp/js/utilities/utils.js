@@ -573,6 +573,9 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 			$el.text(val)
 			$el.removeClass('editable-empty').addClass('editable-unsaved');
 		},
+		refreshEditableVisual : function($el) {
+			$el.removeClass('editable-empty').addClass('editable-unsaved');
+		},
 		toUnderscore : function(w, upper) {
 			var ret = w.replace(/([A-Z])/g, function($1, $2, index) {
 				if (index == 0) {

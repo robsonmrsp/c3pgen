@@ -85,7 +85,6 @@ define(function(require) {
 			});
 
 			this.attributesCollection = new AttributeCollection(this.model.get('attributes'));
-
 			this.attributesCollection.on('change', this.updateViewEntity, this);
 			this.attributesCollection.on('destroy', this.updateViewEntity, this);
 
@@ -136,7 +135,7 @@ define(function(require) {
 				this.relationshipsRegion.show(this.relationshipsCollectionView);
 
 				// abrindo com os atributos escondidos.
-				this.hideShowEnt();
+				// this.hideShowEnt();
 			});
 		},
 
@@ -169,6 +168,13 @@ define(function(require) {
 			this.ui.inputDisplayName.text(entity.get('displayName'));
 			this.ui.inputTableName.text(entity.get('tableName'));
 			this.ui.inputHasMobile.prop('checked', entity.get('hasMobile'));
+
+			util.refreshEditableVisual(this.ui.inputEntityName);
+			util.refreshEditableVisual(this.ui.inputDisplayName);
+			util.refreshEditableVisual(this.ui.inputTableName);
+			util.refreshEditableVisual(this.ui.inputHasMobile);
+			
+			this.visualEntity.updateEntityPosition();
 		},
 
 		getModel : function() {

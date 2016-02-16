@@ -18,6 +18,7 @@ define(function(require) {
 	var VisualRelationship = require('views/visual/models/VisualRelationship');
 	var InspetorEntidadesView = require('views/visual/InspetorEntidadesView');
 	var EntityCollection = require('collections/EntityCollection');
+	var AttributeCollection  = require('collections/AttributeCollection');
 
 	var lastPositionX = 200;
 	var visualEntities = [];
@@ -49,6 +50,17 @@ define(function(require) {
 			});
 
 			this.application.set('entities', entidadesCollection);
+
+			this.application.save({}, {
+
+				success : function(_model, _resp, _options) {
+					console.log("Applicação salva com sucesso!");
+				},
+				error : function(_model, _resp, _options) {
+					util.showMessage('error', 'Problema ao salvar registro: ' + util.getJson(_resp.responseText).legalMessage || '');
+					util.logError(_resp);
+				}
+			})
 
 			console.log(JSON.stringify(this.application));
 		},
@@ -84,18 +96,28 @@ define(function(require) {
 					width : 120,
 					height : 100
 				},
-				entity : (_entity && _entity.get) || new EntityModel({
-					name : 'NO_NAME_' + lastPositionX,
-				}),
+				entity : that._getEntityModel(_entity),
 			});
 			visualEntities.push(visualEntity)
 			that.inspetorView.setVisualEntity(visualEntity)
 			that.graph.addCell(visualEntity);
 		},
+		_getEntityModel : function(_entity) {
+			if (_entity && _entity.get) {
+
+				_entity.set('attributes', new AttributeCollection(_entity.get('attributes')));
+
+				return _entity;
+			} else {
+				return new EntityModel({
+					name : 'NO_NAME_' + lastPositionX,
+				})
+			}
+		},
 
 		initialize : function() {
 			var that = this;
-
+			var entities = new EntityCollection(this.model.get('entities'));
 			this.inspetorView = new InspetorEntidadesView({
 				model : new EntityModel({
 					name : '',
@@ -117,9 +139,15 @@ define(function(require) {
 						that.inspetorView.setVisualEntity(_cellView.model);
 					}
 				});
+				// somente para garantir que tudo estará setando antes de
+				// adicionar as entidades ao painter
+				entities.each(function(ent) {
+					that.addEntity(ent);
+				});
 			});
 		},
 	});
 
 	return PageVisual;
+
 });

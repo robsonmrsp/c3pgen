@@ -122,6 +122,7 @@ define(function(require) {
 			// hashs de Application
 			// 'app/visual' : 'visual',
 			'' : 'applications',
+			'app/applications' : 'applications',
 			'app/application/:idApp/entities' : 'entitiesByApplication',
 			'app/categoria' : 'categoria',
 			'app/newApplication' : 'newApplication',
@@ -255,8 +256,6 @@ define(function(require) {
 					console.error(x, y, z);
 				}
 			});
-
-			this.App.mainRegion.show(this.pageVisual);
 
 			util.breadcrumb({
 				iconClass : 'fa-desktop',

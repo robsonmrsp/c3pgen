@@ -122,7 +122,6 @@ define(function(require) {
 
 			if (modelAttribute) {
 				this.mapAtributes.put(modelAttribute.get('name'), modelAttribute);
-
 				_.each(this.mapAtributes.values(), function(attrModel) {
 					returnArrayAtributes.push(attrModel.get('name') + ':' + attrModel.get('type').className);
 				})
@@ -197,8 +196,13 @@ define(function(require) {
 				height : newH + 0.7,
 			});
 
+			this.updateEntityPosition();
+		},
+		updateEntityPosition : function() {
+			var position = this.get('position');
+			this.entity.set('posX', position.x);
+			this.entity.set('posY', position.y);
 		}
-
 	});
 	return VisualEntity;
 
