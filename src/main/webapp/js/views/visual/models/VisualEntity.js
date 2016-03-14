@@ -7,8 +7,18 @@ define(function(require) {
 
 	var VisualEntity = Joint.shapes.basic.Generic.extend({
 
-		markup : [ '<g class="rotatable">', '<g class="scalable">', '<rect class="uml-class-name-rect"/><rect class="uml-class-attrs-rect"/><rect class="uml-class-relationships-rect"/>', '</g>',
-				'<text class="uml-class-name-text"/><text class="uml-class-attrs-text"/><text class="uml-class-relationships-text"/>', '</g>' ].join(''),
+		markup : [ '<g class="rotatable">',//
+		                 '<circle r="11" />',//
+		           		'<g class="scalable">',// 
+		           			'<rect class="uml-class-name-rect"/> ',//
+		           			'<rect class="uml-class-attrs-rect"/>',//
+		           			'<rect class="uml-class-relationships-rect"/>',// 
+		           		'</g>',//
+		           		'<text class="uml-class-name-text"/>',//
+		           		'<text class="uml-class-attrs-text"/>',//
+		           		'<text class="uml-class-relationships-text"/>',// 
+		           	'</g>' //
+		           		].join(''),
 
 		defaults : Joint.util.deepSupplement({
 
