@@ -8,8 +8,7 @@ define(function(require) {
 	var VisualEntity = Joint.shapes.basic.Generic.extend({
 
 		markup : [ '<g class="rotatable">',//
-		                 '<circle r="11" />',//
-		           		'<g class="scalable">',// 
+		           '<g class="scalable">',// 
 		           			'<rect class="uml-class-name-rect"/> ',//
 		           			'<rect class="uml-class-attrs-rect"/>',//
 		           			'<rect class="uml-class-relationships-rect"/>',// 
@@ -17,7 +16,8 @@ define(function(require) {
 		           		'<text class="uml-class-name-text"/>',//
 		           		'<text class="uml-class-attrs-text"/>',//
 		           		'<text class="uml-class-relationships-text"/>',// 
-		           	'</g>' //
+		           	'</g>',
+		           	'<div class="uml-class-point-relation-css"> </div>'//
 		           		].join(''),
 
 		defaults : Joint.util.deepSupplement({
@@ -29,6 +29,7 @@ define(function(require) {
 					'width' : 200
 				},
 
+				
 				'.uml-class-name-rect' : {
 					fill : '#ff8450',
 					'max-height' : '45px',
