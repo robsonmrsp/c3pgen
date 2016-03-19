@@ -14,7 +14,7 @@ define(function(require) {
 	var ApplicationModel = require('models/ApplicationModel');
 
 	var PageVisualTemplate = require('text!views/visual/tpl/PageVisualTemplate.html');
-	var VisualEntity = require('views/visual/models/VisualEntity');
+	var VisualEntity = require('views/visual/models/HtmlEntity');
 	var VisualRelationship = require('views/visual/models/VisualRelationship');
 	var InspetorEntidadesView = require('views/visual/InspetorEntidadesView');
 	var EntityCollection = require('collections/EntityCollection');
@@ -112,9 +112,8 @@ define(function(require) {
 				},
 				entity : that._getEntityModel(_entity),
 			});
-			visualEntities.put(visualEntity.id, visualEntity)
-
-			that.inspetorView.setVisualEntity(visualEntity)
+			// visualEntities.put(visualEntity.id, visualEntity)
+			// that.inspetorView.setVisualEntity(visualEntity)
 			that.graph.addCell(visualEntity);
 		},
 		_getEntityModel : function(_entity) {
