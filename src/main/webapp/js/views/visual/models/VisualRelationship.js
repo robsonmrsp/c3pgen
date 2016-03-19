@@ -37,8 +37,10 @@ define(function(require) {
 				}
 			},
 
-			// { position: 0.45, attrs: { text: { text: 'multiple', fill: 'white', 'font-family': 'sans-serif' }, }},
-			// { position: 0.55, attrs: { text: { text: 'labels', fill: 'white', 'font-family': 'sans-serif' }, }},
+			// { position: 0.45, attrs: { text: { text: 'multiple', fill:
+			// 'white', 'font-family': 'sans-serif' }, }},
+			// { position: 0.55, attrs: { text: { text: 'labels', fill: 'white',
+			// 'font-family': 'sans-serif' }, }},
 			{
 				position : -25,
 				attrs : {
@@ -48,6 +50,18 @@ define(function(require) {
 				}
 			} ]
 
+		},
+		setSourceEntity : function(source) {
+			this.sourceEntity = source
+			if (this.targetEntity) {
+				// Ao saber que as duas pontas do relacionamento estão
+				// definidas, poderemos alterar o visual da entidade adicionando
+				// as informações.
+				// podemos lancar um evento ou coisa parecida
+			}
+		},
+		setTargetEntity : function(target) {
+			this.targetEntity = target
 		}
 	});
 	return VisualRelationship;

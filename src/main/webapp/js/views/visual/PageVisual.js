@@ -18,10 +18,12 @@ define(function(require) {
 	var VisualRelationship = require('views/visual/models/VisualRelationship');
 	var InspetorEntidadesView = require('views/visual/InspetorEntidadesView');
 	var EntityCollection = require('collections/EntityCollection');
-	var AttributeCollection  = require('collections/AttributeCollection');
+	var AttributeCollection = require('collections/AttributeCollection');
 
 	var lastPositionX = 200;
-	var visualEntities = [];
+	var visualEntities = new Col.Map();
+
+	window.visualEntities = visualEntities;
 	var PageVisual = Marionette.LayoutView.extend({
 		template : _.template(PageVisualTemplate),
 
@@ -39,7 +41,7 @@ define(function(require) {
 			this.application = this.model;
 			var entidadesCollection = new EntityCollection();
 
-			_.each(visualEntities, function(visual) {
+			_.each(visualEntities.values(), function(visual) {
 
 				var entityModel = new EntityModel(visual.entity.attributes);
 
@@ -78,7 +80,19 @@ define(function(require) {
 		addRelation : function() {
 			var that = this;
 			var relation = new VisualRelationship();
+
 			that.graph.addCell(relation);
+			relation.on('change:source', function(_that, source, c) {
+				if (source.id) {
+					_that.setSourceEntity(visualEntities.get(source.id))
+				}
+			});
+			relation.on('change:target', function(_that, target, c) {
+				if (target.id) {
+					_that.setTargetEntity(visualEntities.get(target.id))
+				}
+			});
+
 		},
 
 		/**
@@ -98,7 +112,8 @@ define(function(require) {
 				},
 				entity : that._getEntityModel(_entity),
 			});
-			visualEntities.push(visualEntity)
+			visualEntities.put(visualEntity.id, visualEntity)
+
 			that.inspetorView.setVisualEntity(visualEntity)
 			that.graph.addCell(visualEntity);
 		},

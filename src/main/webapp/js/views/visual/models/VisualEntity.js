@@ -174,7 +174,7 @@ define(function(require) {
 				text : this.get('attributes')
 			}, {
 				type : 'relationships',
-				text : this.get('relationships')
+				text : this.get('relationships') 
 			} ];
 
 			var offsetY = 0;
