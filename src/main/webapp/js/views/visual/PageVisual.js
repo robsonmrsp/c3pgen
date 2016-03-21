@@ -101,6 +101,7 @@ define(function(require) {
 		addEntity : function(_entity) {
 			var that = this;
 			var visualEntity = new VisualEntity({
+				entity : that._getEntityModel(_entity),
 				position : {
 					x : (_entity && _entity.get && _entity.get('posX')) || this._lastPosition(),
 					y : (_entity && _entity.get && _entity.get('posY')) || 200
@@ -110,7 +111,7 @@ define(function(require) {
 					width : 120,
 					height : 100
 				},
-				entity : that._getEntityModel(_entity),
+
 			});
 			// visualEntities.put(visualEntity.id, visualEntity)
 			// that.inspetorView.setVisualEntity(visualEntity)
@@ -118,8 +119,6 @@ define(function(require) {
 		},
 		_getEntityModel : function(_entity) {
 			if (_entity && _entity.get) {
-
-				_entity.set('attributes', new AttributeCollection(_entity.get('attributes')));
 
 				return _entity;
 			} else {
@@ -149,8 +148,8 @@ define(function(require) {
 					model : that.graph
 				});
 				this.paper.on('cell:pointerup', function(_cellView, evt, x, y) {
-					if (_cellView.model.get('type') == 'uml.Class') {
-						that.inspetorView.setVisualEntity(_cellView.model);
+					if (_cellView.model.get('type') == 'html.Element') {
+						that.inspetorView.setVisualEntity(_cellView.entity);
 					}
 				});
 				// somente para garantir que tudo estará setando antes de

@@ -1,8 +1,15 @@
 /* generated: 30/08/2015 20:23:12 */
 define(function(require) {
 	var Joint = require('joint');
+	var _ = require('adapters/underscore-adapter');
+	var util = require('utilities/utils');
+
 	var AttributeModel = require('models/AttributeModel');
+
 	var EntityModel = require('models/EntityModel');
+
+	var HtmlEntityTemplate = require('text!views/visual/models/tpl/HtmlEntityTemplate.html');
+	var DiagramEntityView = require('views/visual/componentes/DiagramEntityView');
 	var Col = require('adapters/col-adapter');
 
 	Joint.shapes.html = Joint.shapes.html || {};
@@ -21,64 +28,35 @@ define(function(require) {
 	// a view
 	Joint.shapes.html.ElementView = Joint.dia.ElementView.extend({
 
-		// template : [ '<div class="html-element">', '<button
-		// class="delete">x</button>', '<label></label>', '<span></span>',
-		// '<br/>',
-		// '<select><option>--</option><option>one</option><option>two</option></select>',
-		// '<input type="text" value="I\'m HTML input" />', '</div>' ]
-		// .join(''),
+		template : HtmlEntityTemplate,
 
-		template : [ '	<div class="html-element hpanel" >',//
-		'       <div class="panel-body">',//
-		'           <div class="text-center">',//
-		'               <h2 class="m-b-xs">Box title</h2>',//
-		'               <p class="font-bold text-success">Lorem ipsum</p>',//
-		'               <div class="m">',//
-		'                   <i class="pe-7s-science fa-5x"></i>',//
-		'               </div>',//
-		'               <p class="small">',//
-		'                   Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',//
-		'               </p>',//
-		'               <button class="btn btn-success btn-sm">Action button</button>',//
-		'           </div>',//
-		'       </div>',//
-		'   </div>',//
-		'</div>' ]//
-		.join(''),
-
-		initialize : function() {
+		initialize : function(opt) {
 			_.bindAll(this, 'updateBox');
 			Joint.dia.ElementView.prototype.initialize.apply(this, arguments);
 
-			this.$box = $(_.template(this.template)());
-			// Prevent paper from handling pointerdown.
-			this.$box.find('input,select').on('mousedown click', function(evt) {
-				evt.stopPropagation();
+			this.entity = this.model.get('entity');
+
+			this.diagramEntityView = new DiagramEntityView({
+				model : this.entity,
 			});
-			// This is an example of reacting on the input change and storing
-			// the input data in the cell model.
-			this.$box.find('input').on('change', _.bind(function(evt) {
-				this.model.set('input', $(evt.target).val());
-			}, this));
-			this.$box.find('select').on('change', _.bind(function(evt) {
-				this.model.set('select', $(evt.target).val());
-			}, this));
-			this.$box.find('select').val(this.model.get('select'));
-			this.$box.find('.delete').on('click', _.bind(this.model.remove, this.model));
-			// Update the box position whenever the underlying model changes.
+
+			this.$box = $(_.template(this.template)());
+
 			this.model.on('change', this.updateBox, this);
-			// Remove the box when the model gets removed from the graph.
 			this.model.on('remove', this.removeBox, this);
 
 			this.model.set('size', {
-				width : 170,
-				height : 50,
+				width : 150,
+				height : 160,
 			});
 
 			this.updateBox();
 		},
 		render : function() {
 			Joint.dia.ElementView.prototype.render.apply(this, arguments);
+
+			util.appendView(this.$box, this.diagramEntityView);
+
 			this.paper.$el.prepend(this.$box);
 			this.updateBox();
 			return this;
