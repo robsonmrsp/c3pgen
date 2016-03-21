@@ -38,6 +38,7 @@ define(function(require) {
 
 			this.diagramEntityView = new DiagramEntityView({
 				model : this.entity,
+				container : this,
 			});
 
 			this.$box = $(_.template(this.template)());
@@ -52,6 +53,16 @@ define(function(require) {
 
 			this.updateBox();
 		},
+
+		resizeView : function(size) {
+			this.model.set('size', {
+				width : size.width,
+				height : size.height,
+			});
+			this.updateBox()
+			this.$box.css('height', size.height);
+		},
+
 		render : function() {
 			Joint.dia.ElementView.prototype.render.apply(this, arguments);
 
@@ -61,14 +72,9 @@ define(function(require) {
 			this.updateBox();
 			return this;
 		},
+
 		updateBox : function() {
-			// Set the position and dimension of the box so that it covers the
-			// JointJS element.
 			var bbox = this.model.getBBox();
-			// Example of updating the HTML with a data stored in the cell
-			// model.
-			this.$box.find('label').text(this.model.get('label'));
-			this.$box.find('span').text(this.model.get('select'));
 			this.$box.css({
 				width : bbox.width,
 				height : bbox.height,
@@ -79,7 +85,21 @@ define(function(require) {
 		},
 		removeBox : function(evt) {
 			this.$box.remove();
-		}
+		},
+
+		updateEntityPosition : function() {
+			var position = this.model.get('position');
+			this.entity.set('posX', position.x);
+			this.entity.set('posY', position.y);
+		},
+
+		updateHtmlEntity : function(modelEntity) {
+			if (modelEntity) {
+				this.entity.set(modelEntity.attributes);
+				this.diagramEntityView.refresh(this.entity);
+			}
+		},
+
 	});
 
 	return Joint.shapes.html.Element;

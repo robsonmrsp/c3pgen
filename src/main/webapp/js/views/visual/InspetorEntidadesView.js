@@ -92,12 +92,12 @@ define(function(require) {
 				collection : this.attributesCollection,
 			});
 
-			this.model.set('attributes', this.attributesCollection);
+			// this.model.set('attributes', this.model.get('attributes'));
 
 			// configuração dos relacionamentos
 			this.relationshipsCollection = new RelationshipCollection(this.model.get('relationships'));
 
-			this.model.set('relationships', this.relationshipsCollection);
+			// this.model.set('relationships', this.relationshipsCollection);
 
 			this.relationshipsCollectionView = new RelationshipsCollectionView({
 				collection : this.relationshipsCollection,
@@ -123,7 +123,7 @@ define(function(require) {
 				});
 
 				this.ui.editableFields.on('hidden', function() {
-					that.changeEntity();
+					that.updateViewEntity();
 				})
 
 				this.ui.addRelation.tooltip();
@@ -141,7 +141,9 @@ define(function(require) {
 
 		updateViewEntity : function(model, collection) {
 
-			this.visualEntity.update(this.model);
+			this.entity.set(this.getModel())
+			this.entity.set('attributes', this.attributesCollection.toJSON());
+			this.visualEntity.updateHtmlEntity(this.entity);
 		},
 
 		changeEntity : function() {
@@ -155,13 +157,17 @@ define(function(require) {
 			this.model.destroy();
 		},
 
+		setEntity : function(visualEntity) {
+
+		},
+
 		setVisualEntity : function(visualEntity) {
 
-			var entity = visualEntity.entity;
+			entity = visualEntity.entity;
 
 			this.visualEntity = visualEntity;
 
-			this.attributesCollection.reset(visualEntity.get('attributes'));
+			this.attributesCollection.reset(entity.get('attributes'));
 
 			this.ui.inputId.val(entity.get('id'));
 			this.ui.inputEntityName.text(entity.get('name'));
@@ -173,6 +179,8 @@ define(function(require) {
 			util.refreshEditableVisual(this.ui.inputDisplayName);
 			util.refreshEditableVisual(this.ui.inputTableName);
 			util.refreshEditableVisual(this.ui.inputHasMobile);
+
+			this.entity = entity;
 
 			this.visualEntity.updateEntityPosition();
 		},

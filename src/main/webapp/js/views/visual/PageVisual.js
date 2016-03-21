@@ -43,12 +43,12 @@ define(function(require) {
 
 			_.each(visualEntities.values(), function(visual) {
 
-				var entityModel = new EntityModel(visual.entity.attributes);
+				// var entityModel = visual.get('entity');
+				//
+				// entityModel.set('attributes', visual.getAttributes())
+				// entityModel.set('relationships', visual.getRelationships())
 
-				entityModel.set('attributes', visual.getAttributes())
-				entityModel.set('relationships', visual.getRelationships())
-
-				entidadesCollection.add(entityModel);
+				entidadesCollection.add(visual.get('entity'));
 			});
 
 			this.application.set('entities', entidadesCollection);
@@ -113,8 +113,8 @@ define(function(require) {
 				},
 
 			});
-			// visualEntities.put(visualEntity.id, visualEntity)
-			// that.inspetorView.setVisualEntity(visualEntity)
+			visualEntities.put(visualEntity.id, visualEntity)
+
 			that.graph.addCell(visualEntity);
 		},
 		_getEntityModel : function(_entity) {
@@ -149,7 +149,7 @@ define(function(require) {
 				});
 				this.paper.on('cell:pointerup', function(_cellView, evt, x, y) {
 					if (_cellView.model.get('type') == 'html.Element') {
-						that.inspetorView.setVisualEntity(_cellView.entity);
+						that.inspetorView.setVisualEntity(_cellView);
 					}
 				});
 				// somente para garantir que tudo estará setando antes de

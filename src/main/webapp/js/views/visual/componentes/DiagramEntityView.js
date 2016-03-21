@@ -15,30 +15,52 @@ define(function(require) {
 
 	var DiagramEntityView = Marionette.LayoutView.extend({
 		template : _.template(DiagramEntityViewTemplate),
-
+		className : 'entity-container',
 		regions : {
 			attributesRegion : '.entity-attributes',
 		},
 
 		events : {},
 
-		ui : {},
+		ui : {
+			entityName : '.entity-name',
+		},
 
-		initialize : function() {
+		initialize : function(opt) {
 			var that = this;
+			this.container = opt.container;
 
 			this.attributesCollection = new AttributeCollection(this.model.get('attributes'));
-
 			this.attributesCollectionView = new DiagramAttributesCollectionView({
 				collection : this.attributesCollection,
 			});
 
 			this.on('show', function() {
-
 				this.attributesRegion.show(this.attributesCollectionView);
-
+				window.setTimeout(function() {
+					that.container.resizeView({
+						width : that.$el.width(),
+						height : that.$el.height()
+					})
+				}, 10);
 			});
 		},
+
+		refresh : function(entity) {
+			var that = this;
+			this.ui.entityName.text(entity.get('name'));
+			console.log('tamanho', this.$el.height());
+
+			this.attributesCollection.reset(this.model.get('attributes'));
+
+			window.setTimeout(function() {
+				that.container.resizeView({
+					width : that.$el.width(),
+					height : that.$el.height()
+				})
+			}, 10);
+		},
+
 	});
 
 	return DiagramEntityView;

@@ -288,7 +288,8 @@ body {
 	-webkit-user-select: none;
 	box-sizing: border-box;
 	z-index: 2;
-	pointer-events: none
+	pointer-events: none;
+	box-shadow: 0 10px 6px -6px #777;
 }
 
 .closebox {
@@ -348,7 +349,7 @@ body {
 	/* 	right: 9px; */
 	/* 	color: white; */
 	/* 	font-size: 10px; */
-	/* } */    
+	/* } */       
 
 .uml-class-name-rect {
 	background: #ff8450 !important;
@@ -403,12 +404,9 @@ body {
 }
 
 .add-rel {
-	margin-top: -23px;
-	margin-right: 6px;
+	margin-top: -17px;
+	margin-right: 3px;
 	cursor: crosshair;
-	font-size: 1.5em;
-}
-
-.entity-container {
-	box-shadow: 0 10px 6px -6px #777;
+	font-size: 1.2em;
+	pointer-events: auto;
 }
