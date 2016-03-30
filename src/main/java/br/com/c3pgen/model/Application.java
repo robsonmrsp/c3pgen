@@ -67,6 +67,7 @@ public class Application extends AbstractTimestampEntity {
 	@Cascade(CascadeType.ALL)
 	private List<ApplicationEntity> entities;
 
+	
 	@ManyToOne
 	@JoinColumn(name = "id_client")
 	private Client owner;

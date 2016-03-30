@@ -14,7 +14,7 @@ import org.joda.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import br.com.etiquetar.security.UserContext;
+import ${application.rootPackage}.security.UserContext;
 import ${application.rootPackage}.model.AbstractTimestampEntity;
 import ${application.rootPackage}.security.UserContext;
 

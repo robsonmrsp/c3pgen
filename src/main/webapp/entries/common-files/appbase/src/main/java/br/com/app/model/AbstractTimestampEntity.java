@@ -13,7 +13,7 @@ import org.hibernate.annotations.Type;
 import org.joda.time.LocalDateTime;
 
 import ${application.rootPackage}.serialization.CustomLocalDateTimeSerializer;
-import br.com.etiquetar.model.User;
+import ${application.rootPackage}.model.User;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 @MappedSuperclass

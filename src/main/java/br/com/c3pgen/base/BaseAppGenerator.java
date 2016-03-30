@@ -33,10 +33,10 @@ public class BaseAppGenerator {
 		genericGenerator.generate(FSItemDescription.persistences(javaRootFolder));
 		genericGenerator.generate(FSItemDescription.audit(javaRootFolder));
 		genericGenerator.generate(FSItemDescription.json(javaRootFolder));
-		// genericGenerator.generate(FSItemDescription.cep(javaRootFolder));
+//		 genericGenerator.generate(FSItemDescription.cep(javaRootFolder));
 		genericGenerator.generate(FSItemDescription.rs(javaRootFolder));
 		genericGenerator.generate(FSItemDescription.report(javaRootFolder));
-		 genericGenerator.generate(FSItemDescription.rbac(javaRootFolder));
+//		 genericGenerator.generate(FSItemDescription.rbac(javaRootFolder));
 		genericGenerator.generate(FSItemDescription.model(javaRootFolder));
 		genericGenerator.generate(FSItemDescription.rsException(javaRootFolder));
 		genericGenerator.generate(FSItemDescription.security(javaRootFolder));

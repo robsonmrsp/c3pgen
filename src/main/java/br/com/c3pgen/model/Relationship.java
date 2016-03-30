@@ -46,6 +46,10 @@ import org.hibernate.envers.Audited;
 public class Relationship extends AbstractTimestampEntity {
 	private static final long serialVersionUID = 1L;
 
+	public enum Types {
+		ManyToMany, OneToMany, ManyToOne, OneToOne,
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "RELATIONSHIP_SEQUENCE")
 	private Integer id;
@@ -80,6 +84,20 @@ public class Relationship extends AbstractTimestampEntity {
 	@ManyToOne
 	@JoinColumn(name = "id_client")
 	private Client owner;
+
+	public Relationship(String name, Types type, String ownerName, String model, Boolean uniDirecional, ViewApproach viewApproach) {
+		super();
+		this.name = name;
+		this.type = type.name();
+		this.ownerName = ownerName;
+		this.model = model;
+		if (uniDirecional == null) {
+			this.uniDirecional = Boolean.FALSE;
+		} else {
+			this.uniDirecional = uniDirecional;
+		}
+		this.viewApproach = viewApproach;
+	}
 
 	public Client getOwner() {
 		return owner;

@@ -91,13 +91,13 @@ public class FSItemDescription {
 	public static List<FSItemDescription> rbac(String rootFolder) {
 
 		List<FSItemDescription> list = new ArrayList<FSItemDescription>();
-//		list.add(new FSItemDescription("Manager", rootFolder + File.separator + "model" + File.separator + "rbac" + File.separator, "Manager", FileType.JAVA));
-//		list.add(new FSItemDescription("Object", rootFolder + File.separator + "model" + File.separator + "rbac" + File.separator, "Object", FileType.JAVA));
-//		list.add(new FSItemDescription("ObjectType", rootFolder + File.separator + "model" + File.separator + "rbac" + File.separator, "ObjectType", FileType.JAVA));
-//		list.add(new FSItemDescription("Operation", rootFolder + File.separator + "model" + File.separator + "rbac" + File.separator, "Operation", FileType.JAVA));
-		list.add(new FSItemDescription("Permission", rootFolder + File.separator + "model" + File.separator + "rbac" + File.separator, "Permission", FileType.JAVA));
-		list.add(new FSItemDescription("Role", rootFolder + File.separator + "model" + File.separator + "rbac" + File.separator, "Role", FileType.JAVA));
-		list.add(new FSItemDescription("Session", rootFolder + File.separator + "model" + File.separator + "rbac" + File.separator, "Session", FileType.JAVA));
+		// list.add(new FSItemDescription("Manager", rootFolder + File.separator + "model" + File.separator + "rbac" + File.separator, "Manager", FileType.JAVA));
+		// list.add(new FSItemDescription("Object", rootFolder + File.separator + "model" + File.separator + "rbac" + File.separator, "Object", FileType.JAVA));
+		// list.add(new FSItemDescription("ObjectType", rootFolder + File.separator + "model" + File.separator + "rbac" + File.separator, "ObjectType", FileType.JAVA));
+		// list.add(new FSItemDescription("Operation", rootFolder + File.separator + "model" + File.separator + "rbac" + File.separator, "Operation", FileType.JAVA));
+		// list.add(new FSItemDescription("Permission", rootFolder + File.separator + "model" + File.separator + "rbac" + File.separator, "Permission", FileType.JAVA));
+		// list.add(new FSItemDescription("Role", rootFolder + File.separator + "model" + File.separator + "rbac" + File.separator, "Role", FileType.JAVA));
+		// list.add(new FSItemDescription("Session", rootFolder + File.separator + "model" + File.separator + "rbac" + File.separator, "Session", FileType.JAVA));
 		return list;
 	}
 
@@ -157,6 +157,7 @@ public class FSItemDescription {
 		list.add(new FSItemDescription("CustomLocalDateSerializer", rootFolder + File.separator + "serialization" + File.separator, "CustomLocalDateSerializer", FileType.JAVA));
 		list.add(new FSItemDescription("CustomLocalDateTimeDeserializer", rootFolder + File.separator + "serialization" + File.separator, "CustomLocalDateTimeDeserializer", FileType.JAVA));
 		list.add(new FSItemDescription("CustomLocalDateTimeSerializer", rootFolder + File.separator + "serialization" + File.separator, "CustomLocalDateTimeSerializer", FileType.JAVA));
+		list.add(new FSItemDescription("CustomDoubleDeserializer", rootFolder + File.separator + "serialization" + File.separator, "CustomDoubleDeserializer", FileType.JAVA));
 		list.add(new FSItemDescription("CustomSyncObjectIdDeserializer", rootFolder + File.separator + "serialization" + File.separator, "CustomSyncObjectIdDeserializer", FileType.JAVA));
 		return list;
 	}
