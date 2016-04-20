@@ -11,19 +11,28 @@ define(function(require) {
 	var AttributeCollection = require('collections/AttributeCollection');
 
 	var DiagramEntityViewTemplate = require('text!views/visual/componentes/tpl/DiagramEntityViewTemplate.html');
+
 	var DiagramAttributesCollectionView = require('views/visual/componentes/DiagramAttributesCollectionView');
+	var DiagramRelationshipsCollectionView = require('views/visual/componentes/DiagramRelationshipsCollectionView');
 
 	var DiagramEntityView = Marionette.LayoutView.extend({
 		template : _.template(DiagramEntityViewTemplate),
 		className : 'entity-container',
 		regions : {
 			attributesRegion : '.entity-attributes',
+			relationshipsRegion : '.entity-relationships',
 		},
 
-		events : {},
+		events : {
+			'mousedown  .add-rel' : 'addRelation'
+		},
 
 		ui : {
 			entityName : '.entity-name',
+		},
+
+		addRelation : function() {
+			util.VENT.trigger('entity.add.rel', this.container);
 		},
 
 		initialize : function(opt) {
@@ -35,8 +44,14 @@ define(function(require) {
 				collection : this.attributesCollection,
 			});
 
+			this.relationshipsCollection = new RelationshipCollection(this.model.get('relationships'));
+			this.relationshipsCollectionView = new DiagramRelationshipCollectionView({
+				collection : this.relationshipsCollection,
+			});
+
 			this.on('show', function() {
 				this.attributesRegion.show(this.attributesCollectionView);
+				this.relationshipsRegion.show(this.relationshipsCollectionView);
 				window.setTimeout(function() {
 					that.container.resizeView({
 						width : that.$el.width(),
@@ -52,6 +67,8 @@ define(function(require) {
 			console.log('tamanho', this.$el.height());
 
 			this.attributesCollection.reset(this.model.get('attributes'));
+
+			this.relationshipsCollection.reset(this.model.get('relationships'));
 
 			window.setTimeout(function() {
 				that.container.resizeView({

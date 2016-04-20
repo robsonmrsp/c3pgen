@@ -22,6 +22,12 @@ define(function(require) {
 
 	var lastPositionX = 200;
 	var visualEntities = new Col.Map();
+	// http://www.sinbadsoft.com/blog/backbone-js-by-example-part-1/
+	$('body').mousemove(function(e) {
+		// console.log(e.pageX, e.pageY)
+		MOUSE_X = e.pageX;
+		MOUSE_Y = e.pageY;
+	});
 
 	window.visualEntities = visualEntities;
 	var PageVisual = Marionette.LayoutView.extend({
@@ -77,9 +83,17 @@ define(function(require) {
 			return lastPositionX
 		},
 
-		addRelation : function() {
+		addRelation : function(source) {
 			var that = this;
-			var relation = new VisualRelationship();
+			var relation = new VisualRelationship({
+				source : {
+					id : source.id
+				},
+				target : {
+					x : MOUSE_X + 50,
+					y : MOUSE_Y - 40
+				},
+			});
 
 			that.graph.addCell(relation);
 			relation.on('change:source', function(_that, source, c) {
@@ -92,7 +106,6 @@ define(function(require) {
 					_that.setTargetEntity(visualEntities.get(target.id))
 				}
 			});
-
 		},
 
 		/**
@@ -147,16 +160,24 @@ define(function(require) {
 					gridSize : 1,
 					model : that.graph
 				});
+
 				this.paper.on('cell:pointerup', function(_cellView, evt, x, y) {
 					if (_cellView.model.get('type') == 'html.Element') {
 						that.inspetorView.setVisualEntity(_cellView);
 					}
 				});
+
 				// somente para garantir que tudo estará setando antes de
 				// adicionar as entidades ao painter
 				entities.each(function(ent) {
 					that.addEntity(ent);
 				});
+
+				util.VENT.on('entity.add.rel', function(entityDiagram) {
+					console.log('entity.add.rel->', entityDiagram);
+					that.addRelation(entityDiagram.model);
+					
+				})
 			});
 		},
 	});

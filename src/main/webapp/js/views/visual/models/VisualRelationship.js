@@ -6,7 +6,7 @@ define(function(require) {
 
 	var VisualRelationship = Joint.dia.Link.extend({
 		defaults : {
-			type : 'uml.Relatiion',
+			type : 'uml.Relation',
 			attrs : {
 				'.marker-source' : {
 					fill : '#4b4a67',
@@ -28,27 +28,27 @@ define(function(require) {
 				y : 280
 			},
 			smooth : false,
-			labels : [ {
-				position : 25,
-				attrs : {
-					text : {
-						text : '1..n'
-					}
-				}
-			},
+		// labels : [ {
+		// position : 25,
+		// attrs : {
+		// text : {
+		// text : '1..n'
+		// }
+		// }
+		// },
 
-			// { position: 0.45, attrs: { text: { text: 'multiple', fill:
-			// 'white', 'font-family': 'sans-serif' }, }},
-			// { position: 0.55, attrs: { text: { text: 'labels', fill: 'white',
-			// 'font-family': 'sans-serif' }, }},
-			{
-				position : -25,
-				attrs : {
-					text : {
-						text : '*'
-					}
-				}
-			} ]
+		// { position: 0.45, attrs: { text: { text: 'multiple', fill:
+		// 'white', 'font-family': 'sans-serif' }, }},
+		// { position: 0.55, attrs: { text: { text: 'labels', fill: 'white',
+		// 'font-family': 'sans-serif' }, }},
+		// {
+		// position : -25,
+		// attrs : {
+		// text : {
+		// text : '*'
+		// }
+		// }
+		// } ]
 
 		},
 		setSourceEntity : function(source) {
@@ -67,3 +67,4 @@ define(function(require) {
 	return VisualRelationship;
 
 });
+

@@ -28,6 +28,7 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 	return {
 		// Uma forma de chamar o moment js sem precisar importar em cada arquivo
 		moment : moment,
+		VENT : _.extend({}, Backbone.Events),
 		Bootbox : bootbox,
 		NProgress : NProgress.configure({
 			minimum : 0.2,

@@ -31,6 +31,7 @@ define(function(require) {
 		template : HtmlEntityTemplate,
 
 		initialize : function(opt) {
+			var that = this;
 			_.bindAll(this, 'updateBox');
 			Joint.dia.ElementView.prototype.initialize.apply(this, arguments);
 
