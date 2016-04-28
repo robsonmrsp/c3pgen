@@ -41,7 +41,48 @@ define(function(require) {
 			'click #addRelation' : 'addRelation',
 			'click #saveApp' : 'saveApplication',
 		},
+
 		ui : {},
+
+		initialize : function() {
+			var that = this;
+			var entities = new EntityCollection(this.model.get('entities'));
+			this.inspetorView = new InspetorEntidadesView({
+				model : new EntityModel({
+					name : '',
+				}),
+			});
+
+			this.on('show', function() {
+				this.inspectorRegion.show(this.inspetorView);
+				this.graph = new Joint.dia.Graph();
+				this.paper = new Joint.dia.Paper({
+					el : $('#paper'),
+					height : window.innerHeight,
+					width : window.innerWidth,
+					gridSize : 1,
+					model : that.graph
+				});
+
+				this.paper.on('cell:pointerup', function(_cellView, evt, x, y) {
+					if (_cellView.model.get('type') == 'html.Element') {
+						that.inspetorView.setVisualEntity(_cellView);
+					}
+				});
+
+				// somente para garantir que tudo estará setando antes de
+				// adicionar as entidades ao painter
+				entities.each(function(ent) {
+					that.addEntity(ent);
+				});
+
+				util.VENT.on('entity.add.rel', function(entityDiagram) {
+					console.log('entity.add.rel->', entityDiagram);
+					that.addRelation(entityDiagram.model);
+
+				})
+			});
+		},
 
 		saveApplication : function() {
 			this.application = this.model;
@@ -141,45 +182,6 @@ define(function(require) {
 			}
 		},
 
-		initialize : function() {
-			var that = this;
-			var entities = new EntityCollection(this.model.get('entities'));
-			this.inspetorView = new InspetorEntidadesView({
-				model : new EntityModel({
-					name : '',
-				}),
-			});
-
-			this.on('show', function() {
-				this.inspectorRegion.show(this.inspetorView);
-				this.graph = new Joint.dia.Graph();
-				this.paper = new Joint.dia.Paper({
-					el : $('#paper'),
-					height : window.innerHeight,
-					width : window.innerWidth,
-					gridSize : 1,
-					model : that.graph
-				});
-
-				this.paper.on('cell:pointerup', function(_cellView, evt, x, y) {
-					if (_cellView.model.get('type') == 'html.Element') {
-						that.inspetorView.setVisualEntity(_cellView);
-					}
-				});
-
-				// somente para garantir que tudo estará setando antes de
-				// adicionar as entidades ao painter
-				entities.each(function(ent) {
-					that.addEntity(ent);
-				});
-
-				util.VENT.on('entity.add.rel', function(entityDiagram) {
-					console.log('entity.add.rel->', entityDiagram);
-					that.addRelation(entityDiagram.model);
-					
-				})
-			});
-		},
 	});
 
 	return PageVisual;

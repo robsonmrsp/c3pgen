@@ -86,7 +86,19 @@ define(function(require) {
 			this.on('show', function() {
 				this.ui.inputRelationshipName.editable();
 				this.ui.inputDisplayName.editable();
-				this.ui.inputModel.editable();
+				this.ui.inputModel.editable({
+					value : '',
+					source : [ {
+						value : 'modal',
+						text : 'modal'
+					}, {
+						value : 'combo',
+						text : 'combo'
+					}, {
+						value : 'multiselect',
+						text : 'multiselect'
+					}, ]
+				});
 
 				this.ui.inputComboId.editable();
 				this.ui.inputComboName.editable();

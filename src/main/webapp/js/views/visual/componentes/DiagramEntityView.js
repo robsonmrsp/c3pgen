@@ -9,6 +9,7 @@ define(function(require) {
 
 	var util = require('utilities/utils');
 	var AttributeCollection = require('collections/AttributeCollection');
+	var RelationshipCollection = require('collections/RelationshipCollection');
 
 	var DiagramEntityViewTemplate = require('text!views/visual/componentes/tpl/DiagramEntityViewTemplate.html');
 
@@ -45,7 +46,7 @@ define(function(require) {
 			});
 
 			this.relationshipsCollection = new RelationshipCollection(this.model.get('relationships'));
-			this.relationshipsCollectionView = new DiagramRelationshipCollectionView({
+			this.relationshipsCollectionView = new DiagramRelationshipsCollectionView({
 				collection : this.relationshipsCollection,
 			});
 
