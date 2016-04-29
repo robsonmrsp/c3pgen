@@ -25,9 +25,13 @@ define(function(require) {
 		},
 
 		events : {
-			'mousedown  .add-rel' : 'addRelation'
+			'mousedown  .add-rel' : 'addRelation',
+			'click  .closebox' : 'removeEntity'
 		},
 
+		removeEntity : function() {
+			this.model.destroy();
+		},
 		ui : {
 			entityName : '.entity-name',
 		},

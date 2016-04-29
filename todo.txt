@@ -1,6 +1,9 @@
-1-  Criar uma toolbar que possa ser adicionada por cada tela dinamicamente de modo que possa controlar todas as 
-	atividades desta tela, seria uma especie de menu. onde cada botão teria um tamanho fixo e sua posição seria 
-	calculada levando-se em conta a quantidade de elementos nesta toolbar.
-	
-2-  Acredito que baste ficar no começo, como um menu mesmo. Afinal de contas, o menu sidebar só aparecerá para 
-	desenhar as entidades
+ 29/04/2016 
+   #colocar o pluguin de decimal no sistema substituindo o atual
+    http://plentz.github.io/jquery-maskmoney/
+   
+   #Para o duturo trabalhar com o javaDateTime do java8
+   #Atualizar as bibliotecas utilizadas. Spring, Hibernate, Jackson.
+
+   #estilizar o modal que aparece quando se vai excluir um elemento do grid. Fazer como está p
+   melhorar o combobox para que ele possa rodar um loading...

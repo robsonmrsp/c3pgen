@@ -29,19 +29,20 @@ import br.com.c3pgen.rs.exception.ValidationException;
 import br.com.c3pgen.security.SpringSecurityUserContext;
 import br.com.c3pgen.service.TheEntityService;
 import br.com.c3pgen.utils.Parser;
-/**
-*  generated: 03/09/2015 14:51:48
-**/
 
-@Path("/crud/theEntitys")
+/**
+ * generated: 03/09/2015 14:51:48
+ **/
+
+@Path("/crud/entitys")
 public class TheEntityResources {
 
 	@Inject
 	TheEntityService theEntityService;
-	
+
 	@Inject
 	private SpringSecurityUserContext context;
-	
+
 	public static final Logger LOGGER = Logger.getLogger(TheEntityResources.class);
 
 	@GET

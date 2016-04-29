@@ -8,10 +8,10 @@ define(function(require) {
 	var Marionette = require('marionette');
 	var util = require('utilities/utils');
 
-	var DiagramAttributeItemView = require('views/visual/componentes/DiagramAttributeItemView');
+	var DiagramRelationshipItemView = require('views/visual/componentes/DiagramRelationshipItemView');
 
-	var EntidadeCollection = Marionette.CollectionView.extend({
-		childView : DiagramAttributeItemView,
+	var CollectionView = Marionette.CollectionView.extend({
+		childView : DiagramRelationshipItemView,
 
 		childViewOptions : function() {
 
@@ -22,5 +22,5 @@ define(function(require) {
 		},
 	})
 
-	return EntidadeCollection;
+	return CollectionView;
 });

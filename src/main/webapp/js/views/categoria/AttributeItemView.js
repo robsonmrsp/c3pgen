@@ -161,7 +161,7 @@ define(function(require) {
 						util.refreshEditable(that.ui.inputMask, '99/99/9999 99:99');
 						util.refreshEditable(that.ui.inputMaxLen, 16)
 					}
-					this.trigger('attribute:change', this.model);
+//					this.trigger('attribute:change', this.model);
 				})
 
 				this.ui.inputViewApproach.editable({

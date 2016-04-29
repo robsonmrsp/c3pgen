@@ -49,7 +49,8 @@ define(function(require) {
 		},
 		changeRelationship : function() {
 			var attr = this.getModel();
-			this.model.set(attr);
+			if (attr.name && attr.model && attr.viewApproach && attr.ownerName && attr.name)
+				this.model.set(attr);
 		},
 		deleteRelationship : function() {
 			this.model.destroy();
@@ -88,16 +89,7 @@ define(function(require) {
 				this.ui.inputDisplayName.editable();
 				this.ui.inputModel.editable({
 					value : '',
-					source : [ {
-						value : 'modal',
-						text : 'modal'
-					}, {
-						value : 'combo',
-						text : 'combo'
-					}, {
-						value : 'multiselect',
-						text : 'multiselect'
-					}, ]
+					source : that._getModels(),
 				});
 
 				this.ui.inputComboId.editable();
@@ -167,9 +159,22 @@ define(function(require) {
 						text : 'ManyToMany'
 					}, ]
 				});
-				this.hideShow();
+				// this.hideShow();
 			});
 		},
+
+		_getModels : function() {
+			var arrayModels = [];
+			var allBEntities = util.getBEntities();
+			_.each(allBEntities, function(entity) {
+				arrayModels.push({
+					value : entity.get('name'),
+					text : entity.get('name')
+				})
+			});
+
+			return arrayModels;
+		}
 	});
 
 	return RelationshipItem;

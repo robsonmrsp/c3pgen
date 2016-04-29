@@ -68,7 +68,9 @@ define(function(require) {
 
 		addRelationship : function() {
 			this.ui.panelBody.show();
-			this.relationshipsCollection.add(new RelationshipModel());
+			var newRelationship = new RelationshipModel();
+			newRelationship.set('entity', this.entity.toJSON());
+			this.relationshipsCollection.add(newRelationship);
 		},
 
 		initialize : function() {
@@ -96,8 +98,7 @@ define(function(require) {
 
 			// configuração dos relacionamentos
 			this.relationshipsCollection = new RelationshipCollection(this.model.get('relationships'));
-
-			// this.model.set('relationships', this.relationshipsCollection);
+			this.relationshipsCollection.on('change', this.updateViewEntityWithRelationships, this);
 
 			this.relationshipsCollectionView = new RelationshipsCollectionView({
 				collection : this.relationshipsCollection,
@@ -139,6 +140,21 @@ define(function(require) {
 			});
 		},
 
+		updateViewEntityWithRelationships : function(model, collection) {
+			this.entity.set(this.getModel())
+			this.entity.set('relationships', this.relationshipsCollection.toJSON());
+
+			this.visualEntity.updateHtmlEntity(this.entity);
+
+			// nesse momento criar o novo relacionamento se necessário
+
+			var source = util.getVEntityByName(model.get('entity').name);
+			var targuet = util.getVEntityByName(model.get('model'));
+
+			util.VENT.trigger('entity.add.rel', source, targuet);
+
+		},
+
 		updateViewEntity : function(model, collection) {
 
 			this.entity.set(this.getModel())
@@ -168,6 +184,8 @@ define(function(require) {
 			this.visualEntity = visualEntity;
 
 			this.attributesCollection.reset(entity.get('attributes'));
+
+			this.relationshipsCollection.reset(entity.get('relationships'));
 
 			this.ui.inputId.val(entity.get('id'));
 			this.ui.inputEntityName.text(entity.get('name'));

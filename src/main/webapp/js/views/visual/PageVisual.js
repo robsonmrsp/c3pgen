@@ -22,6 +22,7 @@ define(function(require) {
 
 	var lastPositionX = 200;
 	var visualEntities = new Col.Map();
+	var visualRelations = new Col.Map();
 	// http://www.sinbadsoft.com/blog/backbone-js-by-example-part-1/
 	$('body').mousemove(function(e) {
 		// console.log(e.pageX, e.pageY)
@@ -30,6 +31,8 @@ define(function(require) {
 	});
 
 	window.visualEntities = visualEntities;
+	window.visualRelations = visualRelations;
+
 	var PageVisual = Marionette.LayoutView.extend({
 		template : _.template(PageVisualTemplate),
 
@@ -76,10 +79,10 @@ define(function(require) {
 					that.addEntity(ent);
 				});
 
-				util.VENT.on('entity.add.rel', function(entityDiagram) {
-					console.log('entity.add.rel->', entityDiagram);
-					that.addRelation(entityDiagram.model);
-
+				// Provavelmente será jancado o evendo de criação de
+				// relacionamento a partir da telinha de inspetor.
+				util.VENT.on('entity.add.rel', function(entityVSourceDiagram, entityVTargetDiagram) {
+					that.addRelation(entityVSourceDiagram, entityVTargetDiagram);
 				})
 			});
 		},
@@ -124,15 +127,14 @@ define(function(require) {
 			return lastPositionX
 		},
 
-		addRelation : function(source) {
+		addRelation : function(source, target) {
 			var that = this;
 			var relation = new VisualRelationship({
 				source : {
 					id : source.id
 				},
 				target : {
-					x : MOUSE_X + 50,
-					y : MOUSE_Y - 40
+					id : target.id
 				},
 			});
 

@@ -45,7 +45,7 @@ define(function(require) {
 			this.$box = $(_.template(this.template)());
 
 			this.model.on('change', this.updateBox, this);
-			this.model.on('remove', this.removeBox, this);
+			this.model.on('destroy', this.removeBox, this);
 
 			this.model.set('size', {
 				width : 150,
@@ -85,7 +85,7 @@ define(function(require) {
 			});
 		},
 		removeBox : function(evt) {
-			this.$box.remove();
+			this.$el.remove();
 		},
 
 		updateEntityPosition : function() {

@@ -13,7 +13,7 @@ define(function(require) {
 	var BaseModel = require('models/BaseModel');
 	var RelationshipModel = require('models/RelationshipModel');
 
-	var DiagramRelationItemViewTemplate = require('text!views/visual/componentes/tpl/DiagramRelationshipItemViewTemplate.html');
+	var DiagramRelationshipItemViewTemplate = require('text!views/visual/componentes/tpl/DiagramRelationshipItemViewTemplate.html');
 
 	var DiagramRelationshipItemView = Marionette.ItemView.extend({
 		template : _.template(DiagramRelationshipItemViewTemplate),

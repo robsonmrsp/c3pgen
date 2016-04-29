@@ -364,8 +364,7 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 		},
 
 		/*
-		 * Usage: breadcrumb({iconClass:'',itemLabel:'',
-		 * itemSubFolderName:'',url:''});
+		 * Usage: breadcrumb({iconClass:'',itemLabel:'', itemSubFolderName:'',url:''});
 		 */
 		breadcrumb : function(itemMenu) {
 			if (itemMenu) {
@@ -601,6 +600,27 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 
 		firstUpper : function(string) {
 			return string.charAt(0).toUpperCase() + string.slice(1);
+		},
+		getVEntityByName : function(/* nome da entidade representada no editor visual */name) {
+			var allVEntities = visualEntities.values();
+			var allBEntities = [];
+			var returnVntuty = null;
+			_.each(allVEntities, function(vEntity) {
+				if (vEntity.get('entity').get('name') == name) {
+					returnVntuty = vEntity;
+					return returnVntuty;
+				}
+			})
+
+			return returnVntuty;
+		},
+		getBEntities : function() {
+			var allVEntities = visualEntities.values();
+			var allBEntities = [];
+			_.each(allVEntities, function(vEntity) {
+				allBEntities.push(vEntity.get('entity'));
+			})
+			return allBEntities;
 		}
 	};
 	return util;
