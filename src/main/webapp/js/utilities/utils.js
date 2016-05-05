@@ -621,6 +621,9 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 				allBEntities.push(vEntity.get('entity'));
 			})
 			return allBEntities;
+		},
+		findViewByModel : function(/* joint.dia.Element or joint.dia.Link. */model) {
+			paper.findViewByModel(model)
 		}
 	};
 	return util;

@@ -19,10 +19,13 @@ define(function(require) {
 	var InspetorEntidadesView = require('views/visual/InspetorEntidadesView');
 	var EntityCollection = require('collections/EntityCollection');
 	var AttributeCollection = require('collections/AttributeCollection');
+	var RelationshipCollection = require('collections/RelationshipCollection');
+	var RelationshipModel = require('models/RelationshipModel');
 
 	var lastPositionX = 200;
 	var visualEntities = new Col.Map();
 	var visualRelations = new Col.Map();
+
 	// http://www.sinbadsoft.com/blog/backbone-js-by-example-part-1/
 	$('body').mousemove(function(e) {
 		// console.log(e.pageX, e.pageY)
@@ -59,7 +62,8 @@ define(function(require) {
 			this.on('show', function() {
 				this.inspectorRegion.show(this.inspetorView);
 				this.graph = new Joint.dia.Graph();
-				this.paper = new Joint.dia.Paper({
+				
+				window.paper = new Joint.dia.Paper({
 					el : $('#paper'),
 					height : window.innerHeight,
 					width : window.innerWidth,
@@ -67,7 +71,7 @@ define(function(require) {
 					model : that.graph
 				});
 
-				this.paper.on('cell:pointerup', function(_cellView, evt, x, y) {
+				window.paper.on('cell:pointerup', function(_cellView, evt, x, y) {
 					if (_cellView.model.get('type') == 'html.Element') {
 						that.inspetorView.setVisualEntity(_cellView);
 					}
@@ -81,8 +85,8 @@ define(function(require) {
 
 				// Provavelmente será jancado o evendo de criação de
 				// relacionamento a partir da telinha de inspetor.
-				util.VENT.on('entity.add.rel', function(entityVSourceDiagram, entityVTargetDiagram) {
-					that.addRelation(entityVSourceDiagram, entityVTargetDiagram);
+				util.VENT.on('entity.add.rel', function(/* HtmlEntity */entityVSourceDiagram, /* HtmlEntity */entityVTargetDiagram, /* RelationsipModel */relModel) {
+					that.addRelation(entityVSourceDiagram, entityVTargetDiagram, relModel);
 				})
 			});
 		},
@@ -92,12 +96,6 @@ define(function(require) {
 			var entidadesCollection = new EntityCollection();
 
 			_.each(visualEntities.values(), function(visual) {
-
-				// var entityModel = visual.get('entity');
-				//
-				// entityModel.set('attributes', visual.getAttributes())
-				// entityModel.set('relationships', visual.getRelationships())
-
 				entidadesCollection.add(visual.get('entity'));
 			});
 
@@ -127,28 +125,48 @@ define(function(require) {
 			return lastPositionX
 		},
 
-		addRelation : function(source, target) {
+		addRelation : function(/* HtmlEntity */source, /* HtmlEntity */target, /* RelationsipModel */relModel) {
+
 			var that = this;
+
+			if (_.isUndefined(source)) {
+				throw new TypeError("source is required");
+			}
+
+			if (_.isUndefined(target)) {
+				throw new TypeError("target is required");
+			}
+
+			// se propoe a a atualizar a entidade que está na outra ponta do relacionamento
+			if (!relModel.get('uniDirecional')) {
+
+				var tarEntity = target.get('entity')
+				var souEntity = source.get('entity')
+
+				var tarRelationshipsCollection = new RelationshipCollection(tarEntity.get('relationships'));
+
+				tarRelationshipsCollection.add(new RelationshipModel({
+					model : souEntity.get('name'),
+					name : '_' + souEntity.get('name'),
+					type : 'ManyToMany',
+				}))
+
+				tarEntity.set('relationships', tarRelationshipsCollection.toJSON());
+
+				var tarViaualEntity = util.getVEntityByName(tarEntity.get('name'));
+				// tarViaualEntity.updateHtmlEntity(tarEntity);
+
+			}
+
 			var relation = new VisualRelationship({
-				source : {
-					id : source.id
-				},
-				target : {
-					id : target.id
-				},
+				source : source,
+				target : target,
+				relationshipModel : relModel,
 			});
 
 			that.graph.addCell(relation);
-			relation.on('change:source', function(_that, source, c) {
-				if (source.id) {
-					_that.setSourceEntity(visualEntities.get(source.id))
-				}
-			});
-			relation.on('change:target', function(_that, target, c) {
-				if (target.id) {
-					_that.setTargetEntity(visualEntities.get(target.id))
-				}
-			});
+			// visualRelations.put(relation.getKey(), relation);
+
 		},
 
 		/**

@@ -49,7 +49,7 @@ define(function(require) {
 		},
 		changeRelationship : function() {
 			var attr = this.getModel();
-			if (attr.name && attr.model && attr.viewApproach && attr.ownerName && attr.name)
+			if (attr.name && attr.model)
 				this.model.set(attr);
 		},
 		deleteRelationship : function() {

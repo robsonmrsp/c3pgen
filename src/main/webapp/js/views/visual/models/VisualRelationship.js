@@ -1,24 +1,44 @@
 /* generated: 30/08/2015 20:23:12 */
 define(function(require) {
 	var Joint = require('joint');
+
 	var AttributeModel = require('models/AttributeModel');
 	var EntityModel = require('models/EntityModel');
 
 	var VisualRelationship = Joint.dia.Link.extend({
+
 		defaults : {
 			type : 'uml.Relation',
 			attrs : {
+
 				'.marker-source' : {
 					fill : '#4b4a67',
 					stroke : '#4b4a67',
 					d : 'M 10 0 L 0 5 L 10 10 z'
 				},
+
 				'.marker-target' : {
 					fill : '#4b4a67',
 					stroke : '#4b4a67',
 					d : 'M 10 0 L 0 5 L 10 10 z'
 				}
+
 			},
+			labels : [ {
+				position : 25,
+				attrs : {
+					text : {
+						text : '...'
+					}
+				}
+			}, {
+				position : -25,
+				attrs : {
+					text : {
+						text : '...'
+					}
+				}
+			} ],
 			source : {
 				x : 10,
 				y : 280
@@ -27,44 +47,45 @@ define(function(require) {
 				x : 740,
 				y : 280
 			},
+			relationshipModel : {},
 			smooth : false,
-		// labels : [ {
-		// position : 25,
-		// attrs : {
-		// text : {
-		// text : '1..n'
-		// }
-		// }
-		// },
-
-		// { position: 0.45, attrs: { text: { text: 'multiple', fill:
-		// 'white', 'font-family': 'sans-serif' }, }},
-		// { position: 0.55, attrs: { text: { text: 'labels', fill: 'white',
-		// 'font-family': 'sans-serif' }, }},
-		// {
-		// position : -25,
-		// attrs : {
-		// text : {
-		// text : '*'
-		// }
-		// }
-		// } ]
-
 		},
-		setSourceEntity : function(source) {
-			this.sourceEntity = source
-			if (this.targetEntity) {
-				// Ao saber que as duas pontas do relacionamento estão
-				// definidas, poderemos alterar o visual da entidade adicionando
-				// as informações.
-				// podemos lancar um evento ou coisa parecida
+
+		initialize : function(options) {
+			if (!options || !options.id) {
+				this.set('id', Joint.util.uuid(), {
+					silent : true
+				});
 			}
+
+			this._transitionIds = {};
+			this.processPorts();
+			this.on('change:attrs', this.processPorts, this);
+			this.label(0, {
+				position : 25,
+				attrs : {
+					text : {
+						text : this.get('relationshipModel').get('name')
+					}
+				}
+			});
+			this.label(1, {
+				position : -25,
+				attrs : {
+					text : {
+						text : '_' + options.source.get('entity').get('name')
+					}
+				}
+			});
 		},
-		setTargetEntity : function(target) {
-			this.targetEntity = target
+
+		getKey : function() {
+			return {
+				'sourceName' : this.source.entity.get('name'),
+				'targetName' : this.target.entity.get('name'),
+			}
 		}
 	});
 	return VisualRelationship;
 
 });
-

@@ -13,6 +13,7 @@ define(function(require) {
 	var Col = require('adapters/col-adapter');
 
 	Joint.shapes.html = Joint.shapes.html || {};
+	
 	Joint.shapes.html.Element = Joint.shapes.basic.Rect.extend({
 		defaults : Joint.util.deepSupplement({
 			type : 'html.Element',

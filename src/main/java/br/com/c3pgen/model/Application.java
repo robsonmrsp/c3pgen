@@ -67,7 +67,10 @@ public class Application extends AbstractTimestampEntity {
 	@Cascade(CascadeType.ALL)
 	private List<ApplicationEntity> entities;
 
-	
+	@OneToMany(mappedBy = "application")
+	@Cascade(CascadeType.ALL)
+	private List<ApplicationRelationship> applicationRelationships;
+
 	@ManyToOne
 	@JoinColumn(name = "id_client")
 	private Client owner;
@@ -174,6 +177,14 @@ public class Application extends AbstractTimestampEntity {
 
 	public void setAppName(String appName) {
 		this.appName = appName;
+	}
+
+	public List<ApplicationRelationship> getApplicationRelationships() {
+		return applicationRelationships;
+	}
+
+	public void setApplicationRelationships(List<ApplicationRelationship> applicationRelationships) {
+		this.applicationRelationships = applicationRelationships;
 	}
 
 }

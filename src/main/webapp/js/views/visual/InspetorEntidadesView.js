@@ -140,7 +140,7 @@ define(function(require) {
 			});
 		},
 
-		updateViewEntityWithRelationships : function(model, collection) {
+		updateViewEntityWithRelationships : function(/*relationship*/model, collection) {
 			this.entity.set(this.getModel())
 			this.entity.set('relationships', this.relationshipsCollection.toJSON());
 
@@ -151,8 +151,8 @@ define(function(require) {
 			var source = util.getVEntityByName(model.get('entity').name);
 			var targuet = util.getVEntityByName(model.get('model'));
 
-			util.VENT.trigger('entity.add.rel', source, targuet);
-
+			
+			util.VENT.trigger('entity.add.rel', source, targuet, model);
 		},
 
 		updateViewEntity : function(model, collection) {

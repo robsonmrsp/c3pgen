@@ -36,14 +36,16 @@ define(function(require) {
 			entityName : '.entity-name',
 		},
 
-		addRelation : function() {
-			util.VENT.trigger('entity.add.rel', this.container);
+		addRelation : function(model) {
+			this.relationshipsCollection.add(model);
+			this.refresh();
 		},
 
 		initialize : function(opt) {
 			var that = this;
 			this.container = opt.container;
 
+			this.model.on('change', this.refresh, this);
 			this.attributesCollection = new AttributeCollection(this.model.get('attributes'));
 			this.attributesCollectionView = new DiagramAttributesCollectionView({
 				collection : this.attributesCollection,
