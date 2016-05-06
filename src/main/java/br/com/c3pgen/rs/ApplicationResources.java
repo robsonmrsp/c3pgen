@@ -244,14 +244,14 @@ public class ApplicationResources {
 		}
 	}
 }
-Ao criar um relacionamento, será criado um model que guarda tudo aquilo necessário para construir um relacionamento.
-
-origem, destino, informacoes da origem e informacoes do destino
-
-
-usar o evento change/ refazer essa parte para evitar chamadas de redesenho. diminuir o acoplamento e 
-deixar o observer fazer seu papel 
-
-O nosso model só será instanciado uma vez .
+//Ao criar um relacionamento, será criado um model que guarda tudo aquilo necessário para construir um relacionamento.
+//
+//origem, destino, informacoes da origem e informacoes do destino
+//
+//
+//usar o evento change/ refazer essa parte para evitar chamadas de redesenho. diminuir o acoplamento e 
+//deixar o observer fazer seu papel 
+//
+//O nosso model só será instanciado uma vez .
 
 

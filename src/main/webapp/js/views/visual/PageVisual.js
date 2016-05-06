@@ -23,7 +23,9 @@ define(function(require) {
 	var RelationshipModel = require('models/RelationshipModel');
 
 	var lastPositionX = 200;
+	
 	var visualEntities = new Col.Map();
+	
 	var visualRelations = new Col.Map();
 
 	// http://www.sinbadsoft.com/blog/backbone-js-by-example-part-1/

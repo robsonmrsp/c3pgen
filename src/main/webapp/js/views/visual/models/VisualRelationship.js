@@ -5,10 +5,12 @@ define(function(require) {
 	var AttributeModel = require('models/AttributeModel');
 	var EntityModel = require('models/EntityModel');
 
-	var VisualRelationship = Joint.dia.Link.extend({
+	Joint.shapes.html = Joint.shapes.html || {};
+
+	Joint.shapes.html.VisualRelationship = Joint.dia.Link.extend({
 
 		defaults : {
-			type : 'uml.Relation',
+			type : 'html.Relation',
 			attrs : {
 
 				'.marker-source' : {
@@ -86,6 +88,15 @@ define(function(require) {
 			}
 		}
 	});
-	return VisualRelationship;
+
+	Joint.shapes.html.VisualRelationshipView = Joint.dia.LinkView.extend({
+		nomeDaClasse : 'VisualRelationshipView',
+		initialize : function(options) {
+			Joint.dia.LinkView.prototype.initialize.apply(this, arguments);
+			this.nomeDaClasse = 'VisualRelationshipView';
+		}
+	});
+
+	return Joint.shapes.html.VisualRelationship;
 
 });
