@@ -146,6 +146,9 @@ define(function(require) {
 			this.mapRelationships = new Col.Map();
 
 			this.entity.set(opt.entity.attributes);
+			
+			this.entity
+			
 
 			this.on('cell:pointerclick', function(a, b, c) {
 

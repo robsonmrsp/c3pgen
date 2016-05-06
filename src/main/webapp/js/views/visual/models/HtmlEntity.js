@@ -13,7 +13,7 @@ define(function(require) {
 	var Col = require('adapters/col-adapter');
 
 	Joint.shapes.html = Joint.shapes.html || {};
-	
+
 	Joint.shapes.html.Element = Joint.shapes.basic.Rect.extend({
 		defaults : Joint.util.deepSupplement({
 			type : 'html.Element',
@@ -37,6 +37,7 @@ define(function(require) {
 			Joint.dia.ElementView.prototype.initialize.apply(this, arguments);
 
 			this.entity = this.model.get('entity');
+			this.entity.on('change', this._changeEntity, this);
 
 			this.diagramEntityView = new DiagramEntityView({
 				model : this.entity,
@@ -94,7 +95,9 @@ define(function(require) {
 			this.entity.set('posX', position.x);
 			this.entity.set('posY', position.y);
 		},
-
+		_changeEntity : function(_ent) {
+			console.log('Changing entity-> ' + _ent.toJSON());
+		},
 		updateHtmlEntity : function(modelEntity) {
 			if (modelEntity) {
 				this.entity.set(modelEntity.attributes);

@@ -628,7 +628,7 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 		},
 		findViewByModel : function(entity) {
 			/* joint.dia.Element or joint.dia.Link. */
-			var vEntity = this.getVEntityByName(entity.get && model.get('name'));
+			var vEntity = this.getVEntityByName(entity.get && entity.get('name'));
 			return paper.findViewByModel(vEntity);
 		}
 	};
