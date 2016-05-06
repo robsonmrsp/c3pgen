@@ -1,4 +1,4 @@
-define([ 'backbone', 'backbonePageable', 'backboneLocalstorage', 'backboneWebSocket', 'utilities/utils', 'backboneSelectAll' ], function(Back, PageableCollection, Store, WebSocket, util, SelectAll) {
+define([ 'backbone', 'backbonePageable', 'backboneLocalstorage', 'backboneWebSocket', 'utilities/utils', 'backboneSelectAll','backboneRelation' ], function(Back, PageableCollection, Store, WebSocket, util, SelectAll, backboneRelation) {
 	Back.PageableCollection = PageableCollection;
 
 	defaultSync = Back.sync

@@ -11,7 +11,7 @@ define(function(require) {
 	// ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨ MAIN BODY  ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
 	// #####################################################################################################
 
-	var AttributeModel = BaseModel.extend({
+	var AttributeModel  = Backbone.RelationalModel.extend({
 
 		urlRoot : 'rs/crud/attributes',
 

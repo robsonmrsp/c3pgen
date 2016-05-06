@@ -49,8 +49,8 @@ define(function(require) {
 
 		initialize : function() {
 			var that = this;
-			that.entities = new EntityCollection();
-			that.entities.add(this.model.get('entities'));
+//			that.entities = new EntityCollection();
+			that.entities = this.model.get('entities');
 			this.on('show', function() {
 
 				this.ui.form.validationEngine('attach', {
@@ -126,7 +126,7 @@ define(function(require) {
 				skin : util.escapeById('inputSkin'),
 				description : util.escapeById('inputDescription'),
 				rootPackage : util.escapeById('inputRootPackage'),
-				entities : that.entities.toJSON(),
+				entities : that.entities,
 			});
 			return application;
 		},
@@ -160,3 +160,4 @@ define(function(require) {
 
 	return FormApplications;
 });
+//models/EntityModel

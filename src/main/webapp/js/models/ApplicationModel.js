@@ -4,17 +4,26 @@ define(function(require) {
 	var _ = require('adapters/underscore-adapter');
 	var $ = require('adapters/jquery-adapter');
 	var Backbone = require('adapters/backbone-adapter');
-	var BaseModel = require('models/BaseModel');
-	// End of "Import´s definition"
+	var EntityCollection = require('collections/EntityCollection');
+	var EntityModel = require('models/EntityModel');
 
-	// #####################################################################################################
-	// ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨ MAIN BODY
-	// ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
-	// #####################################################################################################
-
-	var ApplicationModel = BaseModel.extend({
+	var ApplicationModel = Backbone.RelationalModel.extend({
 
 		urlRoot : 'rs/crud/applications',
+
+		relations : [ {
+			type : Backbone.HasMany,
+			key : 'entities',
+			relatedModel : function() {
+				return EntityModel;
+			},
+			collectionType : function() {
+				return EntityCollection
+			},
+			reverseRelation : {
+				key : 'application'
+			}
+		} ],
 
 		defaults : {
 			id : null,

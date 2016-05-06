@@ -11,7 +11,7 @@ define(function(require) {
 	// ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨ MAIN BODY  ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
 	// #####################################################################################################
 
-	var RelationshipModel = BaseModel.extend({
+	var RelationshipModel = Backbone.RelationalModel.extend({
 
 		urlRoot : 'rs/crud/relationships',
 

@@ -22,6 +22,7 @@ require.config({
 		'backgridMomentCell' : '../vendor/backgrid/extensions/backgrid-moment-cell',
 		'backboneSelectAll' : '../vendor/backgrid/extensions/backgrid-select-all',
 
+		'backboneRelation' : '../vendor/backbone.relation/backbone-relational',
 		'backboneWebSocket' : '../vendor/backbone.websocket/backbone.websocket',
 		'backbonePageable' : '../vendor/backgrid/extensions/backbone-pageable1.4.8',
 		'backbonePaginator' : '../vendor/backgrid/extensions/backgrid-paginator',
@@ -59,6 +60,11 @@ require.config({
 			exports : 'Backgrid'
 		},
 
+		'backbone' : {
+			deps : [ 'underscore', 'jquery' ],
+			exports : "Backbone"
+		},
+
 		'moment' : {
 			exports : 'moment'
 		},
@@ -76,6 +82,11 @@ require.config({
 		'backbonePageable' : {
 			deps : [ 'backbone' ],
 			exports : 'PageableCollection'
+		},
+
+		'backboneRelation' : {
+			deps : [ 'backbone' ],
+			exports : 'RelationalModel'
 		},
 
 		'backboneSelectAll' : {
@@ -141,7 +152,7 @@ require.config({
 	wrapShim : true,
 });
 requirejs.onResourceLoad = function(context, map, depArray) {
-	// var duration = new Date() - start;
+//	var duration = new Date() - start;
 //	console.log("Carregando...", depArray);
 //	console.log("Carregando...", map.id);
 }

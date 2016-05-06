@@ -54,7 +54,7 @@ define(function(require) {
 
 		initialize : function() {
 			var that = this;
-			var entities = new EntityCollection(this.model.get('entities'));
+			var entities = this.model.get('entities');
 			this.inspetorView = new InspetorEntidadesView({
 				model : new EntityModel({
 					name : '',

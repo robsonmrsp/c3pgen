@@ -5,6 +5,12 @@ define(function(require) {
 	var $ = require('adapters/jquery-adapter');
 	var Backbone = require('adapters/backbone-adapter');
 	var BaseModel = require('models/BaseModel');
+	AttributeModel = require('models/AttributeModel');
+
+	AttributeCollection = require('collections/AttributeCollection');
+
+	RelationshipModel = require('models/RelationshipModel');
+	RelationshipCollection = require('collections/RelationshipCollection');
 	// End of "Import´s definition"
 
 	// #####################################################################################################
@@ -12,9 +18,36 @@ define(function(require) {
 	// ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
 	// #####################################################################################################
 
-	var EntityModel = BaseModel.extend({
+	var EntityModel = Backbone.RelationalModel.extend({
 
 		urlRoot : 'rs/crud/entitys',
+
+		relations : [ {
+			type : Backbone.HasMany,
+			key : 'attributes',
+			relatedModel : function() {
+				return AttributeModel;
+			},
+			collectionType : function() {
+				return AttributeCollection
+			},
+			reverseRelation : {
+				key : 'entity'
+
+			}
+		}, {
+			type : Backbone.HasMany,
+			key : 'relationships',
+			relatedModel : function() {
+				return RelationshipModel;
+			},
+			collectionType : function() {
+				return RelationshipCollection
+			},
+			reverseRelation : {
+				key : 'entity'
+			}
+		}, ],
 
 		defaults : {
 			id : null,
