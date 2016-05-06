@@ -364,7 +364,8 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 		},
 
 		/*
-		 * Usage: breadcrumb({iconClass:'',itemLabel:'', itemSubFolderName:'',url:''});
+		 * Usage: breadcrumb({iconClass:'',itemLabel:'',
+		 * itemSubFolderName:'',url:''});
 		 */
 		breadcrumb : function(itemMenu) {
 			if (itemMenu) {
@@ -601,7 +602,10 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 		firstUpper : function(string) {
 			return string.charAt(0).toUpperCase() + string.slice(1);
 		},
-		getVEntityByName : function(/* nome da entidade representada no editor visual */name) {
+		getVEntityByName : function(/*
+									 * nome da entidade representada no editor
+									 * visual
+									 */name) {
 			var allVEntities = visualEntities.values();
 			var allBEntities = [];
 			var returnVntuty = null;
@@ -622,8 +626,10 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 			})
 			return allBEntities;
 		},
-		findViewByModel : function(/* joint.dia.Element or joint.dia.Link. */model) {
-			paper.findViewByModel(model)
+		findViewByModel : function(entity) {
+			/* joint.dia.Element or joint.dia.Link. */
+			var vEntity = this.getVEntityByName(entity.get && model.get('name'));
+			return paper.findViewByModel(vEntity);
 		}
 	};
 	return util;
