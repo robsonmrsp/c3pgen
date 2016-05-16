@@ -13,64 +13,122 @@
 		<h5>
 			<i class="fa fa-link"></i>
 			<a href="javascript:void(-1)" data-type="text" data-placement="right" data-title="Digite o nome do atributo" class="editable editable-click inputRelationshipName " data-original-title="" title=""> {{name}} </a>
+			<span>
+				<i>
+					:
+					<a class="editable editable-click inputModel" data-placement="right" data-title="Tipo " data-type="select" data-pk="1" data-title="Selecione a classe desse relacionamento">{{targetRelation && targetRelation.name}}</a>
+				</i>
+			</span>
 		</h5>
 	</div>
-	<div class="panel-body " style="padding: 1px; border-bottom: 1px solid #e4e5e7;">
-		<div class="widget-main-rel">
-			<span>
-				Nome de exibição:&nbsp;
-				<a class="editable editable-click inputDisplayName" data-placement="right" data-title="Digite o nome a exibir">{{displayName}}</a>
-			</span>
-			<br>
-			<span>
-				Tipo de relacionamento:&nbsp;
-				<a class="editable editable-click inputType" data-placement="right" data-title="Tipo de elemento" data-type="select" data-pk="1" data-title="Selecione o tipo de  relacionamento">{{type}}</a>
-			</span>
-			<br>
-			<span>
-				Outra entidade :&nbsp;
-				<a class="editable editable-click inputModel" data-placement="right" data-title="Tipo " data-type="select" data-pk="1" data-title="Selecione a classe desse relacionamento">{{model}}</a>
-			</span>
-			<br>
-			<span>
-				Dono do relacionamento:&nbsp;
-				<a class="editable editable-click inputOwnerName" data-placement="right" data-title="Tipo do atributo">{{ownerName}}</a>
-			</span>
-			<br>
-			<span>
-				Tipo de elemento visual?:&nbsp;
-				<a class="editable  editable-click inputViewApproach" data-placement="right" data-title="Tipo de elemento" data-type="select" data-pk="1" data-title="Selecione o tipo de  componente">{{viewApproach && viewApproach.type}}</a>
-			</span>
-			<br>
-			<span class="combo-fields" style="display: none;">
-				<span>
-					Id no Combo?:&nbsp;
-					<a class="editable editable-click inputComboId" data-placement="right" data-title="Tipo do atributo">{{viewApproach && viewApproach.comboId}}</a>
-				</span>
-				<br>
-				<span>
-					Valor no Combo?:&nbsp;
-					<a class="editable editable-click inputComboName" data-placement="right" data-title="Tipo do atributo">{{viewApproach && viewApproach.comboName}}</a>
-				</span>
-				<br>
-			</span>
-			<span class="modal-fields" style="display: none;">
-				<span>
-					Id no Modal?:&nbsp;
-					<a class="editable editable-click inputTextField" data-placement="right" data-title="Tipo do atributo">{{viewApproach && viewApproach.textField}}</a>
-				</span>
-				<br>
-				<span>
-					Texto no Modal?:&nbsp;
-					<a class="editable editable-click inputHiddenField" data-placement="right" data-title="Tipo do atributo">{{viewApproach && viewApproach.hiddenField }}</a>
-				</span>
-				<br>
-			</span>
-			<span>
-				Unidirecional?:&nbsp;
-				<input style="margin: 0px" type="checkbox" class="inputUniDirecional"{{uniDirecional ? 'checked' :''}}>
-			</span>
-			<br>
+	<div class="panel-body" style="padding: 1px; border-bottom: 1px solid #e4e5e7;">
+		<div class="row widget-main-rel">
+			<div class="col-lg-6 border-right animated-panel zoomIn" style="animation-delay: 0.3s;">
+				<div class="">
+					<span>
+						Nome de exibição:&nbsp;
+						<a class="editable editable-click inputDisplayName" data-placement="right" data-title="Digite o nome a exibir">{{displayName}}</a>
+					</span>
+					<br>
+					<span>
+						Tipo de rel.:&nbsp;
+						<a class="editable editable-click inputType" data-placement="right" data-title="Tipo de elemento" data-type="select" data-pk="1" data-title="Selecione o tipo de  relacionamento">{{type}}</a>
+					</span>
+					<br>
+					<span>
+						Dono:&nbsp;
+						<a class="editable editable-click inputOwnerName" data-placement="right" data-title="Tipo do atributo">{{ownerName}}</a>
+					</span>
+					<br>
+					<span>
+						Elemento visual:&nbsp;
+						<a class="editable  editable-click inputViewApproach" data-placement="right" data-title="Tipo de elemento" data-type="select" data-pk="1" data-title="Selecione o tipo de  componente">{{viewApproach && viewApproach.type}}</a>
+					</span>
+					<br>
+					<span class="combo-fields" style="display: none;">
+						<span>
+							Id no Combo?:&nbsp;
+							<a class="editable editable-click inputComboId" data-placement="right" data-title="Tipo do atributo">{{viewApproach && viewApproach.comboId}}</a>
+						</span>
+						<br>
+						<span>
+							Valor no Combo:&nbsp;
+							<a class="editable editable-click inputComboName" data-placement="right" data-title="Tipo do atributo">{{viewApproach && viewApproach.comboName}}</a>
+						</span>
+						<br>
+					</span>
+					<span class="modal-fields" style="display: none;">
+						<span>
+							Id no Modal?:&nbsp;
+							<a class="editable editable-click inputTextField" data-placement="right" data-title="Tipo do atributo">{{viewApproach && viewApproach.textField}}</a>
+						</span>
+						<br>
+						<span>
+							Texto no Modal?:&nbsp;
+							<a class="editable editable-click inputHiddenField" data-placement="right" data-title="Tipo do atributo">{{viewApproach && viewApproach.hiddenField }}</a>
+						</span>
+						<br>
+					</span>
+					<span>
+						Unidirecional?:&nbsp;
+						<input style="margin: 0px" type="checkbox" class="inputUniDirecional"{{uniDirecional ? 'checked' :''}}>
+					</span>
+					<br>
+				</div>
+			</div>
+			<div class="col-lg-6 animated-panel zoomIn" style="animation-delay: 0.3s;">
+				<div class="widget-main-rel-target">
+					<span>
+						Nome de exibição:&nbsp;
+						<a class="editable editable-click inputTargetDisplayName" data-placement="right" data-title="Digite o nome a exibir">{{targetRelation && targetRelation.displayName}}</a>
+					</span>
+					<br>
+					<span>
+						Tipo de rel.:&nbsp;
+						<a class="editable editable-click inputTargetType" data-placement="right" data-title="Tipo de elemento" data-type="select" data-pk="1" data-title="Selecione o tipo de  relacionamento">{{targetRelation && targetRelation.type}}</a>
+					</span>
+					<br>
+					<!-- 					o que fazer com dono do relacionamento, somente em manytomany??? -->
+					<!-- 					<span> -->
+					<!-- 						Dono do relacionamento:&nbsp; -->
+					<!-- 						<a class="editable editable-click inputOwnerName" data-placement="right" data-title="Tipo do atributo">{{ownerName}}</a> -->
+					<!-- 					</span> -->
+					<!-- 					<br> -->
+					<span>
+						Elemento visual?:&nbsp;
+						<a class="editable  editable-click inputTargetViewApproach" data-placement="right" data-title="Tipo de elemento" data-type="select" data-pk="1" data-title="Selecione o tipo de componente"> {{targetRelation && targetRelation.viewApproach && targetRelation.viewApproach.type}}</a>
+					</span>
+					<br>
+					<span class="combo-fields" style="display: none;">
+						<span>
+							Id no Combo?:&nbsp;
+							<a class="editable editable-click inputTargetComboId" data-placement="right" data-title="Tipo do atributo">{{targetRelation && targetRelation.viewApproach && targetRelation.comboId}}</a>
+						</span>
+						<br>
+						<span>
+							Valor no Combo?:&nbsp;
+							<a class="editable editable-click inputTargetComboName" data-placement="right" data-title="Tipo do atributo">{{targetRelation && targetRelation.viewApproach && targetRelation.comboName}}</a>
+						</span>
+						<br>
+					</span>
+					<span class="modal-fields" style="display: none;">
+						<span>
+							Id no Modal?:&nbsp;
+							<a class="editable editable-click inputTargetTextField" data-placement="right" data-title="Tipo do atributo">{{targetRelation && targetRelation.viewApproach && targetRelation.textField}}</a>
+						</span>
+						<br>
+						<span>
+							Texto no Modal?:&nbsp;
+							<a class="editable editable-click inputTargetHiddenField" data-placement="right" data-title="Tipo do atributo">{{targetRelation && targetRelation.viewApproach && targetRelation.hiddenField }}</a>
+						</span>
+						<br>
+					</span>
+					<br>
+				</div>
+				<!-- 				<div class="pull-right"> -->
+				<!-- 					<a class="btn">Ok!</a> -->
+				<!-- 				</div> -->
+			</div>
 		</div>
 	</div>
 </div>

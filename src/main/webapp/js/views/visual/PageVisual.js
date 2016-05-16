@@ -17,15 +17,16 @@ define(function(require) {
 	var VisualEntity = require('views/visual/models/HtmlEntity');
 	var VisualRelationship = require('views/visual/models/VisualRelationship');
 	var InspetorEntidadesView = require('views/visual/InspetorEntidadesView');
+	var InspetorRelacionamentosView = require('views/visual/InspetorRelacionamentosView');
 	var EntityCollection = require('collections/EntityCollection');
 	var AttributeCollection = require('collections/AttributeCollection');
 	var RelationshipCollection = require('collections/RelationshipCollection');
 	var RelationshipModel = require('models/RelationshipModel');
 
 	var lastPositionX = 200;
-	
+
 	var visualEntities = new Col.Map();
-	
+
 	var visualRelations = new Col.Map();
 
 	// http://www.sinbadsoft.com/blog/backbone-js-by-example-part-1/
@@ -42,7 +43,8 @@ define(function(require) {
 		template : _.template(PageVisualTemplate),
 
 		regions : {
-			inspectorRegion : '.inspector'
+			inspectorRegion : '.inspector',
+			inspectorRelationamentosRegion : '.inspector-relacionamentos'
 		},
 		events : {
 			'click #addEntity' : 'addEntity',
@@ -60,11 +62,17 @@ define(function(require) {
 					name : '',
 				}),
 			});
+			this.inspectorRelationamentosView = new InspetorRelacionamentosView({
+				model : new EntityModel({
+					name : '',
+				}),
+			});
 
 			this.on('show', function() {
 				this.inspectorRegion.show(this.inspetorView);
+				// this.inspectorRelationamentosRegion.show(this.inspectorRelationamentosView);
 				this.graph = new Joint.dia.Graph();
-				
+
 				window.paper = new Joint.dia.Paper({
 					el : $('#paper'),
 					height : window.innerHeight,

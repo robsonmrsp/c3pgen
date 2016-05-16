@@ -140,7 +140,7 @@ define(function(require) {
 			});
 		},
 
-		updateViewEntityWithRelationships : function(/*relationship*/model, collection) {
+		updateViewEntityWithRelationships : function(/* relationship */model, collection) {
 			this.entity.set(this.getModel())
 			this.entity.set('relationships', this.relationshipsCollection.toJSON());
 
@@ -151,7 +151,6 @@ define(function(require) {
 			var source = util.getVEntityByName(model.get('entity').name);
 			var targuet = util.getVEntityByName(model.get('model'));
 
-			
 			util.VENT.trigger('entity.add.rel', source, targuet, model);
 		},
 
@@ -173,32 +172,26 @@ define(function(require) {
 			this.model.destroy();
 		},
 
-		setEntity : function(visualEntity) {
-
-		},
-
 		setVisualEntity : function(visualEntity) {
 
-			entity = visualEntity.entity;
 
+			this.entity = visualEntity.entity;
 			this.visualEntity = visualEntity;
 
-			this.attributesCollection.reset(entity.get('attributes'));
+			this.attributesCollection.reset(this.entity.get('attributes'));
 
-			this.relationshipsCollection.reset(entity.get('relationships'));
+			this.relationshipsCollection.reset(this.entity.get('relationships'));
 
-			this.ui.inputId.val(entity.get('id'));
-			this.ui.inputEntityName.text(entity.get('name'));
-			this.ui.inputDisplayName.text(entity.get('displayName'));
-			this.ui.inputTableName.text(entity.get('tableName'));
-			this.ui.inputHasMobile.prop('checked', entity.get('hasMobile'));
+			this.ui.inputId.val(this.entity.get('id'));
+			this.ui.inputEntityName.text(this.entity.get('name'));
+			this.ui.inputDisplayName.text(this.entity.get('displayName'));
+			this.ui.inputTableName.text(this.entity.get('tableName'));
+			this.ui.inputHasMobile.prop('checked', this.entity.get('hasMobile'));
 
 			util.refreshEditableVisual(this.ui.inputEntityName);
 			util.refreshEditableVisual(this.ui.inputDisplayName);
 			util.refreshEditableVisual(this.ui.inputTableName);
 			util.refreshEditableVisual(this.ui.inputHasMobile);
-
-			this.entity = entity;
 
 			this.visualEntity.updateEntityPosition();
 		},

@@ -26,19 +26,34 @@ define(function(require) {
 
 		ui : {
 			inputId : '.inputId',
+			inputTargetId : '.inputTargetId',
+
 			inputRelationshipName : '.inputRelationshipName',
+			inputTargetDisplayName : '.inputTargetDisplayName',
+			inputTargetRelationshipName : '.inputTargetRelationshipName',
+
 			inputDisplayName : '.inputDisplayName',
+
 			inputModel : '.inputModel',
 			inputType : '.inputType',
 			inputOwnerName : '.inputOwnerName',
 			inputUniDirecional : '.inputUniDirecional',
 			inputViewApproach : '.inputViewApproach',
 			inputViewApproachId : '.inputViewApproachId',
-
 			inputComboId : '.inputComboId',
 			inputComboName : '.inputComboName',
 			inputTextField : '.inputTextField',
 			inputHiddenField : '.inputHiddenField',
+
+			inputTargetType : '.inputTargetType',
+			inputTargetOwnerName : '.inputTargetOwnerName',
+			inputTargetUniDirecional : '.inputTargetUniDirecional',
+			inputTargetViewApproach : '.inputTargetViewApproach',
+			inputTargetViewApproachId : '.inputTargetViewApproachId',
+			inputTargetComboId : '.inputTargetComboId',
+			inputTargetComboName : '.inputTargetComboName',
+			inputTargetTextField : '.inputTargetTextField',
+			inputTargetHiddenField : '.inputTargetHiddenField',
 
 			modalFields : '.modal-fields',
 			comboFields : '.combo-fields',
@@ -68,6 +83,23 @@ define(function(require) {
 				viewApproach : {
 					id : this.ui.inputViewApproachId.val(),
 					type : C3P.notEmptyVal(this.ui.inputViewApproach),
+				},
+				targetRelation : this._getTargetModel(),
+
+			};
+		},
+		_getTargetModel : function() {
+			return {
+				id : this.ui.inputTargetId.val(),
+				name : C3P.notEmptyVal(this.ui.inputTargetRelationshipName),
+				type : C3P.notEmptyVal(this.ui.inputTargetType),
+				displayName : C3P.notEmptyVal(this.ui.inputTargetDisplayName),
+				model : this.model.get('entity').name,
+				ownerName : C3P.notEmptyVal(this.ui.inputTargetOwnerName),
+				uniDirecional : this.ui.inputTargetUniDirecional.is(':checked'),
+				viewApproach : {
+					id : this.ui.inputTargetViewApproachId.val(),
+					type : C3P.notEmptyVal(this.ui.inputTargetViewApproach),
 				}
 
 			};
@@ -81,12 +113,13 @@ define(function(require) {
 			}
 		},
 
-		initialize : function() {
+		initialize : function(opt) {
 			var that = this;
-
 			this.on('show', function() {
 				this.ui.inputRelationshipName.editable();
+				this.ui.inputTargetRelationshipName.editable();
 				this.ui.inputDisplayName.editable();
+				this.ui.inputTargetDisplayName.editable();
 				this.ui.inputModel.editable({
 					value : '',
 					source : that._getModels(),
@@ -125,7 +158,38 @@ define(function(require) {
 						text : 'multiselect'
 					}, ]
 				});
+				this.ui.inputTargetViewApproach.editable({
+					value : '',
+					source : [ {
+						value : 'modal',
+						text : 'modal'
+					}, {
+						value : 'combo',
+						text : 'combo'
+					}, {
+						value : 'multiselect',
+						text : 'multiselect'
+					}, ]
+				});
 				this.ui.inputViewApproach.on('hidden', function(e, editable) {
+					var val = that.ui.inputViewApproach.text();
+					if (val == 'modal') {
+						console.log('Escolheu modal');
+						that.ui.modalFields.show();
+						that.ui.comboFields.hide();
+					} else if (val == 'combo') {
+						that.ui.comboFields.show();
+						that.ui.modalFields.hide();
+
+						console.log('Escolheu combo');
+					} else if (val == 'multiselect') {
+						that.ui.modalFields.hide();
+						that.ui.comboFields.hide();
+
+						console.log('Escolheu mulsiselect');
+					}
+				});
+				this.ui.inputTargetViewApproach.on('hidden', function(e, editable) {
 					var val = that.ui.inputViewApproach.text();
 					if (val == 'modal') {
 						console.log('Escolheu modal');
@@ -167,6 +231,7 @@ define(function(require) {
 			var arrayModels = [];
 			var allBEntities = util.getBEntities();
 			_.each(allBEntities, function(entity) {
+				// if(entity.get('name') != )
 				arrayModels.push({
 					value : entity.get('name'),
 					text : entity.get('name')

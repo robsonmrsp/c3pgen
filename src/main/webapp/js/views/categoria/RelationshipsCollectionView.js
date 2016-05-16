@@ -13,12 +13,12 @@ define(function(require) {
 	var RelationshipsCollection = Marionette.CollectionView.extend({
 		childView : RelationshipItemView,
 
-		childViewOptions : function() {
-
+		childViewOptions : function(opt) {
+			entity = this.entity;
 		},
 
 		initialize : function(opt) {
-
+			this.entity = opt.entity;
 		},
 	})
 

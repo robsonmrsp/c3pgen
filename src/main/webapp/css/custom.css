@@ -194,7 +194,7 @@ td-actions a {
 	position: relative !important;
 	background-color: white !important;
 	display: inline-table;
-	width: 300px;
+	min-width: 450px;
 	box-shadow: 0 0 4px rgba(0, 33, 50, 0.1), 0 7px 10px
 		rgba(17, 38, 60, 0.4);
 	display: inline-table;
@@ -265,8 +265,16 @@ body {
 	position: fixed;
 	top: 62px;
 	right: 10px;
-	width: 300px;
+	width: 450px;
 	height: 100px;
+}
+
+.inspector-relacionamentos {
+	position: fixed;
+	bottom: 62px;
+	right: 300px;
+	width: 400px;
+	height: 200px;
 }
 
 /* body { */
@@ -349,7 +357,7 @@ body {
 	/* 	right: 9px; */
 	/* 	color: white; */
 	/* 	font-size: 10px; */
-	/* } */       
+	/* } */        
 
 .uml-class-name-rect {
 	background: #ff8450 !important;

@@ -8,7 +8,7 @@ define(function(require) {
 	// End of "Import´s definition"
 
 	// #####################################################################################################
-	// ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨ MAIN BODY  ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
+	// ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨ MAIN BODY ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
 	// #####################################################################################################
 
 	var RelationshipModel = BaseModel.extend({
@@ -16,16 +16,17 @@ define(function(require) {
 		urlRoot : 'rs/crud/relationships',
 
 		defaults : {
-			id: null,
-	    	name : '',    	
-	    	type : '',    	
-	    	displayName : '',    	
-	    	ownerName : '',    	
-	    	model : '',    	
-	    	uniDirecional : '',    	
+			id : null,
+			name : '',
+			type : '',
+			displayName : '',
+			ownerName : '',
+			model : '',
+			uniDirecional : '',
 			entity : null,
 			viewApproach : null,
-		
+			targetRelation : null,
+
 		}
 	});
 	return RelationshipModel;

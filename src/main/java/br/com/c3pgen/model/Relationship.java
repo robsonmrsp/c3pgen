@@ -85,6 +85,7 @@ public class Relationship extends AbstractTimestampEntity {
 	@JoinColumn(name = "id_client")
 	private Client owner;
 
+	
 	public Relationship(String name, Types type, String ownerName, String model, Boolean uniDirecional, ViewApproach viewApproach) {
 		super();
 		this.name = name;
