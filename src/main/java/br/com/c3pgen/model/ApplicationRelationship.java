@@ -36,36 +36,12 @@ public class ApplicationRelationship {
 	}
 
 	@ManyToOne
-	@JoinColumn(name = "ID_ENTITY_SOURCE")
-	public ApplicationEntity source;
-
-//	@ManyToOne
-//	@JoinColumn(name = "ID_RELATION_SOURCE")
-//	public Relationship relationshipSource;
-//
-//	@ManyToOne
-//	@JoinColumn(name = "ID_RELATION_TARGET")
-//	public Relationship relationshipTarget;
+	@JoinColumn(name = "ID_SOURCE")
+	private Relationship source;
 
 	@ManyToOne
-	@JoinColumn(name = "ID_ENTITY_TARGET")
-	public ApplicationEntity targuet;
-
-	public ApplicationEntity getSource() {
-		return source;
-	}
-
-	public void setSource(ApplicationEntity source) {
-		this.source = source;
-	}
-
-	public ApplicationEntity getTarguet() {
-		return targuet;
-	}
-
-	public void setTarguet(ApplicationEntity targuet) {
-		this.targuet = targuet;
-	}
+	@JoinColumn(name = "ID_TARGET")
+	private Relationship targuet;
 
 	public Application getApplication() {
 		return application;
@@ -73,6 +49,22 @@ public class ApplicationRelationship {
 
 	public void setApplication(Application application) {
 		this.application = application;
+	}
+
+	public Relationship getSource() {
+		return source;
+	}
+
+	public void setSource(Relationship source) {
+		this.source = source;
+	}
+
+	public Relationship getTarguet() {
+		return targuet;
+	}
+
+	public void setTarguet(Relationship targuet) {
+		this.targuet = targuet;
 	}
 
 }

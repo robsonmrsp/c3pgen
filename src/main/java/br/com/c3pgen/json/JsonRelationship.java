@@ -8,8 +8,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 /**
-*  generated: 03/09/2015 14:51:48
-**/
+ * generated: 03/09/2015 14:51:48
+ **/
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class JsonRelationship implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -17,20 +17,22 @@ public class JsonRelationship implements Serializable {
 	@JsonDeserialize(using = CustomSyncObjectIdDeserializer.class)
 	private Integer id;
 	private SyncOperation syncOperation;
-	
+
 	private String name;
 	private String type;
 	private String displayName;
 	private String ownerName;
 	private String model;
 	private Boolean uniDirecional;
-	private JsonTheEntity entity;		
-	private JsonViewApproach viewApproach;		
-	
-	public  JsonRelationship() {
-		
+	private JsonTheEntity entity;
+	private JsonViewApproach viewApproach;
+
+	private JsonRelationship target;
+
+	public JsonRelationship() {
+
 	}
-	
+
 	public Integer getId() {
 		return id;
 	}
@@ -38,6 +40,7 @@ public class JsonRelationship implements Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	public String getName() {
 		return name;
 	}
@@ -45,6 +48,7 @@ public class JsonRelationship implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public String getType() {
 		return type;
 	}
@@ -52,6 +56,7 @@ public class JsonRelationship implements Serializable {
 	public void setType(String type) {
 		this.type = type;
 	}
+
 	public String getDisplayName() {
 		return displayName;
 	}
@@ -59,6 +64,7 @@ public class JsonRelationship implements Serializable {
 	public void setDisplayName(String displayName) {
 		this.displayName = displayName;
 	}
+
 	public String getOwnerName() {
 		return ownerName;
 	}
@@ -66,6 +72,7 @@ public class JsonRelationship implements Serializable {
 	public void setOwnerName(String ownerName) {
 		this.ownerName = ownerName;
 	}
+
 	public String getModel() {
 		return model;
 	}
@@ -73,6 +80,7 @@ public class JsonRelationship implements Serializable {
 	public void setModel(String model) {
 		this.model = model;
 	}
+
 	public Boolean getUniDirecional() {
 		return uniDirecional;
 	}
@@ -80,30 +88,40 @@ public class JsonRelationship implements Serializable {
 	public void setUniDirecional(Boolean uniDirecional) {
 		this.uniDirecional = uniDirecional;
 	}
-	
+
 	public JsonTheEntity getEntity() {
 		return entity;
 	}
-	
+
 	public void setEntity(JsonTheEntity theEntity) {
 		this.entity = theEntity;
 	}
+
 	public JsonViewApproach getViewApproach() {
 		return viewApproach;
 	}
-	
+
 	public void setViewApproach(JsonViewApproach viewApproach) {
 		this.viewApproach = viewApproach;
 	}
-	public SyncOperation getSyncOperation (){
-		if(syncOperation == null){
+
+	public SyncOperation getSyncOperation() {
+		if (syncOperation == null) {
 			this.syncOperation = SyncOperation.NONE;
 		}
 		return syncOperation;
 	}
-	
-	public void setSyncOperation (SyncOperation  syncOperation){
+
+	public void setSyncOperation(SyncOperation syncOperation) {
 		this.syncOperation = syncOperation;
 	}
-	
+
+	public JsonRelationship getTarget() {
+		return target;
+	}
+
+	public void setTarget(JsonRelationship target) {
+		this.target = target;
+	}
+
 }

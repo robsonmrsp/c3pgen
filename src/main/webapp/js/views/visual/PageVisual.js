@@ -20,7 +20,10 @@ define(function(require) {
 	var InspetorRelacionamentosView = require('views/visual/InspetorRelacionamentosView');
 	var EntityCollection = require('collections/EntityCollection');
 	var AttributeCollection = require('collections/AttributeCollection');
+
 	var RelationshipCollection = require('collections/RelationshipCollection');
+	var ApplicationRelationshipCollection = require('collections/ApplicationRelationshipCollection');
+
 	var RelationshipModel = require('models/RelationshipModel');
 
 	var lastPositionX = 200;
@@ -57,6 +60,9 @@ define(function(require) {
 		initialize : function() {
 			var that = this;
 			var entities = new EntityCollection(this.model.get('entities'));
+
+			var applicationRelationships = new ApplicationRelationshipCollection(this.model.get('applicationRelationships'));
+
 			this.inspetorView = new InspetorEntidadesView({
 				model : new EntityModel({
 					name : '',
@@ -92,11 +98,15 @@ define(function(require) {
 				entities.each(function(ent) {
 					that.addEntity(ent);
 				});
+				applicationRelationships.each(function(apprel) {
+					that.addRelationship(apprel);
+				});
 
 				// Provavelmente será jancado o evendo de criação de
 				// relacionamento a partir da telinha de inspetor.
-				util.VENT.on('entity.add.rel', function(/* HtmlEntity */entityVSourceDiagram, /* HtmlEntity */entityVTargetDiagram, /* RelationsipModel */relModel) {
-					that.addRelation(entityVSourceDiagram, entityVTargetDiagram, relModel);
+				util.VENT.on('entity.add.rel', function(/* HtmlEntity */entityVSourceDiagram, /* HtmlEntity */entityVTargetDiagram, /* ApplicationRelationshipModel */applicationRelationshipModel) {
+
+					that.addRelation(entityVSourceDiagram, entityVTargetDiagram, applicationRelationshipModel);
 				})
 			});
 		},
@@ -104,12 +114,18 @@ define(function(require) {
 		saveApplication : function() {
 			this.application = this.model;
 			var entidadesCollection = new EntityCollection();
+			var applicationRelationshipCollection = new ApplicationRelationshipCollection();
 
 			_.each(visualEntities.values(), function(visual) {
 				entidadesCollection.add(visual.get('entity'));
 			});
 
+			_.each(visualRelations.values(), function(visualRel) {
+				applicationRelationshipCollection.add(visualRel.get('applicationRelationshipModel'));
+			});
+
 			this.application.set('entities', entidadesCollection);
+			this.application.set('applicationRelationships', applicationRelationshipCollection);
 
 			this.application.save({}, {
 
@@ -147,36 +163,25 @@ define(function(require) {
 				throw new TypeError("target is required");
 			}
 
-			// se propoe a a atualizar a entidade que está na outra ponta do relacionamento
-			if (!relModel.get('uniDirecional')) {
-
-				var tarEntity = target.get('entity')
-				var souEntity = source.get('entity')
-
-				var tarRelationshipsCollection = new RelationshipCollection(tarEntity.get('relationships'));
-
-				tarRelationshipsCollection.add(new RelationshipModel({
-					model : souEntity.get('name'),
-					name : '_' + souEntity.get('name'),
-					type : 'ManyToMany',
-				}))
-
-				tarEntity.set('relationships', tarRelationshipsCollection.toJSON());
-
-				var tarViaualEntity = util.getVEntityByName(tarEntity.get('name'));
-				// tarViaualEntity.updateHtmlEntity(tarEntity);
-
-			}
-
 			var relation = new VisualRelationship({
 				source : source,
 				target : target,
-				relationshipModel : relModel,
+				applicationRelationshipModel : relModel,
 			});
 
 			that.graph.addCell(relation);
 			// visualRelations.put(relation.getKey(), relation);
 
+		},
+
+		addRelationship : function(/* applicationRelationshipModel */appRel) {
+			var visualRelation = new VisualRelationship({
+				applicationRelationshipModel : appRel,
+			});
+
+			visualRelations.put(visualRelation.id, visualRelation)
+
+			that.graph.addCell(visualRelatio);
 		},
 
 		/**

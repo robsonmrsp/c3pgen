@@ -24,6 +24,7 @@
 	<div class="panel-body" style="padding: 1px; border-bottom: 1px solid #e4e5e7;">
 		<div class="row widget-main-rel">
 			<div class="col-lg-6 border-right animated-panel zoomIn" style="animation-delay: 0.3s;">
+				<h5>Origem</h5>
 				<div class="">
 					<span>
 						Nome de exibição:&nbsp;
@@ -78,8 +79,14 @@
 			</div>
 			<div class="col-lg-6 animated-panel zoomIn" style="animation-delay: 0.3s;">
 				<div class="widget-main-rel-target">
+					<h5>Destino</h5>
 					<span>
-						Nome de exibição:&nbsp;
+						Nome no destino:&nbsp;
+						<a class="editable editable-click inputTargetName" data-placement="right" data-title="Digite um nome">{{targetRelation && targetRelation.name}}</a>
+					</span>
+					<br>
+					<span>
+						Nome de exibição no destino:&nbsp;
 						<a class="editable editable-click inputTargetDisplayName" data-placement="right" data-title="Digite o nome a exibir">{{targetRelation && targetRelation.displayName}}</a>
 					</span>
 					<br>

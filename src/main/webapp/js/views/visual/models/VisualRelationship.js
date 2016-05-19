@@ -49,7 +49,7 @@ define(function(require) {
 				x : 740,
 				y : 280
 			},
-			relationshipModel : {},
+			applicationRelationshipModel : {},
 			smooth : false,
 		},
 
@@ -61,13 +61,14 @@ define(function(require) {
 			}
 
 			this._transitionIds = {};
+			var that = this;
 			this.processPorts();
 			this.on('change:attrs', this.processPorts, this);
 			this.label(0, {
 				position : 25,
 				attrs : {
 					text : {
-						text : this.get('relationshipModel').get('name')
+						text : this.get('applicationRelationshipModel').get('source').get('name'),
 					}
 				}
 			});
@@ -75,7 +76,7 @@ define(function(require) {
 				position : -25,
 				attrs : {
 					text : {
-						text : '_' + options.source.get('entity').get('name')
+						text : this.get('applicationRelationshipModel').get('target').get('name'),
 					}
 				}
 			});
@@ -83,8 +84,7 @@ define(function(require) {
 
 		getKey : function() {
 			return {
-				'sourceName' : this.source.entity.get('name'),
-				'targetName' : this.target.entity.get('name'),
+
 			}
 		}
 	});

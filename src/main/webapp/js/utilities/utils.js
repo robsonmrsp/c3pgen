@@ -364,8 +364,7 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 		},
 
 		/*
-		 * Usage: breadcrumb({iconClass:'',itemLabel:'',
-		 * itemSubFolderName:'',url:''});
+		 * Usage: breadcrumb({iconClass:'',itemLabel:'', itemSubFolderName:'',url:''});
 		 */
 		breadcrumb : function(itemMenu) {
 			if (itemMenu) {
@@ -495,7 +494,6 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 			return valor.replace(/[^0-9]+/, '');
 		},
 		notificationError : function(options) {
-
 			$.gritter.add({
 				title : options.title || 'Aviso !',
 				text : options.text,
@@ -602,9 +600,9 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 		firstUpper : function(string) {
 			return string.charAt(0).toUpperCase() + string.slice(1);
 		},
+
 		getVEntityByName : function(/*
-									 * nome da entidade representada no editor
-									 * visual
+									 * nome da entidade representada no editor visual
 									 */name) {
 			var allVEntities = visualEntities.values();
 			var allBEntities = [];
@@ -618,6 +616,7 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 
 			return returnVntuty;
 		},
+
 		getBEntities : function() {
 			var allVEntities = visualEntities.values();
 			var allBEntities = [];
@@ -626,6 +625,15 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 			})
 			return allBEntities;
 		},
+		getBEntityByName : function(/* nome da entidade */name) {
+			var bEnt = null;
+			_.each(this.getBEntities(), function(bEntity) {
+				if (bEntity.get('name') == name)
+					bEnt = bEntity;
+			})
+			return bEnt;
+		},
+
 		findViewByModel : function(entity) {
 			/* joint.dia.Element or joint.dia.Link. */
 			var vEntity = this.getVEntityByName(entity.get && entity.get('name'));

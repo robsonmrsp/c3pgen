@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -85,7 +86,11 @@ public class Relationship extends AbstractTimestampEntity {
 	@JoinColumn(name = "id_client")
 	private Client owner;
 
-	
+	@ManyToOne
+	@Cascade(CascadeType.ALL)
+	@JoinColumn(name = "id_target")
+	private Relationship target;
+
 	public Relationship(String name, Types type, String ownerName, String model, Boolean uniDirecional, ViewApproach viewApproach) {
 		super();
 		this.name = name;
@@ -182,6 +187,14 @@ public class Relationship extends AbstractTimestampEntity {
 
 	public void setViewApproach(ViewApproach viewApproach) {
 		this.viewApproach = viewApproach;
+	}
+
+	public Relationship getTarget() {
+		return target;
+	}
+
+	public void setTarget(Relationship target) {
+		this.target = target;
 	}
 
 }

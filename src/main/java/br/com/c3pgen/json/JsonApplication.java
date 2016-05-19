@@ -9,8 +9,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 /**
-*  generated: 03/09/2015 14:51:47
-**/
+ * generated: 03/09/2015 14:51:47
+ **/
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class JsonApplication implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -18,17 +18,19 @@ public class JsonApplication implements Serializable {
 	@JsonDeserialize(using = CustomSyncObjectIdDeserializer.class)
 	private Integer id;
 	private SyncOperation syncOperation;
-	
+
 	private String name;
 	private String skin;
 	private String description;
 	private String rootPackage;
-	private ArrayList<JsonTheEntity> entities = new ArrayList<JsonTheEntity>();		
-	
-	public  JsonApplication() {
-		
+	private ArrayList<JsonTheEntity> entities = new ArrayList<JsonTheEntity>();
+
+	private ArrayList<JsonApplicationRelationship> applicationRelationships = new ArrayList<JsonApplicationRelationship>();
+
+	public JsonApplication() {
+
 	}
-	
+
 	public Integer getId() {
 		return id;
 	}
@@ -36,6 +38,7 @@ public class JsonApplication implements Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	public String getName() {
 		return name;
 	}
@@ -43,6 +46,7 @@ public class JsonApplication implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public String getSkin() {
 		return skin;
 	}
@@ -50,6 +54,7 @@ public class JsonApplication implements Serializable {
 	public void setSkin(String skin) {
 		this.skin = skin;
 	}
+
 	public String getDescription() {
 		return description;
 	}
@@ -57,6 +62,7 @@ public class JsonApplication implements Serializable {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
 	public String getRootPackage() {
 		return rootPackage;
 	}
@@ -64,24 +70,32 @@ public class JsonApplication implements Serializable {
 	public void setRootPackage(String rootPackage) {
 		this.rootPackage = rootPackage;
 	}
-	
+
 	public ArrayList<JsonTheEntity> getEntities() {
 		return entities;
 	}
-	
+
 	public void setEntities(ArrayList<JsonTheEntity> theEntity) {
 		this.entities = theEntity;
 	}
 
-	public SyncOperation getSyncOperation (){
-		if(syncOperation == null){
+	public SyncOperation getSyncOperation() {
+		if (syncOperation == null) {
 			this.syncOperation = SyncOperation.NONE;
 		}
 		return syncOperation;
 	}
-	
-	public void setSyncOperation (SyncOperation  syncOperation){
+
+	public void setSyncOperation(SyncOperation syncOperation) {
 		this.syncOperation = syncOperation;
 	}
-	
+
+	public ArrayList<JsonApplicationRelationship> getApplicationRelationships() {
+		return applicationRelationships;
+	}
+
+	public void setApplicationRelationships(ArrayList<JsonApplicationRelationship> applicationRelationships) {
+		this.applicationRelationships = applicationRelationships;
+	}
+
 }

@@ -1,4 +1,3 @@
-/* generated: 18/08/2015 15:38:44 */
 define(function(require) {
 	// Start "Import´s Definition"
 	var _ = require('adapters/underscore-adapter');
@@ -11,6 +10,7 @@ define(function(require) {
 	var util = require('utilities/utils');
 
 	var RelationshipModel = require('models/RelationshipModel');
+	var RelationshipCollection = require('collections/RelationshipCollection');
 	var RelationshipItemViewTemplate = require('text!views/categoria/tpl/RelationshipItemViewTemplate.html');
 
 	var RelationshipItem = Marionette.ItemView.extend({
@@ -27,10 +27,11 @@ define(function(require) {
 		ui : {
 			inputId : '.inputId',
 			inputTargetId : '.inputTargetId',
+			inputTargetName : '.inputTargetName',
 
 			inputRelationshipName : '.inputRelationshipName',
 			inputTargetDisplayName : '.inputTargetDisplayName',
-			inputTargetRelationshipName : '.inputTargetRelationshipName',
+			inputTargetName : '.inputTargetName',
 
 			inputDisplayName : '.inputDisplayName',
 
@@ -63,9 +64,36 @@ define(function(require) {
 			editableFields : '.editable-click'
 		},
 		changeRelationship : function() {
-			var attr = this.getModel();
-			if (attr.name && attr.model)
-				this.model.set(attr);
+			if (this.validateRelation()) {
+				var attr = this.getModel();
+				if (attr.name && attr.model)
+					this.model.set(attr);
+			}
+		},
+
+		validateRelation : function() {
+			var mensagens = [];
+			if (!this.ui.inputUniDirecional.is(':checked')) {
+				if (C3P.isEmpty(this.ui.inputTargetName)) {
+					mensagens.push("Escolha um nome para o detino.");
+				}
+				if (C3P.isEmpty(this.ui.inputTargetDisplayName)) {
+					mensagens.push("Escolha um nome de exibição para o relacionamento no destino.");
+				}
+				if (C3P.isEmpty(this.ui.inputTargetType)) {
+					mensagens.push("Escolha um nome de exibição para o relacionamento no destino.");
+				}
+
+				if (mensagens.length > 0) {
+					util.notificationError({
+						title : 'Erro',
+						text : mensagens.join(',')
+					});
+					return false;
+				}
+			}
+
+			return true;
 		},
 		deleteRelationship : function() {
 			this.model.destroy();
@@ -85,13 +113,15 @@ define(function(require) {
 					type : C3P.notEmptyVal(this.ui.inputViewApproach),
 				},
 				targetRelation : this._getTargetModel(),
-
 			};
 		},
 		_getTargetModel : function() {
-			return {
+
+			var targuetVisual = util.getBEntityByName(C3P.notEmptyVal(this.ui.inputModel));
+			var oldRelations = new RelationshipCollection(targuetVisual.get('relationships'));
+			var tmodel = {
 				id : this.ui.inputTargetId.val(),
-				name : C3P.notEmptyVal(this.ui.inputTargetRelationshipName),
+				name : C3P.notEmptyVal(this.ui.inputTargetName),
 				type : C3P.notEmptyVal(this.ui.inputTargetType),
 				displayName : C3P.notEmptyVal(this.ui.inputTargetDisplayName),
 				model : this.model.get('entity').name,
@@ -101,8 +131,11 @@ define(function(require) {
 					id : this.ui.inputTargetViewApproachId.val(),
 					type : C3P.notEmptyVal(this.ui.inputTargetViewApproach),
 				}
-
 			};
+			oldRelations.add(new RelationshipModel(tmodel));
+			targuetVisual.set('relationships', oldRelations.toJSON());
+
+			return tmodel;
 		},
 		hideShow : function() {
 			this.ui.widgetMain.toggle();
@@ -117,8 +150,9 @@ define(function(require) {
 			var that = this;
 			this.on('show', function() {
 				this.ui.inputRelationshipName.editable();
-				this.ui.inputTargetRelationshipName.editable();
 				this.ui.inputDisplayName.editable();
+
+				this.ui.inputTargetName.editable();
 				this.ui.inputTargetDisplayName.editable();
 				this.ui.inputModel.editable({
 					value : '',
@@ -140,6 +174,10 @@ define(function(require) {
 
 				this.ui.inputRelationshipName.on('hidden', function() {
 					util.refreshEditable(that.ui.inputDisplayName, util.toFrase(that.ui.inputRelationshipName.text()));
+				});
+				this.ui.inputModel.on('hidden', function() {
+					util.refreshEditable(that.ui.inputTargetName, "_" + util.firstUpper(that.model.get('entity').name));
+					util.refreshEditable(that.ui.inputTargetDisplayName, util.firstUpper(that.model.get('entity').name));
 				});
 
 				this.ui.editableFields.on('hidden', function() {
@@ -174,40 +212,47 @@ define(function(require) {
 				this.ui.inputViewApproach.on('hidden', function(e, editable) {
 					var val = that.ui.inputViewApproach.text();
 					if (val == 'modal') {
-						console.log('Escolheu modal');
 						that.ui.modalFields.show();
 						that.ui.comboFields.hide();
 					} else if (val == 'combo') {
 						that.ui.comboFields.show();
 						that.ui.modalFields.hide();
 
-						console.log('Escolheu combo');
 					} else if (val == 'multiselect') {
 						that.ui.modalFields.hide();
 						that.ui.comboFields.hide();
-
-						console.log('Escolheu mulsiselect');
 					}
 				});
 				this.ui.inputTargetViewApproach.on('hidden', function(e, editable) {
 					var val = that.ui.inputViewApproach.text();
 					if (val == 'modal') {
-						console.log('Escolheu modal');
 						that.ui.modalFields.show();
 						that.ui.comboFields.hide();
 					} else if (val == 'combo') {
 						that.ui.comboFields.show();
 						that.ui.modalFields.hide();
-
-						console.log('Escolheu combo');
 					} else if (val == 'multiselect') {
 						that.ui.modalFields.hide();
 						that.ui.comboFields.hide();
-
-						console.log('Escolheu mulsiselect');
 					}
 				});
 				this.ui.inputType.editable({
+					value : 'OneToMany',
+					source : [ {
+						value : 'OneToMany',
+						text : 'OneToMany'
+					}, {
+						value : 'ManyToOne',
+						text : 'ManyToOne'
+					}, {
+						value : 'OneToOne',
+						text : 'OneToOne'
+					}, {
+						value : 'ManyToMany',
+						text : 'ManyToMany'
+					}, ]
+				});
+				this.ui.inputTargetType.editable({
 					value : 'OneToMany',
 					source : [ {
 						value : 'OneToMany',

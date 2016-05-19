@@ -10,6 +10,13 @@ define(function(require) {
 			}
 
 			return value.trim();
+		},
+		isEmpty : function(field) {
+			var value = field.val() || field.text();
+			if (value.length == 0 || value == 'Empty' || value == 'Vazio') {
+				return true;
+			}
+			return false;
 		}
 	}
 })

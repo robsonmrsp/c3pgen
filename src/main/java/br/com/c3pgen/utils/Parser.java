@@ -9,6 +9,7 @@ import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
 import br.com.c3pgen.json.JsonApplication;
+import br.com.c3pgen.json.JsonApplicationRelationship;
 import br.com.c3pgen.json.JsonAttribute;
 import br.com.c3pgen.json.JsonAttributeType;
 import br.com.c3pgen.json.JsonBairro;
@@ -30,6 +31,8 @@ import br.com.c3pgen.json.JsonTheEntity;
 import br.com.c3pgen.json.JsonUser;
 import br.com.c3pgen.json.JsonViewApproach;
 import br.com.c3pgen.model.Application;
+import br.com.c3pgen.model.ApplicationEntity;
+import br.com.c3pgen.model.ApplicationRelationship;
 import br.com.c3pgen.model.Attribute;
 import br.com.c3pgen.model.AttributeType;
 import br.com.c3pgen.model.Bairro;
@@ -47,7 +50,6 @@ import br.com.c3pgen.model.Permission;
 import br.com.c3pgen.model.Relationship;
 import br.com.c3pgen.model.Role;
 import br.com.c3pgen.model.Session;
-import br.com.c3pgen.model.ApplicationEntity;
 import br.com.c3pgen.model.User;
 import br.com.c3pgen.model.ViewApproach;
 
@@ -164,7 +166,26 @@ public class Parser {
 				jsonApplication.getEntities().add(toJson(loopTheEntity));
 			}
 		}
+		List<ApplicationRelationship> listRels = application.getApplicationRelationships();
+		if (listRels != null) {
+
+			for (ApplicationRelationship loopRel : listRels) {
+				jsonApplication.getApplicationRelationships().add(toJson(loopRel));
+			}
+		}
 		return jsonApplication;
+	}
+
+	private static JsonApplicationRelationship toJson(ApplicationRelationship loopRel) {
+		JsonApplicationRelationship applicationRelationship = new JsonApplicationRelationship();
+
+		Application application = loopRel.getApplication();
+		applicationRelationship.setApplication(toBasicJson(application));
+		applicationRelationship.setId(loopRel.getId());
+		applicationRelationship.setSource(toJson(loopRel.getSource()));
+		applicationRelationship.setTarguet(toJson(loopRel.getTarguet()));
+
+		return applicationRelationship;
 	}
 
 	public static Application apply(Application application, JsonApplication jsonApplication) {
@@ -500,6 +521,12 @@ public class Parser {
 		if (entity != null) {
 			jsonRelationship.setEntity(toBasicJson(entity));
 		}
+
+		Relationship target = relationship.getTarget();
+		if (target != null) {
+			jsonRelationship.setTarget(toBasicJson(target));
+		}
+
 		ViewApproach viewApproach = relationship.getViewApproach();
 		if (viewApproach != null) {
 			jsonRelationship.setViewApproach(toJson(viewApproach));
@@ -514,6 +541,10 @@ public class Parser {
 
 		applyBasicEntityValues(relationship, jsonRelationship);
 
+		JsonRelationship jsonTarget = jsonRelationship.getTarget();
+		if (jsonTarget != null) {
+			relationship.setTarget(toBasicEntity(jsonTarget));
+		}
 		JsonTheEntity entity = jsonRelationship.getEntity();
 		if (entity != null) {
 			relationship.setEntity(toBasicEntity(entity));

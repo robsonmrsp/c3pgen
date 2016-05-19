@@ -13,6 +13,7 @@ define(function(require) {
 	var RelationshipCollection = require('collections/RelationshipCollection');
 
 	var AttributeModel = require('models/AttributeModel');
+	var ApplicationRelationshipModel = require('models/ApplicationRelationshipModel');
 	var AttributeCollection = require('collections/AttributeCollection');
 
 	var InspetorEntidadesViewTemplate = require('text!views/visual/tpl/InspetorEntidadesViewTemplate.html');
@@ -140,7 +141,7 @@ define(function(require) {
 			});
 		},
 
-		updateViewEntityWithRelationships : function(/* relationship */model, collection) {
+		updateViewEntityWithRelationships : function(/* applicationRelationshipModel */model, collection) {
 			this.entity.set(this.getModel())
 			this.entity.set('relationships', this.relationshipsCollection.toJSON());
 
@@ -148,10 +149,15 @@ define(function(require) {
 
 			// nesse momento criar o novo relacionamento se necessário
 
-			var source = util.getVEntityByName(model.get('entity').name);
-			var targuet = util.getVEntityByName(model.get('model'));
+			var sourceVisual = util.getVEntityByName(model.get('entity').name);
+			var targuetVisual = util.getVEntityByName(model.get('model'));
 
-			util.VENT.trigger('entity.add.rel', source, targuet, model);
+			var applicationRelationshipModel = new ApplicationRelationshipModel({
+				source : model,
+				target : new RelationshipModel(model.get('targetRelation')),
+			});
+
+			util.VENT.trigger('entity.add.rel', sourceVisual, targuetVisual, applicationRelationshipModel);
 		},
 
 		updateViewEntity : function(model, collection) {
@@ -173,7 +179,6 @@ define(function(require) {
 		},
 
 		setVisualEntity : function(visualEntity) {
-
 
 			this.entity = visualEntity.entity;
 			this.visualEntity = visualEntity;
