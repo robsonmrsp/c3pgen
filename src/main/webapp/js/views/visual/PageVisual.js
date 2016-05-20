@@ -98,6 +98,8 @@ define(function(require) {
 				entities.each(function(ent) {
 					that.addEntity(ent);
 				});
+
+				// TODO ver se é necessário
 				applicationRelationships.each(function(apprel) {
 					that.addRelationship(apprel);
 				});
@@ -170,19 +172,19 @@ define(function(require) {
 			});
 
 			that.graph.addCell(relation);
-			// visualRelations.put(relation.getKey(), relation);
+			visualRelations.put(relation.getKey(), relation);
 
 		},
 
-		addRelationship : function(/* applicationRelationshipModel */appRel) {
-			var visualRelation = new VisualRelationship({
-				applicationRelationshipModel : appRel,
-			});
-
-			visualRelations.put(visualRelation.id, visualRelation)
-
-			that.graph.addCell(visualRelatio);
-		},
+		// addRelationship : function(/* applicationRelationshipModel */appRel) {
+		// var visualRelation = new VisualRelationship({
+		// applicationRelationshipModel : appRel,
+		// });
+		//
+		// visualRelations.put(visualRelation.id, visualRelation)
+		//
+		// that.graph.addCell(visualRelatio);
+		// },
 
 		/**
 		 * Deve receber um EntityModel

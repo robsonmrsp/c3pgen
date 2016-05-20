@@ -99,6 +99,7 @@ define(function(require) {
 
 			// configuração dos relacionamentos
 			this.relationshipsCollection = new RelationshipCollection(this.model.get('relationships'));
+
 			this.relationshipsCollection.on('change', this.updateViewEntityWithRelationships, this);
 
 			this.relationshipsCollectionView = new RelationshipsCollectionView({
@@ -150,6 +151,7 @@ define(function(require) {
 			// nesse momento criar o novo relacionamento se necessário
 
 			var sourceVisual = util.getVEntityByName(model.get('entity').name);
+
 			var targuetVisual = util.getVEntityByName(model.get('model'));
 
 			var applicationRelationshipModel = new ApplicationRelationshipModel({

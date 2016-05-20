@@ -1,5 +1,8 @@
 package br.com.c3pgen.json;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class JsonApplicationRelationship {
 
 	private Integer id;
@@ -8,7 +11,7 @@ public class JsonApplicationRelationship {
 
 	public JsonRelationship source;
 
-	public JsonRelationship targuet;
+	public JsonRelationship target;
 
 	public Integer getId() {
 		return id;
@@ -34,12 +37,12 @@ public class JsonApplicationRelationship {
 		this.source = source;
 	}
 
-	public JsonRelationship getTarguet() {
-		return targuet;
+	public JsonRelationship getTarget() {
+		return target;
 	}
 
 	public void setTarguet(JsonRelationship targuet) {
-		this.targuet = targuet;
+		this.target = targuet;
 	}
 
 }

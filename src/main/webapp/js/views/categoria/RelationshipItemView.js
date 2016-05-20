@@ -130,6 +130,19 @@ define(function(require) {
 				viewApproach : {
 					id : this.ui.inputTargetViewApproachId.val(),
 					type : C3P.notEmptyVal(this.ui.inputTargetViewApproach),
+				},
+				targetRelation : {
+					id : this.ui.inputId.val(),
+					name : C3P.notEmptyVal(this.ui.inputRelationshipName),
+					type : C3P.notEmptyVal(this.ui.inputType),
+					displayName : C3P.notEmptyVal(this.ui.inputDisplayName),
+					model : C3P.notEmptyVal(this.ui.inputModel),
+					ownerName : C3P.notEmptyVal(this.ui.inputOwnerName),
+					uniDirecional : this.ui.inputUniDirecional.is(':checked'),
+					viewApproach : {
+						id : this.ui.inputViewApproachId.val(),
+						type : C3P.notEmptyVal(this.ui.inputViewApproach),
+					}
 				}
 			};
 			oldRelations.add(new RelationshipModel(tmodel));

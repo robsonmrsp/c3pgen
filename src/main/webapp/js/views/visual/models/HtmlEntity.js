@@ -97,11 +97,14 @@ define(function(require) {
 		},
 		_changeEntity : function(_ent) {
 			console.log('Changing entity-> ' + _ent.toJSON());
+			this.updateHtmlEntity(_ent);
 		},
 		updateHtmlEntity : function(modelEntity) {
 			if (modelEntity) {
 				this.entity.set(modelEntity.attributes);
 				this.diagramEntityView.refresh(this.entity);
+			} else {
+				// this.diagramEntityView.refresh();
 			}
 		},
 

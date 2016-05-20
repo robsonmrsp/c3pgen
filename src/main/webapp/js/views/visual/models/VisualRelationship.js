@@ -84,7 +84,8 @@ define(function(require) {
 
 		getKey : function() {
 			return {
-
+				sourceName : this.get('applicationRelationshipModel').get('source').get('name'),
+				targetName : this.get('applicationRelationshipModel').get('target').get('name')
 			}
 		}
 	});
