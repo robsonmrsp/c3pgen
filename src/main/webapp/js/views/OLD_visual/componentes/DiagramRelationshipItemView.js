@@ -11,29 +11,25 @@ define(function(require) {
 	var C3P = require('utilities/C3pUtil');
 	var BaseCollection = require('collections/BaseCollection');
 	var BaseModel = require('models/BaseModel');
-	var AttributeModel = require('models/AttributeModel');
+	var RelationshipModel = require('models/RelationshipModel');
 
-	var DiagramAttributeItemViewTemplate = require('text!views/visual/componentes/tpl/DiagramAttributeItemViewTemplate.html');
+	var DiagramRelationshipItemViewTemplate = require('text!views/visual/componentes/tpl/DiagramRelationshipItemViewTemplate.html');
 
-	var DiagramAttributeItemView = Marionette.ItemView.extend({
-		template : _.template(DiagramAttributeItemViewTemplate),
+	var DiagramRelationshipItemView = Marionette.ItemView.extend({
+		template : _.template(DiagramRelationshipItemViewTemplate),
 
 		events : {},
 
-		ui : {
-			'simbolo' : '.simbolo'
-		},
+		ui : {},
 
 		initialize : function() {
 			var that = this;
 
 			this.on('show', function() {
-				if (this.model.get('name') == 'id') {
-					this.ui.simbolo.text('+')
-				}
+				console.log(this.model);
 			});
 		},
 	});
 
-	return DiagramAttributeItemView;
+	return DiagramRelationshipItemView;
 });

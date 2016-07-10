@@ -20,17 +20,13 @@ define(function(require) {
 
 		events : {},
 
-		ui : {
-			'simbolo' : '.simbolo'
-		},
+		ui : {},
 
 		initialize : function() {
 			var that = this;
 
 			this.on('show', function() {
-				if (this.model.get('name') == 'id') {
-					this.ui.simbolo.text('+')
-				}
+				console.log(this.model);
 			});
 		},
 	});

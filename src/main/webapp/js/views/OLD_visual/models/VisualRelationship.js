@@ -54,7 +54,6 @@ define(function(require) {
 		},
 
 		initialize : function(options) {
-			// doubleLinkTools: false,
 			if (!options || !options.id) {
 				this.set('id', Joint.util.uuid(), {
 					silent : true
@@ -69,7 +68,7 @@ define(function(require) {
 				position : 25,
 				attrs : {
 					text : {
-						text : 'source',// this.get('applicationRelationshipModel').get('source').get('name'),
+						text : this.get('applicationRelationshipModel').get('source').get('name'),
 					}
 				}
 			});
@@ -77,7 +76,7 @@ define(function(require) {
 				position : -25,
 				attrs : {
 					text : {
-						text : 'target',// this.get('applicationRelationshipModel').get('target').get('name'),
+						text : this.get('applicationRelationshipModel').get('target').get('name'),
 					}
 				}
 			});
@@ -93,17 +92,7 @@ define(function(require) {
 
 	Joint.shapes.html.VisualRelationshipView = Joint.dia.LinkView.extend({
 		nomeDaClasse : 'VisualRelationshipView',
-		options : {
-			shortLinkLength : 100,
-			doubleLinkTools : true,
-			longLinkLength : 160,
-			linkToolsOffset : 40,
-			doubleLinkToolsOffset : 60,
-			sampleInterval : 50
-		},
-
 		initialize : function(options) {
-			console.log(this.options);
 			Joint.dia.LinkView.prototype.initialize.apply(this, arguments);
 			this.nomeDaClasse = 'VisualRelationshipView';
 		}

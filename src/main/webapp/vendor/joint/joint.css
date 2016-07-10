@@ -71,7 +71,7 @@ the whole group of elements. Each plugin can provide its own stylesheet.
 
 .element {
    /* Give the user a hint that he can drag&drop the element. */
-   cursor: move;
+   cursor: inherit;
 }
 
 .element * {
@@ -146,7 +146,7 @@ Vertex markers are `<circle>` elements that appear at connection vertex position
    cursor: pointer;
 }
 .link-tools .tool-options {
-   display: none;       /* by default, we don't display link options tool */
+/*    display: none;       by default, we don't display link options tool */
 }
 .link-tools .tool-remove circle {
    fill: red;

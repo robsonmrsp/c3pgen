@@ -7030,9 +7030,9 @@ joint.dia.LinkView = joint.dia.CellView.extend({
         shortLinkLength: 100,
         doubleLinkTools: false,
         longLinkLength: 160,
-        linkToolsOffset: 40,
+        linkToolsOffset: 120,
         doubleLinkToolsOffset: 60,
-        sampleInterval: 50
+        sampleInterval: 70
     },
 
     _z: null,

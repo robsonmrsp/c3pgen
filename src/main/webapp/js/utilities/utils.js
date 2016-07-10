@@ -618,7 +618,7 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 		},
 
 		getBEntities : function() {
-			var allVEntities = visualEntities.values();
+			var allVEntities = globalVisualEntities.values();
 			var allBEntities = [];
 			_.each(allVEntities, function(vEntity) {
 				allBEntities.push(vEntity.get('entity'));

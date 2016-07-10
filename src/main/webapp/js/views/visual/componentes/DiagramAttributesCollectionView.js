@@ -9,8 +9,12 @@ define(function(require) {
 	var util = require('utilities/utils');
 
 	var DiagramAttributeItemView = require('views/visual/componentes/DiagramAttributeItemView');
+	var DiagramAttributeCollectionViewTemplate = require('text!views/visual/componentes/tpl/DiagramAttributeCollectionViewTemplate.html');
 
-	var EntidadeCollection = Marionette.CollectionView.extend({
+	var EntidadeCollection = Marionette.CompositeView.extend({
+		template : _.template(DiagramAttributeCollectionViewTemplate),
+		childViewContainer : '.lista-atributos',
+
 		childView : DiagramAttributeItemView,
 
 		childViewOptions : function() {
@@ -24,3 +28,4 @@ define(function(require) {
 
 	return EntidadeCollection;
 });
+// js/views/visual/components/tpl/DiagramAttributeCollectionViewTemplate.html

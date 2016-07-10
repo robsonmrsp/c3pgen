@@ -11,7 +11,7 @@ define(function(require) {
 
 	var RelationshipModel = require('models/RelationshipModel');
 	var RelationshipCollection = require('collections/RelationshipCollection');
-	var RelationshipItemViewTemplate = require('text!views/categoria/tpl/RelationshipItemViewTemplate.html');
+	var RelationshipItemViewTemplate = require('text!views/visual/componentes/tpl/RelationshipItemViewTemplate.html');
 
 	var RelationshipItem = Marionette.ItemView.extend({
 		template : _.template(RelationshipItemViewTemplate),

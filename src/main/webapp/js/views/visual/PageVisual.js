@@ -1,5 +1,9 @@
 /* generated: 30/08/2015 20:23:12 */
 define(function(require) {
+
+	// serácriado mas um botão com uma seta e somente será selecionado a
+	// entidade ou o relacionamento de esse botão de seleção estiver ligado.
+
 	// Start "Import´s Definition"
 	var _ = require('adapters/underscore-adapter');
 	var $ = require('adapters/jquery-adapter');
@@ -25,22 +29,22 @@ define(function(require) {
 	var ApplicationRelationshipCollection = require('collections/ApplicationRelationshipCollection');
 
 	var RelationshipModel = require('models/RelationshipModel');
+	var ApplicationRelationshipModel = require('models/ApplicationRelationshipModel');
 
-	var lastPositionX = 200;
+	var lastPositionX = 0;
 
-	var visualEntities = new Col.Map();
+	var globalVisualEntities = new Col.Map();
 
-	var visualRelations = new Col.Map();
+	var globalVisualRelations = new Col.Map();
 
 	// http://www.sinbadsoft.com/blog/backbone-js-by-example-part-1/
 	$('body').mousemove(function(e) {
-		// console.log(e.pageX, e.pageY)
 		MOUSE_X = e.pageX;
 		MOUSE_Y = e.pageY;
 	});
 
-	window.visualEntities = visualEntities;
-	window.visualRelations = visualRelations;
+	window.globalVisualEntities = globalVisualEntities;
+	window.globalVisualRelations = globalVisualRelations;
 
 	var PageVisual = Marionette.LayoutView.extend({
 		template : _.template(PageVisualTemplate),
@@ -57,26 +61,35 @@ define(function(require) {
 
 		ui : {},
 
+		saveApplication : function() {
+			this.application = this.model;
+			var entidadesCollection = new EntityCollection();
+			var applicationRelationshipCollection = new ApplicationRelationshipCollection();
+
+			_.each(globalVisualEntities.values(), function(visual) {
+				entidadesCollection.add(visual.get('entity'));
+			});
+			console.log(entidadesCollection.toJSON());
+		},
 		initialize : function() {
 			var that = this;
-			var entities = new EntityCollection(this.model.get('entities'));
-
-			var applicationRelationships = new ApplicationRelationshipCollection(this.model.get('applicationRelationships'));
 
 			this.inspetorView = new InspetorEntidadesView({
 				model : new EntityModel({
 					name : '',
 				}),
 			});
+
+			this.sourceTempRelation = null;
+			this.targetTempRelation = null;
 			this.inspectorRelationamentosView = new InspetorRelacionamentosView({
-				model : new EntityModel({
-					name : '',
-				}),
+				model : new ApplicationRelationshipModel(),
 			});
 
 			this.on('show', function() {
 				this.inspectorRegion.show(this.inspetorView);
-				// this.inspectorRelationamentosRegion.show(this.inspectorRelationamentosView);
+				this.inspectorRelationamentosRegion.show(this.inspectorRelationamentosView);
+
 				this.graph = new Joint.dia.Graph();
 
 				window.paper = new Joint.dia.Paper({
@@ -87,136 +100,101 @@ define(function(require) {
 					model : that.graph
 				});
 
+				window.paper.on('link:options', function(_evento, _link, x, y) {
+					console.log('Clicou no link', _evento, _link, x, y)
+				});
+
+				window.paper.on('cell:pointerdown', function(cellView, evt, x, y) {
+					var toolRemove = $(evt.target).parents('.tool-remove')[0];
+					if (toolRemove) {
+						if (!confirm('Deseja remover o relacionamento')) {
+							cellView.options.interactive = false;
+							_.defer(function() {
+								cellView.options.interactive = true;
+							});
+						}
+					}
+				});
 				window.paper.on('cell:pointerup', function(_cellView, evt, x, y) {
 					if (_cellView.model.get('type') == 'html.Element') {
-						that.inspetorView.setVisualEntity(_cellView);
+						that.inspetorView.setVisualEntity(_cellView.model);
 					}
 				});
 
-				// somente para garantir que tudo estará setando antes de
-				// adicionar as entidades ao painter
-				entities.each(function(ent) {
-					that.addEntity(ent);
-				});
+				window.paper.on('cell:pointerclick', function(_cellView, evt, x, y) {
+					if (_cellView.model.get('type') == 'html.Element') {
+						if (that.activeAddRelation == true) {
+							if (that.sourceTempRelation == null) {
+								that.sourceTempRelation = _cellView;
+							} else {
+								that.targetTempRelation = _cellView;
+								var relation = new VisualRelationship({
+									source : that.sourceTempRelation.model,
+									target : that.targetTempRelation.model,
+								});
 
-				// TODO ver se é necessário
-				applicationRelationships.each(function(apprel) {
-					that.addRelationship(apprel);
-				});
+								that.sourceTempRelation = null;
+								that.targetTempRelation = null;
 
-				// Provavelmente será jancado o evendo de criação de
-				// relacionamento a partir da telinha de inspetor.
-				util.VENT.on('entity.add.rel', function(/* HtmlEntity */entityVSourceDiagram, /* HtmlEntity */entityVTargetDiagram, /* ApplicationRelationshipModel */applicationRelationshipModel) {
+								$('#paper').removeClass('cursor-relacao-1-n');
+								$('#paper').removeClass('cursor-tabela');
+								that.activeAddRelation = false;
+								that.graph.addCell(relation);
 
-					that.addRelation(entityVSourceDiagram, entityVTargetDiagram, applicationRelationshipModel);
+								// window.globalVisualRelations.put(relation);
+							}
+
+						}
+					}
 				})
+				window.paper.on('blank:pointerclick', function(_cellView, evt, x, y) {
+					if (that.activeAddEntity == true) {
+						that.addEntity();
+						var visualEntity = new VisualEntity({
+							entity : that._getEntityModel({
+								x : MOUSE_X,
+								y : MOUSE_Y - 62
+							}),
+							position : {
+								x : MOUSE_X,
+								y : MOUSE_Y - 62
+							},
+							size : {
+								width : 120,
+								height : 100
+							},
+						});
+						globalVisualEntities.put(visualEntity.id, visualEntity)
+						that.graph.addCell(visualEntity);
+						that.inspetorView.setVisualEntity(visualEntity);
+						that.activeAddEntity = false
+						$('#paper').removeClass('cursor-tabela');
+					}
+				});
+
 			});
 		},
 
-		saveApplication : function() {
-			this.application = this.model;
-			var entidadesCollection = new EntityCollection();
-			var applicationRelationshipCollection = new ApplicationRelationshipCollection();
+		addRelation : function(_entity) {
+			this.activeAddEntity = false;
+			this.activeAddRelation = true;
+			$('#paper').addClass('cursor-relacao-1-n');
+		},
 
-			_.each(visualEntities.values(), function(visual) {
-				entidadesCollection.add(visual.get('entity'));
-			});
+		addEntity : function() {
+			var that = this;
+			this.activeAddRelation = false;
+			this.activeAddEntity = true;
+			$('#paper').addClass('cursor-tabela');
 
-			_.each(visualRelations.values(), function(visualRel) {
-				applicationRelationshipCollection.add(visualRel.get('applicationRelationshipModel'));
-			});
+		},
 
-			this.application.set('entities', entidadesCollection);
-			this.application.set('applicationRelationships', applicationRelationshipCollection);
-
-			this.application.save({}, {
-
-				success : function(_model, _resp, _options) {
-					console.log("Applicação salva com sucesso!");
-				},
-				error : function(_model, _resp, _options) {
-					util.showMessage('error', 'Problema ao salvar registro: ' + util.getJson(_resp.responseText).legalMessage || '');
-					util.logError(_resp);
-				}
+		_getEntityModel : function(opts) {
+			return new EntityModel({
+				name : 'Entity' + (globalVisualEntities.size() + 1),
+				posX : opts && opts.x,
+				posY : opts && opts.y,
 			})
-
-			console.log(JSON.stringify(this.application));
-		},
-
-		_lastPosition : function() {
-
-			if (lastPositionX < (window.innerWidth - 160)) {
-				lastPositionX += 160;
-			} else {
-				lastPositionX = 200;
-			}
-			return lastPositionX
-		},
-
-		addRelation : function(/* HtmlEntity */source, /* HtmlEntity */target, /* RelationsipModel */relModel) {
-
-			var that = this;
-
-			if (_.isUndefined(source)) {
-				throw new TypeError("source is required");
-			}
-
-			if (_.isUndefined(target)) {
-				throw new TypeError("target is required");
-			}
-
-			var relation = new VisualRelationship({
-				source : source,
-				target : target,
-				applicationRelationshipModel : relModel,
-			});
-
-			that.graph.addCell(relation);
-			visualRelations.put(relation.getKey(), relation);
-
-		},
-
-		// addRelationship : function(/* applicationRelationshipModel */appRel) {
-		// var visualRelation = new VisualRelationship({
-		// applicationRelationshipModel : appRel,
-		// });
-		//
-		// visualRelations.put(visualRelation.id, visualRelation)
-		//
-		// that.graph.addCell(visualRelatio);
-		// },
-
-		/**
-		 * Deve receber um EntityModel
-		 */
-		addEntity : function(_entity) {
-			var that = this;
-			var visualEntity = new VisualEntity({
-				entity : that._getEntityModel(_entity),
-				position : {
-					x : (_entity && _entity.get && _entity.get('posX')) || this._lastPosition(),
-					y : (_entity && _entity.get && _entity.get('posY')) || 200
-				},
-
-				size : {
-					width : 120,
-					height : 100
-				},
-
-			});
-			visualEntities.put(visualEntity.id, visualEntity)
-
-			that.graph.addCell(visualEntity);
-		},
-		_getEntityModel : function(_entity) {
-			if (_entity && _entity.get) {
-
-				return _entity;
-			} else {
-				return new EntityModel({
-					name : 'NO_NAME_' + lastPositionX,
-				})
-			}
 		},
 
 	});

@@ -357,7 +357,7 @@ body {
 	/* 	right: 9px; */
 	/* 	color: white; */
 	/* 	font-size: 10px; */
-	/* } */        
+	/* } */             
 
 .uml-class-name-rect {
 	background: #ff8450 !important;
@@ -414,7 +414,16 @@ body {
 .add-rel {
 	margin-top: -17px;
 	margin-right: 3px;
-	cursor: crosshair;
+/* 	cursor: crosshair; */
 	font-size: 1.2em;
 	pointer-events: auto;
 }
+
+.cursor-tabela {
+	cursor: url(../images/cursor_entity.png), auto;
+}
+.cursor-relacao-1-n {
+	cursor: url(../images/cursor_relation_1_n.png), auto;
+}
+
+

@@ -12,20 +12,22 @@ define(function(require) {
 	var RelationshipModel = require('models/RelationshipModel');
 	var RelationshipCollection = require('collections/RelationshipCollection');
 
-	var RelationshipModel = require('models/RelationshipModel');
+	var AttributeModel = require('models/AttributeModel');
 	var AttributeCollection = require('collections/AttributeCollection');
 
 	var InspetorEntidadesViewTemplate = require('text!views/visual/tpl/InspetorRelacionamentosViewTemplate.html');
 
-	var RelationshipItemView = require('views/visual/componentes/RelationshipItemView');
+	var AttributesCollectionView = require('views/categoria/AttributesCollectionView');
+
+	var RelationshipsCollectionView = require('views/categoria/RelationshipsCollectionView');
 
 	var EntidadeItem = Marionette.LayoutView.extend({
 		template : _.template(InspetorEntidadesViewTemplate),
 		className : ' drag-item hpanel',
 
 		regions : {
-			sourceRegion : '.source-container',
-			targetRegion : '.target-container',
+			attributesRegion : '.attributes',
+			relationshipsRegion : '.relationships',
 		},
 
 		events : {},
@@ -36,6 +38,8 @@ define(function(require) {
 
 		initialize : function() {
 			var that = this;
+
+			// // Configuração do draggable
 			this.$el.draggable({
 				handle : 'h5',
 				containment : ".drag-entities",
@@ -44,15 +48,8 @@ define(function(require) {
 
 				}
 			});
-			this.sourceView = new RelationshipItemView({
-				model : new RelationshipModel()
-			});
-			this.targetView = new RelationshipItemView({
-				model : new RelationshipModel()
-			});
+
 			this.on('show', function() {
-				this.sourceRegion.show(this.sourceView);
-				this.targetRegion.show(this.targetView);
 
 			});
 		},
@@ -60,4 +57,3 @@ define(function(require) {
 
 	return EntidadeItem;
 });
-// categoria/RelationshipItemView.js

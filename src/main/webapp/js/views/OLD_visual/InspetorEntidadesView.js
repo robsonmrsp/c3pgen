@@ -20,7 +20,7 @@ define(function(require) {
 
 	var AttributesCollectionView = require('views/categoria/AttributesCollectionView');
 
-	var RelationshipsCollectionView = require('views/categoria/RelationshipsCollectionView');
+//	var RelationshipsCollectionView = require('views/categoria/RelationshipsCollectionView');
 
 	var EntidadeItem = Marionette.LayoutView.extend({
 		template : _.template(InspetorEntidadesViewTemplate),
@@ -100,9 +100,11 @@ define(function(require) {
 			// configuração dos relacionamentos
 			this.relationshipsCollection = new RelationshipCollection(this.model.get('relationships'));
 
-			this.relationshipsCollectionView = new RelationshipsCollectionView({
-				collection : this.relationshipsCollection,
-			});
+			this.relationshipsCollection.on('change', this.updateViewEntityWithRelationships, this);
+
+//			this.relationshipsCollectionView = new RelationshipsCollectionView({
+//				collection : this.relationshipsCollection,
+//			});
 
 			this.on('show', function() {
 
@@ -133,42 +135,55 @@ define(function(require) {
 				this.ui.showHideEntity.tooltip();
 
 				this.attributesRegion.show(this.attributesCollectionView);
-				this.relationshipsRegion.show(this.relationshipsCollectionView);
+//				this.relationshipsRegion.show(this.relationshipsCollectionView);
 
 				// abrindo com os atributos escondidos.
 				// this.hideShowEnt();
 			});
 		},
 
+		updateViewEntityWithRelationships : function(/* applicationRelationshipModel */model, collection) {
+			this.entity.set(this.getModel())
+			this.entity.set('relationships', this.relationshipsCollection.toJSON());
+
+			this.visualEntity.updateHtmlEntity(this.entity);
+
+			// nesse momento criar o novo relacionamento se necessário
+
+			var sourceVisual = util.getVEntityByName(model.get('entity').name);
+
+			var targuetVisual = util.getVEntityByName(model.get('model'));
+
+			var applicationRelationshipModel = new ApplicationRelationshipModel({
+				source : model,
+				target : new RelationshipModel(model.get('targetRelation')),
+			});
+
+			util.VENT.trigger('entity.add.rel', sourceVisual, targuetVisual, applicationRelationshipModel);
+		},
+
 		updateViewEntity : function(model, collection) {
 
 			this.entity.set(this.getModel())
 			this.entity.set('attributes', this.attributesCollection.toJSON());
-			// this.visualEntity.updateHtmlEntity(this.entity);
+			this.visualEntity.updateHtmlEntity(this.entity);
 		},
 
-		// changeEntity : function() {
-		//
-		// this.model.set(this.getModel());
-		//
-		// this.visualEntity.update(this.model);
-		// },
+		changeEntity : function() {
+
+			this.model.set(this.getModel());
+
+			this.visualEntity.update(this.model);
+		},
 
 		deleteAtribute : function() {
 			this.model.destroy();
 		},
 
 		setVisualEntity : function(visualEntity) {
-			var that = this;
+
+			this.entity = visualEntity.entity;
 			this.visualEntity = visualEntity;
-
-			this.entity = visualEntity.get('entity');
-
-			this.visualEntity.on('change:position', function(_cellView, position, c, d) {
-				var _entity = _cellView.get('entity');
-				_entity.set('posX', position.x);
-				_entity.set('posY', position.y);
-			})
 
 			this.attributesCollection.reset(this.entity.get('attributes'));
 
@@ -185,7 +200,7 @@ define(function(require) {
 			util.refreshEditableVisual(this.ui.inputTableName);
 			util.refreshEditableVisual(this.ui.inputHasMobile);
 
-			// this.visualEntity.updateEntityPosition();
+			this.visualEntity.updateEntityPosition();
 		},
 
 		getModel : function() {

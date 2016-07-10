@@ -71,6 +71,7 @@ define(function(require) {
 			var that = this;
 			var entity = ent || this.model
 			this.ui.entityName.text(entity.get('name'));
+			console.log('tamanho', this.$el.height());
 
 			this.attributesCollection.reset(this.model.get('attributes'));
 

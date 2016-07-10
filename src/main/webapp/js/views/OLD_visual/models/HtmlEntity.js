@@ -15,7 +15,6 @@ define(function(require) {
 	Joint.shapes.html = Joint.shapes.html || {};
 
 	Joint.shapes.html.Element = Joint.shapes.basic.Rect.extend({
-		nomeClasse : 'HtmlEntity:Element',
 		defaults : Joint.util.deepSupplement({
 			type : 'html.Element',
 			attrs : {
@@ -29,7 +28,7 @@ define(function(require) {
 
 	// a view
 	Joint.shapes.html.ElementView = Joint.dia.ElementView.extend({
-		nomeClasse : 'HtmlEntity:ElementView',
+
 		template : HtmlEntityTemplate,
 
 		initialize : function(opt) {
@@ -90,10 +89,25 @@ define(function(require) {
 		removeBox : function(evt) {
 			this.$el.remove();
 		},
-		_changeEntity : function(_ent) {
-			this.entity.set(_ent.attributes);
-			this.diagramEntityView.refresh(this.entity);
+
+		updateEntityPosition : function() {
+			var position = this.model.get('position');
+			this.entity.set('posX', position.x);
+			this.entity.set('posY', position.y);
 		},
+		_changeEntity : function(_ent) {
+			console.log('Changing entity-> ' + _ent.toJSON());
+			this.updateHtmlEntity(_ent);
+		},
+		updateHtmlEntity : function(modelEntity) {
+			if (modelEntity) {
+				this.entity.set(modelEntity.attributes);
+				this.diagramEntityView.refresh(this.entity);
+			} else {
+				// this.diagramEntityView.refresh();
+			}
+		},
+
 	});
 
 	return Joint.shapes.html.Element;
