@@ -3,12 +3,13 @@ define(function(require) {
 	var Joint = require('joint');
 
 	var AttributeModel = require('models/AttributeModel');
+	var RelationshipModel = require('models/RelationshipModel');
 	var EntityModel = require('models/EntityModel');
 
 	Joint.shapes.html = Joint.shapes.html || {};
 
 	Joint.shapes.html.VisualRelationship = Joint.dia.Link.extend({
-
+		_nomeClasse : 'VisualRelationship',
 		defaults : {
 			type : 'html.Relation',
 			attrs : {
@@ -49,12 +50,60 @@ define(function(require) {
 				x : 740,
 				y : 280
 			},
-			applicationRelationshipModel : {},
+
+			// construido inicialmente
+			sourceRelationModel : null,
+			targetRelationModel : null,
+
+			sourceEntityModel : null,
+			targetEntityModel : null,
+
 			smooth : false,
 		},
 
+		refresh : function(newSourceModel, newTargetModel) {
+
+			this.get('sourceRelationModel').set(newSourceModel);
+			this.get('targetRelationModel').set(newTargetModel);
+
+			this._updateLabels();
+		},
+
 		initialize : function(options) {
-			// doubleLinkTools: false,
+
+			// Talvez não precise desse bloco applicationRelationshipModel
+			var _source = this.get('applicationRelationshipModel').get('sourceEntityView');
+			var _target = this.get('applicationRelationshipModel').get('targetEntityView');
+
+			var _sourceEntity = _source.get('entity');
+			var _targetEntity = _target.get('entity');
+
+			this.set('source', _source);
+			this.set('target', _target);
+
+			var _sourceRelationModel = new RelationshipModel({
+				name : '_' + _targetEntity.get('name'),
+				type : 'OneToMany',
+				displayName : _targetEntity.get('name') + 's',
+				ownerName : '',
+				model : _targetEntity.get('name'),
+				entity : _sourceEntity,
+				uniDirecional : '',
+			});
+
+			var _targetRelationModel = new RelationshipModel({
+				name : '_' + _sourceEntity.get('name'),
+				type : 'ManyToOne',
+				displayName : _sourceEntity.get('name') + 's',
+				ownerName : '',
+				model : _sourceEntity.get('name'),
+				entity : _targetEntity,
+				uniDirecional : '',
+			});
+
+			this.set('sourceRelationModel', _sourceRelationModel);
+			this.set('targetRelationModel', _targetRelationModel);
+
 			if (!options || !options.id) {
 				this.set('id', Joint.util.uuid(), {
 					silent : true
@@ -65,11 +114,15 @@ define(function(require) {
 			var that = this;
 			this.processPorts();
 			this.on('change:attrs', this.processPorts, this);
+			this._updateLabels();
+
+		},
+		_updateLabels : function() {
 			this.label(0, {
 				position : 25,
 				attrs : {
 					text : {
-						text : 'source',// this.get('applicationRelationshipModel').get('source').get('name'),
+						text : this.get('sourceRelationModel').get('name'),
 					}
 				}
 			});
@@ -77,22 +130,15 @@ define(function(require) {
 				position : -25,
 				attrs : {
 					text : {
-						text : 'target',// this.get('applicationRelationshipModel').get('target').get('name'),
+						text : this.get('targetRelationModel').get('name'),
 					}
 				}
 			});
 		},
-
-		getKey : function() {
-			return {
-				sourceName : this.get('applicationRelationshipModel').get('source').get('name'),
-				targetName : this.get('applicationRelationshipModel').get('target').get('name')
-			}
-		}
 	});
 
 	Joint.shapes.html.VisualRelationshipView = Joint.dia.LinkView.extend({
-		nomeDaClasse : 'VisualRelationshipView',
+		_nomeClasse : 'VisualRelationshipView',
 		options : {
 			shortLinkLength : 100,
 			doubleLinkTools : true,

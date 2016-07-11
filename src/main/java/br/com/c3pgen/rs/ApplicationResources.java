@@ -210,10 +210,10 @@ public class ApplicationResources {
 	@Path("{id}")
 	public Response update(@PathParam("id") Integer id, JsonApplication jsonApplication) {
 		try {
-			Application application = applicationService.get(id);
-			Parser.apply(application, jsonApplication);
+			Application application = Parser.toEntity(jsonApplication);
 
 			application.setOwner(context.getCurrentUser().getOwner());
+			
 			application = applicationService.save(application);
 			return Response.ok().entity(Parser.toJson(application)).build();
 		} catch (ValidationException e) {
@@ -244,14 +244,13 @@ public class ApplicationResources {
 		}
 	}
 }
-//Ao criar um relacionamento, será criado um model que guarda tudo aquilo necessário para construir um relacionamento.
+// Ao criar um relacionamento, será criado um model que guarda tudo aquilo necessário para construir um relacionamento.
 //
-//origem, destino, informacoes da origem e informacoes do destino
+// origem, destino, informacoes da origem e informacoes do destino
 //
 //
-//usar o evento change/ refazer essa parte para evitar chamadas de redesenho. diminuir o acoplamento e 
-//deixar o observer fazer seu papel 
+// usar o evento change/ refazer essa parte para evitar chamadas de redesenho. diminuir o acoplamento e
+// deixar o observer fazer seu papel
 //
-//O nosso model só será instanciado uma vez .
-
+// O nosso model só será instanciado uma vez .
 

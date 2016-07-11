@@ -183,7 +183,7 @@ public class Parser {
 		applicationRelationship.setApplication(toBasicJson(application));
 		applicationRelationship.setId(loopRel.getId());
 		applicationRelationship.setSource(toJson(loopRel.getSource()));
-		applicationRelationship.setTarguet(toJson(loopRel.getTarguet()));
+		applicationRelationship.setTarguet(toJson(loopRel.getTarget()));
 
 		return applicationRelationship;
 	}
@@ -202,8 +202,28 @@ public class Parser {
 			}
 		}
 
+		ArrayList<JsonApplicationRelationship> listApplicationRelationships = jsonApplication.getApplicationRelationships();
+		if (listEntities != null) {
+			for (JsonApplicationRelationship loopJson : listApplicationRelationships) {
+				application.addApplicationRelationships(toEntity(loopJson));
+			}
+		}
+
 		return application;
 
+	}
+
+	private static ApplicationRelationship toEntity(JsonApplicationRelationship jsonApplicationRelationship) {
+
+		ApplicationRelationship applicationRelationship = new ApplicationRelationship();
+
+		applicationRelationship.setApplication(toBasicEntity(jsonApplicationRelationship.getApplication()));
+		applicationRelationship.setId(jsonApplicationRelationship.getId());
+
+		applicationRelationship.setSource(toEntity(jsonApplicationRelationship.getSource()));
+		applicationRelationship.setTarget(toEntity(jsonApplicationRelationship.getTarget()));
+
+		return applicationRelationship;
 	}
 
 	public static Application toEntity(JsonApplication jsonApplication) {

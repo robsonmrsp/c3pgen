@@ -135,6 +135,11 @@ public class Application extends AbstractTimestampEntity {
 		return getEntities().add(theEntity);
 	}
 
+	public boolean addApplicationRelationships(ApplicationRelationship applicationRelationship) {
+		applicationRelationship.setApplication(this);
+		return getApplicationRelationships().add(applicationRelationship);
+	}
+
 	public boolean removeEntities(ApplicationEntity theEntity) {
 		theEntity.setApplication(null);
 		return getEntities().remove(theEntity);
@@ -180,6 +185,9 @@ public class Application extends AbstractTimestampEntity {
 	}
 
 	public List<ApplicationRelationship> getApplicationRelationships() {
+		if (applicationRelationships == null) {
+			setApplicationRelationships(new ArrayList<ApplicationRelationship>());
+		}
 		return applicationRelationships;
 	}
 

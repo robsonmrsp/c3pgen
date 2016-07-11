@@ -261,7 +261,7 @@ body {
 	max-width: 80px !important;
 }
 /* paineis e toolbars  */
-.inspector {
+.inspetor {
 	position: fixed;
 	top: 62px;
 	right: 10px;
@@ -269,11 +269,11 @@ body {
 	height: 100px;
 }
 
-.inspector-relacionamentos {
+.inspetor-relacionamentos {
 	position: fixed;
 	bottom: 62px;
 	right: 300px;
-	width: 400px;
+	width: 800px;
 	height: 200px;
 }
 
@@ -357,7 +357,7 @@ body {
 	/* 	right: 9px; */
 	/* 	color: white; */
 	/* 	font-size: 10px; */
-	/* } */             
+	/* } */              
 
 .uml-class-name-rect {
 	background: #ff8450 !important;
@@ -414,7 +414,7 @@ body {
 .add-rel {
 	margin-top: -17px;
 	margin-right: 3px;
-/* 	cursor: crosshair; */
+	/* 	cursor: crosshair; */
 	font-size: 1.2em;
 	pointer-events: auto;
 }
@@ -422,8 +422,7 @@ body {
 .cursor-tabela {
 	cursor: url(../images/cursor_entity.png), auto;
 }
+
 .cursor-relacao-1-n {
 	cursor: url(../images/cursor_relation_1_n.png), auto;
 }
-
-

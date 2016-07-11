@@ -9,9 +9,6 @@ define(function(require) {
 
 	var util = require('utilities/utils');
 
-	var RelationshipModel = require('models/RelationshipModel');
-	var RelationshipCollection = require('collections/RelationshipCollection');
-
 	var AttributeModel = require('models/AttributeModel');
 	var ApplicationRelationshipModel = require('models/ApplicationRelationshipModel');
 	var AttributeCollection = require('collections/AttributeCollection');
@@ -20,20 +17,16 @@ define(function(require) {
 
 	var AttributesCollectionView = require('views/categoria/AttributesCollectionView');
 
-	var RelationshipsCollectionView = require('views/categoria/RelationshipsCollectionView');
-
 	var EntidadeItem = Marionette.LayoutView.extend({
 		template : _.template(InspetorEntidadesViewTemplate),
 		className : ' drag-item',
 
 		regions : {
 			attributesRegion : '.attributes',
-			relationshipsRegion : '.relationships',
 		},
 
 		events : {
 			'click .add-attribute' : 'addAttribute',
-			'click .add-relation' : 'addRelationship',
 			'click .rem-entity' : 'deleteEntidade',
 			'click .show-hide-ent' : 'hideShowEnt',
 			'click checkbox' : 'changeEntity'
@@ -67,13 +60,6 @@ define(function(require) {
 			this.attributesCollection.add(newAtribute);
 		},
 
-		addRelationship : function() {
-			this.ui.panelBody.show();
-			var newRelationship = new RelationshipModel();
-			newRelationship.set('entity', this.entity.toJSON());
-			this.relationshipsCollection.add(newRelationship);
-		},
-
 		initialize : function() {
 			var that = this;
 
@@ -98,11 +84,6 @@ define(function(require) {
 			// this.model.set('attributes', this.model.get('attributes'));
 
 			// configuração dos relacionamentos
-			this.relationshipsCollection = new RelationshipCollection(this.model.get('relationships'));
-
-			this.relationshipsCollectionView = new RelationshipsCollectionView({
-				collection : this.relationshipsCollection,
-			});
 
 			this.on('show', function() {
 
@@ -133,7 +114,6 @@ define(function(require) {
 				this.ui.showHideEntity.tooltip();
 
 				this.attributesRegion.show(this.attributesCollectionView);
-				this.relationshipsRegion.show(this.relationshipsCollectionView);
 
 				// abrindo com os atributos escondidos.
 				// this.hideShowEnt();
@@ -146,13 +126,6 @@ define(function(require) {
 			this.entity.set('attributes', this.attributesCollection.toJSON());
 			// this.visualEntity.updateHtmlEntity(this.entity);
 		},
-
-		// changeEntity : function() {
-		//
-		// this.model.set(this.getModel());
-		//
-		// this.visualEntity.update(this.model);
-		// },
 
 		deleteAtribute : function() {
 			this.model.destroy();
@@ -172,8 +145,6 @@ define(function(require) {
 
 			this.attributesCollection.reset(this.entity.get('attributes'));
 
-			this.relationshipsCollection.reset(this.entity.get('relationships'));
-
 			this.ui.inputId.val(this.entity.get('id'));
 			this.ui.inputEntityName.text(this.entity.get('name'));
 			this.ui.inputDisplayName.text(this.entity.get('displayName'));
@@ -184,7 +155,7 @@ define(function(require) {
 			util.refreshEditableVisual(this.ui.inputDisplayName);
 			util.refreshEditableVisual(this.ui.inputTableName);
 			util.refreshEditableVisual(this.ui.inputHasMobile);
-
+			
 			// this.visualEntity.updateEntityPosition();
 		},
 

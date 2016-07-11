@@ -12,9 +12,9 @@ define(function(require) {
 	// #####################################################################################################
 
 	var Model = BaseModel.extend({
+		_name : 'ApplicationRelationshipModel',
 
 		urlRoot : 'rs/crud/applicationRelationships',
-
 		defaults : {
 			id : null,
 			source : null,

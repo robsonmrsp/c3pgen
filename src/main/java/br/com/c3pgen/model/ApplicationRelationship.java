@@ -41,7 +41,7 @@ public class ApplicationRelationship {
 
 	@ManyToOne
 	@JoinColumn(name = "ID_TARGET")
-	private Relationship targuet;
+	private Relationship target;
 
 	public Application getApplication() {
 		return application;
@@ -59,12 +59,12 @@ public class ApplicationRelationship {
 		this.source = source;
 	}
 
-	public Relationship getTarguet() {
-		return targuet;
+	public Relationship getTarget() {
+		return target;
 	}
 
-	public void setTarguet(Relationship targuet) {
-		this.targuet = targuet;
+	public void setTarget(Relationship target) {
+		this.target = target;
 	}
 
 }

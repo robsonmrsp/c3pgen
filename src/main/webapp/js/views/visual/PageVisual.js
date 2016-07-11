@@ -50,8 +50,8 @@ define(function(require) {
 		template : _.template(PageVisualTemplate),
 
 		regions : {
-			inspectorRegion : '.inspector',
-			inspectorRelationamentosRegion : '.inspector-relacionamentos'
+			inspetorRegion : '.inspetor',
+			inspetorRelacionamentosRegion : '.inspetor-relacionamentos'
 		},
 		events : {
 			'click #addEntity' : 'addEntity',
@@ -62,6 +62,7 @@ define(function(require) {
 		ui : {},
 
 		saveApplication : function() {
+			var that = this;
 			this.application = this.model;
 			var entidadesCollection = new EntityCollection();
 			var applicationRelationshipCollection = new ApplicationRelationshipCollection();
@@ -69,8 +70,34 @@ define(function(require) {
 			_.each(globalVisualEntities.values(), function(visual) {
 				entidadesCollection.add(visual.get('entity'));
 			});
+
+			_.each(globalVisualRelations.values(), function(relation) {
+				applicationRelationshipCollection.add(new ApplicationRelationshipModel({
+					source : relation.get('sourceRelationModel'),
+					target : relation.get('targetRelationModel'),
+					application : {
+						id : that.application.get('id'),
+						name : that.application.get('name'),
+					},
+				}));
+			});
+
+			this.application.set('entities', entidadesCollection.toJSON());
+
+			this.application.set('applicationRelationships', applicationRelationshipCollection.toJSON());
+
+			this.application.save({}, {
+				success : function(_coll, _resp, _opt) {
+					console.log('salvou os seguintes refistros.', _coll.toJSON());
+				},
+				error : function(_coll, _resp, _opt) {
+					console.error('erro ao salvar: ', _coll.toJSON());
+				},
+			});
 			console.log(entidadesCollection.toJSON());
+			console.log(applicationRelationshipCollection.toJSON());
 		},
+
 		initialize : function() {
 			var that = this;
 
@@ -82,13 +109,14 @@ define(function(require) {
 
 			this.sourceTempRelation = null;
 			this.targetTempRelation = null;
-			this.inspectorRelationamentosView = new InspetorRelacionamentosView({
+
+			this.inspetorRelacionamentosView = new InspetorRelacionamentosView({
 				model : new ApplicationRelationshipModel(),
 			});
 
 			this.on('show', function() {
-				this.inspectorRegion.show(this.inspetorView);
-				this.inspectorRelationamentosRegion.show(this.inspectorRelationamentosView);
+				this.inspetorRegion.show(this.inspetorView);
+				this.inspetorRelacionamentosRegion.show(this.inspetorRelacionamentosView);
 
 				this.graph = new Joint.dia.Graph();
 
@@ -101,7 +129,14 @@ define(function(require) {
 				});
 
 				window.paper.on('link:options', function(_evento, _link, x, y) {
-					console.log('Clicou no link', _evento, _link, x, y)
+					// console.log('Clicou no link', _evento, _link, x, y)
+					// console.log('source', _link.sourceView);
+					// console.log('source-model', _link.sourceView.model);
+					// console.log('target', _link.targetView);
+					// console.log('target-model', _link.targetView.model);
+
+					// cria um novo ou pega um que já existe.
+					that.inspetorRelacionamentosView.setVisual(_link.model);
 				});
 
 				window.paper.on('cell:pointerdown', function(cellView, evt, x, y) {
@@ -126,24 +161,31 @@ define(function(require) {
 						if (that.activeAddRelation == true) {
 							if (that.sourceTempRelation == null) {
 								that.sourceTempRelation = _cellView;
+								that.sourceTempRelation.highlight();
 							} else {
 								that.targetTempRelation = _cellView;
+								that.targetTempRelation.highlight();
 								var relation = new VisualRelationship({
-									source : that.sourceTempRelation.model,
-									target : that.targetTempRelation.model,
+									applicationRelationshipModel : new ApplicationRelationshipModel({
+										sourceEntityView : that.sourceTempRelation.model,
+										targetEntityView : that.targetTempRelation.model,
+									})
 								});
 
-								that.sourceTempRelation = null;
-								that.targetTempRelation = null;
+								setTimeout(function() {
+									that.sourceTempRelation.unhighlight();
+									that.targetTempRelation.unhighlight();
+									that.sourceTempRelation = null;
+									that.targetTempRelation = null;
+								}, 1000);
 
 								$('#paper').removeClass('cursor-relacao-1-n');
 								$('#paper').removeClass('cursor-tabela');
 								that.activeAddRelation = false;
 								that.graph.addCell(relation);
 
-								// window.globalVisualRelations.put(relation);
+								window.globalVisualRelations.put(relation.id, relation);
 							}
-
 						}
 					}
 				})

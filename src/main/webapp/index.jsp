@@ -47,7 +47,7 @@
 				<ul class="nav navbar-nav no-borders">
 					<li class="dropdown ">
 						<a class="dropdown-toggle label-menu-corner" href="#" data-toggle="dropdown" aria-expanded="true">
-							<img src="http://webapplayers.com/homer_admin-v1.5/images/profile.jpg" class="img-circle m-b" alt="logo" style="height: 29px;">
+							<img src="http://www.assetsauditoria.com.br/imagens/boneco3.png" class="img-circle m-b" alt="logo" style="height: 29px;">
 							<small style="font-size: 14px"> Chico de Toinha </small>
 						</a>
 						<ul class="dropdown-menu animated fadeInRight m-t-xs">
