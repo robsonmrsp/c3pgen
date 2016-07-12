@@ -26,7 +26,7 @@ define(function(require) {
 			var that = this;
 
 			this.on('show', function() {
-				console.log(this.model);
+
 			});
 		},
 	});

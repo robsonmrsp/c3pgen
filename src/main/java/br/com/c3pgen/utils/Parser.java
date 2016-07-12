@@ -52,6 +52,7 @@ import br.com.c3pgen.model.Role;
 import br.com.c3pgen.model.Session;
 import br.com.c3pgen.model.User;
 import br.com.c3pgen.model.ViewApproach;
+import br.com.c3pgen.rs.TheEntityResources;
 
 //saporra
 public class Parser {
@@ -205,7 +206,7 @@ public class Parser {
 		ArrayList<JsonApplicationRelationship> listApplicationRelationships = jsonApplication.getApplicationRelationships();
 		if (listEntities != null) {
 			for (JsonApplicationRelationship loopJson : listApplicationRelationships) {
-				application.addApplicationRelationships(toEntity(loopJson));
+				application.addApplicationRelationships(toEntity(application, loopJson));
 			}
 		}
 
@@ -213,15 +214,15 @@ public class Parser {
 
 	}
 
-	private static ApplicationRelationship toEntity(JsonApplicationRelationship jsonApplicationRelationship) {
+	private static ApplicationRelationship toEntity(Application application, JsonApplicationRelationship jsonApplicationRelationship) {
 
 		ApplicationRelationship applicationRelationship = new ApplicationRelationship();
 
 		applicationRelationship.setApplication(toBasicEntity(jsonApplicationRelationship.getApplication()));
 		applicationRelationship.setId(jsonApplicationRelationship.getId());
 
-		applicationRelationship.setSource(toEntity(jsonApplicationRelationship.getSource()));
-		applicationRelationship.setTarget(toEntity(jsonApplicationRelationship.getTarget()));
+		applicationRelationship.setSource(toEntity(application, jsonApplicationRelationship.getSource()));
+		applicationRelationship.setTarget(toEntity(application, jsonApplicationRelationship.getTarget()));
 
 		return applicationRelationship;
 	}
@@ -474,12 +475,12 @@ public class Parser {
 			}
 		}
 
-		ArrayList<JsonRelationship> listRelationships = jsonTheEntity.getRelationships();
-		if (listRelationships != null) {
-			for (JsonRelationship loopJsonRelationship : listRelationships) {
-				theEntity.addRelationships(toEntity(loopJsonRelationship));
-			}
-		}
+		// ArrayList<JsonRelationship> listRelationships = jsonTheEntity.getRelationships();
+		// if (listRelationships != null) {
+		// for (JsonRelationship loopJsonRelationship : listRelationships) {
+		// theEntity.addRelationships(toEntity(loopJsonRelationship));
+		// }
+		// }
 
 		return theEntity;
 
@@ -577,10 +578,33 @@ public class Parser {
 
 	}
 
-	public static Relationship toEntity(JsonRelationship jsonRelationship) {
+	public static Relationship toEntity(Application application, JsonRelationship jsonRelationship) {
 		Relationship relationship = new Relationship();
 
-		return apply(relationship, jsonRelationship);
+		if (relationship == null)
+			relationship = new Relationship();
+
+		applyBasicEntityValues(relationship, jsonRelationship);
+
+		JsonRelationship jsonTarget = jsonRelationship.getTarget();
+		if (jsonTarget != null) {
+			relationship.setTarget(toBasicEntity(jsonTarget));
+		}
+		// tentando evitar o problema ao inserir objeto transiente
+		JsonTheEntity entity = jsonRelationship.getEntity();
+		for (ApplicationEntity ent : application.getEntities()) {
+			if (ent.getName().equals(jsonRelationship.getEntity().getName())) {
+
+				relationship.setEntity(ent);
+			}
+		}
+
+		JsonViewApproach viewApproach = jsonRelationship.getViewApproach();
+		if (viewApproach != null) {
+			relationship.setViewApproach(toEntity(viewApproach));
+		}
+		return relationship;
+
 	}
 
 	public static List<JsonRelationship> toListJsonRelationships(List<Relationship> all) {

@@ -9,6 +9,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import org.hibernate.envers.Audited;
 
 @Entity
@@ -37,9 +39,11 @@ public class ApplicationRelationship {
 
 	@ManyToOne
 	@JoinColumn(name = "ID_SOURCE")
+	@Cascade(CascadeType.ALL)
 	private Relationship source;
 
 	@ManyToOne
+	@Cascade(CascadeType.ALL)
 	@JoinColumn(name = "ID_TARGET")
 	private Relationship target;
 

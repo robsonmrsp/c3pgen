@@ -101,6 +101,8 @@ define(function(require) {
 		initialize : function() {
 			var that = this;
 
+			this.application = this.model;
+
 			this.inspetorView = new InspetorEntidadesView({
 				model : new EntityModel({
 					name : '',
@@ -129,13 +131,6 @@ define(function(require) {
 				});
 
 				window.paper.on('link:options', function(_evento, _link, x, y) {
-					// console.log('Clicou no link', _evento, _link, x, y)
-					// console.log('source', _link.sourceView);
-					// console.log('source-model', _link.sourceView.model);
-					// console.log('target', _link.targetView);
-					// console.log('target-model', _link.targetView.model);
-
-					// cria um novo ou pega um que já existe.
 					that.inspetorRelacionamentosView.setVisual(_link.model);
 				});
 
@@ -165,6 +160,7 @@ define(function(require) {
 							} else {
 								that.targetTempRelation = _cellView;
 								that.targetTempRelation.highlight();
+
 								var relation = new VisualRelationship({
 									applicationRelationshipModel : new ApplicationRelationshipModel({
 										sourceEntityView : that.sourceTempRelation.model,
@@ -207,16 +203,71 @@ define(function(require) {
 							},
 						});
 						globalVisualEntities.put(visualEntity.id, visualEntity)
+
 						that.graph.addCell(visualEntity);
 						that.inspetorView.setVisualEntity(visualEntity);
+
 						that.activeAddEntity = false
 						$('#paper').removeClass('cursor-tabela');
+
 					}
+				});
+
+				// //////////////////////////////////////////////
+				_.each(this.application.get('entities'), function(entity) {
+					console.log(entity);
+					that.addVisualEntity(new EntityModel(entity));
+				});
+
+				_.each(this.application.get('applicationRelationships'), function(appRelation) {
+					console.log(appRelation);
+					that.addVisualRelation(appRelation);
 				});
 
 			});
 		},
 
+		addVisualEntity : function(entity) {
+			var visualEntity = new VisualEntity({
+				entity : entity,
+				position : {
+					x : entity.posX || entity.get('posX'),
+					y : entity.posY || entity.get('posY'),
+				},
+				size : {
+					width : 120,
+					height : 100
+				},
+			});
+
+			globalVisualEntities.put(visualEntity.id, visualEntity)
+
+			this.graph.addCell(visualEntity);
+			this.inspetorView.setVisualEntity(visualEntity);
+		},
+
+		addVisualRelation : function(applicationRelationshipModel) {
+			var that = this;
+			var relation = new VisualRelationship({
+				applicationRelationshipModel : new ApplicationRelationshipModel({
+					sourceEntityView : that._getEntityView(applicationRelationshipModel.source),
+					targetEntityView : that._getEntityView(applicationRelationshipModel.target),
+				})
+			});
+
+			that.graph.addCell(relation);
+
+			window.globalVisualRelations.put(relation.id, relation);
+		},
+		_getEntityView : function(relation) {
+			var visualModel = null
+			_.each(globalVisualEntities.values(), function(visual) {
+				if (visual.get('entity') && visual.get('entity').get('name') == relation.model) {
+					visualModel = visual;
+				}
+			});
+			return visualModel;
+		},
 		addRelation : function(_entity) {
 			this.activeAddEntity = false;
 			this.activeAddRelation = true;
