@@ -29,19 +29,20 @@ import br.com.c3pgen.rs.exception.ValidationException;
 import br.com.c3pgen.security.SpringSecurityUserContext;
 import br.com.c3pgen.service.RelationshipService;
 import br.com.c3pgen.utils.Parser;
+
 /**
-*  generated: 03/09/2015 14:51:48
-**/
+ * generated: 03/09/2015 14:51:48
+ **/
 
 @Path("/crud/relationships")
 public class RelationshipResources {
 
 	@Inject
 	RelationshipService relationshipService;
-	
+
 	@Inject
 	private SpringSecurityUserContext context;
-	
+
 	public static final Logger LOGGER = Logger.getLogger(RelationshipResources.class);
 
 	@GET
@@ -126,10 +127,10 @@ public class RelationshipResources {
 	public Response save(JsonRelationship jsonRelationship) {
 		try {
 
-			Relationship relationship = Parser.toEntity(jsonRelationship);
-			relationship.setOwner(context.getCurrentUser().getOwner());
-			relationship = relationshipService.save(relationship);
-			return Response.ok().entity(Parser.toJson(relationship)).build();
+			// Relationship relationship = Parser.toEntity(jsonRelationship);
+			// relationship.setOwner(context.getCurrentUser().getOwner());
+			// relationship = relationshipService.save(relationship);
+			return Response.ok().build();
 		} catch (ValidationException e) {
 			String message = String.format("Não foi possivel salvar  o registro [ %s ] parametros [ %s ]", e.getOrigem().getMessage(), jsonRelationship.toString());
 			LOGGER.error(message, e.getOrigem());
