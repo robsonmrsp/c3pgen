@@ -1,0 +1,50 @@
+- name: Cep
+  hasOwner: false 
+  displayName: Cep
+  tableName: CEP
+  attributes:                     
+  - name: createDatetime
+    tableFieldName: CREATE_DATETIME
+    displayName: create_datetime
+    type: 
+      className: timestamp
+  - name: lastUpdateDatetime
+    tableFieldName: LAST_UPDATE_DATETIME
+    displayName: last_update_datetime
+    type: 
+      className: timestamp
+  - name: userChange
+    tableFieldName: USER_CHANGE
+    displayName: user_change
+    type: 
+      className: varchar
+  - name: userCreate
+    tableFieldName: USER_CREATE
+    displayName: user_create
+    type: 
+      className: varchar
+  - name: logradouro
+    tableFieldName: LOGRADOURO
+    displayName: logradouro
+    type: 
+      className: varchar
+  - name: numero
+    tableFieldName: NUMERO
+    displayName: numero
+    type: 
+      className: varchar
+  - name: idBairro
+    tableFieldName: ID_BAIRRO
+    displayName: id_bairro
+    type: 
+      className: int4
+  - name: idCidade
+    tableFieldName: ID_CIDADE
+    displayName: id_cidade
+    type: 
+      className: int4
+  - name: idEstado
+    tableFieldName: ID_ESTADO
+    displayName: id_estado
+    type: 
+      className: int4

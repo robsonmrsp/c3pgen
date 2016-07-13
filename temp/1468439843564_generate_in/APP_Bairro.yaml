@@ -1,0 +1,40 @@
+- name: Bairro
+  hasOwner: false 
+  displayName: Bairro
+  tableName: BAIRRO
+  attributes:                     
+  - name: createDatetime
+    tableFieldName: CREATE_DATETIME
+    displayName: create_datetime
+    type: 
+      className: timestamp
+  - name: lastUpdateDatetime
+    tableFieldName: LAST_UPDATE_DATETIME
+    displayName: last_update_datetime
+    type: 
+      className: timestamp
+  - name: userChange
+    tableFieldName: USER_CHANGE
+    displayName: user_change
+    type: 
+      className: varchar
+  - name: userCreate
+    tableFieldName: USER_CREATE
+    displayName: user_create
+    type: 
+      className: varchar
+  - name: nome
+    tableFieldName: NOME
+    displayName: nome
+    type: 
+      className: varchar
+  - name: idCidade
+    tableFieldName: ID_CIDADE
+    displayName: id_cidade
+    type: 
+      className: int4
+  - name: idEstado
+    tableFieldName: ID_ESTADO
+    displayName: id_estado
+    type: 
+      className: int4

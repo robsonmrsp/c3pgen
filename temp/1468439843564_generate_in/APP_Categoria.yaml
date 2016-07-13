@@ -1,0 +1,35 @@
+- name: Categoria
+  hasOwner: false 
+  displayName: Categoria
+  tableName: CATEGORIA
+  attributes:                     
+  - name: createDatetime
+    tableFieldName: CREATE_DATETIME
+    displayName: create_datetime
+    type: 
+      className: timestamp
+  - name: lastUpdateDatetime
+    tableFieldName: LAST_UPDATE_DATETIME
+    displayName: last_update_datetime
+    type: 
+      className: timestamp
+  - name: userChange
+    tableFieldName: USER_CHANGE
+    displayName: user_change
+    type: 
+      className: varchar
+  - name: userCreate
+    tableFieldName: USER_CREATE
+    displayName: user_create
+    type: 
+      className: varchar
+  - name: nome
+    tableFieldName: NOME
+    displayName: nome
+    type: 
+      className: varchar
+  - name: idCategoria
+    tableFieldName: ID_CATEGORIA
+    displayName: id_categoria
+    type: 
+      className: int4

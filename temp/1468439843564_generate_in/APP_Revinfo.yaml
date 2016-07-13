@@ -1,0 +1,15 @@
+- name: Revinfo
+  hasOwner: false 
+  displayName: Revinfo
+  tableName: REVINFO
+  attributes:                     
+  - name: revtstmp
+    tableFieldName: REVTSTMP
+    displayName: revtstmp
+    type: 
+      className: int8
+  - name: username
+    tableFieldName: USERNAME
+    displayName: username
+    type: 
+      className: varchar

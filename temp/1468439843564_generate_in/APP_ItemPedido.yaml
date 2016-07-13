@@ -1,0 +1,40 @@
+- name: ItemPedido
+  hasOwner: false 
+  displayName: Item_pedido
+  tableName: ITEM_PEDIDO
+  attributes:                     
+  - name: createDatetime
+    tableFieldName: CREATE_DATETIME
+    displayName: create_datetime
+    type: 
+      className: timestamp
+  - name: lastUpdateDatetime
+    tableFieldName: LAST_UPDATE_DATETIME
+    displayName: last_update_datetime
+    type: 
+      className: timestamp
+  - name: userChange
+    tableFieldName: USER_CHANGE
+    displayName: user_change
+    type: 
+      className: varchar
+  - name: userCreate
+    tableFieldName: USER_CREATE
+    displayName: user_create
+    type: 
+      className: varchar
+  - name: quantidade
+    tableFieldName: QUANTIDADE
+    displayName: quantidade
+    type: 
+      className: int4
+  - name: idPedido
+    tableFieldName: ID_PEDIDO
+    displayName: id_pedido
+    type: 
+      className: int4
+  - name: idProduto
+    tableFieldName: ID_PRODUTO
+    displayName: id_produto
+    type: 
+      className: int4

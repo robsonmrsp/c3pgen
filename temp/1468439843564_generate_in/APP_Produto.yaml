@@ -1,0 +1,90 @@
+- name: Produto
+  hasOwner: false 
+  displayName: Produto
+  tableName: PRODUTO
+  attributes:                     
+  - name: createDatetime
+    tableFieldName: CREATE_DATETIME
+    displayName: create_datetime
+    type: 
+      className: timestamp
+  - name: lastUpdateDatetime
+    tableFieldName: LAST_UPDATE_DATETIME
+    displayName: last_update_datetime
+    type: 
+      className: timestamp
+  - name: userChange
+    tableFieldName: USER_CHANGE
+    displayName: user_change
+    type: 
+      className: varchar
+  - name: userCreate
+    tableFieldName: USER_CREATE
+    displayName: user_create
+    type: 
+      className: varchar
+  - name: descricao
+    tableFieldName: DESCRICAO
+    displayName: descricao
+    type: 
+      className: varchar
+  - name: imagem
+    tableFieldName: IMAGEM
+    displayName: imagem
+    type: 
+      className: varchar
+  - name: infoAdicionais
+    tableFieldName: INFO_ADICIONAIS
+    displayName: info_adicionais
+    type: 
+      className: varchar
+  - name: nome
+    tableFieldName: NOME
+    displayName: nome
+    type: 
+      className: varchar
+  - name: pontosCompra
+    tableFieldName: PONTOS_COMPRA
+    displayName: pontos_compra
+    type: 
+      className: int4
+  - name: pontosFidelidade
+    tableFieldName: PONTOS_FIDELIDADE
+    displayName: pontos_fidelidade
+    type: 
+      className: int4
+  - name: precoCompra
+    tableFieldName: PRECO_COMPRA
+    displayName: preco_compra
+    type: 
+      className: float8
+  - name: precoVenda
+    tableFieldName: PRECO_VENDA
+    displayName: preco_venda
+    type: 
+      className: float8
+  - name: tags
+    tableFieldName: TAGS
+    displayName: tags
+    type: 
+      className: varchar
+  - name: idCategoria
+    tableFieldName: ID_CATEGORIA
+    displayName: id_categoria
+    type: 
+      className: int4
+  - name: idFornecedor
+    tableFieldName: ID_FORNECEDOR
+    displayName: id_fornecedor
+    type: 
+      className: int4
+  - name: idMarca
+    tableFieldName: ID_MARCA
+    displayName: id_marca
+    type: 
+      className: int4
+  - name: idCliente
+    tableFieldName: ID_CLIENTE
+    displayName: id_cliente
+    type: 
+      className: int4

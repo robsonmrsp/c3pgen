@@ -1,0 +1,27 @@
+INFO  13/07/2016 10:47:17[SingleConnectionDataSource-main]->Loaded JDBC driver: org.postgresql.Driver
+INFO  13/07/2016 10:47:17[SingleConnectionDataSource-main]->Established shared JDBC Connection: org.postgresql.jdbc3.Jdbc3Connection@233c0b17
+INFO  13/07/2016 10:48:30[SingleConnectionDataSource-main]->Loaded JDBC driver: org.postgresql.Driver
+INFO  13/07/2016 10:48:30[SingleConnectionDataSource-main]->Established shared JDBC Connection: org.postgresql.jdbc3.Jdbc3Connection@233c0b17
+INFO  13/07/2016 10:49:09[SingleConnectionDataSource-main]->Loaded JDBC driver: org.postgresql.Driver
+INFO  13/07/2016 10:49:09[SingleConnectionDataSource-main]->Established shared JDBC Connection: org.postgresql.jdbc3.Jdbc3Connection@233c0b17
+INFO  13/07/2016 10:59:10[SingleConnectionDataSource-main]->Loaded JDBC driver: org.postgresql.Driver
+INFO  13/07/2016 10:59:10[SingleConnectionDataSource-main]->Established shared JDBC Connection: org.postgresql.jdbc3.Jdbc3Connection@233c0b17
+INFO  13/07/2016 11:00:36[SingleConnectionDataSource-main]->Loaded JDBC driver: org.postgresql.Driver
+INFO  13/07/2016 11:00:36[SingleConnectionDataSource-main]->Established shared JDBC Connection: org.postgresql.jdbc3.Jdbc3Connection@233c0b17
+INFO  13/07/2016 11:02:10[SingleConnectionDataSource-main]->Loaded JDBC driver: org.postgresql.Driver
+INFO  13/07/2016 11:02:10[SingleConnectionDataSource-main]->Established shared JDBC Connection: org.postgresql.jdbc3.Jdbc3Connection@233c0b17
+INFO  13/07/2016 11:02:39[SingleConnectionDataSource-main]->Loaded JDBC driver: org.postgresql.Driver
+INFO  13/07/2016 11:02:39[SingleConnectionDataSource-main]->Established shared JDBC Connection: org.postgresql.jdbc3.Jdbc3Connection@233c0b17
+INFO  13/07/2016 11:05:10[SingleConnectionDataSource-main]->Loaded JDBC driver: org.postgresql.Driver
+INFO  13/07/2016 11:05:10[SingleConnectionDataSource-main]->Established shared JDBC Connection: org.postgresql.jdbc3.Jdbc3Connection@233c0b17
+INFO  13/07/2016 13:04:06[SingleConnectionDataSource-main]->Loaded JDBC driver: org.postgresql.Driver
+INFO  13/07/2016 13:05:17[SingleConnectionDataSource-main]->Loaded JDBC driver: org.postgresql.Driver
+INFO  13/07/2016 13:06:14[SingleConnectionDataSource-main]->Loaded JDBC driver: org.postgresql.Driver
+INFO  13/07/2016 16:49:47[SingleConnectionDataSource-main]->Loaded JDBC driver: org.postgresql.Driver
+INFO  13/07/2016 16:49:47[SingleConnectionDataSource-main]->Established shared JDBC Connection: org.postgresql.jdbc3.Jdbc3Connection@1324409e
+INFO  13/07/2016 16:54:24[SingleConnectionDataSource-main]->Loaded JDBC driver: org.postgresql.Driver
+INFO  13/07/2016 16:54:24[SingleConnectionDataSource-main]->Established shared JDBC Connection: org.postgresql.jdbc3.Jdbc3Connection@15b204a1
+INFO  13/07/2016 16:56:55[SingleConnectionDataSource-main]->Loaded JDBC driver: org.postgresql.Driver
+INFO  13/07/2016 16:56:55[SingleConnectionDataSource-main]->Established shared JDBC Connection: org.postgresql.jdbc3.Jdbc3Connection@1324409e
+INFO  13/07/2016 16:57:23[SingleConnectionDataSource-main]->Loaded JDBC driver: org.postgresql.Driver
+INFO  13/07/2016 16:57:23[SingleConnectionDataSource-main]->Established shared JDBC Connection: org.postgresql.jdbc3.Jdbc3Connection@15b204a1

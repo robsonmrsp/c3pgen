@@ -1,0 +1,35 @@
+- name: ClienteUsuario
+  hasOwner: false 
+  displayName: Cliente_usuario
+  tableName: CLIENTE_USUARIO
+  attributes:                     
+  - name: createDatetime
+    tableFieldName: CREATE_DATETIME
+    displayName: create_datetime
+    type: 
+      className: timestamp
+  - name: lastUpdateDatetime
+    tableFieldName: LAST_UPDATE_DATETIME
+    displayName: last_update_datetime
+    type: 
+      className: timestamp
+  - name: userChange
+    tableFieldName: USER_CHANGE
+    displayName: user_change
+    type: 
+      className: varchar
+  - name: userCreate
+    tableFieldName: USER_CREATE
+    displayName: user_create
+    type: 
+      className: varchar
+  - name: idCliente
+    tableFieldName: ID_CLIENTE
+    displayName: id_cliente
+    type: 
+      className: int4
+  - name: idUsuario
+    tableFieldName: ID_USUARIO
+    displayName: id_usuario
+    type: 
+      className: int4

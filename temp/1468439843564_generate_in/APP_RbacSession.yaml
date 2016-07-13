@@ -1,0 +1,40 @@
+- name: RbacSession
+  hasOwner: false 
+  displayName: Rbac_session
+  tableName: RBAC_SESSION
+  attributes:                     
+  - name: createDatetime
+    tableFieldName: CREATE_DATETIME
+    displayName: create_datetime
+    type: 
+      className: timestamp
+  - name: lastUpdateDatetime
+    tableFieldName: LAST_UPDATE_DATETIME
+    displayName: last_update_datetime
+    type: 
+      className: timestamp
+  - name: userChange
+    tableFieldName: USER_CHANGE
+    displayName: user_change
+    type: 
+      className: varchar
+  - name: userCreate
+    tableFieldName: USER_CREATE
+    displayName: user_create
+    type: 
+      className: varchar
+  - name: creationDate
+    tableFieldName: CREATION_DATE
+    displayName: creation_date
+    type: 
+      className: timestamp
+  - name: name
+    tableFieldName: NAME
+    displayName: name
+    type: 
+      className: varchar
+  - name: idUser
+    tableFieldName: ID_USER
+    displayName: id_user
+    type: 
+      className: int4

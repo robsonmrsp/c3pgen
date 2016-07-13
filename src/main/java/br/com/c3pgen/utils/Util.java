@@ -29,6 +29,7 @@ public class Util {
 		}
 	}
 
+	
 	public static String removeNonUnicodeCharAndSpaces(String input) {
 		String localStr = input;
 		localStr = Normalizer.normalize(localStr, Normalizer.Form.NFD);

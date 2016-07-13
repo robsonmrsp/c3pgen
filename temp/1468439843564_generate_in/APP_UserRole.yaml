@@ -1,0 +1,5 @@
+- name: UserRole
+  hasOwner: false 
+  displayName: User_role
+  tableName: USER_ROLE
+  attributes:                     

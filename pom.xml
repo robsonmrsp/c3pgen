@@ -20,6 +20,19 @@
 	</properties>
 
 	<dependencies>
+		<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>19.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>us.fatehi</groupId>
+			<artifactId>schemacrawler</artifactId>
+			<version>14.09.01</version>
+		</dependency>
+
 		<dependency>
 			<groupId>com.restfuse</groupId>
 			<artifactId>com.eclipsesource.restfuse</artifactId>

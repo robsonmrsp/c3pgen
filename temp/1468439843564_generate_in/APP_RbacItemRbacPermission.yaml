@@ -1,0 +1,15 @@
+- name: RbacItemRbacPermission
+  hasOwner: false 
+  displayName: Rbac_item_rbac_permission
+  tableName: RBAC_ITEM_RBAC_PERMISSION
+  attributes:                     
+  - name: rbacItemId
+    tableFieldName: RBAC_ITEM_ID
+    displayName: rbac_item_id
+    type: 
+      className: int4
+  - name: permissionsId
+    tableFieldName: PERMISSIONS_ID
+    displayName: permissions_id
+    type: 
+      className: int4
