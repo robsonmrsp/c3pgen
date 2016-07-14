@@ -1,7 +1,9 @@
 package br.com.c3pgen.model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -69,7 +71,7 @@ public class Application extends AbstractTimestampEntity {
 
 	@OneToMany(mappedBy = "application")
 	@Cascade(CascadeType.ALL)
-	private List<ApplicationRelationship> applicationRelationships;
+	private Set<ApplicationRelationship> applicationRelationships;
 
 	@ManyToOne
 	@JoinColumn(name = "id_client")
@@ -135,6 +137,13 @@ public class Application extends AbstractTimestampEntity {
 		return getEntities().add(theEntity);
 	}
 
+	public boolean addApplicationRelationships(Set<ApplicationRelationship> applicationRelationships) {
+		for (ApplicationRelationship applicationRelationship : applicationRelationships) {
+			this.addApplicationRelationships(applicationRelationship);
+		}
+		return true;
+	}
+
 	public boolean addApplicationRelationships(ApplicationRelationship applicationRelationship) {
 		applicationRelationship.setApplication(this);
 		return getApplicationRelationships().add(applicationRelationship);
@@ -184,14 +193,14 @@ public class Application extends AbstractTimestampEntity {
 		this.appName = appName;
 	}
 
-	public List<ApplicationRelationship> getApplicationRelationships() {
+	public Set<ApplicationRelationship> getApplicationRelationships() {
 		if (applicationRelationships == null) {
-			setApplicationRelationships(new ArrayList<ApplicationRelationship>());
+			setApplicationRelationships(new HashSet<ApplicationRelationship>());
 		}
 		return applicationRelationships;
 	}
 
-	public void setApplicationRelationships(List<ApplicationRelationship> applicationRelationships) {
+	public void setApplicationRelationships(Set<ApplicationRelationship> applicationRelationships) {
 		this.applicationRelationships = applicationRelationships;
 	}
 

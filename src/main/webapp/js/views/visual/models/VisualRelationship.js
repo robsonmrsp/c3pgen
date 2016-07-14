@@ -100,7 +100,13 @@ define(function(require) {
 				entity : _targetEntity,
 				uniDirecional : '',
 			});
+			if (this.get('applicationRelationshipModel').get('source')) {
+				_sourceRelationModel = new RelationshipModel(this.get('applicationRelationshipModel').get('source'));
+			}
 
+			if (this.get('applicationRelationshipModel').get('target')) {
+				_targetRelationModel = new RelationshipModel(this.get('applicationRelationshipModel').get('target'));
+			}
 			this.set('sourceRelationModel', _sourceRelationModel);
 			this.set('targetRelationModel', _targetRelationModel);
 
@@ -122,7 +128,7 @@ define(function(require) {
 				position : 25,
 				attrs : {
 					text : {
-						text : this.get('sourceRelationModel').get('name'),
+						text : this.get('targetRelationModel').get('name'),
 					}
 				}
 			});
@@ -130,7 +136,7 @@ define(function(require) {
 				position : -25,
 				attrs : {
 					text : {
-						text : this.get('targetRelationModel').get('name'),
+						text : this.get('sourceRelationModel').get('name'),
 					}
 				}
 			});

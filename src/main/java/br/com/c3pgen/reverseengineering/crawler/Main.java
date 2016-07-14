@@ -57,13 +57,15 @@ public class Main {
 				for (ForeignKey foreignKey : foreignKeys) {
 
 					// OneToMany
-					System.out.println("RELACIONAMENTOS : " + foreignKey.getColumnReferences());
+					System.out.println("RELACIONAMENTOS A : " + foreignKey.getColumnReferences().get(0).getForeignKeyColumn().getParent());
+
 				}
 
 				for (final Column column : table.getColumns()) {
 
 					// se isPartOfAForeign == true ManyToOne
-					System.out.println("     o--> " + column + "				pfk: " + column.isPartOfForeignKey() + " 				ref: " + column.getReferencedColumn());
+					if (column.isPartOfForeignKey())
+						System.out.println("     o--> " + column + "				pfk: " + column.isPartOfForeignKey() + " 				ref: " + column.getReferencedColumn().getParent());
 				}
 			}
 		}

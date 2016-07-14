@@ -42,7 +42,7 @@ public class GenService {
 		user.addAttributes(new Attribute("password", "password", true, false, false, AttributeType.STRING));
 		user.addAttributes(new Attribute("enable", "enable", false, false, false, AttributeType.BOOLEAN));
 		user.addAttributes(new Attribute("image", "image", false, false, false, AttributeType.STRING));
-		user.addRelationships(new Relationship("roles", Relationship.Types.ManyToMany, null, "Role", false, ViewApproach.multiselectInstance()));
+		user.addRelationships(new Relationship("roles", "", "ManyToMany", null, "Role", false, ViewApproach.multiselectInstance()));
 
 		return user;
 	}
@@ -52,7 +52,7 @@ public class GenService {
 
 		role.addAttributes(new Attribute("authority", "AUTHORITY", true, true, true, AttributeType.STRING));
 		role.addAttributes(new Attribute("description", "DESCRIPTION", true, true, true, AttributeType.STRING));
-		role.addRelationships(new Relationship("users", Relationship.Types.ManyToMany, "roles", "User", false, ViewApproach.multiselectInstance()));
+		role.addRelationships(new Relationship("users", "", "ManyToMany", "roles", "User", false, ViewApproach.multiselectInstance()));
 
 		return role;
 	}

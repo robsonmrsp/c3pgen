@@ -37,4 +37,6 @@ public interface ApplicationService {
     List<Application> last(LocalDateTime lastSyncDate);		
 
 	Boolean delete(Integer id);
+
+	Application generateAppFromDataBase(String url, String username, String password, String driverClassName) throws Exception;
 }

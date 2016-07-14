@@ -91,10 +91,11 @@ public class Relationship extends AbstractTimestampEntity {
 	@JoinColumn(name = "id_target")
 	private Relationship target;
 
-	public Relationship(String name, Types type, String ownerName, String model, Boolean uniDirecional, ViewApproach viewApproach) {
+	public Relationship(String name, String displayName, String type, String ownerName, String model, Boolean uniDirecional, ViewApproach viewApproach) {
 		super();
 		this.name = name;
-		this.type = type.name();
+		this.displayName = displayName;
+		this.type = type;
 		this.ownerName = ownerName;
 		this.model = model;
 		if (uniDirecional == null) {
@@ -195,6 +196,37 @@ public class Relationship extends AbstractTimestampEntity {
 
 	public void setTarget(Relationship target) {
 		this.target = target;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((model == null) ? 0 : model.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Relationship other = (Relationship) obj;
+		if (model == null) {
+			if (other.model != null)
+				return false;
+		} else if (!model.equals(other.model))
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		return true;
 	}
 
 }

@@ -15,6 +15,7 @@ import java.util.Random;
 import org.apache.commons.io.FileUtils;
 import org.joda.time.LocalDate;
 
+import schemacrawler.schema.ColumnDataType;
 import br.com.c3pgen.model.Application;
 import br.com.c3pgen.model.ApplicationEntity;
 import br.com.c3pgen.model.Attribute;
@@ -344,5 +345,36 @@ public class Util {
 			e.printStackTrace();
 		}
 		return entities;
+	}
+
+	public static String getEquivalentClassName(ColumnDataType columnDataType) {
+		Class typeName = columnDataType.getTypeMappedClass();
+
+		if (typeName.getName().endsWith("String")) {
+			return "String";
+		}
+		if (typeName.getName().endsWith("Date")) {
+			return "Date";
+		}
+		if (typeName.getName().endsWith("Timestamp")) {
+			return "Datetime";
+		}
+		if (typeName.getName().endsWith("Datetime")) {
+			return "Datetime";
+		}
+		if (typeName.getName().endsWith("Float")) {
+			return "Float";
+		}
+		if (typeName.getName().endsWith("Integer")) {
+			return "Integer";
+		}
+		if (typeName.getName().endsWith("Double")) {
+			return "Double";
+		}
+		if (typeName.getName().endsWith("Boolean")) {
+			return "Boolean";
+		}
+
+		return "String";
 	}
 }

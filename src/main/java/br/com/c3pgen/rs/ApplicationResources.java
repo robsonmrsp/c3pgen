@@ -56,6 +56,27 @@ public class ApplicationResources {
 	public static final Logger LOGGER = Logger.getLogger(ApplicationResources.class);
 
 	@GET
+	@Path("generate")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response generate(@Context UriInfo uriInfo) {
+		Response response = null;
+		try {
+			PaginationParams<FilterApplication> paginationParams = new PaginationParams<FilterApplication>(uriInfo, FilterApplication.class);
+
+			Application generateAppFromDataBase = applicationService.generateAppFromDataBase("jdbc:postgresql://localhost:5432/db_pdvmobile", "postgres", "sints", "org.postgresql.Driver");
+
+			JsonApplication jsonApplication = Parser.toJson(generateAppFromDataBase);
+			response = Response.ok(jsonApplication).build();
+		} catch (Exception e) {
+			String message = String.format("Não foi possivel carregar todos os registros[%s]", e.getMessage());
+			LOGGER.error(message, e);
+			response = Response.serverError().entity(new JsonError(message, null)).build();
+		}
+		return response;
+	}
+
+	@GET
 	@Path("filter")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -213,7 +234,7 @@ public class ApplicationResources {
 			Application application = Parser.toEntity(jsonApplication);
 
 			application.setOwner(context.getCurrentUser().getOwner());
-			
+
 			application = applicationService.save(application);
 			return Response.ok().entity(Parser.toJson(application)).build();
 		} catch (ValidationException e) {

@@ -33,6 +33,9 @@ define(function(require) {
 
 	var lastPositionX = 0;
 
+	var nextX = 0;
+	var nextY = 0;
+
 	var globalVisualEntities = new Col.Map();
 
 	var globalVisualRelations = new Col.Map();
@@ -214,15 +217,25 @@ define(function(require) {
 				});
 
 				// //////////////////////////////////////////////
-				_.each(this.application.get('entities'), function(entity) {
-					console.log(entity);
-					that.addVisualEntity(new EntityModel(entity));
-				});
+				this.applicationModel = new ApplicationModel();
+				this.applicationModel.url = 'rs/crud/applications/generate';
+				this.applicationModel.fetch({
+					success : function() {
+						_.each(that.applicationModel.get('entities'), function(entity) {
+							console.log(entity);
+							that.addVisualEntity(new EntityModel(entity));
+						});
 
-				_.each(this.application.get('applicationRelationships'), function(appRelation) {
-					console.log(appRelation);
-					that.addVisualRelation(appRelation);
-				});
+						_.each(that.applicationModel.get('applicationRelationships'), function(appRelation) {
+							console.log(appRelation);
+							that.addVisualRelation(appRelation);
+						});
+					},
+					error : function() {
+
+					},
+
+				})
 
 			});
 		},
@@ -231,8 +244,9 @@ define(function(require) {
 			var visualEntity = new VisualEntity({
 				entity : entity,
 				position : {
-					x : entity.posX || entity.get('posX'),
-					y : entity.posY || entity.get('posY'),
+					x : entity.posX || entity.get('posX') || (nextX++ * 60),
+					y : entity.posY || entity.get('posY') || (nextY++ % 5) * 140,
+
 				},
 				size : {
 					width : 120,
@@ -250,6 +264,9 @@ define(function(require) {
 			var that = this;
 			var relation = new VisualRelationship({
 				applicationRelationshipModel : new ApplicationRelationshipModel({
+					source : applicationRelationshipModel.source,
+					target : applicationRelationshipModel.target,
+
 					sourceEntityView : that._getEntityView(applicationRelationshipModel.source),
 					targetEntityView : that._getEntityView(applicationRelationshipModel.target),
 				})

@@ -2,6 +2,7 @@ package br.com.c3pgen.utils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.joda.time.DateTime;
 import org.joda.time.LocalDateTime;
@@ -167,7 +168,7 @@ public class Parser {
 				jsonApplication.getEntities().add(toJson(loopTheEntity));
 			}
 		}
-		List<ApplicationRelationship> listRels = application.getApplicationRelationships();
+		Set<ApplicationRelationship> listRels = application.getApplicationRelationships();
 		if (listRels != null) {
 
 			for (ApplicationRelationship loopRel : listRels) {

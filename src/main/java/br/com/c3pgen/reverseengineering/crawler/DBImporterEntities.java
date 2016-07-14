@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
@@ -20,10 +21,17 @@ import schemacrawler.schemacrawler.SchemaCrawlerOptions;
 import schemacrawler.schemacrawler.SchemaInfoLevelBuilder;
 import schemacrawler.utility.SchemaCrawlerUtility;
 import br.com.c3pgen.base.util.Util;
+import br.com.c3pgen.model.Application;
+import br.com.c3pgen.model.ApplicationEntity;
+import br.com.c3pgen.model.ApplicationRelationship;
+import br.com.c3pgen.model.Attribute;
+import br.com.c3pgen.model.AttributeType;
+import br.com.c3pgen.model.Relationship;
+import br.com.c3pgen.model.ViewApproach;
 
 import com.google.common.base.CaseFormat;
 
-public class DBImporter {
+public class DBImporterEntities {
 	final String url;
 	final String username;
 	final String password;
@@ -31,7 +39,7 @@ public class DBImporter {
 
 	private SingleConnectionDataSource singleConnectionDataSource;
 
-	public DBImporter(String url, String username, String password, String driverClassName) {
+	public DBImporterEntities(String url, String username, String password, String driverClassName) {
 		super();
 		this.url = url;
 		this.username = username;
@@ -58,11 +66,16 @@ public class DBImporter {
 		return driverClassName;
 	}
 
-	public DBImportResult extractToYaml(File folder, DBImporterOptions options) throws Exception {
+	public Application extractToApplication(DBImporterOptions options) throws Exception {
 		DBImportResult result = new DBImportResult();
+		Application application = new Application();
+
+		application.setAppName("ExtractToApplication");
+
 		List<String> fileLines = new ArrayList<String>();
 		String folderOutput = Util.currentDir() + File.separator + "temp" + File.separator + System.currentTimeMillis() + "_generate_in";
 		new File(folderOutput).mkdirs();
+		HashSet<ApplicationRelationship> applicationRelationships = new HashSet<ApplicationRelationship>();
 
 		Catalog catalog = SchemaCrawlerUtility.getCatalog(singleConnectionDataSource.getConnection(), createCrawlerOptions(options));
 		for (final Schema schema : catalog.getSchemas()) {
@@ -71,6 +84,8 @@ public class DBImporter {
 			for (final Table table : catalog.getTables(schema)) {
 
 				String nomeDaClasse = CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, Util.firstUpperCaseOnly(table.getName()));
+				ApplicationEntity applicationEntity = new ApplicationEntity(nomeDaClasse, table.getName());
+
 				fileLines.add("- name: " + nomeDaClasse);
 				fileLines.add("  hasOwner: false ");
 				fileLines.add("  displayName: " + Util.firstUpperCaseOnly(table.getName()));
@@ -82,12 +97,22 @@ public class DBImporter {
 
 				for (Column column : colunas) {
 					if (!column.isPartOfPrimaryKey() && !column.isPartOfForeignKey()) {
-						fileLines.add("  - name: " + Util.firstLowerCase(CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, column.getName())));
-						fileLines.add("    tableFieldName: " + column.getName().toUpperCase());
-						// fileLines.add("    displayName: " + Util.firstUpperCaseOnly(column.getColName().toUpperCase()));
-						fileLines.add("    displayName: " + column.getName());
+
+						String name = Util.firstLowerCase(CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, column.getName()));
+						String tableFieldName = column.getName().toUpperCase();
+						String displayName = column.getName();
+						Boolean required = !column.isNullable();
+						Boolean unique = column.isPartOfUniqueIndex();
+						String className = Util.getEquivalentClassName(column.getColumnDataType());
+
+						fileLines.add("  - name: " + name);
+						fileLines.add("    tableFieldName: " + tableFieldName);
+						fileLines.add("    displayName: " + displayName);
 						fileLines.add("    type: ");
-						fileLines.add("      className: " + Util.getEquivalentClassName(column.getColumnDataType()));
+						fileLines.add("      className: " + className);
+
+						applicationEntity.addAttributes(new Attribute(name, tableFieldName, required, unique, true, AttributeType.byName(className)));
+
 					}
 					if (column.isPartOfForeignKey()) {
 						relations.add(column);
@@ -96,26 +121,67 @@ public class DBImporter {
 				fileLines.add("  relationships:                     ");
 				Collection<ForeignKey> foreignKeys = table.getExportedForeignKeys();
 				for (ForeignKey foreignKey : foreignKeys) {
-					String tableName = foreignKey.getColumnReferences().get(0).getForeignKeyColumn().getParent().getName();
 
-					fileLines.add("  - name: " + Util.firstLowerCase(CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, tableName)) + "s");
+					String targetTableName = foreignKey.getColumnReferences().get(0).getForeignKeyColumn().getParent().getName();
+
+					String ownerName = Util.firstLowerCase(nomeDaClasse);
+					String model = CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, targetTableName);
+					String displayName = Util.firstUpperCase(targetTableName);
+
+					String name = Util.firstLowerCase(CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, targetTableName)) + "s";
+
+					String sourceRelName = Util.firstLowerCase(CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, table.getName()));
+
+					fileLines.add("  - name: " + name);
 					fileLines.add("    type: OneToMany");
-					fileLines.add("    ownerName: " + Util.firstLowerCase(nomeDaClasse));
-					fileLines.add("    model: " + CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, tableName) + "                       ");
-					fileLines.add("    displayName: " + Util.firstUpperCase(tableName) + "                       ");
+					fileLines.add("    ownerName: " + ownerName);
+					fileLines.add("    model: " + model + "                       ");
+					fileLines.add("    displayName: " + displayName + "                       ");
 
+					// ---->>
+					Relationship relationshipTarget = new Relationship(name, displayName, "OneToMany", ownerName, model, false, ViewApproach.multiselectInstance());
+					relationshipTarget.setEntity(applicationEntity);
+
+					// <<------
+					Relationship relationshipSource = new Relationship(sourceRelName, Util.firstUpperCase(sourceRelName), "ManyToOne", null, model, false, ViewApproach.modalInstance("id", "nome"));
+					relationshipSource.setEntity(applicationEntity);
+
+					ApplicationRelationship appRel = new ApplicationRelationship();
+					appRel.setSource(relationshipSource);
+					appRel.setTarget(relationshipTarget);
+
+					applicationRelationships.add(appRel);
 				}
 				for (final Column column : relations) {
 					String tableName = column.getReferencedColumn().getParent().getName();
 
-					fileLines.add("  - name: " + Util.firstLowerCase(CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, tableName)) + "             ");
+					String name = Util.firstLowerCase(CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, tableName));
+					String model = Util.firstUpperCase(CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, tableName));
+
+					String relName = Util.firstLowerCase(CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, table.getName()));
+					String displayName = Util.firstUpperCase(tableName);
+
+					fileLines.add("  - name: " + name + "     ");
 					fileLines.add("    type: ManyToOne");
-					fileLines.add("    model: " + Util.firstUpperCase(CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, tableName)) + "                       ");
-					fileLines.add("    displayName: " + Util.firstUpperCase(tableName) + "                       ");
+					fileLines.add("    model: " + model + "                       ");
+					fileLines.add("    displayName: " + displayName + "                       ");
 					fileLines.add("    viewAproach:   ");
 					fileLines.add("      type: modal ");
 					fileLines.add("      hiddenField: id ");
 					fileLines.add("      textField: nome ");
+					// <<------
+					Relationship relationshipTarget = new Relationship(name, displayName, "ManyToOne", null, model, false, ViewApproach.modalInstance("id", "nome"));
+					relationshipTarget.setEntity(applicationEntity);
+
+					// ---->>
+					Relationship relationshipSource = new Relationship(relName + "s", Util.firstUpperCase(relName + "s"), "OneToMany", Util.firstLowerCase(relName), Util.firstUpperCase(relName), false, ViewApproach.multiselectInstance());
+					relationshipSource.setEntity(applicationEntity);
+
+					ApplicationRelationship appRel = new ApplicationRelationship();
+					appRel.setSource(relationshipSource);
+					appRel.setTarget(relationshipTarget);
+
+					applicationRelationships.add(appRel);
 
 				}
 
@@ -133,10 +199,13 @@ public class DBImporter {
 
 				System.out.println("Gerado " + fileOutput);
 
+				application.addEntities(applicationEntity);
+
+				application.addApplicationRelationships(applicationRelationships);
 			}
 		}
 
-		return result;
+		return application;
 	}
 
 	private SchemaCrawlerOptions createCrawlerOptions(final DBImporterOptions options) {

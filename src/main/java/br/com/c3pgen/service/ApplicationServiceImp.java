@@ -2,6 +2,7 @@ package br.com.c3pgen.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -18,6 +19,9 @@ import br.com.c3pgen.persistence.DaoApplication;
 import br.com.c3pgen.persistence.pagination.Pager;
 import br.com.c3pgen.persistence.pagination.Pagination;
 import br.com.c3pgen.persistence.pagination.PaginationParams;
+import br.com.c3pgen.reverseengineering.crawler.DBImportResult;
+import br.com.c3pgen.reverseengineering.crawler.DBImporterEntities;
+import br.com.c3pgen.reverseengineering.crawler.DBImporterOptions;
 
 /**
  * generated: 03/09/2015 14:51:47
@@ -35,6 +39,8 @@ public class ApplicationServiceImp implements ApplicationService {
 	RelationshipService relationshipService;
 	@Inject
 	TheEntityService entityService;
+
+	DBImporterEntities dbImporterEntities;
 
 	@Override
 	public Application get(Integer id) {
@@ -95,7 +101,7 @@ public class ApplicationServiceImp implements ApplicationService {
 		for (ApplicationEntity entity : entities) {
 			entityService.save(entity);
 		}
-		List<ApplicationRelationship> applicationRelationships = application.getApplicationRelationships();
+		Set<ApplicationRelationship> applicationRelationships = application.getApplicationRelationships();
 		for (ApplicationRelationship applicationRelationship : applicationRelationships) {
 			relationshipService.save(applicationRelationship.getSource());
 			relationshipService.save(applicationRelationship.getTarget());
@@ -114,4 +120,26 @@ public class ApplicationServiceImp implements ApplicationService {
 		return daoApplication.delete(id);
 	}
 
+	@Override
+	public Application generateAppFromDataBase(String url, String username, String password, String driverClassName) throws Exception {
+
+		dbImporterEntities = new DBImporterEntities(url, username, password, driverClassName);
+		DBImporterOptions options = new DBImporterOptions();
+
+		options.addInclusionSchemaName("public");
+		options.addExclusionColumnNamePatterns("(.*)create_datetime(.*)");
+
+		options.addExclusionColumnNamePatterns("(.*)create_datetime(.*)");
+		options.addExclusionColumnNamePatterns("(.*)last_update_datetime(.*)");
+		options.addExclusionColumnNamePatterns("(.*)user_change(.*)");
+		options.addExclusionColumnNamePatterns("(.*)user_create(.*)");
+
+		options.addExclusionTableNamePatterns("(.*)AUD", "(.*)aud");
+		options.addExclusionTableNamePatterns("RBAC(.*)", "Rbac(.*)", "rbac(.*)");
+		options.addExclusionTableNamePatterns("(.*)AUD", "(.*)aud", "(.*)revinfo(.*)");
+
+		options.setPrefixToSupress("GSH_PA_");
+
+		return dbImporterEntities.extractToApplication(options);
+	}
 }

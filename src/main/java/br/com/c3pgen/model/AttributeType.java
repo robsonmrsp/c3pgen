@@ -1,5 +1,8 @@
 package br.com.c3pgen.model;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -41,13 +44,23 @@ public class AttributeType extends AbstractTimestampEntity {
 	@ManyToOne
 	@JoinColumn(name = "id_client")
 	private Client owner;
-	
+
+	static Map<String, AttributeType> map = new HashMap<String, AttributeType>();
 	public static final AttributeType STRING = new AttributeType("String");
 	public static final AttributeType INTEGER = new AttributeType("Integer");
 	public static final AttributeType DOUBLE = new AttributeType("Double");
 	public static final AttributeType DATE = new AttributeType("Date");
 	public static final AttributeType DATETIME = new AttributeType("DateTime");
 	public static final AttributeType BOOLEAN = new AttributeType("Boolean");
+	static {
+		map.put("String", STRING);
+		map.put("Integer", INTEGER);
+		map.put("Double", DOUBLE);
+		map.put("Date", DATE);
+		map.put("DateTime", DATETIME);
+		map.put("Boolean", BOOLEAN);
+
+	}
 
 	public AttributeType() {
 
@@ -87,6 +100,10 @@ public class AttributeType extends AbstractTimestampEntity {
 
 	public void setFormat(String format) {
 		this.format = format;
+	}
+
+	public static AttributeType byName(String name) {
+		return map.get(name);
 	}
 
 }

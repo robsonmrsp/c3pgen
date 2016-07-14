@@ -71,4 +71,32 @@ public class ApplicationRelationship {
 		this.target = target;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((source == null) ? 0 : source.hashCode());
+		result = prime * result + ((target == null) ? 0 : target.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ApplicationRelationship other = (ApplicationRelationship) obj;
+
+		if (other.getSource().equals(getSource()) && other.getTarget().equals(getTarget())) {
+			return true;
+		}
+		if (other.getSource().equals(getTarget()) && other.getTarget().equals(getSource())) {
+			return true;
+		}
+
+		return false;
+	}
 }
