@@ -136,6 +136,7 @@ public class ApplicationServiceImp implements ApplicationService {
 
 		options.addExclusionTableNamePatterns("(.*)AUD", "(.*)aud");
 		options.addExclusionTableNamePatterns("RBAC(.*)", "Rbac(.*)", "rbac(.*)");
+		
 		options.addExclusionTableNamePatterns("(.*)AUD", "(.*)aud", "(.*)revinfo(.*)");
 
 		options.setPrefixToSupress("GSH_PA_");

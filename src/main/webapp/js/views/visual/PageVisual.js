@@ -127,8 +127,8 @@ define(function(require) {
 
 				window.paper = new Joint.dia.Paper({
 					el : $('#paper'),
-					height : window.innerHeight,
-					width : window.innerWidth,
+					height : 2 * window.innerHeight,
+					width : 1.5 * window.innerWidth,
 					gridSize : 1,
 					model : that.graph
 				});
