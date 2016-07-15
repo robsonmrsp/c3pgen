@@ -64,7 +64,7 @@ public class ApplicationResources {
 		try {
 			PaginationParams<FilterApplication> paginationParams = new PaginationParams<FilterApplication>(uriInfo, FilterApplication.class);
 
-			Application generateAppFromDataBase = applicationService.generateAppFromDataBase("jdbc:postgresql://localhost:5432/db_pdvmobile", "postgres", "sints", "org.postgresql.Driver");
+			Application generateAppFromDataBase = applicationService.generateAppFromDataBase("jdbc:postgresql://localhost:5432/db_folha", "postgres", "sints", "org.postgresql.Driver");
 
 			JsonApplication jsonApplication = Parser.toJson(generateAppFromDataBase);
 			response = Response.ok(jsonApplication).build();

@@ -135,7 +135,7 @@ public class ApplicationServiceImp implements ApplicationService {
 		options.addExclusionColumnNamePatterns("(.*)user_create(.*)");
 
 		options.addExclusionTableNamePatterns("(.*)AUD", "(.*)aud");
-		options.addExclusionTableNamePatterns("RBAC(.*)", "Rbac(.*)", "rbac(.*)");
+		options.addExclusionTableNamePatterns("public.RBAC(.*)", "public.Rbac(.*)", "public.rbac(.*)");
 		
 		options.addExclusionTableNamePatterns("(.*)AUD", "(.*)aud", "(.*)revinfo(.*)");
 

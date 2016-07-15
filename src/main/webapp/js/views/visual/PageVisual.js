@@ -33,6 +33,7 @@ define(function(require) {
 
 	var lastPositionX = 0;
 
+	var contador = 0;
 	var nextX = 0;
 	var nextY = 0;
 
@@ -97,7 +98,7 @@ define(function(require) {
 					console.error('erro ao salvar: ', _coll.toJSON());
 				},
 			});
-			console.log(entidadesCollection.toJSON());
+//			console.log(entidadesCollection.toJSON());
 			console.log(applicationRelationshipCollection.toJSON());
 		},
 
@@ -222,12 +223,12 @@ define(function(require) {
 				this.applicationModel.fetch({
 					success : function() {
 						_.each(that.applicationModel.get('entities'), function(entity) {
-							console.log(entity);
+//							console.log(entity);
 							that.addVisualEntity(new EntityModel(entity));
 						});
 
 						_.each(that.applicationModel.get('applicationRelationships'), function(appRelation) {
-							console.log(appRelation);
+//							console.log(appRelation);
 							that.addVisualRelation(appRelation);
 						});
 					},
@@ -241,11 +242,16 @@ define(function(require) {
 		},
 
 		addVisualEntity : function(entity) {
+
+			var posY = 280 + ((contador++ % 2 - 1) * 240);  //TOP
+			var posX = 120 + ((contador - 1) * 120);	    //LEFT
+
+			console.log(posX, posY);
 			var visualEntity = new VisualEntity({
 				entity : entity,
 				position : {
-					x : entity.posX || entity.get('posX') || (nextX++ * 60),
-					y : entity.posY || entity.get('posY') || (nextY++ % 5) * 140,
+					x : entity.posX || entity.get('posX') || posX,
+					y : entity.posY || entity.get('posY') || posY,
 
 				},
 				size : {

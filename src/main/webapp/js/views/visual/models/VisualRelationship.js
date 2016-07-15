@@ -12,36 +12,38 @@ define(function(require) {
 		_nomeClasse : 'VisualRelationship',
 		defaults : {
 			type : 'html.Relation',
+			router : {
+				name : 'manhattan'
+			},
+			connector : {
+				name : 'rounded'
+			},
 			attrs : {
-
-				'.marker-source' : {
-					fill : '#4b4a67',
-					stroke : '#4b4a67',
-					d : 'M 10 0 L 0 5 L 10 10 z'
+				'.connection' : {
+					stroke : '#333333',
+					'stroke-width' : 3
 				},
-
 				'.marker-target' : {
-					fill : '#4b4a67',
-					stroke : '#4b4a67',
+					fill : '#333333',
 					d : 'M 10 0 L 0 5 L 10 10 z'
 				}
-
 			},
 			labels : [ {
-				position : 25,
+				position : 35,
 				attrs : {
 					text : {
 						text : '...'
 					}
 				}
 			}, {
-				position : -25,
+				position : -35,
 				attrs : {
 					text : {
 						text : '...'
 					}
 				}
 			} ],
+
 			source : {
 				x : 10,
 				y : 280
@@ -75,31 +77,37 @@ define(function(require) {
 			var _source = this.get('applicationRelationshipModel').get('sourceEntityView');
 			var _target = this.get('applicationRelationshipModel').get('targetEntityView');
 
-			var _sourceEntity = _source.get('entity');
-			var _targetEntity = _target.get('entity');
+			var _sourceEntity = null;// _source.get('entity');
+			var _targetEntity = null;// _target.get('entity');
+			var _sourceRelationModel = null;
+			var _targetRelationModel = null;
+			if (_source && _target) {
+				var _sourceEntity = _source.get('entity');
+				var _targetEntity = _target.get('entity');
 
-			this.set('source', _source);
-			this.set('target', _target);
+				this.set('source', _source);
+				this.set('target', _target);
 
-			var _sourceRelationModel = new RelationshipModel({
-				name : '_' + _targetEntity.get('name'),
-				type : 'OneToMany',
-				displayName : _targetEntity.get('name') + 's',
-				ownerName : '',
-				model : _targetEntity.get('name'),
-				entity : _sourceEntity,
-				uniDirecional : '',
-			});
+				_sourceRelationModel = new RelationshipModel({
+					name : '_' + _targetEntity.get('name'),
+					type : 'OneToMany',
+					displayName : _targetEntity.get('name') + 's',
+					ownerName : '',
+					model : _targetEntity.get('name'),
+					entity : _sourceEntity,
+					uniDirecional : '',
+				});
 
-			var _targetRelationModel = new RelationshipModel({
-				name : '_' + _sourceEntity.get('name'),
-				type : 'ManyToOne',
-				displayName : _sourceEntity.get('name') + 's',
-				ownerName : '',
-				model : _sourceEntity.get('name'),
-				entity : _targetEntity,
-				uniDirecional : '',
-			});
+				_targetRelationModel = new RelationshipModel({
+					name : '_' + _sourceEntity.get('name'),
+					type : 'ManyToOne',
+					displayName : _sourceEntity.get('name') + 's',
+					ownerName : '',
+					model : _sourceEntity.get('name'),
+					entity : _targetEntity,
+					uniDirecional : '',
+				});
+			}
 			if (this.get('applicationRelationshipModel').get('source')) {
 				_sourceRelationModel = new RelationshipModel(this.get('applicationRelationshipModel').get('source'));
 			}
@@ -125,7 +133,7 @@ define(function(require) {
 		},
 		_updateLabels : function() {
 			this.label(0, {
-				position : 25,
+				position : 35,
 				attrs : {
 					text : {
 						text : this.get('targetRelationModel').get('name'),
@@ -133,13 +141,14 @@ define(function(require) {
 				}
 			});
 			this.label(1, {
-				position : -25,
+				position : -35,
 				attrs : {
 					text : {
 						text : this.get('sourceRelationModel').get('name'),
 					}
 				}
 			});
+			// this.update();
 		},
 	});
 

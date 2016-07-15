@@ -1,4 +1,8 @@
 /* generated: 30/08/2015 20:23:12 */
+
+
+//ver esse link:
+//	http://jointjs.com/demos/routing
 define(function(require) {
 	var Joint = require('joint');
 	var AttributeModel = require('models/AttributeModel');
