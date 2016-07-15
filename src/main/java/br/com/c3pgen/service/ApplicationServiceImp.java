@@ -136,11 +136,13 @@ public class ApplicationServiceImp implements ApplicationService {
 
 		options.addExclusionTableNamePatterns("(.*)AUD", "(.*)aud");
 		options.addExclusionTableNamePatterns("public.RBAC(.*)", "public.Rbac(.*)", "public.rbac(.*)");
-		
+
 		options.addExclusionTableNamePatterns("(.*)AUD", "(.*)aud", "(.*)revinfo(.*)");
 
 		options.setPrefixToSupress("GSH_PA_");
 
-		return dbImporterEntities.extractToApplication(options);
+		Application application = dbImporterEntities.extractToApplication(options);
+		System.out.println("ApplicationServiceImp.generateAppFromDataBase()" + application.getApplicationRelationships());
+		return application;
 	}
 }

@@ -1567,7 +1567,7 @@ body {
 	border-left: 1px solid #e4e5e7;
 	transition: all 0.4s ease 0s;
 	position: relative;
-	min-height: 100%
+	min-height: 85%
 }
 
 .content {

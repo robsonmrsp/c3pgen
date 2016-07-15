@@ -19,26 +19,40 @@ define(function(require) {
 				name : 'rounded'
 			},
 			attrs : {
-				'.connection' : {
-					stroke : '#333333',
-					'stroke-width' : 3
-				},
-				'.marker-target' : {
-					fill : '#333333',
+
+				'.marker-source' : {
+					fill : '#4b4a67',
+					stroke : '#4b4a67',
 					d : 'M 10 0 L 0 5 L 10 10 z'
-				}
+				},
+
+				'.marker-target' : {
+					fill : '#4b4a67',
+					stroke : '#4b4a67',
+					d : 'M 10 0 L 0 5 L 10 10 z'
+				},
+				'.marker-arrowhead' : {
+					fill : '#aaaaaa',
+					stroke : '#aaaaaa',
+					d : 'M 10 0 L 0 5 L 10 10 z'
+				},
+
 			},
 			labels : [ {
-				position : 35,
+
+				position : 25,
 				attrs : {
 					text : {
+						'font-size' : '10px',
 						text : '...'
-					}
-				}
+					},
+
+				},
 			}, {
-				position : -35,
+				position : -25,
 				attrs : {
 					text : {
+						'font-size' : '10px',
 						text : '...'
 					}
 				}

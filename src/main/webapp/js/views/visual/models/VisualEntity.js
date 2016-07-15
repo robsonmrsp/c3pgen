@@ -123,7 +123,7 @@ define(function(require) {
 			this.set('attributes', this._mergeAttributes());
 
 			if (entity.get('attributes')) {
-				entity.get('attributes').each(function(attr) {
+				_.each(entity.get('attributes'), function(attr) {
 					that.addAttribute(attr);
 				});
 			}
@@ -136,9 +136,9 @@ define(function(require) {
 			var returnArrayAtributes = [ 'id: Integer (+)' ];
 
 			if (modelAttribute) {
-				this.mapAtributes.put(modelAttribute.get('name'), modelAttribute);
+				this.mapAtributes.put(modelAttribute.name, modelAttribute);
 				_.each(this.mapAtributes.values(), function(attrModel) {
-					returnArrayAtributes.push(attrModel.get('name') + ':' + attrModel.get('type').className);
+					returnArrayAtributes.push(attrModel.name + ':' + attrModel.type.className);
 				})
 			}
 			return returnArrayAtributes;

@@ -95,6 +95,12 @@ define(function(require) {
 
 	util.NProgress.setBlockerPanel('block_panel');
 
+	// REMOVER ESSA GAMBA NO FUTURO
+	$('#wrapper').height($(window).height() - 62);
+	$(window).resize(function(a, b, c) {
+		$('#wrapper').height($(window).height() - 62);
+	});
+
 	var CustomRegion = Marionette.Region.extend({
 		el : ".main-content",
 

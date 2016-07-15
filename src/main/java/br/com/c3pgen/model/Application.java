@@ -137,7 +137,7 @@ public class Application extends AbstractTimestampEntity {
 		return getEntities().add(theEntity);
 	}
 
-	public boolean addApplicationRelationships(Set<ApplicationRelationship> applicationRelationships) {
+	public boolean addAllApplicationRelationships(Set<ApplicationRelationship> applicationRelationships) {
 		for (ApplicationRelationship applicationRelationship : applicationRelationships) {
 			this.addApplicationRelationships(applicationRelationship);
 		}
@@ -146,6 +146,11 @@ public class Application extends AbstractTimestampEntity {
 
 	public boolean addApplicationRelationships(ApplicationRelationship applicationRelationship) {
 		applicationRelationship.setApplication(this);
+		if (getApplicationRelationships().contains(applicationRelationship)) {
+			System.out.println("Coleção: " + getApplicationRelationships());
+			 System.out.println("já tem..." + applicationRelationship);
+//			return false;
+		}
 		return getApplicationRelationships().add(applicationRelationship);
 	}
 

@@ -124,7 +124,7 @@ define(function(require) {
 
 			this.entity.set(this.getModel())
 			this.entity.set('attributes', this.attributesCollection.toJSON());
-			// this.visualEntity.updateHtmlEntity(this.entity);
+//			this.visualEntity.updateHtmlEntity(this.entity);
 		},
 
 		deleteAtribute : function() {

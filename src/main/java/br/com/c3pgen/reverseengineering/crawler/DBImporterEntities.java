@@ -83,6 +83,9 @@ public class DBImporterEntities {
 			System.out.println(schema);
 			for (final Table table : catalog.getTables(schema)) {
 
+				if (table.getName().equals("fornecedor")) {
+					System.out.println();
+				}
 				String nomeDaClasse = CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, Util.firstUpperCaseOnly(table.getName()));
 				ApplicationEntity applicationEntity = new ApplicationEntity(nomeDaClasse, table.getName());
 
@@ -130,7 +133,8 @@ public class DBImporterEntities {
 
 					String name = Util.firstLowerCase(CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, targetTableName)) + "s";
 
-					String sourceRelName = Util.firstLowerCase(CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, table.getName()));
+					String sourceRelModel = CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, table.getName());
+					String sourceRelName = Util.firstLowerCase(sourceRelModel);
 
 					fileLines.add("  - name: " + name);
 					fileLines.add("    type: OneToMany");
@@ -143,8 +147,8 @@ public class DBImporterEntities {
 					relationshipTarget.setEntity(applicationEntity);
 
 					// <<------
-					Relationship relationshipSource = new Relationship(sourceRelName, Util.firstUpperCase(sourceRelName), "ManyToOne", null, model, false, ViewApproach.modalInstance("id", "nome"));
-					relationshipSource.setEntity(applicationEntity);
+					Relationship relationshipSource = new Relationship(sourceRelName, Util.firstUpperCase(sourceRelName), "ManyToOne", null, sourceRelModel, false, ViewApproach.modalInstance("id", "nome"));
+					relationshipSource.setEntity(new ApplicationEntity(sourceRelModel, table.getName()));
 
 					ApplicationRelationship appRel = new ApplicationRelationship();
 					appRel.setSource(relationshipSource);
@@ -175,7 +179,7 @@ public class DBImporterEntities {
 
 					// ---->>
 					Relationship relationshipSource = new Relationship(relName + "s", Util.firstUpperCase(relName + "s"), "OneToMany", Util.firstLowerCase(relName), Util.firstUpperCase(relName), false, ViewApproach.multiselectInstance());
-					relationshipSource.setEntity(applicationEntity);
+					relationshipSource.setEntity(new ApplicationEntity(relName, table.getName()));
 
 					ApplicationRelationship appRel = new ApplicationRelationship();
 					appRel.setSource(relationshipSource);
@@ -187,21 +191,15 @@ public class DBImporterEntities {
 
 				String fileOutput = folderOutput + File.separator + "APP_" + nomeDaClasse + ".yaml";
 				result.addTableName(nomeDaClasse);
-				for (Iterator it = fileLines.iterator(); it.hasNext();) {
-					Object line = it.next();
-					if (line != null) {
-						System.out.println(line.toString());
-					}
 
-				}
-				IOUtils.writeLines(fileLines, null, new FileOutputStream(fileOutput));
+				// IOUtils.writeLines(fileLines, null, new FileOutputStream(fileOutput));
 				fileLines.clear();
 
-				System.out.println("Gerado " + fileOutput);
+				// System.out.println("Gerado " + fileOutput);
 
 				application.addEntities(applicationEntity);
 
-				application.addApplicationRelationships(applicationRelationships);
+				application.addAllApplicationRelationships(applicationRelationships);
 			}
 		}
 

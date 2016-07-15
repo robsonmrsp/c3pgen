@@ -202,6 +202,7 @@ td-actions a {
 
 body {
 	font-size: 12px !important;
+	height: 1024px important; 
 }
 
 .drag-entities span {
@@ -260,20 +261,26 @@ body {
 	left: 0px;
 	max-width: 80px !important;
 }
+.tools {
+	position: absolute;
+	top: 300px;
+	left: 0px;
+	max-width: 80px !important;
+}
 /* paineis e toolbars  */
 .inspetor {
-	position: fixed;
+/* 	position: fixed; */
 	top: 62px;
 	right: 10px;
-	width: 450px;
+/* 	width: 450px; */
 	height: 100px;
 }
 
 .inspetor-relacionamentos {
-	position: fixed;
+/* 	position: fixed; */
 	bottom: 62px;
 	right: 300px;
-	width: 800px;
+/* 	width: 800px; */
 	height: 200px;
 }
 
@@ -357,7 +364,7 @@ body {
 	/* 	right: 9px; */
 	/* 	color: white; */
 	/* 	font-size: 10px; */
-	/* } */              
+	/* } */               
 
 .uml-class-name-rect {
 	background: #ff8450 !important;
@@ -425,4 +432,10 @@ body {
 
 .cursor-relacao-1-n {
 	cursor: url(../images/cursor_relation_1_n.png), auto;
+}
+
+#paper {
+	width: 1920px;
+/* 	height: 1024px impo; */
+	overflow: scroll;
 }

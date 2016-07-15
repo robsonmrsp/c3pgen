@@ -75,8 +75,7 @@ public class ApplicationRelationship {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((source == null) ? 0 : source.hashCode());
-		result = prime * result + ((target == null) ? 0 : target.hashCode());
+
 		return result;
 	}
 
@@ -98,5 +97,10 @@ public class ApplicationRelationship {
 		}
 
 		return false;
+	}
+
+	@Override
+	public String toString() {
+		return "[ " + getSource().getName() + ", " + getSource().getModel() + "; " + getTarget().getName() + ", " + getTarget().getModel() + " ]";
 	}
 }

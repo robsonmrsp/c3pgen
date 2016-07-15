@@ -18,6 +18,10 @@ define(function(require) {
 	var ApplicationModel = require('models/ApplicationModel');
 
 	var PageVisualTemplate = require('text!views/visual/tpl/PageVisualTemplate.html');
+
+	// para tentar dar zoom todos os objetos da tela devem ser graficos.
+	// var VisualEntity = require('views/visual/models/VisualEntity');
+
 	var VisualEntity = require('views/visual/models/HtmlEntity');
 	var VisualRelationship = require('views/visual/models/VisualRelationship');
 	var InspetorEntidadesView = require('views/visual/InspetorEntidadesView');
@@ -41,6 +45,8 @@ define(function(require) {
 
 	var globalVisualRelations = new Col.Map();
 
+	var ToolsView = require('views/visual/ToolsView');
+
 	// http://www.sinbadsoft.com/blog/backbone-js-by-example-part-1/
 	$('body').mousemove(function(e) {
 		MOUSE_X = e.pageX;
@@ -54,6 +60,7 @@ define(function(require) {
 		template : _.template(PageVisualTemplate),
 
 		regions : {
+			toolsRegion : '.tools',
 			inspetorRegion : '.inspetor',
 			inspetorRelacionamentosRegion : '.inspetor-relacionamentos'
 		},
@@ -98,7 +105,7 @@ define(function(require) {
 					console.error('erro ao salvar: ', _coll.toJSON());
 				},
 			});
-//			console.log(entidadesCollection.toJSON());
+			// console.log(entidadesCollection.toJSON());
 			console.log(applicationRelationshipCollection.toJSON());
 		},
 
@@ -121,6 +128,7 @@ define(function(require) {
 			});
 
 			this.on('show', function() {
+
 				this.inspetorRegion.show(this.inspetorView);
 				this.inspetorRelacionamentosRegion.show(this.inspetorRelacionamentosView);
 
@@ -131,7 +139,17 @@ define(function(require) {
 					height : 2 * window.innerHeight,
 					width : 1.5 * window.innerWidth,
 					gridSize : 1,
-					model : that.graph
+					model : that.graph,
+					// ROBSON para impedir que a cada click sobbre a linha do relacionamento seja adicionado um vertice novo
+					interactive : function(cellView) {
+						if (cellView.model.isLink()) {
+							return {
+								vertexAdd : false
+							};
+						}
+						return true;
+					},
+				// linkConnectionPoint : Joint.util.shapePerimeterConnectionPoint
 				});
 
 				window.paper.on('link:options', function(_evento, _link, x, y) {
@@ -223,12 +241,12 @@ define(function(require) {
 				this.applicationModel.fetch({
 					success : function() {
 						_.each(that.applicationModel.get('entities'), function(entity) {
-//							console.log(entity);
+							// console.log(entity);
 							that.addVisualEntity(new EntityModel(entity));
 						});
 
 						_.each(that.applicationModel.get('applicationRelationships'), function(appRelation) {
-//							console.log(appRelation);
+							// console.log(appRelation);
 							that.addVisualRelation(appRelation);
 						});
 					},
@@ -238,13 +256,19 @@ define(function(require) {
 
 				})
 
+				// para graficos
+				// this.toolsView = new ToolsView({
+				// paper : paper
+				// });
+				// this.toolsRegion.show(this.toolsView);
+
 			});
 		},
 
 		addVisualEntity : function(entity) {
 
-			var posY = 280 + ((contador++ % 2 - 1) * 240);  //TOP
-			var posX = 120 + ((contador - 1) * 120);	    //LEFT
+			var posY = 280 + ((contador++ % 2 - 1) * 240); // TOP
+			var posX = 120 + ((contador - 1) * 120); // LEFT
 
 			console.log(posX, posY);
 			var visualEntity = new VisualEntity({
