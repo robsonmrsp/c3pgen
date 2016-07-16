@@ -38,6 +38,9 @@ define(function(require) {
 	var lastPositionX = 0;
 
 	var contador = 0;
+
+	var linha = 0;
+	var coluna = 0;
 	var nextX = 0;
 	var nextY = 0;
 
@@ -140,7 +143,8 @@ define(function(require) {
 					width : 1.5 * window.innerWidth,
 					gridSize : 1,
 					model : that.graph,
-					// ROBSON para impedir que a cada click sobbre a linha do relacionamento seja adicionado um vertice novo
+					// ROBSON para impedir que a cada click sobbre a linha do
+					// relacionamento seja adicionado um vertice novo
 					interactive : function(cellView) {
 						if (cellView.model.isLink()) {
 							return {
@@ -149,7 +153,8 @@ define(function(require) {
 						}
 						return true;
 					},
-				// linkConnectionPoint : Joint.util.shapePerimeterConnectionPoint
+				// linkConnectionPoint :
+				// Joint.util.shapePerimeterConnectionPoint
 				});
 
 				window.paper.on('link:options', function(_evento, _link, x, y) {
@@ -235,26 +240,42 @@ define(function(require) {
 					}
 				});
 
-				// //////////////////////////////////////////////
-				this.applicationModel = new ApplicationModel();
-				this.applicationModel.url = 'rs/crud/applications/generate';
-				this.applicationModel.fetch({
-					success : function() {
-						_.each(that.applicationModel.get('entities'), function(entity) {
-							// console.log(entity);
-							that.addVisualEntity(new EntityModel(entity));
-						});
+				_.each(this.application.get('entities'), function(entity) {
+					console.log(entity);
+					that.addVisualEntity(new EntityModel(entity));
+				});
 
-						_.each(that.applicationModel.get('applicationRelationships'), function(appRelation) {
-							// console.log(appRelation);
-							that.addVisualRelation(appRelation);
-						});
-					},
-					error : function() {
+				_.each(this.application.get('applicationRelationships'), function(appRelation) {
+					console.log(appRelation);
+					that.addVisualRelation(appRelation);
+				});
 
-					},
+				// ////////////////////////////////////////////// aki é para o
+				// teste com a importação dos dados
 
-				})
+				// this.applicationModel = new ApplicationModel();
+				// this.applicationModel.url = 'rs/crud/applications/generate';
+				// this.applicationModel.fetch({
+				// success : function() {
+				// that.quantidadeEntidades =
+				// that.applicationModel.get('entities').length
+				// _.each(that.applicationModel.get('entities'),
+				// function(entity) {
+				// // console.log(entity);
+				// that.addVisualEntity(new EntityModel(entity));
+				// });
+				//
+				// _.each(that.applicationModel.get('applicationRelationships'),
+				// function(appRelation) {
+				// // console.log(appRelation);
+				// that.addVisualRelation(appRelation);
+				// });
+				// },
+				// error : function() {
+				//
+				// },
+				//
+				// })
 
 				// para graficos
 				// this.toolsView = new ToolsView({
@@ -264,10 +285,18 @@ define(function(require) {
 
 			});
 		},
-
+		// RIDICULA ESSA CONTA, mas como tá desenhando legal as tabelas para
+		// muitos registros...
+		// fica assim
 		addVisualEntity : function(entity) {
+			var _mod = this.quantidadeEntidades > 9 ? 13 : 5
 
-			var posY = 280 + ((contador++ % 2 - 1) * 240); // TOP
+			if (contador++ % _mod == 0) {
+				coluna = 0;
+				contador = 0;
+				linha++;
+			}
+			var posY = 20 + ((contador++ % 2 - 1) * 240) + linha * 240; // TOP
 			var posX = 120 + ((contador - 1) * 120); // LEFT
 
 			console.log(posX, posY);

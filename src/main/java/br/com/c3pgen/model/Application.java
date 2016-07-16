@@ -146,11 +146,7 @@ public class Application extends AbstractTimestampEntity {
 
 	public boolean addApplicationRelationships(ApplicationRelationship applicationRelationship) {
 		applicationRelationship.setApplication(this);
-		if (getApplicationRelationships().contains(applicationRelationship)) {
-			System.out.println("Coleção: " + getApplicationRelationships());
-			 System.out.println("já tem..." + applicationRelationship);
-//			return false;
-		}
+
 		return getApplicationRelationships().add(applicationRelationship);
 	}
 

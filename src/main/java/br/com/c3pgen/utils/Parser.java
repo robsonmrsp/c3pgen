@@ -476,7 +476,8 @@ public class Parser {
 			}
 		}
 
-		// ArrayList<JsonRelationship> listRelationships = jsonTheEntity.getRelationships();
+		// ArrayList<JsonRelationship> listRelationships =
+		// jsonTheEntity.getRelationships();
 		// if (listRelationships != null) {
 		// for (JsonRelationship loopJsonRelationship : listRelationships) {
 		// theEntity.addRelationships(toEntity(loopJsonRelationship));
@@ -594,7 +595,7 @@ public class Parser {
 		// tentando evitar o problema ao inserir objeto transiente
 		JsonTheEntity entity = jsonRelationship.getEntity();
 		for (ApplicationEntity ent : application.getEntities()) {
-			if (ent.getName().equals(jsonRelationship.getEntity().getName())) {
+			if (jsonRelationship.getEntity() != null && ent.getName().equals(jsonRelationship.getEntity().getName())) {
 
 				relationship.setEntity(ent);
 			}
