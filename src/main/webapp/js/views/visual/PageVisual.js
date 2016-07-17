@@ -23,6 +23,7 @@ define(function(require) {
 	// var VisualEntity = require('views/visual/models/VisualEntity');
 
 	var VisualEntity = require('views/visual/models/HtmlEntity');
+
 	var VisualRelationship = require('views/visual/models/VisualRelationship');
 	var InspetorEntidadesView = require('views/visual/InspetorEntidadesView');
 	var InspetorRelacionamentosView = require('views/visual/InspetorRelacionamentosView');
@@ -34,6 +35,8 @@ define(function(require) {
 
 	var RelationshipModel = require('models/RelationshipModel');
 	var ApplicationRelationshipModel = require('models/ApplicationRelationshipModel');
+
+	var DiagramApplicationTools = require('views/visual/componentes/DiagramApplicationTools');
 
 	var lastPositionX = 0;
 
@@ -48,7 +51,6 @@ define(function(require) {
 
 	var globalVisualRelations = new Col.Map();
 
-	var ToolsView = require('views/visual/ToolsView');
 
 	// http://www.sinbadsoft.com/blog/backbone-js-by-example-part-1/
 	$('body').mousemove(function(e) {
@@ -63,7 +65,7 @@ define(function(require) {
 		template : _.template(PageVisualTemplate),
 
 		regions : {
-			toolsRegion : '.tools',
+			diagramApplicationToolsRegion : '.diagramToolsModal',
 			inspetorRegion : '.inspetor',
 			inspetorRelacionamentosRegion : '.inspetor-relacionamentos'
 		},
@@ -71,51 +73,16 @@ define(function(require) {
 			'click #addEntity' : 'addEntity',
 			'click #addRelation' : 'addRelation',
 			'click #saveApp' : 'saveApplication',
+			'click #openTools' : 'openTools',
 		},
 
 		ui : {},
-
-		saveApplication : function() {
-			var that = this;
-			this.application = this.model;
-			var entidadesCollection = new EntityCollection();
-			var applicationRelationshipCollection = new ApplicationRelationshipCollection();
-
-			_.each(globalVisualEntities.values(), function(visual) {
-				entidadesCollection.add(visual.get('entity'));
-			});
-
-			_.each(globalVisualRelations.values(), function(relation) {
-				applicationRelationshipCollection.add(new ApplicationRelationshipModel({
-					source : relation.get('sourceRelationModel'),
-					target : relation.get('targetRelationModel'),
-					application : {
-						id : that.application.get('id'),
-						name : that.application.get('name'),
-					},
-				}));
-			});
-
-			this.application.set('entities', entidadesCollection.toJSON());
-
-			this.application.set('applicationRelationships', applicationRelationshipCollection.toJSON());
-
-			this.application.save({}, {
-				success : function(_coll, _resp, _opt) {
-					console.log('salvou os seguintes refistros.', _coll.toJSON());
-				},
-				error : function(_coll, _resp, _opt) {
-					console.error('erro ao salvar: ', _coll.toJSON());
-				},
-			});
-			// console.log(entidadesCollection.toJSON());
-			console.log(applicationRelationshipCollection.toJSON());
-		},
-
 		initialize : function() {
 			var that = this;
 			globalVisualEntities.clear();
 			globalVisualRelations.clear();
+
+			this.diagramApplicationTools = new DiagramApplicationTools();
 
 			this.application = this.model;
 
@@ -135,6 +102,7 @@ define(function(require) {
 			this.on('show', function() {
 
 				this.inspetorRegion.show(this.inspetorView);
+				this.diagramApplicationToolsRegion.show(this.diagramApplicationTools);
 				this.inspetorRelacionamentosRegion.show(this.inspetorRelacionamentosView);
 
 				this.graph = new Joint.dia.Graph();
@@ -243,39 +211,6 @@ define(function(require) {
 					}
 				});
 
-				// ////////////////////////////////////////////// aki é para o
-				// teste com a importação dos dados
-
-				// this.applicationModel = new ApplicationModel();
-				// this.applicationModel.url = 'rs/crud/applications/generate';
-				// this.applicationModel.fetch({
-				// success : function() {
-				// that.quantidadeEntidades =
-				// that.applicationModel.get('entities').length
-				// _.each(that.applicationModel.get('entities'),
-				// function(entity) {
-				// // console.log(entity);
-				// that.addVisualEntity(new EntityModel(entity));
-				// });
-				//
-				// _.each(that.applicationModel.get('applicationRelationships'),
-				// function(appRelation) {
-				// // console.log(appRelation);
-				// that.addVisualRelation(appRelation);
-				// });
-				// },
-				// error : function() {
-				//
-				// },
-				//
-				// })
-
-				// para graficos
-				// this.toolsView = new ToolsView({
-				// paper : paper
-				// });
-				// this.toolsRegion.show(this.toolsView);
-
 				_.each(this.application.get('entities'), function(entity) {
 					that.addVisualEntity(new EntityModel(entity));
 				});
@@ -285,6 +220,9 @@ define(function(require) {
 				});
 
 			});
+		},
+		openTools : function() {
+			this.diagramApplicationTools.showPage();
 		},
 		// RIDICULA ESSA CONTA, mas como tá desenhando legal as tabelas para
 		// muitos registros...
@@ -346,6 +284,44 @@ define(function(require) {
 
 			window.globalVisualRelations.put(relation.id, relation);
 		},
+
+		saveApplication : function() {
+			var that = this;
+			this.application = this.model;
+			var entidadesCollection = new EntityCollection();
+			var applicationRelationshipCollection = new ApplicationRelationshipCollection();
+
+			_.each(globalVisualEntities.values(), function(visual) {
+				entidadesCollection.add(visual.get('entity'));
+			});
+
+			_.each(globalVisualRelations.values(), function(relation) {
+				applicationRelationshipCollection.add(new ApplicationRelationshipModel({
+					source : relation.get('sourceRelationModel'),
+					target : relation.get('targetRelationModel'),
+					application : {
+						id : that.application.get('id'),
+						name : that.application.get('name'),
+					},
+				}));
+			});
+
+			this.application.set('entities', entidadesCollection.toJSON());
+
+			this.application.set('applicationRelationships', applicationRelationshipCollection.toJSON());
+
+			this.application.save({}, {
+				success : function(_coll, _resp, _opt) {
+					console.log('salvou os seguintes refistros.', _coll.toJSON());
+				},
+				error : function(_coll, _resp, _opt) {
+					console.error('erro ao salvar: ', _coll.toJSON());
+				},
+			});
+			// console.log(entidadesCollection.toJSON());
+			console.log(applicationRelationshipCollection.toJSON());
+		},
+
 		_getEntityView : function(relation) {
 			var visualModel = null
 			_.each(globalVisualEntities.values(), function(visual) {

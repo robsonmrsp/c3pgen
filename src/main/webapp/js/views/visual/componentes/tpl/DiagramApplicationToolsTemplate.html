@@ -1,0 +1,76 @@
+<!-- Modal DiagramApplicationTools´s form -->
+<div class="modal fade" id="dialogApplication" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">
+					<span aria-hidden="true">&times;</span>
+					<span class="sr-only">Close</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel">Engenharia reversa de base de dados</h4>
+			</div>
+			<div class="modal-body">
+				<div class="hpanel" style="margin-bottom: 0px;">
+					<div class="panel-heading">Banco de dados</div>
+					<div class="panel-body">
+						<div class="row">
+							<div id="groupInputDatabaseType" class="form-group col-xs-2 col-sm-2">
+								<label class="control-label" for="inputModalName">Tipo</label>
+								<select id="inputDatabaseType" class="form-control ">
+									<option selected value="POSTGRES">Postgres</option>
+									<option value="ORACLE">Oracle</option>
+								</select>
+							</div>
+							<div id="groupInputDatabaseUrl" class="form-group col-xs-4 col-sm-4">
+								<label class="control-label" for="inputDatabaseUrl">url</label>
+								<input type="text" id="inputDatabaseUrl" placeholder="Url" class="form-control">
+							</div>
+							<div id="groupInputDatabaseUsername" class="form-group col-xs-3 col-sm-3">
+								<label class="control-label" for="inputModalName">Usuario</label>
+								<input type="text" id="inputDatabaseUsername" placeholder="usuário do banco de dados" class="form-control">
+							</div>
+							<div id="groupInputDatabasePassword" class="form-group col-xs-3 col-sm-3">
+								<label class="control-label" for="inputDatabasePassword">Senha</label>
+								<input type="password" id="inputDatabasePassword" placeholder="Senha do banco de dados " class="form-control">
+							</div>
+						</div>
+						<div class="form-actions spinner" id="spinApplication">
+							<a href="javascript:void(0)" id="btnConnectionTest" class="btn btn-primary btn-xs">
+								<i class="fa fa-database" aria-hidden="true"></i>
+								Testar Conexão
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="hpanel" style="margin-bottom: 0px;">
+					<div class="panel-heading">Exceções</div>
+					<div class="panel-body">
+						<div class="row">
+							<div id="groupInputDatabaseTableNameExceptions" class="form-group col-xs-12 col-sm-12">
+								<label class="control-label" for="inputDatabaseTableNameExceptions">Nomes de tabelas (regex*)</label>
+								<input type="text" id="inputDatabaseTableNameExceptions" placeholder="Nomes de tabelas (regex*)" class="form-control">
+							</div>
+						</div>
+						<div class="row">
+							<div id="groupInputDatabaseColumnNameExceptions" class="form-group col-xs-12 col-sm-12">
+								<label class="control-label" for="inputDatabaseColumnNameExceptions">Nomes de colunas (regex*)</label>
+								<input type="text" id="inputDatabaseColumnNameExceptions" placeholder="Nomes de column (regex*)" class="form-control">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="form-actions spinner" id="spinApplication">
+					<a href="javascript:void(0)" id="btnImportApplication" class="btn w-xs btn-success">
+						<i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i>
+						Importar
+					</a>
+					<a href="javascript:void(0)" class="btn w-xs btn-warning clos" data-dismiss="modal">
+						<i class="fa fa-times "></i>
+						Cancelar
+					</a>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</div>
