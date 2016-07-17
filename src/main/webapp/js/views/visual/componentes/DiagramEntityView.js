@@ -25,20 +25,14 @@ define(function(require) {
 		},
 
 		events : {
-			'mousedown  .add-rel' : 'addRelation',
 			'click  .closebox' : 'removeEntity'
 		},
-		
+
 		removeEntity : function() {
 			this.model.destroy();
 		},
 		ui : {
 			entityName : '.entity-name',
-		},
-
-		addRelation : function(model) {
-			this.relationshipsCollection.add(model);
-			this.refresh();
 		},
 
 		initialize : function(opt) {
@@ -50,14 +44,9 @@ define(function(require) {
 				collection : this.attributesCollection,
 			});
 
-			this.relationshipsCollection = new RelationshipCollection(this.model.get('relationships'));
-			this.relationshipsCollectionView = new DiagramRelationshipsCollectionView({
-				collection : this.relationshipsCollection,
-			});
-
 			this.on('show', function() {
 				this.attributesRegion.show(this.attributesCollectionView);
-				this.relationshipsRegion.show(this.relationshipsCollectionView);
+				// this.relationshipsRegion.show(this.relationshipsCollectionView);
 				window.setTimeout(function() {
 					that.container.resizeView({
 						width : that.$el.width(),
@@ -73,8 +62,6 @@ define(function(require) {
 			this.ui.entityName.text(entity.get('name'));
 
 			this.attributesCollection.reset(this.model.get('attributes'));
-
-			this.relationshipsCollection.reset(this.model.get('relationships'));
 
 			window.setTimeout(function() {
 				that.container.resizeView({

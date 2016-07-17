@@ -253,6 +253,9 @@
 	_.each(listenMethods, function(implementation, method) {
 		Events[method] = function(obj, name, callback) {
 			var listeningTo = this._listeningTo || (this._listeningTo = {});
+			if (!obj) {
+				console.log(implementation, method, name);
+			}
 			var id = obj._listenId || (obj._listenId = _.uniqueId('l'));
 			listeningTo[id] = obj;
 			if (!callback && typeof name === 'object')
@@ -340,9 +343,12 @@
 			return this.get(attr) != null;
 		},
 
-		// Set a hash of model attributes on the object, firing `"change"`. This is
-		// the core primitive operation of a model, updating the data and notifying
-		// anyone who needs to know about the change in state. The heart of the beast.
+		// Set a hash of model attributes on the object, firing `"change"`. This
+		// is
+		// the core primitive operation of a model, updating the data and
+		// notifying
+		// anyone who needs to know about the change in state. The heart of the
+		// beast.
 		set : function(key, val, options) {
 			var attr, attrs, unset, changes, silent, changing, prev, current;
 			if (key == null)
@@ -401,7 +407,8 @@
 				}
 			}
 
-			// You might be wondering why there's a `while` loop here. Changes can
+			// You might be wondering why there's a `while` loop here. Changes
+			// can
 			// be recursively nested within `"change"` events.
 			if (changing)
 				return this;
@@ -417,7 +424,8 @@
 			return this;
 		},
 
-		// Remove an attribute from the model, firing `"change"`. `unset` is a noop
+		// Remove an attribute from the model, firing `"change"`. `unset` is a
+		// noop
 		// if the attribute doesn't exist.
 		unset : function(attr, options) {
 			return this.set(attr, void 0, _.extend({}, options, {
@@ -436,7 +444,8 @@
 		},
 
 		// Determine if the model has changed since the last `"change"` event.
-		// If you specify an attribute name, determine if that attribute has changed.
+		// If you specify an attribute name, determine if that attribute has
+		// changed.
 		hasChanged : function(attr) {
 			if (attr == null)
 				return !_.isEmpty(this.changed);
@@ -476,7 +485,8 @@
 			return _.clone(this._previousAttributes);
 		},
 
-		// Fetch the model from the server. If the server's representation of the
+		// Fetch the model from the server. If the server's representation of
+		// the
 		// model differs from its current attributes, they will be overridden,
 		// triggering a `"change"` event.
 		fetch : function(options) {
@@ -565,7 +575,8 @@
 
 		// Destroy this model on the server if it was already persisted.
 		// Optimistically removes the model from its collection, if it has one.
-		// If `wait: true` is passed, waits for the server to respond before removal.
+		// If `wait: true` is passed, waits for the server to respond before
+		// removal.
 		destroy : function(options) {
 			options = options ? _.clone(options) : {};
 			var model = this;
@@ -597,7 +608,8 @@
 		},
 
 		// Default URL for the model's representation on the server -- if you're
-		// using Backbone's restful methods, override this to change the endpoint
+		// using Backbone's restful methods, override this to change the
+		// endpoint
 		// that will be called.
 		url : function() {
 			var base = _.result(this, 'urlRoot') || _.result(this.collection, 'url') || urlError();
@@ -606,8 +618,10 @@
 			return base.replace(/([^\/])$/, '$1/') + encodeURIComponent(this.id);
 		},
 
-		// **parse** converts a response into the hash of attributes to be `set` on
-		// the model. The default implementation is just to pass the response along.
+		// **parse** converts a response into the hash of attributes to be `set`
+		// on
+		// the model. The default implementation is just to pass the response
+		// along.
 		parse : function(resp, options) {
 			return resp;
 		},
@@ -617,7 +631,8 @@
 			return new this.constructor(this.attributes);
 		},
 
-		// A model is new if it has never been saved to the server, and lacks an id.
+		// A model is new if it has never been saved to the server, and lacks an
+		// id.
 		isNew : function() {
 			return !this.has(this.idAttribute);
 		},
@@ -630,7 +645,8 @@
 		},
 
 		// Run validation against the next complete set of model attributes,
-		// returning `true` if all is well. Otherwise, fire an `"invalid"` event.
+		// returning `true` if all is well. Otherwise, fire an `"invalid"`
+		// event.
 		_validate : function(attrs, options) {
 			if (!options.validate || !this.validate)
 				return true;
@@ -661,14 +677,18 @@
 	// Backbone.Collection
 	// -------------------
 
-	// If models tend to represent a single row of data, a Backbone Collection is
-	// more analagous to a table full of data ... or a small slice or page of that
-	// table, or a collection of rows that belong together for a particular reason
+	// If models tend to represent a single row of data, a Backbone Collection
+	// is
+	// more analagous to a table full of data ... or a small slice or page of
+	// that
+	// table, or a collection of rows that belong together for a particular
+	// reason
 	// -- all of the messages in this particular folder, all of the documents
 	// belonging to this particular author, and so on. Collections maintain
 	// indexes of their models, both in order, and for lookup by `id`.
 
-	// Create a new **Collection**, perhaps to contain a specific type of `model`.
+	// Create a new **Collection**, perhaps to contain a specific type of
+	// `model`.
 	// If a `comparator` is specified, the Collection will maintain
 	// its models in sort order, as they're added and removed.
 	var Collection = Backbone.Collection = function(models, options) {
@@ -752,9 +772,11 @@
 			return singular ? models[0] : models;
 		},
 
-		// Update a collection by `set`-ing a new list of models, adding new ones,
+		// Update a collection by `set`-ing a new list of models, adding new
+		// ones,
 		// removing models that are no longer present, and merging models that
-		// already exist in the collection, as necessary. Similar to **Model#set**,
+		// already exist in the collection, as necessary. Similar to
+		// **Model#set**,
 		// the core operation for updating the data contained by the collection.
 		set : function(models, options) {
 			options = _.defaults({}, options, setOptions);
@@ -771,7 +793,8 @@
 			var add = options.add, merge = options.merge, remove = options.remove;
 			var order = !sortable && add && remove ? [] : false;
 
-			// Turn bare objects into model references, and prevent invalid models
+			// Turn bare objects into model references, and prevent invalid
+			// models
 			// from being added.
 			for (i = 0, l = models.length; i < l; i++) {
 				attrs = models[i] || {};
@@ -796,7 +819,8 @@
 					}
 					models[i] = existing;
 
-					// If this is a new, valid model, push it to the `toAdd` list.
+					// If this is a new, valid model, push it to the `toAdd`
+					// list.
 				} else if (add) {
 					model = models[i] = this._prepareModel(attrs, options);
 					if (!model)
@@ -822,7 +846,8 @@
 					this.remove(toRemove, options);
 			}
 
-			// See if sorting is needed, update `length` and splice in new models.
+			// See if sorting is needed, update `length` and splice in new
+			// models.
 			if (toAdd.length || (order && order.length)) {
 				if (sortable)
 					sort = true;
@@ -847,7 +872,8 @@
 					silent : true
 				});
 
-			// Unless silenced, it's time to fire all appropriate add/sort events.
+			// Unless silenced, it's time to fire all appropriate add/sort
+			// events.
 			if (!options.silent) {
 				for (i = 0, l = toAdd.length; i < l; i++) {
 					(model = toAdd[i]).trigger('add', model, this, options);
@@ -861,7 +887,8 @@
 		},
 
 		// When you have more items than you want to add or remove individually,
-		// you can reset the entire set with a new list of models, without firing
+		// you can reset the entire set with a new list of models, without
+		// firing
 		// any granular `add` or `remove` events. Fires `reset` when finished.
 		// Useful for bulk operations and optimizations.
 		reset : function(models, options) {
@@ -938,14 +965,17 @@
 			});
 		},
 
-		// Return the first model with matching attributes. Useful for simple cases
+		// Return the first model with matching attributes. Useful for simple
+		// cases
 		// of `find`.
 		findWhere : function(attrs) {
 			return this.where(attrs, true);
 		},
 
-		// Force the collection to re-sort itself. You don't need to call this under
-		// normal circumstances, as the set will maintain sort order as each item
+		// Force the collection to re-sort itself. You don't need to call this
+		// under
+		// normal circumstances, as the set will maintain sort order as each
+		// item
 		// is added.
 		sort : function(options) {
 			if (!this.comparator)
@@ -989,8 +1019,10 @@
 			return this.sync('read', this, options);
 		},
 
-		// Create a new instance of a model in this collection. Add the model to the
-		// collection immediately, unless `wait: true` is passed, in which case we
+		// Create a new instance of a model in this collection. Add the model to
+		// the
+		// collection immediately, unless `wait: true` is passed, in which case
+		// we
 		// wait for the server to agree.
 		create : function(model, options) {
 			options = options ? _.clone(options) : {};
@@ -1010,7 +1042,8 @@
 			return model;
 		},
 
-		// **parse** converts a response into a list of models to be added to the
+		// **parse** converts a response into a list of models to be added to
+		// the
 		// collection. The default implementation is just to pass it through.
 		parse : function(resp, options) {
 			return resp;
@@ -1021,7 +1054,8 @@
 			return new this.constructor(this.models);
 		},
 
-		// Private method to reset all internal state. Called when the collection
+		// Private method to reset all internal state. Called when the
+		// collection
 		// is first initialized or reset.
 		_reset : function() {
 			this.length = 0;
@@ -1080,7 +1114,8 @@
 	});
 
 	// Underscore methods that we want to implement on the Collection.
-	// 90% of the core usefulness of Backbone Collections is actually implemented
+	// 90% of the core usefulness of Backbone Collections is actually
+	// implemented
 	// right here:
 	var methods = [ 'forEach', 'each', 'map', 'collect', 'reduce', 'foldl', 'inject', 'reduceRight', 'foldr', 'find', 'detect', 'filter', 'select', 'reject', 'every', 'all', 'some', 'any', 'include', 'contains', 'invoke', 'max', 'min', 'toArray', 'size', 'first', 'head', 'take',
 			'initial', 'rest', 'tail', 'drop', 'last', 'without', 'difference', 'indexOf', 'shuffle', 'lastIndexOf', 'isEmpty', 'chain', 'sample' ];
@@ -1110,11 +1145,15 @@
 	// Backbone.View
 	// -------------
 
-	// Backbone Views are almost more convention than they are actual code. A View
-	// is simply a JavaScript object that represents a logical chunk of UI in the
+	// Backbone Views are almost more convention than they are actual code. A
+	// View
+	// is simply a JavaScript object that represents a logical chunk of UI in
+	// the
 	// DOM. This might be a single item, an entire list, a sidebar or panel, or
-	// even the surrounding frame which wraps your whole app. Defining a chunk of
-	// UI as a **View** allows you to define your DOM events declaratively, without
+	// even the surrounding frame which wraps your whole app. Defining a chunk
+	// of
+	// UI as a **View** allows you to define your DOM events declaratively,
+	// without
 	// having to worry about render order ... and makes it easy for the view to
 	// react to specific changes in the state of your models.
 
@@ -1142,7 +1181,8 @@
 		tagName : 'div',
 
 		// jQuery delegate for element lookup, scoped to DOM elements within the
-		// current view. This should be preferred to global lookups where possible.
+		// current view. This should be preferred to global lookups where
+		// possible.
 		$ : function(selector) {
 			return this.$el.find(selector);
 		},
@@ -1152,14 +1192,16 @@
 		initialize : function() {
 		},
 
-		// **render** is the core function that your view should override, in order
+		// **render** is the core function that your view should override, in
+		// order
 		// to populate its element (`this.el`), with the appropriate HTML. The
 		// convention is for **render** to always return `this`.
 		render : function() {
 			return this;
 		},
 
-		// Remove this view by taking the element out of the DOM, and removing any
+		// Remove this view by taking the element out of the DOM, and removing
+		// any
 		// applicable Backbone.Events listeners.
 		remove : function() {
 			this.$el.remove();
@@ -1218,8 +1260,10 @@
 			return this;
 		},
 
-		// Clears all callbacks previously bound to the view with `delegateEvents`.
-		// You usually don't need to use this, but may wish to if you have multiple
+		// Clears all callbacks previously bound to the view with
+		// `delegateEvents`.
+		// You usually don't need to use this, but may wish to if you have
+		// multiple
 		// Backbone views attached to the same DOM element.
 		undelegateEvents : function() {
 			this.$el.off('.delegateEvents' + this.cid);
@@ -1258,9 +1302,11 @@
 	// * Send up the models as XML instead of JSON.
 	// * Persist models via WebSockets instead of Ajax.
 	//
-	// Turn on `Backbone.emulateHTTP` in order to send `PUT` and `DELETE` requests
+	// Turn on `Backbone.emulateHTTP` in order to send `PUT` and `DELETE`
+	// requests
 	// as `POST`, with a `_method` parameter containing the true HTTP method,
-	// as well as all requests with the body as `application/x-www-form-urlencoded`
+	// as well as all requests with the body as
+	// `application/x-www-form-urlencoded`
 	// instead of `application/json` with the model in a param named `model`.
 	// Useful when interfacing with server-side languages like **PHP** that make
 	// it difficult to read the body of `PUT` requests.
@@ -1290,7 +1336,8 @@
 			params.data = JSON.stringify(options.attrs || model.toJSON(options));
 		}
 
-		// For older servers, emulate JSON by encoding the request into an HTML-form.
+		// For older servers, emulate JSON by encoding the request into an
+		// HTML-form.
 		if (options.emulateJSON) {
 			params.contentType = 'application/x-www-form-urlencoded';
 			params.data = params.data ? {
@@ -1298,7 +1345,8 @@
 			} : {};
 		}
 
-		// For older servers, emulate HTTP by mimicking the HTTP method with `_method`
+		// For older servers, emulate HTTP by mimicking the HTTP method with
+		// `_method`
 		// And an `X-HTTP-Method-Override` header.
 		if (options.emulateHTTP && (type === 'PUT' || type === 'DELETE' || type === 'PATCH')) {
 			params.type = 'POST';
@@ -1317,9 +1365,12 @@
 			params.processData = false;
 		}
 
-		// If we're sending a `PATCH` request, and we're in an old Internet Explorer
-		// that still has ActiveX enabled by default, override jQuery to use that
-		// for XHR instead. Remove this line when jQuery supports `PATCH` on IE8.
+		// If we're sending a `PATCH` request, and we're in an old Internet
+		// Explorer
+		// that still has ActiveX enabled by default, override jQuery to use
+		// that
+		// for XHR instead. Remove this line when jQuery supports `PATCH` on
+		// IE8.
 		if (params.type === 'PATCH' && noXhrPatch) {
 			params.xhr = function() {
 				return new ActiveXObject("Microsoft.XMLHTTP");
@@ -1343,7 +1394,8 @@
 		'read' : 'GET'
 	};
 
-	// Set the default implementation of `Backbone.ajax` to proxy through to `$`.
+	// Set the default implementation of `Backbone.ajax` to proxy through to
+	// `$`.
 	// Override this if you'd like to use a different library.
 	Backbone.ajax = function() {
 		return Backbone.$.ajax.apply(Backbone.$, arguments);
@@ -1353,7 +1405,8 @@
 	// ---------------
 
 	// Routers map faux-URLs to actions, and fire events when routes are
-	// matched. Creating a new one sets its `routes` hash, if not set statically.
+	// matched. Creating a new one sets its `routes` hash, if not set
+	// statically.
 	var Router = Backbone.Router = function(options) {
 		options || (options = {});
 		if (options.routes)
@@ -1410,7 +1463,8 @@
 				callback.apply(this, args);
 		},
 
-		// Simple proxy to `Backbone.history` to save a fragment into the history.
+		// Simple proxy to `Backbone.history` to save a fragment into the
+		// history.
 		navigate : function(fragment, options) {
 			Backbone.history.navigate(fragment, options);
 			return this;
@@ -1429,7 +1483,8 @@
 			}
 		},
 
-		// Convert a route string into a regular expression, suitable for matching
+		// Convert a route string into a regular expression, suitable for
+		// matching
 		// against the current location hash.
 		_routeToRegExp : function(route) {
 			route = route.replace(escapeRegExp, '\\$&').replace(optionalParam, '(?:$1)?').replace(namedParam, function(match, optional) {
@@ -1438,7 +1493,8 @@
 			return new RegExp('^' + route + '(?:\\?([\\s\\S]*))?$');
 		},
 
-		// Given a route, and a URL fragment that it matches, return the array of
+		// Given a route, and a URL fragment that it matches, return the array
+		// of
 		// extracted decoded parameters. Empty or unmatched parameters will be
 		// treated as `null` to normalize cross-browser behavior.
 		_extractParameters : function(route, fragment) {
@@ -1502,7 +1558,8 @@
 			return this.location.pathname.replace(/[^\/]$/, '$&/') === this.root;
 		},
 
-		// Gets the true hash value. Cannot use location.hash directly due to bug
+		// Gets the true hash value. Cannot use location.hash directly due to
+		// bug
 		// in Firefox where location.hash will always be decoded.
 		getHash : function(window) {
 			var match = (window || this).location.href.match(/#(.*)$/);
@@ -1525,7 +1582,8 @@
 			return fragment.replace(routeStripper, '');
 		},
 
-		// Start the hash change handling, returning `true` if the current URL matches
+		// Start the hash change handling, returning `true` if the current URL
+		// matches
 		// an existing route, and `false` otherwise.
 		start : function(options) {
 			if (History.started)
@@ -1555,7 +1613,8 @@
 			}
 
 			// Depending on whether we're using pushState or hashes, and whether
-			// 'onhashchange' is supported, determine how we check the URL state.
+			// 'onhashchange' is supported, determine how we check the URL
+			// state.
 			if (this._hasPushState) {
 				Backbone.$(window).on('popstate', this.checkUrl);
 			} else if (this._wantsHashChange && ('onhashchange' in window) && !oldIE) {
@@ -1574,15 +1633,18 @@
 			if (this._wantsHashChange && this._wantsPushState) {
 
 				// If we've started off with a route from a `pushState`-enabled
-				// browser, but we're currently in a browser that doesn't support it...
+				// browser, but we're currently in a browser that doesn't
+				// support it...
 				if (!this._hasPushState && !this.atRoot()) {
 					this.fragment = this.getFragment(null, true);
 					this.location.replace(this.root + '#' + this.fragment);
 					// Return immediately as browser will do redirect to new url
 					return true;
 
-					// Or if we've started out with a hash-based route, but we're currently
-					// in a browser where it could be `pushState`-based instead...
+					// Or if we've started out with a hash-based route, but
+					// we're currently
+					// in a browser where it could be `pushState`-based
+					// instead...
 				} else if (this._hasPushState && this.atRoot() && loc.hash) {
 					this.fragment = this.getHash().replace(routeStripper, '');
 					this.history.replaceState({}, document.title, this.root + this.fragment);
@@ -1594,7 +1656,8 @@
 				return this.loadUrl();
 		},
 
-		// Disable Backbone.history, perhaps temporarily. Not useful in a real app,
+		// Disable Backbone.history, perhaps temporarily. Not useful in a real
+		// app,
 		// but possibly useful for unit testing Routers.
 		stop : function() {
 			Backbone.$(window).off('popstate', this.checkUrl).off('hashchange', this.checkUrl);
@@ -1603,7 +1666,8 @@
 			History.started = false;
 		},
 
-		// Add a route to be tested when the fragment changes. Routes added later
+		// Add a route to be tested when the fragment changes. Routes added
+		// later
 		// may override previous routes.
 		route : function(route, callback) {
 			this.handlers.unshift({
@@ -1639,13 +1703,18 @@
 			});
 		},
 
-		// Save a fragment into the hash history, or replace the URL state if the
-		// 'replace' option is passed. You are responsible for properly URL-encoding
+		// Save a fragment into the hash history, or replace the URL state if
+		// the
+		// 'replace' option is passed. You are responsible for properly
+		// URL-encoding
 		// the fragment in advance.
 		//
-		// The options object can contain `trigger: true` if you wish to have the
-		// route callback be fired (not usually desirable), or `replace: true`, if
-		// you wish to modify the current URL without adding an entry to the history.
+		// The options object can contain `trigger: true` if you wish to have
+		// the
+		// route callback be fired (not usually desirable), or `replace: true`,
+		// if
+		// you wish to modify the current URL without adding an entry to the
+		// history.
 		navigate : function(fragment, options) {
 			if (!History.started)
 				return false;
@@ -1667,24 +1736,29 @@
 			if (fragment === '' && url !== '/')
 				url = url.slice(0, -1);
 
-			// If pushState is available, we use it to set the fragment as a real URL.
+			// If pushState is available, we use it to set the fragment as a
+			// real URL.
 			if (this._hasPushState) {
 				this.history[options.replace ? 'replaceState' : 'pushState']({}, document.title, url);
 
-				// If hash changes haven't been explicitly disabled, update the hash
+				// If hash changes haven't been explicitly disabled, update the
+				// hash
 				// fragment to store history.
 			} else if (this._wantsHashChange) {
 				this._updateHash(this.location, fragment, options.replace);
 				if (this.iframe && (fragment !== this.getFragment(this.getHash(this.iframe)))) {
-					// Opening and closing the iframe tricks IE7 and earlier to push a
-					// history entry on hash-tag change. When replace is true, we don't
+					// Opening and closing the iframe tricks IE7 and earlier to
+					// push a
+					// history entry on hash-tag change. When replace is true,
+					// we don't
 					// want this.
 					if (!options.replace)
 						this.iframe.document.open().close();
 					this._updateHash(this.iframe.location, fragment, options.replace);
 				}
 
-				// If you've told us that you explicitly don't want fallback hashchange-
+				// If you've told us that you explicitly don't want fallback
+				// hashchange-
 				// based history, then `navigate` becomes a page refresh.
 			} else {
 				return this.location.assign(url);
@@ -1693,7 +1767,8 @@
 				return this.loadUrl(fragment);
 		},
 
-		// Update the hash location, either replacing the current entry, or adding
+		// Update the hash location, either replacing the current entry, or
+		// adding
 		// a new one to the browser history.
 		_updateHash : function(location, fragment, replace) {
 			if (replace) {
@@ -1720,8 +1795,10 @@
 		var parent = this;
 		var child;
 
-		// The constructor function for the new subclass is either defined by you
-		// (the "constructor" property in your `extend` definition), or defaulted
+		// The constructor function for the new subclass is either defined by
+		// you
+		// (the "constructor" property in your `extend` definition), or
+		// defaulted
 		// by us to simply call the parent's constructor.
 		if (protoProps && _.has(protoProps, 'constructor')) {
 			child = protoProps.constructor;

@@ -1,7 +1,10 @@
 package br.com.c3pgen.base;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.joda.time.LocalDateTime;
@@ -9,6 +12,7 @@ import org.joda.time.LocalDateTime;
 import br.com.c3pgen.base.util.Util;
 import br.com.c3pgen.model.Application;
 import br.com.c3pgen.model.ApplicationEntity;
+import br.com.c3pgen.model.ApplicationRelationship;
 import br.com.c3pgen.model.Attribute;
 import br.com.c3pgen.model.AttributeType;
 import br.com.c3pgen.model.Relationship;
@@ -59,22 +63,23 @@ public class GenService {
 
 	public GenerateFileInfo generate(Application application) throws Exception {
 
+		Application newApplication = fixApplication(application);
 		ApplicationValidator appValidator = new ApplicationValidator();
 
 		// TODO melhorar essa infra no futuro!!!
-		fixModules(application);
+		fixModules(newApplication);
 
-		FreeMarkerConfig freeMarkerConfig = new FreeMarkerConfig(application);
+		FreeMarkerConfig freeMarkerConfig = new FreeMarkerConfig(newApplication);
 		GenerateFileInfo fileInfo = new GenerateFileInfo();
 
 		// fix module-entities
 
-		BaseAppGenerator appGenerator = new BaseAppGenerator(freeMarkerConfig, application);
+		BaseAppGenerator appGenerator = new BaseAppGenerator(freeMarkerConfig, newApplication);
 
-		EntitiesGenerator entitiesGenerator = new EntitiesGenerator(freeMarkerConfig, application);
+		EntitiesGenerator entitiesGenerator = new EntitiesGenerator(freeMarkerConfig, newApplication);
 
 		LOGGER.info("Validando arquivo de entidades...");
-		ApplicationValidatorMessages validateMessages = appValidator.validate(application);
+		ApplicationValidatorMessages validateMessages = appValidator.validate(newApplication);
 		LOGGER.info("Finalizada a validação....");
 
 		if (validateMessages.isEmpty()) {
@@ -84,15 +89,15 @@ public class GenService {
 			entitiesGenerator.generate();
 			LOGGER.info("Concluida a geração da aplicação");
 
-			if (application.hasMobApp()) {
+			if (newApplication.hasMobApp()) {
 				appGenerator.generateMobile();
 				LOGGER.info("Finalizada a geração básica....");
 				entitiesGenerator.generateMobile();
 
 				LOGGER.info("Concluida a geração da aplicação");
 			}
-			String a = Util.currentDir() + File.separator + "out/" + application.getAppName();
-			String webPath = "out/" + application.getAppName() + DateUtil.asString(LocalDateTime.now(), "_dd_MM_yyyy_HH_mm_ss") + ".zip";
+			String a = Util.currentDir() + File.separator + "out/" + newApplication.getAppName();
+			String webPath = "out/" + newApplication.getAppName() + DateUtil.asString(LocalDateTime.now(), "_dd_MM_yyyy_HH_mm_ss") + ".zip";
 			String zip = Util.currentDir() + File.separator + webPath;
 
 			ZipUtils.zipFiles(Arrays.asList(new File(a)), new File(zip));
@@ -105,6 +110,38 @@ public class GenService {
 		}
 
 		return fileInfo;
+	}
+
+	private Application fixApplication(Application oldApplication) {
+
+		List<ApplicationEntity> entities = oldApplication.getEntities();
+		for (ApplicationEntity applicationEntity : entities) {
+			applicationEntity.setRelationships(null);
+			applicationEntity.setRelationships(getNewRelations(applicationEntity, oldApplication.getApplicationRelationships()));
+		}
+
+		return oldApplication;
+	}
+
+	private List<Relationship> getNewRelations(ApplicationEntity applicationEntity, Set<ApplicationRelationship> applicationRelationships) {
+		List<Relationship> relationships = new ArrayList<Relationship>();
+
+		for (ApplicationRelationship applicationRelationship : applicationRelationships) {
+
+			Relationship source = applicationRelationship.getSource();
+			Relationship target = applicationRelationship.getTarget();
+
+			if (source != null && source.getEntity() != null && source.getEntity().equals(applicationEntity)) {
+				relationships.add(source);
+			}
+
+			if (target != null && target.getEntity() != null && target.getEntity().equals(applicationEntity)) {
+				relationships.add(target);
+			}
+
+		}
+
+		return relationships;
 	}
 
 	public Boolean fixModules(Application application) {

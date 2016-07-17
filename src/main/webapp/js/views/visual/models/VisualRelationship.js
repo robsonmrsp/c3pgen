@@ -93,6 +93,7 @@ define(function(require) {
 
 			var _sourceEntity = null;// _source.get('entity');
 			var _targetEntity = null;// _target.get('entity');
+
 			var _sourceRelationModel = null;
 			var _targetRelationModel = null;
 			if (_source && _target) {
@@ -124,10 +125,14 @@ define(function(require) {
 			}
 			if (this.get('applicationRelationshipModel').get('source')) {
 				_sourceRelationModel = new RelationshipModel(this.get('applicationRelationshipModel').get('source'));
+				// this.set('source', _target);// TODO resolver deppois essa
+				// consusao
 			}
 
 			if (this.get('applicationRelationshipModel').get('target')) {
 				_targetRelationModel = new RelationshipModel(this.get('applicationRelationshipModel').get('target'));
+				// this.set('target', _source);// TODO resolver deppois essa
+				// consusao
 			}
 			this.set('sourceRelationModel', _sourceRelationModel);
 			this.set('targetRelationModel', _targetRelationModel);
@@ -143,11 +148,14 @@ define(function(require) {
 			this.processPorts();
 			this.on('change:attrs', this.processPorts, this);
 			this._updateLabels();
+			if (options.postConstructor) {
+				options.postConstructor();
+			}
 
 		},
 		_updateLabels : function() {
 			this.label(0, {
-				position : 35,
+				position : -25,
 				attrs : {
 					text : {
 						text : this.get('targetRelationModel').get('name'),
@@ -155,7 +163,7 @@ define(function(require) {
 				}
 			});
 			this.label(1, {
-				position : -35,
+				position : 25,
 				attrs : {
 					text : {
 						text : this.get('sourceRelationModel').get('name'),

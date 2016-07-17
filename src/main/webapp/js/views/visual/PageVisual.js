@@ -114,6 +114,8 @@ define(function(require) {
 
 		initialize : function() {
 			var that = this;
+			globalVisualEntities.clear();
+			globalVisualRelations.clear();
 
 			this.application = this.model;
 
@@ -229,25 +231,16 @@ define(function(require) {
 								height : 100
 							},
 						});
-						globalVisualEntities.put(visualEntity.id, visualEntity)
 
 						that.graph.addCell(visualEntity);
+
+						globalVisualEntities.put(visualEntity.id, visualEntity)
 						that.inspetorView.setVisualEntity(visualEntity);
 
 						that.activeAddEntity = false
 						$('#paper').removeClass('cursor-tabela');
 
 					}
-				});
-
-				_.each(this.application.get('entities'), function(entity) {
-					console.log(entity);
-					that.addVisualEntity(new EntityModel(entity));
-				});
-
-				_.each(this.application.get('applicationRelationships'), function(appRelation) {
-					console.log(appRelation);
-					that.addVisualRelation(appRelation);
 				});
 
 				// ////////////////////////////////////////////// aki é para o
@@ -283,12 +276,21 @@ define(function(require) {
 				// });
 				// this.toolsRegion.show(this.toolsView);
 
+				_.each(this.application.get('entities'), function(entity) {
+					that.addVisualEntity(new EntityModel(entity));
+				});
+
+				_.each(that.application.get('applicationRelationships'), function(appRelation) {
+					that.addVisualRelation(appRelation);
+				});
+
 			});
 		},
 		// RIDICULA ESSA CONTA, mas como tá desenhando legal as tabelas para
 		// muitos registros...
 		// fica assim
 		addVisualEntity : function(entity) {
+			var that = this;
 			var _mod = this.quantidadeEntidades > 9 ? 13 : 5
 
 			if (contador++ % _mod == 0) {
@@ -313,24 +315,33 @@ define(function(require) {
 				},
 			});
 
+			that.graph.addCell(visualEntity);
+
 			globalVisualEntities.put(visualEntity.id, visualEntity)
 
-			this.graph.addCell(visualEntity);
-			this.inspetorView.setVisualEntity(visualEntity);
+			that.inspetorView.setVisualEntity(visualEntity);
+
 		},
 
 		addVisualRelation : function(applicationRelationshipModel) {
 			var that = this;
+
+			var _sourceEntityView = that._getEntityView(applicationRelationshipModel.target);
+			var _targetEntityView = that._getEntityView(applicationRelationshipModel.source);
+
 			var relation = new VisualRelationship({
 				applicationRelationshipModel : new ApplicationRelationshipModel({
+
 					source : applicationRelationshipModel.source,
 					target : applicationRelationshipModel.target,
 
-					sourceEntityView : that._getEntityView(applicationRelationshipModel.source),
-					targetEntityView : that._getEntityView(applicationRelationshipModel.target),
+					sourceEntityView : _sourceEntityView,
+					targetEntityView : _targetEntityView,
 				})
 			});
 
+			// esse tempo é para que todos os objetos gráficos tenham sido
+			// criados antes de serem adicionados ao graph
 			that.graph.addCell(relation);
 
 			window.globalVisualRelations.put(relation.id, relation);

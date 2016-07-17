@@ -38,7 +38,6 @@ define(function(require) {
 			Joint.dia.ElementView.prototype.initialize.apply(this, arguments);
 
 			this.entity = this.model.get('entity');
-			this.entity.on('change', this._changeEntity, this);
 
 			this.diagramEntityView = new DiagramEntityView({
 				model : this.entity,
@@ -56,6 +55,8 @@ define(function(require) {
 			});
 
 			this.updateBox();
+			
+			this.entity.on('change', this._changeEntity, this);
 		},
 
 		resizeView : function(size) {
