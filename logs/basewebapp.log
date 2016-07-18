@@ -70,3 +70,31 @@ INFO  14/07/2016 10:15:12[SingleConnectionDataSource-main]->Loaded JDBC driver: 
 INFO  14/07/2016 10:15:12[SingleConnectionDataSource-main]->Established shared JDBC Connection: org.postgresql.jdbc3.Jdbc3Connection@246ae04d
 INFO  14/07/2016 10:15:32[SingleConnectionDataSource-main]->Loaded JDBC driver: org.postgresql.Driver
 INFO  14/07/2016 10:15:32[SingleConnectionDataSource-main]->Established shared JDBC Connection: org.postgresql.jdbc3.Jdbc3Connection@246ae04d
+INFO  18/07/2016 12:50:26[SingleConnectionDataSource-main]->Loaded JDBC driver: org.postgresql.Driver
+INFO  18/07/2016 12:50:45[SingleConnectionDataSource-main]->Loaded JDBC driver: org.postgresql.Driver
+INFO  18/07/2016 12:50:45[SingleConnectionDataSource-main]->Established shared JDBC Connection: org.postgresql.jdbc3.Jdbc3Connection@f5f2bb7
+INFO  18/07/2016 12:54:48[SingleConnectionDataSource-main]->Loaded JDBC driver: org.postgresql.Driver
+INFO  18/07/2016 12:54:48[SingleConnectionDataSource-main]->Established shared JDBC Connection: org.postgresql.jdbc3.Jdbc3Connection@f5f2bb7
+INFO  18/07/2016 12:55:52[SingleConnectionDataSource-main]->Loaded JDBC driver: org.postgresql.Driver
+INFO  18/07/2016 12:55:53[SingleConnectionDataSource-main]->Established shared JDBC Connection: org.postgresql.jdbc3.Jdbc3Connection@6c3f5566
+INFO  18/07/2016 12:56:58[SingleConnectionDataSource-main]->Loaded JDBC driver: org.postgresql.Driver
+INFO  18/07/2016 12:56:59[SingleConnectionDataSource-main]->Established shared JDBC Connection: org.postgresql.jdbc3.Jdbc3Connection@6c3f5566
+INFO  18/07/2016 12:57:08[SingleConnectionDataSource-main]->Loaded JDBC driver: org.postgresql.Driver
+INFO  18/07/2016 12:57:11[SingleConnectionDataSource-main]->Established shared JDBC Connection: org.postgresql.jdbc3.Jdbc3Connection@6c3f5566
+INFO  18/07/2016 12:57:25[SingleConnectionDataSource-main]->Loaded JDBC driver: org.postgresql.Driver
+INFO  18/07/2016 12:57:25[SingleConnectionDataSource-main]->Established shared JDBC Connection: org.postgresql.jdbc3.Jdbc3Connection@6c3f5566
+INFO  18/07/2016 12:57:30[SingleConnectionDataSource-main]->Loaded JDBC driver: org.postgresql.Driver
+INFO  18/07/2016 12:57:30[SingleConnectionDataSource-main]->Established shared JDBC Connection: org.postgresql.jdbc3.Jdbc3Connection@6c3f5566
+INFO  18/07/2016 12:57:50[SingleConnectionDataSource-main]->Loaded JDBC driver: org.postgresql.Driver
+INFO  18/07/2016 12:57:51[SingleConnectionDataSource-main]->Established shared JDBC Connection: org.postgresql.jdbc3.Jdbc3Connection@6c3f5566
+INFO  18/07/2016 12:58:03[SingleConnectionDataSource-main]->Loaded JDBC driver: org.postgresql.Driver
+INFO  18/07/2016 12:58:04[SingleConnectionDataSource-main]->Established shared JDBC Connection: org.postgresql.jdbc3.Jdbc3Connection@6c3f5566
+INFO  18/07/2016 13:04:43[SingleConnectionDataSource-main]->Loaded JDBC driver: org.postgresql.Driver
+INFO  18/07/2016 13:04:43[SingleConnectionDataSource-main]->Established shared JDBC Connection: org.postgresql.jdbc3.Jdbc3Connection@f5f2bb7
+INFO  18/07/2016 13:04:43[DBImporterEntities-main]->Sucesso conectando no postgresql
+INFO  18/07/2016 13:05:22[SingleConnectionDataSource-main]->Loaded JDBC driver: org.postgresql.Driver
+INFO  18/07/2016 13:05:22[SingleConnectionDataSource-main]->Established shared JDBC Connection: org.postgresql.jdbc3.Jdbc3Connection@f5f2bb7
+INFO  18/07/2016 13:05:22[DBImporterEntities-main]->ping successful [ postgresql ]
+INFO  18/07/2016 13:05:57[SingleConnectionDataSource-main]->Loaded JDBC driver: org.postgresql.Driver
+INFO  18/07/2016 13:05:57[SingleConnectionDataSource-main]->Established shared JDBC Connection: org.postgresql.jdbc3.Jdbc3Connection@f5f2bb7
+INFO  18/07/2016 13:05:57[DBImporterEntities-main]->[ postgresql ] ping successful 

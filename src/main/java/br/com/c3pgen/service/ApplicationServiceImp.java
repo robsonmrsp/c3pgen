@@ -1,6 +1,7 @@
 package br.com.c3pgen.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -39,8 +40,6 @@ public class ApplicationServiceImp implements ApplicationService {
 	RelationshipService relationshipService;
 	@Inject
 	TheEntityService entityService;
-
-	DBImporterEntities dbImporterEntities;
 
 	@Override
 	public Application get(Integer id) {
@@ -121,28 +120,40 @@ public class ApplicationServiceImp implements ApplicationService {
 	}
 
 	@Override
-	public Application generateAppFromDataBase(String url, String username, String password, String driverClassName) throws Exception {
+	public Application generateAppFromDataBase(String url, String username, String password, String databasetype, String supressPrefix, String tableRegex, String columnRegex) throws Exception {
 
-		dbImporterEntities = new DBImporterEntities(url, username, password, driverClassName);
+		LOGGER.info("Start extraction [ " + Arrays.asList("url= " + url, "username= " + username, "databasetype= " + databasetype, "supressPrefix= " + supressPrefix, "tabeRegex= " + tableRegex, "columnRegex= " + columnRegex) + " ]");
+		DBImporterEntities dbImporterEntities = new DBImporterEntities(url, username, password, databasetype);
+
 		DBImporterOptions options = new DBImporterOptions();
-
 		options.addInclusionSchemaName("public");
-		options.addExclusionColumnNamePatterns("(.*)create_datetime(.*)");
+		options.addExclusionColumnNamePatterns(columnRegex.split(";"));
+		options.addExclusionTableNamePatterns(tableRegex.split(";"));
 
-		options.addExclusionColumnNamePatterns("(.*)create_datetime(.*)");
-		options.addExclusionColumnNamePatterns("(.*)last_update_datetime(.*)");
-		options.addExclusionColumnNamePatterns("(.*)user_change(.*)");
-		options.addExclusionColumnNamePatterns("(.*)user_create(.*)");
+		// options.addExclusionColumnNamePatterns("(.*)create_datetime(.*)");
+		//
+		// options.addExclusionColumnNamePatterns("(.*)create_datetime(.*)");
+		// options.addExclusionColumnNamePatterns("(.*)last_update_datetime(.*)");
+		// options.addExclusionColumnNamePatterns("(.*)user_change(.*)");
+		// options.addExclusionColumnNamePatterns("(.*)user_create(.*)");
+		//
+		// options.addExclusionTableNamePatterns("(.*)AUD", "(.*)aud");
+		// options.addExclusionTableNamePatterns("public.RBAC(.*)", "public.Rbac(.*)", "public.rbac(.*)");
+		//
+		// options.addExclusionTableNamePatterns("(.*)AUD", "(.*)aud", "(.*)revinfo(.*)");
 
-		options.addExclusionTableNamePatterns("(.*)AUD", "(.*)aud");
-		options.addExclusionTableNamePatterns("public.RBAC(.*)", "public.Rbac(.*)", "public.rbac(.*)");
-
-		options.addExclusionTableNamePatterns("(.*)AUD", "(.*)aud", "(.*)revinfo(.*)");
-
-		options.setPrefixToSupress("GSH_PA_");
+		options.setPrefixToSupress(supressPrefix);
 
 		Application application = dbImporterEntities.extractToApplication(options);
-		System.out.println("ApplicationServiceImp.generateAppFromDataBase()" + application.getApplicationRelationships());
+		
+		LOGGER.info("End extraction [ " + Arrays.asList("url= " + url, "username= " + username, "databasetype= " + databasetype, "supressPrefix= " + supressPrefix, "tabeRegex= " + tableRegex, "columnRegex= " + columnRegex) + " ]");
+		
 		return application;
+	}
+
+	@Override
+	public Boolean ping(String url, String username, String password, String databaseType) throws Exception {
+		DBImporterEntities dbImporterEntities = new DBImporterEntities(url, username, password, databaseType);
+		return dbImporterEntities.ping();
 	}
 }

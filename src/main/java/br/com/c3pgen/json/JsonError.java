@@ -1,6 +1,9 @@
 package br.com.c3pgen.json;
 
 import java.io.Serializable;
+import java.util.Arrays;
+
+import org.apache.commons.lang3.exception.ExceptionUtils;
 
 //TODO O que fazer com essa classe de modo que o cliente possa usufruir das mensages
 public class JsonError implements Serializable {
@@ -10,15 +13,35 @@ public class JsonError implements Serializable {
 	private Object parameters;
 	private String legalMessage;
 
+	public JsonError(Exception error, String legalMessage) {
+		this(ExceptionUtils.getStackTrace(error), legalMessage);
+	}
+
+	public JsonError(String errorMessage, String leString) {
+		this(errorMessage, null, leString);
+	}
+
 	public JsonError(String errorMessage, Object parameters) {
-		super();
-		this.errorMessage = errorMessage;
-		this.parameters = parameters;
+		this(errorMessage, parameters, "");
+	}
+
+	public JsonError(Exception e, String errorMessage, Object parameters, String legalMessage) {
+		this(ExceptionUtils.getStackTrace(e) + " " + errorMessage, parameters, legalMessage);
 	}
 
 	public JsonError(String errorMessage, Object parameters, String legalMessage) {
-		this(errorMessage, parameters);
+		setErrorMessage(errorMessage);
 		setLegalMessage(legalMessage);
+		setParameters(parameters);
+	}
+
+	public JsonError() {
+
+	}
+
+	public JsonError(Exception e, String errorMessage, Object parameters) {
+
+		this(ExceptionUtils.getStackTrace(e) + " " + errorMessage, parameters, null);
 	}
 
 	public String getErrorMessage() {
@@ -26,7 +49,11 @@ public class JsonError implements Serializable {
 	}
 
 	public void setErrorMessage(String errorMessage) {
-		this.errorMessage = errorMessage;
+		if (errorMessage.length() > 2000) {
+			this.errorMessage = errorMessage.substring(0, 2000);
+		} else {
+			this.errorMessage = errorMessage;
+		}
 	}
 
 	public String getErrorCode() {

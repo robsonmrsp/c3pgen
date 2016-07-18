@@ -51,7 +51,6 @@ define(function(require) {
 
 	var globalVisualRelations = new Col.Map();
 
-
 	// http://www.sinbadsoft.com/blog/backbone-js-by-example-part-1/
 	$('body').mousemove(function(e) {
 		MOUSE_X = e.pageX;
@@ -82,7 +81,9 @@ define(function(require) {
 			globalVisualEntities.clear();
 			globalVisualRelations.clear();
 
-			this.diagramApplicationTools = new DiagramApplicationTools();
+			this.diagramApplicationTools = new DiagramApplicationTools({
+				onExtract : that.loadApplication,
+			});
 
 			this.application = this.model;
 
@@ -210,15 +211,19 @@ define(function(require) {
 
 					}
 				});
+				that.loadApplication(that.application);
+			});
+		},
 
-				_.each(this.application.get('entities'), function(entity) {
-					that.addVisualEntity(new EntityModel(entity));
-				});
+		loadApplication : function(application) {
+			var that = this;
 
-				_.each(that.application.get('applicationRelationships'), function(appRelation) {
-					that.addVisualRelation(appRelation);
-				});
+			_.each(application.get('entities'), function(entity) {
+				that.addVisualEntity(new EntityModel(entity));
+			});
 
+			_.each(application.get('applicationRelationships'), function(appRelation) {
+				that.addVisualRelation(appRelation);
 			});
 		},
 		openTools : function() {

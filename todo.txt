@@ -12,3 +12,6 @@
    
    sobre scroll
    https://github.com/web-design-weekly/scroll-to-position-demo/blob/master/js/main.js
+   
+   
+   fazer o tratamento de erro do etiquetar e do deltaweb

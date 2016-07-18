@@ -1,7 +1,5 @@
 package br.com.c3pgen.rs;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -31,6 +29,7 @@ import br.com.c3pgen.json.JsonOk;
 import br.com.c3pgen.json.JsonPaginator;
 import br.com.c3pgen.model.Application;
 import br.com.c3pgen.model.filter.FilterApplication;
+import br.com.c3pgen.model.filter.FilterExtrationTools;
 import br.com.c3pgen.persistence.pagination.Pager;
 import br.com.c3pgen.persistence.pagination.PaginationParams;
 import br.com.c3pgen.rs.exception.ValidationException;
@@ -56,15 +55,15 @@ public class ApplicationResources {
 	public static final Logger LOGGER = Logger.getLogger(ApplicationResources.class);
 
 	@GET
-	@Path("generate")
+	@Path("extraction/extract")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response generate(@Context UriInfo uriInfo) {
 		Response response = null;
 		try {
-			PaginationParams<FilterApplication> paginationParams = new PaginationParams<FilterApplication>(uriInfo, FilterApplication.class);
-
-			Application generateAppFromDataBase = applicationService.generateAppFromDataBase("jdbc:postgresql://localhost:5432/db_locadora", "postgres", "sints", "org.postgresql.Driver");
+			PaginationParams<FilterExtrationTools> paginationParams = new PaginationParams<FilterExtrationTools>(uriInfo, FilterExtrationTools.class);
+			FilterExtrationTools filter = paginationParams.getFilter();
+			Application generateAppFromDataBase = applicationService.generateAppFromDataBase(filter.getUrl(), filter.getUsername(), filter.getPassword(), filter.getDatabaseType(), filter.getSupressPrefix(), filter.getTableRegex(), filter.getColumnRegex());
 
 			JsonApplication jsonApplication = Parser.toJson(generateAppFromDataBase);
 			response = Response.ok(jsonApplication).build();
@@ -72,6 +71,28 @@ public class ApplicationResources {
 			String message = String.format("Não foi possivel carregar todos os registros[%s]", e.getMessage());
 			LOGGER.error(message, e);
 			response = Response.serverError().entity(new JsonError(message, null)).build();
+		}
+		return response;
+	}
+
+	@GET
+	@Path("extraction/ping")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response ping(@Context UriInfo uriInfo) {
+		Response response = null;
+		try {
+			PaginationParams<FilterExtrationTools> paginationParams = new PaginationParams<FilterExtrationTools>(uriInfo, FilterExtrationTools.class);
+
+			FilterExtrationTools filter = paginationParams.getFilter();
+			Boolean ping = applicationService.ping(filter.getUrl(), filter.getUsername(), filter.getPassword(), filter.getDatabaseType());
+
+			response = Response.ok(new JsonOk(ping)).build();
+
+		} catch (Exception e) {
+			String message = String.format("Não foi possivel carregar todos os registros[%s]", e.getMessage());
+			LOGGER.error(message, e);
+			response = Response.serverError().entity(new JsonError(e, "Problemas ao efetuar o ping!")).build();
 		}
 		return response;
 	}
@@ -236,7 +257,9 @@ public class ApplicationResources {
 			application.setOwner(context.getCurrentUser().getOwner());
 
 			application = applicationService.save(application);
+
 			return Response.ok().entity(Parser.toJson(application)).build();
+
 		} catch (ValidationException e) {
 			String message = String.format("Não foi possivel salvar  o registro [ %s ] parametros [ %s ]", e.getOrigem().getMessage(), jsonApplication.toString());
 			LOGGER.error(message, e.getOrigem());

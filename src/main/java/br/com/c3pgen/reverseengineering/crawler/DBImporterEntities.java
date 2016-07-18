@@ -1,14 +1,15 @@
 package br.com.c3pgen.reverseengineering.crawler;
 
 import java.io.File;
-import java.io.FileOutputStream;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 
-import org.apache.commons.io.IOUtils;
+import org.apache.log4j.Logger;
 import org.springframework.jdbc.datasource.SingleConnectionDataSource;
 
 import schemacrawler.schema.Catalog;
@@ -35,19 +36,48 @@ public class DBImporterEntities {
 	final String url;
 	final String username;
 	final String password;
-	final String driverClassName;
+	final String databaseType;
+
+	private static final Logger LOGGER = Logger.getLogger(DBImporterEntities.class);
 
 	private SingleConnectionDataSource singleConnectionDataSource;
+	private ResultSet rs;
 
-	public DBImporterEntities(String url, String username, String password, String driverClassName) {
+	public DBImporterEntities(String url, String username, String password, String databasetype) {
 		super();
 		this.url = url;
+		this.databaseType = databasetype;
 		this.username = username;
 		this.password = password;
-		this.driverClassName = driverClassName;
 		this.singleConnectionDataSource = new SingleConnectionDataSource(url, username, password, true);
-		this.singleConnectionDataSource.setDriverClassName(driverClassName);
+		this.singleConnectionDataSource.setDriverClassName(getByType(databasetype));
 
+	}
+
+	private String getByType(String databasetype) {
+		if (databasetype.equalsIgnoreCase("postgressql"))
+			return "org.postgresql.Driver";
+		else if (databasetype.equalsIgnoreCase("oracle"))
+			return "oracle.jdbc.driver.OracleDriver";
+
+		return "org.postgresql.Driver";//
+	}
+
+	public boolean ping() throws Exception {
+		Connection con = null;
+
+		con = singleConnectionDataSource.getConnection();
+		Statement st = con.createStatement();
+		if (databaseType.equalsIgnoreCase("postgresql")) {
+			rs = st.executeQuery("select version();");
+		} else if (databaseType.equalsIgnoreCase("oracle")) {
+			rs = st.executeQuery("select 1 from dual");
+		}
+		con.close();
+
+		LOGGER.info("[ " + databaseType + " ] ping successful!");
+
+		return true;
 	}
 
 	public String getUrl() {
@@ -62,10 +92,6 @@ public class DBImporterEntities {
 		return password;
 	}
 
-	public String getDriverClassName() {
-		return driverClassName;
-	}
-
 	public Application extractToApplication(DBImporterOptions options) throws Exception {
 		DBImportResult result = new DBImportResult();
 		Application application = new Application();
@@ -77,7 +103,9 @@ public class DBImporterEntities {
 		new File(folderOutput).mkdirs();
 		HashSet<ApplicationRelationship> applicationRelationships = new HashSet<ApplicationRelationship>();
 
-		Catalog catalog = SchemaCrawlerUtility.getCatalog(singleConnectionDataSource.getConnection(), createCrawlerOptions(options));
+		Connection connection = singleConnectionDataSource.getConnection();
+
+		Catalog catalog = SchemaCrawlerUtility.getCatalog(connection, createCrawlerOptions(options));
 		for (final Schema schema : catalog.getSchemas()) {
 
 			System.out.println(schema);
@@ -189,16 +217,9 @@ public class DBImporterEntities {
 
 				}
 
-				String fileOutput = folderOutput + File.separator + "APP_" + nomeDaClasse + ".yaml";
-				result.addTableName(nomeDaClasse);
-
-				// IOUtils.writeLines(fileLines, null, new FileOutputStream(fileOutput));
 				fileLines.clear();
 
-				// System.out.println("Gerado " + fileOutput);
-
 				application.addEntities(applicationEntity);
-
 				application.addAllApplicationRelationships(applicationRelationships);
 			}
 		}
@@ -250,4 +271,10 @@ public class DBImporterEntities {
 		return crawlerOptions;
 	}
 
+	public static void main(String[] args) throws Exception {
+		DBImporterEntities db = new DBImporterEntities("jdbc:postgresql://localhost:5432/db_c3pgen", "postgres", "sints", "postgresql");
+		if (db.ping()) {
+			System.out.println("DBImporterEntities.main()");
+		}
+	}
 }
