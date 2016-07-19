@@ -82,6 +82,7 @@ define(function(require) {
 			globalVisualRelations.clear();
 
 			this.diagramApplicationTools = new DiagramApplicationTools({
+				context : that,
 				onExtract : that.loadApplication,
 			});
 
@@ -217,7 +218,7 @@ define(function(require) {
 
 		loadApplication : function(application) {
 			var that = this;
-
+			that.quantidadeEntidades = application.get('entities').length
 			_.each(application.get('entities'), function(entity) {
 				that.addVisualEntity(new EntityModel(entity));
 			});
@@ -234,7 +235,7 @@ define(function(require) {
 		// fica assim
 		addVisualEntity : function(entity) {
 			var that = this;
-			var _mod = this.quantidadeEntidades > 9 ? 13 : 5
+			var _mod = this.quantidadeEntidades > 9 ? 11 : 5
 
 			if (contador++ % _mod == 0) {
 				coluna = 0;

@@ -38,6 +38,8 @@ define(function(require) {
 
 		initialize : function(opt) {
 			var that = this;
+			this.context = opt.context;
+
 			this.onExtract = opt.onExtract;
 			this.on('show', function() {
 				this.ui.form.validationEngine('attach', {
@@ -96,7 +98,7 @@ define(function(require) {
 			applicationModel.url = 'rs/crud/applications/extraction/extract';
 			applicationModel.fetch({
 				success : function(_model, _resp) {
-					that.onExtract(_model);
+					that.onExtract.call(that.context, _model);
 				},
 				error : function(_model, _resp) {
 					util.showMessage('error', "Não foi possivel extrair a base de dados");
