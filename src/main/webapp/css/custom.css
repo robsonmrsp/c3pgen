@@ -1,4 +1,4 @@
-.td-actions {
+entid.td-actions {
 	max-width: 80px !important;
 	width: 200px !important;
 	text-align: center !important;
@@ -270,7 +270,7 @@ body {
 }
 /* paineis e toolbars  */
 .inspetor {
-	/* 	position: fixed; */
+	position: fixed;
 	top: 62px;
 	right: 10px;
 	/* 	width: 450px; */
@@ -278,9 +278,9 @@ body {
 }
 
 .inspetor-relacionamentos {
-	/* 	position: fixed; */
-	bottom: 62px;
-	right: 300px;
+	position: fixed;
+	bottom: 362px;
+	right: 10px;
 	/* 	width: 800px; */
 	height: 200px;
 }
@@ -369,7 +369,7 @@ body {
 	/* 	right: 9px; */
 	/* 	color: white; */
 	/* 	font-size: 10px; */
-	/* } */                
+	/* } */                  
 
 .uml-class-name-rect {
 	background: #ff8450 !important;

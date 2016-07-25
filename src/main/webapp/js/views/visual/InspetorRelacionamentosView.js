@@ -51,7 +51,11 @@ define(function(require) {
 
 			this.sourceRelationModel = visualRelationship.get('sourceRelationModel')
 
+			var sourceName = (this.sourceRelationModel.get('entity').get && this.sourceRelationModel.get('entity').get('name')) || this.sourceRelationModel.get('entity').name
+
 			this.targetRelationModel = visualRelationship.get('targetRelationModel')
+
+			var targetName = (this.targetRelationModel.get('entity').get && this.targetRelationModel.get('entity').get('name')) || this.targetRelationModel.get('entity').name
 
 			this.sourceView = new RelationshipItemView({
 				model : this.sourceRelationModel
@@ -64,24 +68,6 @@ define(function(require) {
 			});
 
 			this.targetRegion.show(this.targetView);
-
-			// var that = this;
-			// this.visualEntity = visualEntity;
-			//
-			// this.entity = visualEntity.get('entity');
-			//
-			// this.ui.inputId.val(this.entity.get('id'));
-			// this.ui.inputEntityName.text(this.entity.get('name'));
-			// this.ui.inputDisplayName.text(this.entity.get('displayName'));
-			// this.ui.inputTableName.text(this.entity.get('tableName'));
-			// this.ui.inputHasMobile.prop('checked', this.entity.get('hasMobile'));
-			//
-			// util.refreshEditableVisual(this.ui.inputEntityName);
-			// util.refreshEditableVisual(this.ui.inputDisplayName);
-			// util.refreshEditableVisual(this.ui.inputTableName);
-			// util.refreshEditableVisual(this.ui.inputHasMobile);
-			// this.visualEntity.updateEntityPosition();
-
 		},
 
 		initialize : function() {

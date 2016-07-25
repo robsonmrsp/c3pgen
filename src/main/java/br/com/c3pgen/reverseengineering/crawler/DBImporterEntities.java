@@ -237,7 +237,8 @@ public class DBImporterEntities {
 			@Override
 			public boolean test(String columnName) {
 				for (String regex : options.getExcludeColumnNamePatterns()) {
-					if (columnName.matches(regex)) {
+					String trimed = regex.trim();
+					if (columnName.matches(trimed)) {
 						return false;
 					}
 				}
@@ -248,7 +249,8 @@ public class DBImporterEntities {
 			@Override
 			public boolean test(String tableName) {
 				for (String regex : options.getExcludeTableNamePatterns()) {
-					if (tableName.matches(regex)) {
+					String trimed = regex.trim();
+					if (tableName.matches(trimed)) {
 						return false;
 					}
 				}

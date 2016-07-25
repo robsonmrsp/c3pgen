@@ -53,6 +53,9 @@ public class FilterExtrationTools implements Serializable {
 	}
 
 	public String getTableRegex() {
+		if (tableRegex == null) {
+			setTableRegex("");
+		}
 		return tableRegex;
 	}
 
@@ -61,6 +64,9 @@ public class FilterExtrationTools implements Serializable {
 	}
 
 	public String getColumnRegex() {
+		if (columnRegex == null) {
+			setColumnRegex("");
+		}
 		return columnRegex;
 	}
 
@@ -75,6 +81,5 @@ public class FilterExtrationTools implements Serializable {
 	public void setSupressPrefix(String supressPrefix) {
 		this.supressPrefix = supressPrefix;
 	}
-
 
 }
