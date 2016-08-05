@@ -317,8 +317,12 @@ define(function(require) {
 			this.application.set('applicationRelationships', applicationRelationshipCollection.toJSON());
 
 			this.application.save({}, {
-				success : function(_coll, _resp, _opt) {
-					console.log('salvou os seguintes refistros.', _coll.toJSON());
+				success : function(_application, _resp, _opt) {
+					that.graph.clear();
+					// TODO quando estivermos desenhando TUDO com canvas iremos
+					// remover essa linha
+					$('.html-element').remove()
+					 that.loadApplication(_application);
 				},
 				error : function(_coll, _resp, _opt) {
 					console.error('erro ao salvar: ', _coll.toJSON());
