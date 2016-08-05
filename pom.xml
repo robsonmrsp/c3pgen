@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>br.com.c3pgen</groupId>
 	<artifactId>c3pgen</artifactId>
@@ -25,6 +26,12 @@
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
 			<version>19.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc6</artifactId>
+			<version>11.2.0</version>
 		</dependency>
 
 		<dependency>
@@ -199,7 +206,9 @@
 			<scope>compile</scope>
 		</dependency>
 
-		<!-- não sei porque quando adicionamos essa dependencia o projeto deixa de ser um projeto web. Pos isso somente adicionaremos quando for executar algum teste. -->
+		<!-- não sei porque quando adicionamos essa dependencia o projeto deixa 
+			de ser um projeto web. Pos isso somente adicionaremos quando for executar 
+			algum teste. -->
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-servlet-api</artifactId>
@@ -233,7 +242,8 @@
 			<scope>runtime</scope>
 		</dependency>
 
-		<!-- JSR 330 é a especificação da injeção de dependencia. Significa que não pretendemos usar as Annotations do Spring , a não ser que seja necessário. -->
+		<!-- JSR 330 é a especificação da injeção de dependencia. Significa que 
+			não pretendemos usar as Annotations do Spring , a não ser que seja necessário. -->
 		<dependency>
 			<groupId>javax.inject</groupId>
 			<artifactId>javax.inject</artifactId>
@@ -309,7 +319,8 @@
 		<dependency>
 			<groupId>postgresql</groupId>
 			<artifactId>postgresql</artifactId>
-			<!-- Com essa linha abaixo, o arquivo de driver não foi copiado para a pasta lib da aplicação, consequentemente o war não foi completo -->
+			<!-- Com essa linha abaixo, o arquivo de driver não foi copiado para a 
+				pasta lib da aplicação, consequentemente o war não foi completo -->
 			<!-- <scope>provided</scope> -->
 			<version>8.4-701.jdbc3</version>
 		</dependency>
@@ -361,8 +372,8 @@
 					<artifactId>maven-compiler-plugin</artifactId>
 					<version>3.1</version>
 					<configuration>
-						<source>1.6</source>
-						<target>1.6</target>
+						<source>1.8</source>
+						<target>1.8</target>
 					</configuration>
 				</plugin>
 				<plugin>
@@ -429,7 +440,9 @@
 				</executions>
 			</plugin>
 
-			<!-- A longo prazo, será mais simples manter a minificação dos css e js com os plugins abaixo. Isso porque, dada a maneira que estamos criando a view, serão vários arquivos js. -->
+			<!-- A longo prazo, será mais simples manter a minificação dos css e js 
+				com os plugins abaixo. Isso porque, dada a maneira que estamos criando a 
+				view, serão vários arquivos js. -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>

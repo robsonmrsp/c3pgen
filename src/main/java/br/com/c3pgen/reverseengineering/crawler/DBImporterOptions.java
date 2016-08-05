@@ -7,6 +7,7 @@ import java.util.List;
 public class DBImporterOptions {
 
 	private List<String> excludeTableNames = new ArrayList<String>();
+	private List<String> tableNamesToImport = new ArrayList<String>();
 	private List<String> excludeColumnNames = new ArrayList<String>();
 	private List<String> includeSchemaNames = new ArrayList<String>();
 
@@ -60,6 +61,18 @@ public class DBImporterOptions {
 
 	public List<String> getIncludeSchemaNames() {
 		return includeSchemaNames;
+	}
+
+	public void addTableNamesToImport(String... e) {
+		getTableNamesToImport().addAll(Arrays.asList(e));
+	}
+
+	public List<String> getTableNamesToImport() {
+		return tableNamesToImport;
+	}
+
+	public void setTableNamesToImport(List<String> tableNamesToImport) {
+		this.tableNamesToImport = tableNamesToImport;
 	}
 
 }

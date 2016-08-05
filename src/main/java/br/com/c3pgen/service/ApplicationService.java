@@ -8,6 +8,7 @@ import br.com.c3pgen.model.Application;
 import br.com.c3pgen.model.Client;
 import br.com.c3pgen.persistence.pagination.Pager;
 import br.com.c3pgen.persistence.pagination.PaginationParams;
+import br.com.c3pgen.reverseengineering.crawler.DBImportResult;
 
 /**
  * generated: 03/09/2015 14:51:47
@@ -44,4 +45,7 @@ public interface ApplicationService {
 	Boolean ping(String url, String username, String password, String databaseType) throws Exception;
 
 	Application generateAppFromDataBase(String url, String username, String password, String databasetype, String supressPrefix, String tableRegex, String columnRegex) throws Exception;
+
+	DBImportResult generateYamlFromDataBase(String url, String username, String password, String databaseType, String supressPrefix, String tableRegex, String columnRegex) throws Exception;
+
 }

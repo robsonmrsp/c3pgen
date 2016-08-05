@@ -10,8 +10,8 @@ import org.hibernate.Criteria;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
-import br.com.c3pgen.model.Client;
 import br.com.c3pgen.model.ApplicationEntity;
+import br.com.c3pgen.model.Client;
 import br.com.c3pgen.model.filter.FilterTheEntity;
 import br.com.c3pgen.persistence.pagination.Pagination;
 import br.com.c3pgen.persistence.pagination.PaginationParams;

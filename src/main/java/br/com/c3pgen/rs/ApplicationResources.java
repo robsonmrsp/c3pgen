@@ -32,6 +32,7 @@ import br.com.c3pgen.model.filter.FilterApplication;
 import br.com.c3pgen.model.filter.FilterExtrationTools;
 import br.com.c3pgen.persistence.pagination.Pager;
 import br.com.c3pgen.persistence.pagination.PaginationParams;
+import br.com.c3pgen.reverseengineering.crawler.DBImportResult;
 import br.com.c3pgen.rs.exception.ValidationException;
 import br.com.c3pgen.security.SpringSecurityUserContext;
 import br.com.c3pgen.service.ApplicationService;
@@ -67,6 +68,27 @@ public class ApplicationResources {
 
 			JsonApplication jsonApplication = Parser.toJson(generateAppFromDataBase);
 			response = Response.ok(jsonApplication).build();
+		} catch (Exception e) {
+			String message = String.format("Não foi possivel carregar todos os registros[%s]", e.getMessage());
+			LOGGER.error(message, e);
+			response = Response.serverError().entity(new JsonError(message, null)).build();
+		}
+		return response;
+	}
+
+	@GET
+	@Path("extraction/extractyaml")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response generateYaml(@Context UriInfo uriInfo) {
+		Response response = null;
+		try {
+			PaginationParams<FilterExtrationTools> paginationParams = new PaginationParams<FilterExtrationTools>(uriInfo, FilterExtrationTools.class);
+			FilterExtrationTools filter = paginationParams.getFilter();
+			DBImportResult generateAppFromDataBase = applicationService.generateYamlFromDataBase(filter.getUrl(), filter.getUsername(), filter.getPassword(), filter.getDatabaseType(), filter.getSupressPrefix(), filter.getTableRegex(), filter.getColumnRegex());
+
+			response = Response.ok(generateAppFromDataBase).build();
+
 		} catch (Exception e) {
 			String message = String.format("Não foi possivel carregar todos os registros[%s]", e.getMessage());
 			LOGGER.error(message, e);

@@ -38,8 +38,17 @@ public class DBImporter {
 		this.password = password;
 		this.driverClassName = driverClassName;
 		this.singleConnectionDataSource = new SingleConnectionDataSource(url, username, password, true);
-		this.singleConnectionDataSource.setDriverClassName(driverClassName);
+		this.singleConnectionDataSource.setDriverClassName(getByType(driverClassName));
 
+	}
+
+	public static String getByType(String databasetype) {
+		if (databasetype.equalsIgnoreCase("postgressql"))
+			return "org.postgresql.Driver";
+		else if (databasetype.equalsIgnoreCase("oracle"))
+			return "oracle.jdbc.driver.OracleDriver";
+
+		return "org.postgresql.Driver";//
 	}
 
 	public String getUrl() {
@@ -58,7 +67,7 @@ public class DBImporter {
 		return driverClassName;
 	}
 
-	public DBImportResult extractToYaml(File folder, DBImporterOptions options) throws Exception {
+	public DBImportResult extractToYaml(DBImporterOptions options) throws Exception {
 		DBImportResult result = new DBImportResult();
 		List<String> fileLines = new ArrayList<String>();
 		String folderOutput = Util.currentDir() + File.separator + "temp" + File.separator + System.currentTimeMillis() + "_generate_in";
@@ -119,19 +128,28 @@ public class DBImporter {
 
 				}
 
-				String fileOutput = folderOutput + File.separator + "APP_" + nomeDaClasse + ".yaml";
-				result.addTableName(nomeDaClasse);
-				for (Iterator it = fileLines.iterator(); it.hasNext();) {
-					Object line = it.next();
-					if (line != null) {
-						System.out.println(line.toString());
-					}
+				// String fileOutput = folderOutput + File.separator + "APP_" + nomeDaClasse + ".yaml";
 
+				StringBuilder sb = new StringBuilder();
+				for (String s : fileLines) {
+					sb.append(s);
+					sb.append("\n");
 				}
-				IOUtils.writeLines(fileLines, null, new FileOutputStream(fileOutput));
+
+				System.out.println(sb);
+
+				result.add(new TableResult(nomeDaClasse, sb.toString()));
+				// for (Iterator it = fileLines.iterator(); it.hasNext();) {
+				// Object line = it.next();
+				// if (line != null) {
+				// System.out.println(line.toString());
+				// }
+				//
+				// }
+				// IOUtils.writeLines(fileLines, null, new StringBuFileOutputStream(fileOutput));
 				fileLines.clear();
 
-				System.out.println("Gerado " + fileOutput);
+				// System.out.println("Gerado " + fileOutput);
 
 			}
 		}
@@ -159,11 +177,22 @@ public class DBImporter {
 		crawlerOptions.setTableInclusionRule(new InclusionRule() {
 			@Override
 			public boolean test(String tableName) {
-				for (String regex : options.getExcludeTableNamePatterns()) {
-					if (tableName.matches(regex)) {
-						return false;
+				if (options.getTableNamesToImport().size() > 0) {
+					for (String regex : options.getTableNamesToImport()) {
+						if (tableName.endsWith(regex.trim())) {
+							return true;
+						}
+					}
+					return false;
+
+				} else {
+					for (String regex : options.getExcludeTableNamePatterns()) {
+						if (tableName.matches(regex)) {
+							return false;
+						}
 					}
 				}
+				System.out.println("Utilizando a tabela: " + tableName);
 				return true;
 			}
 		});
@@ -176,6 +205,7 @@ public class DBImporter {
 			}
 		});
 
+		
 		ArrayList<String> arrayList = new ArrayList<String>();
 		arrayList.add("TABLE");
 		crawlerOptions.setTableTypes(arrayList);

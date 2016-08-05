@@ -33,10 +33,7 @@ public class ImportDataBaseUT {
 		options.addExclusionTableNamePatterns("(.*)AUD", "(.*)aud");
 
 		options.setPrefixToSupress("GSH_PA_");
-		DBImportResult dbImportResult = dbImporter.extractToYaml(folder, options);
-
-		assertFalse("Não deveria haver nenhuma tabela de AUDITORIA", dbImportResult.containsTable("GSH_PA_BAIRRO_AUD"));
-		assertTrue("Deveria ter produzido algum resultado: ", dbImportResult.hasResult());
+		DBImportResult dbImportResult = dbImporter.extractToYaml(options);
 
 	}
 }

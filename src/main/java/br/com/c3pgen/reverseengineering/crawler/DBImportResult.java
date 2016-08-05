@@ -5,33 +5,18 @@ import java.util.List;
 
 public class DBImportResult {
 
-	private List<String> tableNames = new ArrayList<String>();
+	private List<TableResult> result = new ArrayList<>();
 
-	public boolean containsTable(String tableName) {
-		return tableNames.contains(tableName);
+	public List<TableResult> getResult() {
+		return result;
 	}
 
-	private List<String> columnNames = new ArrayList<String>();
-
-	public void addTableName(String element) {
-		getTableNames().add(element);
+	public void setResult(List<TableResult> result) {
+		this.result = result;
 	}
 
-	public void addColumnName(String element) {
-		getColumnNames().add(element);
-	}
-
-	public List<String> getTableNames() {
-		return tableNames;
-	}
-
-	public List<String> getColumnNames() {
-		return columnNames;
-	}
-
-	public boolean hasResult() {
-
-		return getTableNames().size() + getColumnNames().size() > 0;
+	public boolean add(TableResult e) {
+		return result.add(e);
 	}
 
 }

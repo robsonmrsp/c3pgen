@@ -10,8 +10,8 @@ import org.apache.log4j.Logger;
 import org.joda.time.LocalDateTime;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.c3pgen.model.Client;
 import br.com.c3pgen.model.ApplicationEntity;
+import br.com.c3pgen.model.Client;
 import br.com.c3pgen.persistence.DaoTheEntity;
 import br.com.c3pgen.persistence.pagination.Pager;
 import br.com.c3pgen.persistence.pagination.Pagination;

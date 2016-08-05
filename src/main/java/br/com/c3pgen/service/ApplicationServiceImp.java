@@ -21,6 +21,7 @@ import br.com.c3pgen.persistence.pagination.Pager;
 import br.com.c3pgen.persistence.pagination.Pagination;
 import br.com.c3pgen.persistence.pagination.PaginationParams;
 import br.com.c3pgen.reverseengineering.crawler.DBImportResult;
+import br.com.c3pgen.reverseengineering.crawler.DBImporter;
 import br.com.c3pgen.reverseengineering.crawler.DBImporterEntities;
 import br.com.c3pgen.reverseengineering.crawler.DBImporterOptions;
 
@@ -145,10 +146,36 @@ public class ApplicationServiceImp implements ApplicationService {
 		options.setPrefixToSupress(supressPrefix);
 
 		Application application = dbImporterEntities.extractToApplication(options);
-		
+
 		LOGGER.info("End extraction [ " + Arrays.asList("url= " + url, "username= " + username, "databasetype= " + databasetype, "supressPrefix= " + supressPrefix, "tabeRegex= " + tableRegex, "columnRegex= " + columnRegex) + " ]");
-		
+
 		return application;
+	}
+
+	public DBImportResult generateYamlFromDataBase(String url, String username, String password, String databasetype, String supressPrefix, String tableRegex, String columnRegex) throws Exception {
+
+		LOGGER.info("Start extraction [ " + Arrays.asList("url= " + url, "username= " + username, "databasetype= " + databasetype, "supressPrefix= " + supressPrefix, "tabeRegex= " + tableRegex, "columnRegex= " + columnRegex) + " ]");
+		DBImporter dbImporterEntities = new DBImporter(url, username, password, databasetype);
+
+		DBImporterOptions options = new DBImporterOptions();
+
+		if (databasetype.toUpperCase().contains("ORACLE"))
+			options.addInclusionSchemaName(username);
+		else {
+			options.addInclusionSchemaName("public");
+		}
+
+		options.addExclusionColumnNamePatterns(columnRegex.split(";"));
+		// options.addExclusionTableNamePatterns(tableRegex.split(";"));
+		options.addTableNamesToImport(tableRegex.split(";"));
+
+		options.setPrefixToSupress(supressPrefix);
+
+		DBImportResult extractToYaml = dbImporterEntities.extractToYaml(options);
+
+		LOGGER.info("End extraction [ " + Arrays.asList("url= " + url, "username= " + username, "databasetype= " + databasetype, "supressPrefix= " + supressPrefix, "tabeRegex= " + tableRegex, "columnRegex= " + columnRegex) + " ]");
+
+		return extractToYaml;
 	}
 
 	@Override

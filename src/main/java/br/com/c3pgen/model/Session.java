@@ -21,9 +21,9 @@ import org.hibernate.annotations.Type;
 import org.hibernate.envers.Audited;
 import org.joda.time.LocalDateTime;
 
-import br.com.c3pgen.serialization.CustomLocalDateTimeSerializer;
-
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import br.com.c3pgen.serialization.CustomLocalDateTimeSerializer;
 
 /**
 * generated: 03/09/2015 14:51:49

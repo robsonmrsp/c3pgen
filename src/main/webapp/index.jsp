@@ -103,26 +103,6 @@
 											</a>
 										</td>
 									</tr>
-<!-- 									<tr> -->
-<!-- 										<td> -->
-<!-- 											<a href="forum.html"> -->
-<!-- 												<i class="pe pe-7s-comment text-info"></i> -->
-<!-- 												<h5>Forum</h5> -->
-<!-- 											</a> -->
-<!-- 										</td> -->
-<!-- 										<td> -->
-<!-- 											<a href="analytics.html"> -->
-<!-- 												<i class="pe pe-7s-graph1 text-danger"></i> -->
-<!-- 												<h5>Analytics</h5> -->
-<!-- 											</a> -->
-<!-- 										</td> -->
-<!-- 										<td> -->
-<!-- 											<a href="file_manager.html"> -->
-<!-- 												<i class="pe pe-7s-box1 text-success"></i> -->
-<!-- 												<h5>Files</h5> -->
-<!-- 											</a> -->
-<!-- 										</td> -->
-<!-- 									</tr> -->
 								</tbody>
 							</table>
 						</div>
@@ -151,57 +131,10 @@
 							</li>
 						</ul>
 					</li>
-					<!-- 					<li> -->
-					<!-- 						<a href="#" id="sidebar" class="right-sidebar-toggle"> -->
-					<!-- 							<i class="pe-7s-upload pe-7s-news-paper"></i> -->
-					<!-- 						</a> -->
-					<!-- 					</li> -->
-					<!-- 					<li class="dropdown"> -->
-					<!-- 						<a href="login.html"> -->
-					<!-- 							<i class="pe-7s-upload pe-rotate-90"></i> -->
-					<!-- 						</a> -->
-					<!-- 					</li> -->
 				</ul>
 			</div>
 		</nav>
 	</div>
-	<!-- Navigation -->
-	<!-- 	<aside id="menu"> -->
-	<!-- 		<div id="navigation"> -->
-	<!-- 			<div class="profile-picture"> -->
-	<!-- 				<a href="index.jsp"> -->
-	<!-- 										<img src="http://webapplayers.com/homer_admin-v1.5/images/profile.jpg" class="img-circle m-b" alt="logo"> -->
-	<!-- 				</a> -->
-	<!-- 				<div class="stats-label text-color"> -->
-	<!-- 										<span class="font-extra-bold font-uppercase">Chico de Toinha</span> -->
-	<!-- 					<div class="dropdown"> -->
-	<!-- 												<a class="dropdown-toggle" href="#" data-toggle="dropdown"> -->
-	<!-- 													<small class="text-muted"> -->
-	<!-- 														Usuário -->
-	<!-- 														<b class="caret"></b> -->
-	<!-- 													</small> -->
-	<!-- 												</a> -->
-	<!-- 					</div> -->
-	<!-- 				</div> -->
-	<!-- 			</div> -->
-	<!-- 			<ul class="nav" id="side-menu"> -->
-	<!-- 				<li class="active"> -->
-	<!-- 										<a href="#"> -->
-	<!-- 											<span class="nav-label">Aplicações</span> -->
-	<!-- 																	<span class="fa arrow"></span> -->
-	<!-- 										</a> -->
-	<!-- 					<ul class="nav nav-second-level collapse" aria-expanded="true"> -->
-	<!-- 						<li class=""> -->
-	<!-- 							<a id="applications" href="#app/applications"> -->
-	<!-- 								<i class="fa fa-file-text-o fa-3x"></i> -->
-	<!-- 							</a> -->
-	<!-- 							<b class="arrow"></b> -->
-	<!-- 						</li> -->
-	<!-- 					</ul> -->
-	<!-- 				</li> -->
-	<!-- 			</ul> -->
-	<!-- 		</div> -->
-	<!-- 	</aside> -->
 	<!-- Main Wrapper -->
 	<div id="wrapper">
 		<div class="content animate-panel main-content"></div>

@@ -46,6 +46,8 @@ require.config({
 		// 'shapesErd' : '../vendor/joint/joint.shapes.erd',
 		'lodash' : '../vendor/lodash/lodash',
 		'download' : '../vendor/download/download',
+		'codemirror' : '../vendor/CodeMirror-4_beta2/lib/codemirror',
+		'codemirrorYaml' : '../vendor/CodeMirror-4_beta2/mode/yaml/yaml',
 	},
 	shim : {
 		'underscore' : {
@@ -57,6 +59,10 @@ require.config({
 		'backgrid' : {
 			deps : [ 'backbone' ],
 			exports : 'Backgrid'
+		},
+
+		'codemirrorYaml' : {
+			deps : [ 'codemirror' ],
 		},
 
 		'moment' : {
@@ -142,8 +148,8 @@ require.config({
 });
 requirejs.onResourceLoad = function(context, map, depArray) {
 	// var duration = new Date() - start;
-//	console.log("Carregando...", depArray);
-//	console.log("Carregando...", map.id);
+	// console.log("Carregando...", depArray);
+	// console.log("Carregando...", map.id);
 }
 require([ 'App' ], function(App) {
 	App.initialize();

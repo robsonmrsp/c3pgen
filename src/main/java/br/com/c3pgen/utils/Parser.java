@@ -21,7 +21,9 @@ import br.com.c3pgen.json.JsonCliente;
 import br.com.c3pgen.json.JsonEndereco;
 import br.com.c3pgen.json.JsonEstado;
 import br.com.c3pgen.json.JsonItem;
+import br.com.c3pgen.json.JsonItemModulo;
 import br.com.c3pgen.json.JsonItemType;
+import br.com.c3pgen.json.JsonModulo;
 import br.com.c3pgen.json.JsonOperation;
 import br.com.c3pgen.json.JsonPais;
 import br.com.c3pgen.json.JsonPermission;
@@ -44,7 +46,9 @@ import br.com.c3pgen.model.Cliente;
 import br.com.c3pgen.model.Endereco;
 import br.com.c3pgen.model.Estado;
 import br.com.c3pgen.model.Item;
+import br.com.c3pgen.model.ItemModulo;
 import br.com.c3pgen.model.ItemType;
+import br.com.c3pgen.model.Modulo;
 import br.com.c3pgen.model.Operation;
 import br.com.c3pgen.model.Pais;
 import br.com.c3pgen.model.Permission;
@@ -53,7 +57,6 @@ import br.com.c3pgen.model.Role;
 import br.com.c3pgen.model.Session;
 import br.com.c3pgen.model.User;
 import br.com.c3pgen.model.ViewApproach;
-import br.com.c3pgen.rs.TheEntityResources;
 
 //saporra
 public class Parser {
@@ -1791,5 +1794,136 @@ public class Parser {
 		}
 		return jsonUsers;
 	}
+	//converte de entidade para json --------------------
+		private static JsonItemModulo toBasicJson(ItemModulo itemModulo) {
+			JsonItemModulo jsonItemModulo = new JsonItemModulo();
+			applyBasicJsonValues(jsonItemModulo, itemModulo);
+			return jsonItemModulo;
+		}
+		
+		private static ItemModulo toBasicEntity(JsonItemModulo jsonItemModulo) {
+			ItemModulo itemModulo = new ItemModulo();
+			applyBasicEntityValues(itemModulo, jsonItemModulo);
+			return itemModulo;
+		}
+		
+		private static void applyBasicJsonValues(JsonItemModulo jsonItemModulo, ItemModulo itemModulo) {
+			jsonItemModulo.setId(itemModulo.getId());
+		    jsonItemModulo.setName(itemModulo.getName());
+		    jsonItemModulo.setYamlContent(itemModulo.getYamlContent());
+		}	
+		private static void applyBasicEntityValues(ItemModulo itemModulo, JsonItemModulo jsonItemModulo) {
+			itemModulo.setId(jsonItemModulo.getId());
+			itemModulo.setName(jsonItemModulo.getName());
+			itemModulo.setYamlContent(jsonItemModulo.getYamlContent());
+		}	
+		
+		public static JsonItemModulo toJson(ItemModulo itemModulo) {
+			JsonItemModulo jsonItemModulo = new JsonItemModulo();
+
+			applyBasicJsonValues(jsonItemModulo, itemModulo);
+
+			Modulo modulo_ = itemModulo.getModulo();
+			if (modulo_ != null) {
+				jsonItemModulo.setModulo(toJson(modulo_));
+			}
+			return jsonItemModulo;
+		}
+
+
+		public static ItemModulo apply(ItemModulo itemModulo, JsonItemModulo jsonItemModulo) {
+		
+			if(itemModulo ==  null)
+				itemModulo = new ItemModulo();
+			
+			applyBasicEntityValues(itemModulo, jsonItemModulo) ;
+
+			JsonModulo modulo_ = jsonItemModulo.getModulo();
+			if (modulo_ != null) {
+				itemModulo.setModulo(toEntity(modulo_));
+			}	
+			return itemModulo;
+			
+		}		
+		public static ItemModulo toEntity(JsonItemModulo jsonItemModulo) {
+			ItemModulo itemModulo = new ItemModulo();
+			
+			return apply(itemModulo, jsonItemModulo);
+		}		
+		
+		public static List<JsonItemModulo> toListJsonItemModulos(List<ItemModulo> all) {
+			List<JsonItemModulo> jsonItemModulos = new ArrayList<JsonItemModulo>();
+			for (ItemModulo itemModulo : all) {
+				jsonItemModulos.add(toJson(itemModulo));
+			}
+			return jsonItemModulos;
+		}
+		//converte de entidade para json --------------------
+		private static JsonModulo toBasicJson(Modulo modulo) {
+			JsonModulo jsonModulo = new JsonModulo();
+			applyBasicJsonValues(jsonModulo, modulo);
+			return jsonModulo;
+		}
+		
+		private static Modulo toBasicEntity(JsonModulo jsonModulo) {
+			Modulo modulo = new Modulo();
+			applyBasicEntityValues(modulo, jsonModulo);
+			return modulo;
+		}
+		
+		private static void applyBasicJsonValues(JsonModulo jsonModulo, Modulo modulo) {
+			jsonModulo.setId(modulo.getId());
+		    jsonModulo.setNome(modulo.getNome());
+		}	
+		private static void applyBasicEntityValues(Modulo modulo, JsonModulo jsonModulo) {
+			modulo.setId(jsonModulo.getId());
+			modulo.setNome(jsonModulo.getNome());
+		}	
+		
+		public static JsonModulo toJson(Modulo modulo) {
+			JsonModulo jsonModulo = new JsonModulo();
+
+			applyBasicJsonValues(jsonModulo, modulo);
+
+			List<ItemModulo> listItems = modulo.getItems();
+			if (listItems != null) {
+				for (ItemModulo loopItemModulo : listItems) {
+					jsonModulo.getItems().add(toBasicJson(loopItemModulo));
+				}
+			}
+			return jsonModulo;
+		}
+
+
+		public static Modulo apply(Modulo modulo, JsonModulo jsonModulo) {
+		
+			if(modulo ==  null)
+				modulo = new Modulo();
+			
+			applyBasicEntityValues(modulo, jsonModulo) ;
+
+			ArrayList<JsonItemModulo> listItems = jsonModulo.getItems();
+			if (listItems != null) {
+				for (JsonItemModulo loopJsonItemModulo : listItems) {
+					modulo.addItems(toBasicEntity(loopJsonItemModulo));
+				}
+			}
+						
+			return modulo;
+			
+		}		
+		public static Modulo toEntity(JsonModulo jsonModulo) {
+			Modulo modulo = new Modulo();
+			
+			return apply(modulo, jsonModulo);
+		}		
+		
+		public static List<JsonModulo> toListJsonModulos(List<Modulo> all) {
+			List<JsonModulo> jsonModulos = new ArrayList<JsonModulo>();
+			for (Modulo modulo : all) {
+				jsonModulos.add(toJson(modulo));
+			}
+			return jsonModulos;
+		}
 
 }

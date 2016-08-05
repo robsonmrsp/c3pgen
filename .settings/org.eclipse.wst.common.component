@@ -1,10 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="2.0">
   <wb-module deploy-name="c3pgen-1.0-SNAPSHOT">
     <property name="context-root" value="c3pgen"/>
     <wb-resource deploy-path="/" source-path="src/main/webapp"/>
     <wb-resource deploy-path="/" source-path="produ"/>
     <property name="java-output-path" value="/target/classes"/>
     <dependent-module archiveName="guava-19.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/com/google/guava/guava/19.0/guava-19.0.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="ojdbc6-11.2.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/com/oracle/ojdbc6/11.2.0/ojdbc6-11.2.0.jar">
       <dependency-type>uses</dependency-type>
     </dependent-module>
     <dependent-module archiveName="schemacrawler-14.09.01.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/us/fatehi/schemacrawler/14.09.01/schemacrawler-14.09.01.jar">
@@ -306,6 +310,5 @@
     </dependent-module>
     <wb-resource deploy-path="/WEB-INF/classes" source-path="src/main/java"/>
     <wb-resource deploy-path="/WEB-INF/classes" source-path="src/main/resources"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/java"/>
   </wb-module>
 </project-modules>

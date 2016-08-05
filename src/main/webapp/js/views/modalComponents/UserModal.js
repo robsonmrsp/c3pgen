@@ -1,4 +1,4 @@
-/* generated: 30/08/2015 20:23:12 */
+/* generated: 05/08/2016 15:59:17 */
 define(function(require) {
 	// Start "Import´s" Definition"
 	var _ = require('adapters/underscore-adapter');
@@ -33,9 +33,9 @@ define(function(require) {
 		},
 
 		regions : {
-			counterRegion : '#counter',
-			gridRegion : '#grid-user',
-			paginatorRegion : '#paginator-user',
+			counterRegion : 	'#counter-user',
+			gridRegion : 		'#grid-user',
+			paginatorRegion : 	'#paginator-user',
 		},
 
 		ui : {
@@ -131,13 +131,6 @@ define(function(require) {
 				label 	 : "Ativo",
 				cell 	 : "string",
 			}, 
-			{
-				name : "image",
-				editable : false,
-				sortable : true,
-				label 	 : "Imagem",
-				cell 	 : "string",
-			}, 
 			];
 			return columns;
 		},
@@ -148,7 +141,6 @@ define(function(require) {
 			util.clear('inputModalUsername'); 
 			util.clear('inputModalPassword'); 
 			util.clear('inputModalEnable'); 
-			util.clear('inputModalImage'); 
 			util.scrollUpModal();
 		},
 
@@ -158,7 +150,6 @@ define(function(require) {
 	    		username : util.escapeById('inputModalUsername'),
 	    		password : util.escapeById('inputModalPassword'),
 	    		enable : util.escapeById('inputModalEnable'),
-	    		image : util.escapeById('inputModalImage'),
 			};
 
 			this.userCollection.fetch({

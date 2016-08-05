@@ -54,7 +54,7 @@ public class DBImporterEntities {
 
 	}
 
-	private String getByType(String databasetype) {
+	public static String getByType(String databasetype) {
 		if (databasetype.equalsIgnoreCase("postgressql"))
 			return "org.postgresql.Driver";
 		else if (databasetype.equalsIgnoreCase("oracle"))

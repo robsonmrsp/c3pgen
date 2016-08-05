@@ -8,9 +8,9 @@ import javax.persistence.MappedSuperclass;
 import org.hibernate.annotations.Type;
 import org.joda.time.LocalDateTime;
 
-import br.com.c3pgen.serialization.CustomLocalDateTimeSerializer;
-
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import br.com.c3pgen.serialization.CustomLocalDateTimeSerializer;
 
 @MappedSuperclass
 public abstract class AbstractTimestampEntity implements Serializable {

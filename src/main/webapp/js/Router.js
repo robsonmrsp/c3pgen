@@ -92,6 +92,7 @@ define(function(require) {
 	var UserModel = require('models/UserModel');
 
 	var PageVisual = require('views/visual/PageVisual');
+	var PageHelpGenerateYaml = require('views/helpGenerateYaml/PageHelpGenerateYaml');
 
 	util.NProgress.setBlockerPanel('block_panel');
 
@@ -213,6 +214,8 @@ define(function(require) {
 			'app/users' : 'users',
 			'app/newUser' : 'newUser',
 			'app/editUser/:id' : 'editUser',
+
+			'app/helpGenerateYaml/:appId' : 'helpGenerateYaml',
 		},
 		initialize : function() {
 			this.App = new Marionette.Application();
@@ -1507,6 +1510,13 @@ define(function(require) {
 				itemSubFolderName : 'Formulário de cadastro',
 				url : 'app/users'
 			});
+		},
+
+		helpGenerateYaml : function(appId) {
+			this.pageHelpGenerateYaml = new PageHelpGenerateYaml({
+				appId : appId,
+			});
+			this.App.mainRegion.show(this.pageHelpGenerateYaml);
 		},
 
 		editUser : function(idUser) {

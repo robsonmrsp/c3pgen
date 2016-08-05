@@ -1,0 +1,93 @@
+<div class="hpanel hblue">
+	<div id="messages_div"></div>
+	<div class="panel-body">
+		<form class="formConfig">
+			<div id="messages_div"></div>
+			<div class="hpanel" style="margin-bottom: 0px;">
+				<div class="panel-heading">
+					<div class="panel-tools">
+						<a class="showhide">
+							<i class="fa fa-chevron-up"></i>
+						</a>
+						<a class="closebox">
+							<i class="fa fa-times"></i>
+						</a>
+					</div>
+					Banco de dados
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div id="groupInputDatabaseType" class="form-group col-xs-2 col-sm-2">
+							<label class="control-label" for="inputModalName">Tipo</label>
+							<select id="inputDatabaseType" class="form-control validate[required]">
+								<option value="POSTGRES">Postgres</option>
+								<option selected value="ORACLE">Oracle</option>
+							</select>
+						</div>
+						<div id="groupInputDatabaseUrl" class="form-group col-xs-4 col-sm-4">
+							<label class="control-label" for="inputDatabaseUrl">url</label>
+							<input type="text" id="inputDatabaseUrl" placeholder="Url" class="form-control validate[required]" value="jdbc:oracle:thin:@192.168.0.55:1521:gshjava">
+						</div>
+						<div id="groupInputDatabaseUsername" class="form-group col-xs-2 col-sm-2">
+							<label class="control-label" for="inputModalName">Usuario</label>
+							<input type="text" id="inputDatabaseUsername" placeholder="usuário do banco de dados" class="form-control validate[required]" value="ROBSON">
+						</div>
+						<div id="groupInputDatabasePassword" class="form-group col-xs-2 col-sm-2">
+							<label class="control-label" for="inputDatabasePassword">Senha</label>
+							<input type="password" id="inputDatabasePassword" placeholder="Senha do banco de dados " class="form-control validate[required]" value="gsh">
+						</div>
+						<div class="" id="spinApplication" class="form-group col-xs-2 col-sm-2">
+							<a href="javascript:void(0)" id="btnConnectionTest" class="btn btn-primary btn-xs">
+								<i class="fa fa-database" aria-hidden="true"></i>
+								Testar Conexão
+							</a>
+						</div>
+					</div>
+					<div class="panel-heading">Exceções</div>
+					<div class="panel-body">
+						<div class="row">
+							<div id="groupInputDatabaseTableNameExceptions" class="form-group col-xs-4 col-sm-4">
+								<label class="control-label" for="inputDatabaseTableNameExceptions">Nomes de tabelas (regex*)</label>
+								<textarea type="text" id="inputDatabaseTableNameExceptions" rows="3" placeholder="Nomes de tabelas (regex*)" class="form-control"> GSH_GER_BAIRRO;GSH_GER_CIDADE </textarea>
+							</div>
+							<div id="groupInputDatabaseColumnNameExceptions" class="form-group col-xs-4 col-sm-4">
+								<div class="hpanel" style="margin-bottom: 0px;"></div>
+								<div class="form-actions spinner" id="spinApplication">
+									<a href="javascript:void(0)" id="btnImportApplication" class="btn w-xs btn-success">
+										<i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i>
+										Importar
+									</a>
+									<a href="javascript:void(0)" class="btn w-xs btn-warning clos" data-dismiss="modal">
+										<i class="fa fa-times "></i>
+										Cancelar
+									</a>
+								</div>
+							</div>
+
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+
+			<div class=" row">
+				<div id="grid" class=" col-xs-6 col-sm-6"></div>
+			</div>
+			<div class="hpanel">
+				<div class="panel-heading">
+					Editor de arquivos YAML
+					<strong>
+						[[
+						<span class="yaml-name"> </span>
+						]]
+					</strong>
+				</div>
+
+				<div class="panel-body">
+					<textarea id="code" name="code"></textarea>
+				</div>
+			</div>
+	</div>
+</div>
+</form>
