@@ -91,17 +91,17 @@
 											</a>
 										</td>
 										<td>
-											<a href="mailbox.html">
-												<i class="pe pe-7s-mail text-warning"></i>
-												<h5>Email</h5>
+											<a href="#app/modulos">
+												<i class="pe pe-7s-network text-warning"></i>
+												<h5>Módulos</h5>
 											</a>
 										</td>
-										<td>
-											<a href="contacts.html">
-												<i class="pe pe-7s-users text-success"></i>
-												<h5>Contacts</h5>
-											</a>
-										</td>
+<!-- 										<td> -->
+<!-- 											<a href="contacts.html"> -->
+<!-- 												<i class="pe pe-7s-users text-success"></i> -->
+<!-- 												<h5>Contacts</h5> -->
+<!-- 											</a> -->
+<!-- 										</td> -->
 									</tr>
 								</tbody>
 							</table>

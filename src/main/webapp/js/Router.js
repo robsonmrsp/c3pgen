@@ -91,6 +91,18 @@ define(function(require) {
 	var FormUser = require('views/user/FormUser');
 	var UserModel = require('models/UserModel');
 
+	var PageItemModulo = require('views/itemModulo/PageItemModulo');
+	var FormItemModulo = require('views/itemModulo/FormItemModulo');
+	var ItemModuloModel = require('models/ItemModuloModel');
+
+	var PageModulo = require('views/modulo/PageModulo');
+	var FormModulo = require('views/modulo/FormModulo');
+	var ModuloModel = require('models/ModuloModel');
+
+	var PageUser = require('views/user/PageUser');
+	var FormUser = require('views/user/FormUser');
+	var UserModel = require('models/UserModel');
+
 	var PageVisual = require('views/visual/PageVisual');
 	var PageHelpGenerateYaml = require('views/helpGenerateYaml/PageHelpGenerateYaml');
 
@@ -210,6 +222,19 @@ define(function(require) {
 			'app/sessions' : 'sessions',
 			'app/newSession' : 'newSession',
 			'app/editSession/:id' : 'editSession',
+			// hashs de User
+			'app/users' : 'users',
+			'app/newUser' : 'newUser',
+			'app/editUser/:id' : 'editUser',
+
+			// hashs de ItemModulo
+			'app/itemModulos' : 'itemModulos',
+			'app/newItemModulo' : 'newItemModulo',
+			'app/editItemModulo/:id' : 'editItemModulo',
+			// hashs de Modulo
+			'app/modulos' : 'modulos',
+			'app/newModulo' : 'newModulo',
+			'app/editModulo/:id' : 'editModulo',
 			// hashs de User
 			'app/users' : 'users',
 			'app/newUser' : 'newUser',
@@ -1481,6 +1506,125 @@ define(function(require) {
 					itemLabel : 'Sessionos',
 					itemSubFolderName : 'Formulário de atualização',
 					url : 'app/sessions'
+				});
+			}
+		},
+		// configuração das rotas de ItemModulo
+		itemModulos : function() {
+			util.markActiveItem('itemModulos');
+			this.pageItemModulo = new PageItemModulo();
+			this.App.mainRegion.show(this.pageItemModulo);
+			util.breadcrumb({
+				iconClass : 'fa-desktop',
+				itemLabel : 'Item do Módulo',
+				itemSubFolderName : 'Grid',
+				url : 'app/itemModulos'
+			});
+		},
+
+		newItemModulo : function() {
+			util.markActiveItem('itemModulos');
+			var formItemModulo = new FormItemModulo({
+				model : new ItemModuloModel(),
+			});
+			this.App.mainRegion.show(formItemModulo);
+			util.breadcrumb({
+				iconClass : 'fa-desktop',
+				itemLabel : 'Item do Módulo',
+				itemSubFolderName : 'Formulário de cadastro',
+				url : 'app/itemModulos'
+			});
+		},
+
+		editItemModulo : function(idItemModulo) {
+			var that = this;
+			util.markActiveItem('itemModulos');
+			var formItemModulo = null;
+			if (this.pageItemModulo) {
+				formItemModulo = new FormItemModulo({
+					model : this.pageItemModulo.itemModulos.get(idItemModulo),
+				});
+				that.App.mainRegion.show(formItemModulo);
+			} else {
+				var model = new ItemModuloModel({
+					id : idItemModulo,
+				})
+				model.fetch({
+					success : function(model) {
+						formItemModulo = new FormItemModulo({
+							model : model,
+						});
+						that.App.mainRegion.show(formItemModulo);
+					},
+					error : function(x, y, z) {
+						console.error(x, y, z);
+					}
+				})
+				util.breadcrumb({
+					iconClass : 'fa-calendar',
+					itemLabel : 'ItemModuloos',
+					itemSubFolderName : 'Formulário de atualização',
+					url : 'app/itemModulos'
+				});
+			}
+		},
+
+		// configuração das rotas de Modulo
+		modulos : function() {
+			util.markActiveItem('modulos');
+			this.pageModulo = new PageModulo();
+			this.App.mainRegion.show(this.pageModulo);
+			util.breadcrumb({
+				iconClass : 'fa-desktop',
+				itemLabel : 'Módulo',
+				itemSubFolderName : 'Grid',
+				url : 'app/modulos'
+			});
+		},
+
+		newModulo : function() {
+			util.markActiveItem('modulos');
+			var formModulo = new FormModulo({
+				model : new ModuloModel(),
+			});
+			this.App.mainRegion.show(formModulo);
+			util.breadcrumb({
+				iconClass : 'fa-desktop',
+				itemLabel : 'Módulo',
+				itemSubFolderName : 'Formulário de cadastro',
+				url : 'app/modulos'
+			});
+		},
+
+		editModulo : function(idModulo) {
+			var that = this;
+			util.markActiveItem('modulos');
+			var formModulo = null;
+			if (this.pageModulo) {
+				formModulo = new FormModulo({
+					model : this.pageModulo.modulos.get(idModulo),
+				});
+				that.App.mainRegion.show(formModulo);
+			} else {
+				var model = new ModuloModel({
+					id : idModulo,
+				})
+				model.fetch({
+					success : function(model) {
+						formModulo = new FormModulo({
+							model : model,
+						});
+						that.App.mainRegion.show(formModulo);
+					},
+					error : function(x, y, z) {
+						console.error(x, y, z);
+					}
+				})
+				util.breadcrumb({
+					iconClass : 'fa-calendar',
+					itemLabel : 'Moduloos',
+					itemSubFolderName : 'Formulário de atualização',
+					url : 'app/modulos'
 				});
 			}
 		},

@@ -164,9 +164,9 @@ public class Parser {
 			</#if>
 
 		<#elseif rel.type == 'ManyToOne' ||  rel.type == 'OneToOne' >
-		${firstUpper(rel.model)} ${firstLower(rel.name)!firstLower(rel.model)} = ${firstLower(entity.name)}.get${firstUpper(rel.name)!firstLower(rel.model)}();
-		if (${firstLower(rel.name)!firstLower(rel.model)} != null) {
-			json${firstUpper(entity.name)}.set${firstUpper(rel.name)!firstLower(rel.model)}(toJson(${firstLower(rel.name)!firstLower(rel.model)}));
+		${firstUpper(rel.model)} ${firstLower(rel.name)!firstLower(rel.model)}_ = ${firstLower(entity.name)}.get${firstUpper(rel.name)!firstLower(rel.model)}();
+		if (${firstLower(rel.name)!firstLower(rel.model)}_ != null) {
+			json${firstUpper(entity.name)}.set${firstUpper(rel.name)!firstLower(rel.model)}(toJson(${firstLower(rel.name)!firstLower(rel.model)}_));
 		}
 		</#if>
 	</#list>
@@ -210,9 +210,9 @@ public class Parser {
 			
 			</#if>
 			<#elseif rel.type == 'ManyToOne' || rel.type == 'OneToOne'>
-		Json${firstUpper(rel.model)} ${firstLower(rel.name)!firstLower(rel.model)} = json${firstUpper(entity.name)}.get${firstUpper(rel.name)!firstLower(rel.model)}();
-		if (${firstLower(rel.name)!firstLower(rel.model)} != null) {
-			${firstLower(entity.name)}.set${firstUpper(rel.name)!firstLower(rel.model)}(toEntity(${firstLower(rel.name)!firstLower(rel.model)}));
+		Json${firstUpper(rel.model)} ${firstLower(rel.name)!firstLower(rel.model)}_ = json${firstUpper(entity.name)}.get${firstUpper(rel.name)!firstLower(rel.model)}();
+		if (${firstLower(rel.name)!firstLower(rel.model)}_ != null) {
+			${firstLower(entity.name)}.set${firstUpper(rel.name)!firstLower(rel.model)}(toEntity(${firstLower(rel.name)!firstLower(rel.model)}_));
 		}	
 			</#if>
 		</#list>

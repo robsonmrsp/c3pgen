@@ -60,9 +60,6 @@ define(function(require) {
 
 		initialize : function() {
 			var that = this;
-			var entities = new EntityCollection(this.model.get('entities'));
-
-			var applicationRelationships = new ApplicationRelationshipCollection(this.model.get('applicationRelationships'));
 
 			this.inspetorView = new InspetorEntidadesView({
 				model : new EntityModel({
@@ -75,7 +72,7 @@ define(function(require) {
 
 			this.on('show', function() {
 				this.inspectorRegion.show(this.inspetorView);
-				 this.inspectorRelationamentosRegion.show(this.inspectorRelationamentosView);
+				this.inspectorRelationamentosRegion.show(this.inspectorRelationamentosView);
 				this.graph = new Joint.dia.Graph();
 
 				window.paper = new Joint.dia.Paper({
@@ -92,24 +89,23 @@ define(function(require) {
 					}
 				});
 
-				// somente para garantir que tudo estará setando antes de
-				// adicionar as entidades ao painter
-				entities.each(function(ent) {
-					that.addEntity(ent);
-				});
-
-				// TODO ver se é necessário
-				applicationRelationships.each(function(apprel) {
-					that.addRelationship(apprel);
-				});
-
-				// Provavelmente será jancado o evendo de criação de
-				// relacionamento a partir da telinha de inspetor.
-				util.VENT.on('entity.add.rel', function(/* HtmlEntity */entityVSourceDiagram, /* HtmlEntity */entityVTargetDiagram, /* ApplicationRelationshipModel */applicationRelationshipModel) {
-
-					that.addRelation(entityVSourceDiagram, entityVTargetDiagram, applicationRelationshipModel);
-				})
+				that.addApplicationToVisual(this.model);
 			});
+		},
+
+		addApplicationToVisual : function(applicationModel) {
+			var that = this;
+
+			var entities = new EntityCollection(applicationModel.get('entities'));
+			var applicationRelationships = new ApplicationRelationshipCollection(applicationModel.get('applicationRelationships'));
+
+			entities.each(function(ent) {
+				that.addEntity(ent);
+			});
+			applicationRelationships.each(function(apprel) {
+				that.addRelationship(apprel);
+			});
+
 		},
 
 		saveApplication : function() {
@@ -131,7 +127,8 @@ define(function(require) {
 			this.application.save({}, {
 
 				success : function(_model, _resp, _options) {
-					console.log("Applicação salva com sucesso!");
+					that.graph.clear();
+					that.addApplicationToVisual(_model);
 				},
 				error : function(_model, _resp, _options) {
 					util.showMessage('error', 'Problema ao salvar registro: ' + util.getJson(_resp.responseText).legalMessage || '');
@@ -152,7 +149,8 @@ define(function(require) {
 			return lastPositionX
 		},
 
-		addRelation : function(/* HtmlEntity */source, /* HtmlEntity */target, /* RelationsipModel */relModel) {
+		addRelation : function(/* HtmlEntity */source, /* HtmlEntity */
+		target, /* RelationsipModel */relModel) {
 
 			var that = this;
 
@@ -175,7 +173,8 @@ define(function(require) {
 
 		},
 
-		// addRelationship : function(/* applicationRelationshipModel */appRel) {
+		// addRelationship : function(/* applicationRelationshipModel
+		// */appRel) {
 		// var visualRelation = new VisualRelationship({
 		// applicationRelationshipModel : appRel,
 		// });
