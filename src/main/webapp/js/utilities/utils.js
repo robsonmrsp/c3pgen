@@ -251,6 +251,24 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 			})
 		},
 
+		showSuccessMessage : function(message, containerMessage) {
+			this.showMessage('success', message, containerMessage);
+		},
+		showErrorMessage : function(message, xhr, containerMessage) {
+			var _xhrMessage = '';
+
+			if (xhr) {
+				if (this.getJson(xhr.responseText).legalMessage) {
+					_xhrMessage = this.getJson(xhr.responseText).legalMessage;
+				} else {
+					this.showMessage('error', message, containerMessage);
+				}
+				this.logError(xhr);
+			} else {
+				this.showMessage('error', message, containerMessage);
+			}
+		},
+
 		// Para uso dessa função é necessário a existencia de um div com
 		// id="messages"
 		showMessage : function(type, message, containerMessage) {

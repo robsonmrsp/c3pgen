@@ -15,6 +15,7 @@ import br.com.c3pgen.model.ApplicationEntity;
 import br.com.c3pgen.model.ApplicationRelationship;
 import br.com.c3pgen.model.Attribute;
 import br.com.c3pgen.model.AttributeType;
+import br.com.c3pgen.model.Modulo;
 import br.com.c3pgen.model.Relationship;
 import br.com.c3pgen.model.ViewApproach;
 import br.com.c3pgen.utils.DateUtil;
@@ -59,6 +60,13 @@ public class GenService {
 		role.addRelationships(new Relationship("users", "", "ManyToMany", "roles", "User", false, ViewApproach.multiselectInstance()));
 
 		return role;
+	}
+
+	public GenerateFileInfo generate(Modulo modulo) throws Exception {
+
+		Application applicationFrom = Util.getApplicationFrom(modulo);
+
+		return generate(applicationFrom);
 	}
 
 	public GenerateFileInfo generate(Application application) throws Exception {
@@ -150,4 +158,5 @@ public class GenService {
 
 		return Boolean.TRUE;
 	}
+
 }

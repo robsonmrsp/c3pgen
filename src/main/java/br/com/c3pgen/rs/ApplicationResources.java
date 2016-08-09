@@ -28,6 +28,7 @@ import br.com.c3pgen.json.JsonError;
 import br.com.c3pgen.json.JsonOk;
 import br.com.c3pgen.json.JsonPaginator;
 import br.com.c3pgen.model.Application;
+import br.com.c3pgen.model.Modulo;
 import br.com.c3pgen.model.filter.FilterApplication;
 import br.com.c3pgen.model.filter.FilterExtrationTools;
 import br.com.c3pgen.persistence.pagination.Pager;
@@ -36,6 +37,7 @@ import br.com.c3pgen.reverseengineering.crawler.DBImportResult;
 import br.com.c3pgen.rs.exception.ValidationException;
 import br.com.c3pgen.security.SpringSecurityUserContext;
 import br.com.c3pgen.service.ApplicationService;
+import br.com.c3pgen.service.ModuloService;
 import br.com.c3pgen.utils.Parser;
 
 /**
@@ -47,6 +49,9 @@ public class ApplicationResources {
 
 	@Inject
 	ApplicationService applicationService;
+
+	@Inject
+	ModuloService moduloService;
 
 	@Inject
 	private SpringSecurityUserContext context;
@@ -132,6 +137,32 @@ public class ApplicationResources {
 			response = Response.ok(jsonApplications).build();
 		} catch (Exception e) {
 			String message = String.format("Não foi possivel carregar todos os registros[%s]", e.getMessage());
+			LOGGER.error(message, e);
+			response = Response.serverError().entity(new JsonError(message, null)).build();
+		}
+		return response;
+	}
+
+	@GET
+	@Path("moduleGenerator/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response moduleGenerator(@PathParam("id") Integer id, @Context HttpServletRequest httpServletRequest) {
+		Response response = null;
+		try {
+			String uploadFolder = httpServletRequest.getServletContext().getRealPath("/");
+			Util.setCurrentDir(uploadFolder);
+
+			Modulo modulo = moduloService.get(id);
+
+			GenerateFileInfo pathFile = genService.generate(modulo);
+
+			if (pathFile.getGenerateSuccess()) {
+				response = Response.ok(new JsonOk(pathFile.getStaticFilePath())).build();
+			} else {
+				response = Response.serverError().entity(new JsonError(pathFile.getApplicationValidatorMessages().toString(), null, pathFile.getApplicationValidatorMessages().toString())).build();
+			}
+		} catch (Exception e) {
+			String message = String.format("Não foi possivel gerar a aplicação [%s]", e.getMessage());
 			LOGGER.error(message, e);
 			response = Response.serverError().entity(new JsonError(message, null)).build();
 		}
@@ -310,13 +341,14 @@ public class ApplicationResources {
 		}
 	}
 }
-// Ao criar um relacionamento, será criado um model que guarda tudo aquilo necessário para construir um relacionamento.
+// Ao criar um relacionamento, será criado um model que guarda tudo aquilo
+// necessário para construir um relacionamento.
 //
 // origem, destino, informacoes da origem e informacoes do destino
 //
 //
-// usar o evento change/ refazer essa parte para evitar chamadas de redesenho. diminuir o acoplamento e
+// usar o evento change/ refazer essa parte para evitar chamadas de redesenho.
+// diminuir o acoplamento e
 // deixar o observer fazer seu papel
 //
 // O nosso model só será instanciado uma vez .
-

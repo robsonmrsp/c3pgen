@@ -1,4 +1,4 @@
-entid.td-actions {
+.td-actions {
 	max-width: 80px !important;
 	width: 200px !important;
 	text-align: center !important;
@@ -443,4 +443,10 @@ body {
 	width: 1920px;
 	/* 	height: 1024px impo; */
 	overflow: scroll;
+}
+.CodeMirror {
+  /* Set height, width, borders, and global font properties here */
+  font-family: monospace;
+  font-size : 15px;
+  height: 500px;
 }

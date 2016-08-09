@@ -43,6 +43,12 @@ public class ApplicationEntity extends AbstractTimestampEntity {
 	@Column(name = "DISPLAY_NAME")
 	private String displayName;
 
+	@Column(name = "SEQUENCE_NAME")
+	private String sequence;
+
+	@Column(name = "PRIMARY_KEY_NAME")
+	private String pk;
+
 	@Column(name = "TABLE_NAME")
 	private String tableName;
 
@@ -300,6 +306,22 @@ public class ApplicationEntity extends AbstractTimestampEntity {
 		} else if (!tableName.equals(other.tableName))
 			return false;
 		return true;
+	}
+
+	public String getSequence() {
+		return sequence;
+	}
+
+	public void setSequence(String sequence) {
+		this.sequence = sequence;
+	}
+
+	public String getPk() {
+		return pk;
+	}
+
+	public void setPk(String pk) {
+		this.pk = pk;
 	}
 
 }

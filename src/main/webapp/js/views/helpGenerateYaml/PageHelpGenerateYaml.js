@@ -24,7 +24,7 @@ define(function(require) {
 		},
 
 		regions : {
-			gridRegion : '#grid',
+		// gridRegion : '#grid',
 
 		},
 
@@ -36,23 +36,17 @@ define(function(require) {
 			inputDatabaseTableNameExceptions : '#inputDatabaseTableNameExceptions',
 			inputDatabaseColumnNameExceptions : '#inputDatabaseColumnNameExceptions',
 			inputSupressPrefix : '#inputSupressPrefix',
-			modalScreen : '.modal',
-
 			yamlName : '.yaml-name',
+
+			modalScreen : '.modal',
 
 			form : '.formConfig',
 		},
 
 		initialize : function(opt) {
 			var that = this;
+			this.onExtract = opt.onExtract;
 			this.context = opt.context;
-			this.tableYamlsCollection = new BaseCollection();
-			this.grid = new Backgrid.Grid({
-				className : 'table table-striped table-bordered table-hover dataTable no-footer backgrid ',
-				columns : this._getColumns(),
-				emptyText : "Sem registros",
-				collection : this.tableYamlsCollection
-			});
 
 			this.on('show', function() {
 				this.ui.form.validationEngine('attach', {
@@ -60,42 +54,6 @@ define(function(require) {
 					isOverflown : false,
 					validationEventTrigger : "change"
 				});
-
-				this.gridRegion.show(this.grid);
-
-				// var editor =
-				// CodeMirror.fromTextArea(document.getElementById("code"), {
-				// lineNumbers : true,
-				// styleActiveLine : true,
-				// mode : "text/javascript",
-				// matchBrackets : true
-				// });
-
-				this.editor = CodeMirror.fromTextArea(document.getElementById("code"), {
-					mode : 'text/x-yaml',
-					lineNumbers : true,
-					selectionPointer : true
-				});
-
-				// remover e enviar para o utils
-				$('.showhide').click(function(event) {
-					event.preventDefault();
-					var hpanel = $(this).closest('div.hpanel');
-					var icon = $(this).find('i:first');
-					var body = hpanel.find('div.panel-body');
-					var footer = hpanel.find('div.panel-footer');
-					body.slideToggle(300);
-					footer.slideToggle(200);
-
-					// Toggle icon from up to down
-					icon.toggleClass('fa-chevron-up').toggleClass('fa-chevron-down');
-					hpanel.toggleClass('').toggleClass('panel-collapse');
-					setTimeout(function() {
-						hpanel.resize();
-						hpanel.find('[id^=map-]').resize();
-					}, 50);
-				});
-
 			});
 		},
 		_getColumns : function() {
@@ -154,14 +112,14 @@ define(function(require) {
 				applicationModel.fetch({
 					success : function(_model, pingOk) {
 						if (pingOk) {
-							util.showMessage('info', 'Sucesso na conexão!');
+							util.showMessage('info', 'Sucesso na conexão!', 'messages_modal_div');
 							if (_.isFunction(callSuccess)) {
 								callSuccess.call(that, _model);
 							}
 						}
 					},
 					error : function(_model, _resp) {
-						util.showMessage('error', "Não foi possivel conectar a base de dados");
+						util.showMessage('error', "Não foi possivel conectar a base de dados", 'messages_modal_div');
 						console.log('não pingou', _resp.responseJSON.errorMessage);
 					},
 					data : {
@@ -176,7 +134,7 @@ define(function(require) {
 				});
 			} else {
 				console.log('Verifique campos em destaque!');
-				util.showMessage('error', 'Verifique campos em destaque!');
+				util.showMessage('error', 'Verifique campos em destaque!', 'messages_modal_div');
 			}
 		},
 
@@ -186,8 +144,8 @@ define(function(require) {
 			applicationModel.url = 'rs/crud/applications/extraction/extractyaml';
 			applicationModel.fetch({
 				success : function(_model, _resp) {
-					console.log(_resp);
-					that.tableYamlsCollection.reset(_resp.result);
+					util.showMessage('info', 'Sucesso ao extrair [ ' + _resp.length + ' ] tabelas', 'messages_modal_div');
+					that.onExtract.call(that.context, _resp.result);
 				},
 				error : function(_model, _resp) {
 					util.showMessage('error', "Não foi possivel extrair a base de dados");

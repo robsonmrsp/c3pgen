@@ -19,6 +19,8 @@ import schemacrawler.schema.ColumnDataType;
 import br.com.c3pgen.model.Application;
 import br.com.c3pgen.model.ApplicationEntity;
 import br.com.c3pgen.model.Attribute;
+import br.com.c3pgen.model.ItemModulo;
+import br.com.c3pgen.model.Modulo;
 import br.com.c3pgen.model.Relationship;
 
 import com.esotericsoftware.yamlbeans.YamlReader;
@@ -271,63 +273,81 @@ public class Util {
 		return user;
 	}
 
-	public static Application getApplicationFromFolder(String folderName) {
+	public static Application getApplicationFrom(Modulo modulo) {
 
-		File configFile = createFile(folderName);
+		Application application = modulo.getApplication();
 
+		String configFile = createFile(modulo);
 		YamlReader reader;
-		Application entities = null;
 		try {
-			reader = new YamlReader(new FileReader(configFile));
+			reader = new YamlReader(configFile);
 
 			reader.getConfig().setPropertyElementType(Application.class, "entities", ApplicationEntity.class);
 			reader.getConfig().setPropertyElementType(ApplicationEntity.class, "attributes", Attribute.class);
 			reader.getConfig().setPropertyElementType(ApplicationEntity.class, "relationships", Relationship.class);
 
-			entities = reader.read(Application.class);
+			application = reader.read(Application.class);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return entities;
+
+		return application;
 	}
 
-	private static File createFile(String appName) {
-		File folderIn = new File(currentDir() + File.separator + "in" + File.separator + appName);
-		File fileConfig = new File(currentDir() + File.separator + "in" + File.separator + appName + File.separator + "config.yaml");
+	// public static Application getApplicationFromFolder(String folderName) {
+	//
+	// File configFile = createFile(folderName);
+	//
+	// YamlReader reader;
+	// Application entities = null;
+	// try {
+	// reader = new YamlReader(new FileReader(configFile));
+	//
+	// reader.getConfig().setPropertyElementType(Application.class, "entities",
+	// ApplicationEntity.class);
+	// reader.getConfig().setPropertyElementType(ApplicationEntity.class,
+	// "attributes", Attribute.class);
+	// reader.getConfig().setPropertyElementType(ApplicationEntity.class,
+	// "relationships", Relationship.class);
+	//
+	// entities = reader.read(Application.class);
+	//
+	// } catch (Exception e) {
+	// e.printStackTrace();
+	// }
+	// return entities;
+	// }
 
-		File destFile = new File(currentDir() + File.separator + "conf" + File.separator + appName + ".yaml");
-
+	private static String createFile(Modulo modulo) {
+		StringBuilder destFileWriter = new StringBuilder();
 		try {
-			FileWriter destFileWriter = new FileWriter(destFile, true);
 
-			if (fileConfig.exists()) {
-				FileUtils.copyFile(fileConfig, destFile);
-				destFileWriter.write("\n");
-				destFileWriter.write("entities:");
-				destFileWriter.close();
-			}
+			destFileWriter.append("appName: AghosWeb");
+			destFileWriter.append("\n");
+			destFileWriter.append("skin: b2");
+			destFileWriter.append("\n");
+			destFileWriter.append("view: backbone");
+			destFileWriter.append("\n");
+			destFileWriter.append("rootPackage: br.com.gsh.aghos.appTeste");
+			destFileWriter.append("\n");
+			destFileWriter.append("corePackage: br.com.gsh.aghos.core");
+			destFileWriter.append("\n");
+			destFileWriter.append("persistenceFramework : mybatis");
+			destFileWriter.append("\n");
+			destFileWriter.append("entities:");
+			destFileWriter.append("\n");
 
-			if (folderIn.isDirectory()) {
-				for (File f : folderIn.listFiles()) {
-					if (!f.getName().equals("config.yaml") && f.getName().endsWith("yaml")) {
-						copyFile(destFile, f);
-					}
-				}
-				try {
-					// copyFile(destFile, new File(currentDir() +
-					// "/src/main/resources/core.yaml"));
-				} catch (Exception e) {
-					System.out.println("Não gerado CORE do sistema");
-				}
+			for (ItemModulo itemModulo : modulo.getItems()) {
+				destFileWriter.append(itemModulo.getYamlContent());
+				destFileWriter.append("\n");
 			}
 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		return destFile;
+		return destFileWriter.toString();
 	}
 
 	public static List<ApplicationEntity> getTheEntity() {
@@ -376,5 +396,9 @@ public class Util {
 		}
 
 		return "String";
+	}
+
+	public static void getApplicationFromFolder(Application appli, List<ItemModulo> items) {
+
 	}
 }

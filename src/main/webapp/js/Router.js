@@ -63,9 +63,9 @@ define(function(require) {
 	var FormCliente = require('views/cliente/FormCliente');
 	var ClienteModel = require('models/ClienteModel');
 
-	var PageItem = require('views/item/PageItem');
-	var FormItem = require('views/item/FormItem');
-	var ItemModel = require('models/ItemModel');
+//	var PageItem = require('views/item/PageItem');
+//	var FormItem = require('views/item/FormItem');
+//	var ItemModel = require('models/ItemModel');
 
 	var PageItemType = require('views/itemType/PageItemType');
 	var FormItemType = require('views/itemType/FormItemType');
@@ -1151,64 +1151,64 @@ define(function(require) {
 		},
 
 		// configuração das rotas de Item
-		items : function() {
-			util.markActiveItem('items');
-			this.pageItem = new PageItem();
-			this.App.mainRegion.show(this.pageItem);
-			util.breadcrumb({
-				iconClass : 'fa-desktop',
-				itemLabel : 'Item',
-				itemSubFolderName : 'Grid',
-				url : 'app/items'
-			});
-		},
-
-		newItem : function() {
-			util.markActiveItem('items');
-			var formItem = new FormItem({
-				model : new ItemModel(),
-			});
-			this.App.mainRegion.show(formItem);
-			util.breadcrumb({
-				iconClass : 'fa-desktop',
-				itemLabel : 'Item',
-				itemSubFolderName : 'Formulário de cadastro',
-				url : 'app/items'
-			});
-		},
-
-		editItem : function(idItem) {
-			var that = this;
-			util.markActiveItem('items');
-			var formItem = null;
-			if (this.pageItem) {
-				formItem = new FormItem({
-					model : this.pageItem.items.get(idItem),
-				});
-				that.App.mainRegion.show(formItem);
-			} else {
-				var model = new ItemModel({
-					id : idItem,
-				})
-				model.fetch({
-					success : function(model) {
-						formItem = new FormItem({
-							model : model,
-						});
-						that.App.mainRegion.show(formItem);
-					},
-					error : function(x, y, z) {
-						console.error(x, y, z);
-					}
-				})
-				util.breadcrumb({
-					iconClass : 'fa-calendar',
-					itemLabel : 'Itemos',
-					itemSubFolderName : 'Formulário de atualização',
-					url : 'app/items'
-				});
-			}
-		},
+//		items : function() {
+//			util.markActiveItem('items');
+//			this.pageItem = new PageItem();
+//			this.App.mainRegion.show(this.pageItem);
+//			util.breadcrumb({
+//				iconClass : 'fa-desktop',
+//				itemLabel : 'Item',
+//				itemSubFolderName : 'Grid',
+//				url : 'app/items'
+//			});
+//		},
+//
+//		newItem : function() {
+//			util.markActiveItem('items');
+//			var formItem = new FormItem({
+//				model : new ItemModel(),
+//			});
+//			this.App.mainRegion.show(formItem);
+//			util.breadcrumb({
+//				iconClass : 'fa-desktop',
+//				itemLabel : 'Item',
+//				itemSubFolderName : 'Formulário de cadastro',
+//				url : 'app/items'
+//			});
+//		},
+//
+//		editItem : function(idItem) {
+//			var that = this;
+//			util.markActiveItem('items');
+//			var formItem = null;
+//			if (this.pageItem) {
+//				formItem = new FormItem({
+//					model : this.pageItem.items.get(idItem),
+//				});
+//				that.App.mainRegion.show(formItem);
+//			} else {
+//				var model = new ItemModel({
+//					id : idItem,
+//				})
+//				model.fetch({
+//					success : function(model) {
+//						formItem = new FormItem({
+//							model : model,
+//						});
+//						that.App.mainRegion.show(formItem);
+//					},
+//					error : function(x, y, z) {
+//						console.error(x, y, z);
+//					}
+//				})
+//				util.breadcrumb({
+//					iconClass : 'fa-calendar',
+//					itemLabel : 'Itemos',
+//					itemSubFolderName : 'Formulário de atualização',
+//					url : 'app/items'
+//				});
+//			}
+//		},
 
 		// configuração das rotas de ItemType
 		itemTypes : function() {

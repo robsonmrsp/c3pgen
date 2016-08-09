@@ -121,7 +121,7 @@ public class DBImporter {
 					fileLines.add("    type: ManyToOne");
 					fileLines.add("    model: " + Util.firstUpperCase(CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, tableName)) + "                       ");
 					fileLines.add("    displayName: " + Util.firstUpperCase(tableName) + "                       ");
-					fileLines.add("    viewAproach:   ");
+					fileLines.add("    viewApproach:   ");
 					fileLines.add("      type: modal ");
 					fileLines.add("      hiddenField: id ");
 					fileLines.add("      textField: nome ");

@@ -19,7 +19,7 @@
 							</ol>
 							<!-- Wrapper for slides -->
 							<div class="carousel-inner" role="listbox">
-								<div class="item active" skin="Inspinia">
+								<div class="item " skin="Inspinia">
 									<img src="images/templates/inspinia.png" alt="Inspinia">
 									<div class="carousel-caption">
 										<h3 style="font-size: 60px; color: #6a6c6f">Inspinia</h3>
@@ -37,7 +37,7 @@
 										<h3 style="font-size: 60px; color: #6a6c6f">Sprflat</h3>
 									</div>
 								</div>
-								<div class="item" skin="Ace">
+								<div class="item active" skin="Ace">
 									<img src="images/templates/ace.png" alt="Ace">
 									<div class="carousel-caption">
 										<h3 style="font-size: 60px; color: #6a6c6f">Ace</h3>
@@ -64,21 +64,25 @@
 				</div>
 				<div class="panel-body">
 					<input type="hidden" id="inputId" value="{{id}}">
-					<div id="groupInputSkin" class="form-group">
-						<label class="control-label" for="inputSkin">Template</label>
-						<input type="text" id="inputSkin" placeholder="Template" value="{{skin || 'Inspinia'}}" class="form-control" readonly="readonly">
-					</div>
+<!-- 					<div id="groupInputSkin" class="form-group"> -->
+<!-- 						<label class="control-label" for="inputSkin">Template</label> -->
+<!-- 						<input type="text" id="inputSkin" placeholder="Template" value="{{skin || 'Inspinia'}}" class="form-control" readonly="readonly"> -->
+<!-- 					</div> -->
 					<div id="groupInputName" class="form-group">
 						<label class="control-label" for="inputName">Nome</label>
 						<input type="text" id="inputName" placeholder="Nome" value="{{name}}" class="form-control  validate[required]">
 					</div>
 					<div id="groupInputName" class="form-group">
 						<label class="control-label" for="inputName">Descrição</label>
-						<textarea id="inputDescription" rows="4" placeholder="Nome" value="{{description}}" class="form-control  "> {{description}}</textarea>
+						<textarea id="inputDescription" rows="3" placeholder="Nome" value="{{description}}" class="form-control  "> {{description}}</textarea>
 					</div>
 					<div id="groupInputRootPackage" class="form-group">
 						<label class="control-label" for="inputRootPackage">Pacote raiz</label>
 						<input type="text" id="inputRootPackage" placeholder="Pacote raiz" value="{{rootPackage}}" class="form-control  validate[required]">
+					</div>
+					<div id="groupInputCorePackage" class="form-group">
+						<label class="control-label" for="inputCorePackage">Pacote base</label>
+						<input type="text" id="inputCorePackage" placeholder="Pacote raiz" value="{{corePackage}}" class="form-control  validate[required]">
 					</div>
 				</div>
 			</div>

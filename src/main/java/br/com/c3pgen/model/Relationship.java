@@ -69,8 +69,20 @@ public class Relationship extends AbstractTimestampEntity {
 	@Column(name = "MODEL")
 	private String model;
 
-	@Column(name = "UNIDIRECIONAL")
+	@Column(name = "UNI_DIRECIONAL")
 	private Boolean uniDirecional;
+
+	@Column(name = "UNIDIRECIONAL")
+	private Boolean showInPages = Boolean.TRUE;
+
+	@Column(name = "FOREING_KEY_NAME")
+	private String fk;
+
+	@Column(name = "TABLE_JOIN_FIELD_NAME")
+	private String tableJoinFieldName; // mybatis
+
+	@Column(name = "TABLE_FIELD_NAME")
+	private String tableFieldName; // mybatis
 
 	@ManyToOne
 	@JoinColumn(name = "ID_ENTITY")
@@ -226,6 +238,38 @@ public class Relationship extends AbstractTimestampEntity {
 		} else if (!name.equals(other.name))
 			return false;
 		return true;
+	}
+
+	public Boolean getShowInPages() {
+		return showInPages;
+	}
+
+	public void setShowInPages(Boolean showInPages) {
+		this.showInPages = showInPages;
+	}
+
+	public String getFk() {
+		return fk;
+	}
+
+	public void setFk(String fk) {
+		this.fk = fk;
+	}
+
+	public String getTableJoinFieldName() {
+		return tableJoinFieldName;
+	}
+
+	public void setTableJoinFieldName(String tableJoinFieldName) {
+		this.tableJoinFieldName = tableJoinFieldName;
+	}
+
+	public String getTableFieldName() {
+		return tableFieldName;
+	}
+
+	public void setTableFieldName(String tableFieldName) {
+		this.tableFieldName = tableFieldName;
 	}
 
 }

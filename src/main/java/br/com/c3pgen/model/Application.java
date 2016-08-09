@@ -71,6 +71,15 @@ public class Application extends AbstractTimestampEntity {
 	@Cascade(CascadeType.ALL)
 	private Set<ApplicationRelationship> applicationRelationships;
 
+	@Column(name = "CORE_PACKAGE")
+	private String corePackage;
+
+	@Column(name = "BOOTSTRAP_VERSION")
+	private String bootstrapVersion = "3";
+
+	@Column(name = "PERSISTENCE_FRAMEWORK")
+	private String persistenceFramework = "hibernate";
+
 	@ManyToOne
 	@JoinColumn(name = "id_client")
 	private Client owner;
@@ -201,6 +210,39 @@ public class Application extends AbstractTimestampEntity {
 
 	public void setApplicationRelationships(Set<ApplicationRelationship> applicationRelationships) {
 		this.applicationRelationships = applicationRelationships;
+	}
+
+	public String getCorePackage() {
+		if (corePackage == null) {
+			setCorePackage(getRootPackage());
+		}
+		return corePackage;
+	}
+
+	public void setCorePackage(String corePackage) {
+		this.corePackage = corePackage;
+	}
+
+	public String getBootstrapVersion() {
+		if (bootstrapVersion == null) {
+			setBootstrapVersion("3");
+		}
+		return bootstrapVersion;
+	}
+
+	public void setBootstrapVersion(String bootstrapVersion) {
+		this.bootstrapVersion = bootstrapVersion;
+	}
+
+	public String getPersistenceFramework() {
+		if (persistenceFramework == null) {
+			setPersistenceFramework("hibernate");
+		}
+		return persistenceFramework;
+	}
+
+	public void setPersistenceFramework(String persistenceFramework) {
+		this.persistenceFramework = persistenceFramework;
 	}
 
 }
