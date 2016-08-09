@@ -1,4 +1,4 @@
-package ${application.rootPackage}.model;
+package ${application.corePackage}.model;
 
 import java.io.Serializable;
 
@@ -14,7 +14,7 @@ import org.hibernate.annotations.Type;
 import org.hibernate.envers.Audited;
 import org.joda.time.LocalDateTime;
 
-import ${application.rootPackage}.serialization.CustomLocalDateTimeSerializer;
+import ${application.corePackage}.serialization.CustomLocalDateTimeSerializer;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 

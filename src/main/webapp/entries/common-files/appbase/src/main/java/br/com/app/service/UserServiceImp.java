@@ -1,4 +1,4 @@
-package ${application.rootPackage}.service;
+package ${application.corePackage}.service;
 
 import java.util.List;
 

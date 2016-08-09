@@ -1,4 +1,4 @@
-package ${application.rootPackage}.persistence;
+package ${application.corePackage}.persistence;
 
 public interface ColumnDefinitions {
 

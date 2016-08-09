@@ -18,8 +18,8 @@ define(function(require) {
 	var ${entity.name}PageCollection = require('collections/${entity.name}PageCollection');
 	<#list entity.attributes as att>
 	<#if att.showInPages >
-		<#if att.viewAproach?? >
-			<#if att.viewAproach.type == 'combo'>		
+		<#if att.viewApproach?? >
+			<#if att.viewApproach.type == 'combo'>		
 	var ${att.type.className}Collection = require('collections/${att.type.className}Collection');
 			</#if>
 		</#if>
@@ -28,8 +28,8 @@ define(function(require) {
 	<#if entity.relationships??>	
 	<#list entity.relationships as rel>
 	<#if rel.showInPages >
-		<#if rel.viewAproach?? >
-			<#if rel.viewAproach.type  == 'combo'  >
+		<#if rel.viewApproach?? >
+			<#if rel.viewApproach.type  == 'combo'  >
 	var ${rel.model}Collection = require('collections/${rel.model}Collection');			
 			</#if>
 		</#if>
@@ -39,8 +39,8 @@ define(function(require) {
 
 	<#list entity.attributes as att>
 	<#if att.showInPages >
-		<#if att.viewAproach?? >
-			<#if att.viewAproach.type == 'combo'>		
+		<#if att.viewApproach?? >
+			<#if att.viewApproach.type == 'combo'>		
 	var ${att.type.className}Collection = require('collections/${att.type.className}Collection');
 			</#if>
 		</#if>
@@ -62,16 +62,16 @@ define(function(require) {
 		},
 
 		regions : {
-			counterRegion : '#counter',
-			gridRegion : '#grid-${firstLower(entity.name)}',
-			paginatorRegion : '#paginator-${firstLower(entity.name)}',
+			counterRegion : 	'#counter-${firstLower(entity.name)}',
+			gridRegion : 		'#grid-${firstLower(entity.name)}',
+			paginatorRegion : 	'#paginator-${firstLower(entity.name)}',
 		},
 
 		ui : {
 		<#list entity.attributes as att>
     		inputModal${firstUpper(att.name)} : '#inputModal${firstUpper(att.name)}',
-    		<#if att.viewAproach?? >
-				<#if att.viewAproach.type == 'datepicker'>			
+    		<#if att.viewApproach?? >
+				<#if att.viewApproach.type == 'datepicker'>			
 			groupInputModal${firstUpper(att.name)} : '#groupInputModal${firstUpper(att.name)}',
 				</#if>
 			</#if>
@@ -81,8 +81,8 @@ define(function(require) {
 		<#if rel.showInPages >
 			<#if rel.type == 'OneToMany'>
 			<#elseif rel.type == 'ManyToOne'>
-				<#if rel.viewAproach?? >
-					<#if rel.viewAproach.type  == 'combo'  >
+				<#if rel.viewApproach?? >
+					<#if rel.viewApproach.type  == 'combo'  >
 			inputModal${firstUpper(rel.model)} : '#inputModal${firstUpper(rel.model)}', 
 					</#if>
 				</#if>
@@ -141,8 +141,8 @@ define(function(require) {
 				that.paginatorRegion.show(that.paginator);
 						<#list entity.attributes as att>
 						<#if att.showInPages >
-		  <#if att.viewAproach?? >
-			<#if att.viewAproach.type == 'datepicker'>		
+		  <#if att.viewApproach?? >
+			<#if att.viewApproach.type == 'datepicker'>		
 				this.ui.groupInputModal${firstUpper(att.name)}.datetimepicker({
 				<#if att.type.className == 'Date'>		
 					pickTime : false,
@@ -156,14 +156,14 @@ define(function(require) {
 					language : 'pt_BR',
 				});
 			</#if>
-			<#if att.viewAproach.type == 'combo'>		
+			<#if att.viewApproach.type == 'combo'>		
 				var combo${firstUpper(att.name)} = new Combobox({
 					el : this.ui.inputModal${firstUpper(att.name)},
-				   <#if att.viewAproach.values??>
-				    values : ${toListString(att.viewAproach.values)}
+				   <#if att.viewApproach.values??>
+				    values : ${toListString(att.viewApproach.values)}
 					<#else>
-					comboId : '${(att.viewAproach.comboId)!'id'}',
-					comboVal : '${(att.viewAproach.comboVal)!'name'}',
+					comboId : '${(att.viewApproach.comboId)!'id'}',
+					comboVal : '${(att.viewApproach.comboVal)!'name'}',
 					collectionEntity : ${att.type.className}Collection, 
 					</#if>
 				});
@@ -181,15 +181,15 @@ define(function(require) {
 		<#if rel.showInPages >
 			<#if rel.type == 'OneToMany'>
 			<#elseif rel.type == 'ManyToOne'>
-				<#if rel.viewAproach?? >
-					<#if rel.viewAproach.type  == 'combo'  >
+				<#if rel.viewApproach?? >
+					<#if rel.viewApproach.type  == 'combo'  >
 				var combo${firstUpper(rel.model)} = new Combobox({
 					el : this.ui.inputModal${firstUpper(rel.model)},
-				   <#if rel.viewAproach.values??>
-				    values : '${toString(rel.viewAproach.values)}'
+				   <#if rel.viewApproach.values??>
+				    values : '${toString(rel.viewApproach.values)}'
 					<#else>
-					comboId : '${(rel.viewAproach.comboId)!'id'}',
-					comboVal : '${(rel.viewAproach.comboVal)!'name'}',
+					comboId : '${(rel.viewApproach.comboId)!'id'}',
+					comboVal : '${(rel.viewApproach.comboVal)!'name'}',
 					collectionEntity : ${firstUpper(rel.model)}Collection, //provavelmente vá ocorrer um erro pois ${rel.model}Collection não foi declarado
 					</#if>
 				});
@@ -242,8 +242,8 @@ define(function(require) {
 		<#if entity.relationships??>	
 		<#list entity.relationships as rel >
 		<#if rel.showInPages >
-			<#if rel.viewAproach?? >
-				<#if rel.viewAproach.type  == 'combo'  >
+			<#if rel.viewApproach?? >
+				<#if rel.viewApproach.type  == 'combo'  >
 			util.clear('inputModal${firstUpper(rel.name)}'); 					 	
 				</#if>
 			</#if>

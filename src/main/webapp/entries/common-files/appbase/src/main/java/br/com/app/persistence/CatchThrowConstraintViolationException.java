@@ -1,12 +1,13 @@
-package ${application.rootPackage}.persistence;
+package ${application.corePackage}.persistence;
 
 import java.util.regex.Matcher;
+
 import java.util.regex.Pattern;
 
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.aop.ThrowsAdvice;
 
-import ${application.rootPackage}.rs.exception.ValidationException;
+import ${application.corePackage}.rs.exception.ValidationException;
 
 /**
  * 

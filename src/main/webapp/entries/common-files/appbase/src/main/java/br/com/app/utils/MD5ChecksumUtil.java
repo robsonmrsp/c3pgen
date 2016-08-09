@@ -1,6 +1,7 @@
-package ${application.rootPackage}.utils;
+package ${application.corePackage}.utils;
 
 import java.io.File;
+
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.security.MessageDigest;

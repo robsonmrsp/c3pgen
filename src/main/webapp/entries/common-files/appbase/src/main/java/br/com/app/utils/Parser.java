@@ -1,6 +1,7 @@
-package ${application.rootPackage}.utils;
+package ${application.corePackage}.utils;
 
 import java.util.ArrayList;
+
 
 import java.util.List;
 
@@ -13,8 +14,8 @@ import org.joda.time.format.DateTimeFormatter;
 import ${application.rootPackage}.json.Json${firstUpper(entity.name)};
 import ${application.rootPackage}.model.${firstUpper(entity.name)};
 </#list>
-import ${application.rootPackage}.model.User;
-import ${application.rootPackage}.json.JsonUser;
+import ${application.corePackage}.model.User;
+import ${application.corePackage}.json.JsonUser;
 
 public class Parser {
 

@@ -1,6 +1,7 @@
-package ${application.rootPackage}.persistence;
+package ${application.corePackage}.persistence;
 
 import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,10 +16,10 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.joda.time.LocalDateTime;
 
-import ${application.rootPackage}.persistence.HibernateDao;
-import ${application.rootPackage}.persistence.pagination.Pagination;
-import ${application.rootPackage}.persistence.pagination.PaginationParams;
-import ${application.rootPackage}.persistence.pagination.Paginator;
+import ${application.corePackage}.persistence.HibernateDao;
+import ${application.corePackage}.persistence.pagination.Pagination;
+import ${application.corePackage}.persistence.pagination.PaginationParams;
+import ${application.corePackage}.persistence.pagination.Paginator;
 
 @SuppressWarnings("unchecked")
 public class HibernateDao<Entity> {

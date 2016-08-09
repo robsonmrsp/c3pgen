@@ -1,6 +1,7 @@
-package ${application.rootPackage}.persistence;
+package ${application.corePackage}.persistence;
 
 import javax.annotation.PostConstruct;
+
 
 import org.hibernate.SessionFactory;
 import org.hibernate.event.service.spi.EventListenerRegistry;
@@ -14,9 +15,9 @@ import org.joda.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import ${application.rootPackage}.security.UserContext;
-import ${application.rootPackage}.model.AbstractTimestampEntity;
-import ${application.rootPackage}.security.UserContext;
+import ${application.corePackage}.security.UserContext;
+import ${application.corePackage}.model.AbstractTimestampEntity;
+import ${application.corePackage}.security.UserContext;
 
 @Component
 public class HibernateEventWiring {

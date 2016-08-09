@@ -158,6 +158,9 @@ public class Attribute extends AbstractTimestampEntity {
 	}
 
 	public Boolean getRequired() {
+		if (required == null) {
+			setRequired(Boolean.FALSE);
+		}
 		return required;
 	}
 
@@ -166,6 +169,9 @@ public class Attribute extends AbstractTimestampEntity {
 	}
 
 	public Boolean getUnique() {
+		if (unique == null) {
+			setUnique(Boolean.FALSE);
+		}
 		return unique;
 	}
 

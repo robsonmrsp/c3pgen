@@ -28,8 +28,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-import ${package}.serialization.CustomLocalDateSerializer;
-import ${package}.serialization.CustomLocalDateTimeSerializer;
+import ${corepackage}.serialization.CustomLocalDateSerializer;
+import ${corepackage}.serialization.CustomLocalDateTimeSerializer;
+import ${corepackage}.model.AbstractTimestampEntity;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
@@ -120,7 +121,7 @@ public class ${entity.name} extends AbstractTimestampEntity{
     private List<${firstUpper(rel.model)}> ${(rel.name)!firstLower(rel.model)};
 			<#else>
     @ManyToMany
-        	<#if rel.viewAproach?? >
+        	<#if rel.viewApproach?? >
     @Cascade(value = CascadeType.ALL)
 			</#if>
 				<#if dataBasePrefix??>

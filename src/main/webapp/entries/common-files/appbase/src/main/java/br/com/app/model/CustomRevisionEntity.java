@@ -1,4 +1,4 @@
-package ${application.rootPackage}.model;
+package ${application.corePackage}.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +10,7 @@ import org.hibernate.envers.RevisionEntity;
 import org.hibernate.envers.RevisionNumber;
 import org.hibernate.envers.RevisionTimestamp;
 
-import ${application.rootPackage}.audit.CustomEnversListener;
+import ${application.corePackage}.audit.CustomEnversListener;
 
 @Entity
 @Table(name = "revinfo")

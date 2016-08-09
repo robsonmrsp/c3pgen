@@ -22,23 +22,23 @@ define(function(require) {
 	
 	//Filter import
 	<#list entity.attributes as att>
-		<#if att.viewAproach?? >
-			<#if att.viewAproach.type == 'combo'>		
+		<#if att.viewApproach?? >
+			<#if att.viewApproach.type == 'combo'>		
 	var ${att.type.className}Collection = require('collections/${att.type.className}Collection');
 			</#if>
 		</#if>
 	</#list>
 	<#if entity.relationships??>	
 	<#list entity.relationships as rel >
-		<#if rel.viewAproach.type == 'modal'>
+		<#if rel.viewApproach.type == 'modal'>
 	var Search${firstUpper(rel.name)}Modal = require('views/modalComponents/${firstUpper(rel.model)}Modal');
 		</#if>
 	</#list>
 	</#if>
 	<#if entity.relationships??>	
 	<#list entity.relationships as rel>
-		<#if rel.viewAproach?? >
-			<#if rel.viewAproach.type  == 'combo'  >
+		<#if rel.viewApproach?? >
+			<#if rel.viewApproach.type  == 'combo'  >
 	var ${rel.model}Collection = require('collections/${rel.model}Collection');			
 			</#if>
 		</#if>
@@ -56,7 +56,7 @@ define(function(require) {
 			paginatorRegion : '#paginator',
 			<#if entity.relationships??>	
 			<#list entity.relationships as rel >
-				<#if rel.viewAproach.type == 'modal'>
+				<#if rel.viewApproach.type == 'modal'>
 			search${firstUpper(rel.name)}ModalRegion : '#${firstLower(rel.name)}Modal',
 				</#if>
 			</#list>
@@ -68,7 +68,7 @@ define(function(require) {
 			'click 	#reset' : '_reset${firstUpper(entity.name)}',			
 			<#if entity.relationships??>	
 			<#list entity.relationships as rel >
-				<#if rel.viewAproach.type == 'modal'>
+				<#if rel.viewApproach.type == 'modal'>
 			'click #search${firstUpper(rel.name)}Modal' : '_showSearch${firstUpper(rel.name)}Modal',
 				</#if>
 			</#list>
@@ -80,8 +80,8 @@ define(function(require) {
 		ui : {
 		<#list entity.attributes as att>
 			input${firstUpper(att.name)} : '#input${firstUpper(att.name)}',
-			<#if att.viewAproach?? >
-				<#if att.viewAproach.type == 'datepicker'>			
+			<#if att.viewApproach?? >
+				<#if att.viewApproach.type == 'datepicker'>			
 			groupInput${firstUpper(att.name)} : '#groupInput${firstUpper(att.name)}',
 				</#if>
 			</#if>
@@ -91,15 +91,15 @@ define(function(require) {
 		<#list entity.relationships as rel>
 			<#if rel.type == 'OneToMany'>
 			<#elseif rel.type == 'ManyToOne'>
-				<#if rel.viewAproach?? >
-					<#if rel.viewAproach.type  == 'combo'  >
+				<#if rel.viewApproach?? >
+					<#if rel.viewApproach.type  == 'combo'  >
 			input${firstUpper(rel.name)} : '#input${firstUpper(rel.name)}', 
-					<#elseif rel.viewAproach.type  == 'modal'  >
-					<#if rel.viewAproach.hiddenField??>
-			input${firstUpper(rel.name)}${firstUpper(rel.viewAproach.hiddenField)} : '#input${firstUpper(rel.name)}${firstUpper(rel.viewAproach.hiddenField)}',
+					<#elseif rel.viewApproach.type  == 'modal'  >
+					<#if rel.viewApproach.hiddenField??>
+			input${firstUpper(rel.name)}${firstUpper(rel.viewApproach.hiddenField)} : '#input${firstUpper(rel.name)}${firstUpper(rel.viewApproach.hiddenField)}',
 					</#if>					
-					<#if rel.viewAproach.textField??>
-			input${firstUpper(rel.name)}${firstUpper(rel.viewAproach.textField)} : '#input${firstUpper(rel.name)}${firstUpper(rel.viewAproach.textField)}',
+					<#if rel.viewApproach.textField??>
+			input${firstUpper(rel.name)}${firstUpper(rel.viewApproach.textField)} : '#input${firstUpper(rel.name)}${firstUpper(rel.viewApproach.textField)}',
 					</#if>					
 					</#if>
 				</#if>
@@ -151,7 +151,7 @@ define(function(require) {
 			});
 		<#if entity.relationships??>	
 		<#list entity.relationships as rel >
-			<#if rel.viewAproach.type == 'modal'>
+			<#if rel.viewApproach.type == 'modal'>
 			this.search${firstUpper(rel.name)}Modal = new Search${firstUpper(rel.name)}Modal({
 				onSelectModel : function(model) {
 					that._select${firstUpper(rel.name)}(model);
@@ -166,7 +166,7 @@ define(function(require) {
 				that.paginatorRegion.show(that.paginator);
 		<#if entity.relationships??>	
 		<#list entity.relationships as rel >
-			<#if rel.viewAproach.type == 'modal'>
+			<#if rel.viewApproach.type == 'modal'>
 				this.search${firstUpper(rel.name)}ModalRegion.show(this.search${firstUpper(rel.name)}Modal);		
 			</#if>
 		</#list>
@@ -176,8 +176,8 @@ define(function(require) {
 				this.ui.input${firstUpper(att.name)}.formatNumber(2);
 		  </#if>	
 		
-		  <#if att.viewAproach?? >
-			<#if att.viewAproach.type == 'datepicker'>		
+		  <#if att.viewApproach?? >
+			<#if att.viewApproach.type == 'datepicker'>		
 				this.ui.groupInput${firstUpper(att.name)}.datetimepicker({
 				<#if att.type.className == 'Date'>		
 					pickTime : false,
@@ -191,14 +191,14 @@ define(function(require) {
 					language : 'pt_BR',
 				});
 			</#if>
-			<#if att.viewAproach.type == 'combo'>		
+			<#if att.viewApproach.type == 'combo'>		
 				var combo${firstUpper(att.name)} = new Combobox({
 					el : this.ui.input${firstUpper(att.name)},
-				   <#if att.viewAproach.values??>
-				    values : ${toListString(att.viewAproach.values)}
+				   <#if att.viewApproach.values??>
+				    values : ${toListString(att.viewApproach.values)}
 					<#else>
-					comboId : '${(att.viewAproach.comboId)!'id'}',
-					comboVal : '${(att.viewAproach.comboVal)!'name'}',
+					comboId : '${(att.viewApproach.comboId)!'id'}',
+					comboVal : '${(att.viewApproach.comboVal)!'name'}',
 					collectionEntity : ${att.type.className}Collection, 
 					</#if>
 				});
@@ -214,15 +214,15 @@ define(function(require) {
 		<#list entity.relationships as rel>
 			<#if rel.type == 'OneToMany'>
 			<#elseif rel.type == 'ManyToOne'>
-				<#if rel.viewAproach?? >
-					<#if rel.viewAproach.type  == 'combo'  >
+				<#if rel.viewApproach?? >
+					<#if rel.viewApproach.type  == 'combo'  >
 				var combo${firstUpper(rel.model)} = new Combobox({
 					el : this.ui.input${firstUpper(rel.name)},
-				   <#if rel.viewAproach.values??>
-				    values : '${toString(rel.viewAproach.values)}'
+				   <#if rel.viewApproach.values??>
+				    values : '${toString(rel.viewApproach.values)}'
 					<#else>
-					comboId : '${(rel.viewAproach.comboId)!'id'}',
-					comboVal : '${(rel.viewAproach.comboVal)!'name'}',
+					comboId : '${(rel.viewApproach.comboId)!'id'}',
+					comboVal : '${(rel.viewApproach.comboVal)!'name'}',
 					collectionEntity : ${firstUpper(rel.model)}Collection,
 					</#if>
 				});
@@ -245,10 +245,10 @@ define(function(require) {
 			</#list>
 			<#if entity.relationships??>	
 			<#list entity.relationships as rel >
-				<#if rel.viewAproach.type == 'modal' >
-			    ${firstLower(rel.name)} : util.escapeById('input${firstUpper(rel.name)}${firstUpper(rel.viewAproach.hiddenField)}'), 
+				<#if rel.viewApproach.type == 'modal' >
+			    ${firstLower(rel.name)} : util.escapeById('input${firstUpper(rel.name)}${firstUpper(rel.viewApproach.hiddenField)}'), 
 				</#if> 
-				<#if  rel.viewAproach.type == 'combo'>
+				<#if  rel.viewApproach.type == 'combo'>
 			    ${firstLower(rel.name)} : util.escapeById('input${firstUpper(rel.name)}'), 
 				</#if>
 			</#list>
@@ -296,14 +296,14 @@ define(function(require) {
 			</#list>
 			<#if entity.relationships??>	
 				<#list entity.relationships as rel >
-					<#if rel.viewAproach.type == 'modal'>
+					<#if rel.viewApproach.type == 'modal'>
 			{
-				name : "${firstLower(rel.name)}.${rel.viewAproach.textField}",
+				name : "${firstLower(rel.name)}.${rel.viewApproach.textField}",
 				editable : false,
 				sortable : true,  //já é possivel ordenar por esses atributos compostos.
 				label : "${rel.displayName}",
 				cell : CustomStringCell.extend({
-					fieldName : '${firstLower(rel.name)}.${rel.viewAproach.textField}',
+					fieldName : '${firstLower(rel.name)}.${rel.viewApproach.textField}',
 				}),
 			},	
 					</#if>
@@ -328,11 +328,10 @@ define(function(require) {
 				if (yes) {
 					model.destroy({
 						success : function() {
-							util.showMessage('success', 'Registro removido com sucesso!');
+							util.showSuccessMessage('${entity.name} removido com sucesso!');
 						},
-						error : function() {
-							util.showMessage('error', 'Problemas ao remover registro!');
-							console.error(_resp.responseText || (_resp.getResponseHeader && _resp.getResponseHeader('exception')));
+						error : function(_model, _resp) {
+							util.showErrorMessage('Problema ao salvar registro',_resp);
 						}
 					});
 				}
@@ -352,15 +351,15 @@ define(function(require) {
 		},
 		<#if entity.relationships??>	
 		<#list entity.relationships as rel >
-			<#if rel.viewAproach.type == 'modal'>
+			<#if rel.viewApproach.type == 'modal'>
 		_showSearch${firstUpper(rel.name)}Modal : function() {
 			this.search${firstUpper(rel.name)}Modal.showPage();
 		},
 			
 		_select${firstUpper(rel.name)} : function(${firstLower(rel.name)}) {
 			this.search${firstUpper(rel.name)}Modal.hidePage();	
-			this.ui.input${firstUpper(rel.name)}${firstUpper(rel.viewAproach.hiddenField)}.val(${firstLower(rel.name)}.get('${firstLower(rel.viewAproach.hiddenField)}'));
-			this.ui.input${firstUpper(rel.name)}${firstUpper(rel.viewAproach.textField)}.val(${firstLower(rel.name)}.get('${firstLower(rel.viewAproach.textField)}'));		
+			this.ui.input${firstUpper(rel.name)}${firstUpper(rel.viewApproach.hiddenField)}.val(${firstLower(rel.name)}.get('${firstLower(rel.viewApproach.hiddenField)}'));
+			this.ui.input${firstUpper(rel.name)}${firstUpper(rel.viewApproach.textField)}.val(${firstLower(rel.name)}.get('${firstLower(rel.viewApproach.textField)}'));		
 		},
 			</#if>
 		</#list>

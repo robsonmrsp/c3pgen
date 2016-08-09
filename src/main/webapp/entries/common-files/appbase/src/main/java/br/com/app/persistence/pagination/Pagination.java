@@ -1,4 +1,4 @@
-package ${application.rootPackage}.persistence.pagination;
+package ${application.corePackage}.persistence.pagination;
 
 import java.util.List;
 

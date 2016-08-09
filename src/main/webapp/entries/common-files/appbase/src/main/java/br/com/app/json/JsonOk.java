@@ -1,4 +1,4 @@
-package ${application.rootPackage}.json;
+package ${application.corePackage}.json;
 
 public class JsonOk {
 

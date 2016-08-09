@@ -1,4 +1,4 @@
-package ${application.rootPackage}.persistence.pagination;
+package ${application.corePackage}.persistence.pagination;
 
 import java.util.List;
 
@@ -13,7 +13,6 @@ public class Pager<Entity> {
 		this.actualPage = actualPage;
 		this.totalRecords = totalRecords;
 	}
-
 	public List<Entity> getItens() {
 		return itens;
 	}

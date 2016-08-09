@@ -4,6 +4,33 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 		return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
 	};
 
+	LOG_FILE = window.logFile || new Col.List();
+
+	window.logFile = LOG_FILE;
+
+	window.addLogEntry = function(entry) {
+		if (window.logFile.size() > 1000) {
+			window.logFile.remove(0);
+		}
+		window.logFile.add('\n[ ' + location.toString() + ' ][ ' + moment().format('DD/MM/YYYY HH:mm:ss SSS') + ' ]' + entry);
+		window.store('\n[ ' + location.toString() + ' ][ ' + moment().format('DD/MM/YYYY HH:mm:ss SSS') + ' ]' + entry);
+	}
+
+	window.store = function(entry) {
+		var log = window.localStorage.getItem('appweb');
+		window.localStorage.setItem('appweb', log + '\n  ' + entry);
+	}
+
+	window.showStoreLog = function() {
+		var log = window.localStorage.getItem('appweb') || 'NO LOG ENTRY';
+		console.log(log.replace(/  /g, '\n'));
+	};
+	window.showLog = function() {
+		_.each(window.logFile.elements, function(entr) {
+			console.log(entr.replace(/  /g, '\n'));
+		})
+	};
+
 	var spinnerOpts = {
 		lines : 11, // The number of lines to draw
 		length : 7, // The length of each line
@@ -36,7 +63,7 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 		// class="spinner-icon"></div></div>'
 		// template : '<div class="bar" role="bar"><div
 		// class="peg"></div></div><div
-			
+
 		// class="spinner" role="spinner"><div class="spinner-icon_"><i
 		// class="fa
 		// fa-spinner fa-2x progress-spin"></i></div></div>'
@@ -253,6 +280,24 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 
 		// Para uso dessa função é necessário a existencia de um div com
 		// id="messages"
+
+		showSuccessMessage : function(message, containerMessage) {
+			this.showMessage('success', message, containerMessage);
+		},
+		showErrorMessage : function(message, xhr, containerMessage) {
+			var _xhrMessage = '';
+
+			if (xhr) {
+				if (this.getJson(xhr.responseText).legalMessage) {
+					_xhrMessage = this.getJson(xhr.responseText).legalMessage;
+				} else {
+					this.showMessage('error', message, containerMessage);
+				}
+				this.logError(xhr);
+			} else {
+				this.showMessage('error', message, containerMessage);
+			}
+		},
 		showMessage : function(type, message, containerMessage) {
 			var container = containerMessage || 'messages_div';
 			var divAlert = $('#' + container);
@@ -360,8 +405,7 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 		},
 
 		/*
-		 * Usage: breadcrumb({iconClass:'',itemLabel:'',
-		 * itemSubFolderName:'',url:''});
+		 * Usage: breadcrumb({iconClass:'',itemLabel:'', itemSubFolderName:'',url:''});
 		 */
 		breadcrumb : function(itemMenu) {
 			if (itemMenu) {
@@ -497,7 +541,7 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 				text : options.text,
 				time : 10000,// 10 segundos
 				sticky : false,
-//				close_icon : 'fa fa-times',
+				// close_icon : 'fa fa-times',
 				icon : options.icon || 'fa fa-exclamation-circle',
 				class_name : options.className || 'warn-notice',
 			});
@@ -554,17 +598,36 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 					text : 'Aparentemente voce não está conectado',
 				})
 			} else {
-				console.error(resp.responseText || (resp.getResponseHeader && resp.getResponseHeader('exception')));
+				// console.error(resp.responseText || (resp.getResponseHeader && resp.getResponseHeader('exception')));
 			}
 		},
-		//no futuro será verificado a melhor maneira de fazer isso
+
+		// no futuro será verificado a melhor maneira de fazer isso
 		getCurrencySymbol : function() {
 			return "R$";
 		},
+
 		formatNumeric : function(number, places) {
 			var _number = number || 0;
 			return _number.formatMoney(places, ',', '.')
+		},
+
+		logError : function(_resp) {
+			var entry = '';
+			try {
+				if (_resp.responseText) {
+					var _en = this.getJson(_resp.responseText);
+					entry = _en.errorMessage + ' \n\n [ Parametros da requisição: ]-> ' + JSON.stringify(_en.parameters);
+				} else {
+					entry = _resp.getResponseHeader && _resp.getResponseHeader('exception')
+				}
+			} catch (e) {
+			}
+			window.addLogEntry(entry);
+
+			console.error("veja no console o erro: [ window.showStoreLog()]");
 		}
 	};
+
 	return util;
 });

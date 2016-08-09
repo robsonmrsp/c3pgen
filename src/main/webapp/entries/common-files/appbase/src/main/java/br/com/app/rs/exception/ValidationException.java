@@ -1,4 +1,4 @@
-package ${application.rootPackage}.rs.exception;
+package ${application.corePackage}.rs.exception;
 
 public class ValidationException extends RuntimeException {
 

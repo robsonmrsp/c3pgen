@@ -1,5 +1,4 @@
-
-package ${application.rootPackage}.model;
+package ${application.corePackage}.model;
 
 public interface ColumnDefinitions {
 

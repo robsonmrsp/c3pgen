@@ -127,6 +127,9 @@ public class ApplicationEntity extends AbstractTimestampEntity {
 	}
 
 	public Boolean getHasMobile() {
+		if (hasMobile == null) {
+			setHasMobile(Boolean.FALSE);
+		}
 		return hasMobile;
 	}
 
@@ -308,16 +311,22 @@ public class ApplicationEntity extends AbstractTimestampEntity {
 		return true;
 	}
 
+	public String getPk() {
+		if (pk == null) {
+			setPk("ID_" + getName().toUpperCase());
+		}
+		return pk.toUpperCase();
+	}
+
 	public String getSequence() {
-		return sequence;
+		if (sequence == null) {
+			setSequence("SEQ_" + getName().toUpperCase());
+		}
+		return sequence.toUpperCase();
 	}
 
 	public void setSequence(String sequence) {
 		this.sequence = sequence;
-	}
-
-	public String getPk() {
-		return pk;
 	}
 
 	public void setPk(String pk) {

@@ -30,7 +30,7 @@
 	<jaxrs:server address="/" basePackages="${application.rootPackage}.rs">
 		<jaxrs:providers>
 			<bean class="com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider" />
-			<bean class="${application.rootPackage}.rs.exception.ExceptionHandler" />
+			<bean class="${application.corePackage}.rs.exception.ExceptionHandler" />
 		</jaxrs:providers>
 	</jaxrs:server>
 
@@ -65,7 +65,7 @@
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"
 		scope="singleton">
 		<property name="dataSource" ref="dataSource" />
-		<property name="packagesToScan" value="${application.rootPackage}.model" />
+		<property name="packagesToScan" value="${application.rootPackage}.model, ${application.corePackage}.model" />
 
 		<property name="hibernateProperties">
 			<props>
@@ -77,7 +77,7 @@
 			</props>
 		</property>
 	</bean>
-	<bean id="afterThrow" class="${application.rootPackage}.persistence.CatchThrowConstraintViolationException" />
+	<bean id="afterThrow" class="${application.corePackage}.persistence.CatchThrowConstraintViolationException" />
 	<bean
 		class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
 		<property name="beanNames">

@@ -68,5 +68,6 @@ public interface TemplateFileName {
 	final String ANGULAR_SERVICE = "${entity.name}Service";
 	final String ANGULAR_MODAL_DIRECTIVE = "Modal${entity.name}Directive";
 	final String ANGULAR_ROUTER = "Router";
-
+	final String MYBATIS_MAPPER_JAVA = "${entity.name}Mapper";
+	final String MYBATIS_XML = "${entity.name}";
 }

@@ -1,6 +1,7 @@
-package ${application.rootPackage}.serialization;
+package ${application.corePackage}.serialization;
 
 import java.io.IOException;
+
 
 import org.apache.log4j.Logger;
 

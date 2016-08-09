@@ -1,4 +1,4 @@
-package ${application.rootPackage}.persistence.pagination;
+package ${application.corePackage}.persistence.pagination;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -6,7 +6,7 @@ import java.util.Map;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.UriInfo;
 
-import ${application.rootPackage}.utils.Util;
+import ${application.corePackage}.utils.Util;
 
 public class PaginationParams<Filter> {
 

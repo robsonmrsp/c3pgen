@@ -1,6 +1,7 @@
-package ${application.rootPackage}.model;
+package ${application.corePackage}.model;
 
 import java.io.Serializable;
+
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -13,6 +14,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.hibernate.envers.Audited;
+import ${application.rootPackage}.model.User;
 
 @Entity
 @Audited

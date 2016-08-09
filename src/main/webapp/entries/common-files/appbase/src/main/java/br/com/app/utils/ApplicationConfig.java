@@ -1,6 +1,7 @@
-package ${application.rootPackage}.utils;
+package ${application.corePackage}.utils;
 
 import java.io.IOException;
+
 import java.io.InputStream;
 import java.util.Properties;
 

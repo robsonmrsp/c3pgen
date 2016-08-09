@@ -1,6 +1,7 @@
-package ${application.rootPackage}.reports;
+package ${application.corePackage}.reports;
 
 import java.util.List;
+
 import java.util.Map;
 
 import net.sf.jasperreports.engine.JRDataSource;

@@ -1,10 +1,10 @@
-package ${application.rootPackage}.audit;
+package ${application.corePackage}.audit;
 
 import org.hibernate.envers.RevisionListener;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-import ${application.rootPackage}.model.CustomRevisionEntity;
+import ${application.corePackage}.model.CustomRevisionEntity;
 
 public class CustomEnversListener implements RevisionListener {
 	@Override

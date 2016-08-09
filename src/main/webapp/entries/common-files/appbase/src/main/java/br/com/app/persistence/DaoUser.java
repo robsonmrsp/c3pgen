@@ -2,10 +2,11 @@ package ${application.rootPackage}.persistence;
 
 import javax.inject.Named;
 
+
 import org.apache.log4j.Logger;
 import org.hibernate.criterion.Restrictions;
 
-import ${application.rootPackage}.model.User;
+import ${application.corePackage}.model.User;
 
 /**
  * generated: 19/02/2014 19:18:06

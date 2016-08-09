@@ -1,4 +1,4 @@
-package ${application.rootPackage}.security;
+package ${application.corePackage}.security;
 
 import ${application.rootPackage}.model.User;
 

@@ -1,4 +1,4 @@
-package ${application.rootPackage}.model;
+package ${application.corePackage}.model;
 
 import java.io.Serializable;
 
@@ -12,7 +12,7 @@ import javax.persistence.PreUpdate;
 import org.hibernate.annotations.Type;
 import org.joda.time.LocalDateTime;
 
-import ${application.rootPackage}.serialization.CustomLocalDateTimeSerializer;
+import ${application.corePackage}.serialization.CustomLocalDateTimeSerializer;
 import ${application.rootPackage}.model.User;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;

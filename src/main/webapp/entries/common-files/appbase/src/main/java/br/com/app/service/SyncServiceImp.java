@@ -1,6 +1,7 @@
-package ${application.rootPackage}.service;
+package ${application.corePackage}.service;
 
 import java.util.List;
+
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -8,12 +9,12 @@ import javax.inject.Named;
 import org.springframework.transaction.annotation.Transactional;
 import org.joda.time.LocalDateTime;
 
-import ${application.rootPackage}.model.SyncInfo;
-import ${application.rootPackage}.json.*;
-import ${application.rootPackage}.model.*;
-import ${application.rootPackage}.persistence.DaoSyncInfo;
-import ${application.rootPackage}.json.DtoDataBase;
-import ${application.rootPackage}.utils.Parser;
+import ${application.corePackage}.model.SyncInfo;
+import ${application.corePackage}.json.*;
+import ${application.corePackage}.model.*;
+import ${application.corePackage}.persistence.DaoSyncInfo;
+import ${application.corePackage}.json.DtoDataBase;
+import ${application.corePackage}.utils.Parser;
 
 
 @Named

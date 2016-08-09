@@ -3,10 +3,12 @@ package ${package}.json;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import ${package}.serialization.CustomSyncObjectIdDeserializer;
-import ${package}.serialization.CustomDoubleDeserializer;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
+import ${corepackage}.json.SyncOperation;
+import ${corepackage}.serialization.CustomSyncObjectIdDeserializer;
+import ${corepackage}.serialization.CustomDoubleDeserializer;
 
 /**
 *  generated: ${.now}

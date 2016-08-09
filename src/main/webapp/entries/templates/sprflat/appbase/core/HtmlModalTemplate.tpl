@@ -14,15 +14,15 @@
 				<form id="formSearch${firstUpper(entity.name)}">
 						<#list entity.attributes as att>
 						<#if att.showInPages >
-						  <#if att.viewAproach?? >
-							<#if att.type.className == 'Boolean' && att.viewAproach.type  == 'check'  >
+						  <#if att.viewApproach?? >
+							<#if att.type.className == 'Boolean' && att.viewApproach.type  == 'check'  >
 							<div id="groupInputModal${firstUpper(att.name)}" class="form-group checkbox">
 								<label class="checkbox ">
 									<input id="inputModal${firstUpper(att.name)}" type="checkbox" >
 									${firstUpper(att.displayName)}
 								</label>
 							</div>
-							<#elseif att.viewAproach.type  == 'datepicker'  >
+							<#elseif att.viewApproach.type  == 'datepicker'  >
 							<div id="groupInputModal${firstUpper(att.name)}Container" class="form-group">
 								<label class="control-label" for="inputModal${firstUpper(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}</label>
 								<div id="groupInputModal${firstUpper(att.name)}" class="input-group date" data-date-format="${att.dateFormat}">
@@ -32,10 +32,10 @@
 									</div>
 								</div>
 							</div>
-							<#elseif att.viewAproach.type  == 'radiogroup'>
+							<#elseif att.viewApproach.type  == 'radiogroup'>
 							<div id="groupInputModal${firstUpper(att.name)}" class="form-group">
 								<label class="control-label" for="inputModal${firstUpper(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}</label>
-								<#list att.viewAproach.values as val>	
+								<#list att.viewApproach.values as val>	
 								<div id="groupInputModal${firstUpper(att.name)}_${val}" class="radio">
 									<label>
 										<input type="radio" name="inputModal${firstUpper(att.name)}" value="${val}" >
@@ -44,7 +44,7 @@
 								</div>
 								</#list>
 							</div>
-							<#elseif att.viewAproach.type  == 'combo'  >
+							<#elseif att.viewApproach.type  == 'combo'  >
 							<div id="groupInputModal${firstUpper(att.name)}" class="form-group">
 								<label class="control-label" for="inputModal${firstUpper(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}</label>
 								<select class="form-control" id="inputModal${firstUpper(att.name)}"></select>
@@ -70,8 +70,8 @@
 						<#if rel.showInPages >	
 							<#if rel.type == 'OneToMany'>
 							<#elseif rel.type == 'ManyToOne'>
-								<#if rel.viewAproach?? >
-									<#if rel.viewAproach.type  == 'combo'  >
+								<#if rel.viewApproach?? >
+									<#if rel.viewApproach.type  == 'combo'  >
 							<div id="groupInputModal${firstUpper(rel.model)}" class="form-group">
 								<label class="control-label" for="inputModal${firstUpper(rel.model)}">${firstUpper(rel.displayName)!firstLower(rel.model)}</label>
 								<select class="form-control" id="inputModal${firstUpper(rel.model)}"></select>
@@ -103,7 +103,7 @@
 							<div id="messages_div"></div>
 							<div id="grid-${firstLower(entity.name)}" class="table-responsive"></div>
 							<div class="row">
-								<div id="counter" class="col-xs-6 pull-left"></div>
+								<div id="counter-${firstLower(entity.name)}" class="col-xs-6 pull-left"></div>
 								<div id="paginator-${firstLower(entity.name)}" class="col-xs-6 pull-right"></div>
 							</div>
 						</div>

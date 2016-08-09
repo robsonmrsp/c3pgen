@@ -6,8 +6,8 @@ import org.joda.time.LocalDateTime;
 import ${application.rootPackage}.model.Client;
 </#if>
 import ${application.rootPackage}.model.${entity.name};
-import ${application.rootPackage}.persistence.pagination.Pager;
-import ${application.rootPackage}.persistence.pagination.PaginationParams;
+import ${application.corePackage}.persistence.pagination.Pager;
+import ${application.corePackage}.persistence.pagination.PaginationParams;
 /**
 *  generated: ${.now}
 **/

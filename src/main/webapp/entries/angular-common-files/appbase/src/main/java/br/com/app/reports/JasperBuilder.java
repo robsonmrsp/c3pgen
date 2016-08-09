@@ -1,4 +1,4 @@
-package ${application.rootPackage}.reports;
+package ${application.corePackage}.reports;
 
 import java.io.ByteArrayOutputStream;
 import java.sql.Connection;

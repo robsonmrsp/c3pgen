@@ -197,7 +197,7 @@ public class DBImporterEntities {
 					fileLines.add("    type: ManyToOne");
 					fileLines.add("    model: " + model + "                       ");
 					fileLines.add("    displayName: " + displayName + "                       ");
-					fileLines.add("    viewAproach:   ");
+					fileLines.add("    viewApproach:   ");
 					fileLines.add("      type: modal ");
 					fileLines.add("      hiddenField: id ");
 					fileLines.add("      textField: nome ");

@@ -1,7 +1,7 @@
-
-package ${application.rootPackage}.persistence;
+package ${application.corePackage}.persistence;
 
 import java.util.List;
+
 
 import javax.inject.Named;
 
@@ -10,7 +10,7 @@ import org.hibernate.Criteria;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
-import ${application.rootPackage}.model.SyncInfo;
+import ${application.corePackage}.model.SyncInfo;
 
 /**
  * Deveremos nos preocupar no futuro com a geração de um SyncInfo para cada

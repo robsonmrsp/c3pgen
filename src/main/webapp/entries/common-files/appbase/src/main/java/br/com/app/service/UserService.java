@@ -1,11 +1,12 @@
-package ${application.rootPackage}.service;
+package ${application.corePackage}.service;
 
 import java.util.List;
 
-import ${application.rootPackage}.model.Client;
-import ${application.rootPackage}.model.User;
-import ${application.rootPackage}.persistence.pagination.Pager;
-import ${application.rootPackage}.persistence.pagination.PaginationParams;
+
+import ${application.corePackage}.model.Client;
+import ${application.corePackage}.model.User;
+import ${application.corePackage}.persistence.pagination.Pager;
+import ${application.corePackage}.persistence.pagination.PaginationParams;
 
 /**
  * generated: 19/02/2014 19:18:57

@@ -1,4 +1,4 @@
-package ${application.rootPackage}.rs;
+package ${application.corePackage}.rs;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -11,9 +11,9 @@ import javax.ws.rs.core.Response;
 
 import org.apache.log4j.Logger;
 
-import ${application.rootPackage}.json.JsonError;
-import ${application.rootPackage}.service.SyncService;
-import ${application.rootPackage}.json.DtoDataBase;
+import ${application.corePackage}.json.JsonError;
+import ${application.corePackage}.service.SyncService;
+import ${application.corePackage}.json.DtoDataBase;
 @Path("/comunication")
 public class SyncResources {
 

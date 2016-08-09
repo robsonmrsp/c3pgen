@@ -1,6 +1,7 @@
-package ${application.rootPackage}.rs;
+package ${application.corePackage}.rs;
 
 import java.awt.image.BufferedImage;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -20,9 +21,9 @@ import javax.ws.rs.core.Response;
 
 import org.apache.cxf.jaxrs.ext.multipart.Attachment;
 
-import ${application.rootPackage}.json.JsonError;
-import ${application.rootPackage}.utils.ImageUtils;
-import ${application.rootPackage}.utils.Util;
+import ${application.corePackage}.json.JsonError;
+import ${application.corePackage}.utils.ImageUtils;
+import ${application.corePackage}.utils.Util;
 
 @Path("/crud/uploads/")
 public class UploadResources {

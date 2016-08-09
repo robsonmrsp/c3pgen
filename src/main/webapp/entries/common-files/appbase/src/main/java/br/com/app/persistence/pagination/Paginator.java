@@ -1,4 +1,4 @@
-package ${application.rootPackage}.persistence.pagination;
+package ${application.corePackage}.persistence.pagination;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +14,7 @@ import org.hibernate.criterion.Restrictions;
 
 import org.hibernate.sql.JoinType;
 
-import ${application.rootPackage}.utils.Util;
+import ${application.corePackage}.utils.Util;
 public class Paginator<T> {
 
 	private final Criteria searchCriteria;

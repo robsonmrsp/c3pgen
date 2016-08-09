@@ -9,16 +9,17 @@ import org.springframework.transaction.annotation.Transactional;
 import org.joda.time.LocalDateTime;
 
 <#if entity.hasOwner>
-import ${application.rootPackage}.model.Client;
+import ${application.corePackage}.model.Client;
 </#if>
 
 import ${application.rootPackage}.model.${entity.name};
 import ${application.rootPackage}.persistence.Dao${entity.name};
-import ${application.rootPackage}.persistence.pagination.Pager;
-import ${application.rootPackage}.persistence.pagination.Pagination;
-import ${application.rootPackage}.persistence.pagination.PaginationParams;
-import ${application.rootPackage}.utils.DateUtil;
-import ${application.rootPackage}.utils.Util;
+
+import ${application.corePackage}.persistence.pagination.Pager;
+import ${application.corePackage}.persistence.pagination.Pagination;
+import ${application.corePackage}.persistence.pagination.PaginationParams;
+import ${application.corePackage}.utils.DateUtil;
+import ${application.corePackage}.utils.Util;
 
 /**
 *  generated: ${.now}

@@ -1,4 +1,4 @@
-package ${application.rootPackage}.rs;
+package ${application.corePackage}.rs;
 
 import java.util.List;
 
@@ -19,16 +19,15 @@ import javax.ws.rs.core.UriInfo;
 
 import org.apache.log4j.Logger;
 
-import ${application.rootPackage}.json.JsonError;
-import ${application.rootPackage}.json.JsonPaginator;
-import ${application.rootPackage}.json.JsonUser;
-import ${application.rootPackage}.model.User;
-import ${application.rootPackage}.persistence.pagination.Pager;
-import ${application.rootPackage}.persistence.pagination.PaginationParams;
-import ${application.rootPackage}.service.UserService;
-import ${application.rootPackage}.service.UserService;
-import ${application.rootPackage}.utils.Parser;
-
+import ${application.corePackage}.json.JsonError;
+import ${application.corePackage}.json.JsonPaginator;
+import ${application.corePackage}.json.JsonUser;
+import ${application.corePackage}.model.User;
+import ${application.corePackage}.persistence.pagination.Pager;
+import ${application.corePackage}.persistence.pagination.PaginationParams;
+import ${application.corePackage}.service.UserService;
+import ${application.corePackage}.service.UserService;
+import ${application.corePackage}.utils.Parser;
 /**
 *  generated: 20/02/2014 00:54:51
 **/

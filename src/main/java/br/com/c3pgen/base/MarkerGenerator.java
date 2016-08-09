@@ -14,6 +14,7 @@ import br.com.c3pgen.base.methods.FirstLowerCaseMethod;
 import br.com.c3pgen.base.methods.FirstUpperCaseMethod;
 import br.com.c3pgen.base.methods.IsNumericMethod;
 import br.com.c3pgen.base.methods.IsRequiredMethod;
+import br.com.c3pgen.base.methods.OnlyFirstUpperCaseMethod;
 import br.com.c3pgen.base.methods.SnakeCaseStringMethod;
 import br.com.c3pgen.base.methods.ToLowerCaseMethod;
 import br.com.c3pgen.base.methods.ToStringMethod;
@@ -83,6 +84,7 @@ public class MarkerGenerator {
 	private Object adjustData(Application application, ApplicationEntity object) {
 		Map<String, Object> data = new HashMap<String, Object>();
 		data.put("firstLower", new FirstLowerCaseMethod());
+		data.put("onlyFirstUpper", new OnlyFirstUpperCaseMethod());
 		data.put("firstUpper", new FirstUpperCaseMethod());
 		data.put("snakeCase", new SnakeCaseStringMethod());
 		data.put("uppercase", new ToUpperCaseMethod());
@@ -91,15 +93,18 @@ public class MarkerGenerator {
 		data.put("getRequiredClass", new IsRequiredMethod());
 		data.put("dataType", new DataTypeMethod());
 		data.put("package", application.getRootPackage());
+		data.put("corepackage", application.getCorePackage());
 		data.put("toListString", new ToStringMethod());
 		data.put("entity", object);
 		data.put("application", application);
+		data.put("dataBasePrefix", application.getDataBasePrefix());
 		return data;
 	}
 
 	private Object adjustData(List<ApplicationEntity> object) {
 		Map<String, Object> data = new HashMap<String, Object>();
 		data.put("firstLower", new FirstLowerCaseMethod());
+		data.put("onlyFirstUpper", new OnlyFirstUpperCaseMethod());
 		data.put("firstUpper", new FirstUpperCaseMethod());
 		data.put("isNumeric", new IsNumericMethod());
 		data.put("snakeCase", new SnakeCaseStringMethod());
@@ -110,6 +115,7 @@ public class MarkerGenerator {
 		data.put("dataType", new DataTypeMethod());
 		data.put("package", ApplicationConfiguration.MAIN_PACKAGE);
 		data.put("entities", object);
+		data.put("dataBasePrefix", application.getDataBasePrefix());
 		return data;
 	}
 

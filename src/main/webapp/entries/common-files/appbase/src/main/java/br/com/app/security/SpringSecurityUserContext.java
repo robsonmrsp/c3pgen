@@ -1,6 +1,7 @@
-package ${application.rootPackage}.security;
+package ${application.corePackage}.security;
 
 import java.util.Collection;
+
 
 import javax.inject.Inject;
 import javax.inject.Named;

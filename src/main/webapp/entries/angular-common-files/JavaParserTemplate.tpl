@@ -1,4 +1,4 @@
-package ${application.rootPackage}.utils;
+package ${application.corePackage}.utils;
 
 import java.util.ArrayList;
 

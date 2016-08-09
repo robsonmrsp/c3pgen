@@ -29,15 +29,15 @@
 				<br>
 				<input type="hidden" id="inputId" value="{{id}}">
 				<#list entity.attributes as att>
-				  <#if att.viewAproach?? >
-					<#if att.type.className == 'Boolean' && att.viewAproach.type  == 'check'  >
+				  <#if att.viewApproach?? >
+					<#if att.type.className == 'Boolean' && att.viewApproach.type  == 'check'  >
 					<div id="groupInput${firstUpper(att.name)}" class="form-group checkbox ">
 						<label class="checkbox ">
 							<input id="input${firstUpper(att.name)}" type="checkbox" {{${firstLower(att.name)} ? 'checked' :''}}>
 							${firstUpper(att.displayName)}
 						</label>
 					</div>
-					<#elseif att.viewAproach.type  == 'datepicker'  >
+					<#elseif att.viewApproach.type  == 'datepicker'  >
 					<div id="groupInput${firstUpper(att.name)}Container" class="form-group">
 						<label class="control-label" for="input${firstUpper(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}</label>
 						<div id="groupInput${firstUpper(att.name)}" class="input-group date" data-date-format="${att.dateFormat}">
@@ -47,10 +47,10 @@
 							</div>
 						</div>
 					</div>
-					<#elseif att.viewAproach.type  == 'radiogroup'>
+					<#elseif att.viewApproach.type  == 'radiogroup'>
 					<div id="groupInput${firstUpper(att.name)}" class="form-group">
 						<label class="control-label" for="input${firstUpper(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}</label>
-						<#list att.viewAproach.values as val>	
+						<#list att.viewApproach.values as val>	
 						<div id="groupInput${firstUpper(att.name)}_${val}" class="radio">
 							<label>
 								<input type="radio" name="input${firstUpper(att.name)}" value="${val}" >
@@ -59,12 +59,12 @@
 						</div>
 						</#list>
 					</div>
-					<#elseif att.viewAproach.type  == 'combo'  >
+					<#elseif att.viewApproach.type  == 'combo'  >
 					<div id="groupInput${firstUpper(att.name)}" class="form-group">
 						<label class="control-label" for="input${firstUpper(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}</label>
 						<select class="form-control" id="input${firstUpper(att.name)}"></select>
 					</div>					
-					<#elseif att.viewAproach.type  == 'textarea'  >
+					<#elseif att.viewApproach.type  == 'textarea'  >
 					<div id="groupInput${firstUpper(att.name)}" class="form-group">
 						<label class="control-label" for="input${firstUpper(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}</label>
 						<textarea rows="3" id="input${firstUpper(att.name)}" placeholder="${firstUpper(att.displayName)!firstLower(att.name)}" value="{{${att.name}}}"  class="form-control ${getRequiredClass(att.required)}">{{${att.name}}} </textarea>
@@ -86,25 +86,25 @@
 				</#list>		
 				<#if entity.relationships??>	
 				<#list entity.relationships as rel>
-					<#if (rel.type == 'OneToMany' || rel.type == 'ManyToMany' ) && rel.viewAproach.type == 'multiselect'>
+					<#if (rel.type == 'OneToMany' || rel.type == 'ManyToMany' ) && rel.viewApproach.type == 'multiselect'>
 
 					<div class="${firstLower(rel.name)}-container panel"></div>					
 					<#elseif rel.type == 'ManyToOne'>
-						<#if rel.viewAproach?? >
-							<#if rel.viewAproach.type  == 'combo'  >
+						<#if rel.viewApproach?? >
+							<#if rel.viewApproach.type  == 'combo'  >
 					<div id="groupInput${firstUpper(rel.name)}" class="form-group">
 						<label class="control-label" for="input${firstUpper(rel.name)}">${firstUpper(rel.displayName)!firstLower(rel.name)}</label>
 						<select class="form-control" id="input${firstUpper(rel.name)}"></select>
 					</div>					
-							<#elseif rel.viewAproach.type  == 'modal'  >					
+							<#elseif rel.viewApproach.type  == 'modal'  >					
 					<div id="groupInput${firstUpper(rel.name)}Container" class="form-group">
 						<label class="control-label" for="input${firstUpper(rel.name)}">${firstUpper(rel.displayName)!firstUpper(rel.name)}</label>
 						<div id="groupInput${firstUpper(rel.name)}" class="input-group">
-							<#if rel.viewAproach.hiddenField??>							
-							<input id="input${firstUpper(rel.name)}${firstUpper(rel.viewAproach.hiddenField)}" type="hidden" class="form-control append-left" value="{{${firstLower(rel.name)} && ${firstLower(rel.name)}.${firstLower(rel.viewAproach.hiddenField)}}}" />
+							<#if rel.viewApproach.hiddenField??>							
+							<input id="input${firstUpper(rel.name)}${firstUpper(rel.viewApproach.hiddenField)}" type="hidden" class="form-control append-left" value="{{${firstLower(rel.name)} && ${firstLower(rel.name)}.${firstLower(rel.viewApproach.hiddenField)}}}" />
 							</#if>
-							<#if rel.viewAproach.textField??>							
-							<input id="input${firstUpper(rel.name)}${firstUpper(rel.viewAproach.textField)}"  placeholder="Escolha um ${firstUpper(rel.displayName)}" type="text" class="form-control append-left" value="{{${firstLower(rel.name)} && ${firstLower(rel.name)}.${firstLower(rel.viewAproach.textField)}}}" />
+							<#if rel.viewApproach.textField??>							
+							<input id="input${firstUpper(rel.name)}${firstUpper(rel.viewApproach.textField)}"  placeholder="Escolha um ${firstUpper(rel.displayName)}" type="text" class="form-control append-left" value="{{${firstLower(rel.name)} && ${firstLower(rel.name)}.${firstLower(rel.viewApproach.textField)}}}" />
 							</#if>
 							<div class="input-group-addon append-right" id="search${firstUpper(rel.name)}Modal" data-toggle="modal">
 								<span class="fa fa-search"></span>
@@ -144,7 +144,7 @@
 </div>				
 <#if entity.relationships??>	
 <#list entity.relationships as rel >
-	<#if rel.viewAproach.type == 'modal'>
+	<#if rel.viewApproach.type == 'modal'>
 <div id='${firstLower(rel.name)}Modal'></div>
 	</#if>
 </#list>

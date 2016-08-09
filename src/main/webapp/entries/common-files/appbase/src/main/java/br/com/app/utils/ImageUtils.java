@@ -1,6 +1,7 @@
-package ${application.rootPackage}.utils;
+package ${application.corePackage}.utils;
 
 import static org.imgscalr.Scalr.resize;
+
 
 import java.awt.image.BufferedImage;
 import java.io.File;

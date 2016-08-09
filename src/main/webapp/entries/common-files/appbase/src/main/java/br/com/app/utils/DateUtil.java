@@ -1,6 +1,7 @@
-package ${application.rootPackage}.utils;
+package ${application.corePackage}.utils;
 
 import org.apache.log4j.Logger;
+
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;

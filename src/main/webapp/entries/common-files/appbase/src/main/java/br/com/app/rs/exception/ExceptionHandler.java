@@ -1,6 +1,7 @@
-package ${application.rootPackage}.rs.exception;
+package ${application.corePackage}.rs.exception;
 
 import javax.ws.rs.core.Response;
+
 import javax.ws.rs.ext.ExceptionMapper;
 
 import org.apache.log4j.Logger;

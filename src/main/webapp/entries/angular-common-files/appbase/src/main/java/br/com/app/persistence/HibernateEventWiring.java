@@ -14,7 +14,7 @@ import org.joda.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import ${application.rootPackage}.model.AbstractTimestampEntity;
+import ${application.corePackage}.model.AbstractTimestampEntity;
 
 @Component
 public class HibernateEventWiring {

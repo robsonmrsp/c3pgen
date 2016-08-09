@@ -4,14 +4,14 @@ import java.io.Serializable;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
-
-import ${package}.serialization.CustomLocalDateSerializer;
-import ${package}.serialization.CustomLocalDateDeserializer;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
-import ${package}.serialization.CustomLocalDateTimeSerializer;
-import ${package}.serialization.CustomLocalDateTimeDeserializer;
+
+
+import ${corepackage}.serialization.CustomLocalDateSerializer;
+import ${corepackage}.serialization.CustomLocalDateDeserializer;
+import ${corepackage}.serialization.CustomLocalDateTimeSerializer;
+import ${corepackage}.serialization.CustomLocalDateTimeDeserializer;
 
 
 /**

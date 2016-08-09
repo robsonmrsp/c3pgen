@@ -1,6 +1,7 @@
-package ${application.rootPackage}.persistence;
+package ${application.corePackage}.persistence;
 
 import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,9 +11,9 @@ import org.hibernate.criterion.Restrictions;
 import org.joda.time.LocalDateTime;
 
 import ${application.rootPackage}.model.Client;
-import ${application.rootPackage}.persistence.pagination.Pagination;
-import ${application.rootPackage}.persistence.pagination.PaginationParams;
-import ${application.rootPackage}.persistence.pagination.Paginator;
+import ${application.corePackage}.persistence.pagination.Pagination;
+import ${application.corePackage}.persistence.pagination.PaginationParams;
+import ${application.corePackage}.persistence.pagination.Paginator;
 
 //
 @SuppressWarnings("unchecked")

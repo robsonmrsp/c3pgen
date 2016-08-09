@@ -1,0 +1,25 @@
+@import url("../vendor/bootstrap/css/bootstrap.css");
+@import url("../vendor/jquery.ui/jquery-ui-1.10.4.custom.min.css");
+@import url("../vendor/font.awesome/font-awesome-4.3.0/css/font-awesome.css");
+@import url("../vendor/backgrid/backgrid.css");
+@import url("../vendor/bootstrap.datetimepicker/bootstrap-datetimepicker.css");
+@import url("../vendor/jquery.validationEngine/validationEngine.jquery.css");
+@import url("../vendor/nprogressbar/nprogress.css");
+@import url("../vendor/jquery.gritter-1.7.4/css/jquery.gritter.css");
+@import url("../vendor/selectize/css/selectize.bootstrap3.css");
+@import url("../vendor/theme/ace.css");
+@import url("../vendor/theme/ace-fonts.css");
+@import url("custom.css");
+/* included only when we don't want to use fonts from google server */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Open Sans Light'), local('OpenSans-Light'), url(../fonts/DXI1ORHCpsQm3Vp6mXoaTXhCUOGz7vYGh680lGh-uXM.woff) format('woff');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans'), local('OpenSans'), url(../fonts/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
+}

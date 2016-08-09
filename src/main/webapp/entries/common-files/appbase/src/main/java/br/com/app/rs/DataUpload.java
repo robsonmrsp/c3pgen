@@ -1,4 +1,4 @@
-package ${application.rootPackage}.rs;
+package ${application.corePackage}.rs;
 
 import java.io.Serializable;
 
