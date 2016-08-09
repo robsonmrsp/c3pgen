@@ -1,11 +1,13 @@
 package br.com.c3pgen.base;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.joda.time.LocalDateTime;
 
@@ -64,12 +66,59 @@ public class GenService {
 
 	public GenerateFileInfo generate(Modulo modulo) throws Exception {
 
-		Application applicationFrom = Util.getApplicationFrom(modulo);
+		Application newApplication = Util.getApplicationFrom(modulo);
 
-		return generate(applicationFrom);
+		ApplicationValidator appValidator = new ApplicationValidator();
+
+		FreeMarkerConfig freeMarkerConfig = new FreeMarkerConfig(newApplication);
+
+		GenerateFileInfo fileInfo = new GenerateFileInfo();
+
+		EntitiesGenerator entitiesGenerator = new EntitiesGenerator(freeMarkerConfig, newApplication);
+
+		LOGGER.info("Validando arquivo de entidades...");
+		ApplicationValidatorMessages validateMessages = appValidator.validate(newApplication);
+		LOGGER.info("Finalizada a validação....");
+
+		if (validateMessages.isEmpty()) {
+			LOGGER.info("Gerando as entidades...");
+			entitiesGenerator.generate();
+			LOGGER.info("Concluida a geração da aplicação");
+
+			String a = Util.currentDir() + File.separator + "out/" + newApplication.getAppName();
+			String webPath = "out/" + newApplication.getAppName() + DateUtil.asString(LocalDateTime.now(), "_dd_MM_yyyy_HH_mm_ss") + ".zip";
+			String zip = Util.currentDir() + File.separator + webPath;
+
+			ZipUtils.zipFiles(Arrays.asList(new File(a)), new File(zip));
+			fileInfo.setRealFilePath(zip);
+			fileInfo.setStaticFilePath(webPath);
+			fileInfo.setGenerateSuccess(true);
+
+			// TODO ver uma forma mais elegante de fazer isso.
+			new java.util.Timer().schedule(new java.util.TimerTask() {
+				@Override
+				public void run() {
+					try {
+						LOGGER.info("Removendo arquivos temporarios em " + a);
+						FileUtils.deleteDirectory(new File(a));
+					} catch (IOException e) {
+						LOGGER.warn("Não foi possivel remover arquivos temporarios " + a, e);
+					}
+				}
+			}, 5000);
+
+		} else {
+			fileInfo.setApplicationValidatorMessages(validateMessages);
+		}
+
+		return fileInfo;
 	}
 
 	public GenerateFileInfo generate(Application application) throws Exception {
+		return generate(application, Boolean.FALSE);
+	}
+
+	public GenerateFileInfo generate(Application application, Boolean complete) throws Exception {
 
 		Application newApplication = fixApplication(application);
 		ApplicationValidator appValidator = new ApplicationValidator();
@@ -91,9 +140,12 @@ public class GenService {
 		LOGGER.info("Finalizada a validação....");
 
 		if (validateMessages.isEmpty()) {
-			LOGGER.info("Gerando a base da aplicação. Isso pode levar alguns segundos...");
-			appGenerator.generate();
-			LOGGER.info("Finalizada a geração básica....");
+			if (complete) {
+				LOGGER.info("Gerando a base da aplicação. Isso pode levar alguns segundos...");
+				appGenerator.generate();
+				LOGGER.info("Finalizada a geração básica....");
+			}
+			LOGGER.info("Gerando as entidades...");
 			entitiesGenerator.generate();
 			LOGGER.info("Concluida a geração da aplicação");
 
@@ -112,6 +164,19 @@ public class GenService {
 			fileInfo.setRealFilePath(zip);
 			fileInfo.setStaticFilePath(webPath);
 			fileInfo.setGenerateSuccess(true);
+
+			// TODO ver uma forma mais elegante de fazer isso.
+			new java.util.Timer().schedule(new java.util.TimerTask() {
+				@Override
+				public void run() {
+					try {
+						LOGGER.info("Removendo arquivos temporarios em " + a);
+						FileUtils.deleteDirectory(new File(a));
+					} catch (IOException e) {
+						LOGGER.warn("Não foi possivel remover arquivos temporarios " + a, e);
+					}
+				}
+			}, 5000);
 
 		} else {
 			fileInfo.setApplicationValidatorMessages(validateMessages);
@@ -152,9 +217,10 @@ public class GenService {
 		return relationships;
 	}
 
+	// TODO guardar a ideia para fazer os módulos a parte
 	public Boolean fixModules(Application application) {
-		application.addEntities(user());
-		application.addEntities(role());
+		// application.addEntities(user());
+		// application.addEntities(role());
 
 		return Boolean.TRUE;
 	}

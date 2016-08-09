@@ -180,7 +180,7 @@ public class ApplicationResources {
 
 			Application application = applicationService.get(id);
 
-			GenerateFileInfo pathFile = genService.generate(application);
+			GenerateFileInfo pathFile = genService.generate(application, Boolean.TRUE);
 
 			if (pathFile.getGenerateSuccess()) {
 				response = Response.ok(new JsonOk(pathFile.getStaticFilePath())).build();

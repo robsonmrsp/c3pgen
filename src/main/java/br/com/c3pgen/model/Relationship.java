@@ -178,6 +178,9 @@ public class Relationship extends AbstractTimestampEntity {
 	}
 
 	public Boolean getUniDirecional() {
+		if (uniDirecional == null) {
+			setUniDirecional(Boolean.TRUE);
+		}
 		return uniDirecional;
 	}
 
