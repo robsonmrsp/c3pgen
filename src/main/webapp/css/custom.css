@@ -143,7 +143,7 @@ td-actions a {
 	display: none;
 }
 
-.backgrid .select-row-cell,.backgrid .select-all-header-cell {
+.backgrid .select-row-cell, .backgrid .select-all-header-cell {
 	text-align: center;
 }
 
@@ -233,7 +233,7 @@ body {
 	border-color: #58b62c;
 }
 
-.carousel-inner>.item>img,.carousel-inner>.item>a>img {
+.carousel-inner>.item>img, .carousel-inner>.item>a>img {
 	width: 500px;
 	margin: auto;
 }
@@ -369,7 +369,7 @@ body {
 	/* 	right: 9px; */
 	/* 	color: white; */
 	/* 	font-size: 10px; */
-	/* } */                  
+	/* } */                   
 
 .uml-class-name-rect {
 	background: #ff8450 !important;
@@ -444,9 +444,36 @@ body {
 	/* 	height: 1024px impo; */
 	overflow: scroll;
 }
+
 .CodeMirror {
-  /* Set height, width, borders, and global font properties here */
-  font-family: monospace;
-  font-size : 15px;
-  height: 500px;
+	/* Set height, width, borders, and global font properties here */
+	font-family: monospace;
+	font-size: 15px;
+	height: 100%;
+}
+
+ul.editor-list {
+	list-style: none;
+	padding: 0
+}
+
+ul.editor-list li a {
+	padding: 0px 15px;
+	display: block
+}
+
+ul.editor-list li a i {
+	margin-right: 6px;
+	display: inline-block
+}
+
+ul.editor-list li.active a {
+	background: #f7f9fa;
+	border: 1px solid #e4e5e7;
+	font-weight: 600;
+	border-radius: 1px
+}
+
+ul.editor-list li:hover a {
+	font-weight: 600
 }

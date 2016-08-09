@@ -48,6 +48,7 @@ require.config({
 		'download' : '../vendor/download/download',
 		'codemirror' : '../vendor/CodeMirror-4_beta2/lib/codemirror',
 		'codemirrorYaml' : '../vendor/CodeMirror-4_beta2/mode/yaml/yaml',
+		'Yaml' : '../vendor/js-yaml-3.6.1/dist/js-yaml',
 	},
 	shim : {
 		'underscore' : {
