@@ -59,7 +59,7 @@ define(function(require) {
 			this.modulos = new ModuloPageCollection();
 
 			this.grid = new Backgrid.Grid({
-				className : 'table backgrid table-striped table-bordered table-hover dataTable no-footer  ',
+				className : 'table backgrid table-condensed ',
 				columns : this._getColumns(),
 				emptyText : "Sem registros",
 				collection : this.modulos
