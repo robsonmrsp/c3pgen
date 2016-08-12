@@ -57,6 +57,15 @@ public class Application extends AbstractTimestampEntity {
 	@Column(name = "ROOT_PACKAGE")
 	private String rootPackage;
 
+	@Column(name = "CORE_PACKAGE")
+	private String corePackage;
+
+	@Column(name = "BOOTSTRAP_VERSION")
+	private String bootstrapVersion = "3";
+	
+	@Column(name = "PERSISTENCE_FRAMEWORK")
+	private String persistenceFramework = "hibernate";
+
 	@Column(name = "VIEW")
 	private String view;
 
@@ -71,14 +80,7 @@ public class Application extends AbstractTimestampEntity {
 	@Cascade(CascadeType.ALL)
 	private Set<ApplicationRelationship> applicationRelationships;
 
-	@Column(name = "CORE_PACKAGE")
-	private String corePackage;
 
-	@Column(name = "BOOTSTRAP_VERSION")
-	private String bootstrapVersion = "3";
-
-	@Column(name = "PERSISTENCE_FRAMEWORK")
-	private String persistenceFramework = "hibernate";
 
 	@ManyToOne
 	@JoinColumn(name = "id_client")

@@ -1,7 +1,6 @@
 package br.com.c3pgen.json;
 
 import java.io.Serializable;
-import java.util.Arrays;
 
 import org.apache.commons.lang3.exception.ExceptionUtils;
 
@@ -10,7 +9,7 @@ public class JsonError implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String errorCode;
 	private String errorMessage;
-	private Object parameters;
+	private Object returnObjectError;
 	private String legalMessage;
 
 	public JsonError(Exception error, String legalMessage) {
@@ -21,27 +20,27 @@ public class JsonError implements Serializable {
 		this(errorMessage, null, leString);
 	}
 
-	public JsonError(String errorMessage, Object parameters) {
-		this(errorMessage, parameters, "");
+	public JsonError(String errorMessage, Object returnObject) {
+		this(errorMessage, returnObject, "");
 	}
 
-	public JsonError(Exception e, String errorMessage, Object parameters, String legalMessage) {
-		this(ExceptionUtils.getStackTrace(e) + " " + errorMessage, parameters, legalMessage);
+	public JsonError(Exception e, String errorMessage, Object returnObject, String legalMessage) {
+		this(ExceptionUtils.getStackTrace(e) + " " + errorMessage, returnObject, legalMessage);
 	}
 
-	public JsonError(String errorMessage, Object parameters, String legalMessage) {
+	public JsonError(String errorMessage, Object returnObject, String legalMessage) {
 		setErrorMessage(errorMessage);
 		setLegalMessage(legalMessage);
-		setParameters(parameters);
+		setReturnObjectError(returnObject);
 	}
 
 	public JsonError() {
 
 	}
 
-	public JsonError(Exception e, String errorMessage, Object parameters) {
+	public JsonError(Exception e, String errorMessage, Object returnObject) {
 
-		this(ExceptionUtils.getStackTrace(e) + " " + errorMessage, parameters, null);
+		this(ExceptionUtils.getStackTrace(e) + " " + errorMessage, returnObject, null);
 	}
 
 	public String getErrorMessage() {
@@ -64,12 +63,12 @@ public class JsonError implements Serializable {
 		this.errorCode = errorCode;
 	}
 
-	public Object getParameters() {
-		return parameters;
+	public Object getReturnObjectError() {
+		return returnObjectError;
 	}
 
-	public void setParameters(Object parameters) {
-		this.parameters = parameters;
+	public void setReturnObjectError(Object returnObject) {
+		this.returnObjectError = returnObject;
 	}
 
 	public String getLegalMessage() {

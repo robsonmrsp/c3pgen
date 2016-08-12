@@ -159,7 +159,7 @@ public class ApplicationResources {
 			if (pathFile.getGenerateSuccess()) {
 				response = Response.ok(new JsonOk(pathFile.getStaticFilePath())).build();
 			} else {
-				response = Response.serverError().entity(new JsonError(pathFile.getApplicationValidatorMessages().toString(), null, pathFile.getApplicationValidatorMessages().toString())).build();
+				response = Response.serverError().entity(new JsonError(pathFile.getApplicationValidatorMessages().toString(),  pathFile.getApplicationValidatorMessages())).build();
 			}
 		} catch (Exception e) {
 			String message = String.format("Não foi possivel gerar a aplicação [%s]", e.getMessage());
