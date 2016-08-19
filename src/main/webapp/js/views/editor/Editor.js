@@ -20,7 +20,7 @@ define(function(require) {
 
 	var download = require('download');
 	var CodeMirror = require('codemirror');
-	
+
 	var ModalError = require('views/components/ModalError');
 
 	var FormModulos = Marionette.LayoutView.extend({
@@ -48,7 +48,6 @@ define(function(require) {
 			var that = this;
 			that.currentModelItem = null;
 
-
 			this.itemsModelo = new ItemModuloCollection(that.model.get('items'));
 			this.menuClasses = new MenuClasses({
 				collection : that.itemsModelo,
@@ -59,10 +58,10 @@ define(function(require) {
 				},
 			});
 
-			this.modalError = new ModalError();
+			this.modalError = new ModalError({});
 			this.on('show', function() {
 				this.modalError.initIn(this);
-				
+
 				this.ui.tooltips.tooltip();
 				this.menuRegion.show(this.menuClasses);
 				this.editor = CodeMirror.fromTextArea(document.getElementById("codeEditor"), {

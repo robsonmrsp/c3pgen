@@ -216,8 +216,12 @@ define(function(require) {
 			});
 		},
 
-		loadApplication : function(application) {
+		loadApplication : function(application, clean) {
 			var that = this;
+			if (clean) {
+				globalVisualEntities.clear();
+				globalVisualRelations.clear();
+			}
 			that.quantidadeEntidades = application.get('entities').length
 			_.each(application.get('entities'), function(entity) {
 				that.addVisualEntity(new EntityModel(entity));
@@ -322,7 +326,7 @@ define(function(require) {
 					// TODO quando estivermos desenhando TUDO com canvas iremos
 					// remover essa linha
 					$('.html-element').remove()
-					 that.loadApplication(_application);
+					that.loadApplication(_application, true);
 				},
 				error : function(_coll, _resp, _opt) {
 					console.error('erro ao salvar: ', _coll.toJSON());
