@@ -36,6 +36,8 @@ define(function(require) {
 		},
 
 		ui : {
+			sourceClassName : '.origem-class-name',
+			targetClassName : '.target-class-name'
 
 		},
 
@@ -54,20 +56,23 @@ define(function(require) {
 			var sourceName = (this.sourceRelationModel.get('entity').get && this.sourceRelationModel.get('entity').get('name')) || this.sourceRelationModel.get('entity').name
 
 			this.targetRelationModel = visualRelationship.get('targetRelationModel')
-
+			
 			var targetName = (this.targetRelationModel.get('entity').get && this.targetRelationModel.get('entity').get('name')) || this.targetRelationModel.get('entity').name
 
+			
 			this.sourceView = new RelationshipItemView({
 				model : this.sourceRelationModel
 			});
-
-			this.sourceRegion.show(this.sourceView);
 
 			this.targetView = new RelationshipItemView({
 				model : this.targetRelationModel
 			});
 
+			this.sourceRegion.show(this.sourceView);
 			this.targetRegion.show(this.targetView);
+			
+			this.ui.sourceClassName.text(sourceName);
+			this.ui.targetClassName.text(targetName);
 		},
 
 		initialize : function() {

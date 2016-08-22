@@ -150,6 +150,7 @@ public class Parser {
 		jsonApplication.setSkin(application.getSkin());
 		jsonApplication.setDescription(application.getDescription());
 		jsonApplication.setRootPackage(application.getRootPackage());
+		jsonApplication.setCorePackage(application.getCorePackage());
 	}
 
 	private static void applyBasicEntityValues(Application application, JsonApplication jsonApplication) {
@@ -158,6 +159,7 @@ public class Parser {
 		application.setSkin(jsonApplication.getSkin());
 		application.setDescription(jsonApplication.getDescription());
 		application.setRootPackage(jsonApplication.getRootPackage());
+		application.setCorePackage(jsonApplication.getCorePackage());
 	}
 
 	public static JsonApplication toJson(Application application) {

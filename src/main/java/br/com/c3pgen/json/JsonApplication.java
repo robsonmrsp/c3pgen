@@ -23,6 +23,7 @@ public class JsonApplication implements Serializable {
 	private String skin;
 	private String description;
 	private String rootPackage;
+	private String corePackage;
 	private ArrayList<JsonTheEntity> entities = new ArrayList<JsonTheEntity>();
 
 	private ArrayList<JsonApplicationRelationship> applicationRelationships = new ArrayList<JsonApplicationRelationship>();
@@ -96,6 +97,14 @@ public class JsonApplication implements Serializable {
 
 	public void setApplicationRelationships(ArrayList<JsonApplicationRelationship> applicationRelationships) {
 		this.applicationRelationships = applicationRelationships;
+	}
+
+	public String getCorePackage() {
+		return corePackage;
+	}
+
+	public void setCorePackage(String corePackage) {
+		this.corePackage = corePackage;
 	}
 
 }

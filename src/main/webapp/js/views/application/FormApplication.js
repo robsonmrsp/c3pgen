@@ -122,10 +122,11 @@ define(function(require) {
 			var application = that.model;
 			application.set({
 				id : util.escapeById('inputId') || null,
-				name : util.escapeById('inputName'),
-				skin : util.escapeById('inputSkin'),
+				name : util.escapeById('inputName') ,
+				skin : util.escapeById('inputSkin') || 'ace',
 				description : util.escapeById('inputDescription'),
 				rootPackage : util.escapeById('inputRootPackage'),
+				corePackage : util.escapeById('inputCorePackage'),
 				entities : that.entities.toJSON(),
 			});
 			return application;
