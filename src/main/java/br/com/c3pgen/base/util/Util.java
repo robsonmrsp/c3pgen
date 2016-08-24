@@ -9,22 +9,25 @@ import java.nio.file.Paths;
 import java.sql.Timestamp;
 import java.text.Normalizer;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import org.apache.commons.io.FileUtils;
 import org.joda.time.LocalDate;
 
-import schemacrawler.schema.ColumnDataType;
+import com.esotericsoftware.yamlbeans.YamlReader;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import br.com.c3pgen.json.KeyValue;
 import br.com.c3pgen.model.Application;
 import br.com.c3pgen.model.ApplicationEntity;
 import br.com.c3pgen.model.Attribute;
 import br.com.c3pgen.model.ItemModulo;
 import br.com.c3pgen.model.Modulo;
 import br.com.c3pgen.model.Relationship;
-
-import com.esotericsoftware.yamlbeans.YamlReader;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import schemacrawler.schema.ColumnDataType;
 
 public class Util {
 	private static String currentDir = Paths.get(".").toAbsolutePath().toString();
@@ -43,7 +46,15 @@ public class Util {
 
 		return ret;
 	}
+	public static Map<String, Object> getSimpleObject(KeyValue... keyValue) {
+		Map<String, Object> map = new HashMap<String, Object>();
 
+		for (KeyValue kv : keyValue) {
+			map.put(kv.getKey(), kv.getValue());
+		}
+
+		return map;
+	}
 	public static String removeNonUnicodeCharAndSpaces(String input) {
 		String localStr = input;
 		localStr = Normalizer.normalize(localStr, Normalizer.Form.NFD);

@@ -9,10 +9,10 @@ import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.joda.time.LocalDateTime;
 
-import ${application.rootPackage}.model.Client;
-import ${application.rootPackage}.persistence.pagination.Pagination;
-import ${application.rootPackage}.persistence.pagination.PaginationParams;
-import ${application.rootPackage}.persistence.pagination.Paginator;
+import ${application.corePackage}.model.Client;
+import ${application.corePackage}.persistence.pagination.Pagination;
+import ${application.corePackage}.persistence.pagination.PaginationParams;
+import ${application.corePackage}.persistence.pagination.Paginator;
 
 //
 @SuppressWarnings("unchecked")

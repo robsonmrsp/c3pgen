@@ -22,8 +22,7 @@
 						Tipo de rel.:&nbsp;
 						<a class="editable editable-click inputType" data-placement="right" data-title="Tipo de elemento" data-type="select" data-pk="1" data-title="Selecione o tipo de  relacionamento">{{type}}</a>
 					</span>
-					<br>
-					<span>
+					<span style="display: none">
 						Dono:&nbsp;
 						<a class="editable editable-click inputOwnerName" data-placement="right" data-title="Tipo do atributo">{{ownerName}}</a>
 					</span>
@@ -34,26 +33,26 @@
 					</span>
 					<br>
 					<span class="combo-fields" style="display: none;">
-						<span>
+						<span style="display: none;">
 							Id no Combo?:&nbsp;
-							<a class="editable editable-click inputComboId" data-placement="right" data-title="Tipo do atributo">{{viewApproach && viewApproach.comboId}}</a>
+							<!-- 							<a class="editable editable-click inputComboId" data-placement="right" data-title="Tipo do atributo">{{viewApproach && viewApproach.comboId}}</a> -->
+							<a class="editable editable-click inputComboId" data-placement="right" data-title="Tipo do atributo">id</a>
 						</span>
-						<br>
 						<span>
-							Valor no Combo:&nbsp;
-							<a class="editable editable-click inputComboName" data-placement="right" data-title="Tipo do atributo">{{viewApproach && viewApproach.comboName}}</a>
+							&nbsp;&nbsp;Info à exibir:&nbsp;
+							<a class="editable editable-click inputComboVal" data-placement="right" data-title="Tipo do atributo">{{viewApproach && viewApproach.comboVal}}</a>
 						</span>
 						<br>
 					</span>
 					<span class="modal-fields" style="display: none;">
-						<span>
+						<span style="display: none;">
 							Id no Modal?:&nbsp;
-							<a class="editable editable-click inputTextField" data-placement="right" data-title="Tipo do atributo">{{viewApproach && viewApproach.textField}}</a>
+							<!-- 							<a class="editable editable-click inputTextField" data-placement="right" data-title="Tipo do atributo">{{viewApproach && viewApproach.hiddenField }}</a> -->
+							<a class="editable editable-click inputHiddenField" data-placement="right" data-title="Tipo do atributo">id</a>
 						</span>
-						<br>
 						<span>
-							Texto no Modal?:&nbsp;
-							<a class="editable editable-click inputHiddenField" data-placement="right" data-title="Tipo do atributo">{{viewApproach && viewApproach.hiddenField }}</a>
+							&nbsp;&nbsp;Info à exibir:&nbsp;
+							<a class="editable editable-click inputTextField" data-placement="right" data-title="Tipo do atributo">{{viewApproach && viewApproach.textField}}</a>
 						</span>
 						<br>
 					</span>

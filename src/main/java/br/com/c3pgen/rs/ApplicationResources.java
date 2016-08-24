@@ -159,7 +159,7 @@ public class ApplicationResources {
 			if (pathFile.getGenerateSuccess()) {
 				response = Response.ok(new JsonOk(pathFile.getStaticFilePath())).build();
 			} else {
-				response = Response.serverError().entity(new JsonError(pathFile.getApplicationValidatorMessages().toString(),  pathFile.getApplicationValidatorMessages())).build();
+				response = Response.serverError().entity(new JsonError(pathFile.getApplicationValidatorMessages().toString(), pathFile.getApplicationValidatorMessages())).build();
 			}
 		} catch (Exception e) {
 			String message = String.format("Não foi possivel gerar a aplicação [%s]", e.getMessage());
@@ -196,7 +196,7 @@ public class ApplicationResources {
 	}
 
 	@GET
-	@Path("validator/{id}")
+	@Path("validate/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response valida(@PathParam("id") Integer id, @Context HttpServletRequest httpServletRequest) {
 		Response response = null;
@@ -209,9 +209,9 @@ public class ApplicationResources {
 			ApplicationValidatorMessages validate = genService.Validate(application);
 
 			if (validate.isEmpty()) {
-				response = Response.ok(new JsonOk("Aplicação Ok")).build();
+				response = Response.ok(Boolean.TRUE).build();
 			} else {
-				response = Response.serverError().entity(new JsonError(validate.toString(), null, validate.toString())).build();
+				response = Response.ok(validate).build();
 			}
 		} catch (Exception e) {
 			String message = String.format("Não foi possivel gerar a aplicação [%s]", e.getMessage());

@@ -219,8 +219,8 @@ public class GenService {
 
 	// TODO guardar a ideia para fazer os módulos a parte
 	public Boolean fixModules(Application application) {
-		// application.addEntities(user());
-		// application.addEntities(role());
+		application.addEntities(user());
+		application.addEntities(role());
 
 		return Boolean.TRUE;
 	}

@@ -34,8 +34,10 @@ define(function(require) {
 			inputUniDirecional : '.inputUniDirecional',
 			inputViewApproach : '.inputViewApproach',
 			inputViewApproachId : '.inputViewApproachId',
+
 			inputComboId : '.inputComboId',
-			inputComboName : '.inputComboName',
+			inputComboVal : '.inputComboVal',
+
 			inputTextField : '.inputTextField',
 			inputHiddenField : '.inputHiddenField',
 
@@ -47,6 +49,9 @@ define(function(require) {
 			editableFields : '.editable-click'
 		},
 		changeRelationship : function() {
+			if (this.onSave) {
+				this.onSave()
+			}
 			if (this.validateRelation()) {
 				var attr = this.getModel();
 				if (attr.name && attr.model)
@@ -84,7 +89,11 @@ define(function(require) {
 				uniDirecional : this.ui.inputUniDirecional.is(':checked'),
 				viewApproach : {
 					id : this.ui.inputViewApproachId.val(),
+					comboId : 'id',
+					hiddenField : 'id',
 					type : C3P.notEmptyVal(this.ui.inputViewApproach),
+					comboVal : C3P.notEmptyVal(this.ui.inputComboVal),
+					textField : C3P.notEmptyVal(this.ui.inputTextField)
 				},
 			};
 		},
@@ -99,7 +108,9 @@ define(function(require) {
 		},
 
 		initialize : function(opt) {
+
 			var that = this;
+			this.onSave = opt.onSave;
 			this.on('show', function() {
 				this.ui.inputRelationshipName.editable();
 				this.ui.inputDisplayName.editable();
@@ -110,7 +121,7 @@ define(function(require) {
 				});
 
 				this.ui.inputComboId.editable();
-				this.ui.inputComboName.editable();
+				this.ui.inputComboVal.editable();
 				this.ui.inputTextField.editable();
 				this.ui.inputHiddenField.editable();
 
@@ -146,18 +157,7 @@ define(function(require) {
 				});
 
 				this.ui.inputViewApproach.on('hidden', function(e, editable) {
-					var val = that.ui.inputViewApproach.text();
-					if (val == 'modal') {
-						that.ui.modalFields.show();
-						that.ui.comboFields.hide();
-					} else if (val == 'combo') {
-						that.ui.comboFields.show();
-						that.ui.modalFields.hide();
-
-					} else if (val == 'multiselect') {
-						that.ui.modalFields.hide();
-						that.ui.comboFields.hide();
-					}
+					that.treatViewApproach();
 				});
 
 				this.ui.inputType.editable({
@@ -176,8 +176,23 @@ define(function(require) {
 						text : 'ManyToMany'
 					}, ]
 				});
-
+				this.treatViewApproach();
 			});
+		},
+		treatViewApproach : function() {
+			var val = this.ui.inputViewApproach.text();
+
+			if (val == 'modal') {
+				this.ui.modalFields.show();
+				this.ui.comboFields.hide();
+			} else if (val == 'combo') {
+				this.ui.comboFields.show();
+				this.ui.modalFields.hide();
+
+			} else if (val == 'multiselect') {
+				this.ui.modalFields.hide();
+				this.ui.comboFields.hide();
+			}
 		},
 
 		_getModels : function() {

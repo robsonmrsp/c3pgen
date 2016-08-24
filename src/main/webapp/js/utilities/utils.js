@@ -382,7 +382,8 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 		},
 
 		/*
-		 * Usage: breadcrumb({iconClass:'',itemLabel:'', itemSubFolderName:'',url:''});
+		 * Usage: breadcrumb({iconClass:'',itemLabel:'',
+		 * itemSubFolderName:'',url:''});
 		 */
 		breadcrumb : function(itemMenu) {
 			if (itemMenu) {
@@ -620,7 +621,8 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 		},
 
 		getVEntityByName : function(/*
-									 * nome da entidade representada no editor visual
+									 * nome da entidade representada no editor
+									 * visual
 									 */name) {
 			var allVEntities = visualEntities.values();
 			var allBEntities = [];
@@ -642,6 +644,18 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 				allBEntities.push(vEntity.get('entity'));
 			})
 			return allBEntities;
+		},
+
+		BEntityContainsAttribute : function(entityName, attributeName) {
+			var bbEntity = this.getBEntityByName(entityName);
+			var ret = false;
+			_.each(bbEntity.get('attributes'), function(attr) {
+				if (attr.name == attributeName) {
+					ret = true;
+				}
+			});
+
+			return ret;
 		},
 		getBEntityByName : function(/* nome da entidade */name) {
 			var bEnt = null;

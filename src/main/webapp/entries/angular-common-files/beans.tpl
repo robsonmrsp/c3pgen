@@ -27,7 +27,7 @@
 		class="org.springframework.web.context.support.ServletContextPropertyPlaceholderConfigurer" />
 	<bean
 		class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer" />
-	<jaxrs:server address="/" basePackages="${application.rootPackage}.rs">
+	<jaxrs:server address="/" basePackages="${application.rootPackage}.rs,${application.corePackage}.rs">
 		<jaxrs:providers>
 			<bean class="com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider" />
 			<bean class="${application.rootPackage}.rs.exception.ExceptionHandler" />

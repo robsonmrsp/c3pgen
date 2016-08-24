@@ -38,6 +38,8 @@ define(function(require) {
 
 	var DiagramApplicationTools = require('views/visual/componentes/DiagramApplicationTools');
 
+	var ModalError = require('views/components/ModalError');
+
 	var lastPositionX = 0;
 
 	var contador = 0;
@@ -100,8 +102,9 @@ define(function(require) {
 			this.inspetorRelacionamentosView = new InspetorRelacionamentosView({
 				model : new ApplicationRelationshipModel(),
 			});
-
+			this.modalError = new ModalError({});
 			this.on('show', function() {
+				this.modalError.initIn(this);
 
 				this.inspetorRegion.show(this.inspetorView);
 				this.diagramApplicationToolsRegion.show(this.diagramApplicationTools);
@@ -295,6 +298,39 @@ define(function(require) {
 			window.globalVisualRelations.put(relation.id, relation);
 		},
 
+		validateApplication : function() {
+			var old = this.model.url;
+			var that = this;
+			this.model.url = 'rs/crud/applications/validate/' + this.model.get('id');
+			this.model.fetch({
+				success : function(_model, _resp, _options) {
+					that.model.url = old;
+					util.showMessage('info', _resp.resp);
+					console.log(download);
+					download(_resp.resp);
+				},
+				error : function(_model, _resp, _options) {
+					util.showMessage('error', util.getJson(_resp.responseText).legalMessage || '');
+					that.model.url = old;
+				}
+			});
+		},
+
+		validateApplication : function() {
+			var that = this;
+			var application = new ApplicationModel();
+			application.url = 'rs/crud/applications/validate/' + this.model.get('id');
+			application.fetch({
+				success : function(_model, _resp, _options) {
+					console.log(_resp)
+					that.modalError.showMessage(_resp);
+				},
+				error : function(_model, _resp, _options) {
+					util.showMessage('error', util.getJson(_resp.responseText).legalMessage || '');
+				}
+			});
+		},
+
 		saveApplication : function() {
 			var that = this;
 			this.application = this.model;
@@ -327,6 +363,7 @@ define(function(require) {
 					// remover essa linha
 					$('.html-element').remove()
 					that.loadApplication(_application, true);
+					that.validateApplication();
 				},
 				error : function(_coll, _resp, _opt) {
 					console.error('erro ao salvar: ', _coll.toJSON());

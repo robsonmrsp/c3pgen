@@ -39,7 +39,7 @@ public class FSItemDescription {
 		List<FSItemDescription> persistences = new ArrayList<FSItemDescription>();
 
 		persistences.add(new FSItemDescription("HibernateDao", rootFolder + "persistence" + File.separator, "HibernateDao", FileType.JAVA));
-		persistences.add(new FSItemDescription("DaoUser", rootFolder + "persistence" + File.separator, "DaoUser", FileType.JAVA));
+//		persistences.add(new FSItemDescription("DaoUser", rootFolder + "persistence" + File.separator, "DaoUser", FileType.JAVA));
 		persistences.add(new FSItemDescription("CatchThrowConstraintViolationException", rootFolder + "persistence" + File.separator, "CatchThrowConstraintViolationException", FileType.JAVA));
 
 		persistences.add(new FSItemDescription("AccessibleHibernateDao", rootFolder + "persistence" + File.separator, "AccessibleHibernateDao", FileType.JAVA));
@@ -60,7 +60,7 @@ public class FSItemDescription {
 		list.add(new FSItemDescription("JsonOk", rootFolder + File.separator + "json" + File.separator, "JsonOk", FileType.JAVA));
 		list.add(new FSItemDescription("JsonPaginator", rootFolder + File.separator + "json" + File.separator, "JsonPaginator", FileType.JAVA));
 		list.add(new FSItemDescription("JsonResponse", rootFolder + File.separator + "json" + File.separator, "JsonResponse", FileType.JAVA));
-		list.add(new FSItemDescription("JsonUser", rootFolder + File.separator + "json" + File.separator, "JsonUser", FileType.JAVA));
+//		list.add(new FSItemDescription("JsonUser", rootFolder + File.separator + "json" + File.separator, "JsonUser", FileType.JAVA));
 		list.add(new FSItemDescription("JsonWebSocket", rootFolder + File.separator + "json" + File.separator, "JsonWebSocket", FileType.JAVA));
 		list.add(new FSItemDescription("DtoDataBase", rootFolder + File.separator + "json" + File.separator, "DtoDataBase", FileType.JAVA));
 		list.add(new FSItemDescription("Conflict", rootFolder + File.separator + "json" + File.separator, "Conflict", FileType.JAVA));
@@ -165,8 +165,8 @@ public class FSItemDescription {
 	public static List<FSItemDescription> service(String rootFolder) {
 
 		List<FSItemDescription> list = new ArrayList<FSItemDescription>();
-		list.add(new FSItemDescription("UserService", rootFolder + File.separator + "service" + File.separator, "UserService", FileType.JAVA));
-		list.add(new FSItemDescription("UserServiceImp", rootFolder + File.separator + "service" + File.separator, "UserServiceImp", FileType.JAVA));
+//		list.add(new FSItemDescription("UserService", rootFolder + File.separator + "service" + File.separator, "UserService", FileType.JAVA));
+//		list.add(new FSItemDescription("UserServiceImp", rootFolder + File.separator + "service" + File.separator, "UserServiceImp", FileType.JAVA));
 		list.add(new FSItemDescription("SyncService", rootFolder + File.separator + "service" + File.separator, "SyncService", FileType.JAVA));
 		list.add(new FSItemDescription("SyncServiceImp", rootFolder + File.separator + "service" + File.separator, "SyncServiceImp", FileType.JAVA));
 		return list;

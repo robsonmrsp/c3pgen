@@ -5,6 +5,7 @@ import java.lang.reflect.Method;
 import java.text.Normalizer;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.joda.time.DateTime;
@@ -13,7 +14,7 @@ import org.joda.time.LocalDateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
-
+import br.com.c3pgen.json.KeyValue;
 
 public class Util {
 	private static SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
@@ -29,7 +30,8 @@ public class Util {
 		}
 	}
 
-	
+
+
 	public static String removeNonUnicodeCharAndSpaces(String input) {
 		String localStr = input;
 		localStr = Normalizer.normalize(localStr, Normalizer.Form.NFD);
