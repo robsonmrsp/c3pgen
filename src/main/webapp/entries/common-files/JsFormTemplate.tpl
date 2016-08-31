@@ -225,7 +225,7 @@ define(function(require) {
 			if (this._isValid()) {
 				${firstLower(entity.name)}.save({}, {
 					success : function(_model, _resp, _options) {
-						util.showSuccessMessage('${entity.name} salvo com sucesso!');
+						util.showSuccessMessage('${firstUpper(entity.displayName)!firstUpper(entity.name)} salvo com sucesso!');
 						that.clearForm();
 
 						if (continua != true) {

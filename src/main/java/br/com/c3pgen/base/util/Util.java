@@ -46,6 +46,7 @@ public class Util {
 
 		return ret;
 	}
+
 	public static Map<String, Object> getSimpleObject(KeyValue... keyValue) {
 		Map<String, Object> map = new HashMap<String, Object>();
 
@@ -55,6 +56,7 @@ public class Util {
 
 		return map;
 	}
+
 	public static String removeNonUnicodeCharAndSpaces(String input) {
 		String localStr = input;
 		localStr = Normalizer.normalize(localStr, Normalizer.Form.NFD);
@@ -340,7 +342,8 @@ public class Util {
 			destFileWriter.append("\n");
 			destFileWriter.append("view: backbone");
 			destFileWriter.append("\n");
-			destFileWriter.append("rootPackage: br.com.gsh.aghos.appTeste");
+			// destFileWriter.append("rootPackage: br.com.gsh.aghos."+ modulo.getNome());
+			destFileWriter.append("rootPackage: br.com.gsh.aghos.centrocirurgico");
 			destFileWriter.append("\n");
 			destFileWriter.append("corePackage: br.com.gsh.aghos.core");
 			destFileWriter.append("\n");

@@ -70,7 +70,11 @@
 					<#if entity.attributes??>	
 					<#list entity.attributes as att>
 						<if test=" ${firstLower(entity.name)}.${att.name} != null ">
+							<#if att.type.className == 'string'>
+					    	AND UPPER(${uppercase(att.tableFieldName!att.name)})  LIKE UPPER('%${r"${"} ${firstLower(entity.name)}.${att.name} ${r"}"}%')
+					    	<#else>
 					    	AND ${uppercase(att.tableFieldName!att.name)} = ${r"#{"} ${firstLower(entity.name)}.${att.name} ${r"}"}
+					    	</#if>
 					    </if> 
 					</#list>
 					</#if>
@@ -129,10 +133,10 @@
     
     <insert id="salva" parameterType="${entity.name}">
     	<selectKey keyProperty="id" order="BEFORE" resultType="Integer" >
-	    	SELECT GSH_SEQ_${uppercase(entity.name)}.NEXTVAL FROM DUAL
+	    	SELECT GSH_SEQ_${uppercase(entity.sequence)}.NEXTVAL FROM DUAL
     	</selectKey>
     	  	INSERT INTO 
-            GSH_INTERNACAO
+            ${uppercase(entity.tableName!entity.name)}
             (   
 		<#if entity.attributes??>
 				${entity.pk} 
@@ -171,6 +175,6 @@
     </update>
     
     <delete id="deleta" parameterType="Integer" >
-    	DELETE FROM ${entity.name} 	WHERE ${entity.pk} = ${r"#{"} id ${r"}"}
+    	DELETE FROM ${uppercase(entity.tableName!entity.name)} 	WHERE ${entity.pk} = ${r"#{"} id ${r"}"}
     </delete>
 </mapper>	

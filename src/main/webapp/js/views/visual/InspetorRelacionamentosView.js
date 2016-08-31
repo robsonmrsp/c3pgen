@@ -34,6 +34,7 @@ define(function(require) {
 		events : {
 			// 'click .btn-pronto' : 'saveRelation',
 			'click .check-dono-origem' : 'changeOwner',
+			'click .showhide' : 'showHide',
 			'click .check-dono-destino' : 'changeOwner',
 		},
 
@@ -167,6 +168,7 @@ define(function(require) {
 		},
 
 		initialize : function() {
+
 			var that = this;
 			this.$el.draggable({
 				handle : 'h5',
@@ -186,8 +188,12 @@ define(function(require) {
 			this.on('show', function() {
 				this.sourceRegion.show(this.sourceView);
 				this.targetRegion.show(this.targetView);
+				this.showHide();
 			});
 		},
+		showHide : function() {
+			util.showHidePanel(this.$el);
+		}
 	});
 
 	return EntidadeItem;

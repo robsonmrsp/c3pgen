@@ -13,7 +13,11 @@ define(function(require) {
 
 	var ${entity.name}Model = BaseModel.extend({
 
+		<#if application.persistenceFramework == 'hibernate'>	
 		urlRoot : 'rs/crud/${firstLower(entity.name)}s',
+		<#else>
+		urlRoot : '../rs/crud/${firstLower(entity.name)}s',
+		</#if>
 
 		defaults : {
 			id: null,

@@ -94,7 +94,7 @@ public class GenService {
 			fileInfo.setStaticFilePath(webPath);
 			fileInfo.setGenerateSuccess(true);
 
-			// TODO ver uma forma mais elegante de fazer isso.
+			
 			new java.util.Timer().schedule(new java.util.TimerTask() {
 				@Override
 				public void run() {
@@ -165,7 +165,7 @@ public class GenService {
 			fileInfo.setStaticFilePath(webPath);
 			fileInfo.setGenerateSuccess(true);
 
-			// TODO ver uma forma mais elegante de fazer isso.
+			// 
 			new java.util.Timer().schedule(new java.util.TimerTask() {
 				@Override
 				public void run() {

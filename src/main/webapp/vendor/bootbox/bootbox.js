@@ -12,6 +12,7 @@ window.bootbox = window.bootbox || (function init($, undefined) {
     dialog:
       "<div class='bootbox modal' tabindex='-1' role='dialog'>" +
         "<div class='modal-dialog'>" +
+//          "<div class='color-line'></div>" +
           "<div class='modal-content'>" +
             "<div class='modal-body'><div class='bootbox-body'></div></div>" +
           "</div>" +

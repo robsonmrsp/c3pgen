@@ -15,7 +15,13 @@ define(function(require) {
 
 	var ${entity.name}Collection = BaseCollection.extend({
 		model : ${entity.name}Model,
+		
+		<#if application.persistenceFramework == 'hibernate'>	
 		url : 'rs/crud/${firstLower(entity.name)}s/all',
+		<#else>
+		url : '../rs/crud/${firstLower(entity.name)}s/all',
+		</#if>
+		
 	});
 	return ${entity.name}Collection;
 });

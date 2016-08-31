@@ -104,6 +104,7 @@ define(function(require) {
 			});
 			this.modalError = new ModalError({});
 			this.on('show', function() {
+
 				this.modalError.initIn(this);
 
 				this.inspetorRegion.show(this.inspetorView);
@@ -135,17 +136,29 @@ define(function(require) {
 				window.paper.on('link:options', function(_evento, _link, x, y) {
 					that.inspetorRelacionamentosView.setVisual(_link.model);
 				});
-
-				window.paper.on('cell:pointerdown', function(cellView, evt, x, y) {
-					var toolRemove = $(evt.target).parents('.tool-remove')[0];
-					if (toolRemove) {
-						if (!confirm('Deseja remover o relacionamento')) {
-							cellView.options.interactive = false;
-							_.defer(function() {
-								cellView.options.interactive = true;
-							});
+				window.paper.on('tool:remove', function(evt, linkView) {
+					console.log("Removing link" + linkView.model.id);
+					util.Bootbox.confirm("Tem certeza que deseja remover o					 relacionamento ?", function(yes) {
+						if (yes) {
+							console.log("Removing link", linkView);
+							// linkView.model.remove();
+						} else {
+							console.log(" Leaving  alone link", linkView);
 						}
-					}
+					});
+
+				})
+				window.paper.on('cell:pointerdown', function(cellView, evt, x, y) {
+					// var toolRemove =
+					// $(evt.target).parents('.tool-remove')[0];
+					// if (toolRemove) {
+					// evt.preventDefault();
+					// cellView.options.interactive = false;
+					// _.defer(function() {
+					// cellView.options.interactive = true;
+					// });
+					//
+					// }
 				});
 				window.paper.on('cell:pointerup', function(_cellView, evt, x, y) {
 					if (_cellView.model.get('type') == 'html.Element') {
@@ -282,7 +295,7 @@ define(function(require) {
 
 			var relation = new VisualRelationship({
 				applicationRelationshipModel : new ApplicationRelationshipModel({
-
+					id : applicationRelationshipModel.id,
 					source : applicationRelationshipModel.source,
 					target : applicationRelationshipModel.target,
 

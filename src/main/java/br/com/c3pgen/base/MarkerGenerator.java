@@ -3,6 +3,7 @@ package br.com.c3pgen.base;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -69,6 +70,8 @@ public class MarkerGenerator {
 		tryCreateFolder(folderName);
 		String finalName = folderName + File.separator + fileName;
 		FileWriter fileWriter = new FileWriter(finalName);
+		
+//		PrintWriter fileWriter = new PrintWriter( fileName, "UTF-8" );
 
 		try {
 			template.process(adjustData(application, entity), fileWriter);

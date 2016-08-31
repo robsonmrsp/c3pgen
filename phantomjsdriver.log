@@ -1247,3 +1247,21 @@ http://requirejs.org/docs/errors.html#timeout
 [INFO  - 2016-08-22T12:00:17.392Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
 [INFO  - 2016-08-22T12:05:17.434Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
 [INFO  - 2016-08-22T12:10:17.434Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2016-08-25T18:21:29.186Z] GhostDriver - Main - running on port 37179
+[INFO  - 2016-08-25T18:21:30.040Z] Session [be64a120-6af0-11e6-8a9c-0d6c34e90057] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.0.0 Safari/538.1","webSecurityEnabled":true}
+[INFO  - 2016-08-25T18:21:30.040Z] Session [be64a120-6af0-11e6-8a9c-0d6c34e90057] - page.customHeaders:  - {}
+[INFO  - 2016-08-25T18:21:30.040Z] Session [be64a120-6af0-11e6-8a9c-0d6c34e90057] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.0.0","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"windows-7-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2016-08-25T18:21:30.041Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: be64a120-6af0-11e6-8a9c-0d6c34e90057
+[ERROR - 2016-08-25T18:21:30.614Z] Session [be64a120-6af0-11e6-8a9c-0d6c34e90057] - page.onError - msg: Error: Script error for: jasmine
+http://requirejs.org/docs/errors.html#scripterror
+[ERROR - 2016-08-25T18:21:30.614Z] Session [be64a120-6af0-11e6-8a9c-0d6c34e90057] - page.onError - stack:
+  ca (http://localhost:62854/vendor/require/require.js:8)
+  w (http://localhost:62854/vendor/require/require.js:12)
+  onScriptError (http://localhost:62854/vendor/require/require.js:29)
+[ERROR - 2016-08-25T18:21:37.622Z] Session [be64a120-6af0-11e6-8a9c-0d6c34e90057] - page.onError - msg: Error: Load timeout for modules: boot,jasmine-html
+http://requirejs.org/docs/errors.html#timeout
+[ERROR - 2016-08-25T18:21:37.622Z] Session [be64a120-6af0-11e6-8a9c-0d6c34e90057] - page.onError - stack:
+  ca (http://localhost:62854/vendor/require/require.js:8)
+  w (http://localhost:62854/vendor/require/require.js:12)
+  D (http://localhost:62854/vendor/require/require.js:14)
+  (anonymous function) (http://localhost:62854/vendor/require/require.js:14)

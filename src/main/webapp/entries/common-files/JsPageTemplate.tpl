@@ -12,6 +12,8 @@ define(function(require) {
 	var CustomStringCell = require('views/components/CustomStringCell');
 	var Counter = require('views/components/Counter');
 	var ActionsCell = require('views/components/ActionsCell');
+	var GeneralActionsCell = require('views/components/GeneralActionsCell');
+
 	var CustomNumberCell = require('views/components/CustomNumberCell');
 
 	var TemplateForm${entity.name}s = require('text!views/${firstLower(entity.name)}/tpl/Form${entity.name}Template.html');
@@ -301,6 +303,7 @@ define(function(require) {
 		},
 				
 		_getColumns : function() {
+			var that = this;
 			var columns = [
 			//{
 			//	name : "id",
@@ -332,7 +335,7 @@ define(function(require) {
 			{
 				name : "${firstLower(rel.name)}.${rel.viewApproach.textField}",
 				editable : false,
-				sortable : true,  //já é possivel ordenar por esses atributos compostos.
+				sortable : true,  
 				label : "${rel.displayName}",
 				cell : CustomStringCell.extend({
 					fieldName : '${firstLower(rel.name)}.${rel.viewApproach.textField}',
@@ -346,42 +349,61 @@ define(function(require) {
 				name : "acoes",
 				label : "Ações(Editar, Deletar)",
 				sortable : false,
-				cell : ActionsCell.extend({
-					editPath : this._getEditPath,
-					deletePath : this._getDeletePath,
-					editModel : this._editModel,
-					deleteModel : this._deleteModel
+				cell : GeneralActionsCell.extend({
+					buttons : that._getCellButtons(),
+					context : that,
 				})
 			} ];
 			return columns;
 		},
+		
+		_getCellButtons : function() {
+			var that = this;
+			var buttons = [];
 
-		_deleteModel : function(model) {
-			util.Bootbox.confirm("Tem certeza que deseja remover o registro [ " + model.get('id') + "] ?", function(yes) {
+			buttons.push({
+				id : 'edita_ficha_button',
+				type : 'primary',
+				icon : 'icon-pencil',
+				hint : 'Editar ${firstUpper(entity.displayName)!firstUpper(entity.name)}',
+				onClick : that.editModel,
+			}, {
+				id : 'delete_button',
+				type : 'danger',
+				icon : 'icon-trash',
+				hint : 'Delete ${firstUpper(entity.displayName)!firstUpper(entity.name)}',
+				onClick : that.deleteModel,
+			});
+
+			return buttons;
+		},
+
+		deleteModel : function(model) {
+			var that = this;
+			
+			var modelTipo = new ${entity.name}Model({
+				id : model.id,
+			});
+			
+			util.Bootbox.confirm("Tem certeza que deseja remover o registro [ " + model.get('id') + " ] ?", function(yes) {
 				if (yes) {
-					model.destroy({
+					modelTipo.destroy({
 						success : function() {
-							util.showSuccessMessage('${entity.name} removido com sucesso!');
+							that.tipoAnestesiaCirurgias.remove(model);
+							util.showSuccessMessage('${firstUpper(entity.displayName)!firstUpper(entity.name)} removido com sucesso!');
 						},
 						error : function(_model, _resp) {
-							util.showErrorMessage('Problema ao salvar registro',_resp);
+							util.showErrorMessage('Problema ao remover o registro',_resp);
 						}
 					});
 				}
 			});
 		},
 
-		_getDeletePath : function(model) {
-			// alert('Delete,,, ' + JSON.stringify(model));
+		editModel : function(model) {
+			util.goPage("app/edit${entity.name}/" + model.get('id'));
 		},
 
-		_getEditPath : function(model) {
-			return "app/edit${entity.name}/" + model.get('id');
-		},
-
-		_editModel : function(model) {
-
-		},
 		<#if entity.relationships??>	
 		<#list entity.relationships as rel >
 				<#if rel.showInPages >		
