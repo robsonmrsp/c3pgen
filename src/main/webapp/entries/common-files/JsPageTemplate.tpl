@@ -389,7 +389,7 @@ define(function(require) {
 				if (yes) {
 					modelTipo.destroy({
 						success : function() {
-							that.tipoAnestesiaCirurgias.remove(model);
+							that.${firstLower(entity.name)}s.remove(model);
 							util.showSuccessMessage('${firstUpper(entity.displayName)!firstUpper(entity.name)} removido com sucesso!');
 						},
 						error : function(_model, _resp) {
