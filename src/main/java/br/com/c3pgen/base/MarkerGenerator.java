@@ -1,9 +1,11 @@
 package br.com.c3pgen.base;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.OutputStreamWriter;
+import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -69,9 +71,12 @@ public class MarkerGenerator {
 		String fileName = templateFileName.replace("${entity.name}", entity.getName()) + "." + fileType.getSufix();
 		tryCreateFolder(folderName);
 		String finalName = folderName + File.separator + fileName;
-		FileWriter fileWriter = new FileWriter(finalName);
-		
-//		PrintWriter fileWriter = new PrintWriter( fileName, "UTF-8" );
+
+		OutputStreamWriter fileWriter = new OutputStreamWriter(new FileOutputStream(finalName), Charset.forName("UTF-8"));
+
+		// FileWriter fileWriter = new FileWriter(finalName);
+
+		// PrintWriter fileWriter = new PrintWriter( fileName, "UTF-8" );
 
 		try {
 			template.process(adjustData(application, entity), fileWriter);
@@ -164,7 +169,11 @@ public class MarkerGenerator {
 	public Boolean generate(Application aplication) throws IOException, TemplateException {
 		Template template = freeMarkerConfig.getTemplate(templateName);
 		tryCreateFolder(destinationFolder);
-		FileWriter fileWriter = new FileWriter(destinationFolder + templateFileName.replace("${entity.name}", "Fragment") + "." + fileType.getSufix());
+
+		OutputStreamWriter fileWriter = new OutputStreamWriter(new FileOutputStream(destinationFolder + templateFileName.replace("${entity.name}", "Fragment") + "." + fileType.getSufix()), Charset.forName("UTF-8"));
+		// FileWriter fileWriter = new FileWriter(destinationFolder +
+		// templateFileName.replace("${entity.name}", "Fragment") + "." +
+		// fileType.getSufix());
 		template.process(adjustData(aplication, null), fileWriter);
 		fileWriter.close();
 		return Boolean.FALSE;
