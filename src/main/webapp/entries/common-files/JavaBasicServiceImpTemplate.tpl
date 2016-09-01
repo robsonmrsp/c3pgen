@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.joda.time.LocalDateTime;
 
 <#if entity.hasOwner>
-import ${application.corePackage}.model.Client;
+import ${application.rootPackage}.model.Client;
 </#if>
 
 import ${application.rootPackage}.model.${entity.name};

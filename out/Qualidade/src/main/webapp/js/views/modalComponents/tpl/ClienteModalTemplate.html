@@ -1,0 +1,75 @@
+<!-- generated: 01/09/2016 17:25:05 -->
+<!-- Modal Cliente´s form -->
+<div class="modal fade" id="dialogCliente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">
+					<span aria-hidden="true">&times;</span>
+					<span class="sr-only">Close</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel">Pesquisa de Cliente</h4>
+			</div>
+			<div class="modal-body">
+				<form id="formSearchCliente">
+							<div id="groupInputModalNome" class="form-group">
+								<label class="control-label" for="inputModalNome">Nome</label>
+								<input type="text" id="inputModalNome" placeholder=""  class="form-control">
+							</div>
+							<div id="groupInputModalNomeFantasia" class="form-group">
+								<label class="control-label" for="inputModalNomeFantasia">Nome Fantasia</label>
+								<input type="text" id="inputModalNomeFantasia" placeholder=""  class="form-control">
+							</div>
+							<div id="groupInputModalNomeContato" class="form-group">
+								<label class="control-label" for="inputModalNomeContato">Nome do Contato</label>
+								<input type="text" id="inputModalNomeContato" placeholder=""  class="form-control">
+							</div>
+							<div id="groupInputModalTelefoneContato" class="form-group">
+								<label class="control-label" for="inputModalTelefoneContato">Telefone do  Contato</label>
+								<input type="text" id="inputModalTelefoneContato" placeholder=""  class="form-control">
+							</div>
+							<div id="groupInputModalRazaoSocial" class="form-group">
+								<label class="control-label" for="inputModalRazaoSocial">Razão Social</label>
+								<input type="text" id="inputModalRazaoSocial" placeholder=""  class="form-control">
+							</div>
+							<div id="groupInputModalCpf" class="form-group">
+								<label class="control-label" for="inputModalCpf">CPF</label>
+								<input type="text" id="inputModalCpf" placeholder=""  class="form-control">
+							</div>
+							<div id="groupInputModalCnpj" class="form-group">
+								<label class="control-label" for="inputModalCnpj">CNPJ</label>
+								<input type="text" id="inputModalCnpj" placeholder=""  class="form-control">
+							</div>
+		
+					<div class="form-actions spinner" id="spinCliente">
+						<a href="javascript:void(0)" id="btnSearchCliente" class="btn btn-primary btn-large" >
+							<i class="fa fa-search"></i>
+							Pesquisar
+						</a>
+						<a href="javascript:void(0)" id="btnClearCliente" class="btn btn-info btn-large">
+							<i class="fa fa-trash"></i>
+							Nova Pesquisa
+						</a>
+					</div>
+					
+				<div class="row">
+				<div class="col-xs-12">
+					<h3 class="header smaller lighter blue">Resultados</h3>
+					<div class="divTableResults" id="resultadoClienteDiv" >
+						<div id="sample-table-2_wrapper" class="dataTables_wrapper form-inline no-footer">
+							<div id="messages_div"></div>
+							<div id="grid-cliente" class="table-responsive"></div>
+							<div class="">
+								<div id="counter-cliente" class=" pull-left"></div>
+								<div id="paginator-cliente" class="pull-right"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				</div>
+				</form>				
+			</div>
+		</div>
+	</div>
+</div>
+

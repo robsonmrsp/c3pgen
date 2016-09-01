@@ -1,0 +1,88 @@
+<!-- generated: 01/09/2016 17:25:05 -->
+<!-- Cliente´s page -->
+<div class="main-content-inner">
+	<div class="breadcrumbs" id="breadcrumbs">
+		<ul class="breadcrumb">
+			<li>
+				<i class="ace-icon fa fa-home home-icon"></i>
+				<a href="#">Home</a>
+			</li>
+			<li class="active">Pesquisar Cliente</li>
+		</ul>
+	</div>
+	<div class="page-content">
+		<div class="page-header">
+			<h1>Pesquisar Cliente</h1>
+		</div>
+		<div class="main-content">
+			<div class="row">
+				<div class="col-xs-12 col-sm-12">
+					<h3 class="header smaller lighter blue">Filtros da pesquisa</h3>
+					<div class="panel panel-default plain profile-widget">
+						<!-- Start .panel -->
+						<div class="panel-body">
+							<form role="form" id="formClienteFilter">
+								<div id="groupInputNome" class="form-group">
+									<label class="control-label" for="inputNome">Nome</label>
+									<input type="text" id="inputNome" placeholder="Pesquise pelo Nome"  class="form-control">
+								</div>
+								<div id="groupInputNomeFantasia" class="form-group">
+									<label class="control-label" for="inputNomeFantasia">Nome Fantasia</label>
+									<input type="text" id="inputNomeFantasia" placeholder="Pesquise pelo Nome Fantasia"  class="form-control">
+								</div>
+								<div id="groupInputNomeContato" class="form-group">
+									<label class="control-label" for="inputNomeContato">Nome do Contato</label>
+									<input type="text" id="inputNomeContato" placeholder="Pesquise pelo Nome do Contato"  class="form-control">
+								</div>
+								<div id="groupInputTelefoneContato" class="form-group">
+									<label class="control-label" for="inputTelefoneContato">Telefone do  Contato</label>
+									<input type="text" id="inputTelefoneContato" placeholder="Pesquise pelo Telefone do  Contato"  class="form-control">
+								</div>
+								<div id="groupInputRazaoSocial" class="form-group">
+									<label class="control-label" for="inputRazaoSocial">Razão Social</label>
+									<input type="text" id="inputRazaoSocial" placeholder="Pesquise pelo Razão Social"  class="form-control">
+								</div>
+								<div id="groupInputCpf" class="form-group">
+									<label class="control-label" for="inputCpf">CPF</label>
+									<input type="text" id="inputCpf" placeholder="Pesquise pelo CPF"  class="form-control">
+								</div>
+								<div id="groupInputCnpj" class="form-group">
+									<label class="control-label" for="inputCnpj">CNPJ</label>
+									<input type="text" id="inputCnpj" placeholder="Pesquise pelo CNPJ"  class="form-control">
+								</div>
+							</form>
+						</div>
+						<div class="clearfix form-actions">
+							<a href="javascript:void(0)" id="query" class="btn btn-primary">
+								<i class="fa fa-search"></i>
+								Pesquisar
+							</a>
+							&nbsp; &nbsp; &nbsp;
+							<a href="#app/newCliente" class="btn btn-info">
+								<i class="fa fa-plus "></i>
+								Novo
+							</a>
+							&nbsp; &nbsp; &nbsp;
+							<a href="javascript:void(0)" id="reset" class="btn">Limpar</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<h3 class="header smaller lighter blue">Resultados</h3>
+					<div>
+						<div id="sample-table-2_wrapper" class="dataTables_wrapper form-inline no-footer">
+							<div id="messages_div"></div>
+							<div id="grid" class="table-responsive"></div>
+							<div class="row">
+								<div id="counter" class="col-xs-6 pull-left"></div>
+								<div id="paginator" class="col-xs-6 pull-right"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

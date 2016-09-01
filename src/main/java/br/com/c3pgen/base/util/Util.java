@@ -5,9 +5,12 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.nio.file.Paths;
 import java.sql.Timestamp;
 import java.text.Normalizer;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -15,7 +18,11 @@ import java.util.Map;
 import java.util.Random;
 
 import org.apache.commons.io.FileUtils;
+import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
+import org.joda.time.LocalDateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 
 import com.esotericsoftware.yamlbeans.YamlReader;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -30,6 +37,10 @@ import br.com.c3pgen.model.Relationship;
 import schemacrawler.schema.ColumnDataType;
 
 public class Util {
+	private static SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
+	private static final DateTimeFormatter DATE_FORMAT = DateTimeFormat.forPattern("dd/MM/yyyy");
+	private static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormat.forPattern("dd/MM/yyyy HH:mm");
+
 	private static String currentDir = Paths.get(".").toAbsolutePath().toString();
 
 	public static void setCurrentDir(String a) {
@@ -266,6 +277,11 @@ public class Util {
 
 	}
 
+	public static String templateFolder() {
+
+		return "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries";
+	}
+
 	public static String currentDir() {
 		return currentDir;
 	}
@@ -342,8 +358,9 @@ public class Util {
 			destFileWriter.append("\n");
 			destFileWriter.append("view: backbone");
 			destFileWriter.append("\n");
-			// destFileWriter.append("rootPackage: br.com.gsh.aghos."+ modulo.getNome());
-			destFileWriter.append("rootPackage: br.com.gsh.aghos.centrocirurgico");
+			// destFileWriter.append("rootPackage: br.com.gsh.aghos."+
+			// modulo.getNome());
+			destFileWriter.append("rootPackage: br.com.gsh.aghos.internacao");
 			destFileWriter.append("\n");
 			destFileWriter.append("corePackage: br.com.gsh.aghos.core");
 			destFileWriter.append("\n");
@@ -412,7 +429,95 @@ public class Util {
 		return "String";
 	}
 
+	public static Application getApplicationFromFolder(String folderName, File generatorFilesFolder) {
+
+		File configFile = createPaths(folderName, generatorFilesFolder);
+
+		YamlReader reader;
+		Application entities = null;
+		try {
+			reader = new YamlReader(new FileReader(configFile));
+
+			reader.getConfig().setPropertyElementType(Application.class, "entities", ApplicationEntity.class);
+			reader.getConfig().setPropertyElementType(ApplicationEntity.class, "attributes", Attribute.class);
+			reader.getConfig().setPropertyElementType(ApplicationEntity.class, "relationships", Relationship.class);
+
+			entities = reader.read(Application.class);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return entities;
+	}
+
+	private static Object getValue(Field field, String val) {
+		try {
+			if (field.getType().equals(Integer.class)) {
+				return new Integer(val);
+			} else if (field.getType().equals(Long.class)) {
+				return new Long(val);
+			} else if (field.getType().equals(String.class)) {
+				return val.length() == 0 ? null : val;
+			} else if (field.getType().equals(Double.class)) {
+				return new Double(val);
+			} else if (field.getType().equals(Boolean.class)) {
+				if (val != null && val.length() > 0)
+					return new Boolean(val);
+			} else if (field.getType().equals(Date.class)) {
+				return SIMPLE_DATE_FORMAT.parse(val);
+			} else if (field.getType().equals(DateTime.class)) {
+				return DATE_FORMAT.parseDateTime(val);
+			} else if (field.getType().equals(DateTime.class)) {
+				return DATE_FORMAT.parseDateTime(val);
+			} else if (field.getType().equals(LocalDate.class)) {
+				return DATE_FORMAT.parseLocalDate(val);
+			} else if (field.getType().equals(LocalDateTime.class)) {
+				return DATE_FORMAT.parseLocalDateTime(val);
+			}
+		} catch (Exception e) {
+		}
+		return null;
+	}
+
 	public static void getApplicationFromFolder(Application appli, List<ItemModulo> items) {
 
 	}
+
+	public static <T> T createObjectFrom(Class<T> clazz, Map<String, String> mapfields) {
+		T newFilterObject = null;
+		try {
+			newFilterObject = clazz.newInstance();
+			Field[] fields2 = newFilterObject.getClass().getDeclaredFields();
+			for (String fieldName : mapfields.keySet()) {
+				Field field;
+				field = clazz.getDeclaredField(fieldName);
+				field.setAccessible(true);
+				field.set(newFilterObject, getValue(field, mapfields.get(fieldName)));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return newFilterObject;
+	}
+
+	public static boolean elementHasProperty(Object filter, String string) {
+		return getProperty(filter, string) != null;
+	}
+
+	public static Object getProperty(Object obj, String property) {
+		Object returnValue = null;
+
+		try {
+			String methodName = "get" + property.substring(0, 1).toUpperCase() + property.substring(1, property.length());
+			Class clazz = obj.getClass();
+			Method method = clazz.getMethod(methodName, null);
+			returnValue = method.invoke(obj, null);
+		} catch (Exception e) {
+			// Do nothing, we'll return the default value
+		}
+
+		return returnValue;
+	}
+
 }

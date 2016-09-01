@@ -1,0 +1,95 @@
+<!-- generated: 01/09/2016 17:25:06 -->
+<!-- Operation´s page -->
+<div class="main-content-inner">
+	<div class="breadcrumbs" id="breadcrumbs">
+		<ul class="breadcrumb">
+			<li>
+				<i class="ace-icon fa fa-home home-icon"></i>
+				<a href="#">Home</a>
+			</li>
+			<li class="active">Pesquisar Operação</li>
+		</ul>
+	</div>
+	<div class="page-content">
+		<div class="page-header">
+			<h1>Pesquisar Operação</h1>
+		</div>
+		<div class="main-content">
+			<div class="row">
+				<div class="col-xs-12 col-sm-12">
+					<h3 class="header smaller lighter blue">Filtros da pesquisa</h3>
+					<div class="panel panel-default plain profile-widget">
+						<!-- Start .panel -->
+						<div class="panel-body">
+							<form role="form" id="formOperationFilter">
+								<div id="groupInputName" class="form-group">
+									<label class="control-label" for="inputName">Nome</label>
+									<input type="text" id="inputName" placeholder="Pesquise pelo Nome"  class="form-control">
+								</div>
+								<div id="groupInputCanEdit" class="form-group checkbox">
+									<label class="checkbox ">
+										<input id="inputCanEdit" type="checkbox" >
+										Pode Editar
+									</label>
+								</div>
+								<div id="groupInputCanRead" class="form-group checkbox">
+									<label class="checkbox ">
+										<input id="inputCanRead" type="checkbox" >
+										Pode Ler
+									</label>
+								</div>
+								<div id="groupInputCanUpdate" class="form-group checkbox">
+									<label class="checkbox ">
+										<input id="inputCanUpdate" type="checkbox" >
+										Pode atualizar
+									</label>
+								</div>
+								<div id="groupInputCanDelete" class="form-group checkbox">
+									<label class="checkbox ">
+										<input id="inputCanDelete" type="checkbox" >
+										Pode Deletar
+									</label>
+								</div>
+								<div id="groupInputCanExecute" class="form-group checkbox">
+									<label class="checkbox ">
+										<input id="inputCanExecute" type="checkbox" >
+										Pode executar
+									</label>
+								</div>
+									
+							</form>
+						</div>
+						<div class="clearfix form-actions">
+							<a href="javascript:void(0)" id="query" class="btn btn-primary">
+								<i class="fa fa-search"></i>
+								Pesquisar
+							</a>
+							&nbsp; &nbsp; &nbsp;
+							<a href="#app/newOperation" class="btn btn-info">
+								<i class="fa fa-plus "></i>
+								Novo
+							</a>
+							&nbsp; &nbsp; &nbsp;
+							<a href="javascript:void(0)" id="reset" class="btn">Limpar</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<h3 class="header smaller lighter blue">Resultados</h3>
+					<div>
+						<div id="sample-table-2_wrapper" class="dataTables_wrapper form-inline no-footer">
+							<div id="messages_div"></div>
+							<div id="grid" class="table-responsive"></div>
+							<div class="row">
+								<div id="counter" class="col-xs-6 pull-left"></div>
+								<div id="paginator" class="col-xs-6 pull-right"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

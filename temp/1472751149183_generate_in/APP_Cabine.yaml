@@ -1,0 +1,25 @@
+- name: Cabine
+  hasOwner: false 
+  displayName: Cabine
+  tableName: CABINE
+  attributes:                     
+  - name: nome
+    tableFieldName: NOME
+    required: false
+    displayName: Nome
+    type: 
+      className: String
+  relationships:                     
+  - name: apontamentoQualidadePackings
+    type: OneToMany
+    ownerName: cabine
+    model: ApontamentoQualidadePacking                       
+    displayName: Apontamento qualidade packing
+  - name: packing             
+    type: ManyToOne
+    model: Packing                       
+    displayName: Packing
+    viewAproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 

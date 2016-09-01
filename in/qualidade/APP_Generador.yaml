@@ -1,0 +1,17 @@
+- name: Generador
+  hasOwner: false 
+  displayName: Generador
+  tableName: GENERADOR
+  attributes:                     
+  - name: nome
+    tableFieldName: NOME
+    required: true
+    displayName: Nome
+    type: 
+      className: String
+  relationships:                     
+  - name: apontamentoQualidadePackings
+    type: OneToMany
+    ownerName: generador
+    model: ApontamentoQualidadePacking                       
+    displayName: Apontamento qualidade packing

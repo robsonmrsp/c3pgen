@@ -6,7 +6,9 @@ import java.util.Map;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.UriInfo;
 
-import br.com.c3pgen.utils.Util;
+import br.com.c3pgen.base.util.Util;
+
+
 
 public class PaginationParams<Filter> {
 

@@ -1,0 +1,34 @@
+- name: Session
+  displayName: Sessão
+  tableName: session
+  hasOwner: false
+  attributes:
+  - name: name
+    tableFieldName: name
+    type:
+      className: String
+    displayName: Nome
+  - name: creationDate
+    tableFieldName: creation_date
+    type:
+      className: Datetime
+    displayName: Data da criação
+    dateFormat: DD/MM/YYYY DD:MM
+    mask: 99/99/9999
+    viewApproach:
+      type: datepicker
+  relationships:
+  - name: roles
+    type: ManyToMany
+    viewApproach:
+      type: multiselect
+    model: Role
+    displayName: Papeis
+  - name: user
+    type: ManyToOne
+    model: User
+    displayName: Usuario
+    viewApproach:
+      type: combo
+      comboId: id
+      comboVal: name

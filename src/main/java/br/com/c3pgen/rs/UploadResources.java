@@ -20,9 +20,9 @@ import javax.ws.rs.core.Response;
 
 import org.apache.cxf.jaxrs.ext.multipart.Attachment;
 
+import br.com.c3pgen.base.util.Util;
 import br.com.c3pgen.json.JsonError;
 import br.com.c3pgen.utils.ImageUtils;
-import br.com.c3pgen.utils.Util;
 
 @Path("/crud/uploads/")
 public class UploadResources {

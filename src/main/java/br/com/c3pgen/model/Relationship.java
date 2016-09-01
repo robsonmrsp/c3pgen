@@ -197,6 +197,9 @@ public class Relationship extends AbstractTimestampEntity {
 	}
 
 	public ViewApproach getViewApproach() {
+		if (viewApproach == null) {
+			setViewApproach(ViewApproach.noneInstance());
+		}
 		return viewApproach;
 	}
 

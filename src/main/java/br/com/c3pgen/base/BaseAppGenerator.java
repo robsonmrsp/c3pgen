@@ -8,7 +8,6 @@ import org.apache.commons.io.FileUtils;
 import br.com.c3pgen.base.util.Util;
 import br.com.c3pgen.model.Application;
 
-
 public class BaseAppGenerator {
 
 	private FreeMarkerConfig freeMarkerConfig;
@@ -25,7 +24,7 @@ public class BaseAppGenerator {
 
 		GenericGenerator genericGenerator = new GenericGenerator(freeMarkerConfig, application);
 
-		String javaRootFolder = Util.currentDir() + File.separator + "out/" + application.getAppName() + "/src/main/java/" + application.getCorePackage().replace(".", File.separator) + File.separator ;
+		String javaRootFolder = Util.currentDir() + File.separator + "out/" + application.getAppName() + "/src/main/java/" + application.getCorePackage().replace(".", File.separator) + File.separator;
 
 		String serviceFolder = javaRootFolder;
 		new File(serviceFolder).mkdirs();
@@ -33,10 +32,10 @@ public class BaseAppGenerator {
 		genericGenerator.generate(FSItemDescription.persistences(javaRootFolder));
 		genericGenerator.generate(FSItemDescription.audit(javaRootFolder));
 		genericGenerator.generate(FSItemDescription.json(javaRootFolder));
-//		 genericGenerator.generate(FSItemDescription.cep(javaRootFolder));
+		// genericGenerator.generate(FSItemDescription.cep(javaRootFolder));
 		genericGenerator.generate(FSItemDescription.rs(javaRootFolder));
 		genericGenerator.generate(FSItemDescription.report(javaRootFolder));
-//		 genericGenerator.generate(FSItemDescription.rbac(javaRootFolder));
+		// genericGenerator.generate(FSItemDescription.rbac(javaRootFolder));
 		genericGenerator.generate(FSItemDescription.model(javaRootFolder));
 		genericGenerator.generate(FSItemDescription.rsException(javaRootFolder));
 		genericGenerator.generate(FSItemDescription.security(javaRootFolder));
@@ -56,7 +55,7 @@ public class BaseAppGenerator {
 
 	private void generateStaticFromMobileTemplateFiles(Application application) throws IOException {
 
-		String baseTemplateFolder = Util.currentDir() + File.separator + "entries" + File.separator + "mobile-templates" + File.separator + "nativedroid";
+		String baseTemplateFolder = Util.templateFolder() + File.separator + "mobile-templates" + File.separator + "nativedroid";
 		String fileInputWebApp = baseTemplateFolder + "/appbase/www";
 
 		String fileOutput = Util.currentDir() + File.separator + "out" + File.separator + "MobApp" + application.getAppName();
@@ -66,7 +65,8 @@ public class BaseAppGenerator {
 	}
 
 	private static void generateStaticFromMobileCommonFiles(Application application) throws IOException {
-		String baseCommonFolder = Util.currentDir() + File.separator + "entries" + File.separator + "mobile-common-files" + File.separator;
+		String baseCommonFolder = Util.templateFolder() + File.separator + "mobile-common-files" + File.separator;
+
 		String fileOutput = Util.currentDir() + File.separator + "out" + File.separator + "MobApp" + application.getAppName();
 		String fileInputWebApp = baseCommonFolder + "/appbase/www";
 		FileUtils.copyDirectoryToDirectory(new File(fileInputWebApp), new File(fileOutput));
@@ -79,9 +79,9 @@ public class BaseAppGenerator {
 
 	private static void generateStaticFromCommonFiles(Application application) throws IOException {
 
-		String baseCommonFolder = Util.currentDir() + File.separator + "entries" + File.separator + "common-files" + File.separator;
+		String baseCommonFolder = Util.templateFolder() + File.separator + "common-files" + File.separator;
 		if (application.getView().equalsIgnoreCase("angular")) {
-			baseCommonFolder = Util.currentDir() + File.separator + "entries" + File.separator + "angular-common-files" + File.separator;
+			baseCommonFolder = Util.templateFolder() + File.separator + "angular-common-files" + File.separator;
 		}
 		String fileInputResources = baseCommonFolder + "/appbase/src/main/resources";
 
@@ -94,9 +94,9 @@ public class BaseAppGenerator {
 	}
 
 	private static void generateStaticFromTemplateFiles(Application application) throws IOException {
-		String baseTemplateFolder = Util.currentDir() + File.separator + "entries" + File.separator + "templates" + File.separator + application.getSkin();
+		String baseTemplateFolder = Util.templateFolder() + File.separator + "templates" + File.separator + application.getSkin();
 		if (application.getView().equalsIgnoreCase("angular")) {
-			baseTemplateFolder = Util.currentDir() + File.separator + "entries" + File.separator + "angular-templates" + File.separator + application.getSkin();
+			baseTemplateFolder = Util.templateFolder() + File.separator + "angular-templates" + File.separator + application.getSkin();
 		}
 		String fileInputResources = baseTemplateFolder + "/appbase/src/main/resources";
 		String fileInputWebApp = baseTemplateFolder + "/appbase/src/main/webapp";

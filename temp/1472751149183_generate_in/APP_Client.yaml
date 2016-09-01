@@ -1,0 +1,21 @@
+- name: Client
+  hasOwner: false 
+  displayName: Client
+  tableName: CLIENT
+  attributes:                     
+  relationships:                     
+  - name: packings
+    type: OneToMany
+    ownerName: client
+    model: Packing                       
+    displayName: Packing
+  - name: latadas
+    type: OneToMany
+    ownerName: client
+    model: Latada                       
+    displayName: Latada
+  - name: funcionarios
+    type: OneToMany
+    ownerName: client
+    model: Funcionario                       
+    displayName: Funcionario

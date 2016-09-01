@@ -1,0 +1,16 @@
+- name: Funcao
+  displayName: Funcao
+  tableName: FUNCAO
+  hasOwner: false
+  attributes:
+  - name: nome
+    required: true
+    tableFieldName: NOME
+    type:
+      className: String
+    displayName: Nome
+  - name: descricao
+    tableFieldName: DESCRICAO
+    type:
+      className: String
+    displayName: Descrição

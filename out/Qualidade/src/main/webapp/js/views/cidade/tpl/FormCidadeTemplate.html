@@ -1,0 +1,73 @@
+<!-- generated: 01/09/2016 17:25:05 -->
+<!-- Cidade´s form -->
+<div class="main-content-inner">
+	<div class="breadcrumbs" id="breadcrumbs">
+		<ul class="breadcrumb">
+			<li>
+				<i class="ace-icon fa fa-home home-icon"></i>
+				<a href="#">Home</a>
+			</li>
+			<li class="active">Cadastrar Cidade</li>
+		</ul>
+	</div>
+	<div class="page-content">
+		<div class="page-header">
+			<h1>Cadastrar Cidade</h1>
+		</div>
+		<div class="main-principal">
+			<div class="row">
+				<div class="col-xs-12 col-sm-12">
+					<div id="messages_div"></div>
+				</div>
+			</div>
+			<div class="hr-24"></div>
+			<div class="row">
+				<div class="col-xs-12 col-sm-12">
+					<div class="panel panel-default plain profile-widget">
+						<!-- Start .panel -->
+						<div class="panel-body">
+							<form role="form" id="formCidade">
+								<input type="hidden" id="inputId" value="{{id}}">
+								<div id="groupInputNome" class="form-group">
+									<label class="control-label" for="inputNome">Nome  *</label>
+									<input type="text" id="inputNome" placeholder="" value="{{nome}}" class="form-control  validate[required]">
+								</div>
+								<div id="groupInputCep" class="form-group">
+									<label class="control-label" for="inputCep">Cep  </label>
+									<input type="text" id="inputCep" placeholder="" value="{{cep}}" class="form-control  ">
+								</div>
+								<div id="groupInputEstadoContainer" class="form-group">
+									<label class="control-label" for="inputEstado">Cidade</label>
+									<div id="groupInputEstado" class="input-group">
+										<input id="inputEstadoId" type="hidden" class="form-control append-left" value="{{estado && estado.id}}" />
+										<input id="inputEstadoNome" placeholder="Escolha um Cidade"  type="text" class="form-control append-left" value="{{estado && estado.nome}}" />
+										<div class="input-group-addon append-right" id="searchEstadoModal" data-toggle="modal">
+											<span class="fa fa-search"></span>
+										</div>
+									</div>
+								</div>		
+							</form>
+						</div>
+						<div class="clearfix form-actions">
+							<a href="javascript:void(0)" id="save"  class="save btn btn-primary">
+								<i class="ace-icon save fa fa-check bigger-110"></i>
+								Salvar
+							</a>
+							&nbsp; &nbsp; &nbsp;
+							<a href="javascript:void(0)" class=" saveAndContinue  btn btn-info" style="display: {{ id ? 'none' : 'inline-block' }} ">
+								<i class="ace-icon fa fa-check bigger-110"></i>
+								Salvar e Continuar
+							</a>
+							&nbsp; &nbsp; &nbsp;
+							<a class="go-back-link btn btn-light" href="#app/cidades">
+								<i class="ace-icon fa fa-undo bigger-110"></i>
+								Voltar para a listagem
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div id='estadoModal'></div>

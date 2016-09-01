@@ -1,0 +1,146 @@
+- name: Funcionario
+  displayName: Funcionario
+  tableName: FUNCIONARIO
+  hasOwner: true
+  attributes:
+  - name: matricula
+    required: true
+    tableFieldName: MATRICULA
+    type:
+      className: String
+    displayName: Matricula
+  - name: foto
+    tableFieldName: FOTO
+    showInPages: false
+    type:
+      className: String
+    displayName: Foto
+  - name: nome
+    tableFieldName: NOME
+    required: true
+    type:
+      className: String
+    displayName: Nome
+  - name: telefone
+    tableFieldName: TELEFONE
+    type:
+      className: String
+    displayName: Telefone
+  - name: telefone2
+    tableFieldName: TELEFONE_2
+    type:
+      className: String
+    displayName: Telefone 2
+  - name: sexo
+    tableFieldName: SEXO
+    type:
+      className: String
+    displayName: Sexo
+  - name: dataNascimento
+    tableFieldName: DT_NASCIMENTO
+    showInPages: false
+    type:
+      className: Date
+    displayName: Data de Nascimento
+    dateFormat: DD/MM/YYYY
+    mask: 99/99/9999
+    viewApproach:
+      type: datepicker
+  - name: salario
+    tableFieldName: SALARIO
+    type:
+      className: Double
+    displayName: Salário
+  - name: escolaridade
+    tableFieldName: ESCOLARIDADE
+    type:
+      className: String
+    displayName: Escolaridade
+  - name: dataAdmissao
+    tableFieldName: DATA_ADMISSAO
+    type:
+      className: Date
+    displayName: Data  de Admissão
+  - name: dataDemissao
+    tableFieldName: DATA_DEMISSAO
+    type:
+      className: Date
+    displayName: DataDemissao
+  - name: valorHoraExtra
+    tableFieldName: VALOR_HORA_EXTRA
+    type:
+      className: Double
+    displayName: ValorHoraExtra
+  - name: carteiraTrabalho
+    tableFieldName: CARTEIRA_TRABALHO
+    type:
+      className: String
+    displayName: CarteiraTrabalho
+  - name: rg
+    tableFieldName: RG
+    type:
+      className: String
+    displayName: Rg
+  - name: rgOrgaoEmissor
+    tableFieldName: RG_ORGAO_EMISSOR
+    type:
+      className: String
+    displayName: RgOrgaoEmissor
+  - name: nomeBanco
+    tableFieldName: NOME_BANCO
+    type:
+      className: String
+    displayName: Banco
+  - name: bancoNumeroAgencia
+    tableFieldName: BANCO_NUMERO_AGENCIA
+    type:
+      className: String
+    displayName: Agência
+  - name: bancoNumeroConta
+    tableFieldName: BANCO_NUMERO_CONTA
+    type:
+      className: String
+    displayName: Conta
+  - name: pis
+    tableFieldName: PIS
+    type:
+      className: String
+    displayName: Pis
+  relationships:
+  - name: endereco
+    type: OneToOne
+    model: Endereco
+    displayName: Endereco
+  - name: cargo
+    type: ManyToOne
+    model: Cargo
+    viewApproach:
+      type: combo
+      comboId: id
+      comboVal: nome
+    displayName: Cargo
+  - name: cbo
+    type: ManyToOne
+    model: Cbo
+    viewApproach:
+      type: combo
+      comboId: id
+      comboVal: nome
+    displayName: Cbo
+  - name: departamento
+    type: ManyToOne
+    model: Departamento
+    viewApproach:
+      type: combo
+      comboId: id
+      comboVal: nome
+    displayName: Departamento
+  - name: funcao
+    type: ManyToOne
+    model: Funcao
+    viewApproach:
+      type: combo
+      comboId: id
+      comboVal: nome
+    displayName: Função
+    

@@ -75,6 +75,12 @@ public class ViewApproach extends AbstractTimestampEntity {
 		return approach;
 	}
 
+	public static ViewApproach noneInstance() {
+		ViewApproach approach = new ViewApproach();
+		approach.setType("none");
+		return approach;
+	}
+
 	public static ViewApproach multiselectInstance() {
 		ViewApproach approach = new ViewApproach();
 		approach.setType("multiselect");

@@ -1,0 +1,80 @@
+<!-- generated: 01/09/2016 17:25:05 -->
+<!-- Item´s page -->
+<div class="main-content-inner">
+	<div class="breadcrumbs" id="breadcrumbs">
+		<ul class="breadcrumb">
+			<li>
+				<i class="ace-icon fa fa-home home-icon"></i>
+				<a href="#">Home</a>
+			</li>
+			<li class="active">Pesquisar Item</li>
+		</ul>
+	</div>
+	<div class="page-content">
+		<div class="page-header">
+			<h1>Pesquisar Item</h1>
+		</div>
+		<div class="main-content">
+			<div class="row">
+				<div class="col-xs-12 col-sm-12">
+					<h3 class="header smaller lighter blue">Filtros da pesquisa</h3>
+					<div class="panel panel-default plain profile-widget">
+						<!-- Start .panel -->
+						<div class="panel-body">
+							<form role="form" id="formItemFilter">
+								<div id="groupInputName" class="form-group">
+									<label class="control-label" for="inputName">Nome</label>
+									<input type="text" id="inputName" placeholder="Pesquise pelo Nome"  class="form-control">
+								</div>
+								<div id="groupInputDescription" class="form-group">
+									<label class="control-label" for="inputDescription">Descrição</label>
+									<input type="text" id="inputDescription" placeholder="Pesquise pelo Descrição"  class="form-control">
+								</div>
+								<div id="groupInputTypeContainer" class="form-group">
+									<label class="control-label" for="inputType">Tipo</label>
+									<div id="groupInputType" class="input-group">
+										<input id="inputTypeId" type="hidden" class="form-control append-left"  />
+										<input id="inputTypeName" placeholder="Pesquise pelo Tipo"  type="text" class="form-control append-left" />
+										<div class="input-group-addon append-right" id="searchTypeModal" data-toggle="modal">
+											<span class="fa fa-search"></span>
+										</div>
+									</div>
+								</div>		
+									
+							</form>
+						</div>
+						<div class="clearfix form-actions">
+							<a href="javascript:void(0)" id="query" class="btn btn-primary">
+								<i class="fa fa-search"></i>
+								Pesquisar
+							</a>
+							&nbsp; &nbsp; &nbsp;
+							<a href="#app/newItem" class="btn btn-info">
+								<i class="fa fa-plus "></i>
+								Novo
+							</a>
+							&nbsp; &nbsp; &nbsp;
+							<a href="javascript:void(0)" id="reset" class="btn">Limpar</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<h3 class="header smaller lighter blue">Resultados</h3>
+					<div>
+						<div id="sample-table-2_wrapper" class="dataTables_wrapper form-inline no-footer">
+							<div id="messages_div"></div>
+							<div id="grid" class="table-responsive"></div>
+							<div class="row">
+								<div id="counter" class="col-xs-6 pull-left"></div>
+								<div id="paginator" class="col-xs-6 pull-right"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div id='typeModal'></div>

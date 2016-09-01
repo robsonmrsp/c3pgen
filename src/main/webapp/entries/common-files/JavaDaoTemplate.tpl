@@ -18,7 +18,7 @@ import ${application.corePackage}.persistence.pagination.Paginator;
 
 import ${application.rootPackage}.model.${entity.name};
 <#if entity.hasOwner>
-import ${application.corePackage}.model.Client;
+import ${application.rootPackage}.model.Client;
 </#if>
 /**
 *  generated: ${.now}

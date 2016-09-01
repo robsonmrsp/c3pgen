@@ -1,5 +1,6 @@
 package br.com.c3pgen.persistence.pagination;
 
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -11,7 +12,9 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
-import br.com.c3pgen.utils.Util;
+import br.com.c3pgen.base.util.Util;
+
+
 public class Paginator<T> {
 
 	private final Criteria searchCriteria;

@@ -48,6 +48,9 @@ public class Attribute extends AbstractTimestampEntity {
 	@Column(name = "PLACEHOLDER")
 	private String placeholder;
 
+	@Column(name = "DATE_FORMAT")
+	private String dateFormat;
+
 	@Column(name = "REQUIRED")
 	private Boolean required;
 
@@ -219,6 +222,14 @@ public class Attribute extends AbstractTimestampEntity {
 
 	public void setShowInPages(Boolean showInPages) {
 		this.showInPages = showInPages;
+	}
+
+	public String getDateFormat() {
+		return dateFormat;
+	}
+
+	public void setDateFormat(String dateFormat) {
+		this.dateFormat = dateFormat;
 	}
 
 }
