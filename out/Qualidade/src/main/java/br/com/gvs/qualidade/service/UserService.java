@@ -6,7 +6,7 @@ import br.com.gvs.qualidade.model.User;
 import br.com.gvs.core.persistence.pagination.Pager;
 import br.com.gvs.core.persistence.pagination.PaginationParams;
 /**
-*  generated: 01/09/2016 17:25:06
+*  generated: 02/09/2016 16:23:49
 **/
 public interface UserService {
 

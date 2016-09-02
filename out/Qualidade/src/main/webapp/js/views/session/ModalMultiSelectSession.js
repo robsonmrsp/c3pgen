@@ -1,4 +1,4 @@
-/* generated: 01/09/2016 17:25:06 */
+/* generated: 02/09/2016 16:23:49 */
 define(function(require) {
 	// Start "Import´s Definition"
 	var _ = require('adapters/underscore-adapter');

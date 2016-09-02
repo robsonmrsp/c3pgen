@@ -11,7 +11,7 @@ import br.com.gvs.core.serialization.CustomSyncObjectIdDeserializer;
 import br.com.gvs.core.serialization.CustomDoubleDeserializer;
 
 /**
-*  generated: 01/09/2016 17:25:05
+*  generated: 02/09/2016 16:23:48
 **/
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class JsonFuncionario implements Serializable {

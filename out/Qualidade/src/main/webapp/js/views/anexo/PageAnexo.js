@@ -1,4 +1,4 @@
-/* generated: 01/09/2016 17:25:05 */
+/* generated: 02/09/2016 16:23:48 */
 define(function(require) {
 	// Start "Import´s Definition"
 	var _ = require('adapters/underscore-adapter');
@@ -38,10 +38,12 @@ define(function(require) {
 		},
 		
 		events : {
-			'click 	#query' : '_queryAnexo',			
 			'click 	#reset' : '_resetAnexo',			
 			'click #searchApontamentoQualidadePackingModal' : '_showSearchApontamentoQualidadePackingModal',
 			'keypress' : 'treatKeypress',
+			
+			'click 	.search-button' : 'searchAnexo',
+			'click .show-advanced-search-button' : 'toggleAdvancedForm',
 		},
 		
 		
@@ -52,12 +54,18 @@ define(function(require) {
 			inputApontamentoQualidadePackingId : '#inputApontamentoQualidadePackingId',
 			inputApontamentoQualidadePackingNome : '#inputApontamentoQualidadePackingNome',
 			form : '#formAnexoFilter',
+			advancedSearchForm : '.advanced-search-form',
 		},
+		
+		toggleAdvancedForm : function() {
+			this.ui.advancedSearchForm.slideToggle("slow");
+		},
+
 		
 		treatKeypress : function (e){
 		    if (util.enterPressed(e)) {
 	    		e.preventDefault();
-	    		this._queryAnexo();
+	    		this.searchAnexo();
 	    	}
 		},
 
@@ -106,7 +114,7 @@ define(function(require) {
 			});
 		},
 		 
-		_queryAnexo : function(){
+		searchAnexo : function(){
 			var that = this;
 
 			this.anexos.filterQueryParams = {

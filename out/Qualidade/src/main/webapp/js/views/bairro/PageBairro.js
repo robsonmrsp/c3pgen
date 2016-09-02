@@ -1,4 +1,4 @@
-/* generated: 01/09/2016 17:25:05 */
+/* generated: 02/09/2016 16:23:48 */
 define(function(require) {
 	// Start "Import´s Definition"
 	var _ = require('adapters/underscore-adapter');
@@ -40,11 +40,13 @@ define(function(require) {
 		},
 		
 		events : {
-			'click 	#query' : '_queryBairro',			
 			'click 	#reset' : '_resetBairro',			
 			'click #searchCidadeModal' : '_showSearchCidadeModal',
 			'click #searchEstadoModal' : '_showSearchEstadoModal',
 			'keypress' : 'treatKeypress',
+			
+			'click 	.search-button' : 'searchBairro',
+			'click .show-advanced-search-button' : 'toggleAdvancedForm',
 		},
 		
 		
@@ -56,12 +58,18 @@ define(function(require) {
 			inputEstadoId : '#inputEstadoId',
 			inputEstadoNome : '#inputEstadoNome',
 			form : '#formBairroFilter',
+			advancedSearchForm : '.advanced-search-form',
 		},
+		
+		toggleAdvancedForm : function() {
+			this.ui.advancedSearchForm.slideToggle("slow");
+		},
+
 		
 		treatKeypress : function (e){
 		    if (util.enterPressed(e)) {
 	    		e.preventDefault();
-	    		this._queryBairro();
+	    		this.searchBairro();
 	    	}
 		},
 
@@ -116,7 +124,7 @@ define(function(require) {
 			});
 		},
 		 
-		_queryBairro : function(){
+		searchBairro : function(){
 			var that = this;
 
 			this.bairros.filterQueryParams = {

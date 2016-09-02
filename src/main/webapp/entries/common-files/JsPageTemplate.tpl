@@ -72,7 +72,6 @@ define(function(require) {
 		},
 		
 		events : {
-			'click 	#query' : '_query${firstUpper(entity.name)}',			
 			'click 	#reset' : '_reset${firstUpper(entity.name)}',			
 			<#if entity.relationships??>	
 			<#list entity.relationships as rel >
@@ -82,6 +81,9 @@ define(function(require) {
 			</#list>
 			</#if>
 			'keypress' : 'treatKeypress',
+			
+			'click 	.search-button' : 'search${firstUpper(entity.name)}',
+			'click .show-advanced-search-button' : 'toggleAdvancedForm',
 		},
 		
 		
@@ -121,12 +123,18 @@ define(function(require) {
 		</#list>
 		</#if>			
 			form : '#form${firstUpper(entity.name)}Filter',
+			advancedSearchForm : '.advanced-search-form',
 		},
+		
+		toggleAdvancedForm : function() {
+			this.ui.advancedSearchForm.slideToggle("slow");
+		},
+
 		
 		treatKeypress : function (e){
 		    if (util.enterPressed(e)) {
 	    		e.preventDefault();
-	    		this._query${firstUpper(entity.name)}();
+	    		this.search${firstUpper(entity.name)}();
 	    	}
 		},
 
@@ -256,7 +264,7 @@ define(function(require) {
 			});
 		},
 		 
-		_query${firstUpper(entity.name)} : function(){
+		search${firstUpper(entity.name)} : function(){
 			var that = this;
 
 			this.${firstLower(entity.name)}s.filterQueryParams = {

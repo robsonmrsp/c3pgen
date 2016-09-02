@@ -1,4 +1,4 @@
-/* generated: 01/09/2016 17:25:06 */
+/* generated: 02/09/2016 16:23:49 */
 define(function(require) {
 	// Start "Import´s Definition"
 	var _ = require('adapters/underscore-adapter');
@@ -40,11 +40,13 @@ define(function(require) {
 		},
 		
 		events : {
-			'click 	#query' : '_queryPermission',			
 			'click 	#reset' : '_resetPermission',			
 			'click #searchOperationModal' : '_showSearchOperationModal',
 			'click #searchItemModal' : '_showSearchItemModal',
 			'keypress' : 'treatKeypress',
+			
+			'click 	.search-button' : 'searchPermission',
+			'click .show-advanced-search-button' : 'toggleAdvancedForm',
 		},
 		
 		
@@ -56,12 +58,18 @@ define(function(require) {
 			inputItemId : '#inputItemId',
 			inputItemName : '#inputItemName',
 			form : '#formPermissionFilter',
+			advancedSearchForm : '.advanced-search-form',
 		},
+		
+		toggleAdvancedForm : function() {
+			this.ui.advancedSearchForm.slideToggle("slow");
+		},
+
 		
 		treatKeypress : function (e){
 		    if (util.enterPressed(e)) {
 	    		e.preventDefault();
-	    		this._queryPermission();
+	    		this.searchPermission();
 	    	}
 		},
 
@@ -116,7 +124,7 @@ define(function(require) {
 			});
 		},
 		 
-		_queryPermission : function(){
+		searchPermission : function(){
 			var that = this;
 
 			this.permissions.filterQueryParams = {

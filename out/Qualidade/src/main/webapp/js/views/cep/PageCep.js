@@ -1,4 +1,4 @@
-/* generated: 01/09/2016 17:25:05 */
+/* generated: 02/09/2016 16:23:48 */
 define(function(require) {
 	// Start "Import´s Definition"
 	var _ = require('adapters/underscore-adapter');
@@ -42,12 +42,14 @@ define(function(require) {
 		},
 		
 		events : {
-			'click 	#query' : '_queryCep',			
 			'click 	#reset' : '_resetCep',			
 			'click #searchBairroModal' : '_showSearchBairroModal',
 			'click #searchCidadeModal' : '_showSearchCidadeModal',
 			'click #searchEstadoModal' : '_showSearchEstadoModal',
 			'keypress' : 'treatKeypress',
+			
+			'click 	.search-button' : 'searchCep',
+			'click .show-advanced-search-button' : 'toggleAdvancedForm',
 		},
 		
 		
@@ -62,12 +64,18 @@ define(function(require) {
 			inputEstadoId : '#inputEstadoId',
 			inputEstadoNome : '#inputEstadoNome',
 			form : '#formCepFilter',
+			advancedSearchForm : '.advanced-search-form',
 		},
+		
+		toggleAdvancedForm : function() {
+			this.ui.advancedSearchForm.slideToggle("slow");
+		},
+
 		
 		treatKeypress : function (e){
 		    if (util.enterPressed(e)) {
 	    		e.preventDefault();
-	    		this._queryCep();
+	    		this.searchCep();
 	    	}
 		},
 
@@ -128,7 +136,7 @@ define(function(require) {
 			});
 		},
 		 
-		_queryCep : function(){
+		searchCep : function(){
 			var that = this;
 
 			this.ceps.filterQueryParams = {

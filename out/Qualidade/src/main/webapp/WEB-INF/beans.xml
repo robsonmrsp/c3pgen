@@ -27,15 +27,14 @@
 		class="org.springframework.web.context.support.ServletContextPropertyPlaceholderConfigurer" />
 	<bean
 		class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer" />
-	<jaxrs:server address="/"
-		basePackages="br.com.gvs.qualidade.rs,br.com.gvs.core.rs">
+	<jaxrs:server address="/" basePackages="br.com.gvs.qualidade.rs,br.com.gvs.core.rs">
 		<jaxrs:providers>
 			<bean class="com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider" />
 			<bean class="br.com.gvs.core.rs.exception.ExceptionHandler" />
 		</jaxrs:providers>
 	</jaxrs:server>
 
-
+	
 	<context:annotation-config />
 	<context:component-scan base-package="br.com.gvs" />
 
@@ -46,8 +45,7 @@
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close">
 		<property name="driverClass" value="org.postgresql.Driver" />
-		<property name="jdbcUrl"
-			value="jdbc:postgresql://localhost:5432/db_qualidade" />
+		<property name="jdbcUrl" value="jdbc:postgresql://localhost:5432/db_qualidade" />
 		<property name="user" value="postgres" />
 		<property name="password" value="sints" />
 
@@ -67,21 +65,19 @@
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"
 		scope="singleton">
 		<property name="dataSource" ref="dataSource" />
-		<property name="packagesToScan"
-			value="br.com.gvs.qualidade.model, br.com.gvs.core.model" />
+		<property name="packagesToScan" value="br.com.gvs.qualidade.model, br.com.gvs.core.model" />
 
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQL82Dialect	</prop>
 				<prop key="hibernate.format_sql">true</prop>
 				<prop key="hibernate.show_sql">true</prop>
-				<prop key="hibernate.hbm2ddl.auto">create</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
 				<prop key="hibernate.transaction.flush_before_completion">true</prop>
 			</props>
 		</property>
 	</bean>
-	<bean id="afterThrow"
-		class="br.com.gvs.core.persistence.CatchThrowConstraintViolationException" />
+	<bean id="afterThrow" class="br.com.gvs.core.persistence.CatchThrowConstraintViolationException" />
 	<bean
 		class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
 		<property name="beanNames">
@@ -96,25 +92,25 @@
 			</list>
 		</property>
 	</bean>
-
-
-	<!-- ############### CONFIGURAÇÃO DO JMS PARA ENVIAR MENSAGENS ######################### -->
+	
+	
+	<!-- ###############  CONFIGURAÇÃO DO JMS PARA ENVIAR MENSAGENS   ######################### -->
 	<!-- a pooling based JMS provider -->
-	<!-- <bean id="jmsFactory" class="org.apache.activemq.pool.PooledConnectionFactory" -->
-	<!-- destroy-method="stop"> -->
-	<!-- <property name="connectionFactory"> -->
-	<!-- <bean class="org.apache.activemq.ActiveMQConnectionFactory"> -->
-	<!-- <property name="brokerURL"> -->
-	<!-- <value>tcp://192.168.0.25:61616</value> -->
-	<!-- </property> -->
-	<!-- </bean> -->
-	<!-- </property> -->
-	<!-- </bean> -->
-	<!-- <bean id="myJmsTemplate" class="org.springframework.jms.core.JmsTemplate"> -->
-	<!-- <property name="connectionFactory" ref="jmsFactory" /> -->
-	<!-- <property name="pubSubDomain" value="true" /> -->
-	<!-- </bean> -->
-	<!-- #####################..Configuração do JMS para RECEBER MENSAGENS -->
+	<!-- 	<bean id="jmsFactory" class="org.apache.activemq.pool.PooledConnectionFactory" -->
+	<!-- 		destroy-method="stop"> -->
+	<!-- 		<property name="connectionFactory"> -->
+	<!-- 			<bean class="org.apache.activemq.ActiveMQConnectionFactory"> -->
+	<!-- 				<property name="brokerURL"> -->
+	<!-- 					<value>tcp://192.168.0.25:61616</value> -->
+	<!-- 				</property> -->
+	<!-- 			</bean> -->
+	<!-- 		</property> -->
+	<!-- 	</bean> -->
+	<!-- 	<bean id="myJmsTemplate" class="org.springframework.jms.core.JmsTemplate"> -->
+	<!-- 		<property name="connectionFactory" ref="jmsFactory" /> -->
+	<!-- 		<property name="pubSubDomain" value="true" /> -->
+	<!-- 	</bean> -->
+	<!-- #####################..Configuração do JMS para RECEBER MENSAGENS-->
 	<!-- ######################################################################################## -->
 	<!-- <bean id="amqConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory"> -->
 	<!-- <constructor-arg index="0" value="jms.broker.url" /> -->
@@ -122,8 +118,8 @@
 	<!-- <bean id="connectionFactory" class="org.springframework.jms.connection.CachingConnectionFactory"> -->
 	<!-- <constructor-arg ref="amqConnectionFactory" /> -->
 	<!-- </bean> -->
-	<!-- CLASSE QUE implements MessageListener -->
-	<!-- <bean id="atendimentoReceiver" class="COM.BR.XYZ.Receiver"> -->
+	<!-- 	CLASSE QUE implements MessageListener -->
+	<!-- <bean id="atendimentoReceiver" class="COM.BR.XYZ.Receiver"> -->     
 	<!-- </bean> -->
 	<!-- <bean id="atendimentoReceiverListener" class="org.springframework.jms.listener.DefaultMessageListenerContainer"> -->
 	<!-- <property name="connectionFactory" ref="connectionFactory" /> -->

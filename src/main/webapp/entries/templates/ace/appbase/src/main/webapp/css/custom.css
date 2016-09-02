@@ -152,3 +152,10 @@
 	width: 170px !important;
 	text-align: right !important;
 }
+.advanced-search-form {
+	display: none;
+}
+
+.page-form {
+	padding-top: 10px;
+}

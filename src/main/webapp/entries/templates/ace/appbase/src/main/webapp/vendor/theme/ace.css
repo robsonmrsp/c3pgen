@@ -13794,7 +13794,7 @@ ul.attachment-list > li {
   text-align: right;
 }
 .dataTables_paginate .pagination {
-  margin: 0 12px;
+  margin: 0 1px;
 }
 .dataTables_wrapper label {
   display: inline-block;

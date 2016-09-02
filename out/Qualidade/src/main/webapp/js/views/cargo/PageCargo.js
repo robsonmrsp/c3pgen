@@ -1,4 +1,4 @@
-/* generated: 01/09/2016 17:25:05 */
+/* generated: 02/09/2016 16:23:48 */
 define(function(require) {
 	// Start "Import´s Definition"
 	var _ = require('adapters/underscore-adapter');
@@ -36,9 +36,11 @@ define(function(require) {
 		},
 		
 		events : {
-			'click 	#query' : '_queryCargo',			
 			'click 	#reset' : '_resetCargo',			
 			'keypress' : 'treatKeypress',
+			
+			'click 	.search-button' : 'searchCargo',
+			'click .show-advanced-search-button' : 'toggleAdvancedForm',
 		},
 		
 		
@@ -46,12 +48,18 @@ define(function(require) {
 			inputNome : '#inputNome',
 		
 			form : '#formCargoFilter',
+			advancedSearchForm : '.advanced-search-form',
 		},
+		
+		toggleAdvancedForm : function() {
+			this.ui.advancedSearchForm.slideToggle("slow");
+		},
+
 		
 		treatKeypress : function (e){
 		    if (util.enterPressed(e)) {
 	    		e.preventDefault();
-	    		this._queryCargo();
+	    		this.searchCargo();
 	    	}
 		},
 
@@ -94,7 +102,7 @@ define(function(require) {
 			});
 		},
 		 
-		_queryCargo : function(){
+		searchCargo : function(){
 			var that = this;
 
 			this.cargos.filterQueryParams = {

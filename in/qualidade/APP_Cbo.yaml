@@ -6,6 +6,7 @@
   - name: codigo
     required: true
     tableFieldName: CODIGO
+    basicSearch : true    
     type:
       className: String
     displayName: Código

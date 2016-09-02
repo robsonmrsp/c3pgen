@@ -1,4 +1,4 @@
-/* generated: 01/09/2016 17:25:05 */
+/* generated: 02/09/2016 16:23:48 */
 define(function(require) {
 	// Start "Import´s Definition"
 	var _ = require('adapters/underscore-adapter');
@@ -58,7 +58,6 @@ define(function(require) {
 		},
 		
 		events : {
-			'click 	#query' : '_queryApontamentoQualidadePacking',			
 			'click 	#reset' : '_resetApontamentoQualidadePacking',			
 			'click #searchBolsaoModal' : '_showSearchBolsaoModal',
 			'click #searchGeneradorModal' : '_showSearchGeneradorModal',
@@ -72,6 +71,9 @@ define(function(require) {
 			'click #searchClienteModal' : '_showSearchClienteModal',
 			'click #searchPackingModal' : '_showSearchPackingModal',
 			'keypress' : 'treatKeypress',
+			
+			'click 	.search-button' : 'searchApontamentoQualidadePacking',
+			'click .show-advanced-search-button' : 'toggleAdvancedForm',
 		},
 		
 		
@@ -135,12 +137,18 @@ define(function(require) {
 			inputPackingId : '#inputPackingId',
 			inputPackingNome : '#inputPackingNome',
 			form : '#formApontamentoQualidadePackingFilter',
+			advancedSearchForm : '.advanced-search-form',
 		},
+		
+		toggleAdvancedForm : function() {
+			this.ui.advancedSearchForm.slideToggle("slow");
+		},
+
 		
 		treatKeypress : function (e){
 		    if (util.enterPressed(e)) {
 	    		e.preventDefault();
-	    		this._queryApontamentoQualidadePacking();
+	    		this.searchApontamentoQualidadePacking();
 	    	}
 		},
 
@@ -282,7 +290,7 @@ define(function(require) {
 			});
 		},
 		 
-		_queryApontamentoQualidadePacking : function(){
+		searchApontamentoQualidadePacking : function(){
 			var that = this;
 
 			this.apontamentoQualidadePackings.filterQueryParams = {

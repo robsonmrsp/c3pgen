@@ -1,29 +1,49 @@
 <!-- generated: ${.now} -->
 <!-- ${entity.name}´s page -->
-<div class="main-content-inner">
-	<div class="breadcrumbs" id="breadcrumbs">
-		<ul class="breadcrumb">
-			<li>
-				<i class="ace-icon fa fa-home home-icon"></i>
-				<a href="#">Home</a>
-			</li>
-			<li class="active">Pesquisar ${entity.displayName}</li>
-		</ul>
-	</div>
-	<div class="page-content">
-		<div class="page-header">
-			<h1>Pesquisar ${entity.displayName}</h1>
-		</div>
-		<div class="main-content">
-			<div class="row">
-				<div class="col-xs-12 col-sm-12">
-					<h3 class="header smaller lighter blue">Filtros da pesquisa</h3>
-					<div class="panel panel-default plain profile-widget">
-						<!-- Start .panel -->
-						<div class="panel-body">
-							<form role="form" id="form${firstUpper(entity.name)}Filter">
+<div class="breadcrumbs" id="breadcrumbs">
+	<ul class="breadcrumb">
+		<li>
+			<i class="ace-icon fa fa-home home-icon"></i>
+			<a href="#">Home</a>
+		</li>
+		<li class="active">Pesquisa ${entity.displayName}</li>
+	</ul>
+</div>
+<div class="col-sm-12 page-form">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="widget-box ">
+				<div class="widget-header widget-header-flat">
+					<h4 class="widget-title lighter">
+						<i class="ace-icon fa fa-search"></i>
+						Filtros de pesquisa
+					</h4>
+				</div>
+				<div class="widget-body">
+					<div class="widget-main  ">
+						<#list entity.basicSearches as basicAttr>
+						<div class="input-group col-sm-4">
+							<input id="input${firstUpper(basicAttr.name)}" type="text" class="form-control search-query" placeholder="Pesquisar ${entity.displayName} por ${firstUpper(basicAttr.displayName)}">
+							<span id="query" class="input-group-btn ">
+								<button type="button" class="btn btn-inverse btn-white search-button">
+									<span class="ace-icon fa fa-search icon-on-right bigger-110 "></span>
+									Pesquisar
+								</button>
+							</span>
+							</#list>
+						</div>
+						<#if entity.completeSearch>
+						<div>
+							<a href="javascript:void(-1)" class="show-advanced-search-button"> Pesquisa avançada... </a>
+						</div>
+						<div class="widget-box transparent advanced-search-form">
+							<div class="widget-header">
+								<h4 class="widget-title lighter">Filtros avançados</h4>
+							</div>
+							<div class="widget-body">
+							<!-- inicio dos registros-->							
 								<#list entity.attributes as att>
-								<#if att.showInPages >
+								<#if att.showInPages && !att.basicSearch>
 								  <#if att.viewApproach?? >
 									<#if att.type.className == 'Boolean' && att.viewApproach.type  == 'check'  >
 								<div id="groupInput${firstUpper(att.name)}" class="form-group checkbox">
@@ -108,34 +128,46 @@
 									</#if>
 								</#list>
 								</#if>
-							</form>
+								<div class=" ">
+									<button type="button" class="btn btn-info btn-sm search-button">
+										<i class="ace-icon fa fa-search bigger-110"></i>
+										Pesquisar
+									</button>
+								</div>
+							</div>
 						</div>
-						<div class="clearfix form-actions">
-							<a href="javascript:void(0)" id="query" class="btn btn-primary">
-								<i class="fa fa-search"></i>
-								Pesquisar
-							</a>
-							&nbsp; &nbsp; &nbsp;
-							<a href="#app/new${firstUpper(entity.name)}" class="btn btn-info">
-								<i class="fa fa-plus "></i>
-								Novo
-							</a>
-							&nbsp; &nbsp; &nbsp;
-							<a href="javascript:void(0)" id="reset" class="btn">Limpar</a>
-						</div>
+					</#if>
 					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-12">
-					<h3 class="header smaller lighter blue">Resultados</h3>
-					<div>
-						<div id="sample-table-2_wrapper" class="dataTables_wrapper form-inline no-footer">
-							<div id="messages_div"></div>
-							<div id="grid" class="table-responsive"></div>
-							<div class="row">
-								<div id="counter" class="col-xs-6 pull-left"></div>
-								<div id="paginator" class="col-xs-6 pull-right"></div>
+					<div class=" form-actions">
+						<a href="#app/new${firstUpper(entity.name)}" class="btn btn-info">
+							<i class="fa fa-plus "></i>
+							Novo
+						</a>
+						&nbsp; &nbsp; &nbsp;
+						<a href="javascript:void(0)" id="reset" class="btn">Limpar</a>
+					</div>
+					<div class="hr "></div>
+					<div class=" ">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="widget-box transparent ">
+									<div class="widget-header widget-header-flat">
+										<h4 class="widget-title lighter">
+											<i class="ace-icon fa fa-table"></i>
+											Resultados
+										</h4>
+									</div>
+									<div class="widget-body">
+										<div class="widget-main padding-4">
+											<div id="messages_div"></div>
+											<div id="grid" class="table-responsive"></div>
+											<div class="row">
+												<div id="counter" class="col-xs-6 pull-left"></div>
+												<div id="paginator" class="col-xs-6 pull-right"></div>
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>

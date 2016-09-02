@@ -60,6 +60,9 @@ public class Attribute extends AbstractTimestampEntity {
 	@Column(name = "SHOW_IN_PAGES")
 	private Boolean showInPages;
 
+	@Column(name = "BASIC_SEARCH")
+	private Boolean basicSearch;
+
 	@ManyToOne
 	@JoinColumn(name = "ID_ENTITY")
 	private ApplicationEntity entity;
@@ -230,6 +233,17 @@ public class Attribute extends AbstractTimestampEntity {
 
 	public void setDateFormat(String dateFormat) {
 		this.dateFormat = dateFormat;
+	}
+
+	public Boolean getBasicSearch() {
+		if (this.basicSearch == null) {
+			setBasicSearch(Boolean.FALSE);
+		}
+		return basicSearch;
+	}
+
+	public void setBasicSearch(Boolean basicSearch) {
+		this.basicSearch = basicSearch;
 	}
 
 }

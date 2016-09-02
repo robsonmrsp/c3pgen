@@ -6,6 +6,7 @@
   - name: aparencia
     tableFieldName: APARENCIA
     required: false
+    basicSearch : true
     displayName: Aparência
     type: 
       className: Integer

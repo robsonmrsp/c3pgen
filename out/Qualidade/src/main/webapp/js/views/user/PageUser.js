@@ -1,4 +1,4 @@
-/* generated: 01/09/2016 17:25:06 */
+/* generated: 02/09/2016 16:23:49 */
 define(function(require) {
 	// Start "Import´s Definition"
 	var _ = require('adapters/underscore-adapter');
@@ -36,9 +36,11 @@ define(function(require) {
 		},
 		
 		events : {
-			'click 	#query' : '_queryUser',			
 			'click 	#reset' : '_resetUser',			
 			'keypress' : 'treatKeypress',
+			
+			'click 	.search-button' : 'searchUser',
+			'click .show-advanced-search-button' : 'toggleAdvancedForm',
 		},
 		
 		
@@ -49,12 +51,18 @@ define(function(require) {
 			inputEnable : '#inputEnable',
 		
 			form : '#formUserFilter',
+			advancedSearchForm : '.advanced-search-form',
 		},
+		
+		toggleAdvancedForm : function() {
+			this.ui.advancedSearchForm.slideToggle("slow");
+		},
+
 		
 		treatKeypress : function (e){
 		    if (util.enterPressed(e)) {
 	    		e.preventDefault();
-	    		this._queryUser();
+	    		this.searchUser();
 	    	}
 		},
 
@@ -97,7 +105,7 @@ define(function(require) {
 			});
 		},
 		 
-		_queryUser : function(){
+		searchUser : function(){
 			var that = this;
 
 			this.users.filterQueryParams = {

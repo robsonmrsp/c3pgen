@@ -213,6 +213,17 @@ public class ApplicationEntity extends AbstractTimestampEntity {
 		return !CORE_ENTITIES.contains(getName());
 	}
 
+	public Boolean getCompleteSearch() {
+		int relationsCount = 0;
+		for (Relationship relationship : getRelationships()) {
+			if (!relationship.getType().equalsIgnoreCase("OneToMany") && !relationship.getType().equalsIgnoreCase("ManyToMany")) {
+				relationsCount++;
+			}
+		}
+
+		return (relationsCount + getCompleteSearches().size()) > 0;
+	}
+
 	public Attribute getTertiaryAttribute() {
 		if (getAttributes().size() > 2)
 			return getAttributes().get(2);
@@ -228,6 +239,28 @@ public class ApplicationEntity extends AbstractTimestampEntity {
 			}
 		}
 		return Boolean.FALSE;
+	}
+
+	public List<Attribute> getBasicSearches() {
+		List<Attribute> retAttr = new ArrayList<Attribute>();
+
+		for (Attribute attribute : getAttributes()) {
+			if (attribute.getBasicSearch()) {
+				retAttr.add(attribute);
+			}
+		}
+		return retAttr;
+	}
+
+	public List<Attribute> getCompleteSearches() {
+		List<Attribute> retAttr = new ArrayList<Attribute>();
+
+		for (Attribute attribute : getAttributes()) {
+			if (!attribute.getBasicSearch()) {
+				retAttr.add(attribute);
+			}
+		}
+		return retAttr;
 	}
 
 	public Boolean getHasOwner() {

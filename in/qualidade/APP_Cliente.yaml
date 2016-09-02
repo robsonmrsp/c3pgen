@@ -5,6 +5,7 @@
   attributes:
   - name: nome
     tableFieldName: NOME
+    basicSearch : true    
     required: true
     type:
       className: String

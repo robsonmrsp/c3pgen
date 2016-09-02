@@ -2082,7 +2082,6 @@
 			var sortable = Backgrid.callByNeed(column.sortable(), column, this.collection);
 			var label;
 			if (sortable) {
-				console.log(column.get('cell').prototype.className);
 				if (column.get("direction") === "ascending")
 					if (column.get('cell').prototype.className.indexOf('string') >= 0) {
 						label = $("<a>").text(column.get("label")).append("&nbsp; <b class='fa fa-sort-alpha-asc'></b>");

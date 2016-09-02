@@ -1,4 +1,4 @@
-/* generated: 01/09/2016 17:25:05 */
+/* generated: 02/09/2016 16:23:48 */
 define(function(require) {
 	// Start "Import´s Definition"
 	var _ = require('adapters/underscore-adapter');
@@ -38,10 +38,12 @@ define(function(require) {
 		},
 		
 		events : {
-			'click 	#query' : '_queryCidade',			
 			'click 	#reset' : '_resetCidade',			
 			'click #searchEstadoModal' : '_showSearchEstadoModal',
 			'keypress' : 'treatKeypress',
+			
+			'click 	.search-button' : 'searchCidade',
+			'click .show-advanced-search-button' : 'toggleAdvancedForm',
 		},
 		
 		
@@ -52,12 +54,18 @@ define(function(require) {
 			inputEstadoId : '#inputEstadoId',
 			inputEstadoNome : '#inputEstadoNome',
 			form : '#formCidadeFilter',
+			advancedSearchForm : '.advanced-search-form',
 		},
+		
+		toggleAdvancedForm : function() {
+			this.ui.advancedSearchForm.slideToggle("slow");
+		},
+
 		
 		treatKeypress : function (e){
 		    if (util.enterPressed(e)) {
 	    		e.preventDefault();
-	    		this._queryCidade();
+	    		this.searchCidade();
 	    	}
 		},
 
@@ -106,7 +114,7 @@ define(function(require) {
 			});
 		},
 		 
-		_queryCidade : function(){
+		searchCidade : function(){
 			var that = this;
 
 			this.cidades.filterQueryParams = {

@@ -38,6 +38,7 @@ entities:
   - name: aparencia
     tableFieldName: APARENCIA
     required: false
+    basicSearch : true
     displayName: Aparência
     type: 
       className: Integer
@@ -346,6 +347,7 @@ entities:
   attributes:                     
   - name: nome
     tableFieldName: NOME
+    basicSearch : true    
     required: true
     displayName: Nome
     type: 
@@ -363,6 +365,7 @@ entities:
   attributes:                     
   - name: nome
     tableFieldName: NOME
+    basicSearch : true    
     required: false
     displayName: Nome
     type: 
@@ -388,6 +391,7 @@ entities:
   attributes:                     
   - name: nome
     tableFieldName: NOME
+    basicSearch : true    
     required: true
     displayName: Nome
     type: 
@@ -411,6 +415,7 @@ entities:
   - name: codigo
     required: true
     tableFieldName: CODIGO
+    basicSearch : true    
     type:
       className: String
     displayName: Código
@@ -444,6 +449,7 @@ entities:
   attributes:
   - name: nome
     tableFieldName: NOME
+    basicSearch : true    
     required: true
     type:
       className: String
@@ -524,6 +530,7 @@ entities:
   attributes:                     
   - name: nome
     tableFieldName: NOME
+    basicSearch : true
     required: true
     displayName: Nome
     type: 
@@ -542,6 +549,7 @@ entities:
   - name: nome
     required: true
     tableFieldName: NOME
+    basicSearch : true    
     type:
       className: String
     displayName: Nome
@@ -559,6 +567,7 @@ entities:
     tableFieldName: NOME
     required: false
     displayName: Nome
+    basicSearch : true    
     type: 
       className: String
   relationships:                     
@@ -575,6 +584,7 @@ entities:
   - name: nome
     required: true
     tableFieldName: NOME
+    basicSearch : true    
     type:
       className: String
     displayName: Nome
@@ -601,6 +611,7 @@ entities:
       className: String
     displayName: Foto
   - name: nome
+    basicSearch : true  
     tableFieldName: NOME
     required: true
     type:
@@ -736,6 +747,7 @@ entities:
   attributes:                     
   - name: nome
     tableFieldName: NOME
+    basicSearch : true    
     required: true
     displayName: Nome
     type: 
@@ -754,6 +766,7 @@ entities:
   - name: nome
     tableFieldName: NOME
     required: false
+    basicSearch : true    
     displayName: Nome
     type:
       className: String
@@ -802,6 +815,7 @@ entities:
   attributes:                     
   - name: nome
     tableFieldName: NOME
+    basicSearch : true    
     required: true
     displayName: Nome
     type: 
@@ -819,6 +833,7 @@ entities:
   attributes:                     
   - name: nome
     tableFieldName: NOME
+    basicSearch : true    
     required: true
     displayName: Nome
     type: 

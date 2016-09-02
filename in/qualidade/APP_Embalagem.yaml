@@ -7,6 +7,7 @@
     tableFieldName: NOME
     required: false
     displayName: Nome
+    basicSearch : true    
     type: 
       className: String
   relationships:                     

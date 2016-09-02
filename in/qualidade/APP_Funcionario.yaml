@@ -16,6 +16,7 @@
       className: String
     displayName: Foto
   - name: nome
+    basicSearch : true  
     tableFieldName: NOME
     required: true
     type:
