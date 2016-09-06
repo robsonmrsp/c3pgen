@@ -7,7 +7,7 @@ import br.com.gvs.qualidade.model.Departamento;
 import br.com.gvs.core.persistence.pagination.Pager;
 import br.com.gvs.core.persistence.pagination.PaginationParams;
 /**
-*  generated: 02/09/2016 16:23:48
+*  generated: 03/09/2016 22:18:31
 **/
 public interface DepartamentoService {
 

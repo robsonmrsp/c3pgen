@@ -5,7 +5,7 @@
   attributes:                     
   - name: nome
     tableFieldName: NOME
-    required: false
+    required: true
     displayName: Nome
     basicSearch : true    
     type: 

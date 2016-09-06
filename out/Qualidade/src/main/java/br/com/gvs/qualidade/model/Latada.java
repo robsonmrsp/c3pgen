@@ -32,7 +32,7 @@ import br.com.gvs.core.serialization.CustomLocalDateTimeSerializer;
 import br.com.gvs.core.serialization.CustomLocalDateSerializer;
 import br.com.gvs.core.model.AbstractTimestampEntity;
 /**
-* generated: 02/09/2016 16:23:48
+* generated: 03/09/2016 22:18:32
 **/
 @Entity
 @Audited
@@ -50,10 +50,6 @@ public class Latada extends AbstractTimestampEntity{
 	
 	@OneToMany(mappedBy="latada")
 	private List<ApontamentoQualidadePacking> apontamentoQualidadePackings;		
-	
-	@ManyToOne
-	@JoinColumn(name = "ID_CLIENT")
-	private Client client;		
 	@ManyToOne
 	@JoinColumn(name = "id_client")
 	private Client owner;
@@ -101,14 +97,6 @@ public class Latada extends AbstractTimestampEntity{
 	
 	public boolean removeApontamentoQualidadePackings(ApontamentoQualidadePacking apontamentoQualidadePacking){
 		return getApontamentoQualidadePackings().remove(apontamentoQualidadePacking);
-	}
-	
-	public Client getClient() {
-		return client;
-	}
-	
-	public void setClient(Client client) {
-		this.client = client;
 	}
 	
 	

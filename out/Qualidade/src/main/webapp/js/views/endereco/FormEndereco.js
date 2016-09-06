@@ -1,4 +1,4 @@
-/* generated: 02/09/2016 16:23:48 */
+/* generated: 03/09/2016 22:18:33 */
 define(function(require) {
 	// Start "Import´s" Definition"
 	var _ = require('adapters/underscore-adapter');
@@ -31,7 +31,7 @@ define(function(require) {
 		events : {
 			'click 	.save' : 'save',
 			'click 	.saveAndContinue' : 'saveAndContinue',
-			'click #searchCepModal' : '_showSearchCepModal',
+			'click #searchCepModal' : 'showSearchCepModal',
 		},
 		
 		ui : {
@@ -48,7 +48,7 @@ define(function(require) {
 			var that = this;
 			this.searchCepModal = new SearchCepModal({
 				onSelectModel : function(model) {
-					that._selectCep(model);
+					that.selectCep(model);
 				},
 			});
 			this.on('show', function() {
@@ -67,9 +67,9 @@ define(function(require) {
 
 		save : function(continua) {
 			var that = this;
-			var endereco = that._getModel();
+			var endereco = that.getModel();
 
-			if (this._isValid()) {
+			if (this.isValid()) {
 				endereco.save({}, {
 					success : function(_model, _resp, _options) {
 						util.showSuccessMessage('Endereco salvo com sucesso!');
@@ -102,7 +102,7 @@ define(function(require) {
 			return util.hasInvalidFields(this.validateFields);
 		},
 
-		_isValid : function() {
+		isValid : function() {
 			return this.ui.form.validationEngine('validate', {
 				promptPosition : "topLeft",
 				isOverflown : false,
@@ -110,7 +110,7 @@ define(function(require) {
 			});
 		},
 
-		_getModel : function() {
+		getModel : function() {
 			var that = this;
 			var endereco = that.model; 
 			endereco.set({
@@ -119,12 +119,12 @@ define(function(require) {
 				
 		    	numero : util.escapeById('inputNumero'), 
 				
-					cep : that._getCep(),
+					cep : that.getCep(),
 			});
 			return endereco;
 		},
 		 
-		_getCep : function() {			
+		getCep : function() {			
 			var id = util.escapeById('inputCepId');
 			var cep = util.escapeById('inputCepCep');
 			var cep = null;
@@ -138,11 +138,11 @@ define(function(require) {
 			return cep;
 		},	
 		
-		_showSearchCepModal : function() {
+		showSearchCepModal : function() {
 			this.searchCepModal.showPage();
 		},
 			
-		_selectCep : function(cep) {
+		selectCep : function(cep) {
 			this.searchCepModal.hidePage();	
 			this.ui.inputCepId.val(cep.get('id'));
 			this.ui.inputCepCep.val(cep.get('cep'));		

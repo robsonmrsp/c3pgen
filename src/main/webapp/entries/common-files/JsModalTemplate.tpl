@@ -110,13 +110,13 @@ define(function(require) {
 
 			this.${firstLower(entity.name)}Collection = new ${entity.name}PageCollection();
 			this.${firstLower(entity.name)}Collection.state.pageSize = 5;
-			this.${firstLower(entity.name)}Collection.on('fetching', this._startFetch, this);
-			this.${firstLower(entity.name)}Collection.on('fetched', this._stopFetch, this);
+			this.${firstLower(entity.name)}Collection.on('fetching', this.startFetch, this);
+			this.${firstLower(entity.name)}Collection.on('fetched', this.stopFetch, this);
 
 			this.grid = new Backgrid.Grid({
 				row : RowClick,
 				className : 'table backgrid table-striped table-bordered table-hover dataTable no-footer  ',
-				columns : this._getColumns(),
+				columns : this.getColumns(),
 				emptyText : "Sem registros",
 				collection : this.${firstLower(entity.name)}Collection,
 				emptyText : "Sem registros para exibir."
@@ -129,7 +129,7 @@ define(function(require) {
 			
 
 			this.paginator = new Backgrid.Extension.Paginator({
-				columns : this._getColumns(),
+				columns : this.getColumns(),
 				collection : this.${firstLower(entity.name)}Collection,
 				className : 'dataTables_paginate paging_simple_numbers',
 				uiClassName : 'pagination',
@@ -210,7 +210,7 @@ define(function(require) {
 				this.onSelectModel(model${entity.name});
 		},
 		
-		_getColumns : function() {
+		getColumns : function() {
 			var columns = [	
 
 			<#list entity.attributes as att>
@@ -298,13 +298,13 @@ define(function(require) {
 		},
 		
 		// Executada depois da consulta concluida.
-		_stopFetch : function() {
+		stopFetch : function() {
 			util.stopSpinner();
 			util.scrollDownModal();
 		},
 		
 		// Executada Antes da realização da consulta.
-		_startFetch : function() {
+		startFetch : function() {
 			util.showSpinner('spin${entity.name}');
 		},
 	});

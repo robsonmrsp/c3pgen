@@ -1,4 +1,4 @@
-/* generated: 02/09/2016 16:23:48 */
+/* generated: 03/09/2016 22:18:33 */
 define(function(require) {
 	// Start "Import´s Definition"
 	var _ = require('adapters/underscore-adapter');
@@ -38,8 +38,8 @@ define(function(require) {
 		},
 		
 		events : {
-			'click 	#reset' : '_resetEndereco',			
-			'click #searchCepModal' : '_showSearchCepModal',
+			'click 	#reset' : 'resetEndereco',			
+			'click #searchCepModal' : 'showSearchCepModal',
 			'keypress' : 'treatKeypress',
 			
 			'click 	.search-button' : 'searchEndereco',
@@ -76,7 +76,7 @@ define(function(require) {
 
 			this.grid = new Backgrid.Grid({
 				className : 'table backgrid table-striped table-bordered table-hover dataTable no-footer  ',
-				columns : this._getColumns(),
+				columns : this.getColumns(),
 				emptyText : "Sem registros",
 				collection : this.enderecos
 			});
@@ -86,7 +86,7 @@ define(function(require) {
 			});
 
 			this.paginator = new Backgrid.Extension.Paginator({
-				columns : this._getColumns(),
+				columns : this.getColumns(),
 				collection : this.enderecos,
 				className : 'dataTables_paginate paging_simple_numbers',
 				uiClassName : 'pagination',
@@ -102,7 +102,7 @@ define(function(require) {
 			});
 			this.searchCepModal = new SearchCepModal({
 				onSelectModel : function(model) {
-					that._selectCep(model);
+					that.selectCep(model);
 				},
 			});
 			this.on('show', function() {
@@ -134,23 +134,15 @@ define(function(require) {
 				},
 			})		
 		},
-		_resetEndereco : function(){
+		resetEndereco : function(){
 			this.ui.form.get(0).reset();
 			this.enderecos.reset();
 			util.clear('inputCepId');
 		},
 				
-		_getColumns : function() {
+		getColumns : function() {
 			var that = this;
 			var columns = [
-			//{
-			//	name : "id",
-			//	label : "id",
-			//	editable : false,
-			//	cell : Backgrid.IntegerCell.extend({
-			//		orderSeparator : ''
-			//	})
-			//}, 
 			{
 				name : "complemento",
 				editable : false,
@@ -179,28 +171,28 @@ define(function(require) {
 				label : "Ações(Editar, Deletar)",
 				sortable : false,
 				cell : GeneralActionsCell.extend({
-					buttons : that._getCellButtons(),
+					buttons : that.getCellButtons(),
 					context : that,
 				})
 			} ];
 			return columns;
 		},
 		
-		_getCellButtons : function() {
+		getCellButtons : function() {
 			var that = this;
 			var buttons = [];
 
 			buttons.push({
 				id : 'edita_ficha_button',
 				type : 'primary',
-				icon : 'icon-pencil',
+				icon : 'icon-pencil fa-pencil',
 				hint : 'Editar Endereco',
 				onClick : that.editModel,
 			}, {
 				id : 'delete_button',
 				type : 'danger',
-				icon : 'icon-trash',
-				hint : 'Delete Endereco',
+				icon : 'icon-trash fa-trash',
+				hint : 'Remover Endereco',
 				onClick : that.deleteModel,
 			});
 
@@ -233,11 +225,11 @@ define(function(require) {
 			util.goPage("app/editEndereco/" + model.get('id'));
 		},
 
-		_showSearchCepModal : function() {
+		showSearchCepModal : function() {
 			this.searchCepModal.showPage();
 		},
 			
-		_selectCep : function(cep) {
+		selectCep : function(cep) {
 			this.searchCepModal.hidePage();	
 			this.ui.inputCepId.val(cep.get('id'));
 			this.ui.inputCepCep.val(cep.get('cep'));		

@@ -72,11 +72,11 @@ define(function(require) {
 		},
 		
 		events : {
-			'click 	#reset' : '_reset${firstUpper(entity.name)}',			
+			'click 	#reset' : 'reset${firstUpper(entity.name)}',			
 			<#if entity.relationships??>	
 			<#list entity.relationships as rel >
 				<#if rel.viewApproach.type == 'modal'>
-			'click #search${firstUpper(rel.name)}Modal' : '_showSearch${firstUpper(rel.name)}Modal',
+			'click #search${firstUpper(rel.name)}Modal' : 'showSearch${firstUpper(rel.name)}Modal',
 				</#if>
 			</#list>
 			</#if>
@@ -145,7 +145,7 @@ define(function(require) {
 
 			this.grid = new Backgrid.Grid({
 				className : 'table backgrid table-striped table-bordered table-hover dataTable no-footer  ',
-				columns : this._getColumns(),
+				columns : this.getColumns(),
 				emptyText : "Sem registros",
 				collection : this.${firstLower(entity.name)}s
 			});
@@ -155,7 +155,7 @@ define(function(require) {
 			});
 
 			this.paginator = new Backgrid.Extension.Paginator({
-				columns : this._getColumns(),
+				columns : this.getColumns(),
 				collection : this.${firstLower(entity.name)}s,
 				className : 'dataTables_paginate paging_simple_numbers',
 				uiClassName : 'pagination',
@@ -175,7 +175,7 @@ define(function(require) {
 			<#if rel.viewApproach.type == 'modal'>
 			this.search${firstUpper(rel.name)}Modal = new Search${firstUpper(rel.name)}Modal({
 				onSelectModel : function(model) {
-					that._select${firstUpper(rel.name)}(model);
+					that.select${firstUpper(rel.name)}(model);
 				},
 			});
 			</#if>
@@ -298,7 +298,7 @@ define(function(require) {
 				},
 			})		
 		},
-		_reset${firstUpper(entity.name)} : function(){
+		reset${firstUpper(entity.name)} : function(){
 			this.ui.form.get(0).reset();
 			this.${firstLower(entity.name)}s.reset();
 		<#list entity.relationships as rel >
@@ -310,17 +310,9 @@ define(function(require) {
 		</#list>
 		},
 				
-		_getColumns : function() {
+		getColumns : function() {
 			var that = this;
 			var columns = [
-			//{
-			//	name : "id",
-			//	label : "id",
-			//	editable : false,
-			//	cell : Backgrid.IntegerCell.extend({
-			//		orderSeparator : ''
-			//	})
-			//}, 
 			<#list entity.attributes as att>
 				<#if att.showInPages >			
 			{
@@ -358,28 +350,28 @@ define(function(require) {
 				label : "Ações(Editar, Deletar)",
 				sortable : false,
 				cell : GeneralActionsCell.extend({
-					buttons : that._getCellButtons(),
+					buttons : that.getCellButtons(),
 					context : that,
 				})
 			} ];
 			return columns;
 		},
 		
-		_getCellButtons : function() {
+		getCellButtons : function() {
 			var that = this;
 			var buttons = [];
 
 			buttons.push({
 				id : 'edita_ficha_button',
 				type : 'primary',
-				icon : 'icon-pencil',
+				icon : 'icon-pencil fa-pencil',
 				hint : 'Editar ${firstUpper(entity.displayName)!firstUpper(entity.name)}',
 				onClick : that.editModel,
 			}, {
 				id : 'delete_button',
 				type : 'danger',
-				icon : 'icon-trash',
-				hint : 'Delete ${firstUpper(entity.displayName)!firstUpper(entity.name)}',
+				icon : 'icon-trash fa-trash',
+				hint : 'Remover ${firstUpper(entity.displayName)!firstUpper(entity.name)}',
 				onClick : that.deleteModel,
 			});
 
@@ -416,11 +408,11 @@ define(function(require) {
 		<#list entity.relationships as rel >
 				<#if rel.showInPages >		
 			<#if rel.viewApproach.type == 'modal'>
-		_showSearch${firstUpper(rel.name)}Modal : function() {
+		showSearch${firstUpper(rel.name)}Modal : function() {
 			this.search${firstUpper(rel.name)}Modal.showPage();
 		},
 			
-		_select${firstUpper(rel.name)} : function(${firstLower(rel.name)}) {
+		select${firstUpper(rel.name)} : function(${firstLower(rel.name)}) {
 			this.search${firstUpper(rel.name)}Modal.hidePage();	
 			this.ui.input${firstUpper(rel.name)}${firstUpper(rel.viewApproach.hiddenField)}.val(${firstLower(rel.name)}.get('${firstLower(rel.viewApproach.hiddenField)}'));
 			this.ui.input${firstUpper(rel.name)}${firstUpper(rel.viewApproach.textField)}.val(${firstLower(rel.name)}.get('${firstLower(rel.viewApproach.textField)}'));		

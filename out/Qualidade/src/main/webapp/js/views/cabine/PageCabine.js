@@ -1,4 +1,4 @@
-/* generated: 02/09/2016 16:23:48 */
+/* generated: 03/09/2016 22:18:31 */
 define(function(require) {
 	// Start "Import´s Definition"
 	var _ = require('adapters/underscore-adapter');
@@ -38,8 +38,8 @@ define(function(require) {
 		},
 		
 		events : {
-			'click 	#reset' : '_resetCabine',			
-			'click #searchPackingModal' : '_showSearchPackingModal',
+			'click 	#reset' : 'resetCabine',			
+			'click #searchPackingModal' : 'showSearchPackingModal',
 			'keypress' : 'treatKeypress',
 			
 			'click 	.search-button' : 'searchCabine',
@@ -75,7 +75,7 @@ define(function(require) {
 
 			this.grid = new Backgrid.Grid({
 				className : 'table backgrid table-striped table-bordered table-hover dataTable no-footer  ',
-				columns : this._getColumns(),
+				columns : this.getColumns(),
 				emptyText : "Sem registros",
 				collection : this.cabines
 			});
@@ -85,7 +85,7 @@ define(function(require) {
 			});
 
 			this.paginator = new Backgrid.Extension.Paginator({
-				columns : this._getColumns(),
+				columns : this.getColumns(),
 				collection : this.cabines,
 				className : 'dataTables_paginate paging_simple_numbers',
 				uiClassName : 'pagination',
@@ -101,7 +101,7 @@ define(function(require) {
 			});
 			this.searchPackingModal = new SearchPackingModal({
 				onSelectModel : function(model) {
-					that._selectPacking(model);
+					that.selectPacking(model);
 				},
 			});
 			this.on('show', function() {
@@ -132,23 +132,15 @@ define(function(require) {
 				},
 			})		
 		},
-		_resetCabine : function(){
+		resetCabine : function(){
 			this.ui.form.get(0).reset();
 			this.cabines.reset();
 			util.clear('inputPackingId');
 		},
 				
-		_getColumns : function() {
+		getColumns : function() {
 			var that = this;
 			var columns = [
-			//{
-			//	name : "id",
-			//	label : "id",
-			//	editable : false,
-			//	cell : Backgrid.IntegerCell.extend({
-			//		orderSeparator : ''
-			//	})
-			//}, 
 			{
 				name : "nome",
 				editable : false,
@@ -170,28 +162,28 @@ define(function(require) {
 				label : "Ações(Editar, Deletar)",
 				sortable : false,
 				cell : GeneralActionsCell.extend({
-					buttons : that._getCellButtons(),
+					buttons : that.getCellButtons(),
 					context : that,
 				})
 			} ];
 			return columns;
 		},
 		
-		_getCellButtons : function() {
+		getCellButtons : function() {
 			var that = this;
 			var buttons = [];
 
 			buttons.push({
 				id : 'edita_ficha_button',
 				type : 'primary',
-				icon : 'icon-pencil',
+				icon : 'icon-pencil fa-pencil',
 				hint : 'Editar Cabine',
 				onClick : that.editModel,
 			}, {
 				id : 'delete_button',
 				type : 'danger',
-				icon : 'icon-trash',
-				hint : 'Delete Cabine',
+				icon : 'icon-trash fa-trash',
+				hint : 'Remover Cabine',
 				onClick : that.deleteModel,
 			});
 
@@ -224,11 +216,11 @@ define(function(require) {
 			util.goPage("app/editCabine/" + model.get('id'));
 		},
 
-		_showSearchPackingModal : function() {
+		showSearchPackingModal : function() {
 			this.searchPackingModal.showPage();
 		},
 			
-		_selectPacking : function(packing) {
+		selectPacking : function(packing) {
 			this.searchPackingModal.hidePage();	
 			this.ui.inputPackingId.val(packing.get('id'));
 			this.ui.inputPackingNome.val(packing.get('nome'));		

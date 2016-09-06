@@ -1,4 +1,4 @@
-/* generated: 02/09/2016 16:23:48 */
+/* generated: 03/09/2016 22:18:30 */
 define(function(require) {
 	// Start "Import´s Definition"
 	var _ = require('adapters/underscore-adapter');
@@ -38,8 +38,8 @@ define(function(require) {
 		},
 		
 		events : {
-			'click 	#reset' : '_resetAnexo',			
-			'click #searchApontamentoQualidadePackingModal' : '_showSearchApontamentoQualidadePackingModal',
+			'click 	#reset' : 'resetAnexo',			
+			'click #searchApontamentoQualidadePackingModal' : 'showSearchApontamentoQualidadePackingModal',
 			'keypress' : 'treatKeypress',
 			
 			'click 	.search-button' : 'searchAnexo',
@@ -76,7 +76,7 @@ define(function(require) {
 
 			this.grid = new Backgrid.Grid({
 				className : 'table backgrid table-striped table-bordered table-hover dataTable no-footer  ',
-				columns : this._getColumns(),
+				columns : this.getColumns(),
 				emptyText : "Sem registros",
 				collection : this.anexos
 			});
@@ -86,7 +86,7 @@ define(function(require) {
 			});
 
 			this.paginator = new Backgrid.Extension.Paginator({
-				columns : this._getColumns(),
+				columns : this.getColumns(),
 				collection : this.anexos,
 				className : 'dataTables_paginate paging_simple_numbers',
 				uiClassName : 'pagination',
@@ -102,7 +102,7 @@ define(function(require) {
 			});
 			this.searchApontamentoQualidadePackingModal = new SearchApontamentoQualidadePackingModal({
 				onSelectModel : function(model) {
-					that._selectApontamentoQualidadePacking(model);
+					that.selectApontamentoQualidadePacking(model);
 				},
 			});
 			this.on('show', function() {
@@ -134,23 +134,15 @@ define(function(require) {
 				},
 			})		
 		},
-		_resetAnexo : function(){
+		resetAnexo : function(){
 			this.ui.form.get(0).reset();
 			this.anexos.reset();
 			util.clear('inputApontamentoQualidadePackingId');
 		},
 				
-		_getColumns : function() {
+		getColumns : function() {
 			var that = this;
 			var columns = [
-			//{
-			//	name : "id",
-			//	label : "id",
-			//	editable : false,
-			//	cell : Backgrid.IntegerCell.extend({
-			//		orderSeparator : ''
-			//	})
-			//}, 
 			{
 				name : "nome",
 				editable : false,
@@ -179,28 +171,28 @@ define(function(require) {
 				label : "Ações(Editar, Deletar)",
 				sortable : false,
 				cell : GeneralActionsCell.extend({
-					buttons : that._getCellButtons(),
+					buttons : that.getCellButtons(),
 					context : that,
 				})
 			} ];
 			return columns;
 		},
 		
-		_getCellButtons : function() {
+		getCellButtons : function() {
 			var that = this;
 			var buttons = [];
 
 			buttons.push({
 				id : 'edita_ficha_button',
 				type : 'primary',
-				icon : 'icon-pencil',
+				icon : 'icon-pencil fa-pencil',
 				hint : 'Editar Anexo',
 				onClick : that.editModel,
 			}, {
 				id : 'delete_button',
 				type : 'danger',
-				icon : 'icon-trash',
-				hint : 'Delete Anexo',
+				icon : 'icon-trash fa-trash',
+				hint : 'Remover Anexo',
 				onClick : that.deleteModel,
 			});
 
@@ -233,11 +225,11 @@ define(function(require) {
 			util.goPage("app/editAnexo/" + model.get('id'));
 		},
 
-		_showSearchApontamentoQualidadePackingModal : function() {
+		showSearchApontamentoQualidadePackingModal : function() {
 			this.searchApontamentoQualidadePackingModal.showPage();
 		},
 			
-		_selectApontamentoQualidadePacking : function(apontamentoQualidadePacking) {
+		selectApontamentoQualidadePacking : function(apontamentoQualidadePacking) {
 			this.searchApontamentoQualidadePackingModal.hidePage();	
 			this.ui.inputApontamentoQualidadePackingId.val(apontamentoQualidadePacking.get('id'));
 			this.ui.inputApontamentoQualidadePackingNome.val(apontamentoQualidadePacking.get('nome'));		

@@ -18,7 +18,7 @@ import br.com.gvs.core.persistence.pagination.Paginator;
 
 import br.com.gvs.qualidade.model.Client;
 /**
-*  generated: 02/09/2016 16:23:48
+*  generated: 03/09/2016 22:18:31
 **/
 
 @Named
@@ -35,6 +35,10 @@ public class DaoClient extends AccessibleHibernateDao<Client> {
 		FilterClient filterClient = (FilterClient) paginationParams.getFilter();
 		Criteria searchCriteria = criteria();
 		Criteria countCriteria = criteria();
+		if (filterClient.getNome() != null) {
+			searchCriteria.add(Restrictions.ilike("nome", filterClient.getNome(), MatchMode.ANYWHERE));
+			countCriteria.add(Restrictions.ilike("nome", filterClient.getNome(), MatchMode.ANYWHERE));
+		}
 
 		return new Paginator<Client>(searchCriteria, countCriteria).paginate(paginationParams);
 	}
@@ -43,6 +47,9 @@ public class DaoClient extends AccessibleHibernateDao<Client> {
 		List<Client> list = new ArrayList<Client>();
 		FilterClient filterClient = (FilterClient) paginationParams.getFilter();
 		Criteria searchCriteria = criteria();
+		if (filterClient.getNome() != null) {
+			searchCriteria.add(Restrictions.eq("nome", filterClient.getNome()));
+		}
 
 		list.addAll(searchCriteria.list());
 		return list;

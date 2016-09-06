@@ -19,7 +19,7 @@ import br.com.gvs.core.persistence.pagination.Paginator;
 import br.com.gvs.qualidade.model.Funcionario;
 import br.com.gvs.qualidade.model.Client;
 /**
-*  generated: 02/09/2016 16:23:48
+*  generated: 03/09/2016 22:18:32
 **/
 
 @Named

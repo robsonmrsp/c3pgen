@@ -1,4 +1,4 @@
-/* generated: 02/09/2016 16:23:48 */
+/* generated: 03/09/2016 22:18:33 */
 define(function(require) {
 	// Start "Import´s" Definition"
 	var _ = require('adapters/underscore-adapter');
@@ -31,7 +31,7 @@ define(function(require) {
 		events : {
 			'click 	.save' : 'save',
 			'click 	.saveAndContinue' : 'saveAndContinue',
-			'click #searchEstadoModal' : '_showSearchEstadoModal',
+			'click #searchEstadoModal' : 'showSearchEstadoModal',
 		},
 		
 		ui : {
@@ -48,7 +48,7 @@ define(function(require) {
 			var that = this;
 			this.searchEstadoModal = new SearchEstadoModal({
 				onSelectModel : function(model) {
-					that._selectEstado(model);
+					that.selectEstado(model);
 				},
 			});
 			this.on('show', function() {
@@ -67,9 +67,9 @@ define(function(require) {
 
 		save : function(continua) {
 			var that = this;
-			var cidade = that._getModel();
+			var cidade = that.getModel();
 
-			if (this._isValid()) {
+			if (this.isValid()) {
 				cidade.save({}, {
 					success : function(_model, _resp, _options) {
 						util.showSuccessMessage('Cidade salvo com sucesso!');
@@ -102,7 +102,7 @@ define(function(require) {
 			return util.hasInvalidFields(this.validateFields);
 		},
 
-		_isValid : function() {
+		isValid : function() {
 			return this.ui.form.validationEngine('validate', {
 				promptPosition : "topLeft",
 				isOverflown : false,
@@ -110,7 +110,7 @@ define(function(require) {
 			});
 		},
 
-		_getModel : function() {
+		getModel : function() {
 			var that = this;
 			var cidade = that.model; 
 			cidade.set({
@@ -119,12 +119,12 @@ define(function(require) {
 				
 		    	cep : util.escapeById('inputCep'), 
 				
-					estado : that._getEstado(),
+					estado : that.getEstado(),
 			});
 			return cidade;
 		},
 		 
-		_getEstado : function() {			
+		getEstado : function() {			
 			var id = util.escapeById('inputEstadoId');
 			var nome = util.escapeById('inputEstadoNome');
 			var estado = null;
@@ -138,11 +138,11 @@ define(function(require) {
 			return estado;
 		},	
 		
-		_showSearchEstadoModal : function() {
+		showSearchEstadoModal : function() {
 			this.searchEstadoModal.showPage();
 		},
 			
-		_selectEstado : function(estado) {
+		selectEstado : function(estado) {
 			this.searchEstadoModal.hidePage();	
 			this.ui.inputEstadoId.val(estado.get('id'));
 			this.ui.inputEstadoNome.val(estado.get('nome'));		

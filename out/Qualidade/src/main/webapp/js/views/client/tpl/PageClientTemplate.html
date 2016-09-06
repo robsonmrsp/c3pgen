@@ -1,4 +1,4 @@
-<!-- generated: 02/09/2016 16:23:48 -->
+<!-- generated: 03/09/2016 22:18:31 -->
 <!-- Client´s page -->
 <div class="breadcrumbs" id="breadcrumbs">
 	<ul class="breadcrumb">
@@ -10,19 +10,30 @@
 	</ul>
 </div>
 <div class="col-sm-12 page-form">
+	<div id="messages_div"></div>				
 	<div class="row">
 		<div class="col-xs-12">
 			<div class="widget-box ">
 				<div class="widget-header widget-header-flat">
 					<h4 class="widget-title lighter">
 						<i class="ace-icon fa fa-search"></i>
-						Filtros de pesquisa
+						Filtros de pesquisa de Empresa
 					</h4>
 				</div>
 				<div class="widget-body">
+					<form id="formClientFilter">
 					<div class="widget-main  ">
+						<div class="input-group col-sm-4">
+							<input id="inputNome" type="text" class="form-control search-query" placeholder="Pesquisar Empresa por Nome">
+							<span id="query" class="input-group-btn ">
+								<button type="button" class="btn btn-inverse btn-white search-button">
+									<span class="ace-icon fa fa-search icon-on-right bigger-110 "></span>
+									Pesquisar
+								</button>
+							</span>
 						</div>
 					</div>
+					</form>
 					<div class=" form-actions">
 						<a href="#app/newClient" class="btn btn-info">
 							<i class="fa fa-plus "></i>

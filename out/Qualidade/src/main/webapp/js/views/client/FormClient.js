@@ -1,4 +1,4 @@
-/* generated: 02/09/2016 16:23:48 */
+/* generated: 03/09/2016 22:18:31 */
 define(function(require) {
 	// Start "Import´s" Definition"
 	var _ = require('adapters/underscore-adapter');
@@ -33,6 +33,7 @@ define(function(require) {
 		
 		ui : {
 			inputId : '#inputId',
+			inputNome : '#inputNome',
 		
 			form : '#formClient',
 		},
@@ -54,9 +55,9 @@ define(function(require) {
 
 		save : function(continua) {
 			var that = this;
-			var client = that._getModel();
+			var client = that.getModel();
 
-			if (this._isValid()) {
+			if (this.isValid()) {
 				client.save({}, {
 					success : function(_model, _resp, _options) {
 						util.showSuccessMessage('Empresa salvo com sucesso!');
@@ -79,13 +80,14 @@ define(function(require) {
 		
 		clearForm : function() {
 			util.clear('inputId');
+			util.clear('inputNome'); 
 		},
 
 		possuiCamposInvalidos : function() {
 			return util.hasInvalidFields(this.validateFields);
 		},
 
-		_isValid : function() {
+		isValid : function() {
 			return this.ui.form.validationEngine('validate', {
 				promptPosition : "topLeft",
 				isOverflown : false,
@@ -93,11 +95,13 @@ define(function(require) {
 			});
 		},
 
-		_getModel : function() {
+		getModel : function() {
 			var that = this;
 			var client = that.model; 
 			client.set({
 				id: util.escapeById('inputId') || null,
+		    	nome : util.escapeById('inputNome'), 
+				
 			});
 			return client;
 		},

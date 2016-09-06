@@ -1,4 +1,4 @@
-/* generated: 02/09/2016 16:23:48 */
+/* generated: 03/09/2016 22:18:30 */
 define(function(require) {
 	// Start "Import´s" Definition"
 	var _ = require('adapters/underscore-adapter');
@@ -31,7 +31,7 @@ define(function(require) {
 		events : {
 			'click 	.save' : 'save',
 			'click 	.saveAndContinue' : 'saveAndContinue',
-			'click #searchApontamentoQualidadePackingModal' : '_showSearchApontamentoQualidadePackingModal',
+			'click #searchApontamentoQualidadePackingModal' : 'showSearchApontamentoQualidadePackingModal',
 		},
 		
 		ui : {
@@ -48,7 +48,7 @@ define(function(require) {
 			var that = this;
 			this.searchApontamentoQualidadePackingModal = new SearchApontamentoQualidadePackingModal({
 				onSelectModel : function(model) {
-					that._selectApontamentoQualidadePacking(model);
+					that.selectApontamentoQualidadePacking(model);
 				},
 			});
 			this.on('show', function() {
@@ -67,9 +67,9 @@ define(function(require) {
 
 		save : function(continua) {
 			var that = this;
-			var anexo = that._getModel();
+			var anexo = that.getModel();
 
-			if (this._isValid()) {
+			if (this.isValid()) {
 				anexo.save({}, {
 					success : function(_model, _resp, _options) {
 						util.showSuccessMessage('Anexo salvo com sucesso!');
@@ -102,7 +102,7 @@ define(function(require) {
 			return util.hasInvalidFields(this.validateFields);
 		},
 
-		_isValid : function() {
+		isValid : function() {
 			return this.ui.form.validationEngine('validate', {
 				promptPosition : "topLeft",
 				isOverflown : false,
@@ -110,7 +110,7 @@ define(function(require) {
 			});
 		},
 
-		_getModel : function() {
+		getModel : function() {
 			var that = this;
 			var anexo = that.model; 
 			anexo.set({
@@ -119,12 +119,12 @@ define(function(require) {
 				
 		    	conteudo : util.escapeById('inputConteudo'), 
 				
-					apontamentoQualidadePacking : that._getApontamentoQualidadePacking(),
+					apontamentoQualidadePacking : that.getApontamentoQualidadePacking(),
 			});
 			return anexo;
 		},
 		 
-		_getApontamentoQualidadePacking : function() {			
+		getApontamentoQualidadePacking : function() {			
 			var id = util.escapeById('inputApontamentoQualidadePackingId');
 			var nome = util.escapeById('inputApontamentoQualidadePackingNome');
 			var apontamentoQualidadePacking = null;
@@ -138,11 +138,11 @@ define(function(require) {
 			return apontamentoQualidadePacking;
 		},	
 		
-		_showSearchApontamentoQualidadePackingModal : function() {
+		showSearchApontamentoQualidadePackingModal : function() {
 			this.searchApontamentoQualidadePackingModal.showPage();
 		},
 			
-		_selectApontamentoQualidadePacking : function(apontamentoQualidadePacking) {
+		selectApontamentoQualidadePacking : function(apontamentoQualidadePacking) {
 			this.searchApontamentoQualidadePackingModal.hidePage();	
 			this.ui.inputApontamentoQualidadePackingId.val(apontamentoQualidadePacking.get('id'));
 			this.ui.inputApontamentoQualidadePackingNome.val(apontamentoQualidadePacking.get('nome'));		

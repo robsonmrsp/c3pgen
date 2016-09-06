@@ -1,4 +1,4 @@
-/* generated: 02/09/2016 16:23:48 */
+/* generated: 03/09/2016 22:18:33 */
 define(function(require) {
 	// Start "Import´s Definition"
 	var _ = require('adapters/underscore-adapter');
@@ -42,10 +42,10 @@ define(function(require) {
 		},
 		
 		events : {
-			'click 	#reset' : '_resetCep',			
-			'click #searchBairroModal' : '_showSearchBairroModal',
-			'click #searchCidadeModal' : '_showSearchCidadeModal',
-			'click #searchEstadoModal' : '_showSearchEstadoModal',
+			'click 	#reset' : 'resetCep',			
+			'click #searchBairroModal' : 'showSearchBairroModal',
+			'click #searchCidadeModal' : 'showSearchCidadeModal',
+			'click #searchEstadoModal' : 'showSearchEstadoModal',
 			'keypress' : 'treatKeypress',
 			
 			'click 	.search-button' : 'searchCep',
@@ -86,7 +86,7 @@ define(function(require) {
 
 			this.grid = new Backgrid.Grid({
 				className : 'table backgrid table-striped table-bordered table-hover dataTable no-footer  ',
-				columns : this._getColumns(),
+				columns : this.getColumns(),
 				emptyText : "Sem registros",
 				collection : this.ceps
 			});
@@ -96,7 +96,7 @@ define(function(require) {
 			});
 
 			this.paginator = new Backgrid.Extension.Paginator({
-				columns : this._getColumns(),
+				columns : this.getColumns(),
 				collection : this.ceps,
 				className : 'dataTables_paginate paging_simple_numbers',
 				uiClassName : 'pagination',
@@ -112,17 +112,17 @@ define(function(require) {
 			});
 			this.searchBairroModal = new SearchBairroModal({
 				onSelectModel : function(model) {
-					that._selectBairro(model);
+					that.selectBairro(model);
 				},
 			});
 			this.searchCidadeModal = new SearchCidadeModal({
 				onSelectModel : function(model) {
-					that._selectCidade(model);
+					that.selectCidade(model);
 				},
 			});
 			this.searchEstadoModal = new SearchEstadoModal({
 				onSelectModel : function(model) {
-					that._selectEstado(model);
+					that.selectEstado(model);
 				},
 			});
 			this.on('show', function() {
@@ -158,7 +158,7 @@ define(function(require) {
 				},
 			})		
 		},
-		_resetCep : function(){
+		resetCep : function(){
 			this.ui.form.get(0).reset();
 			this.ceps.reset();
 			util.clear('inputBairroId');
@@ -166,17 +166,9 @@ define(function(require) {
 			util.clear('inputEstadoId');
 		},
 				
-		_getColumns : function() {
+		getColumns : function() {
 			var that = this;
 			var columns = [
-			//{
-			//	name : "id",
-			//	label : "id",
-			//	editable : false,
-			//	cell : Backgrid.IntegerCell.extend({
-			//		orderSeparator : ''
-			//	})
-			//}, 
 			{
 				name : "logradouro",
 				editable : false,
@@ -223,28 +215,28 @@ define(function(require) {
 				label : "Ações(Editar, Deletar)",
 				sortable : false,
 				cell : GeneralActionsCell.extend({
-					buttons : that._getCellButtons(),
+					buttons : that.getCellButtons(),
 					context : that,
 				})
 			} ];
 			return columns;
 		},
 		
-		_getCellButtons : function() {
+		getCellButtons : function() {
 			var that = this;
 			var buttons = [];
 
 			buttons.push({
 				id : 'edita_ficha_button',
 				type : 'primary',
-				icon : 'icon-pencil',
+				icon : 'icon-pencil fa-pencil',
 				hint : 'Editar Cep',
 				onClick : that.editModel,
 			}, {
 				id : 'delete_button',
 				type : 'danger',
-				icon : 'icon-trash',
-				hint : 'Delete Cep',
+				icon : 'icon-trash fa-trash',
+				hint : 'Remover Cep',
 				onClick : that.deleteModel,
 			});
 
@@ -277,29 +269,29 @@ define(function(require) {
 			util.goPage("app/editCep/" + model.get('id'));
 		},
 
-		_showSearchBairroModal : function() {
+		showSearchBairroModal : function() {
 			this.searchBairroModal.showPage();
 		},
 			
-		_selectBairro : function(bairro) {
+		selectBairro : function(bairro) {
 			this.searchBairroModal.hidePage();	
 			this.ui.inputBairroId.val(bairro.get('id'));
 			this.ui.inputBairroNome.val(bairro.get('nome'));		
 		},
-		_showSearchCidadeModal : function() {
+		showSearchCidadeModal : function() {
 			this.searchCidadeModal.showPage();
 		},
 			
-		_selectCidade : function(cidade) {
+		selectCidade : function(cidade) {
 			this.searchCidadeModal.hidePage();	
 			this.ui.inputCidadeId.val(cidade.get('id'));
 			this.ui.inputCidadeNome.val(cidade.get('nome'));		
 		},
-		_showSearchEstadoModal : function() {
+		showSearchEstadoModal : function() {
 			this.searchEstadoModal.showPage();
 		},
 			
-		_selectEstado : function(estado) {
+		selectEstado : function(estado) {
 			this.searchEstadoModal.hidePage();	
 			this.ui.inputEstadoId.val(estado.get('id'));
 			this.ui.inputEstadoNome.val(estado.get('nome'));		

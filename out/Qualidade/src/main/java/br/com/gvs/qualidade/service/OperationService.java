@@ -6,7 +6,7 @@ import br.com.gvs.qualidade.model.Operation;
 import br.com.gvs.core.persistence.pagination.Pager;
 import br.com.gvs.core.persistence.pagination.PaginationParams;
 /**
-*  generated: 02/09/2016 16:23:49
+*  generated: 03/09/2016 22:18:34
 **/
 public interface OperationService {
 

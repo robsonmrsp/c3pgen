@@ -3,7 +3,13 @@
 	background-color: #eff2f7;
 	text-align: center;
 }
-
+#toTop {
+	padding: 5px 3px;
+	position: fixed;
+	bottom: 0;
+	right: 5px;
+	display: none;
+}
 .append-right {
 	border-bottom-left-radius: 0 !important;
 	border-top-left-radius: 0 !important;

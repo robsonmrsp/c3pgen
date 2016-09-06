@@ -19,7 +19,7 @@ import br.com.gvs.core.persistence.pagination.Paginator;
 import br.com.gvs.qualidade.model.Latada;
 import br.com.gvs.qualidade.model.Client;
 /**
-*  generated: 02/09/2016 16:23:48
+*  generated: 03/09/2016 22:18:32
 **/
 
 @Named
@@ -40,12 +40,6 @@ public class DaoLatada extends AccessibleHibernateDao<Latada> {
 			searchCriteria.add(Restrictions.ilike("nome", filterLatada.getNome(), MatchMode.ANYWHERE));
 			countCriteria.add(Restrictions.ilike("nome", filterLatada.getNome(), MatchMode.ANYWHERE));
 		}
-		if (filterLatada.getClient() != null) {
-			searchCriteria.createAlias("client", "client_");
-			countCriteria.createAlias("client", "client_");
-			searchCriteria.add(Restrictions.eq("client_.id", filterLatada.getClient()));
-			countCriteria.add(Restrictions.eq("client_.id", filterLatada.getClient()));
-		}
 
 		return new Paginator<Latada>(searchCriteria, countCriteria).paginate(paginationParams);
 	}
@@ -56,10 +50,6 @@ public class DaoLatada extends AccessibleHibernateDao<Latada> {
 		Criteria searchCriteria = criteria();
 		if (filterLatada.getNome() != null) {
 			searchCriteria.add(Restrictions.eq("nome", filterLatada.getNome()));
-		}
-		if (filterLatada.getClient() != null) {
-			searchCriteria.createAlias("client", "client_");
-			searchCriteria.add(Restrictions.eq("client_.id", filterLatada.getClient()));
 		}
 
 		list.addAll(searchCriteria.list());
@@ -77,12 +67,6 @@ public class DaoLatada extends AccessibleHibernateDao<Latada> {
 			searchCriteria.add(Restrictions.ilike("nome", filterLatada.getNome(), MatchMode.ANYWHERE));
 			countCriteria.add(Restrictions.ilike("nome", filterLatada.getNome(), MatchMode.ANYWHERE));
 		}
-		if (filterLatada.getClient() != null) {
-			searchCriteria.createAlias("client", "client_");
-			countCriteria.createAlias("client", "client_");
-			searchCriteria.add(Restrictions.eq("client_.id", filterLatada.getClient()));
-			countCriteria.add(Restrictions.eq("client_.id", filterLatada.getClient()));
-		}
 	return new Paginator<Latada>(searchCriteria, countCriteria).paginate(paginationParams);
 	}
 	
@@ -94,10 +78,6 @@ public class DaoLatada extends AccessibleHibernateDao<Latada> {
 		searchCriteria.add(Restrictions.eq("owner", owner));
 		if (filterLatada.getNome() != null) {
 			searchCriteria.add(Restrictions.eq("nome", filterLatada.getNome()));
-		}
-		if (filterLatada.getClient() != null) {
-			searchCriteria.createAlias("client", "client_");
-			searchCriteria.add(Restrictions.eq("client_.id", filterLatada.getClient()));
 		}
 
 		list.addAll(searchCriteria.list());

@@ -1,4 +1,4 @@
-/* generated: 02/09/2016 16:23:48 */
+/* generated: 03/09/2016 22:18:31 */
 define(function(require) {
 	// Start "Import´s" Definition"
 	var _ = require('adapters/underscore-adapter');
@@ -58,13 +58,13 @@ define(function(require) {
 
 			this.cabineCollection = new CabinePageCollection();
 			this.cabineCollection.state.pageSize = 5;
-			this.cabineCollection.on('fetching', this._startFetch, this);
-			this.cabineCollection.on('fetched', this._stopFetch, this);
+			this.cabineCollection.on('fetching', this.startFetch, this);
+			this.cabineCollection.on('fetched', this.stopFetch, this);
 
 			this.grid = new Backgrid.Grid({
 				row : RowClick,
 				className : 'table backgrid table-striped table-bordered table-hover dataTable no-footer  ',
-				columns : this._getColumns(),
+				columns : this.getColumns(),
 				emptyText : "Sem registros",
 				collection : this.cabineCollection,
 				emptyText : "Sem registros para exibir."
@@ -77,7 +77,7 @@ define(function(require) {
 			
 
 			this.paginator = new Backgrid.Extension.Paginator({
-				columns : this._getColumns(),
+				columns : this.getColumns(),
 				collection : this.cabineCollection,
 				className : 'dataTables_paginate paging_simple_numbers',
 				uiClassName : 'pagination',
@@ -96,7 +96,7 @@ define(function(require) {
 				this.onSelectModel(modelCabine);
 		},
 		
-		_getColumns : function() {
+		getColumns : function() {
 			var columns = [	
 
 			{
@@ -157,13 +157,13 @@ define(function(require) {
 		},
 		
 		// Executada depois da consulta concluida.
-		_stopFetch : function() {
+		stopFetch : function() {
 			util.stopSpinner();
 			util.scrollDownModal();
 		},
 		
 		// Executada Antes da realização da consulta.
-		_startFetch : function() {
+		startFetch : function() {
 			util.showSpinner('spinCabine');
 		},
 	});

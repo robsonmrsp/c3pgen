@@ -1,4 +1,4 @@
-/* generated: 02/09/2016 16:23:49 */
+/* generated: 03/09/2016 22:18:34 */
 define(function(require) {
 	// Start "Import´s" Definition"
 	var _ = require('adapters/underscore-adapter');
@@ -58,13 +58,13 @@ define(function(require) {
 
 			this.permissionCollection = new PermissionPageCollection();
 			this.permissionCollection.state.pageSize = 5;
-			this.permissionCollection.on('fetching', this._startFetch, this);
-			this.permissionCollection.on('fetched', this._stopFetch, this);
+			this.permissionCollection.on('fetching', this.startFetch, this);
+			this.permissionCollection.on('fetched', this.stopFetch, this);
 
 			this.grid = new Backgrid.Grid({
 				row : RowClick,
 				className : 'table backgrid table-striped table-bordered table-hover dataTable no-footer  ',
-				columns : this._getColumns(),
+				columns : this.getColumns(),
 				emptyText : "Sem registros",
 				collection : this.permissionCollection,
 				emptyText : "Sem registros para exibir."
@@ -77,7 +77,7 @@ define(function(require) {
 			
 
 			this.paginator = new Backgrid.Extension.Paginator({
-				columns : this._getColumns(),
+				columns : this.getColumns(),
 				collection : this.permissionCollection,
 				className : 'dataTables_paginate paging_simple_numbers',
 				uiClassName : 'pagination',
@@ -96,7 +96,7 @@ define(function(require) {
 				this.onSelectModel(modelPermission);
 		},
 		
-		_getColumns : function() {
+		getColumns : function() {
 			var columns = [	
 
 			{
@@ -157,13 +157,13 @@ define(function(require) {
 		},
 		
 		// Executada depois da consulta concluida.
-		_stopFetch : function() {
+		stopFetch : function() {
 			util.stopSpinner();
 			util.scrollDownModal();
 		},
 		
 		// Executada Antes da realização da consulta.
-		_startFetch : function() {
+		startFetch : function() {
 			util.showSpinner('spinPermission');
 		},
 	});

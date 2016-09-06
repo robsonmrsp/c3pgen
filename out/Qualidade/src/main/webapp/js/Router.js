@@ -305,7 +305,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Anexo',
-				itemSubFolderName : 'Grid',
+				itemSubFolderName : 'Listagem',
 				url : 'app/anexos'
 			});
 		},
@@ -319,7 +319,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Anexo',
-				itemSubFolderName : 'Formulário de cadastro',
+				itemSubFolderName : 'Formulário de cadastro de Anexo',
 				url : 'app/anexos'
 			});
 		},
@@ -350,8 +350,8 @@ define(function(require) {
 				})
 				util.breadcrumb({
 					iconClass : 'fa-calendar',
-					itemLabel : 'Anexoos',
-					itemSubFolderName : 'Formulário de atualização',
+					itemLabel : 'Anexos',
+					itemSubFolderName : 'Formulário de atualização de Anexo',
 					url : 'app/anexos'
 				});
 			}
@@ -365,7 +365,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Apontamento qualidade packing',
-				itemSubFolderName : 'Grid',
+				itemSubFolderName : 'Listagem',
 				url : 'app/apontamentoQualidadePackings'
 			});
 		},
@@ -379,7 +379,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Apontamento qualidade packing',
-				itemSubFolderName : 'Formulário de cadastro',
+				itemSubFolderName : 'Formulário de cadastro de Apontamento qualidade packing',
 				url : 'app/apontamentoQualidadePackings'
 			});
 		},
@@ -410,8 +410,8 @@ define(function(require) {
 				})
 				util.breadcrumb({
 					iconClass : 'fa-calendar',
-					itemLabel : 'ApontamentoQualidadePackingos',
-					itemSubFolderName : 'Formulário de atualização',
+					itemLabel : 'ApontamentoQualidadePackings',
+					itemSubFolderName : 'Formulário de atualização de Apontamento qualidade packing',
 					url : 'app/apontamentoQualidadePackings'
 				});
 			}
@@ -425,7 +425,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Bolsao',
-				itemSubFolderName : 'Grid',
+				itemSubFolderName : 'Listagem',
 				url : 'app/bolsaos'
 			});
 		},
@@ -439,7 +439,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Bolsao',
-				itemSubFolderName : 'Formulário de cadastro',
+				itemSubFolderName : 'Formulário de cadastro de Bolsao',
 				url : 'app/bolsaos'
 			});
 		},
@@ -470,8 +470,8 @@ define(function(require) {
 				})
 				util.breadcrumb({
 					iconClass : 'fa-calendar',
-					itemLabel : 'Bolsaoos',
-					itemSubFolderName : 'Formulário de atualização',
+					itemLabel : 'Bolsaos',
+					itemSubFolderName : 'Formulário de atualização de Bolsao',
 					url : 'app/bolsaos'
 				});
 			}
@@ -485,7 +485,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Cabine',
-				itemSubFolderName : 'Grid',
+				itemSubFolderName : 'Listagem',
 				url : 'app/cabines'
 			});
 		},
@@ -499,7 +499,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Cabine',
-				itemSubFolderName : 'Formulário de cadastro',
+				itemSubFolderName : 'Formulário de cadastro de Cabine',
 				url : 'app/cabines'
 			});
 		},
@@ -530,8 +530,8 @@ define(function(require) {
 				})
 				util.breadcrumb({
 					iconClass : 'fa-calendar',
-					itemLabel : 'Cabineos',
-					itemSubFolderName : 'Formulário de atualização',
+					itemLabel : 'Cabines',
+					itemSubFolderName : 'Formulário de atualização de Cabine',
 					url : 'app/cabines'
 				});
 			}
@@ -545,7 +545,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Cargo',
-				itemSubFolderName : 'Grid',
+				itemSubFolderName : 'Listagem',
 				url : 'app/cargos'
 			});
 		},
@@ -559,7 +559,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Cargo',
-				itemSubFolderName : 'Formulário de cadastro',
+				itemSubFolderName : 'Formulário de cadastro de Cargo',
 				url : 'app/cargos'
 			});
 		},
@@ -590,8 +590,8 @@ define(function(require) {
 				})
 				util.breadcrumb({
 					iconClass : 'fa-calendar',
-					itemLabel : 'Cargoos',
-					itemSubFolderName : 'Formulário de atualização',
+					itemLabel : 'Cargos',
+					itemSubFolderName : 'Formulário de atualização de Cargo',
 					url : 'app/cargos'
 				});
 			}
@@ -605,7 +605,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Cbo',
-				itemSubFolderName : 'Grid',
+				itemSubFolderName : 'Listagem',
 				url : 'app/cbos'
 			});
 		},
@@ -619,7 +619,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Cbo',
-				itemSubFolderName : 'Formulário de cadastro',
+				itemSubFolderName : 'Formulário de cadastro de Cbo',
 				url : 'app/cbos'
 			});
 		},
@@ -650,8 +650,8 @@ define(function(require) {
 				})
 				util.breadcrumb({
 					iconClass : 'fa-calendar',
-					itemLabel : 'Cboos',
-					itemSubFolderName : 'Formulário de atualização',
+					itemLabel : 'Cbos',
+					itemSubFolderName : 'Formulário de atualização de Cbo',
 					url : 'app/cbos'
 				});
 			}
@@ -665,7 +665,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Empresa',
-				itemSubFolderName : 'Grid',
+				itemSubFolderName : 'Listagem',
 				url : 'app/clients'
 			});
 		},
@@ -679,7 +679,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Empresa',
-				itemSubFolderName : 'Formulário de cadastro',
+				itemSubFolderName : 'Formulário de cadastro de Empresa',
 				url : 'app/clients'
 			});
 		},
@@ -710,8 +710,8 @@ define(function(require) {
 				})
 				util.breadcrumb({
 					iconClass : 'fa-calendar',
-					itemLabel : 'Clientos',
-					itemSubFolderName : 'Formulário de atualização',
+					itemLabel : 'Clients',
+					itemSubFolderName : 'Formulário de atualização de Empresa',
 					url : 'app/clients'
 				});
 			}
@@ -725,7 +725,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Cliente',
-				itemSubFolderName : 'Grid',
+				itemSubFolderName : 'Listagem',
 				url : 'app/clientes'
 			});
 		},
@@ -739,7 +739,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Cliente',
-				itemSubFolderName : 'Formulário de cadastro',
+				itemSubFolderName : 'Formulário de cadastro de Cliente',
 				url : 'app/clientes'
 			});
 		},
@@ -770,8 +770,8 @@ define(function(require) {
 				})
 				util.breadcrumb({
 					iconClass : 'fa-calendar',
-					itemLabel : 'Clienteos',
-					itemSubFolderName : 'Formulário de atualização',
+					itemLabel : 'Clientes',
+					itemSubFolderName : 'Formulário de atualização de Cliente',
 					url : 'app/clientes'
 				});
 			}
@@ -785,7 +785,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Cor',
-				itemSubFolderName : 'Grid',
+				itemSubFolderName : 'Listagem',
 				url : 'app/cors'
 			});
 		},
@@ -799,7 +799,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Cor',
-				itemSubFolderName : 'Formulário de cadastro',
+				itemSubFolderName : 'Formulário de cadastro de Cor',
 				url : 'app/cors'
 			});
 		},
@@ -830,8 +830,8 @@ define(function(require) {
 				})
 				util.breadcrumb({
 					iconClass : 'fa-calendar',
-					itemLabel : 'Coros',
-					itemSubFolderName : 'Formulário de atualização',
+					itemLabel : 'Cors',
+					itemSubFolderName : 'Formulário de atualização de Cor',
 					url : 'app/cors'
 				});
 			}
@@ -845,7 +845,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Departamento',
-				itemSubFolderName : 'Grid',
+				itemSubFolderName : 'Listagem',
 				url : 'app/departamentos'
 			});
 		},
@@ -859,7 +859,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Departamento',
-				itemSubFolderName : 'Formulário de cadastro',
+				itemSubFolderName : 'Formulário de cadastro de Departamento',
 				url : 'app/departamentos'
 			});
 		},
@@ -890,8 +890,8 @@ define(function(require) {
 				})
 				util.breadcrumb({
 					iconClass : 'fa-calendar',
-					itemLabel : 'Departamentoos',
-					itemSubFolderName : 'Formulário de atualização',
+					itemLabel : 'Departamentos',
+					itemSubFolderName : 'Formulário de atualização de Departamento',
 					url : 'app/departamentos'
 				});
 			}
@@ -905,7 +905,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Embalagem',
-				itemSubFolderName : 'Grid',
+				itemSubFolderName : 'Listagem',
 				url : 'app/embalagems'
 			});
 		},
@@ -919,7 +919,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Embalagem',
-				itemSubFolderName : 'Formulário de cadastro',
+				itemSubFolderName : 'Formulário de cadastro de Embalagem',
 				url : 'app/embalagems'
 			});
 		},
@@ -950,8 +950,8 @@ define(function(require) {
 				})
 				util.breadcrumb({
 					iconClass : 'fa-calendar',
-					itemLabel : 'Embalagemos',
-					itemSubFolderName : 'Formulário de atualização',
+					itemLabel : 'Embalagems',
+					itemSubFolderName : 'Formulário de atualização de Embalagem',
 					url : 'app/embalagems'
 				});
 			}
@@ -965,7 +965,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Funcao',
-				itemSubFolderName : 'Grid',
+				itemSubFolderName : 'Listagem',
 				url : 'app/funcaos'
 			});
 		},
@@ -979,7 +979,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Funcao',
-				itemSubFolderName : 'Formulário de cadastro',
+				itemSubFolderName : 'Formulário de cadastro de Funcao',
 				url : 'app/funcaos'
 			});
 		},
@@ -1010,8 +1010,8 @@ define(function(require) {
 				})
 				util.breadcrumb({
 					iconClass : 'fa-calendar',
-					itemLabel : 'Funcaoos',
-					itemSubFolderName : 'Formulário de atualização',
+					itemLabel : 'Funcaos',
+					itemSubFolderName : 'Formulário de atualização de Funcao',
 					url : 'app/funcaos'
 				});
 			}
@@ -1025,7 +1025,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Funcionario',
-				itemSubFolderName : 'Grid',
+				itemSubFolderName : 'Listagem',
 				url : 'app/funcionarios'
 			});
 		},
@@ -1039,7 +1039,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Funcionario',
-				itemSubFolderName : 'Formulário de cadastro',
+				itemSubFolderName : 'Formulário de cadastro de Funcionario',
 				url : 'app/funcionarios'
 			});
 		},
@@ -1070,8 +1070,8 @@ define(function(require) {
 				})
 				util.breadcrumb({
 					iconClass : 'fa-calendar',
-					itemLabel : 'Funcionarioos',
-					itemSubFolderName : 'Formulário de atualização',
+					itemLabel : 'Funcionarios',
+					itemSubFolderName : 'Formulário de atualização de Funcionario',
 					url : 'app/funcionarios'
 				});
 			}
@@ -1085,7 +1085,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Generador',
-				itemSubFolderName : 'Grid',
+				itemSubFolderName : 'Listagem',
 				url : 'app/generadors'
 			});
 		},
@@ -1099,7 +1099,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Generador',
-				itemSubFolderName : 'Formulário de cadastro',
+				itemSubFolderName : 'Formulário de cadastro de Generador',
 				url : 'app/generadors'
 			});
 		},
@@ -1130,8 +1130,8 @@ define(function(require) {
 				})
 				util.breadcrumb({
 					iconClass : 'fa-calendar',
-					itemLabel : 'Generadoros',
-					itemSubFolderName : 'Formulário de atualização',
+					itemLabel : 'Generadors',
+					itemSubFolderName : 'Formulário de atualização de Generador',
 					url : 'app/generadors'
 				});
 			}
@@ -1145,7 +1145,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Latada',
-				itemSubFolderName : 'Grid',
+				itemSubFolderName : 'Listagem',
 				url : 'app/latadas'
 			});
 		},
@@ -1159,7 +1159,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Latada',
-				itemSubFolderName : 'Formulário de cadastro',
+				itemSubFolderName : 'Formulário de cadastro de Latada',
 				url : 'app/latadas'
 			});
 		},
@@ -1190,8 +1190,8 @@ define(function(require) {
 				})
 				util.breadcrumb({
 					iconClass : 'fa-calendar',
-					itemLabel : 'Latadaos',
-					itemSubFolderName : 'Formulário de atualização',
+					itemLabel : 'Latadas',
+					itemSubFolderName : 'Formulário de atualização de Latada',
 					url : 'app/latadas'
 				});
 			}
@@ -1205,7 +1205,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Packing',
-				itemSubFolderName : 'Grid',
+				itemSubFolderName : 'Listagem',
 				url : 'app/packings'
 			});
 		},
@@ -1219,7 +1219,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Packing',
-				itemSubFolderName : 'Formulário de cadastro',
+				itemSubFolderName : 'Formulário de cadastro de Packing',
 				url : 'app/packings'
 			});
 		},
@@ -1250,8 +1250,8 @@ define(function(require) {
 				})
 				util.breadcrumb({
 					iconClass : 'fa-calendar',
-					itemLabel : 'Packingos',
-					itemSubFolderName : 'Formulário de atualização',
+					itemLabel : 'Packings',
+					itemSubFolderName : 'Formulário de atualização de Packing',
 					url : 'app/packings'
 				});
 			}
@@ -1265,7 +1265,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Sacola',
-				itemSubFolderName : 'Grid',
+				itemSubFolderName : 'Listagem',
 				url : 'app/sacolas'
 			});
 		},
@@ -1279,7 +1279,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Sacola',
-				itemSubFolderName : 'Formulário de cadastro',
+				itemSubFolderName : 'Formulário de cadastro de Sacola',
 				url : 'app/sacolas'
 			});
 		},
@@ -1310,8 +1310,8 @@ define(function(require) {
 				})
 				util.breadcrumb({
 					iconClass : 'fa-calendar',
-					itemLabel : 'Sacolaos',
-					itemSubFolderName : 'Formulário de atualização',
+					itemLabel : 'Sacolas',
+					itemSubFolderName : 'Formulário de atualização de Sacola',
 					url : 'app/sacolas'
 				});
 			}
@@ -1325,7 +1325,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Variedade',
-				itemSubFolderName : 'Grid',
+				itemSubFolderName : 'Listagem',
 				url : 'app/variedades'
 			});
 		},
@@ -1339,7 +1339,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Variedade',
-				itemSubFolderName : 'Formulário de cadastro',
+				itemSubFolderName : 'Formulário de cadastro de Variedade',
 				url : 'app/variedades'
 			});
 		},
@@ -1370,8 +1370,8 @@ define(function(require) {
 				})
 				util.breadcrumb({
 					iconClass : 'fa-calendar',
-					itemLabel : 'Variedadeos',
-					itemSubFolderName : 'Formulário de atualização',
+					itemLabel : 'Variedades',
+					itemSubFolderName : 'Formulário de atualização de Variedade',
 					url : 'app/variedades'
 				});
 			}
@@ -1385,7 +1385,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Bairro',
-				itemSubFolderName : 'Grid',
+				itemSubFolderName : 'Listagem',
 				url : 'app/bairros'
 			});
 		},
@@ -1399,7 +1399,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Bairro',
-				itemSubFolderName : 'Formulário de cadastro',
+				itemSubFolderName : 'Formulário de cadastro de Bairro',
 				url : 'app/bairros'
 			});
 		},
@@ -1430,8 +1430,8 @@ define(function(require) {
 				})
 				util.breadcrumb({
 					iconClass : 'fa-calendar',
-					itemLabel : 'Bairroos',
-					itemSubFolderName : 'Formulário de atualização',
+					itemLabel : 'Bairros',
+					itemSubFolderName : 'Formulário de atualização de Bairro',
 					url : 'app/bairros'
 				});
 			}
@@ -1445,7 +1445,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Cep',
-				itemSubFolderName : 'Grid',
+				itemSubFolderName : 'Listagem',
 				url : 'app/ceps'
 			});
 		},
@@ -1459,7 +1459,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Cep',
-				itemSubFolderName : 'Formulário de cadastro',
+				itemSubFolderName : 'Formulário de cadastro de Cep',
 				url : 'app/ceps'
 			});
 		},
@@ -1490,8 +1490,8 @@ define(function(require) {
 				})
 				util.breadcrumb({
 					iconClass : 'fa-calendar',
-					itemLabel : 'Cepos',
-					itemSubFolderName : 'Formulário de atualização',
+					itemLabel : 'Ceps',
+					itemSubFolderName : 'Formulário de atualização de Cep',
 					url : 'app/ceps'
 				});
 			}
@@ -1505,7 +1505,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Cidade',
-				itemSubFolderName : 'Grid',
+				itemSubFolderName : 'Listagem',
 				url : 'app/cidades'
 			});
 		},
@@ -1519,7 +1519,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Cidade',
-				itemSubFolderName : 'Formulário de cadastro',
+				itemSubFolderName : 'Formulário de cadastro de Cidade',
 				url : 'app/cidades'
 			});
 		},
@@ -1550,8 +1550,8 @@ define(function(require) {
 				})
 				util.breadcrumb({
 					iconClass : 'fa-calendar',
-					itemLabel : 'Cidadeos',
-					itemSubFolderName : 'Formulário de atualização',
+					itemLabel : 'Cidades',
+					itemSubFolderName : 'Formulário de atualização de Cidade',
 					url : 'app/cidades'
 				});
 			}
@@ -1565,7 +1565,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Endereco',
-				itemSubFolderName : 'Grid',
+				itemSubFolderName : 'Listagem',
 				url : 'app/enderecos'
 			});
 		},
@@ -1579,7 +1579,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Endereco',
-				itemSubFolderName : 'Formulário de cadastro',
+				itemSubFolderName : 'Formulário de cadastro de Endereco',
 				url : 'app/enderecos'
 			});
 		},
@@ -1610,8 +1610,8 @@ define(function(require) {
 				})
 				util.breadcrumb({
 					iconClass : 'fa-calendar',
-					itemLabel : 'Enderecoos',
-					itemSubFolderName : 'Formulário de atualização',
+					itemLabel : 'Enderecos',
+					itemSubFolderName : 'Formulário de atualização de Endereco',
 					url : 'app/enderecos'
 				});
 			}
@@ -1625,7 +1625,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Estado',
-				itemSubFolderName : 'Grid',
+				itemSubFolderName : 'Listagem',
 				url : 'app/estados'
 			});
 		},
@@ -1639,7 +1639,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Estado',
-				itemSubFolderName : 'Formulário de cadastro',
+				itemSubFolderName : 'Formulário de cadastro de Estado',
 				url : 'app/estados'
 			});
 		},
@@ -1670,8 +1670,8 @@ define(function(require) {
 				})
 				util.breadcrumb({
 					iconClass : 'fa-calendar',
-					itemLabel : 'Estadoos',
-					itemSubFolderName : 'Formulário de atualização',
+					itemLabel : 'Estados',
+					itemSubFolderName : 'Formulário de atualização de Estado',
 					url : 'app/estados'
 				});
 			}
@@ -1685,7 +1685,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Pais',
-				itemSubFolderName : 'Grid',
+				itemSubFolderName : 'Listagem',
 				url : 'app/paiss'
 			});
 		},
@@ -1699,7 +1699,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Pais',
-				itemSubFolderName : 'Formulário de cadastro',
+				itemSubFolderName : 'Formulário de cadastro de Pais',
 				url : 'app/paiss'
 			});
 		},
@@ -1730,8 +1730,8 @@ define(function(require) {
 				})
 				util.breadcrumb({
 					iconClass : 'fa-calendar',
-					itemLabel : 'Paisos',
-					itemSubFolderName : 'Formulário de atualização',
+					itemLabel : 'Paiss',
+					itemSubFolderName : 'Formulário de atualização de Pais',
 					url : 'app/paiss'
 				});
 			}
@@ -1745,7 +1745,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Item',
-				itemSubFolderName : 'Grid',
+				itemSubFolderName : 'Listagem',
 				url : 'app/items'
 			});
 		},
@@ -1759,7 +1759,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Item',
-				itemSubFolderName : 'Formulário de cadastro',
+				itemSubFolderName : 'Formulário de cadastro de Item',
 				url : 'app/items'
 			});
 		},
@@ -1790,8 +1790,8 @@ define(function(require) {
 				})
 				util.breadcrumb({
 					iconClass : 'fa-calendar',
-					itemLabel : 'Itemos',
-					itemSubFolderName : 'Formulário de atualização',
+					itemLabel : 'Items',
+					itemSubFolderName : 'Formulário de atualização de Item',
 					url : 'app/items'
 				});
 			}
@@ -1805,7 +1805,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Tipo de Item',
-				itemSubFolderName : 'Grid',
+				itemSubFolderName : 'Listagem',
 				url : 'app/itemTypes'
 			});
 		},
@@ -1819,7 +1819,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Tipo de Item',
-				itemSubFolderName : 'Formulário de cadastro',
+				itemSubFolderName : 'Formulário de cadastro de Tipo de Item',
 				url : 'app/itemTypes'
 			});
 		},
@@ -1850,8 +1850,8 @@ define(function(require) {
 				})
 				util.breadcrumb({
 					iconClass : 'fa-calendar',
-					itemLabel : 'ItemTypeos',
-					itemSubFolderName : 'Formulário de atualização',
+					itemLabel : 'ItemTypes',
+					itemSubFolderName : 'Formulário de atualização de Tipo de Item',
 					url : 'app/itemTypes'
 				});
 			}
@@ -1865,7 +1865,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Operação',
-				itemSubFolderName : 'Grid',
+				itemSubFolderName : 'Listagem',
 				url : 'app/operations'
 			});
 		},
@@ -1879,7 +1879,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Operação',
-				itemSubFolderName : 'Formulário de cadastro',
+				itemSubFolderName : 'Formulário de cadastro de Operação',
 				url : 'app/operations'
 			});
 		},
@@ -1910,8 +1910,8 @@ define(function(require) {
 				})
 				util.breadcrumb({
 					iconClass : 'fa-calendar',
-					itemLabel : 'Operationos',
-					itemSubFolderName : 'Formulário de atualização',
+					itemLabel : 'Operations',
+					itemSubFolderName : 'Formulário de atualização de Operação',
 					url : 'app/operations'
 				});
 			}
@@ -1925,7 +1925,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Permissão',
-				itemSubFolderName : 'Grid',
+				itemSubFolderName : 'Listagem',
 				url : 'app/permissions'
 			});
 		},
@@ -1939,7 +1939,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Permissão',
-				itemSubFolderName : 'Formulário de cadastro',
+				itemSubFolderName : 'Formulário de cadastro de Permissão',
 				url : 'app/permissions'
 			});
 		},
@@ -1970,8 +1970,8 @@ define(function(require) {
 				})
 				util.breadcrumb({
 					iconClass : 'fa-calendar',
-					itemLabel : 'Permissionos',
-					itemSubFolderName : 'Formulário de atualização',
+					itemLabel : 'Permissions',
+					itemSubFolderName : 'Formulário de atualização de Permissão',
 					url : 'app/permissions'
 				});
 			}
@@ -1985,7 +1985,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Papel',
-				itemSubFolderName : 'Grid',
+				itemSubFolderName : 'Listagem',
 				url : 'app/roles'
 			});
 		},
@@ -1999,7 +1999,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Papel',
-				itemSubFolderName : 'Formulário de cadastro',
+				itemSubFolderName : 'Formulário de cadastro de Papel',
 				url : 'app/roles'
 			});
 		},
@@ -2030,8 +2030,8 @@ define(function(require) {
 				})
 				util.breadcrumb({
 					iconClass : 'fa-calendar',
-					itemLabel : 'Roleos',
-					itemSubFolderName : 'Formulário de atualização',
+					itemLabel : 'Roles',
+					itemSubFolderName : 'Formulário de atualização de Papel',
 					url : 'app/roles'
 				});
 			}
@@ -2045,7 +2045,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Sessão',
-				itemSubFolderName : 'Grid',
+				itemSubFolderName : 'Listagem',
 				url : 'app/sessions'
 			});
 		},
@@ -2059,7 +2059,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Sessão',
-				itemSubFolderName : 'Formulário de cadastro',
+				itemSubFolderName : 'Formulário de cadastro de Sessão',
 				url : 'app/sessions'
 			});
 		},
@@ -2090,8 +2090,8 @@ define(function(require) {
 				})
 				util.breadcrumb({
 					iconClass : 'fa-calendar',
-					itemLabel : 'Sessionos',
-					itemSubFolderName : 'Formulário de atualização',
+					itemLabel : 'Sessions',
+					itemSubFolderName : 'Formulário de atualização de Sessão',
 					url : 'app/sessions'
 				});
 			}
@@ -2105,7 +2105,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Usuário',
-				itemSubFolderName : 'Grid',
+				itemSubFolderName : 'Listagem',
 				url : 'app/users'
 			});
 		},
@@ -2119,7 +2119,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Usuário',
-				itemSubFolderName : 'Formulário de cadastro',
+				itemSubFolderName : 'Formulário de cadastro de Usuário',
 				url : 'app/users'
 			});
 		},
@@ -2150,8 +2150,8 @@ define(function(require) {
 				})
 				util.breadcrumb({
 					iconClass : 'fa-calendar',
-					itemLabel : 'Useros',
-					itemSubFolderName : 'Formulário de atualização',
+					itemLabel : 'Users',
+					itemSubFolderName : 'Formulário de atualização de Usuário',
 					url : 'app/users'
 				});
 			}

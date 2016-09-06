@@ -11,7 +11,7 @@ import br.com.gvs.core.serialization.CustomSyncObjectIdDeserializer;
 import br.com.gvs.core.serialization.CustomDoubleDeserializer;
 
 /**
-*  generated: 02/09/2016 16:23:48
+*  generated: 03/09/2016 22:18:32
 **/
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class JsonPacking implements Serializable {
@@ -20,9 +20,9 @@ public class JsonPacking implements Serializable {
 	@JsonDeserialize(using = CustomSyncObjectIdDeserializer.class)
 	private Integer id;
 	private SyncOperation syncOperation;
+	private String nome;
 	private ArrayList<JsonApontamentoQualidadePacking> apontamentoQualidadePackings = new ArrayList<JsonApontamentoQualidadePacking>();		
 	private ArrayList<JsonCabine> cabines = new ArrayList<JsonCabine>();		
-	private JsonClient client;		
 	
 	public  JsonPacking() {
 		
@@ -34,6 +34,13 @@ public class JsonPacking implements Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 	
 	public ArrayList<JsonApontamentoQualidadePacking> getApontamentoQualidadePackings() {
@@ -52,13 +59,6 @@ public class JsonPacking implements Serializable {
 		this.cabines = cabine;
 	}
 
-	public JsonClient getClient() {
-		return client;
-	}
-	
-	public void setClient(JsonClient client) {
-		this.client = client;
-	}
 	public SyncOperation getSyncOperation (){
 		if(syncOperation == null){
 			this.syncOperation = SyncOperation.NONE;

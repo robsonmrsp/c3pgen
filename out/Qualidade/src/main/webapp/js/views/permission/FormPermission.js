@@ -1,4 +1,4 @@
-/* generated: 02/09/2016 16:23:49 */
+/* generated: 03/09/2016 22:18:34 */
 define(function(require) {
 	// Start "Import´s" Definition"
 	var _ = require('adapters/underscore-adapter');
@@ -36,8 +36,8 @@ define(function(require) {
 		events : {
 			'click 	.save' : 'save',
 			'click 	.saveAndContinue' : 'saveAndContinue',
-			'click #searchOperationModal' : '_showSearchOperationModal',
-			'click #searchItemModal' : '_showSearchItemModal',
+			'click #searchOperationModal' : 'showSearchOperationModal',
+			'click #searchItemModal' : 'showSearchItemModal',
 		},
 		
 		ui : {
@@ -60,12 +60,12 @@ define(function(require) {
 			});
 			this.searchOperationModal = new SearchOperationModal({
 				onSelectModel : function(model) {
-					that._selectOperation(model);
+					that.selectOperation(model);
 				},
 			});
 			this.searchItemModal = new SearchItemModal({
 				onSelectModel : function(model) {
-					that._selectItem(model);
+					that.selectItem(model);
 				},
 			});
 			this.on('show', function() {
@@ -86,9 +86,9 @@ define(function(require) {
 
 		save : function(continua) {
 			var that = this;
-			var permission = that._getModel();
+			var permission = that.getModel();
 
-			if (this._isValid()) {
+			if (this.isValid()) {
 				permission.save({}, {
 					success : function(_model, _resp, _options) {
 						util.showSuccessMessage('Permissão salvo com sucesso!');
@@ -124,7 +124,7 @@ define(function(require) {
 			return util.hasInvalidFields(this.validateFields);
 		},
 
-		_isValid : function() {
+		isValid : function() {
 			return this.ui.form.validationEngine('validate', {
 				promptPosition : "topLeft",
 				isOverflown : false,
@@ -132,7 +132,7 @@ define(function(require) {
 			});
 		},
 
-		_getModel : function() {
+		getModel : function() {
 			var that = this;
 			var permission = that.model; 
 			permission.set({
@@ -140,13 +140,13 @@ define(function(require) {
 		    	name : util.escapeById('inputName'), 
 				
 					roles : that.roles.toJSON(),
-					operation : that._getOperation(),
-					item : that._getItem(),
+					operation : that.getOperation(),
+					item : that.getItem(),
 			});
 			return permission;
 		},
 		 
-		_getOperation : function() {			
+		getOperation : function() {			
 			var id = util.escapeById('inputOperationId');
 			var name = util.escapeById('inputOperationName');
 			var operation = null;
@@ -159,7 +159,7 @@ define(function(require) {
 			}
 			return operation;
 		},	
-		_getItem : function() {			
+		getItem : function() {			
 			var id = util.escapeById('inputItemId');
 			var name = util.escapeById('inputItemName');
 			var item = null;
@@ -173,20 +173,20 @@ define(function(require) {
 			return item;
 		},	
 		
-		_showSearchOperationModal : function() {
+		showSearchOperationModal : function() {
 			this.searchOperationModal.showPage();
 		},
 			
-		_selectOperation : function(operation) {
+		selectOperation : function(operation) {
 			this.searchOperationModal.hidePage();	
 			this.ui.inputOperationId.val(operation.get('id'));
 			this.ui.inputOperationName.val(operation.get('name'));		
 		},
-		_showSearchItemModal : function() {
+		showSearchItemModal : function() {
 			this.searchItemModal.showPage();
 		},
 			
-		_selectItem : function(item) {
+		selectItem : function(item) {
 			this.searchItemModal.hidePage();	
 			this.ui.inputItemId.val(item.get('id'));
 			this.ui.inputItemName.val(item.get('name'));		

@@ -1,4 +1,4 @@
-<!-- generated: 02/09/2016 16:23:48 -->
+<!-- generated: 03/09/2016 22:18:32 -->
 <!-- Latada´s page -->
 <div class="breadcrumbs" id="breadcrumbs">
 	<ul class="breadcrumb">
@@ -10,16 +10,18 @@
 	</ul>
 </div>
 <div class="col-sm-12 page-form">
+	<div id="messages_div"></div>				
 	<div class="row">
 		<div class="col-xs-12">
 			<div class="widget-box ">
 				<div class="widget-header widget-header-flat">
 					<h4 class="widget-title lighter">
 						<i class="ace-icon fa fa-search"></i>
-						Filtros de pesquisa
+						Filtros de pesquisa de Latada
 					</h4>
 				</div>
 				<div class="widget-body">
+					<form id="formLatadaFilter">
 					<div class="widget-main  ">
 						<div class="input-group col-sm-4">
 							<input id="inputNome" type="text" class="form-control search-query" placeholder="Pesquisar Latada por Nome">
@@ -30,35 +32,8 @@
 								</button>
 							</span>
 						</div>
-						<div>
-							<a href="javascript:void(-1)" class="show-advanced-search-button"> Pesquisa avançada... </a>
-						</div>
-						<div class="widget-box transparent advanced-search-form">
-							<div class="widget-header">
-								<h4 class="widget-title lighter">Pesquisa de Latada</h4>
-							</div>
-							<div class="widget-body">
-							<!-- inicio dos registros-->							
-									
-								<div id="groupInputClientContainer" class="form-group">
-									<label class="control-label" for="inputClient">Client</label>
-									<div id="groupInputClient" class="input-group">
-										<input id="inputClientId" type="hidden" class="form-control append-left"  />
-										<input id="inputClientNome" placeholder="Pesquise pelo Client"  type="text" class="form-control append-left" />
-										<div class="input-group-addon append-right" id="searchClientModal" data-toggle="modal">
-											<span class="fa fa-search"></span>
-										</div>
-									</div>
-								</div>		
-								<div class=" ">
-									<button type="button" class="btn btn-info btn-sm search-button">
-										<i class="ace-icon fa fa-search bigger-110"></i>
-										Pesquisar
-									</button>
-								</div>
-							</div>
-						</div>
 					</div>
+					</form>
 					<div class=" form-actions">
 						<a href="#app/newLatada" class="btn btn-info">
 							<i class="fa fa-plus "></i>
@@ -97,4 +72,3 @@
 		</div>
 	</div>
 </div>
-<div id='clientModal'></div>

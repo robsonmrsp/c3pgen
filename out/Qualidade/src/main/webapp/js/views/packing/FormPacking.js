@@ -1,4 +1,4 @@
-/* generated: 02/09/2016 16:23:48 */
+/* generated: 03/09/2016 22:18:32 */
 define(function(require) {
 	// Start "Import´s" Definition"
 	var _ = require('adapters/underscore-adapter');
@@ -13,7 +13,6 @@ define(function(require) {
 	var TemplateFormPackings = require('text!views/packing/tpl/FormPackingTemplate.html');
 	var PackingModel = require('models/PackingModel');
 	var PackingCollection = require('collections/PackingCollection');
-	var SearchClientModal = require('views/modalComponents/ClientModal');
 	
 	// End of "Import´s" definition
 
@@ -25,32 +24,23 @@ define(function(require) {
 		template : _.template(TemplateFormPackings),
 
 		regions : {
-			searchClientModalRegion : '#clientModal',
 		},
 
 		events : {
 			'click 	.save' : 'save',
 			'click 	.saveAndContinue' : 'saveAndContinue',
-			'click #searchClientModal' : '_showSearchClientModal',
 		},
 		
 		ui : {
 			inputId : '#inputId',
+			inputNome : '#inputNome',
 		
-			inputClientId : '#inputClientId',
-			inputClientNome : '#inputClientNome',
 			form : '#formPacking',
 		},
 
 		initialize : function() {
 			var that = this;
-			this.searchClientModal = new SearchClientModal({
-				onSelectModel : function(model) {
-					that._selectClient(model);
-				},
-			});
 			this.on('show', function() {
-				this.searchClientModalRegion.show(this.searchClientModal);		
 				this.ui.form.validationEngine('attach', {
 					promptPosition : "topLeft",
 					isOverflown : false,
@@ -65,9 +55,9 @@ define(function(require) {
 
 		save : function(continua) {
 			var that = this;
-			var packing = that._getModel();
+			var packing = that.getModel();
 
-			if (this._isValid()) {
+			if (this.isValid()) {
 				packing.save({}, {
 					success : function(_model, _resp, _options) {
 						util.showSuccessMessage('Packing salvo com sucesso!');
@@ -90,15 +80,14 @@ define(function(require) {
 		
 		clearForm : function() {
 			util.clear('inputId');
-			util.clear('inputClientId');
-			util.clear('inputClientNome');
+			util.clear('inputNome'); 
 		},
 
 		possuiCamposInvalidos : function() {
 			return util.hasInvalidFields(this.validateFields);
 		},
 
-		_isValid : function() {
+		isValid : function() {
 			return this.ui.form.validationEngine('validate', {
 				promptPosition : "topLeft",
 				isOverflown : false,
@@ -106,39 +95,18 @@ define(function(require) {
 			});
 		},
 
-		_getModel : function() {
+		getModel : function() {
 			var that = this;
 			var packing = that.model; 
 			packing.set({
 				id: util.escapeById('inputId') || null,
-					client : that._getClient(),
+		    	nome : util.escapeById('inputNome'), 
+				
 			});
 			return packing;
 		},
 		 
-		_getClient : function() {			
-			var id = util.escapeById('inputClientId');
-			var nome = util.escapeById('inputClientNome');
-			var client = null;
-			
-			if (id && nome) {
-				client = {
-					id : id,
-					nome : nome,
-				}
-			}
-			return client;
-		},	
 		
-		_showSearchClientModal : function() {
-			this.searchClientModal.showPage();
-		},
-			
-		_selectClient : function(client) {
-			this.searchClientModal.hidePage();	
-			this.ui.inputClientId.val(client.get('id'));
-			this.ui.inputClientNome.val(client.get('nome'));		
-		},
 				
 		
 	});

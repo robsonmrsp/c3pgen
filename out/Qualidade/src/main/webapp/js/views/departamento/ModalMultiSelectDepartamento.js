@@ -1,4 +1,4 @@
-/* generated: 02/09/2016 16:23:48 */
+/* generated: 03/09/2016 22:18:31 */
 define(function(require) {
 	// Start "Import´s Definition"
 	var _ = require('adapters/underscore-adapter');
@@ -39,13 +39,13 @@ define(function(require) {
 
 			this.grid = new Backgrid.Grid({
 				className : 'table backgrid table-striped table-bordered table-hover dataTable no-footer  ',
-				columns : this._getColumns(),
+				columns : this.getColumns(),
 				emptyText : "Nenhum registro para escolha",
 				collection : this.departamentos,
 			});
 
 			this.paginator = new Backgrid.Extension.Paginator({
-				columns : this._getColumns(),
+				columns : this.getColumns(),
 				collection : this.departamentos,
 				className : 'dataTables_paginate paging_simple_numbers',
 				uiClassName : 'pagination',
@@ -87,7 +87,7 @@ define(function(require) {
 		clear : function(){
 			this.grid.$el.find('input[type=checkbox]').prop('checked', false);
 		},
-		_getColumns : function() {
+		getColumns : function() {
 			var columns = [{
 				name : "",
 				cell : "select-row",

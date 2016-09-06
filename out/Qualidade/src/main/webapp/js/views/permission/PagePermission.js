@@ -1,4 +1,4 @@
-/* generated: 02/09/2016 16:23:49 */
+/* generated: 03/09/2016 22:18:34 */
 define(function(require) {
 	// Start "Import´s Definition"
 	var _ = require('adapters/underscore-adapter');
@@ -40,9 +40,9 @@ define(function(require) {
 		},
 		
 		events : {
-			'click 	#reset' : '_resetPermission',			
-			'click #searchOperationModal' : '_showSearchOperationModal',
-			'click #searchItemModal' : '_showSearchItemModal',
+			'click 	#reset' : 'resetPermission',			
+			'click #searchOperationModal' : 'showSearchOperationModal',
+			'click #searchItemModal' : 'showSearchItemModal',
 			'keypress' : 'treatKeypress',
 			
 			'click 	.search-button' : 'searchPermission',
@@ -80,7 +80,7 @@ define(function(require) {
 
 			this.grid = new Backgrid.Grid({
 				className : 'table backgrid table-striped table-bordered table-hover dataTable no-footer  ',
-				columns : this._getColumns(),
+				columns : this.getColumns(),
 				emptyText : "Sem registros",
 				collection : this.permissions
 			});
@@ -90,7 +90,7 @@ define(function(require) {
 			});
 
 			this.paginator = new Backgrid.Extension.Paginator({
-				columns : this._getColumns(),
+				columns : this.getColumns(),
 				collection : this.permissions,
 				className : 'dataTables_paginate paging_simple_numbers',
 				uiClassName : 'pagination',
@@ -106,12 +106,12 @@ define(function(require) {
 			});
 			this.searchOperationModal = new SearchOperationModal({
 				onSelectModel : function(model) {
-					that._selectOperation(model);
+					that.selectOperation(model);
 				},
 			});
 			this.searchItemModal = new SearchItemModal({
 				onSelectModel : function(model) {
-					that._selectItem(model);
+					that.selectItem(model);
 				},
 			});
 			this.on('show', function() {
@@ -144,24 +144,16 @@ define(function(require) {
 				},
 			})		
 		},
-		_resetPermission : function(){
+		resetPermission : function(){
 			this.ui.form.get(0).reset();
 			this.permissions.reset();
 			util.clear('inputOperationId');
 			util.clear('inputItemId');
 		},
 				
-		_getColumns : function() {
+		getColumns : function() {
 			var that = this;
 			var columns = [
-			//{
-			//	name : "id",
-			//	label : "id",
-			//	editable : false,
-			//	cell : Backgrid.IntegerCell.extend({
-			//		orderSeparator : ''
-			//	})
-			//}, 
 			{
 				name : "name",
 				editable : false,
@@ -192,28 +184,28 @@ define(function(require) {
 				label : "Ações(Editar, Deletar)",
 				sortable : false,
 				cell : GeneralActionsCell.extend({
-					buttons : that._getCellButtons(),
+					buttons : that.getCellButtons(),
 					context : that,
 				})
 			} ];
 			return columns;
 		},
 		
-		_getCellButtons : function() {
+		getCellButtons : function() {
 			var that = this;
 			var buttons = [];
 
 			buttons.push({
 				id : 'edita_ficha_button',
 				type : 'primary',
-				icon : 'icon-pencil',
+				icon : 'icon-pencil fa-pencil',
 				hint : 'Editar Permissão',
 				onClick : that.editModel,
 			}, {
 				id : 'delete_button',
 				type : 'danger',
-				icon : 'icon-trash',
-				hint : 'Delete Permissão',
+				icon : 'icon-trash fa-trash',
+				hint : 'Remover Permissão',
 				onClick : that.deleteModel,
 			});
 
@@ -246,20 +238,20 @@ define(function(require) {
 			util.goPage("app/editPermission/" + model.get('id'));
 		},
 
-		_showSearchOperationModal : function() {
+		showSearchOperationModal : function() {
 			this.searchOperationModal.showPage();
 		},
 			
-		_selectOperation : function(operation) {
+		selectOperation : function(operation) {
 			this.searchOperationModal.hidePage();	
 			this.ui.inputOperationId.val(operation.get('id'));
 			this.ui.inputOperationName.val(operation.get('name'));		
 		},
-		_showSearchItemModal : function() {
+		showSearchItemModal : function() {
 			this.searchItemModal.showPage();
 		},
 			
-		_selectItem : function(item) {
+		selectItem : function(item) {
 			this.searchItemModal.hidePage();	
 			this.ui.inputItemId.val(item.get('id'));
 			this.ui.inputItemName.val(item.get('name'));		

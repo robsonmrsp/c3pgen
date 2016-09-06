@@ -1,4 +1,4 @@
-/* generated: 02/09/2016 16:23:48 */
+/* generated: 03/09/2016 22:18:31 */
 define(function(require) {
 	// Start "Import´s" Definition"
 	var _ = require('adapters/underscore-adapter');
@@ -31,7 +31,7 @@ define(function(require) {
 		events : {
 			'click 	.save' : 'save',
 			'click 	.saveAndContinue' : 'saveAndContinue',
-			'click #searchPackingModal' : '_showSearchPackingModal',
+			'click #searchPackingModal' : 'showSearchPackingModal',
 		},
 		
 		ui : {
@@ -47,7 +47,7 @@ define(function(require) {
 			var that = this;
 			this.searchPackingModal = new SearchPackingModal({
 				onSelectModel : function(model) {
-					that._selectPacking(model);
+					that.selectPacking(model);
 				},
 			});
 			this.on('show', function() {
@@ -66,9 +66,9 @@ define(function(require) {
 
 		save : function(continua) {
 			var that = this;
-			var cabine = that._getModel();
+			var cabine = that.getModel();
 
-			if (this._isValid()) {
+			if (this.isValid()) {
 				cabine.save({}, {
 					success : function(_model, _resp, _options) {
 						util.showSuccessMessage('Cabine salvo com sucesso!');
@@ -100,7 +100,7 @@ define(function(require) {
 			return util.hasInvalidFields(this.validateFields);
 		},
 
-		_isValid : function() {
+		isValid : function() {
 			return this.ui.form.validationEngine('validate', {
 				promptPosition : "topLeft",
 				isOverflown : false,
@@ -108,19 +108,19 @@ define(function(require) {
 			});
 		},
 
-		_getModel : function() {
+		getModel : function() {
 			var that = this;
 			var cabine = that.model; 
 			cabine.set({
 				id: util.escapeById('inputId') || null,
 		    	nome : util.escapeById('inputNome'), 
 				
-					packing : that._getPacking(),
+					packing : that.getPacking(),
 			});
 			return cabine;
 		},
 		 
-		_getPacking : function() {			
+		getPacking : function() {			
 			var id = util.escapeById('inputPackingId');
 			var nome = util.escapeById('inputPackingNome');
 			var packing = null;
@@ -134,11 +134,11 @@ define(function(require) {
 			return packing;
 		},	
 		
-		_showSearchPackingModal : function() {
+		showSearchPackingModal : function() {
 			this.searchPackingModal.showPage();
 		},
 			
-		_selectPacking : function(packing) {
+		selectPacking : function(packing) {
 			this.searchPackingModal.hidePage();	
 			this.ui.inputPackingId.val(packing.get('id'));
 			this.ui.inputPackingNome.val(packing.get('nome'));		

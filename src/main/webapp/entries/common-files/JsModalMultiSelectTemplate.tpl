@@ -39,13 +39,13 @@ define(function(require) {
 
 			this.grid = new Backgrid.Grid({
 				className : 'table backgrid table-striped table-bordered table-hover dataTable no-footer  ',
-				columns : this._getColumns(),
+				columns : this.getColumns(),
 				emptyText : "Nenhum registro para escolha",
 				collection : this.${firstLower(entity.name)}s,
 			});
 
 			this.paginator = new Backgrid.Extension.Paginator({
-				columns : this._getColumns(),
+				columns : this.getColumns(),
 				collection : this.${firstLower(entity.name)}s,
 				className : 'dataTables_paginate paging_simple_numbers',
 				uiClassName : 'pagination',
@@ -87,7 +87,7 @@ define(function(require) {
 		clear : function(){
 			this.grid.$el.find('input[type=checkbox]').prop('checked', false);
 		},
-		_getColumns : function() {
+		getColumns : function() {
 			var columns = [{
 				name : "",
 				cell : "select-row",

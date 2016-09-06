@@ -11,7 +11,7 @@ import br.com.gvs.core.serialization.CustomSyncObjectIdDeserializer;
 import br.com.gvs.core.serialization.CustomDoubleDeserializer;
 
 /**
-*  generated: 02/09/2016 16:23:48
+*  generated: 03/09/2016 22:18:32
 **/
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class JsonLatada implements Serializable {
@@ -22,7 +22,6 @@ public class JsonLatada implements Serializable {
 	private SyncOperation syncOperation;
 	private String nome;
 	private ArrayList<JsonApontamentoQualidadePacking> apontamentoQualidadePackings = new ArrayList<JsonApontamentoQualidadePacking>();		
-	private JsonClient client;		
 	
 	public  JsonLatada() {
 		
@@ -51,13 +50,6 @@ public class JsonLatada implements Serializable {
 		this.apontamentoQualidadePackings = apontamentoQualidadePacking;
 	}
 
-	public JsonClient getClient() {
-		return client;
-	}
-	
-	public void setClient(JsonClient client) {
-		this.client = client;
-	}
 	public SyncOperation getSyncOperation (){
 		if(syncOperation == null){
 			this.syncOperation = SyncOperation.NONE;

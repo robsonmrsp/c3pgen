@@ -2536,6 +2536,7 @@
 		JsonClient jsonClient = new JsonClient();
 		
 		jsonClient.setId(client.getId());
+	    jsonClient.setNome(client.getNome());
 		return jsonClient;
 	}
 
@@ -2543,6 +2544,7 @@
 		Client client = new Client();
 		
 		client.setId(jsonClient.getId());
+		client.setNome(jsonClient.getNome());
 		return client;
 	}		
 	
@@ -2797,7 +2799,6 @@
 		
 		jsonLatada.setId(latada.getId());
 	    jsonLatada.setNome(latada.getNome());
-		jsonLatada.setClient(toJson(latada.getClient()));		
 		return jsonLatada;
 	}
 
@@ -2806,7 +2807,6 @@
 		
 		latada.setId(jsonLatada.getId());
 		latada.setNome(jsonLatada.getNome());
-		latada.setClient(toEntity(jsonLatada.getClient()));					
 		return latada;
 	}		
 	
@@ -2822,7 +2822,7 @@
 		JsonPacking jsonPacking = new JsonPacking();
 		
 		jsonPacking.setId(packing.getId());
-		jsonPacking.setClient(toJson(packing.getClient()));		
+	    jsonPacking.setNome(packing.getNome());
 		return jsonPacking;
 	}
 
@@ -2830,7 +2830,7 @@
 		Packing packing = new Packing();
 		
 		packing.setId(jsonPacking.getId());
-		packing.setClient(toEntity(jsonPacking.getClient()));					
+		packing.setNome(jsonPacking.getNome());
 		return packing;
 	}		
 	

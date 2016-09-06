@@ -32,7 +32,7 @@ import br.com.gvs.core.serialization.CustomLocalDateTimeSerializer;
 import br.com.gvs.core.serialization.CustomLocalDateSerializer;
 import br.com.gvs.core.model.AbstractTimestampEntity;
 /**
-* generated: 02/09/2016 16:23:48
+* generated: 03/09/2016 22:18:31
 **/
 @Entity
 @Audited
@@ -44,6 +44,9 @@ public class Client extends AbstractTimestampEntity{
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CLIENT_SEQUENCE")	
 	private Integer id;
+		
+	@Column(name = "NOME")
+	private String nome;		
 	
 	@OneToMany()
 	private List<Packing> packings;		
@@ -65,6 +68,13 @@ public class Client extends AbstractTimestampEntity{
 		this.id = id;
 	}
 	
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 	public void setPackings(List<Packing> packings){
 		this.packings = packings;
 	}

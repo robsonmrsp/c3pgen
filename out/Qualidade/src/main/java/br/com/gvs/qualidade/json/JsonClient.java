@@ -11,7 +11,7 @@ import br.com.gvs.core.serialization.CustomSyncObjectIdDeserializer;
 import br.com.gvs.core.serialization.CustomDoubleDeserializer;
 
 /**
-*  generated: 02/09/2016 16:23:48
+*  generated: 03/09/2016 22:18:31
 **/
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class JsonClient implements Serializable {
@@ -20,6 +20,7 @@ public class JsonClient implements Serializable {
 	@JsonDeserialize(using = CustomSyncObjectIdDeserializer.class)
 	private Integer id;
 	private SyncOperation syncOperation;
+	private String nome;
 	private ArrayList<JsonPacking> packings = new ArrayList<JsonPacking>();		
 	private ArrayList<JsonLatada> latadas = new ArrayList<JsonLatada>();		
 	private ArrayList<JsonFuncionario> funcionarios = new ArrayList<JsonFuncionario>();		
@@ -34,6 +35,13 @@ public class JsonClient implements Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 	
 	public ArrayList<JsonPacking> getPackings() {

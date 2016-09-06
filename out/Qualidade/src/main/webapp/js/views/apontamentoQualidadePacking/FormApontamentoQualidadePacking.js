@@ -1,4 +1,4 @@
-/* generated: 02/09/2016 16:23:48 */
+/* generated: 03/09/2016 22:18:30 */
 define(function(require) {
 	// Start "Import´s" Definition"
 	var _ = require('adapters/underscore-adapter');
@@ -51,17 +51,17 @@ define(function(require) {
 		events : {
 			'click 	.save' : 'save',
 			'click 	.saveAndContinue' : 'saveAndContinue',
-			'click #searchBolsaoModal' : '_showSearchBolsaoModal',
-			'click #searchGeneradorModal' : '_showSearchGeneradorModal',
-			'click #searchCorModal' : '_showSearchCorModal',
-			'click #searchCargoModal' : '_showSearchCargoModal',
-			'click #searchVariedadeModal' : '_showSearchVariedadeModal',
-			'click #searchLatadaModal' : '_showSearchLatadaModal',
-			'click #searchEmbalagemModal' : '_showSearchEmbalagemModal',
-			'click #searchCabineModal' : '_showSearchCabineModal',
-			'click #searchSacolaModal' : '_showSearchSacolaModal',
-			'click #searchClienteModal' : '_showSearchClienteModal',
-			'click #searchPackingModal' : '_showSearchPackingModal',
+			'click #searchBolsaoModal' : 'showSearchBolsaoModal',
+			'click #searchGeneradorModal' : 'showSearchGeneradorModal',
+			'click #searchCorModal' : 'showSearchCorModal',
+			'click #searchCargoModal' : 'showSearchCargoModal',
+			'click #searchVariedadeModal' : 'showSearchVariedadeModal',
+			'click #searchLatadaModal' : 'showSearchLatadaModal',
+			'click #searchEmbalagemModal' : 'showSearchEmbalagemModal',
+			'click #searchCabineModal' : 'showSearchCabineModal',
+			'click #searchSacolaModal' : 'showSearchSacolaModal',
+			'click #searchClienteModal' : 'showSearchClienteModal',
+			'click #searchPackingModal' : 'showSearchPackingModal',
 		},
 		
 		ui : {
@@ -131,57 +131,57 @@ define(function(require) {
 			var that = this;
 			this.searchBolsaoModal = new SearchBolsaoModal({
 				onSelectModel : function(model) {
-					that._selectBolsao(model);
+					that.selectBolsao(model);
 				},
 			});
 			this.searchGeneradorModal = new SearchGeneradorModal({
 				onSelectModel : function(model) {
-					that._selectGenerador(model);
+					that.selectGenerador(model);
 				},
 			});
 			this.searchCorModal = new SearchCorModal({
 				onSelectModel : function(model) {
-					that._selectCor(model);
+					that.selectCor(model);
 				},
 			});
 			this.searchCargoModal = new SearchCargoModal({
 				onSelectModel : function(model) {
-					that._selectCargo(model);
+					that.selectCargo(model);
 				},
 			});
 			this.searchVariedadeModal = new SearchVariedadeModal({
 				onSelectModel : function(model) {
-					that._selectVariedade(model);
+					that.selectVariedade(model);
 				},
 			});
 			this.searchLatadaModal = new SearchLatadaModal({
 				onSelectModel : function(model) {
-					that._selectLatada(model);
+					that.selectLatada(model);
 				},
 			});
 			this.searchEmbalagemModal = new SearchEmbalagemModal({
 				onSelectModel : function(model) {
-					that._selectEmbalagem(model);
+					that.selectEmbalagem(model);
 				},
 			});
 			this.searchCabineModal = new SearchCabineModal({
 				onSelectModel : function(model) {
-					that._selectCabine(model);
+					that.selectCabine(model);
 				},
 			});
 			this.searchSacolaModal = new SearchSacolaModal({
 				onSelectModel : function(model) {
-					that._selectSacola(model);
+					that.selectSacola(model);
 				},
 			});
 			this.searchClienteModal = new SearchClienteModal({
 				onSelectModel : function(model) {
-					that._selectCliente(model);
+					that.selectCliente(model);
 				},
 			});
 			this.searchPackingModal = new SearchPackingModal({
 				onSelectModel : function(model) {
-					that._selectPacking(model);
+					that.selectPacking(model);
 				},
 			});
 			this.on('show', function() {
@@ -243,9 +243,9 @@ define(function(require) {
 
 		save : function(continua) {
 			var that = this;
-			var apontamentoQualidadePacking = that._getModel();
+			var apontamentoQualidadePacking = that.getModel();
 
-			if (this._isValid()) {
+			if (this.isValid()) {
 				apontamentoQualidadePacking.save({}, {
 					success : function(_model, _resp, _options) {
 						util.showSuccessMessage('Apontamento qualidade packing salvo com sucesso!');
@@ -331,7 +331,7 @@ define(function(require) {
 			return util.hasInvalidFields(this.validateFields);
 		},
 
-		_isValid : function() {
+		isValid : function() {
 			return this.ui.form.validationEngine('validate', {
 				promptPosition : "topLeft",
 				isOverflown : false,
@@ -339,7 +339,7 @@ define(function(require) {
 			});
 		},
 
-		_getModel : function() {
+		getModel : function() {
 			var that = this;
 			var apontamentoQualidadePacking = that.model; 
 			apontamentoQualidadePacking.set({
@@ -414,22 +414,22 @@ define(function(require) {
 				
 		    	dataHora : util.escapeById('inputDataHora'), 
 				
-					bolsao : that._getBolsao(),
-					generador : that._getGenerador(),
-					cor : that._getCor(),
-					cargo : that._getCargo(),
-					variedade : that._getVariedade(),
-					latada : that._getLatada(),
-					embalagem : that._getEmbalagem(),
-					cabine : that._getCabine(),
-					sacola : that._getSacola(),
-					cliente : that._getCliente(),
-					packing : that._getPacking(),
+					bolsao : that.getBolsao(),
+					generador : that.getGenerador(),
+					cor : that.getCor(),
+					cargo : that.getCargo(),
+					variedade : that.getVariedade(),
+					latada : that.getLatada(),
+					embalagem : that.getEmbalagem(),
+					cabine : that.getCabine(),
+					sacola : that.getSacola(),
+					cliente : that.getCliente(),
+					packing : that.getPacking(),
 			});
 			return apontamentoQualidadePacking;
 		},
 		 
-		_getBolsao : function() {			
+		getBolsao : function() {			
 			var id = util.escapeById('inputBolsaoId');
 			var nome = util.escapeById('inputBolsaoNome');
 			var bolsao = null;
@@ -442,7 +442,7 @@ define(function(require) {
 			}
 			return bolsao;
 		},	
-		_getGenerador : function() {			
+		getGenerador : function() {			
 			var id = util.escapeById('inputGeneradorId');
 			var nome = util.escapeById('inputGeneradorNome');
 			var generador = null;
@@ -455,7 +455,7 @@ define(function(require) {
 			}
 			return generador;
 		},	
-		_getCor : function() {			
+		getCor : function() {			
 			var id = util.escapeById('inputCorId');
 			var nome = util.escapeById('inputCorNome');
 			var cor = null;
@@ -468,7 +468,7 @@ define(function(require) {
 			}
 			return cor;
 		},	
-		_getCargo : function() {			
+		getCargo : function() {			
 			var id = util.escapeById('inputCargoId');
 			var nome = util.escapeById('inputCargoNome');
 			var cargo = null;
@@ -481,7 +481,7 @@ define(function(require) {
 			}
 			return cargo;
 		},	
-		_getVariedade : function() {			
+		getVariedade : function() {			
 			var id = util.escapeById('inputVariedadeId');
 			var nome = util.escapeById('inputVariedadeNome');
 			var variedade = null;
@@ -494,7 +494,7 @@ define(function(require) {
 			}
 			return variedade;
 		},	
-		_getLatada : function() {			
+		getLatada : function() {			
 			var id = util.escapeById('inputLatadaId');
 			var nome = util.escapeById('inputLatadaNome');
 			var latada = null;
@@ -507,7 +507,7 @@ define(function(require) {
 			}
 			return latada;
 		},	
-		_getEmbalagem : function() {			
+		getEmbalagem : function() {			
 			var id = util.escapeById('inputEmbalagemId');
 			var nome = util.escapeById('inputEmbalagemNome');
 			var embalagem = null;
@@ -520,7 +520,7 @@ define(function(require) {
 			}
 			return embalagem;
 		},	
-		_getCabine : function() {			
+		getCabine : function() {			
 			var id = util.escapeById('inputCabineId');
 			var nome = util.escapeById('inputCabineNome');
 			var cabine = null;
@@ -533,7 +533,7 @@ define(function(require) {
 			}
 			return cabine;
 		},	
-		_getSacola : function() {			
+		getSacola : function() {			
 			var id = util.escapeById('inputSacolaId');
 			var nome = util.escapeById('inputSacolaNome');
 			var sacola = null;
@@ -546,7 +546,7 @@ define(function(require) {
 			}
 			return sacola;
 		},	
-		_getCliente : function() {			
+		getCliente : function() {			
 			var id = util.escapeById('inputClienteId');
 			var nome = util.escapeById('inputClienteNome');
 			var cliente = null;
@@ -559,7 +559,7 @@ define(function(require) {
 			}
 			return cliente;
 		},	
-		_getPacking : function() {			
+		getPacking : function() {			
 			var id = util.escapeById('inputPackingId');
 			var nome = util.escapeById('inputPackingNome');
 			var packing = null;
@@ -573,101 +573,101 @@ define(function(require) {
 			return packing;
 		},	
 		
-		_showSearchBolsaoModal : function() {
+		showSearchBolsaoModal : function() {
 			this.searchBolsaoModal.showPage();
 		},
 			
-		_selectBolsao : function(bolsao) {
+		selectBolsao : function(bolsao) {
 			this.searchBolsaoModal.hidePage();	
 			this.ui.inputBolsaoId.val(bolsao.get('id'));
 			this.ui.inputBolsaoNome.val(bolsao.get('nome'));		
 		},
-		_showSearchGeneradorModal : function() {
+		showSearchGeneradorModal : function() {
 			this.searchGeneradorModal.showPage();
 		},
 			
-		_selectGenerador : function(generador) {
+		selectGenerador : function(generador) {
 			this.searchGeneradorModal.hidePage();	
 			this.ui.inputGeneradorId.val(generador.get('id'));
 			this.ui.inputGeneradorNome.val(generador.get('nome'));		
 		},
-		_showSearchCorModal : function() {
+		showSearchCorModal : function() {
 			this.searchCorModal.showPage();
 		},
 			
-		_selectCor : function(cor) {
+		selectCor : function(cor) {
 			this.searchCorModal.hidePage();	
 			this.ui.inputCorId.val(cor.get('id'));
 			this.ui.inputCorNome.val(cor.get('nome'));		
 		},
-		_showSearchCargoModal : function() {
+		showSearchCargoModal : function() {
 			this.searchCargoModal.showPage();
 		},
 			
-		_selectCargo : function(cargo) {
+		selectCargo : function(cargo) {
 			this.searchCargoModal.hidePage();	
 			this.ui.inputCargoId.val(cargo.get('id'));
 			this.ui.inputCargoNome.val(cargo.get('nome'));		
 		},
-		_showSearchVariedadeModal : function() {
+		showSearchVariedadeModal : function() {
 			this.searchVariedadeModal.showPage();
 		},
 			
-		_selectVariedade : function(variedade) {
+		selectVariedade : function(variedade) {
 			this.searchVariedadeModal.hidePage();	
 			this.ui.inputVariedadeId.val(variedade.get('id'));
 			this.ui.inputVariedadeNome.val(variedade.get('nome'));		
 		},
-		_showSearchLatadaModal : function() {
+		showSearchLatadaModal : function() {
 			this.searchLatadaModal.showPage();
 		},
 			
-		_selectLatada : function(latada) {
+		selectLatada : function(latada) {
 			this.searchLatadaModal.hidePage();	
 			this.ui.inputLatadaId.val(latada.get('id'));
 			this.ui.inputLatadaNome.val(latada.get('nome'));		
 		},
-		_showSearchEmbalagemModal : function() {
+		showSearchEmbalagemModal : function() {
 			this.searchEmbalagemModal.showPage();
 		},
 			
-		_selectEmbalagem : function(embalagem) {
+		selectEmbalagem : function(embalagem) {
 			this.searchEmbalagemModal.hidePage();	
 			this.ui.inputEmbalagemId.val(embalagem.get('id'));
 			this.ui.inputEmbalagemNome.val(embalagem.get('nome'));		
 		},
-		_showSearchCabineModal : function() {
+		showSearchCabineModal : function() {
 			this.searchCabineModal.showPage();
 		},
 			
-		_selectCabine : function(cabine) {
+		selectCabine : function(cabine) {
 			this.searchCabineModal.hidePage();	
 			this.ui.inputCabineId.val(cabine.get('id'));
 			this.ui.inputCabineNome.val(cabine.get('nome'));		
 		},
-		_showSearchSacolaModal : function() {
+		showSearchSacolaModal : function() {
 			this.searchSacolaModal.showPage();
 		},
 			
-		_selectSacola : function(sacola) {
+		selectSacola : function(sacola) {
 			this.searchSacolaModal.hidePage();	
 			this.ui.inputSacolaId.val(sacola.get('id'));
 			this.ui.inputSacolaNome.val(sacola.get('nome'));		
 		},
-		_showSearchClienteModal : function() {
+		showSearchClienteModal : function() {
 			this.searchClienteModal.showPage();
 		},
 			
-		_selectCliente : function(cliente) {
+		selectCliente : function(cliente) {
 			this.searchClienteModal.hidePage();	
 			this.ui.inputClienteId.val(cliente.get('id'));
 			this.ui.inputClienteNome.val(cliente.get('nome'));		
 		},
-		_showSearchPackingModal : function() {
+		showSearchPackingModal : function() {
 			this.searchPackingModal.showPage();
 		},
 			
-		_selectPacking : function(packing) {
+		selectPacking : function(packing) {
 			this.searchPackingModal.hidePage();	
 			this.ui.inputPackingId.val(packing.get('id'));
 			this.ui.inputPackingNome.val(packing.get('nome'));		

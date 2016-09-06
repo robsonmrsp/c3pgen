@@ -1,4 +1,4 @@
-/* generated: 02/09/2016 16:23:48 */
+/* generated: 03/09/2016 22:18:33 */
 define(function(require) {
 	// Start "Import´s Definition"
 	var _ = require('adapters/underscore-adapter');
@@ -40,9 +40,9 @@ define(function(require) {
 		},
 		
 		events : {
-			'click 	#reset' : '_resetBairro',			
-			'click #searchCidadeModal' : '_showSearchCidadeModal',
-			'click #searchEstadoModal' : '_showSearchEstadoModal',
+			'click 	#reset' : 'resetBairro',			
+			'click #searchCidadeModal' : 'showSearchCidadeModal',
+			'click #searchEstadoModal' : 'showSearchEstadoModal',
 			'keypress' : 'treatKeypress',
 			
 			'click 	.search-button' : 'searchBairro',
@@ -80,7 +80,7 @@ define(function(require) {
 
 			this.grid = new Backgrid.Grid({
 				className : 'table backgrid table-striped table-bordered table-hover dataTable no-footer  ',
-				columns : this._getColumns(),
+				columns : this.getColumns(),
 				emptyText : "Sem registros",
 				collection : this.bairros
 			});
@@ -90,7 +90,7 @@ define(function(require) {
 			});
 
 			this.paginator = new Backgrid.Extension.Paginator({
-				columns : this._getColumns(),
+				columns : this.getColumns(),
 				collection : this.bairros,
 				className : 'dataTables_paginate paging_simple_numbers',
 				uiClassName : 'pagination',
@@ -106,12 +106,12 @@ define(function(require) {
 			});
 			this.searchCidadeModal = new SearchCidadeModal({
 				onSelectModel : function(model) {
-					that._selectCidade(model);
+					that.selectCidade(model);
 				},
 			});
 			this.searchEstadoModal = new SearchEstadoModal({
 				onSelectModel : function(model) {
-					that._selectEstado(model);
+					that.selectEstado(model);
 				},
 			});
 			this.on('show', function() {
@@ -144,24 +144,16 @@ define(function(require) {
 				},
 			})		
 		},
-		_resetBairro : function(){
+		resetBairro : function(){
 			this.ui.form.get(0).reset();
 			this.bairros.reset();
 			util.clear('inputCidadeId');
 			util.clear('inputEstadoId');
 		},
 				
-		_getColumns : function() {
+		getColumns : function() {
 			var that = this;
 			var columns = [
-			//{
-			//	name : "id",
-			//	label : "id",
-			//	editable : false,
-			//	cell : Backgrid.IntegerCell.extend({
-			//		orderSeparator : ''
-			//	})
-			//}, 
 			{
 				name : "nome",
 				editable : false,
@@ -192,28 +184,28 @@ define(function(require) {
 				label : "Ações(Editar, Deletar)",
 				sortable : false,
 				cell : GeneralActionsCell.extend({
-					buttons : that._getCellButtons(),
+					buttons : that.getCellButtons(),
 					context : that,
 				})
 			} ];
 			return columns;
 		},
 		
-		_getCellButtons : function() {
+		getCellButtons : function() {
 			var that = this;
 			var buttons = [];
 
 			buttons.push({
 				id : 'edita_ficha_button',
 				type : 'primary',
-				icon : 'icon-pencil',
+				icon : 'icon-pencil fa-pencil',
 				hint : 'Editar Bairro',
 				onClick : that.editModel,
 			}, {
 				id : 'delete_button',
 				type : 'danger',
-				icon : 'icon-trash',
-				hint : 'Delete Bairro',
+				icon : 'icon-trash fa-trash',
+				hint : 'Remover Bairro',
 				onClick : that.deleteModel,
 			});
 
@@ -246,20 +238,20 @@ define(function(require) {
 			util.goPage("app/editBairro/" + model.get('id'));
 		},
 
-		_showSearchCidadeModal : function() {
+		showSearchCidadeModal : function() {
 			this.searchCidadeModal.showPage();
 		},
 			
-		_selectCidade : function(cidade) {
+		selectCidade : function(cidade) {
 			this.searchCidadeModal.hidePage();	
 			this.ui.inputCidadeId.val(cidade.get('id'));
 			this.ui.inputCidadeNome.val(cidade.get('nome'));		
 		},
-		_showSearchEstadoModal : function() {
+		showSearchEstadoModal : function() {
 			this.searchEstadoModal.showPage();
 		},
 			
-		_selectEstado : function(estado) {
+		selectEstado : function(estado) {
 			this.searchEstadoModal.hidePage();	
 			this.ui.inputEstadoId.val(estado.get('id'));
 			this.ui.inputEstadoNome.val(estado.get('nome'));		

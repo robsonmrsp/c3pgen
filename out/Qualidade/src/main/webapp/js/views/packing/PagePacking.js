@@ -1,4 +1,4 @@
-/* generated: 02/09/2016 16:23:48 */
+/* generated: 03/09/2016 22:18:32 */
 define(function(require) {
 	// Start "Import´s Definition"
 	var _ = require('adapters/underscore-adapter');
@@ -23,7 +23,6 @@ define(function(require) {
 	var PagePackingTemplate = require('text!views/packing/tpl/PagePackingTemplate.html');
 	
 	//Filter import
-	var SearchClientModal = require('views/modalComponents/ClientModal');
 	
 	// End of "Import´s" definition
 
@@ -34,12 +33,10 @@ define(function(require) {
 			gridRegion : '#grid',
 			counterRegion : '#counter',
 			paginatorRegion : '#paginator',
-			searchClientModalRegion : '#clientModal',
 		},
 		
 		events : {
-			'click 	#reset' : '_resetPacking',			
-			'click #searchClientModal' : '_showSearchClientModal',
+			'click 	#reset' : 'resetPacking',			
 			'keypress' : 'treatKeypress',
 			
 			'click 	.search-button' : 'searchPacking',
@@ -48,9 +45,8 @@ define(function(require) {
 		
 		
 		ui : {
+			inputNome : '#inputNome',
 		
-			inputClientId : '#inputClientId',
-			inputClientNome : '#inputClientNome',
 			form : '#formPackingFilter',
 			advancedSearchForm : '.advanced-search-form',
 		},
@@ -74,7 +70,7 @@ define(function(require) {
 
 			this.grid = new Backgrid.Grid({
 				className : 'table backgrid table-striped table-bordered table-hover dataTable no-footer  ',
-				columns : this._getColumns(),
+				columns : this.getColumns(),
 				emptyText : "Sem registros",
 				collection : this.packings
 			});
@@ -84,7 +80,7 @@ define(function(require) {
 			});
 
 			this.paginator = new Backgrid.Extension.Paginator({
-				columns : this._getColumns(),
+				columns : this.getColumns(),
 				collection : this.packings,
 				className : 'dataTables_paginate paging_simple_numbers',
 				uiClassName : 'pagination',
@@ -98,16 +94,10 @@ define(function(require) {
 					console.error(_resp.responseText || (_resp.getResponseHeader && _resp.getResponseHeader('exception')) );
 				}
 			});
-			this.searchClientModal = new SearchClientModal({
-				onSelectModel : function(model) {
-					that._selectClient(model);
-				},
-			});
 			this.on('show', function() {
 				that.gridRegion.show(that.grid);
 				that.counterRegion.show(that.counter);
 				that.paginatorRegion.show(that.paginator);
-				this.searchClientModalRegion.show(this.searchClientModal);		
 		
 			});
 		},
@@ -116,7 +106,7 @@ define(function(require) {
 			var that = this;
 
 			this.packings.filterQueryParams = {
-			    client : util.escapeById('inputClientId'), 
+	    		nome : util.escapeById('inputNome'),
 			}
 			this.packings.fetch({
 				success : function(_coll, _resp, _opt) {
@@ -130,59 +120,48 @@ define(function(require) {
 				},
 			})		
 		},
-		_resetPacking : function(){
+		resetPacking : function(){
 			this.ui.form.get(0).reset();
 			this.packings.reset();
-			util.clear('inputClientId');
 		},
 				
-		_getColumns : function() {
+		getColumns : function() {
 			var that = this;
 			var columns = [
-			//{
-			//	name : "id",
-			//	label : "id",
-			//	editable : false,
-			//	cell : Backgrid.IntegerCell.extend({
-			//		orderSeparator : ''
-			//	})
-			//}, 
 			{
-				name : "client.nome",
+				name : "nome",
 				editable : false,
-				sortable : true,  
-				label : "Client",
-				cell : CustomStringCell.extend({
-					fieldName : 'client.nome',
-				}),
-			},	
+				sortable : true,
+				label 	 : "Nome",
+				cell 	 : "string",
+			}, 
 			{
 				name : "acoes",
 				label : "Ações(Editar, Deletar)",
 				sortable : false,
 				cell : GeneralActionsCell.extend({
-					buttons : that._getCellButtons(),
+					buttons : that.getCellButtons(),
 					context : that,
 				})
 			} ];
 			return columns;
 		},
 		
-		_getCellButtons : function() {
+		getCellButtons : function() {
 			var that = this;
 			var buttons = [];
 
 			buttons.push({
 				id : 'edita_ficha_button',
 				type : 'primary',
-				icon : 'icon-pencil',
+				icon : 'icon-pencil fa-pencil',
 				hint : 'Editar Packing',
 				onClick : that.editModel,
 			}, {
 				id : 'delete_button',
 				type : 'danger',
-				icon : 'icon-trash',
-				hint : 'Delete Packing',
+				icon : 'icon-trash fa-trash',
+				hint : 'Remover Packing',
 				onClick : that.deleteModel,
 			});
 
@@ -215,15 +194,6 @@ define(function(require) {
 			util.goPage("app/editPacking/" + model.get('id'));
 		},
 
-		_showSearchClientModal : function() {
-			this.searchClientModal.showPage();
-		},
-			
-		_selectClient : function(client) {
-			this.searchClientModal.hidePage();	
-			this.ui.inputClientId.val(client.get('id'));
-			this.ui.inputClientNome.val(client.get('nome'));		
-		},
 		
 
 	});

@@ -1,4 +1,4 @@
-/* generated: 02/09/2016 16:23:49 */
+/* generated: 03/09/2016 22:18:34 */
 define(function(require) {
 	// Start "Import´s Definition"
 	var _ = require('adapters/underscore-adapter');
@@ -37,7 +37,7 @@ define(function(require) {
 		},
 		
 		events : {
-			'click 	#reset' : '_resetSession',			
+			'click 	#reset' : 'resetSession',			
 			'keypress' : 'treatKeypress',
 			
 			'click 	.search-button' : 'searchSession',
@@ -74,7 +74,7 @@ define(function(require) {
 
 			this.grid = new Backgrid.Grid({
 				className : 'table backgrid table-striped table-bordered table-hover dataTable no-footer  ',
-				columns : this._getColumns(),
+				columns : this.getColumns(),
 				emptyText : "Sem registros",
 				collection : this.sessions
 			});
@@ -84,7 +84,7 @@ define(function(require) {
 			});
 
 			this.paginator = new Backgrid.Extension.Paginator({
-				columns : this._getColumns(),
+				columns : this.getColumns(),
 				collection : this.sessions,
 				className : 'dataTables_paginate paging_simple_numbers',
 				uiClassName : 'pagination',
@@ -139,22 +139,14 @@ define(function(require) {
 				},
 			})		
 		},
-		_resetSession : function(){
+		resetSession : function(){
 			this.ui.form.get(0).reset();
 			this.sessions.reset();
 		},
 				
-		_getColumns : function() {
+		getColumns : function() {
 			var that = this;
 			var columns = [
-			//{
-			//	name : "id",
-			//	label : "id",
-			//	editable : false,
-			//	cell : Backgrid.IntegerCell.extend({
-			//		orderSeparator : ''
-			//	})
-			//}, 
 			{
 				name : "name",
 				editable : false,
@@ -174,28 +166,28 @@ define(function(require) {
 				label : "Ações(Editar, Deletar)",
 				sortable : false,
 				cell : GeneralActionsCell.extend({
-					buttons : that._getCellButtons(),
+					buttons : that.getCellButtons(),
 					context : that,
 				})
 			} ];
 			return columns;
 		},
 		
-		_getCellButtons : function() {
+		getCellButtons : function() {
 			var that = this;
 			var buttons = [];
 
 			buttons.push({
 				id : 'edita_ficha_button',
 				type : 'primary',
-				icon : 'icon-pencil',
+				icon : 'icon-pencil fa-pencil',
 				hint : 'Editar Sessão',
 				onClick : that.editModel,
 			}, {
 				id : 'delete_button',
 				type : 'danger',
-				icon : 'icon-trash',
-				hint : 'Delete Sessão',
+				icon : 'icon-trash fa-trash',
+				hint : 'Remover Sessão',
 				onClick : that.deleteModel,
 			});
 

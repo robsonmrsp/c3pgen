@@ -68,7 +68,7 @@ define(function(require) {
 			<#if entity.relationships??>	
 			<#list entity.relationships as rel >
 				<#if rel.viewApproach.type == 'modal'>
-			'click #search${firstUpper(rel.name)}Modal' : '_showSearch${firstUpper(rel.name)}Modal',
+			'click #search${firstUpper(rel.name)}Modal' : 'showSearch${firstUpper(rel.name)}Modal',
 				</#if>
 			</#list>
 			</#if>
@@ -130,7 +130,7 @@ define(function(require) {
 			<#if rel.viewApproach.type == 'modal'>
 			this.search${firstUpper(rel.name)}Modal = new Search${firstUpper(rel.name)}Modal({
 				onSelectModel : function(model) {
-					that._select${firstUpper(rel.name)}(model);
+					that.select${firstUpper(rel.name)}(model);
 				},
 			});
 			</#if>
@@ -220,9 +220,9 @@ define(function(require) {
 
 		save : function(continua) {
 			var that = this;
-			var ${firstLower(entity.name)} = that._getModel();
+			var ${firstLower(entity.name)} = that.getModel();
 
-			if (this._isValid()) {
+			if (this.isValid()) {
 				${firstLower(entity.name)}.save({}, {
 					success : function(_model, _resp, _options) {
 						util.showSuccessMessage('${firstUpper(entity.displayName)!firstUpper(entity.name)} salvo com sucesso!');
@@ -273,7 +273,7 @@ define(function(require) {
 			return util.hasInvalidFields(this.validateFields);
 		},
 
-		_isValid : function() {
+		isValid : function() {
 			return this.ui.form.validationEngine('validate', {
 				promptPosition : "topLeft",
 				isOverflown : false,
@@ -281,7 +281,7 @@ define(function(require) {
 			});
 		},
 
-		_getModel : function() {
+		getModel : function() {
 			var that = this;
 			var ${firstLower(entity.name)} = that.model; 
 			${firstLower(entity.name)}.set({
@@ -300,7 +300,7 @@ define(function(require) {
 					${firstLower(rel.name)} : that.${firstLower(rel.name)}.toJSON(),
 				</#if>			
 					<#if rel.viewApproach.type == 'modal' >
-					${firstLower(rel.name)} : that._get${firstUpper(rel.name)}(),
+					${firstLower(rel.name)} : that.get${firstUpper(rel.name)}(),
 					</#if>			
 					<#if rel.viewApproach.type == 'combo'>
 					${firstLower(rel.name)} :  that.combo${firstUpper(rel.name)}.getJsonValue(),
@@ -314,7 +314,7 @@ define(function(require) {
 		<#if entity.relationships??>	
 		<#list entity.relationships as rel >
 			<#if rel.viewApproach.type == 'modal' >
-		_get${firstUpper(rel.name)} : function() {			
+		get${firstUpper(rel.name)} : function() {			
 			var ${firstLower(rel.viewApproach.hiddenField)} = util.escapeById('input${firstUpper(rel.name)}${firstUpper(rel.viewApproach.hiddenField)}');
 			var ${firstLower(rel.viewApproach.textField)} = util.escapeById('input${firstUpper(rel.name)}${firstUpper(rel.viewApproach.textField)}');
 			var ${firstLower(rel.name)} = null;
@@ -328,7 +328,7 @@ define(function(require) {
 			return ${firstLower(rel.name)};
 		},	
 			<#elseif rel.viewApproach.type == 'combo'>
-		_get${firstUpper(rel.name)} : function() {
+		get${firstUpper(rel.name)} : function() {
 			var id =  this.combo${firstUpper(rel.name)}.getRawValue();			
 			
 			if(id){
@@ -345,11 +345,11 @@ define(function(require) {
 		<#if entity.relationships??>	
 		<#list entity.relationships as rel >
 			<#if rel.viewApproach.type == 'modal'>
-		_showSearch${firstUpper(rel.name)}Modal : function() {
+		showSearch${firstUpper(rel.name)}Modal : function() {
 			this.search${firstUpper(rel.name)}Modal.showPage();
 		},
 			
-		_select${firstUpper(rel.name)} : function(${firstLower(rel.name)}) {
+		select${firstUpper(rel.name)} : function(${firstLower(rel.name)}) {
 			this.search${firstUpper(rel.name)}Modal.hidePage();	
 			this.ui.input${firstUpper(rel.name)}${firstUpper(rel.viewApproach.hiddenField)}.val(${firstLower(rel.name)}.get('${firstLower(rel.viewApproach.hiddenField)}'));
 			this.ui.input${firstUpper(rel.name)}${firstUpper(rel.viewApproach.textField)}.val(${firstLower(rel.name)}.get('${firstLower(rel.viewApproach.textField)}'));		

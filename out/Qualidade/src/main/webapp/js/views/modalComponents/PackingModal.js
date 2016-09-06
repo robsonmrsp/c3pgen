@@ -1,4 +1,4 @@
-/* generated: 02/09/2016 16:23:48 */
+/* generated: 03/09/2016 22:18:32 */
 define(function(require) {
 	// Start "Import´s" Definition"
 	var _ = require('adapters/underscore-adapter');
@@ -39,6 +39,7 @@ define(function(require) {
 		},
 
 		ui : {
+    		inputModalNome : '#inputModalNome',
 		
 			form : '#formSearchPacking',
 			modalScreen : '.modal',
@@ -57,13 +58,13 @@ define(function(require) {
 
 			this.packingCollection = new PackingPageCollection();
 			this.packingCollection.state.pageSize = 5;
-			this.packingCollection.on('fetching', this._startFetch, this);
-			this.packingCollection.on('fetched', this._stopFetch, this);
+			this.packingCollection.on('fetching', this.startFetch, this);
+			this.packingCollection.on('fetched', this.stopFetch, this);
 
 			this.grid = new Backgrid.Grid({
 				row : RowClick,
 				className : 'table backgrid table-striped table-bordered table-hover dataTable no-footer  ',
-				columns : this._getColumns(),
+				columns : this.getColumns(),
 				emptyText : "Sem registros",
 				collection : this.packingCollection,
 				emptyText : "Sem registros para exibir."
@@ -76,7 +77,7 @@ define(function(require) {
 			
 
 			this.paginator = new Backgrid.Extension.Paginator({
-				columns : this._getColumns(),
+				columns : this.getColumns(),
 				collection : this.packingCollection,
 				className : 'dataTables_paginate paging_simple_numbers',
 				uiClassName : 'pagination',
@@ -95,20 +96,29 @@ define(function(require) {
 				this.onSelectModel(modelPacking);
 		},
 		
-		_getColumns : function() {
+		getColumns : function() {
 			var columns = [	
 
+			{
+				name : "nome",
+				editable : false,
+				sortable : true,
+				label 	 : "Nome",
+				cell 	 : "string",
+			}, 
 			];
 			return columns;
 		},
 
 		clearFields : function() {
 			util.clear('inputModalId');
+			util.clear('inputModalNome'); 
 			util.scrollUpModal();
 		},
 
 		searchPacking : function() {
 			this.packingCollection.filterQueryParams = {
+	    		nome : util.escapeById('inputModalNome'),
 			};
 
 			this.packingCollection.fetch({
@@ -147,13 +157,13 @@ define(function(require) {
 		},
 		
 		// Executada depois da consulta concluida.
-		_stopFetch : function() {
+		stopFetch : function() {
 			util.stopSpinner();
 			util.scrollDownModal();
 		},
 		
 		// Executada Antes da realização da consulta.
-		_startFetch : function() {
+		startFetch : function() {
 			util.showSpinner('spinPacking');
 		},
 	});

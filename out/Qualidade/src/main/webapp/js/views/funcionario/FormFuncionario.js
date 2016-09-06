@@ -1,4 +1,4 @@
-/* generated: 02/09/2016 16:23:48 */
+/* generated: 03/09/2016 22:18:32 */
 define(function(require) {
 	// Start "Import´s" Definition"
 	var _ = require('adapters/underscore-adapter');
@@ -121,9 +121,9 @@ define(function(require) {
 
 		save : function(continua) {
 			var that = this;
-			var funcionario = that._getModel();
+			var funcionario = that.getModel();
 
-			if (this._isValid()) {
+			if (this.isValid()) {
 				funcionario.save({}, {
 					success : function(_model, _resp, _options) {
 						util.showSuccessMessage('Funcionario salvo com sucesso!');
@@ -175,7 +175,7 @@ define(function(require) {
 			return util.hasInvalidFields(this.validateFields);
 		},
 
-		_isValid : function() {
+		isValid : function() {
 			return this.ui.form.validationEngine('validate', {
 				promptPosition : "topLeft",
 				isOverflown : false,
@@ -183,7 +183,7 @@ define(function(require) {
 			});
 		},
 
-		_getModel : function() {
+		getModel : function() {
 			var that = this;
 			var funcionario = that.model; 
 			funcionario.set({
@@ -234,7 +234,7 @@ define(function(require) {
 			return funcionario;
 		},
 		 
-		_getCargo : function() {
+		getCargo : function() {
 			var id =  this.comboCargo.getRawValue();			
 			
 			if(id){
@@ -244,7 +244,7 @@ define(function(require) {
 			}
 			return null;
 		},				
-		_getCbo : function() {
+		getCbo : function() {
 			var id =  this.comboCbo.getRawValue();			
 			
 			if(id){
@@ -254,7 +254,7 @@ define(function(require) {
 			}
 			return null;
 		},				
-		_getDepartamento : function() {
+		getDepartamento : function() {
 			var id =  this.comboDepartamento.getRawValue();			
 			
 			if(id){
@@ -264,7 +264,7 @@ define(function(require) {
 			}
 			return null;
 		},				
-		_getFuncao : function() {
+		getFuncao : function() {
 			var id =  this.comboFuncao.getRawValue();			
 			
 			if(id){

@@ -1,4 +1,4 @@
-/* generated: 02/09/2016 16:23:48 */
+/* generated: 03/09/2016 22:18:30 */
 define(function(require) {
 	// Start "Import´s Definition"
 	var _ = require('adapters/underscore-adapter');
@@ -58,18 +58,18 @@ define(function(require) {
 		},
 		
 		events : {
-			'click 	#reset' : '_resetApontamentoQualidadePacking',			
-			'click #searchBolsaoModal' : '_showSearchBolsaoModal',
-			'click #searchGeneradorModal' : '_showSearchGeneradorModal',
-			'click #searchCorModal' : '_showSearchCorModal',
-			'click #searchCargoModal' : '_showSearchCargoModal',
-			'click #searchVariedadeModal' : '_showSearchVariedadeModal',
-			'click #searchLatadaModal' : '_showSearchLatadaModal',
-			'click #searchEmbalagemModal' : '_showSearchEmbalagemModal',
-			'click #searchCabineModal' : '_showSearchCabineModal',
-			'click #searchSacolaModal' : '_showSearchSacolaModal',
-			'click #searchClienteModal' : '_showSearchClienteModal',
-			'click #searchPackingModal' : '_showSearchPackingModal',
+			'click 	#reset' : 'resetApontamentoQualidadePacking',			
+			'click #searchBolsaoModal' : 'showSearchBolsaoModal',
+			'click #searchGeneradorModal' : 'showSearchGeneradorModal',
+			'click #searchCorModal' : 'showSearchCorModal',
+			'click #searchCargoModal' : 'showSearchCargoModal',
+			'click #searchVariedadeModal' : 'showSearchVariedadeModal',
+			'click #searchLatadaModal' : 'showSearchLatadaModal',
+			'click #searchEmbalagemModal' : 'showSearchEmbalagemModal',
+			'click #searchCabineModal' : 'showSearchCabineModal',
+			'click #searchSacolaModal' : 'showSearchSacolaModal',
+			'click #searchClienteModal' : 'showSearchClienteModal',
+			'click #searchPackingModal' : 'showSearchPackingModal',
 			'keypress' : 'treatKeypress',
 			
 			'click 	.search-button' : 'searchApontamentoQualidadePacking',
@@ -159,7 +159,7 @@ define(function(require) {
 
 			this.grid = new Backgrid.Grid({
 				className : 'table backgrid table-striped table-bordered table-hover dataTable no-footer  ',
-				columns : this._getColumns(),
+				columns : this.getColumns(),
 				emptyText : "Sem registros",
 				collection : this.apontamentoQualidadePackings
 			});
@@ -169,7 +169,7 @@ define(function(require) {
 			});
 
 			this.paginator = new Backgrid.Extension.Paginator({
-				columns : this._getColumns(),
+				columns : this.getColumns(),
 				collection : this.apontamentoQualidadePackings,
 				className : 'dataTables_paginate paging_simple_numbers',
 				uiClassName : 'pagination',
@@ -185,57 +185,57 @@ define(function(require) {
 			});
 			this.searchBolsaoModal = new SearchBolsaoModal({
 				onSelectModel : function(model) {
-					that._selectBolsao(model);
+					that.selectBolsao(model);
 				},
 			});
 			this.searchGeneradorModal = new SearchGeneradorModal({
 				onSelectModel : function(model) {
-					that._selectGenerador(model);
+					that.selectGenerador(model);
 				},
 			});
 			this.searchCorModal = new SearchCorModal({
 				onSelectModel : function(model) {
-					that._selectCor(model);
+					that.selectCor(model);
 				},
 			});
 			this.searchCargoModal = new SearchCargoModal({
 				onSelectModel : function(model) {
-					that._selectCargo(model);
+					that.selectCargo(model);
 				},
 			});
 			this.searchVariedadeModal = new SearchVariedadeModal({
 				onSelectModel : function(model) {
-					that._selectVariedade(model);
+					that.selectVariedade(model);
 				},
 			});
 			this.searchLatadaModal = new SearchLatadaModal({
 				onSelectModel : function(model) {
-					that._selectLatada(model);
+					that.selectLatada(model);
 				},
 			});
 			this.searchEmbalagemModal = new SearchEmbalagemModal({
 				onSelectModel : function(model) {
-					that._selectEmbalagem(model);
+					that.selectEmbalagem(model);
 				},
 			});
 			this.searchCabineModal = new SearchCabineModal({
 				onSelectModel : function(model) {
-					that._selectCabine(model);
+					that.selectCabine(model);
 				},
 			});
 			this.searchSacolaModal = new SearchSacolaModal({
 				onSelectModel : function(model) {
-					that._selectSacola(model);
+					that.selectSacola(model);
 				},
 			});
 			this.searchClienteModal = new SearchClienteModal({
 				onSelectModel : function(model) {
-					that._selectCliente(model);
+					that.selectCliente(model);
 				},
 			});
 			this.searchPackingModal = new SearchPackingModal({
 				onSelectModel : function(model) {
-					that._selectPacking(model);
+					that.selectPacking(model);
 				},
 			});
 			this.on('show', function() {
@@ -353,7 +353,7 @@ define(function(require) {
 				},
 			})		
 		},
-		_resetApontamentoQualidadePacking : function(){
+		resetApontamentoQualidadePacking : function(){
 			this.ui.form.get(0).reset();
 			this.apontamentoQualidadePackings.reset();
 			util.clear('inputBolsaoId');
@@ -369,17 +369,9 @@ define(function(require) {
 			util.clear('inputPackingId');
 		},
 				
-		_getColumns : function() {
+		getColumns : function() {
 			var that = this;
 			var columns = [
-			//{
-			//	name : "id",
-			//	label : "id",
-			//	editable : false,
-			//	cell : Backgrid.IntegerCell.extend({
-			//		orderSeparator : ''
-			//	})
-			//}, 
 			{
 				name : "aparencia",
 				editable : false,
@@ -729,28 +721,28 @@ define(function(require) {
 				label : "Ações(Editar, Deletar)",
 				sortable : false,
 				cell : GeneralActionsCell.extend({
-					buttons : that._getCellButtons(),
+					buttons : that.getCellButtons(),
 					context : that,
 				})
 			} ];
 			return columns;
 		},
 		
-		_getCellButtons : function() {
+		getCellButtons : function() {
 			var that = this;
 			var buttons = [];
 
 			buttons.push({
 				id : 'edita_ficha_button',
 				type : 'primary',
-				icon : 'icon-pencil',
+				icon : 'icon-pencil fa-pencil',
 				hint : 'Editar Apontamento qualidade packing',
 				onClick : that.editModel,
 			}, {
 				id : 'delete_button',
 				type : 'danger',
-				icon : 'icon-trash',
-				hint : 'Delete Apontamento qualidade packing',
+				icon : 'icon-trash fa-trash',
+				hint : 'Remover Apontamento qualidade packing',
 				onClick : that.deleteModel,
 			});
 
@@ -783,101 +775,101 @@ define(function(require) {
 			util.goPage("app/editApontamentoQualidadePacking/" + model.get('id'));
 		},
 
-		_showSearchBolsaoModal : function() {
+		showSearchBolsaoModal : function() {
 			this.searchBolsaoModal.showPage();
 		},
 			
-		_selectBolsao : function(bolsao) {
+		selectBolsao : function(bolsao) {
 			this.searchBolsaoModal.hidePage();	
 			this.ui.inputBolsaoId.val(bolsao.get('id'));
 			this.ui.inputBolsaoNome.val(bolsao.get('nome'));		
 		},
-		_showSearchGeneradorModal : function() {
+		showSearchGeneradorModal : function() {
 			this.searchGeneradorModal.showPage();
 		},
 			
-		_selectGenerador : function(generador) {
+		selectGenerador : function(generador) {
 			this.searchGeneradorModal.hidePage();	
 			this.ui.inputGeneradorId.val(generador.get('id'));
 			this.ui.inputGeneradorNome.val(generador.get('nome'));		
 		},
-		_showSearchCorModal : function() {
+		showSearchCorModal : function() {
 			this.searchCorModal.showPage();
 		},
 			
-		_selectCor : function(cor) {
+		selectCor : function(cor) {
 			this.searchCorModal.hidePage();	
 			this.ui.inputCorId.val(cor.get('id'));
 			this.ui.inputCorNome.val(cor.get('nome'));		
 		},
-		_showSearchCargoModal : function() {
+		showSearchCargoModal : function() {
 			this.searchCargoModal.showPage();
 		},
 			
-		_selectCargo : function(cargo) {
+		selectCargo : function(cargo) {
 			this.searchCargoModal.hidePage();	
 			this.ui.inputCargoId.val(cargo.get('id'));
 			this.ui.inputCargoNome.val(cargo.get('nome'));		
 		},
-		_showSearchVariedadeModal : function() {
+		showSearchVariedadeModal : function() {
 			this.searchVariedadeModal.showPage();
 		},
 			
-		_selectVariedade : function(variedade) {
+		selectVariedade : function(variedade) {
 			this.searchVariedadeModal.hidePage();	
 			this.ui.inputVariedadeId.val(variedade.get('id'));
 			this.ui.inputVariedadeNome.val(variedade.get('nome'));		
 		},
-		_showSearchLatadaModal : function() {
+		showSearchLatadaModal : function() {
 			this.searchLatadaModal.showPage();
 		},
 			
-		_selectLatada : function(latada) {
+		selectLatada : function(latada) {
 			this.searchLatadaModal.hidePage();	
 			this.ui.inputLatadaId.val(latada.get('id'));
 			this.ui.inputLatadaNome.val(latada.get('nome'));		
 		},
-		_showSearchEmbalagemModal : function() {
+		showSearchEmbalagemModal : function() {
 			this.searchEmbalagemModal.showPage();
 		},
 			
-		_selectEmbalagem : function(embalagem) {
+		selectEmbalagem : function(embalagem) {
 			this.searchEmbalagemModal.hidePage();	
 			this.ui.inputEmbalagemId.val(embalagem.get('id'));
 			this.ui.inputEmbalagemNome.val(embalagem.get('nome'));		
 		},
-		_showSearchCabineModal : function() {
+		showSearchCabineModal : function() {
 			this.searchCabineModal.showPage();
 		},
 			
-		_selectCabine : function(cabine) {
+		selectCabine : function(cabine) {
 			this.searchCabineModal.hidePage();	
 			this.ui.inputCabineId.val(cabine.get('id'));
 			this.ui.inputCabineNome.val(cabine.get('nome'));		
 		},
-		_showSearchSacolaModal : function() {
+		showSearchSacolaModal : function() {
 			this.searchSacolaModal.showPage();
 		},
 			
-		_selectSacola : function(sacola) {
+		selectSacola : function(sacola) {
 			this.searchSacolaModal.hidePage();	
 			this.ui.inputSacolaId.val(sacola.get('id'));
 			this.ui.inputSacolaNome.val(sacola.get('nome'));		
 		},
-		_showSearchClienteModal : function() {
+		showSearchClienteModal : function() {
 			this.searchClienteModal.showPage();
 		},
 			
-		_selectCliente : function(cliente) {
+		selectCliente : function(cliente) {
 			this.searchClienteModal.hidePage();	
 			this.ui.inputClienteId.val(cliente.get('id'));
 			this.ui.inputClienteNome.val(cliente.get('nome'));		
 		},
-		_showSearchPackingModal : function() {
+		showSearchPackingModal : function() {
 			this.searchPackingModal.showPage();
 		},
 			
-		_selectPacking : function(packing) {
+		selectPacking : function(packing) {
 			this.searchPackingModal.hidePage();	
 			this.ui.inputPackingId.val(packing.get('id'));
 			this.ui.inputPackingNome.val(packing.get('nome'));		

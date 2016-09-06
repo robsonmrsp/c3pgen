@@ -1,4 +1,4 @@
-/* generated: 02/09/2016 16:23:48 */
+/* generated: 03/09/2016 22:18:33 */
 define(function(require) {
 	// Start "Import´s" Definition"
 	var _ = require('adapters/underscore-adapter');
@@ -34,7 +34,7 @@ define(function(require) {
 		events : {
 			'click 	.save' : 'save',
 			'click 	.saveAndContinue' : 'saveAndContinue',
-			'click #searchTypeModal' : '_showSearchTypeModal',
+			'click #searchTypeModal' : 'showSearchTypeModal',
 		},
 		
 		ui : {
@@ -51,7 +51,7 @@ define(function(require) {
 			var that = this;
 			this.searchTypeModal = new SearchTypeModal({
 				onSelectModel : function(model) {
-					that._selectType(model);
+					that.selectType(model);
 				},
 			});
 			that.permissions = new PermissionCollection();
@@ -76,9 +76,9 @@ define(function(require) {
 
 		save : function(continua) {
 			var that = this;
-			var item = that._getModel();
+			var item = that.getModel();
 
-			if (this._isValid()) {
+			if (this.isValid()) {
 				item.save({}, {
 					success : function(_model, _resp, _options) {
 						util.showSuccessMessage('Item salvo com sucesso!');
@@ -113,7 +113,7 @@ define(function(require) {
 			return util.hasInvalidFields(this.validateFields);
 		},
 
-		_isValid : function() {
+		isValid : function() {
 			return this.ui.form.validationEngine('validate', {
 				promptPosition : "topLeft",
 				isOverflown : false,
@@ -121,7 +121,7 @@ define(function(require) {
 			});
 		},
 
-		_getModel : function() {
+		getModel : function() {
 			var that = this;
 			var item = that.model; 
 			item.set({
@@ -130,13 +130,13 @@ define(function(require) {
 				
 		    	description : util.escapeById('inputDescription'), 
 				
-					type : that._getType(),
+					type : that.getType(),
 					permissions : that.permissions.toJSON(),
 			});
 			return item;
 		},
 		 
-		_getType : function() {			
+		getType : function() {			
 			var id = util.escapeById('inputTypeId');
 			var name = util.escapeById('inputTypeName');
 			var type = null;
@@ -150,11 +150,11 @@ define(function(require) {
 			return type;
 		},	
 		
-		_showSearchTypeModal : function() {
+		showSearchTypeModal : function() {
 			this.searchTypeModal.showPage();
 		},
 			
-		_selectType : function(type) {
+		selectType : function(type) {
 			this.searchTypeModal.hidePage();	
 			this.ui.inputTypeId.val(type.get('id'));
 			this.ui.inputTypeName.val(type.get('name'));		

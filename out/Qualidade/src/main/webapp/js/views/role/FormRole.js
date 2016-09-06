@@ -1,4 +1,4 @@
-/* generated: 02/09/2016 16:23:49 */
+/* generated: 03/09/2016 22:18:34 */
 define(function(require) {
 	// Start "Import´s" Definition"
 	var _ = require('adapters/underscore-adapter');
@@ -65,9 +65,9 @@ define(function(require) {
 
 		save : function(continua) {
 			var that = this;
-			var role = that._getModel();
+			var role = that.getModel();
 
-			if (this._isValid()) {
+			if (this.isValid()) {
 				role.save({}, {
 					success : function(_model, _resp, _options) {
 						util.showSuccessMessage('Papel salvo com sucesso!');
@@ -100,7 +100,7 @@ define(function(require) {
 			return util.hasInvalidFields(this.validateFields);
 		},
 
-		_isValid : function() {
+		isValid : function() {
 			return this.ui.form.validationEngine('validate', {
 				promptPosition : "topLeft",
 				isOverflown : false,
@@ -108,7 +108,7 @@ define(function(require) {
 			});
 		},
 
-		_getModel : function() {
+		getModel : function() {
 			var that = this;
 			var role = that.model; 
 			role.set({

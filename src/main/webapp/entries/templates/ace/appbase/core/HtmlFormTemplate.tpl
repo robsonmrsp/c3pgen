@@ -6,17 +6,18 @@
 			<i class="ace-icon fa fa-home home-icon"></i>
 			<a href="#">Home</a>
 		</li>
-		<li class="active">Formulario de cadastro de ${entity.displayName}</li>
+		<li class="active">Formulário de cadastro de ${entity.displayName}</li>
 	</ul>
 </div>
 <div class="col-sm-12 page-form ">
+	<div id="messages_div"></div>				
 	<div class="row">
 		<div class="col-xs-12">
 			<div class="widget-box transparent_  ">
 				<div class="widget-header widget-header-flat">
 					<h4 class="widget-title lighter">
 						<i class="ace-icon fa fa-wpforms"></i>
-						Formulario de cadastro
+						Formulário de cadastro de ${entity.displayName}
 					</h4>
 				</div>
 				<div class="widget-body">
@@ -111,7 +112,7 @@
 					</form>
 				</div>
 			</div>
-			<div class="clearfix form-actions">
+			<div class="">
 				<div class="clearfix form-actions">
 					<a href="javascript:void(0)" id="save"  class="save btn btn-primary">
 						<i class="ace-icon save fa fa-check bigger-110"></i>

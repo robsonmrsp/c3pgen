@@ -3,6 +3,13 @@
   displayName: Empresa
   tableName: CLIENT
   attributes: 
+  - name: nome
+    tableFieldName: NOME
+    basicSearch : true    
+    required: true
+    displayName: Nome
+    type: 
+      className: String  
   relationships:
   - name: packings
     type: OneToMany

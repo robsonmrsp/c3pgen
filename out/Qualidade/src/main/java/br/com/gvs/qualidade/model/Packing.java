@@ -32,7 +32,7 @@ import br.com.gvs.core.serialization.CustomLocalDateTimeSerializer;
 import br.com.gvs.core.serialization.CustomLocalDateSerializer;
 import br.com.gvs.core.model.AbstractTimestampEntity;
 /**
-* generated: 02/09/2016 16:23:48
+* generated: 03/09/2016 22:18:32
 **/
 @Entity
 @Audited
@@ -44,16 +44,15 @@ public class Packing extends AbstractTimestampEntity{
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PACKING_SEQUENCE")	
 	private Integer id;
+		
+	@Column(name = "NOME")
+	private String nome;		
 	
 	@OneToMany(mappedBy="packing")
 	private List<ApontamentoQualidadePacking> apontamentoQualidadePackings;		
 	
 	@OneToMany(mappedBy="packing")
 	private List<Cabine> cabines;		
-	
-	@ManyToOne
-	@JoinColumn(name = "ID_CLIENT")
-	private Client client;		
 	@ManyToOne
 	@JoinColumn(name = "id_client")
 	private Client owner;
@@ -77,6 +76,13 @@ public class Packing extends AbstractTimestampEntity{
 		this.id = id;
 	}
 	
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 	public void setApontamentoQualidadePackings(List<ApontamentoQualidadePacking> apontamentoQualidadePackings){
 		this.apontamentoQualidadePackings = apontamentoQualidadePackings;
 	}
@@ -113,14 +119,6 @@ public class Packing extends AbstractTimestampEntity{
 	
 	public boolean removeCabines(Cabine cabine){
 		return getCabines().remove(cabine);
-	}
-	
-	public Client getClient() {
-		return client;
-	}
-	
-	public void setClient(Client client) {
-		this.client = client;
 	}
 	
 	

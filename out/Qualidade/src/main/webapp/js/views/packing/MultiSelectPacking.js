@@ -1,4 +1,4 @@
-/* generated: 02/09/2016 16:23:48 */
+/* generated: 03/09/2016 22:18:32 */
 define(function(require) {
 	// Start "Import´s" Definition"
 	var _ = require('adapters/underscore-adapter');
@@ -50,6 +50,13 @@ define(function(require) {
 		_getColumns : function() {
 			var columns = [
 
+			{
+				name : "nome",
+				editable : false,
+				sortable : false,
+				label 	 : "Nome",
+				cell 	 : "string",
+			}, 
 			];
 			return columns;
 		},

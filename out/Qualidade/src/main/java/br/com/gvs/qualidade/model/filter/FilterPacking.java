@@ -15,25 +15,26 @@ import br.com.gvs.core.serialization.CustomLocalDateTimeDeserializer;
 
 
 /**
-*  generated: 02/09/2016 16:23:48
+*  generated: 03/09/2016 22:18:32
 **/
 public class FilterPacking implements Serializable {
 	private static final long serialVersionUID = 1L;
+	
+	private String nome;  			
 
-	private Integer client;		
 	
 	public  FilterPacking() {
 		
 	}
 	
 
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 		
-	public Integer getClient() {
-		return client;
-	}
-	
-	public void setClient(Integer client) {
-		this.client = client;
-	}
 	
 }

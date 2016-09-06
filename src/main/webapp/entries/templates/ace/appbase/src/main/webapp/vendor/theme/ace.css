@@ -8217,7 +8217,8 @@ fieldset[disabled] .btn-white.btn-grey.active {
   display: block;
   background-color: #F5F5F5;
   border-top: 1px solid #E5E5E5;
-  margin-bottom: 20px;
+/*   ##ROBSON */
+/*   margin-bottom: 20px; */
   margin-top: 20px;
   padding: 19px 20px 20px;
 }

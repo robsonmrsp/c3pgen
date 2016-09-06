@@ -10,16 +10,18 @@
 	</ul>
 </div>
 <div class="col-sm-12 page-form">
+	<div id="messages_div"></div>				
 	<div class="row">
 		<div class="col-xs-12">
 			<div class="widget-box ">
 				<div class="widget-header widget-header-flat">
 					<h4 class="widget-title lighter">
 						<i class="ace-icon fa fa-search"></i>
-						Filtros de pesquisa
+						Filtros de pesquisa de ${entity.displayName}
 					</h4>
 				</div>
 				<div class="widget-body">
+					<form id="form${firstUpper(entity.name)}Filter">
 					<div class="widget-main  ">
 						<#list entity.basicSearches as basicAttr>
 						<div class="input-group col-sm-4">
@@ -138,6 +140,7 @@
 						</div>
 					</#if>
 					</div>
+					</form>
 					<div class=" form-actions">
 						<a href="#app/new${firstUpper(entity.name)}" class="btn btn-info">
 							<i class="fa fa-plus "></i>

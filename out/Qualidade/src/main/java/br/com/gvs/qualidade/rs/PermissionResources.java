@@ -34,7 +34,7 @@ import br.com.gvs.core.utils.Parser;
 import br.com.gvs.core.rs.exception.ValidationException;
 import br.com.gvs.core.security.SpringSecurityUserContext;
 /**
-*  generated: 02/09/2016 16:23:49
+*  generated: 03/09/2016 22:18:34
 **/
 
 @Path("/crud/permissions")

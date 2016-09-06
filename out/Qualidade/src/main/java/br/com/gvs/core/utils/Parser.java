@@ -692,9 +692,11 @@ public class Parser {
 	
 	private static void applyBasicJsonValues(JsonClient jsonClient, Client client) {
 		jsonClient.setId(client.getId());
+	    jsonClient.setNome(client.getNome());
 	}	
 	private static void applyBasicEntityValues(Client client, JsonClient jsonClient) {
 		client.setId(jsonClient.getId());
+		client.setNome(jsonClient.getNome());
 	}	
 	
 	public static JsonClient toJson(Client client) {
@@ -1278,10 +1280,6 @@ public class Parser {
 				jsonLatada.getApontamentoQualidadePackings().add(toBasicJson(loopApontamentoQualidadePacking));
 			}
 		}
-		Client client_ = latada.getClient();
-		if (client_ != null) {
-			jsonLatada.setClient(toJson(client_));
-		}
 		return jsonLatada;
 	}
 
@@ -1293,10 +1291,6 @@ public class Parser {
 		
 		applyBasicEntityValues(latada, jsonLatada) ;
 
-		JsonClient client_ = jsonLatada.getClient();
-		if (client_ != null) {
-			latada.setClient(toEntity(client_));
-		}	
 		return latada;
 		
 	}		
@@ -1328,9 +1322,11 @@ public class Parser {
 	
 	private static void applyBasicJsonValues(JsonPacking jsonPacking, Packing packing) {
 		jsonPacking.setId(packing.getId());
+	    jsonPacking.setNome(packing.getNome());
 	}	
 	private static void applyBasicEntityValues(Packing packing, JsonPacking jsonPacking) {
 		packing.setId(jsonPacking.getId());
+		packing.setNome(jsonPacking.getNome());
 	}	
 	
 	public static JsonPacking toJson(Packing packing) {
@@ -1350,10 +1346,6 @@ public class Parser {
 				jsonPacking.getCabines().add(toBasicJson(loopCabine));
 			}
 		}
-		Client client_ = packing.getClient();
-		if (client_ != null) {
-			jsonPacking.setClient(toJson(client_));
-		}
 		return jsonPacking;
 	}
 
@@ -1365,10 +1357,6 @@ public class Parser {
 		
 		applyBasicEntityValues(packing, jsonPacking) ;
 
-		JsonClient client_ = jsonPacking.getClient();
-		if (client_ != null) {
-			packing.setClient(toEntity(client_));
-		}	
 		return packing;
 		
 	}		

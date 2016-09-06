@@ -288,6 +288,9 @@
 			<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
 		</a>
 	</div>
+	<div id="toTop">
+		<img src="images/backtop.png" style="width: 48px; display: inline;">
+	</div>
 	<script data-main="js/main" src="vendor/require/require.js"></script>
 </body>
 </html>

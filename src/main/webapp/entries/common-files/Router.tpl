@@ -70,7 +70,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : '${entity.displayName}',
-				itemSubFolderName : 'Grid',
+				itemSubFolderName : 'Listagem',
 				url : 'app/${firstLower(entity.name)}s'
 			});
 		},
@@ -84,7 +84,7 @@ define(function(require) {
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : '${entity.displayName}',
-				itemSubFolderName : 'Formulário de cadastro',
+				itemSubFolderName : 'Formulário de cadastro de ${entity.displayName}',
 				url : 'app/${firstLower(entity.name)}s'
 			});
 		},
@@ -115,8 +115,8 @@ define(function(require) {
 				})
 				util.breadcrumb({
 					iconClass : 'fa-calendar',
-					itemLabel : '${entity.name}os',
-					itemSubFolderName : 'Formulário de atualização',
+					itemLabel : '${entity.name}s',
+					itemSubFolderName : 'Formulário de atualização de ${entity.displayName}',
 					url : 'app/${firstLower(entity.name)}s'
 				});
 			}

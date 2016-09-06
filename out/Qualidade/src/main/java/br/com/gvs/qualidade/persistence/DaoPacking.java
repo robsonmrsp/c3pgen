@@ -19,7 +19,7 @@ import br.com.gvs.core.persistence.pagination.Paginator;
 import br.com.gvs.qualidade.model.Packing;
 import br.com.gvs.qualidade.model.Client;
 /**
-*  generated: 02/09/2016 16:23:48
+*  generated: 03/09/2016 22:18:32
 **/
 
 @Named
@@ -36,11 +36,9 @@ public class DaoPacking extends AccessibleHibernateDao<Packing> {
 		FilterPacking filterPacking = (FilterPacking) paginationParams.getFilter();
 		Criteria searchCriteria = criteria();
 		Criteria countCriteria = criteria();
-		if (filterPacking.getClient() != null) {
-			searchCriteria.createAlias("client", "client_");
-			countCriteria.createAlias("client", "client_");
-			searchCriteria.add(Restrictions.eq("client_.id", filterPacking.getClient()));
-			countCriteria.add(Restrictions.eq("client_.id", filterPacking.getClient()));
+		if (filterPacking.getNome() != null) {
+			searchCriteria.add(Restrictions.ilike("nome", filterPacking.getNome(), MatchMode.ANYWHERE));
+			countCriteria.add(Restrictions.ilike("nome", filterPacking.getNome(), MatchMode.ANYWHERE));
 		}
 
 		return new Paginator<Packing>(searchCriteria, countCriteria).paginate(paginationParams);
@@ -50,9 +48,8 @@ public class DaoPacking extends AccessibleHibernateDao<Packing> {
 		List<Packing> list = new ArrayList<Packing>();
 		FilterPacking filterPacking = (FilterPacking) paginationParams.getFilter();
 		Criteria searchCriteria = criteria();
-		if (filterPacking.getClient() != null) {
-			searchCriteria.createAlias("client", "client_");
-			searchCriteria.add(Restrictions.eq("client_.id", filterPacking.getClient()));
+		if (filterPacking.getNome() != null) {
+			searchCriteria.add(Restrictions.eq("nome", filterPacking.getNome()));
 		}
 
 		list.addAll(searchCriteria.list());
@@ -66,11 +63,9 @@ public class DaoPacking extends AccessibleHibernateDao<Packing> {
 		searchCriteria.add(Restrictions.eq("owner", owner));
 		countCriteria.add(Restrictions.eq("owner", owner));
 		
-		if (filterPacking.getClient() != null) {
-			searchCriteria.createAlias("client", "client_");
-			countCriteria.createAlias("client", "client_");
-			searchCriteria.add(Restrictions.eq("client_.id", filterPacking.getClient()));
-			countCriteria.add(Restrictions.eq("client_.id", filterPacking.getClient()));
+		if (filterPacking.getNome() != null) {
+			searchCriteria.add(Restrictions.ilike("nome", filterPacking.getNome(), MatchMode.ANYWHERE));
+			countCriteria.add(Restrictions.ilike("nome", filterPacking.getNome(), MatchMode.ANYWHERE));
 		}
 	return new Paginator<Packing>(searchCriteria, countCriteria).paginate(paginationParams);
 	}
@@ -81,9 +76,8 @@ public class DaoPacking extends AccessibleHibernateDao<Packing> {
 		FilterPacking filterPacking = (FilterPacking) paginationParams.getFilter();
 		Criteria searchCriteria = criteria();
 		searchCriteria.add(Restrictions.eq("owner", owner));
-		if (filterPacking.getClient() != null) {
-			searchCriteria.createAlias("client", "client_");
-			searchCriteria.add(Restrictions.eq("client_.id", filterPacking.getClient()));
+		if (filterPacking.getNome() != null) {
+			searchCriteria.add(Restrictions.eq("nome", filterPacking.getNome()));
 		}
 
 		list.addAll(searchCriteria.list());

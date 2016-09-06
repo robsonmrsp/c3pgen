@@ -6,7 +6,7 @@
   - name: nome
     tableFieldName: NOME
     basicSearch : true    
-    required: false
+    required: true
     displayName: Nome
     type: 
       className: String
