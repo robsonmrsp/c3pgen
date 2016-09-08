@@ -45,12 +45,12 @@ public class FreeMarkerConfig {
 	private Configuration initConfiguration(String skin) {
 		Configuration configuration = new Configuration();
 		try {
-			String commonPathName = Util.currentDir() + File.separator + "common-files" + File.separator;
-			String commonMobilePathName = Util.currentDir() + File.separator + "mobile-common-files" + File.separator;
-			String testTemplates = Util.currentDir() + File.separator + "common-files" + File.separator + "tests" + File.separator;
+			String commonPathName = Util.currentDir() + File.separator + "entries" + File.separator + "common-files" + File.separator;
+			String commonMobilePathName = Util.currentDir() + File.separator + "entries" + File.separator + "mobile-common-files" + File.separator;
+			String testTemplates = Util.currentDir() + File.separator + "entries" + File.separator + "common-files" + File.separator + "tests" + File.separator;
 
-			String templateCorePathName = Util.currentDir() + File.separator + "templates" + File.separator + skin + File.separator + "appbase" + File.separator + "core" + File.separator;
-			String mobileTemplateCorePathName = Util.currentDir() + File.separator + "mobile-templates" + File.separator + "nativedroid" + File.separator + "appbase" + File.separator + "core" + File.separator;
+			String templateCorePathName = Util.currentDir() + File.separator + "entries" + File.separator + "templates" + File.separator + skin + File.separator + "appbase" + File.separator + "core" + File.separator;
+			String mobileTemplateCorePathName = Util.currentDir() + File.separator + "entries" + File.separator + "mobile-templates" + File.separator + "nativedroid" + File.separator + "appbase" + File.separator + "core" + File.separator;
 
 			
 			FileTemplateLoader ftl1 = new FileTemplateLoader(new File(commonPathName));

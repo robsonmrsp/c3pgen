@@ -104,7 +104,9 @@ public class EntitiesGenerator {
 		javaMybatisModelGenerator = new MarkerGenerator(freeMarkerConfig, application, "JavaModelTemplate.tpl", javaRootFolder + "/model/", TemplateFileName.MODEL_JAVA, FileType.JAVA);
 
 		flterGenerator = new MarkerGenerator(freeMarkerConfig, application, "JavaFilterTemplate.tpl", javaRootFolder + "/model/filter/", TemplateFileName.FILTER_MODEL_JAVA, FileType.JAVA);
+		
 		javaJsonGenerator = new MarkerGenerator(freeMarkerConfig, application, "JavaJsonTemplate.tpl", javaRootFolder + "/json/", TemplateFileName.JSON_JAVA, FileType.JAVA);
+		
 		basicServiceGenerator = new MarkerGenerator(freeMarkerConfig, application, "JavaBasicServiceTemplate.tpl", javaRootFolder + "/service/", TemplateFileName.SERVICE_JAVA, FileType.JAVA);
 		daoGenerator = new MarkerGenerator(freeMarkerConfig, application, "JavaDaoTemplate.tpl", javaRootFolder + "/persistence/", TemplateFileName.DAO_JAVA, FileType.JAVA);
 

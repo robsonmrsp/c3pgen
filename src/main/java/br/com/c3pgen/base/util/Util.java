@@ -277,9 +277,9 @@ public class Util {
 
 	}
 
-	public static String templateFolder() {
-		return "G:\\cyg\\home\\robso\\repos\\c3pgen\\src\\main\\webapp\\entries";
-	}
+//	public static String templateFolder() {
+//		return "G:\\cyg\\home\\robso\\repos\\c3pgen\\src\\main\\webapp\\entries";
+//	}
 
 	public static String currentDir() {
 		return currentDir;
