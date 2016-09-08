@@ -359,7 +359,7 @@ public class Util {
 			destFileWriter.append("\n");
 			// destFileWriter.append("rootPackage: br.com.gsh.aghos."+
 			// modulo.getNome());
-			destFileWriter.append("rootPackage: br.com.gsh.aghos.internacao");
+			destFileWriter.append("rootPackage: br.com.gsh.aghos.internacao.uti");
 			destFileWriter.append("\n");
 			destFileWriter.append("corePackage: br.com.gsh.aghos.core");
 			destFileWriter.append("\n");
