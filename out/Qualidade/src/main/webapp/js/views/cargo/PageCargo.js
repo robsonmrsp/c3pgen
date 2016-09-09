@@ -9,6 +9,9 @@ define(function(require) {
 	var Backgrid = require('adapters/backgrid-adapter');
 	var util = require('utilities/utils');
 	var Combobox = require('views/components/Combobox');
+
+	var AutoSearchBox = require('views/components/AutoSearchBox');
+
 	var CustomStringCell = require('views/components/CustomStringCell');
 	var Counter = require('views/components/Counter');
 	var ActionsCell = require('views/components/ActionsCell');
@@ -21,9 +24,9 @@ define(function(require) {
 	var CargoCollection = require('collections/CargoCollection');
 	var CargoPageCollection = require('collections/CargoPageCollection');
 	var PageCargoTemplate = require('text!views/cargo/tpl/PageCargoTemplate.html');
-	
-	//Filter import
-	
+
+	// Filter import
+
 	// End of "Import´s" definition
 
 	var PageCargo = Marionette.LayoutView.extend({
@@ -34,33 +37,31 @@ define(function(require) {
 			counterRegion : '#counter',
 			paginatorRegion : '#paginator',
 		},
-		
+
 		events : {
-			'click 	#reset' : 'resetCargo',			
+			'click 	#reset' : 'resetCargo',
 			'keypress' : 'treatKeypress',
-			
+
 			'click 	.search-button' : 'searchCargo',
 			'click .show-advanced-search-button' : 'toggleAdvancedForm',
 		},
-		
-		
+
 		ui : {
 			inputNome : '#inputNome',
-		
+
 			form : '#formCargoFilter',
 			advancedSearchForm : '.advanced-search-form',
 		},
-		
+
 		toggleAdvancedForm : function() {
 			this.ui.advancedSearchForm.slideToggle("slow");
 		},
 
-		
-		treatKeypress : function (e){
-		    if (util.enterPressed(e)) {
-	    		e.preventDefault();
-	    		this.searchCargo();
-	    	}
+		treatKeypress : function(e) {
+			if (util.enterPressed(e)) {
+				e.preventDefault();
+				this.searchCargo();
+			}
 		},
 
 		initialize : function() {
@@ -91,22 +92,30 @@ define(function(require) {
 					console.info('Primeira pagina do grid cargo');
 				},
 				error : function(_col, _resp, _opts) {
-					console.error(_resp.responseText || (_resp.getResponseHeader && _resp.getResponseHeader('exception')) );
+					console.error(_resp.responseText || (_resp.getResponseHeader && _resp.getResponseHeader('exception')));
 				}
 			});
 			this.on('show', function() {
+
+				this.nomeField = new AutoSearchBox({
+					el : this.ui.inputNome,
+					valueField : 'id',
+					searchField : 'nome',
+					collectionEntity : CargoCollection,
+				});
+
 				that.gridRegion.show(that.grid);
 				that.counterRegion.show(that.counter);
 				that.paginatorRegion.show(that.paginator);
-		
+
 			});
 		},
-		 
-		searchCargo : function(){
+
+		searchCargo : function() {
 			var that = this;
 
 			this.cargos.filterQueryParams = {
-	    		nome : util.escapeById('inputNome'),
+				nome : util.escapeById('inputNome'),
 			}
 			this.cargos.fetch({
 				success : function(_coll, _resp, _opt) {
@@ -116,26 +125,24 @@ define(function(require) {
 					console.error(_resp.responseText || (_resp.getResponseHeader && _resp.getResponseHeader('exception')));
 				},
 				complete : function() {
-					
+
 				},
-			})		
+			})
 		},
-		resetCargo : function(){
+		resetCargo : function() {
 			this.ui.form.get(0).reset();
 			this.cargos.reset();
 		},
-				
+
 		getColumns : function() {
 			var that = this;
-			var columns = [
-			{
+			var columns = [ {
 				name : "nome",
 				editable : false,
 				sortable : true,
-				label 	 : "Nome",
-				cell 	 : "string",
-			}, 
-			{
+				label : "Nome",
+				cell : "string",
+			}, {
 				name : "acoes",
 				label : "Ações(Editar, Deletar)",
 				sortable : false,
@@ -146,7 +153,7 @@ define(function(require) {
 			} ];
 			return columns;
 		},
-		
+
 		getCellButtons : function() {
 			var that = this;
 			var buttons = [];
@@ -170,11 +177,11 @@ define(function(require) {
 
 		deleteModel : function(model) {
 			var that = this;
-			
+
 			var modelTipo = new CargoModel({
 				id : model.id,
 			});
-			
+
 			util.Bootbox.confirm("Tem certeza que deseja remover o registro [ " + model.get('id') + " ] ?", function(yes) {
 				if (yes) {
 					modelTipo.destroy({
@@ -183,7 +190,7 @@ define(function(require) {
 							util.showSuccessMessage('Cargo removido com sucesso!');
 						},
 						error : function(_model, _resp) {
-							util.showErrorMessage('Problema ao remover o registro',_resp);
+							util.showErrorMessage('Problema ao remover o registro', _resp);
 						}
 					});
 				}
@@ -193,8 +200,6 @@ define(function(require) {
 		editModel : function(model) {
 			util.goPage("app/editCargo/" + model.get('id'));
 		},
-
-		
 
 	});
 

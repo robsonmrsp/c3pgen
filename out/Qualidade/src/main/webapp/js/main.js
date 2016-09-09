@@ -1,5 +1,5 @@
 require.config({
-	urlArgs : "bust=" + new Date().getTime(),
+//	urlArgs : "bust=" + new Date().getTime(),
 	paths : {
 		'jquery' : '../vendor/jquery/jquery-1.10.2',
 		'jqueryUI' : '../vendor/jquery.ui/jquery-ui-1.10.4.custom.min',
@@ -40,6 +40,8 @@ require.config({
 		'aceSidebar' : '../vendor/theme/ace.sidebar',
 		'jqueryGritter' : '../vendor/jquery.gritter-1.7.4/js/jquery.gritter',
 		'selectize' : '../vendor/selectize/js/standalone/selectize',
+		'i18next' : '../vendor/i18next-3.4.1/i18next',
+		'i18nextJquery' : '../vendor/jquery-i18next-1.1.0/jquery-i18next',
 	},
 	shim : {
 		'underscore' : {
@@ -128,6 +130,7 @@ require.config({
 
 		'jqueryGritter' : [ 'jquery' ],
 		'selectize' : [ 'jquery' ],
+		'i18nextJquery' : [ 'jquery' ],
 	},
 	wrapShim : true,
 });

@@ -64,7 +64,7 @@ public class ${entity.name}Resources {
 		} catch (Exception e) {
 			String message = String.format("Não foi possivel carregar todos os registros[%s]", e.getMessage());
 			LOGGER.error(message, e);
-			response = Response.serverError().entity(new JsonError(message, null)).build();
+			response = Response.serverError().entity(new JsonError(e, message)).build();
 		}
 		return response;
 	}
@@ -81,7 +81,7 @@ public class ${entity.name}Resources {
 		} catch (Exception e) {
 			String message = String.format("Não foi possivel carregar todos os registros[%s]", e.getMessage());
 			LOGGER.error(message, e);
-			response = Response.serverError().entity(new JsonError(message, null)).build();
+			response = Response.serverError().entity(new JsonError(e,message)).build();
 		}
 		return response;
 	}
@@ -102,7 +102,7 @@ public class ${entity.name}Resources {
 		} catch (Exception e) {
 			String message = String.format("Não foi possivel carregar ${firstLower(entity.name)}s para os parametros %s [%s]", uriInfo.getQueryParameters().toString(), e.getMessage());
 			LOGGER.error(message, e);
-			response = Response.serverError().entity(new JsonError(message, uriInfo.getQueryParameters().toString())).build();
+			response = Response.serverError().entity(new JsonError(e,message)).build();
 		}
 		return response;
 	}
@@ -119,7 +119,7 @@ public class ${entity.name}Resources {
 		} catch (Exception e) {
 			String message = String.format("Não foi possivel carregar o registro. [ %s ] parametros [ %d ]", e.getMessage(), id);
 			LOGGER.error(message, e);
-			return Response.serverError().entity(new JsonError(message, id)).build();
+			return Response.serverError().entity(new JsonError(e,message)).build();
 		}
 	}
 
@@ -137,7 +137,7 @@ public class ${entity.name}Resources {
 		} catch (Exception e) {
 			String message = String.format("Não foi possivel salvar  ${firstLower(entity.name)} [ %s ] parametros [ %s ]", e.getMessage(), ${firstLower(entity.name)}.toString());
 			LOGGER.error(message, e);
-			return Response.serverError().entity(new JsonError(message, ${firstLower(entity.name)})).build();
+			return Response.serverError().entity(new JsonError(e,message)).build();
 		}
 	}
 
@@ -156,7 +156,7 @@ public class ${entity.name}Resources {
 		} catch (Exception e) {
 			String message = String.format("Não foi possivel salvar o registro [ %s ] parametros [ %s ]", e.getMessage(), ${firstLower(entity.name)}.toString());
 			LOGGER.error(message, e);
-			return Response.serverError().entity(new JsonError(message, ${firstLower(entity.name)})).build();
+			return Response.serverError().entity(new JsonError(e,message )).build();
 		}
 	}
 
@@ -173,7 +173,7 @@ public class ${entity.name}Resources {
 		} catch (Exception e) {
 			String message = String.format("Não foi possivel remover o registro [ %s ] parametros [ %s ]", e.getMessage(), id);
 			LOGGER.error(message, e);
-			return Response.serverError().entity(new JsonError(message, id)).build();
+			return Response.serverError().entity(new JsonError(e,message)).build();
 		}
 	}
 }

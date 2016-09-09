@@ -4,144 +4,217 @@ define(function(require) {
 	var Backbone = require('adapters/backbone-adapter');
 	var Marionette = require('marionette');
 	var util = require('utilities/utils');
-		
+	var BaseModel = require('models/BaseModel');
+
 	var PageAnexo = require('views/anexo/PageAnexo');
 	var FormAnexo = require('views/anexo/FormAnexo');
 	var AnexoModel = require('models/AnexoModel');
-	
+
 	var PageApontamentoQualidadePacking = require('views/apontamentoQualidadePacking/PageApontamentoQualidadePacking');
 	var FormApontamentoQualidadePacking = require('views/apontamentoQualidadePacking/FormApontamentoQualidadePacking');
 	var ApontamentoQualidadePackingModel = require('models/ApontamentoQualidadePackingModel');
-	
+
 	var PageBolsao = require('views/bolsao/PageBolsao');
 	var FormBolsao = require('views/bolsao/FormBolsao');
 	var BolsaoModel = require('models/BolsaoModel');
-	
+
 	var PageCabine = require('views/cabine/PageCabine');
 	var FormCabine = require('views/cabine/FormCabine');
 	var CabineModel = require('models/CabineModel');
-	
+
 	var PageCargo = require('views/cargo/PageCargo');
 	var FormCargo = require('views/cargo/FormCargo');
 	var CargoModel = require('models/CargoModel');
-	
+
 	var PageCbo = require('views/cbo/PageCbo');
 	var FormCbo = require('views/cbo/FormCbo');
 	var CboModel = require('models/CboModel');
-	
+
 	var PageClient = require('views/client/PageClient');
 	var FormClient = require('views/client/FormClient');
 	var ClientModel = require('models/ClientModel');
-	
+
 	var PageCliente = require('views/cliente/PageCliente');
 	var FormCliente = require('views/cliente/FormCliente');
 	var ClienteModel = require('models/ClienteModel');
-	
+
 	var PageCor = require('views/cor/PageCor');
 	var FormCor = require('views/cor/FormCor');
 	var CorModel = require('models/CorModel');
-	
+
 	var PageDepartamento = require('views/departamento/PageDepartamento');
 	var FormDepartamento = require('views/departamento/FormDepartamento');
 	var DepartamentoModel = require('models/DepartamentoModel');
-	
+
 	var PageEmbalagem = require('views/embalagem/PageEmbalagem');
 	var FormEmbalagem = require('views/embalagem/FormEmbalagem');
 	var EmbalagemModel = require('models/EmbalagemModel');
-	
+
 	var PageFuncao = require('views/funcao/PageFuncao');
 	var FormFuncao = require('views/funcao/FormFuncao');
 	var FuncaoModel = require('models/FuncaoModel');
-	
+
 	var PageFuncionario = require('views/funcionario/PageFuncionario');
 	var FormFuncionario = require('views/funcionario/FormFuncionario');
 	var FuncionarioModel = require('models/FuncionarioModel');
-	
+
 	var PageGenerador = require('views/generador/PageGenerador');
 	var FormGenerador = require('views/generador/FormGenerador');
 	var GeneradorModel = require('models/GeneradorModel');
-	
+
 	var PageLatada = require('views/latada/PageLatada');
 	var FormLatada = require('views/latada/FormLatada');
 	var LatadaModel = require('models/LatadaModel');
-	
+
 	var PagePacking = require('views/packing/PagePacking');
 	var FormPacking = require('views/packing/FormPacking');
 	var PackingModel = require('models/PackingModel');
-	
+
 	var PageSacola = require('views/sacola/PageSacola');
 	var FormSacola = require('views/sacola/FormSacola');
 	var SacolaModel = require('models/SacolaModel');
-	
+
 	var PageVariedade = require('views/variedade/PageVariedade');
 	var FormVariedade = require('views/variedade/FormVariedade');
 	var VariedadeModel = require('models/VariedadeModel');
-	
+
 	var PageBairro = require('views/bairro/PageBairro');
 	var FormBairro = require('views/bairro/FormBairro');
 	var BairroModel = require('models/BairroModel');
-	
+
 	var PageCep = require('views/cep/PageCep');
 	var FormCep = require('views/cep/FormCep');
 	var CepModel = require('models/CepModel');
-	
+
 	var PageCidade = require('views/cidade/PageCidade');
 	var FormCidade = require('views/cidade/FormCidade');
 	var CidadeModel = require('models/CidadeModel');
-	
+
 	var PageEndereco = require('views/endereco/PageEndereco');
 	var FormEndereco = require('views/endereco/FormEndereco');
 	var EnderecoModel = require('models/EnderecoModel');
-	
+
 	var PageEstado = require('views/estado/PageEstado');
 	var FormEstado = require('views/estado/FormEstado');
 	var EstadoModel = require('models/EstadoModel');
-	
+
 	var PagePais = require('views/pais/PagePais');
 	var FormPais = require('views/pais/FormPais');
 	var PaisModel = require('models/PaisModel');
-	
+
 	var PageItem = require('views/item/PageItem');
 	var FormItem = require('views/item/FormItem');
 	var ItemModel = require('models/ItemModel');
-	
+
 	var PageItemType = require('views/itemType/PageItemType');
 	var FormItemType = require('views/itemType/FormItemType');
 	var ItemTypeModel = require('models/ItemTypeModel');
-	
+
 	var PageOperation = require('views/operation/PageOperation');
 	var FormOperation = require('views/operation/FormOperation');
 	var OperationModel = require('models/OperationModel');
-	
+
 	var PagePermission = require('views/permission/PagePermission');
 	var FormPermission = require('views/permission/FormPermission');
 	var PermissionModel = require('models/PermissionModel');
-	
+
 	var PageRole = require('views/role/PageRole');
 	var FormRole = require('views/role/FormRole');
 	var RoleModel = require('models/RoleModel');
-	
+
 	var PageSession = require('views/session/PageSession');
 	var FormSession = require('views/session/FormSession');
 	var SessionModel = require('models/SessionModel');
-	
+
 	var PageUser = require('views/user/PageUser');
 	var FormUser = require('views/user/FormUser');
 	var UserModel = require('models/UserModel');
-	
+
+	var i18next = require('i18next');
+	var i18next = require('i18next');
+	var i18nextJquery = require('i18nextJquery');
+	var lng = navigator.language || navigator.userLanguage;
+	var resources = null;
+	localeModel = new BaseModel();
+	localeModel.url = 'locales/' + lng + '/i18n.json';
+//	localeModel.fetch({
+//		success : function(a, b, c) {
+//			init(b);
+//			console.log(b.responseJson);
+//			// console.log(a, b, c);
+//		},
+//		error : function(a, b, c) {
+//			console.error(a, b, c);
+//		}
+//	})
+
+	i18next.init({
+		lng : lng,
+		resources : {
+			en : {
+				translation : {
+					input : {
+						placeholder : "a placeholder"
+					},
+					nav : {
+						home : 'Home',
+						page1 : 'Page One',
+						page2 : 'Page Two'
+					},
+					label : {
+						form_latada : {
+							nome : 'Nombre *'
+						},
+						page1 : 'Page One',
+						page2 : 'Page Two'
+					}
+				}
+			},
+			'pt-BR' : {
+				translation : {
+					input : {
+						placeholder : "a placeholder"
+					},
+					nav : {
+						home : 'Home',
+						page1 : 'Page One',
+						page2 : 'Page Two pt br'
+					},
+					label : {
+						form_latada : {
+							nome : 'Nombre *'
+						},
+						page1 : 'Page One',
+						page2 : 'Filtros de pesquisa dessa bagaça'
+					}
+				}
+			}
+		}
+	}, function(err, t) {
+		// for options see
+		// https://github.com/i18next/jquery-i18next#initialize-the-plugin
+		i18nextJquery.init(i18next, $);
+
+		// start localizing, details:
+		// https://github.com/i18next/jquery-i18next#usage-of-selector-function
+		// $('[data-i18n]').localize();
+	})
+
 	util.NProgress.setBlockerPanel('block_panel');
-	
+
 	var CustomRegion = Marionette.Region.extend({
 		el : ".main-content",
 
 		attachHtml : function(view) {
 			this.$el.hide();
 			this.$el.html(view.el);
-			//this.$el.slideDown(300);
-			//this.$el.show("slide", { direction: "up" }, 300);
+			// this.$el.slideDown(300);
+			// this.$el.show("slide", { direction: "up" }, 300);
 			util.scrollTop();
 			this.$el.fadeIn(300);
 			view.listenTo(view, 'show', function() {
+				// $('[data-i18n]').localize();
+				view.$el.localize();
 				setTimeout(function() {
 					// ver tambem backbone-adapter
 					util.NProgress.done(false, true);
@@ -296,9 +369,9 @@ define(function(require) {
 				util.NProgress.done(false, true);
 			}, 500);
 		},
-		
-		//configuração das rotas de Anexo
-		anexos: function() {
+
+		// configuração das rotas de Anexo
+		anexos : function() {
 			util.markActiveItem('anexos');
 			this.pageAnexo = new PageAnexo();
 			this.App.mainRegion.show(this.pageAnexo);
@@ -310,7 +383,7 @@ define(function(require) {
 			});
 		},
 
-		newAnexo: function() {
+		newAnexo : function() {
 			util.markActiveItem('anexos');
 			var formAnexo = new FormAnexo({
 				model : new AnexoModel(),
@@ -323,8 +396,8 @@ define(function(require) {
 				url : 'app/anexos'
 			});
 		},
-		
-		editAnexo: function(idAnexo) {
+
+		editAnexo : function(idAnexo) {
 			var that = this;
 			util.markActiveItem('anexos');
 			var formAnexo = null;
@@ -356,9 +429,9 @@ define(function(require) {
 				});
 			}
 		},
-		
-		//configuração das rotas de ApontamentoQualidadePacking
-		apontamentoQualidadePackings: function() {
+
+		// configuração das rotas de ApontamentoQualidadePacking
+		apontamentoQualidadePackings : function() {
 			util.markActiveItem('apontamentoQualidadePackings');
 			this.pageApontamentoQualidadePacking = new PageApontamentoQualidadePacking();
 			this.App.mainRegion.show(this.pageApontamentoQualidadePacking);
@@ -370,7 +443,7 @@ define(function(require) {
 			});
 		},
 
-		newApontamentoQualidadePacking: function() {
+		newApontamentoQualidadePacking : function() {
 			util.markActiveItem('apontamentoQualidadePackings');
 			var formApontamentoQualidadePacking = new FormApontamentoQualidadePacking({
 				model : new ApontamentoQualidadePackingModel(),
@@ -383,8 +456,8 @@ define(function(require) {
 				url : 'app/apontamentoQualidadePackings'
 			});
 		},
-		
-		editApontamentoQualidadePacking: function(idApontamentoQualidadePacking) {
+
+		editApontamentoQualidadePacking : function(idApontamentoQualidadePacking) {
 			var that = this;
 			util.markActiveItem('apontamentoQualidadePackings');
 			var formApontamentoQualidadePacking = null;
@@ -416,9 +489,9 @@ define(function(require) {
 				});
 			}
 		},
-		
-		//configuração das rotas de Bolsao
-		bolsaos: function() {
+
+		// configuração das rotas de Bolsao
+		bolsaos : function() {
 			util.markActiveItem('bolsaos');
 			this.pageBolsao = new PageBolsao();
 			this.App.mainRegion.show(this.pageBolsao);
@@ -430,7 +503,7 @@ define(function(require) {
 			});
 		},
 
-		newBolsao: function() {
+		newBolsao : function() {
 			util.markActiveItem('bolsaos');
 			var formBolsao = new FormBolsao({
 				model : new BolsaoModel(),
@@ -443,8 +516,8 @@ define(function(require) {
 				url : 'app/bolsaos'
 			});
 		},
-		
-		editBolsao: function(idBolsao) {
+
+		editBolsao : function(idBolsao) {
 			var that = this;
 			util.markActiveItem('bolsaos');
 			var formBolsao = null;
@@ -476,9 +549,9 @@ define(function(require) {
 				});
 			}
 		},
-		
-		//configuração das rotas de Cabine
-		cabines: function() {
+
+		// configuração das rotas de Cabine
+		cabines : function() {
 			util.markActiveItem('cabines');
 			this.pageCabine = new PageCabine();
 			this.App.mainRegion.show(this.pageCabine);
@@ -490,7 +563,7 @@ define(function(require) {
 			});
 		},
 
-		newCabine: function() {
+		newCabine : function() {
 			util.markActiveItem('cabines');
 			var formCabine = new FormCabine({
 				model : new CabineModel(),
@@ -503,8 +576,8 @@ define(function(require) {
 				url : 'app/cabines'
 			});
 		},
-		
-		editCabine: function(idCabine) {
+
+		editCabine : function(idCabine) {
 			var that = this;
 			util.markActiveItem('cabines');
 			var formCabine = null;
@@ -536,9 +609,9 @@ define(function(require) {
 				});
 			}
 		},
-		
-		//configuração das rotas de Cargo
-		cargos: function() {
+
+		// configuração das rotas de Cargo
+		cargos : function() {
 			util.markActiveItem('cargos');
 			this.pageCargo = new PageCargo();
 			this.App.mainRegion.show(this.pageCargo);
@@ -550,7 +623,7 @@ define(function(require) {
 			});
 		},
 
-		newCargo: function() {
+		newCargo : function() {
 			util.markActiveItem('cargos');
 			var formCargo = new FormCargo({
 				model : new CargoModel(),
@@ -563,8 +636,8 @@ define(function(require) {
 				url : 'app/cargos'
 			});
 		},
-		
-		editCargo: function(idCargo) {
+
+		editCargo : function(idCargo) {
 			var that = this;
 			util.markActiveItem('cargos');
 			var formCargo = null;
@@ -596,9 +669,9 @@ define(function(require) {
 				});
 			}
 		},
-		
-		//configuração das rotas de Cbo
-		cbos: function() {
+
+		// configuração das rotas de Cbo
+		cbos : function() {
 			util.markActiveItem('cbos');
 			this.pageCbo = new PageCbo();
 			this.App.mainRegion.show(this.pageCbo);
@@ -610,7 +683,7 @@ define(function(require) {
 			});
 		},
 
-		newCbo: function() {
+		newCbo : function() {
 			util.markActiveItem('cbos');
 			var formCbo = new FormCbo({
 				model : new CboModel(),
@@ -623,8 +696,8 @@ define(function(require) {
 				url : 'app/cbos'
 			});
 		},
-		
-		editCbo: function(idCbo) {
+
+		editCbo : function(idCbo) {
 			var that = this;
 			util.markActiveItem('cbos');
 			var formCbo = null;
@@ -656,9 +729,9 @@ define(function(require) {
 				});
 			}
 		},
-		
-		//configuração das rotas de Client
-		clients: function() {
+
+		// configuração das rotas de Client
+		clients : function() {
 			util.markActiveItem('clients');
 			this.pageClient = new PageClient();
 			this.App.mainRegion.show(this.pageClient);
@@ -670,7 +743,7 @@ define(function(require) {
 			});
 		},
 
-		newClient: function() {
+		newClient : function() {
 			util.markActiveItem('clients');
 			var formClient = new FormClient({
 				model : new ClientModel(),
@@ -683,8 +756,8 @@ define(function(require) {
 				url : 'app/clients'
 			});
 		},
-		
-		editClient: function(idClient) {
+
+		editClient : function(idClient) {
 			var that = this;
 			util.markActiveItem('clients');
 			var formClient = null;
@@ -716,9 +789,9 @@ define(function(require) {
 				});
 			}
 		},
-		
-		//configuração das rotas de Cliente
-		clientes: function() {
+
+		// configuração das rotas de Cliente
+		clientes : function() {
 			util.markActiveItem('clientes');
 			this.pageCliente = new PageCliente();
 			this.App.mainRegion.show(this.pageCliente);
@@ -730,7 +803,7 @@ define(function(require) {
 			});
 		},
 
-		newCliente: function() {
+		newCliente : function() {
 			util.markActiveItem('clientes');
 			var formCliente = new FormCliente({
 				model : new ClienteModel(),
@@ -743,8 +816,8 @@ define(function(require) {
 				url : 'app/clientes'
 			});
 		},
-		
-		editCliente: function(idCliente) {
+
+		editCliente : function(idCliente) {
 			var that = this;
 			util.markActiveItem('clientes');
 			var formCliente = null;
@@ -776,9 +849,9 @@ define(function(require) {
 				});
 			}
 		},
-		
-		//configuração das rotas de Cor
-		cors: function() {
+
+		// configuração das rotas de Cor
+		cors : function() {
 			util.markActiveItem('cors');
 			this.pageCor = new PageCor();
 			this.App.mainRegion.show(this.pageCor);
@@ -790,7 +863,7 @@ define(function(require) {
 			});
 		},
 
-		newCor: function() {
+		newCor : function() {
 			util.markActiveItem('cors');
 			var formCor = new FormCor({
 				model : new CorModel(),
@@ -803,8 +876,8 @@ define(function(require) {
 				url : 'app/cors'
 			});
 		},
-		
-		editCor: function(idCor) {
+
+		editCor : function(idCor) {
 			var that = this;
 			util.markActiveItem('cors');
 			var formCor = null;
@@ -836,9 +909,9 @@ define(function(require) {
 				});
 			}
 		},
-		
-		//configuração das rotas de Departamento
-		departamentos: function() {
+
+		// configuração das rotas de Departamento
+		departamentos : function() {
 			util.markActiveItem('departamentos');
 			this.pageDepartamento = new PageDepartamento();
 			this.App.mainRegion.show(this.pageDepartamento);
@@ -850,7 +923,7 @@ define(function(require) {
 			});
 		},
 
-		newDepartamento: function() {
+		newDepartamento : function() {
 			util.markActiveItem('departamentos');
 			var formDepartamento = new FormDepartamento({
 				model : new DepartamentoModel(),
@@ -863,8 +936,8 @@ define(function(require) {
 				url : 'app/departamentos'
 			});
 		},
-		
-		editDepartamento: function(idDepartamento) {
+
+		editDepartamento : function(idDepartamento) {
 			var that = this;
 			util.markActiveItem('departamentos');
 			var formDepartamento = null;
@@ -896,9 +969,9 @@ define(function(require) {
 				});
 			}
 		},
-		
-		//configuração das rotas de Embalagem
-		embalagems: function() {
+
+		// configuração das rotas de Embalagem
+		embalagems : function() {
 			util.markActiveItem('embalagems');
 			this.pageEmbalagem = new PageEmbalagem();
 			this.App.mainRegion.show(this.pageEmbalagem);
@@ -910,7 +983,7 @@ define(function(require) {
 			});
 		},
 
-		newEmbalagem: function() {
+		newEmbalagem : function() {
 			util.markActiveItem('embalagems');
 			var formEmbalagem = new FormEmbalagem({
 				model : new EmbalagemModel(),
@@ -923,8 +996,8 @@ define(function(require) {
 				url : 'app/embalagems'
 			});
 		},
-		
-		editEmbalagem: function(idEmbalagem) {
+
+		editEmbalagem : function(idEmbalagem) {
 			var that = this;
 			util.markActiveItem('embalagems');
 			var formEmbalagem = null;
@@ -956,9 +1029,9 @@ define(function(require) {
 				});
 			}
 		},
-		
-		//configuração das rotas de Funcao
-		funcaos: function() {
+
+		// configuração das rotas de Funcao
+		funcaos : function() {
 			util.markActiveItem('funcaos');
 			this.pageFuncao = new PageFuncao();
 			this.App.mainRegion.show(this.pageFuncao);
@@ -970,7 +1043,7 @@ define(function(require) {
 			});
 		},
 
-		newFuncao: function() {
+		newFuncao : function() {
 			util.markActiveItem('funcaos');
 			var formFuncao = new FormFuncao({
 				model : new FuncaoModel(),
@@ -983,8 +1056,8 @@ define(function(require) {
 				url : 'app/funcaos'
 			});
 		},
-		
-		editFuncao: function(idFuncao) {
+
+		editFuncao : function(idFuncao) {
 			var that = this;
 			util.markActiveItem('funcaos');
 			var formFuncao = null;
@@ -1016,9 +1089,9 @@ define(function(require) {
 				});
 			}
 		},
-		
-		//configuração das rotas de Funcionario
-		funcionarios: function() {
+
+		// configuração das rotas de Funcionario
+		funcionarios : function() {
 			util.markActiveItem('funcionarios');
 			this.pageFuncionario = new PageFuncionario();
 			this.App.mainRegion.show(this.pageFuncionario);
@@ -1030,7 +1103,7 @@ define(function(require) {
 			});
 		},
 
-		newFuncionario: function() {
+		newFuncionario : function() {
 			util.markActiveItem('funcionarios');
 			var formFuncionario = new FormFuncionario({
 				model : new FuncionarioModel(),
@@ -1043,8 +1116,8 @@ define(function(require) {
 				url : 'app/funcionarios'
 			});
 		},
-		
-		editFuncionario: function(idFuncionario) {
+
+		editFuncionario : function(idFuncionario) {
 			var that = this;
 			util.markActiveItem('funcionarios');
 			var formFuncionario = null;
@@ -1076,9 +1149,9 @@ define(function(require) {
 				});
 			}
 		},
-		
-		//configuração das rotas de Generador
-		generadors: function() {
+
+		// configuração das rotas de Generador
+		generadors : function() {
 			util.markActiveItem('generadors');
 			this.pageGenerador = new PageGenerador();
 			this.App.mainRegion.show(this.pageGenerador);
@@ -1090,7 +1163,7 @@ define(function(require) {
 			});
 		},
 
-		newGenerador: function() {
+		newGenerador : function() {
 			util.markActiveItem('generadors');
 			var formGenerador = new FormGenerador({
 				model : new GeneradorModel(),
@@ -1103,8 +1176,8 @@ define(function(require) {
 				url : 'app/generadors'
 			});
 		},
-		
-		editGenerador: function(idGenerador) {
+
+		editGenerador : function(idGenerador) {
 			var that = this;
 			util.markActiveItem('generadors');
 			var formGenerador = null;
@@ -1136,9 +1209,9 @@ define(function(require) {
 				});
 			}
 		},
-		
-		//configuração das rotas de Latada
-		latadas: function() {
+
+		// configuração das rotas de Latada
+		latadas : function() {
 			util.markActiveItem('latadas');
 			this.pageLatada = new PageLatada();
 			this.App.mainRegion.show(this.pageLatada);
@@ -1150,7 +1223,7 @@ define(function(require) {
 			});
 		},
 
-		newLatada: function() {
+		newLatada : function() {
 			util.markActiveItem('latadas');
 			var formLatada = new FormLatada({
 				model : new LatadaModel(),
@@ -1163,8 +1236,8 @@ define(function(require) {
 				url : 'app/latadas'
 			});
 		},
-		
-		editLatada: function(idLatada) {
+
+		editLatada : function(idLatada) {
 			var that = this;
 			util.markActiveItem('latadas');
 			var formLatada = null;
@@ -1196,9 +1269,9 @@ define(function(require) {
 				});
 			}
 		},
-		
-		//configuração das rotas de Packing
-		packings: function() {
+
+		// configuração das rotas de Packing
+		packings : function() {
 			util.markActiveItem('packings');
 			this.pagePacking = new PagePacking();
 			this.App.mainRegion.show(this.pagePacking);
@@ -1210,7 +1283,7 @@ define(function(require) {
 			});
 		},
 
-		newPacking: function() {
+		newPacking : function() {
 			util.markActiveItem('packings');
 			var formPacking = new FormPacking({
 				model : new PackingModel(),
@@ -1223,8 +1296,8 @@ define(function(require) {
 				url : 'app/packings'
 			});
 		},
-		
-		editPacking: function(idPacking) {
+
+		editPacking : function(idPacking) {
 			var that = this;
 			util.markActiveItem('packings');
 			var formPacking = null;
@@ -1256,9 +1329,9 @@ define(function(require) {
 				});
 			}
 		},
-		
-		//configuração das rotas de Sacola
-		sacolas: function() {
+
+		// configuração das rotas de Sacola
+		sacolas : function() {
 			util.markActiveItem('sacolas');
 			this.pageSacola = new PageSacola();
 			this.App.mainRegion.show(this.pageSacola);
@@ -1270,7 +1343,7 @@ define(function(require) {
 			});
 		},
 
-		newSacola: function() {
+		newSacola : function() {
 			util.markActiveItem('sacolas');
 			var formSacola = new FormSacola({
 				model : new SacolaModel(),
@@ -1283,8 +1356,8 @@ define(function(require) {
 				url : 'app/sacolas'
 			});
 		},
-		
-		editSacola: function(idSacola) {
+
+		editSacola : function(idSacola) {
 			var that = this;
 			util.markActiveItem('sacolas');
 			var formSacola = null;
@@ -1316,9 +1389,9 @@ define(function(require) {
 				});
 			}
 		},
-		
-		//configuração das rotas de Variedade
-		variedades: function() {
+
+		// configuração das rotas de Variedade
+		variedades : function() {
 			util.markActiveItem('variedades');
 			this.pageVariedade = new PageVariedade();
 			this.App.mainRegion.show(this.pageVariedade);
@@ -1330,7 +1403,7 @@ define(function(require) {
 			});
 		},
 
-		newVariedade: function() {
+		newVariedade : function() {
 			util.markActiveItem('variedades');
 			var formVariedade = new FormVariedade({
 				model : new VariedadeModel(),
@@ -1343,8 +1416,8 @@ define(function(require) {
 				url : 'app/variedades'
 			});
 		},
-		
-		editVariedade: function(idVariedade) {
+
+		editVariedade : function(idVariedade) {
 			var that = this;
 			util.markActiveItem('variedades');
 			var formVariedade = null;
@@ -1376,9 +1449,9 @@ define(function(require) {
 				});
 			}
 		},
-		
-		//configuração das rotas de Bairro
-		bairros: function() {
+
+		// configuração das rotas de Bairro
+		bairros : function() {
 			util.markActiveItem('bairros');
 			this.pageBairro = new PageBairro();
 			this.App.mainRegion.show(this.pageBairro);
@@ -1390,7 +1463,7 @@ define(function(require) {
 			});
 		},
 
-		newBairro: function() {
+		newBairro : function() {
 			util.markActiveItem('bairros');
 			var formBairro = new FormBairro({
 				model : new BairroModel(),
@@ -1403,8 +1476,8 @@ define(function(require) {
 				url : 'app/bairros'
 			});
 		},
-		
-		editBairro: function(idBairro) {
+
+		editBairro : function(idBairro) {
 			var that = this;
 			util.markActiveItem('bairros');
 			var formBairro = null;
@@ -1436,9 +1509,9 @@ define(function(require) {
 				});
 			}
 		},
-		
-		//configuração das rotas de Cep
-		ceps: function() {
+
+		// configuração das rotas de Cep
+		ceps : function() {
 			util.markActiveItem('ceps');
 			this.pageCep = new PageCep();
 			this.App.mainRegion.show(this.pageCep);
@@ -1450,7 +1523,7 @@ define(function(require) {
 			});
 		},
 
-		newCep: function() {
+		newCep : function() {
 			util.markActiveItem('ceps');
 			var formCep = new FormCep({
 				model : new CepModel(),
@@ -1463,8 +1536,8 @@ define(function(require) {
 				url : 'app/ceps'
 			});
 		},
-		
-		editCep: function(idCep) {
+
+		editCep : function(idCep) {
 			var that = this;
 			util.markActiveItem('ceps');
 			var formCep = null;
@@ -1496,9 +1569,9 @@ define(function(require) {
 				});
 			}
 		},
-		
-		//configuração das rotas de Cidade
-		cidades: function() {
+
+		// configuração das rotas de Cidade
+		cidades : function() {
 			util.markActiveItem('cidades');
 			this.pageCidade = new PageCidade();
 			this.App.mainRegion.show(this.pageCidade);
@@ -1510,7 +1583,7 @@ define(function(require) {
 			});
 		},
 
-		newCidade: function() {
+		newCidade : function() {
 			util.markActiveItem('cidades');
 			var formCidade = new FormCidade({
 				model : new CidadeModel(),
@@ -1523,8 +1596,8 @@ define(function(require) {
 				url : 'app/cidades'
 			});
 		},
-		
-		editCidade: function(idCidade) {
+
+		editCidade : function(idCidade) {
 			var that = this;
 			util.markActiveItem('cidades');
 			var formCidade = null;
@@ -1556,9 +1629,9 @@ define(function(require) {
 				});
 			}
 		},
-		
-		//configuração das rotas de Endereco
-		enderecos: function() {
+
+		// configuração das rotas de Endereco
+		enderecos : function() {
 			util.markActiveItem('enderecos');
 			this.pageEndereco = new PageEndereco();
 			this.App.mainRegion.show(this.pageEndereco);
@@ -1570,7 +1643,7 @@ define(function(require) {
 			});
 		},
 
-		newEndereco: function() {
+		newEndereco : function() {
 			util.markActiveItem('enderecos');
 			var formEndereco = new FormEndereco({
 				model : new EnderecoModel(),
@@ -1583,8 +1656,8 @@ define(function(require) {
 				url : 'app/enderecos'
 			});
 		},
-		
-		editEndereco: function(idEndereco) {
+
+		editEndereco : function(idEndereco) {
 			var that = this;
 			util.markActiveItem('enderecos');
 			var formEndereco = null;
@@ -1616,9 +1689,9 @@ define(function(require) {
 				});
 			}
 		},
-		
-		//configuração das rotas de Estado
-		estados: function() {
+
+		// configuração das rotas de Estado
+		estados : function() {
 			util.markActiveItem('estados');
 			this.pageEstado = new PageEstado();
 			this.App.mainRegion.show(this.pageEstado);
@@ -1630,7 +1703,7 @@ define(function(require) {
 			});
 		},
 
-		newEstado: function() {
+		newEstado : function() {
 			util.markActiveItem('estados');
 			var formEstado = new FormEstado({
 				model : new EstadoModel(),
@@ -1643,8 +1716,8 @@ define(function(require) {
 				url : 'app/estados'
 			});
 		},
-		
-		editEstado: function(idEstado) {
+
+		editEstado : function(idEstado) {
 			var that = this;
 			util.markActiveItem('estados');
 			var formEstado = null;
@@ -1676,9 +1749,9 @@ define(function(require) {
 				});
 			}
 		},
-		
-		//configuração das rotas de Pais
-		paiss: function() {
+
+		// configuração das rotas de Pais
+		paiss : function() {
 			util.markActiveItem('paiss');
 			this.pagePais = new PagePais();
 			this.App.mainRegion.show(this.pagePais);
@@ -1690,7 +1763,7 @@ define(function(require) {
 			});
 		},
 
-		newPais: function() {
+		newPais : function() {
 			util.markActiveItem('paiss');
 			var formPais = new FormPais({
 				model : new PaisModel(),
@@ -1703,8 +1776,8 @@ define(function(require) {
 				url : 'app/paiss'
 			});
 		},
-		
-		editPais: function(idPais) {
+
+		editPais : function(idPais) {
 			var that = this;
 			util.markActiveItem('paiss');
 			var formPais = null;
@@ -1736,9 +1809,9 @@ define(function(require) {
 				});
 			}
 		},
-		
-		//configuração das rotas de Item
-		items: function() {
+
+		// configuração das rotas de Item
+		items : function() {
 			util.markActiveItem('items');
 			this.pageItem = new PageItem();
 			this.App.mainRegion.show(this.pageItem);
@@ -1750,7 +1823,7 @@ define(function(require) {
 			});
 		},
 
-		newItem: function() {
+		newItem : function() {
 			util.markActiveItem('items');
 			var formItem = new FormItem({
 				model : new ItemModel(),
@@ -1763,8 +1836,8 @@ define(function(require) {
 				url : 'app/items'
 			});
 		},
-		
-		editItem: function(idItem) {
+
+		editItem : function(idItem) {
 			var that = this;
 			util.markActiveItem('items');
 			var formItem = null;
@@ -1796,9 +1869,9 @@ define(function(require) {
 				});
 			}
 		},
-		
-		//configuração das rotas de ItemType
-		itemTypes: function() {
+
+		// configuração das rotas de ItemType
+		itemTypes : function() {
 			util.markActiveItem('itemTypes');
 			this.pageItemType = new PageItemType();
 			this.App.mainRegion.show(this.pageItemType);
@@ -1810,7 +1883,7 @@ define(function(require) {
 			});
 		},
 
-		newItemType: function() {
+		newItemType : function() {
 			util.markActiveItem('itemTypes');
 			var formItemType = new FormItemType({
 				model : new ItemTypeModel(),
@@ -1823,8 +1896,8 @@ define(function(require) {
 				url : 'app/itemTypes'
 			});
 		},
-		
-		editItemType: function(idItemType) {
+
+		editItemType : function(idItemType) {
 			var that = this;
 			util.markActiveItem('itemTypes');
 			var formItemType = null;
@@ -1856,9 +1929,9 @@ define(function(require) {
 				});
 			}
 		},
-		
-		//configuração das rotas de Operation
-		operations: function() {
+
+		// configuração das rotas de Operation
+		operations : function() {
 			util.markActiveItem('operations');
 			this.pageOperation = new PageOperation();
 			this.App.mainRegion.show(this.pageOperation);
@@ -1870,7 +1943,7 @@ define(function(require) {
 			});
 		},
 
-		newOperation: function() {
+		newOperation : function() {
 			util.markActiveItem('operations');
 			var formOperation = new FormOperation({
 				model : new OperationModel(),
@@ -1883,8 +1956,8 @@ define(function(require) {
 				url : 'app/operations'
 			});
 		},
-		
-		editOperation: function(idOperation) {
+
+		editOperation : function(idOperation) {
 			var that = this;
 			util.markActiveItem('operations');
 			var formOperation = null;
@@ -1916,9 +1989,9 @@ define(function(require) {
 				});
 			}
 		},
-		
-		//configuração das rotas de Permission
-		permissions: function() {
+
+		// configuração das rotas de Permission
+		permissions : function() {
 			util.markActiveItem('permissions');
 			this.pagePermission = new PagePermission();
 			this.App.mainRegion.show(this.pagePermission);
@@ -1930,7 +2003,7 @@ define(function(require) {
 			});
 		},
 
-		newPermission: function() {
+		newPermission : function() {
 			util.markActiveItem('permissions');
 			var formPermission = new FormPermission({
 				model : new PermissionModel(),
@@ -1943,8 +2016,8 @@ define(function(require) {
 				url : 'app/permissions'
 			});
 		},
-		
-		editPermission: function(idPermission) {
+
+		editPermission : function(idPermission) {
 			var that = this;
 			util.markActiveItem('permissions');
 			var formPermission = null;
@@ -1976,9 +2049,9 @@ define(function(require) {
 				});
 			}
 		},
-		
-		//configuração das rotas de Role
-		roles: function() {
+
+		// configuração das rotas de Role
+		roles : function() {
 			util.markActiveItem('roles');
 			this.pageRole = new PageRole();
 			this.App.mainRegion.show(this.pageRole);
@@ -1990,7 +2063,7 @@ define(function(require) {
 			});
 		},
 
-		newRole: function() {
+		newRole : function() {
 			util.markActiveItem('roles');
 			var formRole = new FormRole({
 				model : new RoleModel(),
@@ -2003,8 +2076,8 @@ define(function(require) {
 				url : 'app/roles'
 			});
 		},
-		
-		editRole: function(idRole) {
+
+		editRole : function(idRole) {
 			var that = this;
 			util.markActiveItem('roles');
 			var formRole = null;
@@ -2036,9 +2109,9 @@ define(function(require) {
 				});
 			}
 		},
-		
-		//configuração das rotas de Session
-		sessions: function() {
+
+		// configuração das rotas de Session
+		sessions : function() {
 			util.markActiveItem('sessions');
 			this.pageSession = new PageSession();
 			this.App.mainRegion.show(this.pageSession);
@@ -2050,7 +2123,7 @@ define(function(require) {
 			});
 		},
 
-		newSession: function() {
+		newSession : function() {
 			util.markActiveItem('sessions');
 			var formSession = new FormSession({
 				model : new SessionModel(),
@@ -2063,8 +2136,8 @@ define(function(require) {
 				url : 'app/sessions'
 			});
 		},
-		
-		editSession: function(idSession) {
+
+		editSession : function(idSession) {
 			var that = this;
 			util.markActiveItem('sessions');
 			var formSession = null;
@@ -2096,9 +2169,9 @@ define(function(require) {
 				});
 			}
 		},
-		
-		//configuração das rotas de User
-		users: function() {
+
+		// configuração das rotas de User
+		users : function() {
 			util.markActiveItem('users');
 			this.pageUser = new PageUser();
 			this.App.mainRegion.show(this.pageUser);
@@ -2110,7 +2183,7 @@ define(function(require) {
 			});
 		},
 
-		newUser: function() {
+		newUser : function() {
 			util.markActiveItem('users');
 			var formUser = new FormUser({
 				model : new UserModel(),
@@ -2123,8 +2196,8 @@ define(function(require) {
 				url : 'app/users'
 			});
 		},
-		
-		editUser: function(idUser) {
+
+		editUser : function(idUser) {
 			var that = this;
 			util.markActiveItem('users');
 			var formUser = null;
@@ -2156,7 +2229,7 @@ define(function(require) {
 				});
 			}
 		},
-		
+
 		start : function() {
 			Backbone.history.start();
 		}

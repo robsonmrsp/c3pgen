@@ -48,7 +48,7 @@ public class DaoCargo extends AccessibleHibernateDao<Cargo> {
 		FilterCargo filterCargo = (FilterCargo) paginationParams.getFilter();
 		Criteria searchCriteria = criteria();
 		if (filterCargo.getNome() != null) {
-			searchCriteria.add(Restrictions.eq("nome", filterCargo.getNome()));
+			searchCriteria.add(Restrictions.ilike("nome", filterCargo.getNome(), MatchMode.ANYWHERE));
 		}
 
 		list.addAll(searchCriteria.list());

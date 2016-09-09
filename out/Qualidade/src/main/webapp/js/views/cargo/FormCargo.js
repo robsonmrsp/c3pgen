@@ -9,32 +9,32 @@ define(function(require) {
 	var Backgrid = require('adapters/backgrid-adapter');
 	var util = require('utilities/utils');
 	var Combobox = require('views/components/Combobox');
-
+	var AutoSearchBox = require('views/components/AutoSearchBox');
 	var TemplateFormCargos = require('text!views/cargo/tpl/FormCargoTemplate.html');
 	var CargoModel = require('models/CargoModel');
 	var CargoCollection = require('collections/CargoCollection');
-	
+
 	// End of "Import´s" definition
 
 	// #####################################################################################################
-	// ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨MAIN BODY¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
+	// ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨MAIN
+	// BODY¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
 	// #####################################################################################################
 
 	var FormCargos = Marionette.LayoutView.extend({
 		template : _.template(TemplateFormCargos),
 
-		regions : {
-		},
+		regions : {},
 
 		events : {
 			'click 	.save' : 'save',
 			'click 	.saveAndContinue' : 'saveAndContinue',
 		},
-		
+
 		ui : {
 			inputId : '#inputId',
 			inputNome : '#inputNome',
-		
+
 			form : '#formCargo',
 		},
 
@@ -46,6 +46,14 @@ define(function(require) {
 					isOverflown : false,
 					validationEventTrigger : "change"
 				});
+
+				this.nomeField = new AutoSearchBox({
+					el : this.ui.inputNome,
+					idAttribute : 'id',
+					searchAttribute : 'nome',
+					collectionEntity : CargoCollection,
+				});
+
 			});
 		},
 
@@ -69,7 +77,7 @@ define(function(require) {
 					},
 
 					error : function(_model, _resp, _options) {
-						util.showErrorMessage('Problema ao salvar registro',_resp);
+						util.showErrorMessage('Problema ao salvar registro', _resp);
 					}
 				});
 			} else {
@@ -77,10 +85,9 @@ define(function(require) {
 			}
 		},
 
-		
 		clearForm : function() {
 			util.clear('inputId');
-			util.clear('inputNome'); 
+			util.clear('inputNome');
 		},
 
 		possuiCamposInvalidos : function() {
@@ -97,18 +104,15 @@ define(function(require) {
 
 		getModel : function() {
 			var that = this;
-			var cargo = that.model; 
+			var cargo = that.model;
 			cargo.set({
-				id: util.escapeById('inputId') || null,
-		    	nome : util.escapeById('inputNome'), 
-				
+				id : util.escapeById('inputId') || null,
+				nome : util.escapeById('inputNome'),
+
 			});
 			return cargo;
 		},
-		 
-		
-				
-		
+
 	});
 
 	return FormCargos;

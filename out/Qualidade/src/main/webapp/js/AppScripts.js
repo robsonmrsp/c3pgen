@@ -34,6 +34,8 @@ define([ 'adapters/jquery-adapter' ], function($) {
 				scrollTop : 0
 			}, 500);
 		});
+		
+		
 
 	};
 	return {
