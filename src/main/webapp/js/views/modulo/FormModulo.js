@@ -15,9 +15,9 @@ define(function(require) {
 
 	var TemplateFormModulos = require('text!views/modulo/tpl/FormModuloTemplate.html');
 	var ModuloModel = require('models/ModuloModel');
-	
+
 	var download = require('download');
-	
+
 	var ModuloCollection = require('collections/ModuloCollection');
 
 	// End of "Import´s" definition
@@ -45,6 +45,7 @@ define(function(require) {
 		ui : {
 			inputId : '#inputId',
 			inputNome : '#inputNome',
+			inputPackageName : '#inputPackageName',
 
 			form : '#formModulo',
 		},
@@ -72,7 +73,7 @@ define(function(require) {
 				});
 			});
 		},
-		
+
 		generateModulo : function() {
 			var that = this;
 			var oldUrl = this.model.url;
@@ -90,7 +91,6 @@ define(function(require) {
 				}
 			});
 		},
-
 
 		loadResultTables : function(models) {
 
@@ -151,6 +151,7 @@ define(function(require) {
 			modulo.set({
 				id : util.escapeById('inputId') || null,
 				nome : util.escapeById('inputNome'),
+				packageName : util.escapeById('inputPackageName'),
 				items : that.itemCollection.toJSON(),
 
 			});

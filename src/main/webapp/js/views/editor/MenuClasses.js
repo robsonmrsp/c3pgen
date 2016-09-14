@@ -17,12 +17,18 @@ define(function(require) {
 
 		events : {
 			'click .name-item' : 'selectItem',
+			'click .checkbox' : 'checkbox',
 			'click .remove-item' : 'removeItem',
 		},
 		ui : {
 			editableFields : '.editable-click',
+			checkbox : '.checkbox',
 		},
 
+		checkbox : function(evt) {
+			this.model.set('checked', this.ui.checkbox.is('checked'));
+		},
+		
 		removeItem : function() {
 			// this.model.get('name')
 		},
@@ -36,21 +42,21 @@ define(function(require) {
 			this.onSelectItem = opt.onSelectItem;
 
 			this.on('show', function() {
-				if (!this.model.get('id')) {
-					this.ui.editableFields.editable();
-					this.ui.editableFields.on('hidden', function(evt) {
-						that.model.set('name', $(evt.currentTarget).text());
-						that.model.save({}, {
-							success : function() {
-								console.log('salvando nome')
-								that.render();
-							},
-							error : function() {
+				// if (!this.model.get('id')) {
+				this.ui.editableFields.editable();
+				this.ui.editableFields.on('hidden', function(evt) {
+					that.model.set('name', $(evt.currentTarget).text());
+					that.model.save({}, {
+						success : function() {
+							console.log('salvando nome')
+							that.render();
+						},
+						error : function() {
 
-							},
-						});
-					})
-				}
+						},
+					});
+				})
+				// }
 			});
 		},
 	});
@@ -74,6 +80,17 @@ define(function(require) {
 
 		ui : {
 
+		},
+
+		getExceptionToGenerate : function() {
+			var ret = '';
+			this.collection.each(function(item) {
+				if (!item.get('checked')) {
+					ret = ret + item.get('name') + ',';
+				}
+			})
+
+			return ret;
 		},
 
 		initialize : function(opt) {

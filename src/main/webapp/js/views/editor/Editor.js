@@ -51,6 +51,7 @@ define(function(require) {
 			this.itemsModelo = new ItemModuloCollection(that.model.get('items'));
 			this.menuClasses = new MenuClasses({
 				collection : that.itemsModelo,
+				modulo : that.model,
 				onSelectItem : function(model) {
 					that.currentModelItem = model;
 					that.ui.codeEditorName.text(model.get('name'))
@@ -105,6 +106,9 @@ define(function(require) {
 
 					that.modalError.showMessage(_resp.responseJSON.returnObjectError.messages);
 					util.showMessage('error', util.getJson(_resp.responseText).legalMessage || '');
+				},
+				data : {
+					exceptions : that.menuClasses.getExceptionToGenerate(),
 				}
 			});
 		},

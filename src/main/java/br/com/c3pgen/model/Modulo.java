@@ -35,6 +35,9 @@ public class Modulo extends AbstractTimestampEntity {
 	@Column(name = "NOME")
 	private String nome;
 
+	@Column(name = "PACKAGE_NAME")
+	private String packageName;
+
 	@OneToMany(mappedBy = "modulo")
 	@Cascade(CascadeType.ALL)
 	private List<ItemModulo> items;
@@ -101,6 +104,14 @@ public class Modulo extends AbstractTimestampEntity {
 
 	public void setApplication(Application application) {
 		this.application = application;
+	}
+
+	public String getPackageName() {
+		return packageName;
+	}
+
+	public void setPackageName(String packageName) {
+		this.packageName = packageName;
 	}
 
 }

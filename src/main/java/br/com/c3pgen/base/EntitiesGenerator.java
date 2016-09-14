@@ -90,7 +90,7 @@ public class EntitiesGenerator {
 		this.application = application;
 	}
 
-	public void generate() throws Exception {
+	public void generate(String... exceptions) throws Exception {
 
 		String appRootFolder = Util.currentDir() + File.separator + "out/" + application.getAppName();
 
@@ -104,9 +104,9 @@ public class EntitiesGenerator {
 		javaMybatisModelGenerator = new MarkerGenerator(freeMarkerConfig, application, "JavaModelTemplate.tpl", javaRootFolder + "/model/", TemplateFileName.MODEL_JAVA, FileType.JAVA);
 
 		flterGenerator = new MarkerGenerator(freeMarkerConfig, application, "JavaFilterTemplate.tpl", javaRootFolder + "/model/filter/", TemplateFileName.FILTER_MODEL_JAVA, FileType.JAVA);
-		
+
 		javaJsonGenerator = new MarkerGenerator(freeMarkerConfig, application, "JavaJsonTemplate.tpl", javaRootFolder + "/json/", TemplateFileName.JSON_JAVA, FileType.JAVA);
-		
+
 		basicServiceGenerator = new MarkerGenerator(freeMarkerConfig, application, "JavaBasicServiceTemplate.tpl", javaRootFolder + "/service/", TemplateFileName.SERVICE_JAVA, FileType.JAVA);
 		daoGenerator = new MarkerGenerator(freeMarkerConfig, application, "JavaDaoTemplate.tpl", javaRootFolder + "/persistence/", TemplateFileName.DAO_JAVA, FileType.JAVA);
 
@@ -141,9 +141,18 @@ public class EntitiesGenerator {
 		htmlModalGenerator = new MarkerGenerator(freeMarkerConfig, application, "HtmlModalTemplate.tpl", jsRootFolder + "/views/modalComponents/tpl/", TemplateFileName.MODAL_TEMPLATE_HTML, FileType.HTML);
 		mapperMybatisGenerator = new MarkerGenerator(freeMarkerConfig, application, "JavaMapperTemplate.tpl", javaRootFolder + "/persistence/", TemplateFileName.MYBATIS_MAPPER_JAVA, FileType.JAVA);
 
-		// htmlBootstrap2FormGenerator = new MarkerGenerator(freeMarkerConfig, application, "HtmlBootstrap2FormTemplate.tpl", jsRootFolder + "/views/${entity.name}/tpl/", TemplateFileName.FORM_TEMPLATE_HTML, FileType.HTML);
-		// htmlBootstrap2PageGenerator = new MarkerGenerator(freeMarkerConfig, application, "HtmlBootstrap2PageTemplate.tpl", jsRootFolder + "/views/${entity.name}/tpl/", TemplateFileName.PAGE_TEMPLATE_HTML, FileType.HTML);
-		// htmlBootstrap2ModalGenerator = new MarkerGenerator(freeMarkerConfig, application, "HtmlBootstrap2ModalTemplate.tpl", jsRootFolder + "/views/modalComponents/tpl/", TemplateFileName.MODAL_TEMPLATE_HTML, FileType.HTML);
+		// htmlBootstrap2FormGenerator = new MarkerGenerator(freeMarkerConfig,
+		// application, "HtmlBootstrap2FormTemplate.tpl", jsRootFolder +
+		// "/views/${entity.name}/tpl/", TemplateFileName.FORM_TEMPLATE_HTML,
+		// FileType.HTML);
+		// htmlBootstrap2PageGenerator = new MarkerGenerator(freeMarkerConfig,
+		// application, "HtmlBootstrap2PageTemplate.tpl", jsRootFolder +
+		// "/views/${entity.name}/tpl/", TemplateFileName.PAGE_TEMPLATE_HTML,
+		// FileType.HTML);
+		// htmlBootstrap2ModalGenerator = new MarkerGenerator(freeMarkerConfig,
+		// application, "HtmlBootstrap2ModalTemplate.tpl", jsRootFolder +
+		// "/views/modalComponents/tpl/", TemplateFileName.MODAL_TEMPLATE_HTML,
+		// FileType.HTML);
 
 		fragmentsGenerator = new MarkerGenerator(freeMarkerConfig, application, "Fragments.tpl", jsRootFolder + "/fragments", TemplateFileName.FRAGMENT_TEMPLATE_HTML, FileType.FRAGMENT);
 		jsModalGenerator = new MarkerGenerator(freeMarkerConfig, application, "JsModalTemplate.tpl", jsRootFolder + "/views/modalComponents/", TemplateFileName.MODAL_TEMPLATE_JS, FileType.JAVASCRIPT);
@@ -222,62 +231,75 @@ public class EntitiesGenerator {
 			} else {
 				for (ApplicationEntity ent : application.getEntities()) {
 
-					LOGGER.info("-------------------------------Processando entidade " + ent.getName() + "-------------------------------");
-					javaJsonGenerator.generateEntityFile(application, ent);
+					if (notInException(ent.getName(), exceptions)) {
+						LOGGER.info("-------------------------------Processando entidade " + ent.getName() + "-------------------------------");
+						javaJsonGenerator.generateEntityFile(application, ent);
 
-					if (application.getPersistenceFramework().equals("hibernate")) {
-						javaModelGenerator.generateEntityFile(application, ent);
-						basicServiceGenerator.generateEntityFile(application, ent);
-						basicServiceImpGenerator.generateEntityFile(application, ent);
-						daoGenerator.generateEntityFile(application, ent);
-						resourcesGenerator.generateEntityFile(application, ent);
-					} else {
-						javaMybatisModelGenerator.generateEntityFile(application, ent);
-						basicMybatisServiceGenerator.generateEntityFile(application, ent);
-						mapperMybatisGenerator.generateEntityFile(application, ent);
-						xmlMybatisGenerator.generateEntityFile(application, ent);
-						mybatisResourcesGenerator.generateEntityFile(application, ent);
-						javaMybatisModelTemplate.generateEntityFile(application, ent);
+						if (application.getPersistenceFramework().equals("hibernate")) {
+							javaModelGenerator.generateEntityFile(application, ent);
+							basicServiceGenerator.generateEntityFile(application, ent);
+							basicServiceImpGenerator.generateEntityFile(application, ent);
+							daoGenerator.generateEntityFile(application, ent);
+							resourcesGenerator.generateEntityFile(application, ent);
+						} else {
+							javaMybatisModelGenerator.generateEntityFile(application, ent);
+							basicMybatisServiceGenerator.generateEntityFile(application, ent);
+							mapperMybatisGenerator.generateEntityFile(application, ent);
+							xmlMybatisGenerator.generateEntityFile(application, ent);
+							mybatisResourcesGenerator.generateEntityFile(application, ent);
+							javaMybatisModelTemplate.generateEntityFile(application, ent);
+						}
+
+						flterGenerator.generateEntityFile(application, ent);
+
+						// geração de particulares a tecnologia da view
+						jsFormGenerator.generateEntityFile(application, ent);
+						jsColelctionGenerator.generateEntityFile(application, ent);
+						jsModelGenerator.generateEntityFile(application, ent);
+						jsPageGenerator.generateEntityFile(application, ent);
+						jsPageColelctionGenerator.generateEntityFile(application, ent);
+
+						htmlFormGenerator.generateEntityFile(application, ent);
+						htmlPageGenerator.generateEntityFile(application, ent);
+						htmlModalGenerator.generateEntityFile(application, ent);
+
+						JsMultiSelectGenerator.generateEntityFile(application, ent);
+						JsModalMultiSelectGenerator.generateEntityFile(application, ent);
+						htmlModalMultiSelectGenerator.generateEntityFile(application, ent);
+						htmlMultiSelectGenerator.generateEntityFile(application, ent);
+						jsModalGenerator.generateEntityFile(application, ent);
 					}
 
-					flterGenerator.generateEntityFile(application, ent);
+					fragmentsGenerator.generateAppFragmentFile(application.getEntities());
 
-					// geração de particulares a tecnologia da view
-					jsFormGenerator.generateEntityFile(application, ent);
-					jsColelctionGenerator.generateEntityFile(application, ent);
-					jsModelGenerator.generateEntityFile(application, ent);
-					jsPageGenerator.generateEntityFile(application, ent);
-					jsPageColelctionGenerator.generateEntityFile(application, ent);
+					jsRouterGenerator.generate(application);
+					jsRouterSpecGenerator.generate(application);
+					beansGenerator.generate(application);
+					pomGenerator.generate(application);
 
-					htmlFormGenerator.generateEntityFile(application, ent);
-					htmlPageGenerator.generateEntityFile(application, ent);
-					htmlModalGenerator.generateEntityFile(application, ent);
+					buildPropertiesGenerator.generate(application);
+					buildXmlGenerator.generate(application);
 
-					JsMultiSelectGenerator.generateEntityFile(application, ent);
-					JsModalMultiSelectGenerator.generateEntityFile(application, ent);
-					htmlModalMultiSelectGenerator.generateEntityFile(application, ent);
-					htmlMultiSelectGenerator.generateEntityFile(application, ent);
-					jsModalGenerator.generateEntityFile(application, ent);
+					produIndexGenerator.generate(application);
+					desenvIndexGenerator.generate(application);
+					produLoginGenerator.generate(application);
+					desenvLoginGenerator.generate(application);
 				}
-
-				fragmentsGenerator.generateAppFragmentFile(application.getEntities());
-
-				jsRouterGenerator.generate(application);
-				jsRouterSpecGenerator.generate(application);
-				beansGenerator.generate(application);
-				pomGenerator.generate(application);
-
-				buildPropertiesGenerator.generate(application);
-				buildXmlGenerator.generate(application);
-
-				produIndexGenerator.generate(application);
-				desenvIndexGenerator.generate(application);
-				produLoginGenerator.generate(application);
-				desenvLoginGenerator.generate(application);
 			}
 		} catch (TemplateException e) {
 			LOGGER.error(e);
 		}
+	}
+
+	private boolean notInException(String id, String... exceptions) {
+		if (exceptions != null) {
+			for (String integer : exceptions) {
+				if (id.equals(integer)) {
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 
 	public void generateMobile() throws Exception {
@@ -321,4 +343,3 @@ public class EntitiesGenerator {
 		}
 	}
 }
-

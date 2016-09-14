@@ -12,6 +12,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -146,7 +147,7 @@ public class ApplicationResources {
 	@GET
 	@Path("moduleGenerator/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response moduleGenerator(@PathParam("id") Integer id, @Context HttpServletRequest httpServletRequest) {
+	public Response moduleGenerator(@PathParam("id") Integer id, @QueryParam("exceptions") String exceptions, @Context HttpServletRequest httpServletRequest) {
 		Response response = null;
 		try {
 			String uploadFolder = httpServletRequest.getServletContext().getRealPath("/");
@@ -154,7 +155,7 @@ public class ApplicationResources {
 
 			Modulo modulo = moduloService.get(id);
 
-			GenerateFileInfo pathFile = genService.generate(modulo);
+			GenerateFileInfo pathFile = genService.generate(modulo, exceptions.split(","));
 
 			if (pathFile.getGenerateSuccess()) {
 				response = Response.ok(new JsonOk(pathFile.getStaticFilePath())).build();

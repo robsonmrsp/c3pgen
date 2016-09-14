@@ -20,6 +20,7 @@ public class JsonModulo implements Serializable {
 	private Integer id;
 	private SyncOperation syncOperation;
 	private String nome;
+	private String packageName;
 	private ArrayList<JsonItemModulo> items = new ArrayList<JsonItemModulo>();		
 	
 	public  JsonModulo() {
@@ -58,6 +59,14 @@ public class JsonModulo implements Serializable {
 	
 	public void setSyncOperation (SyncOperation  syncOperation){
 		this.syncOperation = syncOperation;
+	}
+
+	public String getPackageName() {
+		return packageName;
+	}
+
+	public void setPackageName(String packageName) {
+		this.packageName = packageName;
 	}
 	
 }

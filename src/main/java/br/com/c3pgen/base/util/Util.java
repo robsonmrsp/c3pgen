@@ -277,9 +277,9 @@ public class Util {
 
 	}
 
-//	public static String templateFolder() {
-//		return "G:\\cyg\\home\\robso\\repos\\c3pgen\\src\\main\\webapp\\entries";
-//	}
+	// public static String templateFolder() {
+	// return "G:\\cyg\\home\\robso\\repos\\c3pgen\\src\\main\\webapp\\entries";
+	// }
 
 	public static String currentDir() {
 		return currentDir;
@@ -359,7 +359,7 @@ public class Util {
 			destFileWriter.append("\n");
 			// destFileWriter.append("rootPackage: br.com.gsh.aghos."+
 			// modulo.getNome());
-			destFileWriter.append("rootPackage: br.com.gsh.aghos.internacao.uti");
+			destFileWriter.append("rootPackage: " + modulo.getPackageName());
 			destFileWriter.append("\n");
 			destFileWriter.append("corePackage: br.com.gsh.aghos.core");
 			destFileWriter.append("\n");
@@ -517,6 +517,21 @@ public class Util {
 		}
 
 		return returnValue;
+	}
+
+	public static Integer[] getInts(String exceptions) {
+
+		String[] split = exceptions.trim().split(",");
+		Integer[] ints = new Integer[split.length];
+		for (int i = 0; i < split.length; i++) {
+			try {
+				Integer integer = new Integer(split[i]);
+				ints[i] = integer;
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		}
+		return ints;
 	}
 
 }

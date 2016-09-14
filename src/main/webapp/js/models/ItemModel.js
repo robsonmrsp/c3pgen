@@ -18,6 +18,7 @@ define(function(require) {
 		defaults : {
 			id: null,
 	    	name : '',    	
+	    	checked : true,    	
 	    	description : '',    	
 			type : null,
 			permissions : null,

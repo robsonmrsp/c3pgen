@@ -8,7 +8,8 @@ define(function(require) {
 	// End of "Import´s definition"
 
 	// #####################################################################################################
-	// ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨ MAIN BODY  ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
+	// ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨ MAIN BODY
+	// ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
 	// #####################################################################################################
 
 	var ItemModuloModel = BaseModel.extend({
@@ -16,11 +17,13 @@ define(function(require) {
 		urlRoot : 'rs/crud/itemModulos',
 
 		defaults : {
-			id: null,
-	    	name : '',    	
-	    	yamlContent : '',    	
+			id : null,
+			name : '',
+			checked : true,
+
+			yamlContent : '',
 			modulo : null,
-		
+
 		}
 	});
 	return ItemModuloModel;

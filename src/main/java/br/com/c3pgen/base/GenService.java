@@ -64,7 +64,7 @@ public class GenService {
 		return role;
 	}
 
-	public GenerateFileInfo generate(Modulo modulo) throws Exception {
+	public GenerateFileInfo generate(Modulo modulo, String ... exceptions) throws Exception {
 
 		Application newApplication = Util.getApplicationFrom(modulo);
 
@@ -82,7 +82,7 @@ public class GenService {
 
 		if (validateMessages.isEmpty()) {
 			LOGGER.info("Gerando as entidades...");
-			entitiesGenerator.generate();
+			entitiesGenerator.generate(exceptions);
 			LOGGER.info("Concluida a geração da aplicação");
 
 			String a = Util.currentDir() + File.separator + "out/" + newApplication.getAppName();

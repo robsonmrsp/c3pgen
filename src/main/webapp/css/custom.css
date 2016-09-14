@@ -490,3 +490,8 @@ ul.editor-list li:hover a {
 	color: red !important;
 	cursor: pointer;
 }
+.button_cell {
+	margin-left: 2px !important;
+	margin-right: 2px !important;
+	border-radius: 3px !important;
+}
