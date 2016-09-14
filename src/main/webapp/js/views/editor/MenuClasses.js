@@ -49,7 +49,7 @@ define(function(require) {
 					that.model.save({}, {
 						success : function() {
 							console.log('salvando nome')
-							that.render();
+//							that.render();
 						},
 						error : function() {
 

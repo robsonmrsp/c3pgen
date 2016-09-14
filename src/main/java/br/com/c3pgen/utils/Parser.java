@@ -1803,6 +1803,17 @@ public class Parser {
 		applyBasicJsonValues(jsonItemModulo, itemModulo);
 		return jsonItemModulo;
 	}
+	
+	private static JsonItemModulo toBasicJson2(ItemModulo itemModulo) {
+		JsonItemModulo jsonItemModulo = new JsonItemModulo();
+		applyBasicJsonValues(jsonItemModulo, itemModulo);
+		Modulo modulo_ = itemModulo.getModulo();
+		if (modulo_ != null) {
+			jsonItemModulo.setModulo(toBasicJson(modulo_));
+		}
+		
+		return jsonItemModulo;
+	}
 
 	private static ItemModulo toBasicEntity(JsonItemModulo jsonItemModulo) {
 		ItemModulo itemModulo = new ItemModulo();
@@ -1896,7 +1907,7 @@ public class Parser {
 		List<ItemModulo> listItems = modulo.getItems();
 		if (listItems != null) {
 			for (ItemModulo loopItemModulo : listItems) {
-				jsonModulo.getItems().add(toBasicJson(loopItemModulo));
+				jsonModulo.getItems().add(toBasicJson2(loopItemModulo));
 			}
 		}
 		return jsonModulo;
