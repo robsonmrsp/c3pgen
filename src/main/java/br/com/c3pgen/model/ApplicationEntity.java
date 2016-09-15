@@ -241,12 +241,14 @@ public class ApplicationEntity extends AbstractTimestampEntity {
 		return Boolean.FALSE;
 	}
 
+	//pra começar vamos devolver apenas 1
 	public List<Attribute> getBasicSearches() {
 		List<Attribute> retAttr = new ArrayList<Attribute>();
 
 		for (Attribute attribute : getAttributes()) {
 			if (attribute.getBasicSearch()) {
 				retAttr.add(attribute);
+				return retAttr;
 			}
 		}
 		return retAttr;

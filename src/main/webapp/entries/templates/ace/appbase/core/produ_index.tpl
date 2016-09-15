@@ -76,7 +76,7 @@
 		</div>
 	</div>
 	<div class="main-container" id="main-container">
-		<div id="sidebar" class="sidebar responsive sidebar-fixed">
+		<div id="sidebar" class="sidebar responsive ">
 			<ul class="nav nav-list" id='nav-accordion'>
 				<li>
 					<a href="#">

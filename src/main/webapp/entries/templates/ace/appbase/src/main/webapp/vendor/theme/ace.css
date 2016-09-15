@@ -10482,6 +10482,9 @@ td .lbl:only-child {
 .widget-main.padding-4 {
   padding: 4px;
 }
+.widget-main.padding-0 {
+  padding: 0px !important;
+}
 .widget-main.padding-2 {
   padding: 2px;
 }

@@ -1,5 +1,5 @@
 define([ 'jquery', 'bootbox', 'bootstrap', 'jqueryNumeric', 'jqueryMaskInput', 'jqueryScrollTo', 'jqueryValidatorEngine', 'jqueryValidatorEnginePtBr', 'morris', 'raphael', 'datetimepicker', 'bootbox', 'datetimepicker_lang_pt_BR', 'jqueryUI', 'nprogress', 'aceSettings', 'ace',
-		'aceSidebar', 'jqueryGritter', 'selectize' ], function($) {
+		'aceSidebar', 'jqueryGritter', 'selectize', 'jqueryForm' ], function($) {
 	$.mask.definitions['h'] = "[A-Fa-f0-9]";
 	$.fn.datetimepicker.defaults.icons = {
 		time : "fa fa-clock-o",

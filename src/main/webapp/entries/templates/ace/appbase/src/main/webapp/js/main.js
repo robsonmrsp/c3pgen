@@ -40,6 +40,7 @@ require.config({
 		'aceSidebar' : '../vendor/theme/ace.sidebar',
 		'jqueryGritter' : '../vendor/jquery.gritter-1.7.4/js/jquery.gritter',
 		'selectize' : '../vendor/selectize/js/standalone/selectize',
+		'jqueryForm' : '../vendor/jquery.form/jquery.form',
 	},
 	shim : {
 		'underscore' : {
@@ -128,6 +129,7 @@ require.config({
 
 		'jqueryGritter' : [ 'jquery' ],
 		'selectize' : [ 'jquery' ],
+		'jqueryForm' : [ 'jquery' ],
 	},
 	wrapShim : true,
 });

@@ -79,9 +79,9 @@ public class BaseAppGenerator {
 
 	private static void generateStaticFromCommonFiles(Application application) throws IOException {
 
-		String baseCommonFolder = Util.currentDir() + File.separator + "entries" +  "common-files" + File.separator;
+		String baseCommonFolder = Util.currentDir() + File.separator + "entries/" +  "common-files" + File.separator;
 		if (application.getView().equalsIgnoreCase("angular")) {
-			baseCommonFolder = Util.currentDir() + File.separator + "entries" +  "angular-common-files" + File.separator;
+			baseCommonFolder = Util.currentDir() + File.separator + "entries/" +  "angular-common-files" + File.separator;
 		}
 		String fileInputResources = baseCommonFolder + "/appbase/src/main/resources";
 
@@ -94,9 +94,9 @@ public class BaseAppGenerator {
 	}
 
 	private static void generateStaticFromTemplateFiles(Application application) throws IOException {
-		String baseTemplateFolder = Util.currentDir() + File.separator + "entries" +  "templates" + File.separator + application.getSkin();
+		String baseTemplateFolder = Util.currentDir() + File.separator + "entries" +   File.separator + "templates" + File.separator + application.getSkin();
 		if (application.getView().equalsIgnoreCase("angular")) {
-			baseTemplateFolder = Util.currentDir() + File.separator + "entries" +  "angular-templates" + File.separator + application.getSkin();
+			baseTemplateFolder = Util.currentDir() + File.separator + "entries" + File.separator +   "angular-templates" + File.separator + application.getSkin();
 		}
 		String fileInputResources = baseTemplateFolder + "/appbase/src/main/resources";
 		String fileInputWebApp = baseTemplateFolder + "/appbase/src/main/webapp";

@@ -1,0 +1,5 @@
+appName: Qualidade2
+skin: ace
+view: backbone
+rootPackage: br.com.gvs.qualidade
+corePackage: br.com.gvs.core

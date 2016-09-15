@@ -443,7 +443,7 @@
 							<cssSourceFiles>
 								<cssSourceFile>../vendor/bootstrap/css/bootstrap.css</cssSourceFile>
 								<cssSourceFile>../vendor/jquery.ui/jquery-ui-1.10.4.custom.min.css</cssSourceFile>
-								<cssSourceFile>../vendor/font.awesome/font-awesome-4.3.0/css/font-awesome.css</cssSourceFile>
+								<cssSourceFile>../vendor/font.awesome/font-awesome-4.6.3/css/font-awesome.css</cssSourceFile>
 								<cssSourceFile>../vendor/backgrid/backgrid.css</cssSourceFile>
 								<cssSourceFile>../vendor/bootstrap.datetimepicker/bootstrap-datetimepicker.css</cssSourceFile>
 								<cssSourceFile>../vendor/jquery.validationEngine/validationEngine.jquery.css</cssSourceFile>

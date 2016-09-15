@@ -157,7 +157,7 @@ define(function(require) {
 			this.paginator = new Backgrid.Extension.Paginator({
 				columns : this.getColumns(),
 				collection : this.${firstLower(entity.name)}s,
-				className : 'dataTables_paginate paging_simple_numbers',
+				className : ' paging_simple_numbers',
 				uiClassName : 'pagination',
 			});
 
