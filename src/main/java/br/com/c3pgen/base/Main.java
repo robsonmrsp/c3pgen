@@ -35,7 +35,7 @@ public class Main {
 		// generatoToInput("gamification", new
 		// File("G:\\cyg\\home\\robso\\repos\\pizza\\in\\gamification"));
 
-		generatoToInput("qualidade2", new File("C:\\cyg\\home\\robson\\repos\\c3pgen\\in\\qualidade2"));
+		generatoToInput("qualidade3", new File("C:\\cyg\\home\\robson\\repos\\c3pgen\\in\\qualidade3"));
 		//
 	}
 
