@@ -14,7 +14,7 @@ define(function(require) {
 	var ${entity.name}Model = require('models/${entity.name}Model');
 	var ${entity.name}Collection = require('collections/${entity.name}Collection');
 	<#list entity.attributes as att>
-		<#if att.viewApproach?? >
+		<#if att.viewApproach?? && att.viewApproach.type??>
 			<#if att.viewApproach.type == 'combo'>		
 	var ${att.type.className}Collection = require('collections/${att.type.className}Collection');
 			</#if>

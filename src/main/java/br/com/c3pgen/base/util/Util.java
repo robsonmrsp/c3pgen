@@ -282,8 +282,8 @@ public class Util {
 	}
 
 	public static String currentDir() {
-//		return currentDir;
-		return templateFolder();
+		return currentDir;
+//		return templateFolder();
 	}
 
 	public static String firstLowerCase(String verb) {

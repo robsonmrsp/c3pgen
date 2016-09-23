@@ -179,8 +179,10 @@
 
 <#if entity.relationships??>	
 <#list entity.relationships as rel >
+<#if rel.viewApproach.type??>
 	<#if rel.viewApproach.type == 'modal'>
 <div id='${firstLower(rel.name)}Modal'></div>
 	</#if>
+</#if>
 </#list>
 </#if>

@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix='security' uri='http://www.springframework.org/security/tags'%>
+<c:set var="authenticated" value="false" />
 <html>
 <head>
 <meta charset="utf-8">
@@ -15,6 +16,12 @@
 <style>
 </style>
 </head>
+<security:authorize access="isAuthenticated()">
+	<c:set var="authenticated" value="true" />
+	<c:set var="userName">
+		<security:authentication property="principal.username" />
+	</c:set>
+</security:authorize>
 <body class="hide-sidebar">
 	<!-- Simple splash screen-->
 	<div class="splash" id="loadInitialPanel" class="fader" style="position: fixed; text-align: center; height: 100%; width: 100%; top: 0; right: 0; left: 0; z-index: 99999999999; opacity: 0.99;">
@@ -48,7 +55,7 @@
 					<li class="dropdown ">
 						<a class="dropdown-toggle label-menu-corner" href="#" data-toggle="dropdown" aria-expanded="true">
 							<img src="http://www.assetsauditoria.com.br/imagens/boneco3.png" class="img-circle m-b" alt="logo" style="height: 29px;">
-							<small style="font-size: 14px"> Chico de Toinha </small>
+							<small style="font-size: 14px"> ${userName } </small>
 						</a>
 						<ul class="dropdown-menu animated fadeInRight m-t-xs">
 							<li>
@@ -96,12 +103,12 @@
 												<h5>Módulos</h5>
 											</a>
 										</td>
-<!-- 										<td> -->
-<!-- 											<a href="contacts.html"> -->
-<!-- 												<i class="pe pe-7s-users text-success"></i> -->
-<!-- 												<h5>Contacts</h5> -->
-<!-- 											</a> -->
-<!-- 										</td> -->
+										<!-- 										<td> -->
+										<!-- 											<a href="contacts.html"> -->
+										<!-- 												<i class="pe pe-7s-users text-success"></i> -->
+										<!-- 												<h5>Contacts</h5> -->
+										<!-- 											</a> -->
+										<!-- 										</td> -->
 									</tr>
 								</tbody>
 							</table>

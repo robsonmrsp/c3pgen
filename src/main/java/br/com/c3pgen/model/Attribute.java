@@ -202,6 +202,9 @@ public class Attribute extends AbstractTimestampEntity {
 	}
 
 	public ViewApproach getViewApproach() {
+		if (viewApproach == null) {
+			setViewApproach(ViewApproach.noneInstance());
+		}
 		return viewApproach;
 	}
 

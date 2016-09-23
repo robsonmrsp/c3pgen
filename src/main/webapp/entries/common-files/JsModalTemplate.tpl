@@ -28,7 +28,7 @@ define(function(require) {
 	<#if entity.relationships??>	
 	<#list entity.relationships as rel>
 	<#if rel.showInPages >
-		<#if rel.viewApproach?? >
+		<#if rel.viewApproach?? && rel.viewApproach.type??>
 			<#if rel.viewApproach.type  == 'combo'  >
 	var ${rel.model}Collection = require('collections/${rel.model}Collection');			
 			</#if>

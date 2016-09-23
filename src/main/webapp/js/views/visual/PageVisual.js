@@ -336,7 +336,7 @@ define(function(require) {
 			application.fetch({
 				success : function(_model, _resp, _options) {
 					console.log(_resp)
-					that.modalError.showMessage(_resp);
+//					that.modalError.showMessage(_resp);
 				},
 				error : function(_model, _resp, _options) {
 					util.showMessage('error', util.getJson(_resp.responseText).legalMessage || '');

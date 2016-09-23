@@ -20,7 +20,7 @@ define(function(require) {
 
 	var CardItem = Marionette.ItemView.extend({
 		template : _.template(CardApplicationItemTemplate),
-		className : "col-lg-3 animated-panel zoomIn",
+		className : "col-lg-4 animated-panel zoomIn",
 		events : {
 			'click .bt-gerar' : 'geraAplicacao'
 		},
@@ -37,7 +37,6 @@ define(function(require) {
 				success : function(_model, _resp, _options) {
 					that.model.url = old;
 					util.showMessage('info', _resp.resp);
-					console.log(download);
 					download(_resp.resp);
 				},
 				error : function(_model, _resp, _options) {

@@ -59,17 +59,11 @@ define(function(require) {
 
 		changeOwner : function(evt) {
 			var $select = $(evt.currentTarget);
-			console.log(this.ui.checkOwnerSource.is(':checked'))
-			console.log(this.ui.checkOwnerTarget.is(':checked'))
 			this.ui.checkOwnerTarget.prop('checked', false);
 			this.ui.checkOwnerSource.prop('checked', false);
-
 			$select.prop('checked', true);
-			//			
-			// if (this.ui.checkOwnerSource.is(':checked')) {
-			// }
-			// if (this.ui.checkOwnerTarget.is(':checked')) {
-			// }
+
+			this.saveRelation(this)();
 		},
 
 		saveRelation : function(that) {

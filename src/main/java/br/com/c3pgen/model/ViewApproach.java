@@ -112,6 +112,9 @@ public class ViewApproach extends AbstractTimestampEntity {
 	}
 
 	public String getType() {
+		if (type == null) {
+			setType("NONE");
+		}
 		return type;
 	}
 

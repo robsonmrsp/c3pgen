@@ -489,52 +489,7 @@
 					</skip>
 				</configuration>
 			</plugin>
-<!-- 			<plugin> -->
-<!-- 				<groupId>com.github.searls</groupId> -->
-<!-- 				<artifactId>jasmine-maven-plugin</artifactId> -->
-<!-- 				<version>2.0-beta-02</version> -->
-<!-- 				<extensions>true</extensions> -->
-<!-- 				<executions> -->
-<!-- 					<execution> -->
-<!-- 						<goals> -->
-<!-- 							<goal>test</goal> -->
-<!-- 						</goals> -->
-<!-- 					</execution> -->
-<!-- 				</executions> -->
-<!-- 				<configuration> -->
-<!-- 					<debug>true</debug> -->
-<!-- 					<webDriverClassName>org.openqa.selenium.phantomjs.PhantomJSDriver</webDriverClassName> -->
 
-<!-- 					<webDriverCapabilities> -->
-<!-- 						<capability> -->
-<!-- 							<name>phantomjs.cli.args</name> -->
-<!-- 							<list> -->
-<!-- 								<value>--disk-cache=true</value> -->
-<!-- 								<value>--max-disk-cache-size=256</value> -->
-<!-- 							</list> -->
-<!-- 						</capability> -->
-<!-- 					</webDriverCapabilities> -->
-
-<!-- 					<jsSrcDir>${basedir}/src/main/webapp/js</jsSrcDir> -->
-
-<!-- 					<additionalContexts> -->
-<!-- 						<context> -->
-<!-- 							<contextRoot>vendor</contextRoot> -->
-<!-- 							<directory>${basedir}/src/main/webapp/vendor</directory> -->
-<!-- 						</context> -->
-<!-- 						<context> -->
-<!-- 							<contextRoot>js</contextRoot> -->
-<!-- 							<directory>${basedir}/src/main/webapp/js</directory> -->
-<!-- 						</context> -->
-<!-- 					</additionalContexts> -->
-
-<!-- 					<preloadSources> -->
-<!-- 						<source>vendor/require/require.js</source> -->
-<!-- 					</preloadSources> -->
-
-<!-- 					<customRunnerTemplate>src/main/webapp/SpecRunner.html</customRunnerTemplate> -->
-<!-- 				</configuration> -->
-<!-- 			</plugin> -->
 			<plugin>
 				<groupId>com.samaxes.maven</groupId>
 				<artifactId>minify-maven-plugin</artifactId>

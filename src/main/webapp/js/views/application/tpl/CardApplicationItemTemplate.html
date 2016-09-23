@@ -1,20 +1,30 @@
-<div class="hpanel stats hyellow">
-	<div class="panel-body text-center" style="padding: 5px">
-		<a class="skin-name" href='javascript:void(-1)' target="_blank">
-			<i class="pe-7s-display1 fa-5x " data-toggle="tooltip" data-placement="right" title="" data-original-title="Visualizar Template escolhido"></i>
-		</a>
-		<h3 class="font-extra-bold no-margins text-success">
-			<a style="color: #3498db; font-size: 1.5em" href="#app/editApplication/{{id}}">{{name}}</a>
-		</h3>
-		<p>{{description}}</p>
-		</p>
-		<small class="text-left">
-			<span class="text-left " style="text-decoration: underline;">Entidades </span>
-			<span class="text-left ">
-				<p class="text-left desc-entities"></p>
-			</span>
-		</small>
-		<div class="text-center" style="border-top: solid 1px; padding-top: 5px; border-top-color: rgb(228, 229, 231);"></div>
+
+<div class="hpanel hgreen" >
+	<div class="panel-body" style="min-height: 180px">
+		<span class="label label-success pull-right"></span>
+		<div class="row">
+			<div class="col-sm-8">
+				<h4>
+					<a style="color: #3498db; font-size: 1.5em" href="#app/editApplication/{{id}}">{{name}}</a>
+				</h4>
+				<p>{{description}}</p>
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="project-label">ENTIDADES</div>
+						<small>
+							<p class="text-left desc-entities"></p>
+						</small>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-4 project-info">
+				<div class="project-people">
+					<img alt="logo" class="" src="images/templates/ace.png" width="180">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="panel-footer">
 		<a href="javascript:void(-1)" class="btn btn-info bt-gerar btn-xs">
 			<i class="fa fa-download "></i>
 			Gerar

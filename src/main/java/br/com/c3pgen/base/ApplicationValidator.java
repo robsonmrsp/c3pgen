@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
 import br.com.c3pgen.model.Application;
@@ -56,12 +57,12 @@ public class ApplicationValidator {
 					// Donas do relacionamento.
 					// /*Eliminando a checagem em situações de auto
 					// relacionamento*/
-					if (main.getOwnerName() != null && reverse.getOwnerName() != null && !(entity.equals(entityRel))) {
-						applicationValidatorMessages.addMessage("No Relacionamento (" + entity.getName() + "/" + main.getName() + ") entre: " + entity.getName() + " e " + entityRel.getName()
-								+ " Voce deve definir APENAS uma das partes do relacionamento como \"O Dono\" do relacionamento.");
+					if (StringUtils.isNotEmpty(main.getOwnerName()) && StringUtils.isNotEmpty(reverse.getOwnerName()) && !(entity.equals(entityRel))) {
+						applicationValidatorMessages
+								.addMessage("No Relacionamento (" + entity.getName() + "/" + main.getName() + ") entre: " + entity.getName() + " e " + entityRel.getName() + " Voce deve definir APENAS uma das partes do relacionamento como \"O Dono\" do relacionamento.");
 					}
 					// Verifica se Foi definido o DONO do relacionamento
-					if (!main.getUniDirecional() && main.getOwnerName() == null && reverse.getOwnerName() == null) {
+					if (!main.getUniDirecional() && StringUtils.isEmpty(main.getOwnerName()) && StringUtils.isEmpty(reverse.getOwnerName())) {
 						applicationValidatorMessages.addMessage("No Relacionamento (" + entity.getName() + "/" + main.getName() + ")  entre: " + entity.getName() + " e " + entityRel.getName() + " Voce deve definir \"O Dono\" do relacionamento. OU definir no relacionamento "
 								+ main.getName() + "uniDirecional: true|Yes");
 					}
@@ -75,7 +76,7 @@ public class ApplicationValidator {
 					if (entityModel == null) {
 						applicationValidatorMessages.addMessage("Erro analizando o relacionamento " + main.getName() + "na entidade " + entity.getName() + ". Não existe a entidade " + main.getModel());
 					}
-					if (ownerName != null) {
+					if (StringUtils.isNotEmpty(ownerName)) {
 						Boolean ownerNotFound = true;
 
 						for (Relationship attr : entityModel.getRelationships()) {

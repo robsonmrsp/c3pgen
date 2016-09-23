@@ -92,7 +92,11 @@ define(function(require) {
 				refresh : function(newSourceModel, newTargetModel) {
 
 					this.get('sourceRelationModel').set(newSourceModel);
+
 					this.get('targetRelationModel').set(newTargetModel);
+
+					this.get('applicationRelationshipModel').set('source',newSourceModel);
+					this.get('applicationRelationshipModel').set('target',newTargetModel);
 
 					this._updateLabels();
 				},
