@@ -112,6 +112,9 @@ public class Attribute extends AbstractTimestampEntity {
 	}
 
 	public String getName() {
+		if (name != null) {
+			return name.trim();
+		}
 		return name;
 	}
 
@@ -231,6 +234,14 @@ public class Attribute extends AbstractTimestampEntity {
 	}
 
 	public String getDateFormat() {
+		if (dateFormat == null) {
+			if (getType().getClassName().equalsIgnoreCase("Date")) {
+				setDateFormat("DD/MM/YYYY");
+			}
+			if (getType().getClassName().equalsIgnoreCase("Datetime")) {
+				setDateFormat("DD/MM/YYYY HH:MM");
+			}
+		}
 		return dateFormat;
 	}
 
@@ -248,5 +259,4 @@ public class Attribute extends AbstractTimestampEntity {
 	public void setBasicSearch(Boolean basicSearch) {
 		this.basicSearch = basicSearch;
 	}
-
 }

@@ -9,8 +9,7 @@
 	<http auto-config="true" use-expressions="true">
 
 		<!-- <intercept-url pattern="/login.html" access="permitAll" /> -->
-		<intercept-url pattern="/index.jsp" access="hasRole('ROLE_USER')" />
-
+		<intercept-url pattern="/index.jsp" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')" />
 		<!-- <intercept-url pattern="/rs/cfg/**" access="hasRole('ROLE_USER')" /> -->
 
 		<!-- <intercept-url pattern="/rs/cfg/*" access="hasRole('ROLE_USER')" /> -->

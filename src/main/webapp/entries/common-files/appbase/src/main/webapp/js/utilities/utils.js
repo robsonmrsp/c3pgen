@@ -322,10 +322,14 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 			}
 		},
 
-		goPage : function(hash) {
-			window.setTimeout(function() {
+		goPage : function(hash, wait) {
+			if (wait)
+				window.setTimeout(function() {
+					window.location.hash = hash;
+				}, 2000);
+			else {
 				window.location.hash = hash;
-			}, 1000);
+			}
 		},
 
 		uploadImage : function(elementName, successFunction, errorFunction) {

@@ -146,13 +146,19 @@ define(function(require) {
 				this.ui.groupInputModal${firstUpper(att.name)}.datetimepicker({
 				<#if att.type.className == 'Date'>		
 					pickTime : false,
-				</#if>					
+				</#if>			
+				<#if att.type.className == 'Datetime'>		
+					pickTime : true,
+				</#if>										
 					language : 'pt_BR',
 				});
 				this.ui.inputModal${firstUpper(att.name)}.datetimepicker({
 				<#if att.type.className == 'Date'>		
 					pickTime : false,
 				</#if>
+				<#if att.type.className == 'Datetime'>		
+					pickTime : true,
+				</#if>								
 					language : 'pt_BR',
 				});
 			</#if>

@@ -62,7 +62,7 @@ public class Application extends AbstractTimestampEntity {
 
 	@Column(name = "BOOTSTRAP_VERSION")
 	private String bootstrapVersion = "3";
-	
+
 	@Column(name = "PERSISTENCE_FRAMEWORK")
 	private String persistenceFramework = "hibernate";
 
@@ -79,8 +79,6 @@ public class Application extends AbstractTimestampEntity {
 	@OneToMany(mappedBy = "application")
 	@Cascade(CascadeType.ALL)
 	private Set<ApplicationRelationship> applicationRelationships;
-
-
 
 	@ManyToOne
 	@JoinColumn(name = "id_client")
@@ -179,6 +177,17 @@ public class Application extends AbstractTimestampEntity {
 		if (entities != null) {
 			for (ApplicationEntity e : entities) {
 				if (e.getHasMobile()) {
+					return Boolean.TRUE;
+				}
+			}
+		}
+		return Boolean.FALSE;
+	}
+
+	public Boolean hasClient() {
+		if (entities != null) {
+			for (ApplicationEntity e : entities) {
+				if (e.getHasOwner()) {
 					return Boolean.TRUE;
 				}
 			}

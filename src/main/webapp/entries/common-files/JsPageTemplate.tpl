@@ -205,13 +205,19 @@ define(function(require) {
 				this.ui.groupInput${firstUpper(att.name)}.datetimepicker({
 				<#if att.type.className == 'Date'>		
 					pickTime : false,
-				</#if>					
+				</#if>			
+				<#if att.type.className == 'Datetime'>		
+					pickTime : true,
+				</#if>										
 					language : 'pt_BR',
 				});
 				this.ui.input${firstUpper(att.name)}.datetimepicker({
 				<#if att.type.className == 'Date'>		
 					pickTime : false,
 				</#if>
+				<#if att.type.className == 'Datetime'>		
+					pickTime : true,
+				</#if>								
 					language : 'pt_BR',
 				});
 			</#if>
@@ -339,6 +345,17 @@ define(function(require) {
 				label : "${rel.displayName}",
 				cell : CustomStringCell.extend({
 					fieldName : '${firstLower(rel.name)}.${rel.viewApproach.textField}',
+				}),
+			},	
+					</#if>
+					<#if rel.viewApproach.type == 'combo'>
+			{
+				name : "${firstLower(rel.name)}.${rel.viewApproach.comboVal}",
+				editable : false,
+				sortable : true,  
+				label : "${rel.displayName}",
+				cell : CustomStringCell.extend({
+					fieldName : '${firstLower(rel.name)}.${rel.viewApproach.comboVal}',
 				}),
 			},	
 					</#if>

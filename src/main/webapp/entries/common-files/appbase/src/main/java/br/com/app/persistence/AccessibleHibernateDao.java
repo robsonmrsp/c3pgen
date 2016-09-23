@@ -10,7 +10,9 @@ import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.joda.time.LocalDateTime;
 
+<#if application.hasClient()>
 import ${application.rootPackage}.model.Client;
+</#if>
 import ${application.corePackage}.persistence.pagination.Pagination;
 import ${application.corePackage}.persistence.pagination.PaginationParams;
 import ${application.corePackage}.persistence.pagination.Paginator;
@@ -23,6 +25,7 @@ public abstract class AccessibleHibernateDao<Entity> extends HibernateDao<Entity
 		super(clazz);
 	}
 
+	<#if application.hasClient()>
 	public List<Entity> getAll(Client owner) {
 		List<Entity> entities = criteria().add(Restrictions.eq("owner", owner)).list();
 		return entities;
@@ -44,4 +47,5 @@ public abstract class AccessibleHibernateDao<Entity> extends HibernateDao<Entity
 	public List<Entity> searchByText(String field, String searchText, Client owner) {
 		return criteria().add(Restrictions.ilike(field, searchText, MatchMode.ANYWHERE)).add(Restrictions.eq("owner", owner)).list();
 	}
+	</#if>
 }

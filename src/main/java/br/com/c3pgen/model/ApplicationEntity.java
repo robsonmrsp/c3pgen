@@ -241,7 +241,7 @@ public class ApplicationEntity extends AbstractTimestampEntity {
 		return Boolean.FALSE;
 	}
 
-	//pra começar vamos devolver apenas 1
+	// pra começar vamos devolver apenas 1
 	public List<Attribute> getBasicSearches() {
 		List<Attribute> retAttr = new ArrayList<Attribute>();
 
@@ -250,6 +250,10 @@ public class ApplicationEntity extends AbstractTimestampEntity {
 				retAttr.add(attribute);
 				return retAttr;
 			}
+		}
+		
+		if (retAttr.size() == 0 && getAttributes().size() > 0) {
+			retAttr.add(getAttributes().get(0));
 		}
 		return retAttr;
 	}

@@ -115,7 +115,11 @@ public class ViewApproach extends AbstractTimestampEntity {
 		if (type == null) {
 			setType("NONE");
 		}
-		return type;
+		if(type.equalsIgnoreCase("DateTimepicker")){
+			setType("datepicker");
+		}
+		
+		return type.toLowerCase();
 	}
 
 	public void setType(String type) {
