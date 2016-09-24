@@ -17,8 +17,8 @@ require.config({
 		'raphael' : '../vendor/raphael/raphael',
 		'underscore' : '../vendor/underscore/underscore-1.5.1',
 		'backbone' : '../vendor/backbone/backbone-1.1.2',
-		'backgrid' : '../vendor/backgrid/backgrid-0.3.5',
 		'backboneLocalstorage' : '../vendor/backbone.localStorage/backbone.localStorage',
+		'backgrid' : '../vendor/backgrid/backgrid-0.3.5',
 		'backgridMomentCell' : '../vendor/backgrid/extensions/backgrid-moment-cell',
 		'backboneSelectAll' : '../vendor/backgrid/extensions/backgrid-select-all',
 
@@ -41,6 +41,11 @@ require.config({
 		'jqueryGritter' : '../vendor/jquery.gritter-1.7.4/js/jquery.gritter',
 		'metisMenu' : '../vendor/metisMenu/dist/metisMenu',
 		'editable' : '../vendor/bootstrap3-editable/js/bootstrap-editable',
+		'joint' : '../vendor/joint/joint',
+		'shapesUml' : '../vendor/joint/joint.shapes.uml',
+		// 'shapesErd' : '../vendor/joint/joint.shapes.erd',
+		'lodash' : '../vendor/lodash/lodash',
+		'download' : '../vendor/download/download',
 	},
 	shim : {
 		'underscore' : {
@@ -102,7 +107,14 @@ require.config({
 			deps : [ 'jquery', 'moment' ],
 			exports : 'datetimepicker_lang_pt_BR'
 		},
+		'joint' : {
+			deps : [ 'jquery', 'backbone', 'underscore' ],
+			exports : 'joint'
+		},
 		'jqueryNumeric' : [ 'jquery' ],
+
+		'shapesUml' : [ 'joint' ],
+		// 'shapesErd' : [ 'joint' ],
 
 		'multiselect' : [ 'jquery' ],
 		'list' : {
@@ -123,11 +135,17 @@ require.config({
 		'jqueryGritter' : [ 'jquery' ],
 
 		'metisMenu' : [ 'jquery' ],
-		'editable' : [ 'jquery' ],
+		'editable' : [ 'jquery', 'bootstrap' ],
+	// 'jqueryJspanel' : [ 'jquery' ],
 	},
 	wrapShim : true,
 });
-
+requirejs.onResourceLoad = function(context, map, depArray) {
+	// var duration = new Date() - start;
+//	console.log("Carregando...", depArray);
+//	console.log("Carregando...", map.id);
+}
 require([ 'App' ], function(App) {
 	App.initialize();
+
 });

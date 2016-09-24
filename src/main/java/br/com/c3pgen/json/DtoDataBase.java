@@ -1,7 +1,5 @@
 package br.com.c3pgen.json;
 
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class DtoDataBase {

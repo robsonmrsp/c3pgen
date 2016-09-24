@@ -2,16 +2,13 @@ package br.com.c3pgen.model.filter;
 
 import java.io.Serializable;
 
+import org.joda.time.LocalDateTime;
+
+import br.com.c3pgen.serialization.CustomLocalDateTimeDeserializer;
+import br.com.c3pgen.serialization.CustomLocalDateTimeSerializer;
+
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
-
-import br.com.c3pgen.serialization.CustomLocalDateSerializer;
-import br.com.c3pgen.serialization.CustomLocalDateDeserializer;
-import org.joda.time.LocalDate;
-import org.joda.time.LocalDateTime;
-import br.com.c3pgen.serialization.CustomLocalDateTimeSerializer;
-import br.com.c3pgen.serialization.CustomLocalDateTimeDeserializer;
 
 
 /**

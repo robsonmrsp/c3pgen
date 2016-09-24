@@ -1,69 +1,21 @@
 package br.com.c3pgen.model;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToOne;
-import javax.persistence.ManyToMany;
-
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import org.hibernate.annotations.Type;
-import org.hibernate.envers.Audited;
-import org.joda.time.LocalDate;
-import org.joda.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-
-import br.com.c3pgen.serialization.CustomLocalDateSerializer;
-import br.com.c3pgen.serialization.CustomLocalDateTimeSerializer;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
+import org.hibernate.envers.Audited;
 
-/**
- * generated: 03/09/2015 14:51:48 Entity [name=Attribute, displayName=Atributo,
- * hasOwner=true, attributes=[Attribute [name=name, displayName=Nome,
- * type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy,
- * placeholder=null, validationRules=null], Attribute [name=displayName,
- * displayName=Nome apresentado na tela, type=AttributeType [className=String],
- * mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null],
- * Attribute [name=maxLen, displayName=Tamanho máximo, type=AttributeType
- * [className=Integer], mask=, dateFormat=dd/MM/yyyy, placeholder=null,
- * validationRules=null], Attribute [name=tableFieldName, displayName=Nome da
- * coluna na tabela, type=AttributeType [className=String], mask=,
- * dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute
- * [name=masc, displayName=Formato de Máscara, type=AttributeType
- * [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null,
- * validationRules=null], Attribute [name=defaultValue, displayName=Valor
- * padrão, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy,
- * placeholder=null, validationRules=null], Attribute [name=placeholder,
- * displayName=Placeholder, type=AttributeType [className=String], mask=,
- * dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute
- * [name=required, displayName=Obrigatório, type=AttributeType
- * [className=Boolean], mask=, dateFormat=dd/MM/yyyy, placeholder=null,
- * validationRules=null], Attribute [name=unique, displayName=Único,
- * type=AttributeType [className=Boolean], mask=, dateFormat=dd/MM/yyyy,
- * placeholder=null, validationRules=null]], relationships=[Relationship
- * [name=entity, model=TheEntity,
- * viewAproach=com.mr.codegenerator.entities.ViewAproach@6276ae34,
- * type=ManyToOne, displayName=Entidade, implementation=], Relationship
- * [name=type, model=AttributeType,
- * viewAproach=com.mr.codegenerator.entities.ViewAproach@7946e1f4,
- * type=ManyToOne, displayName=Tipo, implementation=], Relationship
- * [name=viewApproach, model=ViewApproach,
- * viewAproach=com.mr.codegenerator.entities.ViewAproach@3c09711b,
- * type=ManyToOne, displayName=Tipo, implementation=]]]
- **/
+import br.com.c3pgen.base.util.Util;
+
 @Entity
 @Audited
 @Table(name = "ATTRIBUTE")
@@ -102,9 +54,12 @@ public class Attribute extends AbstractTimestampEntity {
 	@Column(name = "UNIQUE_FIELD")
 	private Boolean unique;
 
+	@Column(name = "SHOW_IN_PAGES")
+	private Boolean showInPages;
+
 	@ManyToOne
 	@JoinColumn(name = "ID_ENTITY")
-	private TheEntity entity;
+	private ApplicationEntity entity;
 
 	@ManyToOne
 	@JoinColumn(name = "ID_TYPE")
@@ -128,6 +83,16 @@ public class Attribute extends AbstractTimestampEntity {
 		this.owner = owner;
 	}
 
+	public Attribute(String name, String tableFieldName, Boolean required, Boolean unique, Boolean showInPages, AttributeType type) {
+		super();
+		this.name = name;
+		this.tableFieldName = tableFieldName;
+		this.required = required;
+		this.unique = unique;
+		this.showInPages = showInPages;
+		this.type = type;
+	}
+
 	public Attribute() {
 
 	}
@@ -146,10 +111,6 @@ public class Attribute extends AbstractTimestampEntity {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getDisplayName() {
-		return displayName;
 	}
 
 	public void setDisplayName(String displayName) {
@@ -212,11 +173,11 @@ public class Attribute extends AbstractTimestampEntity {
 		this.unique = unique;
 	}
 
-	public TheEntity getEntity() {
+	public ApplicationEntity getEntity() {
 		return entity;
 	}
 
-	public void setEntity(TheEntity theEntity) {
+	public void setEntity(ApplicationEntity theEntity) {
 		this.entity = theEntity;
 	}
 
@@ -234,6 +195,24 @@ public class Attribute extends AbstractTimestampEntity {
 
 	public void setViewApproach(ViewApproach viewApproach) {
 		this.viewApproach = viewApproach;
+	}
+
+	public String getDisplayName() {
+		if (displayName == null) {
+			setDisplayName(Util.firstUpperCase(getName()));
+		}
+		return displayName;
+	}
+
+	public Boolean getShowInPages() {
+		if (showInPages == null) {
+			setShowInPages(Boolean.TRUE);
+		}
+		return showInPages;
+	}
+
+	public void setShowInPages(Boolean showInPages) {
+		this.showInPages = showInPages;
 	}
 
 }

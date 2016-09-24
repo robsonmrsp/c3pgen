@@ -1,11 +1,9 @@
-<div class="hpanel hyellow" style="padding: 5px; margin-bottom: 5px">
+<div class="hpanel hyellow" style="padding: 1px; margin-bottom: 1px">
 	<input class="inputId" type="hidden" value={{id}}>
-	
 	<input class="inputViewApproachId" type="hidden" value="{{viewApproach && viewApproach.id}}">
 	<input class="inputTypeId" type="hidden" value="{{type && type.id}}">
-	
-	<div class="panel-heading hbuilt" style="padding: 3px;">
-		<div class="panel-tools" style="margin-top: 4px;">
+	<div class="panel-heading hbuilt" style="padding: 2px;">
+		<div class="panel-tools" style="margin-top: 3px;">
 			<a class="showhide">
 				<i class="fa fa-chevron-up"></i>
 			</a>
@@ -14,11 +12,11 @@
 			</a>
 		</div>
 		<h5>
-			Atributo:&nbsp;
-			<a href="javascript:void(-1)" data-type="text" data-placement="right" data-title="Digite o nome do atributo" class="editable editable-click inputAtributeName " data-original-title="" title=""> {{name}} </a>
+			<i class="fa fa-plus-square-o"></i>
+			<a href="javascript:void(-1)" data-type="text" data-placement="right" data-title="Digite o nome do atributo" class="editable editable-click inputAtributeName " data-original-title="" title=""> {{name}}</a>
 		</h5>
 	</div>
-	<div class="panel-body " style="padding: 5px; border-bottom: 1px solid #e4e5e7;">
+	<div class="panel-body " style="padding: 1px; border-bottom: 1px solid #e4e5e7;">
 		<div class="widget-main">
 			<span>
 				Nome de exibição:&nbsp;
@@ -32,27 +30,27 @@
 			<br>
 			<span>
 				Tipo de elemento visual?:&nbsp;
-				<a class="editable  inputViewApproach" data-placement="right" data-title="Tipo de elemento" data-type="select" data-pk="1" data-title="Selecione o tipo de  componente">{{viewApproach && viewApproach.type}}</a>
+				<a class="editable editable-click inputViewApproach" data-placement="right" data-title="Tipo de elemento" data-type="select" data-pk="1" data-title="Selecione o tipo de  componente">{{viewApproach && viewApproach.type}}</a>
 			</span>
 			<br>
 			<span>
 				Coluna tabela: &nbsp;
-				<a class="editable editable-click inputTableFieldName " data-placement="right" data-title="Digite um nome para a coluna no BD">{{tableFieldName}} </a>
+				<a class="editable editable-click inputTableFieldName " data-placement="right" data-title="Digite um nome para a coluna no BD">{{tableFieldName}}</a>
 			</span>
 			<br>
 			<span>
 				Obrigatório:&nbsp;
-				<input type="checkbox" class="inputRequired"{{required ? 'checked' :''}}>
+				<input type="checkbox" class="check-box inputRequired"{{required ? 'checked' :''}}>
 			</span>
 			<br>
 			<span>
 				Único:&nbsp;
-				<input style="margin: 0px" type="checkbox" class="inputUnique"{{unique ? 'checked' :''}}>
+				<input style="margin: 0px" type="checkbox" class="check-box inputUnique"{{unique ? 'checked' :''}}>
 			</span>
 			<br>
 			<span>
 				Máscara:&nbsp;
-				<a class="editable editable-click inputMask" data-placement="right" data-title="Digite uma máscara">{{mask}} </a>
+				<a class="editable editable-click inputMask" data-placement="right" data-title="Digite uma máscara">{{mask}}</a>
 			</span>
 			<br>
 			<span>

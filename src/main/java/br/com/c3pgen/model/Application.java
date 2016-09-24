@@ -1,35 +1,23 @@
 package br.com.c3pgen.model;
 
-import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToOne;
-import javax.persistence.ManyToMany;
 import javax.persistence.UniqueConstraint;
-
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import org.hibernate.annotations.Type;
-import org.hibernate.envers.Audited;
-import org.joda.time.LocalDate;
-import org.joda.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-
-import br.com.c3pgen.serialization.CustomLocalDateSerializer;
-import br.com.c3pgen.serialization.CustomLocalDateTimeSerializer;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
+import org.hibernate.envers.Audited;
 
 /**
  * generated: 03/09/2015 14:51:47 Entity [name=Application,
@@ -44,12 +32,11 @@ import org.hibernate.annotations.CascadeType;
  * type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy,
  * placeholder=null, validationRules=null]], relationships=[Relationship
  * [name=entities, model=TheEntity,
- * viewAproach=com.mr.codegenerator.entities.ViewAproach@26f67b76,
+ * viewApproach=com.mr.codegenerator.entities.ViewApproach@26f67b76,
  * type=OneToMany, displayName=Entidades, implementation=]]]
  **/
 @Entity
 @Audited
-@Table(name = "APPLICATION", uniqueConstraints = { @UniqueConstraint(name = "APPLICATION_SKIN", columnNames = { "SKIN" }), @UniqueConstraint(name = "APPLICATION_ROOT_PACKAGE", columnNames = { "ROOT_PACKAGE" }), })
 @SequenceGenerator(name = "APPLICATION_SEQUENCE", sequenceName = "APPLICATION_SEQUENCE")
 public class Application extends AbstractTimestampEntity {
 	private static final long serialVersionUID = 1L;
@@ -59,7 +46,7 @@ public class Application extends AbstractTimestampEntity {
 	private Integer id;
 
 	@Column(name = "NAME")
-	private String name;
+	private String appName;
 
 	@Column(name = "SKIN")
 	private String skin;
@@ -70,9 +57,19 @@ public class Application extends AbstractTimestampEntity {
 	@Column(name = "ROOT_PACKAGE")
 	private String rootPackage;
 
+	@Column(name = "VIEW")
+	private String view;
+
+	@Column(name = "DATA_BASE_PREFIX")
+	private String dataBasePrefix;
+
 	@OneToMany(mappedBy = "application")
 	@Cascade(CascadeType.ALL)
-	private List<TheEntity> entities;
+	private List<ApplicationEntity> entities;
+
+	@OneToMany(mappedBy = "application")
+	@Cascade(CascadeType.ALL)
+	private List<ApplicationRelationship> applicationRelationships;
 
 	@ManyToOne
 	@JoinColumn(name = "id_client")
@@ -96,14 +93,6 @@ public class Application extends AbstractTimestampEntity {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public String getSkin() {
@@ -130,25 +119,72 @@ public class Application extends AbstractTimestampEntity {
 		this.rootPackage = rootPackage;
 	}
 
-	public void setEntities(List<TheEntity> entities) {
+	public void setEntities(List<ApplicationEntity> entities) {
 		this.entities = entities;
 	}
 
-	public List<TheEntity> getEntities() {
+	public List<ApplicationEntity> getEntities() {
 		if (this.entities == null) {
-			setEntities(new ArrayList<TheEntity>());
+			setEntities(new ArrayList<ApplicationEntity>());
 		}
 		return this.entities;
 	}
 
-	public boolean addEntities(TheEntity theEntity) {
+	public boolean addEntities(ApplicationEntity theEntity) {
 		theEntity.setApplication(this);
 		return getEntities().add(theEntity);
 	}
 
-	public boolean removeEntities(TheEntity theEntity) {
+	public boolean removeEntities(ApplicationEntity theEntity) {
 		theEntity.setApplication(null);
 		return getEntities().remove(theEntity);
+	}
+
+	public String getView() {
+		if (view == null) {
+			setView("Backbone");
+		}
+		return view;
+	}
+
+	public void setView(String view) {
+		this.view = view;
+	}
+
+	public Boolean hasMobApp() {
+		if (entities != null) {
+			for (ApplicationEntity e : entities) {
+				if (e.getHasMobile()) {
+					return Boolean.TRUE;
+				}
+			}
+		}
+		return Boolean.FALSE;
+	}
+
+	public String getDataBasePrefix() {
+
+		return dataBasePrefix;
+	}
+
+	public void setDataBasePrefix(String dataBasePrefix) {
+		this.dataBasePrefix = dataBasePrefix;
+	}
+
+	public String getAppName() {
+		return appName;
+	}
+
+	public void setAppName(String appName) {
+		this.appName = appName;
+	}
+
+	public List<ApplicationRelationship> getApplicationRelationships() {
+		return applicationRelationships;
+	}
+
+	public void setApplicationRelationships(List<ApplicationRelationship> applicationRelationships) {
+		this.applicationRelationships = applicationRelationships;
 	}
 
 }

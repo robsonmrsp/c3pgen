@@ -1,39 +1,26 @@
 package br.com.c3pgen.model;
 
-import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToOne;
-import javax.persistence.ManyToMany;
-
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import org.hibernate.annotations.Type;
-import org.hibernate.envers.Audited;
-import org.joda.time.LocalDate;
-import org.joda.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-
-
-import br.com.c3pgen.serialization.CustomLocalDateSerializer;
-import br.com.c3pgen.serialization.CustomLocalDateTimeSerializer;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
+import org.hibernate.envers.Audited;
 
 /**
 * generated: 03/09/2015 14:51:49
-Entity [name=Role, displayName=Papel, hasOwner=false, attributes=[Attribute [name=authority, displayName=Autoridade, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=description, displayName=Descrição, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null]], relationships=[Relationship [name=sessions, model=Session, viewAproach=com.mr.codegenerator.entities.ViewAproach@1810399e, type=ManyToMany, displayName=Sessões, implementation=], Relationship [name=users, model=User, viewAproach=com.mr.codegenerator.entities.ViewAproach@32d992b2, type=ManyToMany, displayName=Usuários, implementation=], Relationship [name=permissions, model=Permission, viewAproach=com.mr.codegenerator.entities.ViewAproach@215be6bb, type=ManyToMany, displayName=Permissões, implementation=]]]
+Entity [name=Role, displayName=Papel, hasOwner=false, attributes=[Attribute [name=authority, displayName=Autoridade, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=description, displayName=Descrição, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null]], relationships=[Relationship [name=sessions, model=Session, viewApproach=com.mr.codegenerator.entities.ViewApproach@1810399e, type=ManyToMany, displayName=Sessões, implementation=], Relationship [name=users, model=User, viewApproach=com.mr.codegenerator.entities.ViewApproach@32d992b2, type=ManyToMany, displayName=Usuários, implementation=], Relationship [name=permissions, model=Permission, viewApproach=com.mr.codegenerator.entities.ViewApproach@215be6bb, type=ManyToMany, displayName=Permissões, implementation=]]]
 **/
 @Entity
 @Audited

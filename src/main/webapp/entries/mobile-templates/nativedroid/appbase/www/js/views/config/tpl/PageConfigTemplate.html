@@ -1,0 +1,58 @@
+
+<div class="row">
+	<div class="col-xs-12 col-sm-12 col-md-12">
+		<form>
+			<ul data-role="listview" data-icon="false">
+				<li data-role="list-divider">Dados para Sincronização</li>
+				<li>
+					<div class="box">
+						<label for="inputServerAddress">Usuário:</label>
+						<input type="text" id="inputServerUsername" value="mr" data-clear-btn="true" placeholder="Digite a senha para válido para acesso e sincronia...">
+						<label for="inputServerAddress">Senha:</label>
+						<input type="password" id="inputServerPassword" value="123456" data-clear-btn="true" placeholder="Digite um usuário válido para acesso e sincronia...">
+						<label for="inputServerAddress">Endereço do servidor:</label>
+						<input type="text" id="inputServerAddress" value="http://192.168.0.75:8080/locadoraAce" data-clear-btn="true" placeholder="Digite a url do servidor...">
+					</div>
+				</li>
+			</ul>
+			<div class="box">
+				<p id="messages"></p>
+			</div>
+			<a href="javascript:void(-1)" id="testeCon" class="ui-btn ui-btn-raised clr-primary ">
+				<i class="zmdi zmdi-link ui-pull-left"></i>
+				Testar conexão
+			</a>
+			<hr />
+			<hr />
+			<ul data-role="listview" data-icon="false">
+				<li data-role="list-divider">Informações</li>
+				<li>
+					<p>
+						Funcionários,
+						<span> 400 </span>
+						registros.
+						<br>
+						ultima atualização
+						<span> 24/01/2015 12:25 </span>
+					</p>
+				</li>
+				<li>
+					<p>
+						Filmes,
+						<span> 4000 </span>
+						registros.
+						<br>
+						ultima atualização
+						<span> 22/01/2015 12:25 </span>
+					</p>
+				</li>
+			</ul>
+			<a href="javascript:void(-1)" id="sync" class="ui-btn ui-btn-raised clr-primary  ">
+				<i class="zmdi zmdi-refresh-sync ui-pull-right "></i>
+				Sincronizar agora.
+			</a>
+			<hr />
+			<hr />
+		</form>
+	</div>
+</div>

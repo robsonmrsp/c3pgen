@@ -22,7 +22,7 @@ define(function(require) {
 
 	var EntidadeItem = Marionette.LayoutView.extend({
 		template : _.template(EntityItemViewTemplate),
-		className : 'col-xs-12 col-sm-3 ',
+		className : ' drag-item',
 
 		regions : {
 			attributesRegion : '.attributes',
@@ -59,16 +59,33 @@ define(function(require) {
 		},
 
 		addAttribute : function() {
+			this.ui.panelBody.show();
 			this.attributesCollection.add(new AttributeModel());
 		},
 
 		addRelationship : function() {
+			this.ui.panelBody.show();
 			this.relationshipsCollection.add(new RelationshipModel());
 		},
 
 		initialize : function() {
 			var that = this;
-			// configuração dos Atributos.
+
+			// Configuração do draggable
+			this.$el.draggable({
+				handle : '.panel-heading',
+				containment : ".drag-entities",
+				scroll : false,
+				stop : function() {
+					var offset = $(this).offset();
+					var xPos = offset.left;
+					var yPos = offset.top;
+					that.model.set('posX', xPos);
+					that.model.set('posY', yPos);
+					console.log(xPos, yPos);
+				}
+			});
+
 			this.attributesCollection = new AttributeCollection(this.model.get('attributes'));
 			this.model.set('attributes', this.attributesCollection);
 
@@ -85,6 +102,12 @@ define(function(require) {
 			});
 
 			this.on('show', function() {
+
+				this.$el.offset({
+					top : this.model.get('posY') || 100,
+					left : this.model.get('posX') || 100
+				})
+				var that = this;
 				this.ui.inputEntityName.editable();
 				this.ui.inputDisplayName.editable();
 				this.ui.inputTableName.editable();
@@ -112,6 +135,9 @@ define(function(require) {
 
 				this.attributesRegion.show(this.attributesCollectionView);
 				this.relationshipsRegion.show(this.relationshipsCollectionView);
+
+				// abrindo com os atributos escondidos.
+				this.hideShowEnt();
 			});
 		},
 
@@ -125,7 +151,7 @@ define(function(require) {
 
 		getModel : function() {
 			return {
-				id : this.ui.inputId.val(),
+				id : this.ui.inputId.val() || null,
 				name : this.ui.inputEntityName.text(),
 				displayName : this.ui.inputDisplayName.text(),
 				tableName : this.ui.inputTableName.text(),
@@ -135,7 +161,6 @@ define(function(require) {
 
 		hideShowEnt : function() {
 			this.ui.panelBody.toggle();
-
 			if (this.ui.panelBody.is(':visible')) {
 				this.ui.showhide.find('i').removeClass('fa-chevron-down').addClass('fa-chevron-up')
 			} else {

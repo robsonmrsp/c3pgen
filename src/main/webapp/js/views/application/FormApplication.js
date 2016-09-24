@@ -33,7 +33,7 @@ define(function(require) {
 
 		events : {
 			'click 	.save' : 'save',
-			'click 	.saveAndContinue' : 'saveAndContinue',
+			'click 	#saveAndVisual' : 'saveAndVisual',
 			'change  #inputSkin' : 'changeSkin',
 			'change  #inputRootPackage' : 'changeRootPackage',
 		},
@@ -42,8 +42,8 @@ define(function(require) {
 			inputId : '#inputId',
 			inputName : '#inputName',
 			inputSkin : '#inputSkin',
+			skinCarousel : '#skinCarousel',
 			inputRootPackage : '#inputRootPackage',
-
 			form : '#formApplication',
 		},
 
@@ -53,16 +53,19 @@ define(function(require) {
 			that.entities.add(this.model.get('entities'));
 			this.on('show', function() {
 
-				this.ui.inputSkin.val(this.model.get('skin'));
 				this.ui.form.validationEngine('attach', {
 					promptPosition : "topLeft",
 					isOverflown : false,
 					validationEventTrigger : "change"
 				});
+
+				this.ui.skinCarousel.on('slide.bs.carousel', function(elem) {
+					that.ui.inputSkin.val($(elem.relatedTarget).attr('skin'));
+				});
 			});
 		},
 
-		saveAndContinue : function() {
+		saveAndVisual : function() {
 			this.save(true)
 		},
 
@@ -79,7 +82,7 @@ define(function(require) {
 						if (continua != true) {
 							util.goPage('app/applications', true);
 						} else {
-							util.goPage('app/application/' + _model.get('id') + '/entities', true);
+							util.goPage('app/visual/' + _model.get('id'), true);
 						}
 					},
 

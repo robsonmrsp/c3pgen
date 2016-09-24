@@ -1,40 +1,21 @@
 package br.com.c3pgen.model;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToOne;
-import javax.persistence.ManyToMany;
-import javax.persistence.UniqueConstraint;		
+import javax.persistence.UniqueConstraint;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import org.hibernate.annotations.Type;
 import org.hibernate.envers.Audited;
-import org.joda.time.LocalDate;
-import org.joda.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-
-
-import br.com.c3pgen.serialization.CustomLocalDateSerializer;
-import br.com.c3pgen.serialization.CustomLocalDateTimeSerializer;
-
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
 
 /**
 * generated: 03/09/2015 14:51:48
-Entity [name=Cliente, displayName=Cliente, hasOwner=false, attributes=[Attribute [name=nome, displayName=Nome, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=email, displayName=Email, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=cpf, displayName=cpf, type=AttributeType [className=String], mask=999.999.999-99, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=telefone, displayName=Outro Telefone, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=outroTelefone, displayName=Outro Telefone, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null]], relationships=[Relationship [name=endereco, model=Endereco, viewAproach=com.mr.codegenerator.entities.ViewAproach@573f2bb1, type=OneToOne, displayName=Endereco, implementation=]]]
+Entity [name=Cliente, displayName=Cliente, hasOwner=false, attributes=[Attribute [name=nome, displayName=Nome, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=email, displayName=Email, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=cpf, displayName=cpf, type=AttributeType [className=String], mask=999.999.999-99, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=telefone, displayName=Outro Telefone, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=outroTelefone, displayName=Outro Telefone, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null]], relationships=[Relationship [name=endereco, model=Endereco, viewApproach=com.mr.codegenerator.entities.ViewApproach@573f2bb1, type=OneToOne, displayName=Endereco, implementation=]]]
 **/
 @Entity
 @Audited

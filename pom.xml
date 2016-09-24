@@ -18,7 +18,7 @@
 		<jasperreports.version>3.5.3</jasperreports.version>
 		<jandira.usertype.version>3.2.0.GA</jandira.usertype.version>
 	</properties>
-		
+
 	<dependencies>
 		<dependency>
 			<groupId>com.restfuse</groupId>
@@ -27,11 +27,41 @@
 		</dependency>
 
 		<dependency>
+			<groupId>com.esotericsoftware.yamlbeans</groupId>
+			<artifactId>yamlbeans</artifactId>
+			<version>1.06</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-exec</artifactId>
+			<version>1.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-pool2</artifactId>
+			<version>2.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>1.3.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
+			<version>2.3.20</version>
+		</dependency>
+
+		<dependency>
 			<groupId>com.thetransactioncompany</groupId>
 			<artifactId>cors-filter</artifactId>
 			<version>2.4</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>jasperreports</groupId>
 			<artifactId>jasperreports</artifactId>
@@ -42,7 +72,7 @@
 			<artifactId>reflections</artifactId>
 			<version>0.9.9-RC1</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.fasterxml.jackson.dataformat</groupId>
 			<artifactId>jackson-dataformat-xml</artifactId>
@@ -190,7 +220,7 @@
 			<scope>runtime</scope>
 		</dependency>
 
-		<!-- JSR 330 é a especificação da injeção de dependencia. Significa que não pretendemos usar as Annotations do Spring , a não ser que seja necessário.-->
+		<!-- JSR 330 é a especificação da injeção de dependencia. Significa que não pretendemos usar as Annotations do Spring , a não ser que seja necessário. -->
 		<dependency>
 			<groupId>javax.inject</groupId>
 			<artifactId>javax.inject</artifactId>
@@ -387,13 +417,13 @@
 			</plugin>
 
 			<!-- A longo prazo, será mais simples manter a minificação dos css e js com os plugins abaixo. Isso porque, dada a maneira que estamos criando a view, serão vários arquivos js. -->
-				<plugin>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
 				<version>2.4</version>
 				<configuration>
 					<warSourceExcludes>j/**,js/**,css/**,produ/**, assets/**, vendor/**</warSourceExcludes>
-					
+
 					<webResources>
 						<resource>
 							<!-- this is relative to the pom.xml directory -->

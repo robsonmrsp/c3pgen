@@ -47,7 +47,7 @@ import br.com.c3pgen.model.Permission;
 import br.com.c3pgen.model.Relationship;
 import br.com.c3pgen.model.Role;
 import br.com.c3pgen.model.Session;
-import br.com.c3pgen.model.TheEntity;
+import br.com.c3pgen.model.ApplicationEntity;
 import br.com.c3pgen.model.User;
 import br.com.c3pgen.model.ViewApproach;
 
@@ -139,7 +139,7 @@ public class Parser {
 
 	private static void applyBasicJsonValues(JsonApplication jsonApplication, Application application) {
 		jsonApplication.setId(application.getId());
-		jsonApplication.setName(application.getName());
+		jsonApplication.setName(application.getAppName());
 		jsonApplication.setSkin(application.getSkin());
 		jsonApplication.setDescription(application.getDescription());
 		jsonApplication.setRootPackage(application.getRootPackage());
@@ -147,7 +147,7 @@ public class Parser {
 
 	private static void applyBasicEntityValues(Application application, JsonApplication jsonApplication) {
 		application.setId(jsonApplication.getId());
-		application.setName(jsonApplication.getName());
+		application.setAppName(jsonApplication.getName());
 		application.setSkin(jsonApplication.getSkin());
 		application.setDescription(jsonApplication.getDescription());
 		application.setRootPackage(jsonApplication.getRootPackage());
@@ -158,9 +158,9 @@ public class Parser {
 
 		applyBasicJsonValues(jsonApplication, application);
 
-		List<TheEntity> listEntities = application.getEntities();
+		List<ApplicationEntity> listEntities = application.getEntities();
 		if (listEntities != null) {
-			for (TheEntity loopTheEntity : listEntities) {
+			for (ApplicationEntity loopTheEntity : listEntities) {
 				jsonApplication.getEntities().add(toJson(loopTheEntity));
 			}
 		}
@@ -243,7 +243,7 @@ public class Parser {
 
 		applyBasicJsonValues(jsonAttribute, attribute);
 
-		TheEntity entity = attribute.getEntity();
+		ApplicationEntity entity = attribute.getEntity();
 		if (entity != null) {
 			jsonAttribute.setEntity(toBasicJson(entity));
 		}
@@ -354,20 +354,23 @@ public class Parser {
 	}
 
 	// converte de entidade para json --------------------
-	private static JsonTheEntity toBasicJson(TheEntity theEntity) {
+	private static JsonTheEntity toBasicJson(ApplicationEntity theEntity) {
 		JsonTheEntity jsonTheEntity = new JsonTheEntity();
 		applyBasicJsonValues(jsonTheEntity, theEntity);
 		return jsonTheEntity;
 	}
 
-	private static TheEntity toBasicEntity(JsonTheEntity jsonTheEntity) {
-		TheEntity theEntity = new TheEntity();
+	private static ApplicationEntity toBasicEntity(JsonTheEntity jsonTheEntity) {
+		ApplicationEntity theEntity = new ApplicationEntity();
 		applyBasicEntityValues(theEntity, jsonTheEntity);
 		return theEntity;
 	}
 
-	private static void applyBasicJsonValues(JsonTheEntity jsonTheEntity, TheEntity theEntity) {
+	private static void applyBasicJsonValues(JsonTheEntity jsonTheEntity, ApplicationEntity theEntity) {
 		jsonTheEntity.setId(theEntity.getId());
+		jsonTheEntity.setPosX(theEntity.getPosX());
+		jsonTheEntity.setPosY(theEntity.getPosY());
+
 		jsonTheEntity.setName(theEntity.getName());
 		jsonTheEntity.setNotes(theEntity.getNotes());
 		jsonTheEntity.setDisplayName(theEntity.getDisplayName());
@@ -376,8 +379,10 @@ public class Parser {
 		jsonTheEntity.setHasMobile(theEntity.getHasMobile());
 	}
 
-	private static void applyBasicEntityValues(TheEntity theEntity, JsonTheEntity jsonTheEntity) {
+	private static void applyBasicEntityValues(ApplicationEntity theEntity, JsonTheEntity jsonTheEntity) {
 		theEntity.setId(jsonTheEntity.getId());
+		theEntity.setPosX(jsonTheEntity.getPosX());
+		theEntity.setPosY(jsonTheEntity.getPosY());
 		theEntity.setName(jsonTheEntity.getName());
 		theEntity.setNotes(jsonTheEntity.getNotes());
 		theEntity.setDisplayName(jsonTheEntity.getDisplayName());
@@ -386,7 +391,7 @@ public class Parser {
 		theEntity.setHasMobile(jsonTheEntity.getHasMobile());
 	}
 
-	public static JsonTheEntity toJson(TheEntity theEntity) {
+	public static JsonTheEntity toJson(ApplicationEntity theEntity) {
 		JsonTheEntity jsonTheEntity = new JsonTheEntity();
 
 		applyBasicJsonValues(jsonTheEntity, theEntity);
@@ -410,10 +415,10 @@ public class Parser {
 		return jsonTheEntity;
 	}
 
-	public static TheEntity apply(TheEntity theEntity, JsonTheEntity jsonTheEntity) {
+	public static ApplicationEntity apply(ApplicationEntity theEntity, JsonTheEntity jsonTheEntity) {
 
 		if (theEntity == null)
-			theEntity = new TheEntity();
+			theEntity = new ApplicationEntity();
 
 		applyBasicEntityValues(theEntity, jsonTheEntity);
 
@@ -439,15 +444,15 @@ public class Parser {
 
 	}
 
-	public static TheEntity toEntity(JsonTheEntity jsonTheEntity) {
-		TheEntity theEntity = new TheEntity();
+	public static ApplicationEntity toEntity(JsonTheEntity jsonTheEntity) {
+		ApplicationEntity theEntity = new ApplicationEntity();
 
 		return apply(theEntity, jsonTheEntity);
 	}
 
-	public static List<JsonTheEntity> toListJsonTheEntitys(List<TheEntity> all) {
+	public static List<JsonTheEntity> toListJsonTheEntitys(List<ApplicationEntity> all) {
 		List<JsonTheEntity> jsonTheEntitys = new ArrayList<JsonTheEntity>();
-		for (TheEntity theEntity : all) {
+		for (ApplicationEntity theEntity : all) {
 			jsonTheEntitys.add(toJson(theEntity));
 		}
 		return jsonTheEntitys;
@@ -491,7 +496,7 @@ public class Parser {
 
 		applyBasicJsonValues(jsonRelationship, relationship);
 
-		TheEntity entity = relationship.getEntity();
+		ApplicationEntity entity = relationship.getEntity();
 		if (entity != null) {
 			jsonRelationship.setEntity(toBasicJson(entity));
 		}

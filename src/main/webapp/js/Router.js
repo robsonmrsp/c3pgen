@@ -91,6 +91,8 @@ define(function(require) {
 	var FormUser = require('views/user/FormUser');
 	var UserModel = require('models/UserModel');
 
+	var PageVisual = require('views/visual/PageVisual');
+
 	util.NProgress.setBlockerPanel('block_panel');
 
 	var CustomRegion = Marionette.Region.extend({
@@ -116,8 +118,10 @@ define(function(require) {
 
 	var AppRouter = Backbone.Router.extend({
 		routes : {
-			'' : 'applications',
+			'app/visual/:id' : 'visual',
 			// hashs de Application
+			// 'app/visual' : 'visual',
+			'' : 'applications',
 			'app/applications' : 'applications',
 			'app/application/:idApp/entities' : 'entitiesByApplication',
 			'app/categoria' : 'categoria',
@@ -233,6 +237,34 @@ define(function(require) {
 				url : 'app/applications'
 			});
 		},
+		visual : function(idApplication) {
+			var that = this;
+			util.markActiveItem('visual');
+
+			var model = new ApplicationModel({
+				id : idApplication,
+			})
+
+			model.fetch({
+				success : function(model) {
+					that.pageVisual = new PageVisual({
+						model : model,
+					});
+					that.App.mainRegion.show(that.pageVisual);
+				},
+				error : function(x, y, z) {
+					console.error(x, y, z);
+				}
+			});
+
+			util.breadcrumb({
+				iconClass : 'fa-desktop',
+				itemLabel : 'Application',
+				itemSubFolderName : 'Grid',
+				url : 'app/visual'
+			});
+		},
+
 		entitiesByApplication : function(idApplication) {
 			var that = this;
 			var application = new ApplicationModel({

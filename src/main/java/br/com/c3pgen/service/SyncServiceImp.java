@@ -1,19 +1,14 @@
 package br.com.c3pgen.service;
 
-import java.util.List;
-
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.springframework.transaction.annotation.Transactional;
 import org.joda.time.LocalDateTime;
+import org.springframework.transaction.annotation.Transactional;
 
-import br.com.c3pgen.model.SyncInfo;
-import br.com.c3pgen.json.*;
-import br.com.c3pgen.model.*;
-import br.com.c3pgen.persistence.DaoSyncInfo;
 import br.com.c3pgen.json.DtoDataBase;
-import br.com.c3pgen.utils.Parser;
+import br.com.c3pgen.model.SyncInfo;
+import br.com.c3pgen.persistence.DaoSyncInfo;
 
 
 @Named

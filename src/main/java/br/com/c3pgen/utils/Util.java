@@ -1,12 +1,10 @@
 package br.com.c3pgen.utils;
 
-import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.text.Normalizer;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
 
 import org.joda.time.DateTime;

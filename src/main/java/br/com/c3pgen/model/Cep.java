@@ -1,39 +1,20 @@
 package br.com.c3pgen.model;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToOne;
-import javax.persistence.ManyToMany;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import org.hibernate.annotations.Type;
 import org.hibernate.envers.Audited;
-import org.joda.time.LocalDate;
-import org.joda.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-
-
-import br.com.c3pgen.serialization.CustomLocalDateSerializer;
-import br.com.c3pgen.serialization.CustomLocalDateTimeSerializer;
-
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
 
 /**
 * generated: 03/09/2015 14:51:48
-Entity [name=Cep, displayName=Cep, hasOwner=false, attributes=[Attribute [name=logradouro, displayName=Logadouro, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=numero, displayName=Numero, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null]], relationships=[Relationship [name=bairro, model=Bairro, viewAproach=com.mr.codegenerator.entities.ViewAproach@6a2bcfcb, type=ManyToOne, displayName=Bairro, implementation=], Relationship [name=cidade, model=Cidade, viewAproach=com.mr.codegenerator.entities.ViewAproach@4de8b406, type=ManyToOne, displayName=Cidade, implementation=], Relationship [name=estado, model=Estado, viewAproach=com.mr.codegenerator.entities.ViewAproach@3c756e4d, type=ManyToOne, displayName=Estado, implementation=]]]
+Entity [name=Cep, displayName=Cep, hasOwner=false, attributes=[Attribute [name=logradouro, displayName=Logadouro, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=numero, displayName=Numero, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null]], relationships=[Relationship [name=bairro, model=Bairro, viewApproach=com.mr.codegenerator.entities.ViewApproach@6a2bcfcb, type=ManyToOne, displayName=Bairro, implementation=], Relationship [name=cidade, model=Cidade, viewApproach=com.mr.codegenerator.entities.ViewApproach@4de8b406, type=ManyToOne, displayName=Cidade, implementation=], Relationship [name=estado, model=Estado, viewApproach=com.mr.codegenerator.entities.ViewApproach@3c756e4d, type=ManyToOne, displayName=Estado, implementation=]]]
 **/
 @Entity
 @Audited

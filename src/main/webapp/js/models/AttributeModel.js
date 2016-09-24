@@ -17,7 +17,6 @@ define(function(require) {
 
 		defaults : {
 			id: null,
-	    	name : '',    	
 	    	displayName : '',    	
 	    	maxLen : '',    	
 	    	tableFieldName : '',    	
@@ -27,7 +26,8 @@ define(function(require) {
 	    	required : '',    	
 	    	unique : '',    	
 			entity : null,
-			type : null,
+			name : '',    	
+			type : "String",
 			viewApproach : null,
 		
 		}

@@ -1,50 +1,105 @@
-
+<!-- FormApplicationTemplate ini-->
 <div class="hpanel hblue">
-	<div class="panel-heading hbuilt">
-		<div class="pull-left">
-			<span style="padding-right: 20px">Cadastro de aplicação</span>
-			<a href="javascript:void(0)" id="save" class=" btn save btn-default btn-xs">
-				<i class="save fa fa-check fa-15x"></i>
-				Salvar
-			</a>
-			&nbsp;
-			<a href="javascript:void(0)" class=" saveAndContinue btn  btn-default btn-xs">
-				<i class="fa fa-check fa-15x"></i>
-				Salvar e criar entidades
-			</a>
-			&nbsp;
-			<a class="go-back-link btn-default btn btn-xs" href="#app/applications">
-				<i class="fa fa-undo fa-15x"></i>
-				Voltar para a listagem
-			</a>
-		</div>
-		&nbsp;
-	</div>
 	<div class="panel-body">
 		<form role="form" id="formApplication">
-			<input type="hidden" id="inputId" value="{{id}}">
-			<div id="groupInputName" class="form-group">
-				<label class="control-label" for="inputName">Nome</label>
-				<input type="text" id="inputName" placeholder="Nome" value="{{name}}" class="form-control  validate[required]">
+			<div id="groupInputSkin" class="form-group ">
+				<div class="hpanel">
+					<div class="panel-heading ">
+						<div class="panel-tools"></div>
+						Escolha do visual da aplicação
+					</div>
+					<div class="panel-body">
+						<div id="skinCarousel" class="carousel slide" data-interval="false">
+							<!-- Indicators -->
+							<ol class="carousel-indicators" style="color: #6a6c6f; border-color: #6a6c6f">
+								<li data-target="#myCarousel" data-slide-to="0" style="background-color: #6a6c6f; color: #6a6c6f; border-color: #6a6c6f"></li>
+								<li data-target="#myCarousel" data-slide-to="1" style="background-color: #6a6c6f; color: #6a6c6f; border-color: #6a6c6f"></li>
+								<li data-target="#myCarousel" data-slide-to="2" style="background-color: #6a6c6f; color: #6a6c6f; border-color: #6a6c6f"></li>
+								<li data-target="#myCarousel" data-slide-to="3" style="background-color: #6a6c6f; color: #6a6c6f; border-color: #6a6c6f"></li>
+							</ol>
+							<!-- Wrapper for slides -->
+							<div class="carousel-inner" role="listbox">
+								<div class="item active" skin="Inspinia">
+									<img src="images/templates/inspinia.png" alt="Inspinia">
+									<div class="carousel-caption">
+										<h3 style="font-size: 60px; color: #6a6c6f">Inspinia</h3>
+									</div>
+								</div>
+								<div class="item" skin="Homer">
+									<img src="images/templates/homer.png" alt="Homer">
+									<div class="carousel-caption">
+										<h3 style="font-size: 60px; color: #6a6c6f">Homer</h3>
+									</div>
+								</div>
+								<div class="item " skin="Sprflat">
+									<img src="images/templates/sprflat.png" alt="Sprflat">
+									<div class="carousel-caption">
+										<h3 style="font-size: 60px; color: #6a6c6f">Sprflat</h3>
+									</div>
+								</div>
+								<div class="item" skin="Ace">
+									<img src="images/templates/ace.png" alt="Ace">
+									<div class="carousel-caption">
+										<h3 style="font-size: 60px; color: #6a6c6f">Ace</h3>
+									</div>
+								</div>
+							</div>
+							<!-- Left and right controls -->
+							<a class="left carousel-control custom-carrousel-control custom-carrousel-control" href="#skinCarousel" role="button" data-slide="prev">
+								<i class="fa fa-fast-backward fa-2x"></i>
+								<span class="sr-only">Anterior</span>
+							</a>
+							<a class="right carousel-control custom-carrousel-control" href="#skinCarousel" role="button" data-slide="next">
+								<i class="fa fa-fast-forward fa-2x"></i>
+								<span class="sr-only">Próximo</span>
+							</a>
+						</div>
+					</div>
+				</div>
 			</div>
-			<div id="groupInputSkin" class="form-group">
-				<label class="control-label" for="inputSkin">Template</label>
-				<select id="inputSkin" placeholder="Template" value="{{skin}}" class="form-control  validate[required]">
-					<option value="">-- Selecione --</option>
-					<option value="ace">ace</option>
-					<option value="homer">homer</option>
-					<option value="inspinia">inspinia</option>
-					<option value="sprflat">sprflat</option>
-				</select>
+			<div class="hpanel">
+				<div class="panel-heading ">
+					<div class="panel-tools"></div>
+					Detalhes
+				</div>
+				<div class="panel-body">
+					<input type="hidden" id="inputId" value="{{id}}">
+					<div id="groupInputSkin" class="form-group">
+						<label class="control-label" for="inputSkin">Template</label>
+						<input type="text" id="inputSkin" placeholder="Template" value="{{skin || 'Inspinia'}}" class="form-control" readonly="readonly">
+					</div>
+					<div id="groupInputName" class="form-group">
+						<label class="control-label" for="inputName">Nome</label>
+						<input type="text" id="inputName" placeholder="Nome" value="{{name}}" class="form-control  validate[required]">
+					</div>
+					<div id="groupInputName" class="form-group">
+						<label class="control-label" for="inputName">Descrição</label>
+						<textarea id="inputDescription" rows="4" placeholder="Nome" value="{{description}}" class="form-control  "> {{description}}</textarea>
+					</div>
+					<div id="groupInputRootPackage" class="form-group">
+						<label class="control-label" for="inputRootPackage">Pacote raiz</label>
+						<input type="text" id="inputRootPackage" placeholder="Pacote raiz" value="{{rootPackage}}" class="form-control  validate[required]">
+					</div>
+				</div>
 			</div>
-			<div id="groupInputName" class="form-group">
-				<label class="control-label" for="inputName">Descrição</label>
-				<textarea id="inputDescription" rows="4" placeholder="Nome" value="{{description}}" class="form-control  "> {{description}}</textarea>
-			</div>
-			<div id="groupInputRootPackage" class="form-group">
-				<label class="control-label" for="inputRootPackage">Pacote raiz</label>
-				<input type="text" id="inputRootPackage" placeholder="Pacote raiz" value="{{rootPackage}}" class="form-control  validate[required]">
+			<div class="clearfix form-actions form-group mb15">
+				<div class="col-md-9">
+					<a href="javascript:void(0)" id="save" class="save btn btn-primary">
+						<i class="ace-icon save fa fa-check bigger-110"></i>
+						Salvar
+					</a>
+					<a href="javascript:void(0)" id="saveAndVisual" class=" btn btn-primary">
+						<i class="ace-icon save fa fa-check bigger-110"></i>
+						Salvar e gerar Entidades
+					</a>
+					&nbsp;
+					<a class="go-back-link btn btn-default" href="#app/visual">
+						<i class="ace-icon fa fa-undo bigger-110"></i>
+						Visual
+					</a>
+				</div>
 			</div>
 		</form>
 	</div>
 </div>
+<!-- FormApplicationTemplate final-->

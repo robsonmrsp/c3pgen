@@ -15,7 +15,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.joda.time.LocalDateTime;
 
-import br.com.c3pgen.persistence.HibernateDao;
 import br.com.c3pgen.persistence.pagination.Pagination;
 import br.com.c3pgen.persistence.pagination.PaginationParams;
 import br.com.c3pgen.persistence.pagination.Paginator;

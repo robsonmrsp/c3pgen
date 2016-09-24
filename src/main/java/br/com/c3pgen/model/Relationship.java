@@ -1,34 +1,18 @@
 package br.com.c3pgen.model;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToOne;
-import javax.persistence.ManyToMany;
-
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import org.hibernate.annotations.Type;
-import org.hibernate.envers.Audited;
-import org.joda.time.LocalDate;
-import org.joda.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-
-import br.com.c3pgen.serialization.CustomLocalDateSerializer;
-import br.com.c3pgen.serialization.CustomLocalDateTimeSerializer;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
+import org.hibernate.envers.Audited;
 
 /**
  * generated: 03/09/2015 14:51:48 Entity [name=Relationship,
@@ -49,10 +33,10 @@ import org.hibernate.annotations.CascadeType;
  * [className=Boolean], mask=, dateFormat=dd/MM/yyyy, placeholder=null,
  * validationRules=null]], relationships=[Relationship [name=entity,
  * model=TheEntity,
- * viewAproach=com.mr.codegenerator.entities.ViewAproach@6ea12c19,
+ * viewApproach=com.mr.codegenerator.entities.ViewApproach@6ea12c19,
  * type=ManyToOne, displayName=Entidade, implementation=], Relationship
  * [name=viewApproach, model=ViewApproach,
- * viewAproach=com.mr.codegenerator.entities.ViewAproach@6a024a67,
+ * viewApproach=com.mr.codegenerator.entities.ViewApproach@6a024a67,
  * type=ManyToOne, displayName=Tipo, implementation=]]]
  **/
 @Entity
@@ -61,6 +45,10 @@ import org.hibernate.annotations.CascadeType;
 @SequenceGenerator(name = "RELATIONSHIP_SEQUENCE", sequenceName = "RELATIONSHIP_SEQUENCE")
 public class Relationship extends AbstractTimestampEntity {
 	private static final long serialVersionUID = 1L;
+
+	public enum Types {
+		ManyToMany, OneToMany, ManyToOne, OneToOne,
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "RELATIONSHIP_SEQUENCE")
@@ -86,7 +74,7 @@ public class Relationship extends AbstractTimestampEntity {
 
 	@ManyToOne
 	@JoinColumn(name = "ID_ENTITY")
-	private TheEntity entity;
+	private ApplicationEntity entity;
 
 	@ManyToOne
 	@JoinColumn(name = "ID_VIEWAPPROACH")
@@ -96,6 +84,20 @@ public class Relationship extends AbstractTimestampEntity {
 	@ManyToOne
 	@JoinColumn(name = "id_client")
 	private Client owner;
+
+	public Relationship(String name, Types type, String ownerName, String model, Boolean uniDirecional, ViewApproach viewApproach) {
+		super();
+		this.name = name;
+		this.type = type.name();
+		this.ownerName = ownerName;
+		this.model = model;
+		if (uniDirecional == null) {
+			this.uniDirecional = Boolean.FALSE;
+		} else {
+			this.uniDirecional = uniDirecional;
+		}
+		this.viewApproach = viewApproach;
+	}
 
 	public Client getOwner() {
 		return owner;
@@ -165,11 +167,11 @@ public class Relationship extends AbstractTimestampEntity {
 		this.uniDirecional = uniDirecional;
 	}
 
-	public TheEntity getEntity() {
+	public ApplicationEntity getEntity() {
 		return entity;
 	}
 
-	public void setEntity(TheEntity theEntity) {
+	public void setEntity(ApplicationEntity theEntity) {
 		this.entity = theEntity;
 	}
 

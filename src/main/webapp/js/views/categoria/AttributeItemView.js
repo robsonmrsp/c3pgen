@@ -21,7 +21,7 @@ define(function(require) {
 		events : {
 			'click .showhide' : 'hideShow',
 			'click .delete-attribute' : 'deleteAtribute',
-			'click checkbox' : 'changeAttribute'
+			'click .check-box' : 'changeAttribute'
 		},
 
 		ui : {
@@ -53,12 +53,19 @@ define(function(require) {
 		},
 
 		deleteAtribute : function() {
-			this.model.destroy();
+			this.model.destroy({
+				success : function(a, b, c) {
+					console.log('Removendo atributo ', a, b, c);
+				},
+				error : function(a, b, c) {
+					console.warn('Erro ao detelar atributo ', a, b, c);
+				}
+			});
 		},
 
 		getModel : function() {
 			return {
-				id : this.ui.inputId.val(),
+				id : this.ui.inputId.val() || null,
 				name : this.ui.inputAtributeName.text(),
 
 				displayName : C3P.notEmptyVal(this.ui.inputDisplayName),
@@ -103,6 +110,7 @@ define(function(require) {
 				this.ui.inputAtributeName.on('hidden', function() {
 					util.refreshEditable(that.ui.inputDisplayName, util.toFrase(that.ui.inputAtributeName.text()));
 					util.refreshEditable(that.ui.inputTableFieldName, util.toUnderscore(that.ui.inputAtributeName.text(), true));
+					util.refreshEditable(that.ui.inputMaxLen, 255)
 				});
 
 				this.ui.inputType.on('hidden', function() {
@@ -153,6 +161,7 @@ define(function(require) {
 						util.refreshEditable(that.ui.inputMask, '99/99/9999 99:99');
 						util.refreshEditable(that.ui.inputMaxLen, 16)
 					}
+//					this.trigger('attribute:change', this.model);
 				})
 
 				this.ui.inputViewApproach.editable({
@@ -212,6 +221,8 @@ define(function(require) {
 						editable.input.$input.val($(evt.target).text() || $(evt.target).val());
 					}
 				});
+
+				this.hideShow();
 			});
 		},
 	});

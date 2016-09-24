@@ -1,5 +1,6 @@
 define([ 'jquery', 'bootbox', 'bootstrap', 'jqueryNumeric', 'jqueryMaskInput', 'jqueryScrollTo', 'jqueryValidatorEngine', 'jqueryValidatorEnginePtBr', 'morris', 'raphael', 'datetimepicker', 'bootbox', 'datetimepicker_lang_pt_BR', 'jqueryUI', 'nprogress', 'slimscroll',
-		'slimscrollHorizontal', 'jqueryGritter', 'metisMenu', 'editable' ], function($) {
+		'slimscrollHorizontal', 'jqueryGritter', 'metisMenu', 'editable', 'joint', 'shapesUml' ], function($) {
+
 	$.mask.definitions['h'] = "[A-Fa-f0-9]";
 	$.fn.editable.defaults.mode = 'popup';
 

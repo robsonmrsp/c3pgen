@@ -11,9 +11,9 @@ import javax.ws.rs.core.Response;
 
 import org.apache.log4j.Logger;
 
+import br.com.c3pgen.json.DtoDataBase;
 import br.com.c3pgen.json.JsonError;
 import br.com.c3pgen.service.SyncService;
-import br.com.c3pgen.json.DtoDataBase;
 @Path("/comunication")
 public class SyncResources {
 

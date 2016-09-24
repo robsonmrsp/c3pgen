@@ -4,6 +4,7 @@ define(function(require) {
 	var _ = require('adapters/underscore-adapter');
 	var $ = require('adapters/jquery-adapter');
 	var Col = require('adapters/col-adapter');
+	var C3P = require('utilities/C3pUtil');
 	var Backbone = require('adapters/backbone-adapter');
 	var Marionette = require('marionette');
 
@@ -31,13 +32,25 @@ define(function(require) {
 			inputType : '.inputType',
 			inputOwnerName : '.inputOwnerName',
 			inputUniDirecional : '.inputUniDirecional',
+			inputViewApproach : '.inputViewApproach',
+			inputViewApproachId : '.inputViewApproachId',
+
+			inputComboId : '.inputComboId',
+			inputComboName : '.inputComboName',
+			inputTextField : '.inputTextField',
+			inputHiddenField : '.inputHiddenField',
+
+			modalFields : '.modal-fields',
+			comboFields : '.combo-fields',
 
 			widgetMain : '.widget-main-rel',
 			showhide : '.showhide-rel',
 			editableFields : '.editable-click'
 		},
 		changeRelationship : function() {
-			this.model.set(this.getModel());
+			var attr = this.getModel();
+			if (attr.name && attr.model)
+				this.model.set(attr);
 		},
 		deleteRelationship : function() {
 			this.model.destroy();
@@ -46,11 +59,17 @@ define(function(require) {
 		getModel : function() {
 			return {
 				id : this.ui.inputId.val(),
-				name : this.ui.inputRelationshipName.text(),
-				displayName : this.ui.inputDisplayName.text(),
-				model : this.ui.inputModel.text(),
-				ownerName : this.ui.inputOwnerName.text(),
-				uniDirecional : this.ui.inputUniDirecional.is(':checked')
+				name : C3P.notEmptyVal(this.ui.inputRelationshipName),
+				type : C3P.notEmptyVal(this.ui.inputType),
+				displayName : C3P.notEmptyVal(this.ui.inputDisplayName),
+				model : C3P.notEmptyVal(this.ui.inputModel),
+				ownerName : C3P.notEmptyVal(this.ui.inputOwnerName),
+				uniDirecional : this.ui.inputUniDirecional.is(':checked'),
+				viewApproach : {
+					id : this.ui.inputViewApproachId.val(),
+					type : C3P.notEmptyVal(this.ui.inputViewApproach),
+				}
+
 			};
 		},
 		hideShow : function() {
@@ -68,8 +87,23 @@ define(function(require) {
 			this.on('show', function() {
 				this.ui.inputRelationshipName.editable();
 				this.ui.inputDisplayName.editable();
-				this.ui.inputModel.editable(); // popupada a partir dos nomes das entidades já cadastradas ou deixar em branco para o autocomplete ser feito via lista de já cadastrados.
-				this.ui.inputOwnerName.editable();// candidato a ser uma lista populada a partir da escolha do model
+				this.ui.inputModel.editable({
+					value : '',
+					source : that._getModels(),
+				});
+
+				this.ui.inputComboId.editable();
+				this.ui.inputComboName.editable();
+				this.ui.inputTextField.editable();
+				this.ui.inputHiddenField.editable();
+
+				// das entidades já cadastradas
+				// ou deixar em branco para o
+				// autocomplete ser feito via
+				// lista de já cadastrados.
+				this.ui.inputOwnerName.editable();// candidato a ser uma lista
+				// populada a partir da
+				// escolha do model
 
 				this.ui.inputRelationshipName.on('hidden', function() {
 					util.refreshEditable(that.ui.inputDisplayName, util.toFrase(that.ui.inputRelationshipName.text()));
@@ -78,24 +112,69 @@ define(function(require) {
 				this.ui.editableFields.on('hidden', function() {
 					that.changeRelationship();
 				})
+				this.ui.inputViewApproach.editable({
+					value : '',
+					source : [ {
+						value : 'modal',
+						text : 'modal'
+					}, {
+						value : 'combo',
+						text : 'combo'
+					}, {
+						value : 'multiselect',
+						text : 'multiselect'
+					}, ]
+				});
+				this.ui.inputViewApproach.on('hidden', function(e, editable) {
+					var val = that.ui.inputViewApproach.text();
+					if (val == 'modal') {
+						console.log('Escolheu modal');
+						that.ui.modalFields.show();
+						that.ui.comboFields.hide();
+					} else if (val == 'combo') {
+						that.ui.comboFields.show();
+						that.ui.modalFields.hide();
+
+						console.log('Escolheu combo');
+					} else if (val == 'multiselect') {
+						that.ui.modalFields.hide();
+						that.ui.comboFields.hide();
+
+						console.log('Escolheu mulsiselect');
+					}
+				});
 				this.ui.inputType.editable({
 					value : 'OneToMany',
 					source : [ {
 						value : 'OneToMany',
-						text : '1 > N'
+						text : 'OneToMany'
 					}, {
 						value : 'ManyToOne',
-						text : 'M > 1'
+						text : 'ManyToOne'
 					}, {
 						value : 'OneToOne',
-						text : '1 > 1'
+						text : 'OneToOne'
 					}, {
 						value : 'ManyToMany',
-						text : 'M > N'
+						text : 'ManyToMany'
 					}, ]
 				});
+				// this.hideShow();
 			});
 		},
+
+		_getModels : function() {
+			var arrayModels = [];
+			var allBEntities = util.getBEntities();
+			_.each(allBEntities, function(entity) {
+				arrayModels.push({
+					value : entity.get('name'),
+					text : entity.get('name')
+				})
+			});
+
+			return arrayModels;
+		}
 	});
 
 	return RelationshipItem;

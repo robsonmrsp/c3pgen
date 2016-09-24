@@ -1,0 +1,9 @@
+ 29/04/2016 
+   #colocar o pluguin de decimal no sistema substituindo o atual
+    http://plentz.github.io/jquery-maskmoney/
+   
+   #Para o duturo trabalhar com o javaDateTime do java8
+   #Atualizar as bibliotecas utilizadas. Spring, Hibernate, Jackson.
+
+   #estilizar o modal que aparece quando se vai excluir um elemento do grid. Fazer como está p
+   melhorar o combobox para que ele possa rodar um loading...

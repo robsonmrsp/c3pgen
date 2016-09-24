@@ -6,10 +6,10 @@ define(function(require) {
 		notEmptyVal : function(field) {
 			var value = field.val() || field.text();
 			if (value == 'Empty' || value == 'Vazio') {
-				return '';
+				return null;
 			}
 
-			return value;
+			return value.trim();
 		}
 	}
 })

@@ -13,7 +13,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
@@ -22,31 +21,28 @@ import org.apache.log4j.Logger;
 import br.com.c3pgen.json.JsonError;
 import br.com.c3pgen.json.JsonPaginator;
 import br.com.c3pgen.json.JsonTheEntity;
-
-import br.com.c3pgen.model.TheEntity;
-
-import br.com.c3pgen.model.Client;
+import br.com.c3pgen.model.ApplicationEntity;
 import br.com.c3pgen.model.filter.FilterTheEntity;
 import br.com.c3pgen.persistence.pagination.Pager;
 import br.com.c3pgen.persistence.pagination.PaginationParams;
-import br.com.c3pgen.service.TheEntityService;
-import br.com.c3pgen.service.UserService;
-import br.com.c3pgen.utils.Parser;
 import br.com.c3pgen.rs.exception.ValidationException;
 import br.com.c3pgen.security.SpringSecurityUserContext;
-/**
-*  generated: 03/09/2015 14:51:48
-**/
+import br.com.c3pgen.service.TheEntityService;
+import br.com.c3pgen.utils.Parser;
 
-@Path("/crud/theEntitys")
+/**
+ * generated: 03/09/2015 14:51:48
+ **/
+
+@Path("/crud/entitys")
 public class TheEntityResources {
 
 	@Inject
 	TheEntityService theEntityService;
-	
+
 	@Inject
 	private SpringSecurityUserContext context;
-	
+
 	public static final Logger LOGGER = Logger.getLogger(TheEntityResources.class);
 
 	@GET
@@ -90,7 +86,7 @@ public class TheEntityResources {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response all(@Context UriInfo uriInfo) {
 		Response response = null;
-		Pager<TheEntity> theEntitys = null;
+		Pager<ApplicationEntity> theEntitys = null;
 
 		try {
 			PaginationParams<FilterTheEntity> paginationParams = new PaginationParams<FilterTheEntity>(uriInfo, FilterTheEntity.class);
@@ -114,7 +110,7 @@ public class TheEntityResources {
 	public Response get(@PathParam("id") Integer id) {
 		try {
 
-			TheEntity theEntity = theEntityService.get(id, context.getCurrentUser().getOwner());
+			ApplicationEntity theEntity = theEntityService.get(id, context.getCurrentUser().getOwner());
 
 			return Response.ok().entity(Parser.toJson(theEntity)).build();
 
@@ -131,7 +127,7 @@ public class TheEntityResources {
 	public Response save(JsonTheEntity jsonTheEntity) {
 		try {
 
-			TheEntity theEntity = Parser.toEntity(jsonTheEntity);
+			ApplicationEntity theEntity = Parser.toEntity(jsonTheEntity);
 			theEntity.setOwner(context.getCurrentUser().getOwner());
 			theEntity = theEntityService.save(theEntity);
 			return Response.ok().entity(Parser.toJson(theEntity)).build();
@@ -152,7 +148,7 @@ public class TheEntityResources {
 	@Path("{id}")
 	public Response update(@PathParam("id") Integer id, JsonTheEntity jsonTheEntity) {
 		try {
-			TheEntity theEntity = theEntityService.get(id);
+			ApplicationEntity theEntity = theEntityService.get(id);
 			Parser.apply(theEntity, jsonTheEntity);
 
 			theEntity.setOwner(context.getCurrentUser().getOwner());

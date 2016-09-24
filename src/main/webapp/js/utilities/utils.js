@@ -28,6 +28,7 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 	return {
 		// Uma forma de chamar o moment js sem precisar importar em cada arquivo
 		moment : moment,
+		VENT : _.extend({}, Backbone.Events),
 		Bootbox : bootbox,
 		NProgress : NProgress.configure({
 			minimum : 0.2,
@@ -573,6 +574,9 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 			$el.text(val)
 			$el.removeClass('editable-empty').addClass('editable-unsaved');
 		},
+		refreshEditableVisual : function($el) {
+			$el.removeClass('editable-empty').addClass('editable-unsaved');
+		},
 		toUnderscore : function(w, upper) {
 			var ret = w.replace(/([A-Z])/g, function($1, $2, index) {
 				if (index == 0) {
@@ -597,6 +601,35 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 
 		firstUpper : function(string) {
 			return string.charAt(0).toUpperCase() + string.slice(1);
+		},
+		getVEntityByName : function(/*
+									 * nome da entidade representada no editor
+									 * visual
+									 */name) {
+			var allVEntities = visualEntities.values();
+			var allBEntities = [];
+			var returnVntuty = null;
+			_.each(allVEntities, function(vEntity) {
+				if (vEntity.get('entity').get('name') == name) {
+					returnVntuty = vEntity;
+					return returnVntuty;
+				}
+			})
+
+			return returnVntuty;
+		},
+		getBEntities : function() {
+			var allVEntities = visualEntities.values();
+			var allBEntities = [];
+			_.each(allVEntities, function(vEntity) {
+				allBEntities.push(vEntity.get('entity'));
+			})
+			return allBEntities;
+		},
+		findViewByModel : function(entity) {
+			/* joint.dia.Element or joint.dia.Link. */
+			var vEntity = this.getVEntityByName(entity.get && entity.get('name'));
+			return paper.findViewByModel(vEntity);
 		}
 	};
 	return util;
