@@ -11,6 +11,7 @@ define(function(require) {
 	var Waves = require('waves');
 	var util = require('utilities/Utils');
 	var DataBaseHelper = require('utilities/DataBaseHelper');
+	var Global = require('models/Global');
 
 	<#list application.entities as entity>
 		<#if entity.hasMobile == true>
@@ -38,6 +39,11 @@ define(function(require) {
 			this.$el.hide();
 			this.$el.html(view.el);
 			this.$el.show("slide", { direction: "right" }, 300);
+
+			view.on('show', function() {
+				view.$el.enhanceWithin();
+			})
+
 		},
 		initialize : function(options) {
 			this.on('show', function() {
@@ -45,6 +51,9 @@ define(function(require) {
 			})
 		},
 	});
+	// VARIAVEL QUE GUARDARÁ AS INFORMAÇOES GLOBAIS DO SITEMA.
+	// Nota: Deve ser o unico local onde veremos o new GLOBAL
+	window.GLOBAL = new Global();
 
 	var Router = Backbone.Router.extend({
 		// The Router constructor

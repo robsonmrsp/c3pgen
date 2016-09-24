@@ -6,15 +6,18 @@ define(function(require) {
 	var Backbone = require('adapters/backbone-adapter');
 	var LocalStorage = require('localStorage');
 	var BaseModel = require('models/BaseModel');
-	var Global = require('models/Global');
+
 	// End of "Import´s definition"
 	var ${entity.name}Model = BaseModel.extend({
-		urlRoot : function(){
-			var global = new Global();
-			global.fetch();
-			return global.get('url') + 'rs/crud/${firstLower(entity.name)}s'
+
+//	 localStorage : new LocalStorage("table_${firstLower(entity.name)}"),
+
+		initialize : function() {
+			BaseModel.prototype.initialize.apply(this, arguments)
+			this.urlRoot = GLOBAL.getRemoteUrl() + '/rs/crud/${firstLower(entity.name)}s'
 		},
-		localStorage : new LocalStorage("table_${firstLower(entity.name)}"),
+
+		
 		defaults : {
 			id: null,
 		<#list entity.attributes as att>

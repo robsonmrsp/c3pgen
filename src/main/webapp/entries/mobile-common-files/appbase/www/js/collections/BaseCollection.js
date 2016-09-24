@@ -4,15 +4,15 @@ define(function(require) {
 	var _ = require('adapters/underscore-adapter');
 	var $ = require('adapters/jquery-adapter');
 	var Utils = require('utilities/Utils');
-	var Global = require('models/Global');
 	var Backbone = require('adapters/backbone-adapter');
 	// End of "Import´s definition"
 
 	var BaseCollection = Backbone.Collection.extend({
-		initialize : function() {
-			this.global = new Global();
-			this.global.fetch();
+
+		token : function() {
+			return GLOBAL.getTokenCredentials();
 		},
+
 		// Somente deve ser chamado apos o sync pois se trata de uma acçao
 		// destrutiva
 		resetAndstore : function(models) {

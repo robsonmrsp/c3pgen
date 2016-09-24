@@ -17,21 +17,21 @@
 							<div id="groupInputDatabaseType" class="form-group col-xs-2 col-sm-2">
 								<label class="control-label" for="inputModalName">Tipo</label>
 								<select id="inputDatabaseType" class="form-control validate[required]">
-									<option value="POSTGRES">Postgres</option>
-									<option selected value="ORACLE">Oracle</option>
+									<option selected value="POSTGRES">Postgres</option>
+									<option  value="ORACLE">Oracle</option>
 								</select>
 							</div>
 							<div id="groupInputDatabaseUrl" class="form-group col-xs-4 col-sm-4">
 								<label class="control-label" for="inputDatabaseUrl">url</label>
-								<input type="text" id="inputDatabaseUrl" placeholder="Url" class="form-control validate[required]" value="jdbc:oracle:thin:@192.168.0.55:1521:gshjava">
+								<input type="text" id="inputDatabaseUrl" placeholder="Url" class="form-control validate[required]" value="jdbc:postgresql://localhost:5432/db_locadora">
 							</div>
 							<div id="groupInputDatabaseUsername" class="form-group col-xs-2 col-sm-2">
 								<label class="control-label" for="inputModalName">Usuario</label>
-								<input type="text" id="inputDatabaseUsername" placeholder="usuário do banco de dados" class="form-control validate[required]" value="ROBSON">
+								<input type="text" id="inputDatabaseUsername" placeholder="usuário do banco de dados" class="form-control validate[required]" value="postgres">
 							</div>
 							<div id="groupInputDatabasePassword" class="form-group col-xs-2 col-sm-2">
 								<label class="control-label" for="inputDatabasePassword">Senha</label>
-								<input type="password" id="inputDatabasePassword" placeholder="Senha do banco de dados " class="form-control validate[required]" value="gsh">
+								<input type="password" id="inputDatabasePassword" placeholder="Senha do banco de dados " class="form-control validate[required]" value="sints">
 							</div>
 							<div id="spinApplication" class="form-group col-xs-2 col-sm-2" style="padding-top: 20px;">
 								<a href="javascript:void(0)" id="btnConnectionTest" class="btn btn-success btn btn-block  ">
@@ -43,7 +43,7 @@
 						<div class="row">
 							<div id="groupInputDatabaseTableNameExceptions" class="form-group col-xs-12 col-sm-12">
 								<label class="control-label" for="inputDatabaseTableNameExceptions">Nomes de tabelas </label>
-								<textarea type="text" id="inputDatabaseTableNameExceptions" rows="3" placeholder="Nomes de tabelas (regex*)" class="form-control"> GSH_GER_BAIRRO;GSH_GER_CIDADE </textarea>
+								<textarea type="text" id="inputDatabaseTableNameExceptions" rows="3" placeholder="Nomes de tabelas (regex*)" class="form-control"> bairro; cep; cidade; endereco; estado; pais	 </textarea>
 							</div>
 							<div id="groupInputDatabaseColumnNameExceptions" class="form-group col-xs-12 col-sm-12">
 								<div class="hpanel" style="margin-bottom: 0px;"></div>
