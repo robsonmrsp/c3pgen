@@ -1,0 +1,103 @@
+<!-- generated: 24/09/2016 11:56:33 -->
+<!-- Cliente´s form -->
+<div class="breadcrumbs" id="breadcrumbs">
+	<ul class="breadcrumb">
+		<li>
+			<i class="ace-icon fa fa-home home-icon"></i>
+			<a href="#">Home</a>
+		</li>
+		<li class="active">Formulário de cadastro de Cliente</li>
+	</ul>
+</div>
+<div class="col-sm-12 page-form ">
+	<div id="messages_div"></div>				
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="widget-box transparent_  ">
+				<div class="widget-header widget-header-flat">
+					<h4 class="widget-title lighter">
+						<i class="ace-icon fa fa-wpforms"></i>
+						Formulário de cadastro de Cliente
+					</h4>
+				</div>
+				<div class="widget-body">
+					<div class="widget-main">
+						<form role="form" id="formCliente">
+							<input type="hidden" id="inputId" value="{{id}}">
+							<div id="groupInputNome" class="form-group">
+								<label class="control-label" for="inputNome">Nome  *</label>
+								<input type="text" id="inputNome" placeholder="" value="{{nome}}" class="form-control  validate[required]">
+							</div>
+							<div id="groupInputNomeFantasia" class="form-group">
+								<label class="control-label" for="inputNomeFantasia">Nome Fantasia  *</label>
+								<input type="text" id="inputNomeFantasia" placeholder="" value="{{nomeFantasia}}" class="form-control  validate[required]">
+							</div>
+							<div id="groupInputNomeContato" class="form-group">
+								<label class="control-label" for="inputNomeContato">Nome do Contato  </label>
+								<input type="text" id="inputNomeContato" placeholder="" value="{{nomeContato}}" class="form-control  ">
+							</div>
+							<div id="groupInputTelefoneContato" class="form-group">
+								<label class="control-label" for="inputTelefoneContato">Telefone do  Contato  </label>
+								<input type="text" id="inputTelefoneContato" placeholder="" value="{{telefoneContato}}" class="form-control  ">
+							</div>
+							<div id="groupInputRazaoSocial" class="form-group">
+								<label class="control-label" for="inputRazaoSocial">Razão Social  *</label>
+								<input type="text" id="inputRazaoSocial" placeholder="" value="{{razaoSocial}}" class="form-control  validate[required]">
+							</div>
+							<div id="groupInputObservacao" class="form-group">
+								<label class="control-label" for="inputObservacao">Observação  </label>
+								<input type="text" id="inputObservacao" placeholder="" value="{{observacao}}" class="form-control  ">
+							</div>
+							<div id="groupInputCpf" class="form-group">
+								<label class="control-label" for="inputCpf">CPF  </label>
+								<input type="text" id="inputCpf" placeholder="" value="{{cpf}}" class="form-control  ">
+							</div>
+							<div id="groupInputCnpj" class="form-group">
+								<label class="control-label" for="inputCnpj">CNPJ  </label>
+								<input type="text" id="inputCnpj" placeholder="" value="{{cnpj}}" class="form-control  ">
+							</div>
+							<div id="groupInputEmail" class="form-group">
+								<label class="control-label" for="inputEmail">E-mail  </label>
+								<input type="text" id="inputEmail" placeholder="" value="{{email}}" class="form-control  ">
+							</div>
+							<div id="groupInputEmail2" class="form-group">
+								<label class="control-label" for="inputEmail2">E-mail 2  </label>
+								<input type="text" id="inputEmail2" placeholder="" value="{{email2}}" class="form-control  ">
+							</div>
+							<div id="groupInputPessoaFisica" class="form-group">
+								<label class="control-label" for="inputPessoaFisica">E-mail 2  </label>
+								<input type="text" id="inputPessoaFisica" placeholder="" value="{{pessoaFisica}}" class="form-control  ">
+							</div>
+							<div id="groupInputDataNascimentoContainer" class="form-group">
+								<label class="control-label" for="inputDataNascimento">Data Nascimento  </label>
+								<div id="groupInputDataNascimento" class="input-group date" data-date-format="DD/MM/YYYY">
+									<input id="inputDataNascimento" placeholder="Escolha ou digite uma data." type="text" class="form-control   append-left" value="{{dataNascimento}}" />
+									<div class="input-group-addon	append-right">
+										<span class="fa fa-calendar"></span>
+									</div>
+								</div>
+							</div>
+					</form>
+				</div>
+			</div>
+			<div class="">
+				<div class="clearfix form-actions">
+					<a href="javascript:void(0)" id="save"  class="save btn btn-primary">
+						<i class="ace-icon save fa fa-check bigger-110"></i>
+						Salvar
+					</a>
+					&nbsp; &nbsp; &nbsp;
+					<a href="javascript:void(0)" class=" saveAndContinue  btn btn-info" style="display: {{ id ? 'none' : 'inline-block' }} ">
+						<i class="ace-icon fa fa-check bigger-110"></i>
+						Salvar e Continuar
+					</a>
+					&nbsp; &nbsp; &nbsp;
+					<a class="go-back-link btn btn-light" href="#app/clientes">
+						<i class="ace-icon fa fa-undo bigger-110"></i>
+						Voltar para a listagem
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

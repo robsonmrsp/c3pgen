@@ -1,0 +1,58 @@
+<!-- generated: 24/09/2016 11:56:37 -->
+<!-- Pais´s form -->
+<div class="breadcrumbs" id="breadcrumbs">
+	<ul class="breadcrumb">
+		<li>
+			<i class="ace-icon fa fa-home home-icon"></i>
+			<a href="#">Home</a>
+		</li>
+		<li class="active">Formulário de cadastro de Pais</li>
+	</ul>
+</div>
+<div class="col-sm-12 page-form ">
+	<div id="messages_div"></div>				
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="widget-box transparent_  ">
+				<div class="widget-header widget-header-flat">
+					<h4 class="widget-title lighter">
+						<i class="ace-icon fa fa-wpforms"></i>
+						Formulário de cadastro de Pais
+					</h4>
+				</div>
+				<div class="widget-body">
+					<div class="widget-main">
+						<form role="form" id="formPais">
+							<input type="hidden" id="inputId" value="{{id}}">
+							<div id="groupInputCodigo" class="form-group">
+								<label class="control-label" for="inputCodigo">Código  </label>
+								<input type="text" id="inputCodigo" placeholder="" value="{{codigo}}" class="form-control  ">
+							</div>
+							<div id="groupInputNome" class="form-group">
+								<label class="control-label" for="inputNome">Nome  </label>
+								<input type="text" id="inputNome" placeholder="" value="{{nome}}" class="form-control  ">
+							</div>
+					</form>
+				</div>
+			</div>
+			<div class="">
+				<div class="clearfix form-actions">
+					<a href="javascript:void(0)" id="save"  class="save btn btn-primary">
+						<i class="ace-icon save fa fa-check bigger-110"></i>
+						Salvar
+					</a>
+					&nbsp; &nbsp; &nbsp;
+					<a href="javascript:void(0)" class=" saveAndContinue  btn btn-info" style="display: {{ id ? 'none' : 'inline-block' }} ">
+						<i class="ace-icon fa fa-check bigger-110"></i>
+						Salvar e Continuar
+					</a>
+					&nbsp; &nbsp; &nbsp;
+					<a class="go-back-link btn btn-light" href="#app/paiss">
+						<i class="ace-icon fa fa-undo bigger-110"></i>
+						Voltar para a listagem
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
