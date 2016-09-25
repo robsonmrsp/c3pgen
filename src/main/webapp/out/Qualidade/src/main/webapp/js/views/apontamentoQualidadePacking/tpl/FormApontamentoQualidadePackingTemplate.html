@@ -1,4 +1,4 @@
-<!-- generated: 24/09/2016 11:56:32 -->
+<!-- generated: 24/09/2016 12:52:11 -->
 <!-- ApontamentoQualidadePacking´s form -->
 <div class="breadcrumbs" id="breadcrumbs">
 	<ul class="breadcrumb">
@@ -24,52 +24,10 @@
 					<div class="widget-main">
 						<form role="form" id="formApontamentoQualidadePacking">
 							<input type="hidden" id="inputId" value="{{id}}">
-							<div id="groupInputTipoControle" class="form-group">
-								<label class="control-label" for="inputTipoControle">Tipo de Controle  </label>
-								<select class="form-control" id="inputTipoControle"></select>
-							</div>					
-							<div id="groupInputCor" class="form-group">
-								<label class="control-label" for="inputCor">Cor  </label>
-								<select class="form-control" id="inputCor"></select>
-							</div>					
-							<div id="groupInputClassificacao" class="form-group">
-								<label class="control-label" for="inputClassificacao">Classificação  </label>
-								<select class="form-control" id="inputClassificacao"></select>
-							</div>					
-							<div id="groupInputQualidade" class="form-group">
-								<label class="control-label" for="inputQualidade">Qualidade  </label>
-								<select class="form-control" id="inputQualidade"></select>
-							</div>					
-							<div id="groupInputCondicao" class="form-group">
-								<label class="control-label" for="inputCondicao">Condição  </label>
-								<select class="form-control" id="inputCondicao"></select>
-							</div>					
-							<div id="groupInputPallet" class="form-group">
-								<label class="control-label" for="inputPallet">Pallet  </label>
-								<select class="form-control" id="inputPallet"></select>
-							</div>					
-							<div id="groupInputDataAnaliseContainer" class="form-group">
-								<label class="control-label" for="inputDataAnalise">Data da análise  </label>
-								<div id="groupInputDataAnalise" class="input-group date" data-date-format="DD/MM/YYYY">
-									<input id="inputDataAnalise" placeholder="Escolha ou digite uma data." type="text" class="form-control   append-left" value="{{dataAnalise}}" />
-									<div class="input-group-addon	append-right">
-										<span class="fa fa-calendar"></span>
-									</div>
-								</div>
-							</div>
-							<div id="groupInputDataColheitaContainer" class="form-group">
-								<label class="control-label" for="inputDataColheita">Data da colheita  </label>
-								<div id="groupInputDataColheita" class="input-group date" data-date-format="DD/MM/YYYY">
-									<input id="inputDataColheita" placeholder="Escolha ou digite uma data." type="text" class="form-control   append-left" value="{{dataColheita}}" />
-									<div class="input-group-addon	append-right">
-										<span class="fa fa-calendar"></span>
-									</div>
-								</div>
-							</div>
 							<div id="groupInputAparencia" class="form-group">
 								<label class="control-label" for="inputAparencia">Aparência  </label>
-								<select class="form-control" id="inputAparencia"></select>
-							</div>					
+								<input type="text" id="inputAparencia" placeholder="" value="{{aparencia}}" class="form-control  ">
+							</div>
 							<div id="groupInputDiametroMinimo" class="form-group">
 								<label class="control-label" for="inputDiametroMinimo">Diametro mínimo  </label>
 								<input type="text" id="inputDiametroMinimo" placeholder="" value="{{diametroMinimo}}" class="form-control  ">
@@ -144,8 +102,8 @@
 							</div>
 							<div id="groupInputCorposEstranhos" class="form-group">
 								<label class="control-label" for="inputCorposEstranhos">Corpos estranhos  </label>
-								<select class="form-control" id="inputCorposEstranhos"></select>
-							</div>					
+								<input type="text" id="inputCorposEstranhos" placeholder="" value="{{corposEstranhos}}" class="form-control  ">
+							</div>
 							<div id="groupInputBagasAquosas" class="form-group">
 								<label class="control-label" for="inputBagasAquosas">Bagas aquosas  </label>
 								<input type="text" id="inputBagasAquosas" placeholder="" value="{{bagasAquosas}}" class="form-control  ">
@@ -156,8 +114,8 @@
 							</div>
 							<div id="groupInputFirmeza" class="form-group">
 								<label class="control-label" for="inputFirmeza">Firmeza  </label>
-								<select class="form-control" id="inputFirmeza"></select>
-							</div>					
+								<input type="text" id="inputFirmeza" placeholder="" value="{{firmeza}}" class="form-control  ">
+							</div>
 							<div id="groupInputDanos" class="form-group">
 								<label class="control-label" for="inputDanos">Danos  </label>
 								<input type="text" id="inputDanos" placeholder="" value="{{danos}}" class="form-control  ">
@@ -172,8 +130,8 @@
 							</div>
 							<div id="groupInputAparenciaEngaco" class="form-group">
 								<label class="control-label" for="inputAparenciaEngaco">Aparência engaco  </label>
-								<select class="form-control" id="inputAparenciaEngaco"></select>
-							</div>					
+								<input type="text" id="inputAparenciaEngaco" placeholder="" value="{{aparenciaEngaco}}" class="form-control  ">
+							</div>
 							<div id="groupInputDesgrana" class="form-group">
 								<label class="control-label" for="inputDesgrana">Desgrana  </label>
 								<input type="text" id="inputDesgrana" placeholder="" value="{{desgrana}}" class="form-control  ">
@@ -206,46 +164,110 @@
 								<label class="control-label" for="inputDataHora">Data hora  </label>
 								<input type="text" id="inputDataHora" placeholder="" value="{{dataHora}}" class="form-control  ">
 							</div>
-							<div id="groupInputBolsao" class="form-group">
+							<div id="groupInputBolsaoContainer" class="form-group">
 								<label class="control-label" for="inputBolsao">Bolsao</label>
-								<select class="form-control" id="inputBolsao"></select>
-							</div>					
-							<div id="groupInputGenerador" class="form-group">
+								<div id="groupInputBolsao" class="input-group">
+									<input id="inputBolsaoId" type="hidden" class="form-control append-left" value="{{bolsao && bolsao.id}}" />
+									<input id="inputBolsaoNome" placeholder="Escolha um Bolsao"  type="text" class="form-control append-left" value="{{bolsao && bolsao.nome}}" />
+									<div class="input-group-addon append-right" id="searchBolsaoModal" data-toggle="modal">
+										<span class="fa fa-search"></span>
+									</div>
+								</div>
+							</div>		
+							<div id="groupInputGeneradorContainer" class="form-group">
 								<label class="control-label" for="inputGenerador">Generador</label>
-								<select class="form-control" id="inputGenerador"></select>
-							</div>					
-							<div id="groupInputCargo" class="form-group">
+								<div id="groupInputGenerador" class="input-group">
+									<input id="inputGeneradorId" type="hidden" class="form-control append-left" value="{{generador && generador.id}}" />
+									<input id="inputGeneradorNome" placeholder="Escolha um Generador"  type="text" class="form-control append-left" value="{{generador && generador.nome}}" />
+									<div class="input-group-addon append-right" id="searchGeneradorModal" data-toggle="modal">
+										<span class="fa fa-search"></span>
+									</div>
+								</div>
+							</div>		
+							<div id="groupInputCorContainer" class="form-group">
+								<label class="control-label" for="inputCor">Cor</label>
+								<div id="groupInputCor" class="input-group">
+									<input id="inputCorId" type="hidden" class="form-control append-left" value="{{cor && cor.id}}" />
+									<input id="inputCorNome" placeholder="Escolha um Cor"  type="text" class="form-control append-left" value="{{cor && cor.nome}}" />
+									<div class="input-group-addon append-right" id="searchCorModal" data-toggle="modal">
+										<span class="fa fa-search"></span>
+									</div>
+								</div>
+							</div>		
+							<div id="groupInputCargoContainer" class="form-group">
 								<label class="control-label" for="inputCargo">Cargo</label>
-								<select class="form-control" id="inputCargo"></select>
-							</div>					
+								<div id="groupInputCargo" class="input-group">
+									<input id="inputCargoId" type="hidden" class="form-control append-left" value="{{cargo && cargo.id}}" />
+									<input id="inputCargoNome" placeholder="Escolha um Cargo"  type="text" class="form-control append-left" value="{{cargo && cargo.nome}}" />
+									<div class="input-group-addon append-right" id="searchCargoModal" data-toggle="modal">
+										<span class="fa fa-search"></span>
+									</div>
+								</div>
+							</div>		
 							<div id="groupInputVariedade" class="form-group">
 								<label class="control-label" for="inputVariedade">Variedade</label>
 								<select class="form-control" id="inputVariedade"></select>
 							</div>					
-							<div id="groupInputLatada" class="form-group">
+							<div id="groupInputLatadaContainer" class="form-group">
 								<label class="control-label" for="inputLatada">Latada</label>
-								<select class="form-control" id="inputLatada"></select>
-							</div>					
-							<div id="groupInputEmbalagem" class="form-group">
+								<div id="groupInputLatada" class="input-group">
+									<input id="inputLatadaId" type="hidden" class="form-control append-left" value="{{latada && latada.id}}" />
+									<input id="inputLatadaNome" placeholder="Escolha um Latada"  type="text" class="form-control append-left" value="{{latada && latada.nome}}" />
+									<div class="input-group-addon append-right" id="searchLatadaModal" data-toggle="modal">
+										<span class="fa fa-search"></span>
+									</div>
+								</div>
+							</div>		
+							<div id="groupInputEmbalagemContainer" class="form-group">
 								<label class="control-label" for="inputEmbalagem">Embalagem</label>
-								<select class="form-control" id="inputEmbalagem"></select>
-							</div>					
-							<div id="groupInputCabine" class="form-group">
+								<div id="groupInputEmbalagem" class="input-group">
+									<input id="inputEmbalagemId" type="hidden" class="form-control append-left" value="{{embalagem && embalagem.id}}" />
+									<input id="inputEmbalagemNome" placeholder="Escolha um Embalagem"  type="text" class="form-control append-left" value="{{embalagem && embalagem.nome}}" />
+									<div class="input-group-addon append-right" id="searchEmbalagemModal" data-toggle="modal">
+										<span class="fa fa-search"></span>
+									</div>
+								</div>
+							</div>		
+							<div id="groupInputCabineContainer" class="form-group">
 								<label class="control-label" for="inputCabine">Cabine</label>
-								<select class="form-control" id="inputCabine"></select>
-							</div>					
-							<div id="groupInputSacola" class="form-group">
+								<div id="groupInputCabine" class="input-group">
+									<input id="inputCabineId" type="hidden" class="form-control append-left" value="{{cabine && cabine.id}}" />
+									<input id="inputCabineNome" placeholder="Escolha um Cabine"  type="text" class="form-control append-left" value="{{cabine && cabine.nome}}" />
+									<div class="input-group-addon append-right" id="searchCabineModal" data-toggle="modal">
+										<span class="fa fa-search"></span>
+									</div>
+								</div>
+							</div>		
+							<div id="groupInputSacolaContainer" class="form-group">
 								<label class="control-label" for="inputSacola">Sacola</label>
-								<select class="form-control" id="inputSacola"></select>
-							</div>					
-							<div id="groupInputCliente" class="form-group">
+								<div id="groupInputSacola" class="input-group">
+									<input id="inputSacolaId" type="hidden" class="form-control append-left" value="{{sacola && sacola.id}}" />
+									<input id="inputSacolaNome" placeholder="Escolha um Sacola"  type="text" class="form-control append-left" value="{{sacola && sacola.nome}}" />
+									<div class="input-group-addon append-right" id="searchSacolaModal" data-toggle="modal">
+										<span class="fa fa-search"></span>
+									</div>
+								</div>
+							</div>		
+							<div id="groupInputClienteContainer" class="form-group">
 								<label class="control-label" for="inputCliente">Cliente</label>
-								<select class="form-control" id="inputCliente"></select>
-							</div>					
-							<div id="groupInputPacking" class="form-group">
+								<div id="groupInputCliente" class="input-group">
+									<input id="inputClienteId" type="hidden" class="form-control append-left" value="{{cliente && cliente.id}}" />
+									<input id="inputClienteNome" placeholder="Escolha um Cliente"  type="text" class="form-control append-left" value="{{cliente && cliente.nome}}" />
+									<div class="input-group-addon append-right" id="searchClienteModal" data-toggle="modal">
+										<span class="fa fa-search"></span>
+									</div>
+								</div>
+							</div>		
+							<div id="groupInputPackingContainer" class="form-group">
 								<label class="control-label" for="inputPacking">Packing</label>
-								<select class="form-control" id="inputPacking"></select>
-							</div>					
+								<div id="groupInputPacking" class="input-group">
+									<input id="inputPackingId" type="hidden" class="form-control append-left" value="{{packing && packing.id}}" />
+									<input id="inputPackingNome" placeholder="Escolha um Packing"  type="text" class="form-control append-left" value="{{packing && packing.nome}}" />
+									<div class="input-group-addon append-right" id="searchPackingModal" data-toggle="modal">
+										<span class="fa fa-search"></span>
+									</div>
+								</div>
+							</div>		
 					</form>
 				</div>
 			</div>
@@ -270,3 +292,13 @@
 		</div>
 	</div>
 </div>
+<div id='bolsaoModal'></div>
+<div id='generadorModal'></div>
+<div id='corModal'></div>
+<div id='cargoModal'></div>
+<div id='latadaModal'></div>
+<div id='embalagemModal'></div>
+<div id='cabineModal'></div>
+<div id='sacolaModal'></div>
+<div id='clienteModal'></div>
+<div id='packingModal'></div>

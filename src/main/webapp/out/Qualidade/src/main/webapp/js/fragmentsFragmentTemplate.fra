@@ -2395,14 +2395,6 @@
 		JsonApontamentoQualidadePacking jsonApontamentoQualidadePacking = new JsonApontamentoQualidadePacking();
 		
 		jsonApontamentoQualidadePacking.setId(apontamentoQualidadePacking.getId());
-	    jsonApontamentoQualidadePacking.setTipoControle(apontamentoQualidadePacking.getTipoControle());
-	    jsonApontamentoQualidadePacking.setCor(apontamentoQualidadePacking.getCor());
-	    jsonApontamentoQualidadePacking.setClassificacao(apontamentoQualidadePacking.getClassificacao());
-	    jsonApontamentoQualidadePacking.setQualidade(apontamentoQualidadePacking.getQualidade());
-	    jsonApontamentoQualidadePacking.setCondicao(apontamentoQualidadePacking.getCondicao());
-	    jsonApontamentoQualidadePacking.setPallet(apontamentoQualidadePacking.getPallet());
-		jsonApontamentoQualidadePacking.setDataAnalise(DateUtil.localDateAsString(apontamentoQualidadePacking.getDataAnalise()));
-		jsonApontamentoQualidadePacking.setDataColheita(DateUtil.localDateAsString(apontamentoQualidadePacking.getDataColheita()));
 	    jsonApontamentoQualidadePacking.setAparencia(apontamentoQualidadePacking.getAparencia());
 	    jsonApontamentoQualidadePacking.setDiametroMinimo(apontamentoQualidadePacking.getDiametroMinimo());
 	    jsonApontamentoQualidadePacking.setDiametroMaximo(apontamentoQualidadePacking.getDiametroMaximo());
@@ -2440,6 +2432,7 @@
 	    jsonApontamentoQualidadePacking.setDataHora(DateUtil.localDateTimeAsString(apontamentoQualidadePacking.getDataHora()));
 		jsonApontamentoQualidadePacking.setBolsao(toJson(apontamentoQualidadePacking.getBolsao()));		
 		jsonApontamentoQualidadePacking.setGenerador(toJson(apontamentoQualidadePacking.getGenerador()));		
+		jsonApontamentoQualidadePacking.setCor(toJson(apontamentoQualidadePacking.getCor()));		
 		jsonApontamentoQualidadePacking.setCargo(toJson(apontamentoQualidadePacking.getCargo()));		
 		jsonApontamentoQualidadePacking.setVariedade(toJson(apontamentoQualidadePacking.getVariedade()));		
 		jsonApontamentoQualidadePacking.setLatada(toJson(apontamentoQualidadePacking.getLatada()));		
@@ -2455,14 +2448,6 @@
 		ApontamentoQualidadePacking apontamentoQualidadePacking = new ApontamentoQualidadePacking();
 		
 		apontamentoQualidadePacking.setId(jsonApontamentoQualidadePacking.getId());
-		apontamentoQualidadePacking.setTipoControle(jsonApontamentoQualidadePacking.getTipoControle());
-		apontamentoQualidadePacking.setCor(jsonApontamentoQualidadePacking.getCor());
-		apontamentoQualidadePacking.setClassificacao(jsonApontamentoQualidadePacking.getClassificacao());
-		apontamentoQualidadePacking.setQualidade(jsonApontamentoQualidadePacking.getQualidade());
-		apontamentoQualidadePacking.setCondicao(jsonApontamentoQualidadePacking.getCondicao());
-		apontamentoQualidadePacking.setPallet(jsonApontamentoQualidadePacking.getPallet());
-	    apontamentoQualidadePacking.setDataAnalise(DateUtil.stringAsLocalDate(jsonApontamentoQualidadePacking.getDataAnalise()));
-	    apontamentoQualidadePacking.setDataColheita(DateUtil.stringAsLocalDate(jsonApontamentoQualidadePacking.getDataColheita()));
 		apontamentoQualidadePacking.setAparencia(jsonApontamentoQualidadePacking.getAparencia());
 		apontamentoQualidadePacking.setDiametroMinimo(jsonApontamentoQualidadePacking.getDiametroMinimo());
 		apontamentoQualidadePacking.setDiametroMaximo(jsonApontamentoQualidadePacking.getDiametroMaximo());
@@ -2500,6 +2485,7 @@
 	    apontamentoQualidadePacking.setDataHora(DateUtil.stringAsLocalDateTime(jsonApontamentoQualidadePacking.getDataHora()));
 		apontamentoQualidadePacking.setBolsao(toEntity(jsonApontamentoQualidadePacking.getBolsao()));					
 		apontamentoQualidadePacking.setGenerador(toEntity(jsonApontamentoQualidadePacking.getGenerador()));					
+		apontamentoQualidadePacking.setCor(toEntity(jsonApontamentoQualidadePacking.getCor()));					
 		apontamentoQualidadePacking.setCargo(toEntity(jsonApontamentoQualidadePacking.getCargo()));					
 		apontamentoQualidadePacking.setVariedade(toEntity(jsonApontamentoQualidadePacking.getVariedade()));					
 		apontamentoQualidadePacking.setLatada(toEntity(jsonApontamentoQualidadePacking.getLatada()));					

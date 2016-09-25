@@ -1,4 +1,4 @@
-/* generated: 24/09/2016 11:56:36 */
+/* generated: 24/09/2016 12:52:15 */
 define(function(require) {
 	// Start "Import´s" Definition"
 	var _ = require('adapters/underscore-adapter');
@@ -13,8 +13,8 @@ define(function(require) {
 	var TemplateFormBairros = require('text!views/bairro/tpl/FormBairroTemplate.html');
 	var BairroModel = require('models/BairroModel');
 	var BairroCollection = require('collections/BairroCollection');
-	var SearchCidadeModal = require('views/modalComponents/CidadeModal');
-	var SearchEstadoModal = require('views/modalComponents/EstadoModal');
+	var ModalCidade = require('views/modalComponents/CidadeModal');
+	var ModalEstado = require('views/modalComponents/EstadoModal');
 	
 	// End of "Import´s" definition
 
@@ -33,8 +33,8 @@ define(function(require) {
 		events : {
 			'click 	.save' : 'save',
 			'click 	.saveAndContinue' : 'saveAndContinue',
-			'click #searchCidadeModal' : 'showSearchCidadeModal',
-			'click #searchEstadoModal' : 'showSearchEstadoModal',
+			'click #searchCidadeModal' : 'showModalCidade',
+			'click #searchEstadoModal' : 'showModalEstado',
 		},
 		
 		ui : {
@@ -50,12 +50,12 @@ define(function(require) {
 
 		initialize : function() {
 			var that = this;
-			this.searchCidadeModal = new SearchCidadeModal({
+			this.modalCidade = new ModalCidade({
 				onSelectModel : function(model) {
 					that.selectCidade(model);
 				},
 			});
-			this.searchEstadoModal = new SearchEstadoModal({
+			this.modalEstado = new ModalEstado({
 				onSelectModel : function(model) {
 					that.selectEstado(model);
 				},
@@ -128,52 +128,26 @@ define(function(require) {
 				id: util.escapeById('inputId') || null,
 		    	nome : util.escapeById('inputNome'), 
 				
-					cidade : that.getCidade(),
-					estado : that.getEstado(),
+					cidade : that.modalCidade.getJsonValue(),
+					estado : that.modalEstado.getJsonValue(),
 			});
 			return bairro;
 		},
-		 
-		getCidade : function() {			
-			var id = util.escapeById('inputCidadeId');
-			var nome = util.escapeById('inputCidadeNome');
-			var cidade = null;
-			
-			if (id && nome) {
-				cidade = {
-					id : id,
-					nome : nome,
-				}
-			}
-			return cidade;
-		},	
-		getEstado : function() {			
-			var id = util.escapeById('inputEstadoId');
-			var nome = util.escapeById('inputEstadoNome');
-			var estado = null;
-			
-			if (id && nome) {
-				estado = {
-					id : id,
-					nome : nome,
-				}
-			}
-			return estado;
-		},	
-		
-		showSearchCidadeModal : function() {
-			this.searchCidadeModal.showPage();
+		 		
+		showModalCidade : function() {
+			// add more before the modal is open
+			this.modalCidade.showPage();
 		},
-			
+		showModalEstado : function() {
+			// add more before the modal is open
+			this.modalEstado.showPage();
+		},
+
 		selectCidade : function(cidade) {
 			this.searchCidadeModal.hidePage();	
 			this.ui.inputCidadeId.val(cidade.get('id'));
 			this.ui.inputCidadeNome.val(cidade.get('nome'));		
 		},
-		showSearchEstadoModal : function() {
-			this.searchEstadoModal.showPage();
-		},
-			
 		selectEstado : function(estado) {
 			this.searchEstadoModal.hidePage();	
 			this.ui.inputEstadoId.val(estado.get('id'));

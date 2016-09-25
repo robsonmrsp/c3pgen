@@ -1,4 +1,4 @@
-/* generated: 24/09/2016 11:56:36 */
+/* generated: 24/09/2016 12:52:16 */
 define(function(require) {
 	// Start "Import´s" Definition"
 	var _ = require('adapters/underscore-adapter');
@@ -13,7 +13,7 @@ define(function(require) {
 	var TemplateFormEnderecos = require('text!views/endereco/tpl/FormEnderecoTemplate.html');
 	var EnderecoModel = require('models/EnderecoModel');
 	var EnderecoCollection = require('collections/EnderecoCollection');
-	var SearchCepModal = require('views/modalComponents/CepModal');
+	var ModalCep = require('views/modalComponents/CepModal');
 	
 	// End of "Import´s" definition
 
@@ -31,7 +31,7 @@ define(function(require) {
 		events : {
 			'click 	.save' : 'save',
 			'click 	.saveAndContinue' : 'saveAndContinue',
-			'click #searchCepModal' : 'showSearchCepModal',
+			'click #searchCepModal' : 'showModalCep',
 		},
 		
 		ui : {
@@ -46,7 +46,7 @@ define(function(require) {
 
 		initialize : function() {
 			var that = this;
-			this.searchCepModal = new SearchCepModal({
+			this.modalCep = new ModalCep({
 				onSelectModel : function(model) {
 					that.selectCep(model);
 				},
@@ -119,29 +119,16 @@ define(function(require) {
 				
 		    	numero : util.escapeById('inputNumero'), 
 				
-					cep : that.getCep(),
+					cep : that.modalCep.getJsonValue(),
 			});
 			return endereco;
 		},
-		 
-		getCep : function() {			
-			var id = util.escapeById('inputCepId');
-			var cep = util.escapeById('inputCepCep');
-			var cep = null;
-			
-			if (id && cep) {
-				cep = {
-					id : id,
-					cep : cep,
-				}
-			}
-			return cep;
-		},	
-		
-		showSearchCepModal : function() {
-			this.searchCepModal.showPage();
+		 		
+		showModalCep : function() {
+			// add more before the modal is open
+			this.modalCep.showPage();
 		},
-			
+
 		selectCep : function(cep) {
 			this.searchCepModal.hidePage();	
 			this.ui.inputCepId.val(cep.get('id'));

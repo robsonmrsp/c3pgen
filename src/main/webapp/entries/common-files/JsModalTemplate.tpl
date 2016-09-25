@@ -212,8 +212,20 @@ define(function(require) {
 
 		selectRow : function(e) {
 			var model${entity.name} = util.getWrappedModel(e);
-			if (model${entity.name})
+			if (model${entity.name}){
+				this.modelSelect = model${entity.name}; 
 				this.onSelectModel(model${entity.name});
+			}
+		},
+		getJsonValue : function() {
+			if(this.modelSelect){
+				return this.modelSelect.toJSON();
+			}
+			return null;
+		},
+		
+		getValue : function() {
+			return this.modelSelect;
 		},
 		
 		getColumns : function() {

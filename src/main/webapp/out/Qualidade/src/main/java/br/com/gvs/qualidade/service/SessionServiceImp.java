@@ -19,7 +19,7 @@ import br.com.gvs.core.utils.DateUtil;
 import br.com.gvs.core.utils.Util;
 
 /**
-*  generated: 24/09/2016 11:56:38
+*  generated: 24/09/2016 12:52:18
 **/
 
 @Named

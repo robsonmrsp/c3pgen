@@ -23,7 +23,7 @@ define(function(require) {
 	<#if entity.relationships??>	
 	<#list entity.relationships as rel >
 		<#if rel.viewApproach.type == 'modal'>
-	var Search${firstUpper(rel.name)}Modal = require('views/modalComponents/${firstUpper(rel.model)}Modal');
+	var Modal${firstUpper(rel.name)} = require('views/modalComponents/${firstUpper(rel.model)}Modal');
 		</#if>
 	</#list>
 	</#if>
@@ -56,7 +56,7 @@ define(function(require) {
 			<#if (rel.type == 'OneToMany' || rel.type == 'ManyToMany' ) && rel.viewApproach.type == 'multiselect'>
 			${firstLower(rel.name)}Region : ".${firstLower(rel.name)}-container",
 			<#elseif rel.viewApproach.type == 'modal'>
-			search${firstUpper(rel.name)}ModalRegion : '#${firstLower(rel.name)}Modal',
+			modal${firstUpper(rel.name)}Region : '#${firstLower(rel.name)}Modal',
 				</#if>
 			</#list>
 			</#if>
@@ -68,7 +68,7 @@ define(function(require) {
 			<#if entity.relationships??>	
 			<#list entity.relationships as rel >
 				<#if rel.viewApproach.type == 'modal'>
-			'click #search${firstUpper(rel.name)}Modal' : 'showSearch${firstUpper(rel.name)}Modal',
+			'click #search${firstUpper(rel.name)}Modal' : 'showModal${firstUpper(rel.name)}',
 				</#if>
 			</#list>
 			</#if>
@@ -128,9 +128,9 @@ define(function(require) {
 			});
 			</#if>
 			<#if rel.viewApproach.type == 'modal'>
-			this.search${firstUpper(rel.name)}Modal = new Search${firstUpper(rel.name)}Modal({
+			this.modal${firstUpper(rel.name)} = new Modal${firstUpper(rel.name)}({
 				onSelectModel : function(model) {
-					that.select${firstUpper(rel.name)}(model);
+					that.onSelect${firstUpper(rel.name)}(model);
 				},
 			});
 			</#if>
@@ -140,10 +140,11 @@ define(function(require) {
 		<#if entity.relationships??>	
 		<#list entity.relationships as rel >
 			<#if rel.viewApproach.type == 'modal'>
-				this.search${firstUpper(rel.name)}ModalRegion.show(this.search${firstUpper(rel.name)}Modal);		
+				this.modal${firstUpper(rel.name)}Region.show(this.modal${firstUpper(rel.name)});		
 			</#if>
 		</#list>
 		</#if>
+		
 		<#list entity.attributes as att>
 		  <#if isNumeric(att.type.className)>
 				this.ui.input${firstUpper(att.name)}.formatNumber(2);
@@ -181,6 +182,7 @@ define(function(require) {
 					</#if>
 				});
 				this.combo${firstUpper(att.name)}.setValue(this.model.get('${firstLower(att.name)}'));//getJsonValue
+				
 			</#if>
 		  </#if>
 		  <#if att.mask??>
@@ -189,7 +191,8 @@ define(function(require) {
 			</#if>
 		  </#if>
 		</#list>
-		<#if entity.relationships??>	
+		<#if entity.relationships??>
+			
 		<#list entity.relationships as rel>
 			<#if (rel.type == 'OneToMany' || rel.type == 'ManyToMany' ) && rel.viewApproach.type == 'multiselect'>
 				this.${firstLower(rel.name)}Region.show(this.multiSelect${firstUpper(rel.model)});
@@ -275,10 +278,6 @@ define(function(require) {
 		</#if>
 		},
 
-		possuiCamposInvalidos : function() {
-			return util.hasInvalidFields(this.validateFields);
-		},
-
 		isValid : function() {
 			return this.ui.form.validationEngine('validate', {
 				promptPosition : "topLeft",
@@ -298,7 +297,6 @@ define(function(require) {
 		  			<#else>	
 		    	${firstLower(att.name)} : util.escapeById('input${firstUpper(att.name)}'), 
 					</#if>
-				
 				</#list>
 				<#if entity.relationships??>	
 				<#list entity.relationships as rel >
@@ -306,57 +304,33 @@ define(function(require) {
 					${firstLower(rel.name)} : that.${firstLower(rel.name)}.toJSON(),
 				</#if>			
 					<#if rel.viewApproach.type == 'modal' >
-					${firstLower(rel.name)} : that.get${firstUpper(rel.name)}(),
+				${firstLower(rel.name)} : that.modal${firstUpper(rel.name)}.getJsonValue(),
 					</#if>			
 					<#if rel.viewApproach.type == 'combo'>
-					${firstLower(rel.name)} :  that.combo${firstUpper(rel.name)}.getJsonValue(),
+				${firstLower(rel.name)} :  that.combo${firstUpper(rel.name)}.getJsonValue(),
 					</#if>
 				</#list>
 				</#if>
 			});
 			return ${firstLower(entity.name)};
 		},
-		 
-		<#if entity.relationships??>	
-		<#list entity.relationships as rel >
-			<#if rel.viewApproach.type == 'modal' >
-		get${firstUpper(rel.name)} : function() {			
-			var ${firstLower(rel.viewApproach.hiddenField)} = util.escapeById('input${firstUpper(rel.name)}${firstUpper(rel.viewApproach.hiddenField)}');
-			var ${firstLower(rel.viewApproach.textField)} = util.escapeById('input${firstUpper(rel.name)}${firstUpper(rel.viewApproach.textField)}');
-			var ${firstLower(rel.name)} = null;
-			
-			if (${firstLower(rel.viewApproach.hiddenField)} && ${firstLower(rel.viewApproach.textField)}) {
-				${firstLower(rel.name)} = {
-					${firstLower(rel.viewApproach.hiddenField)} : ${firstLower(rel.viewApproach.hiddenField)},
-					${firstLower(rel.viewApproach.textField)} : ${firstLower(rel.viewApproach.textField)},
-				}
-			}
-			return ${firstLower(rel.name)};
-		},	
-			<#elseif rel.viewApproach.type == 'combo'>
-		get${firstUpper(rel.name)} : function() {
-			var id =  this.combo${firstUpper(rel.name)}.getRawValue();			
-			
-			if(id){
-				return {
-					id: id,
-				}
-			}
-			return null;
-		},				
-			</#if>			
-		</#list>
-		</#if>
-		
+		 		
 		<#if entity.relationships??>	
 		<#list entity.relationships as rel >
 			<#if rel.viewApproach.type == 'modal'>
-		showSearch${firstUpper(rel.name)}Modal : function() {
-			this.search${firstUpper(rel.name)}Modal.showPage();
+		showModal${firstUpper(rel.name)} : function() {
+			// add more before the modal is open
+			this.modal${firstUpper(rel.name)}.showPage();
 		},
-			
-		select${firstUpper(rel.name)} : function(${firstLower(rel.name)}) {
-			this.search${firstUpper(rel.name)}Modal.hidePage();	
+			</#if>
+		</#list>
+		</#if>
+
+				<#if entity.relationships??>	
+		<#list entity.relationships as rel >
+			<#if rel.viewApproach.type == 'modal'>
+		onSelect${firstUpper(rel.name)} : function(${firstLower(rel.name)}) {
+			this.modal${firstUpper(rel.name)}.hidePage();	
 			this.ui.input${firstUpper(rel.name)}${firstUpper(rel.viewApproach.hiddenField)}.val(${firstLower(rel.name)}.get('${firstLower(rel.viewApproach.hiddenField)}'));
 			this.ui.input${firstUpper(rel.name)}${firstUpper(rel.viewApproach.textField)}.val(${firstLower(rel.name)}.get('${firstLower(rel.viewApproach.textField)}'));		
 		},
@@ -372,7 +346,7 @@ define(function(require) {
 				element : that.ui.input${firstUpper(att.name)},
 				fieldName : '${att.name}',
 				fieldDisplayName : '${att.displayName}',
-				//onlyNumber : true,     //caso queira que as mascaras sejam removidas e somente NUMEROS sejam enviados na consulta.
+				//onlyNumber : true,     
 				view : that,
 				collection : ${entity.name}Collection,
 			})

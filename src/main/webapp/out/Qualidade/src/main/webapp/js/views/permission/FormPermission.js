@@ -1,4 +1,4 @@
-/* generated: 24/09/2016 11:56:38 */
+/* generated: 24/09/2016 12:52:17 */
 define(function(require) {
 	// Start "Import´s" Definition"
 	var _ = require('adapters/underscore-adapter');
@@ -13,8 +13,8 @@ define(function(require) {
 	var TemplateFormPermissions = require('text!views/permission/tpl/FormPermissionTemplate.html');
 	var PermissionModel = require('models/PermissionModel');
 	var PermissionCollection = require('collections/PermissionCollection');
-	var SearchOperationModal = require('views/modalComponents/OperationModal');
-	var SearchItemModal = require('views/modalComponents/ItemModal');
+	var ModalOperation = require('views/modalComponents/OperationModal');
+	var ModalItem = require('views/modalComponents/ItemModal');
 	var RoleCollection = require('collections/RoleCollection');
 	var MultiSelectRole = require('views/role/MultiSelectRole');			
 	
@@ -36,8 +36,8 @@ define(function(require) {
 		events : {
 			'click 	.save' : 'save',
 			'click 	.saveAndContinue' : 'saveAndContinue',
-			'click #searchOperationModal' : 'showSearchOperationModal',
-			'click #searchItemModal' : 'showSearchItemModal',
+			'click #searchOperationModal' : 'showModalOperation',
+			'click #searchItemModal' : 'showModalItem',
 		},
 		
 		ui : {
@@ -58,12 +58,12 @@ define(function(require) {
 			this.multiSelectRole = new MultiSelectRole({
 				collection : that.roles,
 			});
-			this.searchOperationModal = new SearchOperationModal({
+			this.modalOperation = new ModalOperation({
 				onSelectModel : function(model) {
 					that.selectOperation(model);
 				},
 			});
-			this.searchItemModal = new SearchItemModal({
+			this.modalItem = new ModalItem({
 				onSelectModel : function(model) {
 					that.selectItem(model);
 				},
@@ -140,52 +140,26 @@ define(function(require) {
 		    	name : util.escapeById('inputName'), 
 				
 					roles : that.roles.toJSON(),
-					operation : that.getOperation(),
-					item : that.getItem(),
+					operation : that.modalOperation.getJsonValue(),
+					item : that.modalItem.getJsonValue(),
 			});
 			return permission;
 		},
-		 
-		getOperation : function() {			
-			var id = util.escapeById('inputOperationId');
-			var name = util.escapeById('inputOperationName');
-			var operation = null;
-			
-			if (id && name) {
-				operation = {
-					id : id,
-					name : name,
-				}
-			}
-			return operation;
-		},	
-		getItem : function() {			
-			var id = util.escapeById('inputItemId');
-			var name = util.escapeById('inputItemName');
-			var item = null;
-			
-			if (id && name) {
-				item = {
-					id : id,
-					name : name,
-				}
-			}
-			return item;
-		},	
-		
-		showSearchOperationModal : function() {
-			this.searchOperationModal.showPage();
+		 		
+		showModalOperation : function() {
+			// add more before the modal is open
+			this.modalOperation.showPage();
 		},
-			
+		showModalItem : function() {
+			// add more before the modal is open
+			this.modalItem.showPage();
+		},
+
 		selectOperation : function(operation) {
 			this.searchOperationModal.hidePage();	
 			this.ui.inputOperationId.val(operation.get('id'));
 			this.ui.inputOperationName.val(operation.get('name'));		
 		},
-		showSearchItemModal : function() {
-			this.searchItemModal.showPage();
-		},
-			
 		selectItem : function(item) {
 			this.searchItemModal.hidePage();	
 			this.ui.inputItemId.val(item.get('id'));

@@ -1,4 +1,4 @@
-/* generated: 24/09/2016 11:56:36 */
+/* generated: 24/09/2016 12:52:16 */
 define(function(require) {
 	// Start "Import´s" Definition"
 	var _ = require('adapters/underscore-adapter');
@@ -13,7 +13,7 @@ define(function(require) {
 	var TemplateFormCidades = require('text!views/cidade/tpl/FormCidadeTemplate.html');
 	var CidadeModel = require('models/CidadeModel');
 	var CidadeCollection = require('collections/CidadeCollection');
-	var SearchEstadoModal = require('views/modalComponents/EstadoModal');
+	var ModalEstado = require('views/modalComponents/EstadoModal');
 	
 	// End of "Import´s" definition
 
@@ -31,7 +31,7 @@ define(function(require) {
 		events : {
 			'click 	.save' : 'save',
 			'click 	.saveAndContinue' : 'saveAndContinue',
-			'click #searchEstadoModal' : 'showSearchEstadoModal',
+			'click #searchEstadoModal' : 'showModalEstado',
 		},
 		
 		ui : {
@@ -46,7 +46,7 @@ define(function(require) {
 
 		initialize : function() {
 			var that = this;
-			this.searchEstadoModal = new SearchEstadoModal({
+			this.modalEstado = new ModalEstado({
 				onSelectModel : function(model) {
 					that.selectEstado(model);
 				},
@@ -119,29 +119,16 @@ define(function(require) {
 				
 		    	cep : util.escapeById('inputCep'), 
 				
-					estado : that.getEstado(),
+					estado : that.modalEstado.getJsonValue(),
 			});
 			return cidade;
 		},
-		 
-		getEstado : function() {			
-			var id = util.escapeById('inputEstadoId');
-			var nome = util.escapeById('inputEstadoNome');
-			var estado = null;
-			
-			if (id && nome) {
-				estado = {
-					id : id,
-					nome : nome,
-				}
-			}
-			return estado;
-		},	
-		
-		showSearchEstadoModal : function() {
-			this.searchEstadoModal.showPage();
+		 		
+		showModalEstado : function() {
+			// add more before the modal is open
+			this.modalEstado.showPage();
 		},
-			
+
 		selectEstado : function(estado) {
 			this.searchEstadoModal.hidePage();	
 			this.ui.inputEstadoId.val(estado.get('id'));

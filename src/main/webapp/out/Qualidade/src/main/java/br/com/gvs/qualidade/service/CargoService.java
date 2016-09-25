@@ -6,7 +6,7 @@ import br.com.gvs.qualidade.model.Cargo;
 import br.com.gvs.core.persistence.pagination.Pager;
 import br.com.gvs.core.persistence.pagination.PaginationParams;
 /**
-*  generated: 24/09/2016 11:56:33
+*  generated: 24/09/2016 12:52:12
 **/
 public interface CargoService {
 

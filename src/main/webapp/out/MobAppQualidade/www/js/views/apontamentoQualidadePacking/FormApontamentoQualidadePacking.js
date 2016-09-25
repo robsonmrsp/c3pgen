@@ -1,4 +1,4 @@
-/* generated: 24/09/2016 11:56:51 */
+/* generated: 24/09/2016 12:52:33 */
 define(function(require) {
 	var _ = require('adapters/underscore-adapter');
 	var $ = require('adapters/jquery-adapter');
@@ -14,16 +14,7 @@ define(function(require) {
 	var ApontamentoQualidadePackingModel = require('models/ApontamentoQualidadePackingModel');
 	var ApontamentoQualidadePackingCollection = require('collections/ApontamentoQualidadePackingCollection');
 
-	var BolsaoCollection = require('collections/BolsaoCollection');			
-	var GeneradorCollection = require('collections/GeneradorCollection');			
-	var CargoCollection = require('collections/CargoCollection');			
 	var VariedadeCollection = require('collections/VariedadeCollection');			
-	var LatadaCollection = require('collections/LatadaCollection');			
-	var EmbalagemCollection = require('collections/EmbalagemCollection');			
-	var CabineCollection = require('collections/CabineCollection');			
-	var SacolaCollection = require('collections/SacolaCollection');			
-	var ClienteCollection = require('collections/ClienteCollection');			
-	var PackingCollection = require('collections/PackingCollection');			
 	
 	// End of "Import´s" definition
 	var FormApontamentoQualidadePackings = Marionette.LayoutView.extend({
@@ -38,14 +29,6 @@ define(function(require) {
 		
 		ui : {
 			inputId : '#inputId',
-			inputTipoControle : '#inputTipoControle',
-			inputCor : '#inputCor',
-			inputClassificacao : '#inputClassificacao',
-			inputQualidade : '#inputQualidade',
-			inputCondicao : '#inputCondicao',
-			inputPallet : '#inputPallet',
-			inputDataAnalise : '#inputDataAnalise',
-			inputDataColheita : '#inputDataColheita',
 			inputAparencia : '#inputAparencia',
 			inputDiametroMinimo : '#inputDiametroMinimo',
 			inputDiametroMaximo : '#inputDiametroMaximo',
@@ -81,16 +64,27 @@ define(function(require) {
 			inputAmolecimento : '#inputAmolecimento',
 			inputObservacao : '#inputObservacao',
 			inputDataHora : '#inputDataHora',
-			inputBolsao : '#inputBolsao', 
-			inputGenerador : '#inputGenerador', 
-			inputCargo : '#inputCargo', 
+			inputBolsaoId : '#inputBolsaoId',
+			inputBolsaoNome : '#inputBolsaoNome',
+			inputGeneradorId : '#inputGeneradorId',
+			inputGeneradorNome : '#inputGeneradorNome',
+			inputCorId : '#inputCorId',
+			inputCorNome : '#inputCorNome',
+			inputCargoId : '#inputCargoId',
+			inputCargoNome : '#inputCargoNome',
 			inputVariedade : '#inputVariedade', 
-			inputLatada : '#inputLatada', 
-			inputEmbalagem : '#inputEmbalagem', 
-			inputCabine : '#inputCabine', 
-			inputSacola : '#inputSacola', 
-			inputCliente : '#inputCliente', 
-			inputPacking : '#inputPacking', 
+			inputLatadaId : '#inputLatadaId',
+			inputLatadaNome : '#inputLatadaNome',
+			inputEmbalagemId : '#inputEmbalagemId',
+			inputEmbalagemNome : '#inputEmbalagemNome',
+			inputCabineId : '#inputCabineId',
+			inputCabineNome : '#inputCabineNome',
+			inputSacolaId : '#inputSacolaId',
+			inputSacolaNome : '#inputSacolaNome',
+			inputClienteId : '#inputClienteId',
+			inputClienteNome : '#inputClienteNome',
+			inputPackingId : '#inputPackingId',
+			inputPackingNome : '#inputPackingNome',
 
 		},
 
@@ -114,76 +108,13 @@ define(function(require) {
 				this.floatButtonSaveRegion.show(this.floatButtonSave);
 				
 				
-			this.comboBolsao = new Combobox({
-				el : this.ui.inputBolsao,
-				comboId : 'id',
-				comboVal : 'nome',
-				collectionEntity : BolsaoCollection, 
-			});
-			this.comboBolsao.setValue(this.model.get('bolsao'));					
-			this.comboGenerador = new Combobox({
-				el : this.ui.inputGenerador,
-				comboId : 'id',
-				comboVal : 'nome',
-				collectionEntity : GeneradorCollection, 
-			});
-			this.comboGenerador.setValue(this.model.get('generador'));					
-			this.comboCargo = new Combobox({
-				el : this.ui.inputCargo,
-				comboId : 'id',
-				comboVal : 'nome',
-				collectionEntity : CargoCollection, 
-			});
-			this.comboCargo.setValue(this.model.get('cargo'));					
 			this.comboVariedade = new Combobox({
 				el : this.ui.inputVariedade,
 				comboId : 'id',
-				comboVal : 'nome',
+				comboVal : 'name',
 				collectionEntity : VariedadeCollection, 
 			});
 			this.comboVariedade.setValue(this.model.get('variedade'));					
-			this.comboLatada = new Combobox({
-				el : this.ui.inputLatada,
-				comboId : 'id',
-				comboVal : 'nome',
-				collectionEntity : LatadaCollection, 
-			});
-			this.comboLatada.setValue(this.model.get('latada'));					
-			this.comboEmbalagem = new Combobox({
-				el : this.ui.inputEmbalagem,
-				comboId : 'id',
-				comboVal : 'nome',
-				collectionEntity : EmbalagemCollection, 
-			});
-			this.comboEmbalagem.setValue(this.model.get('embalagem'));					
-			this.comboCabine = new Combobox({
-				el : this.ui.inputCabine,
-				comboId : 'id',
-				comboVal : 'nome',
-				collectionEntity : CabineCollection, 
-			});
-			this.comboCabine.setValue(this.model.get('cabine'));					
-			this.comboSacola = new Combobox({
-				el : this.ui.inputSacola,
-				comboId : 'id',
-				comboVal : 'nome',
-				collectionEntity : SacolaCollection, 
-			});
-			this.comboSacola.setValue(this.model.get('sacola'));					
-			this.comboCliente = new Combobox({
-				el : this.ui.inputCliente,
-				comboId : 'id',
-				comboVal : 'nome',
-				collectionEntity : ClienteCollection, 
-			});
-			this.comboCliente.setValue(this.model.get('cliente'));					
-			this.comboPacking = new Combobox({
-				el : this.ui.inputPacking,
-				comboId : 'id',
-				comboVal : 'nome',
-				collectionEntity : PackingCollection, 
-			});
-			this.comboPacking.setValue(this.model.get('packing'));					
 				
 			})
 		},
@@ -195,14 +126,6 @@ define(function(require) {
 
 		clearForm : function() {
 			Util.clear('inputId');
-			Util.clear('inputTipoControle'); 
-			Util.clear('inputCor'); 
-			Util.clear('inputClassificacao'); 
-			Util.clear('inputQualidade'); 
-			Util.clear('inputCondicao'); 
-			Util.clear('inputPallet'); 
-			Util.clear('inputDataAnalise'); 
-			Util.clear('inputDataColheita'); 
 			Util.clear('inputAparencia'); 
 			Util.clear('inputDiametroMinimo'); 
 			Util.clear('inputDiametroMaximo'); 
@@ -245,14 +168,6 @@ define(function(require) {
 			var apontamentoQualidadePacking = that.model; 
 			apontamentoQualidadePacking.set({
 				id: Util.escapeById('inputId') || null,
-		    	tipoControle : Util.escapeById('inputTipoControle'), 
-		    	cor : Util.escapeById('inputCor'), 
-		    	classificacao : Util.escapeById('inputClassificacao'), 
-		    	qualidade : Util.escapeById('inputQualidade'), 
-		    	condicao : Util.escapeById('inputCondicao'), 
-		    	pallet : Util.escapeById('inputPallet'), 
-		    	dataAnalise : Util.escapeById('inputDataAnalise'), 
-		    	dataColheita : Util.escapeById('inputDataColheita'), 
 		    	aparencia : Util.escapeById('inputAparencia'), 
 		    	diametroMinimo : Util.escapeById('inputDiametroMinimo'), 
 		    	diametroMaximo : Util.escapeById('inputDiametroMaximo'), 
@@ -288,16 +203,7 @@ define(function(require) {
 		    	amolecimento : Util.escapeById('inputAmolecimento'), 
 		    	observacao : Util.escapeById('inputObservacao'), 
 		    	dataHora : Util.escapeById('inputDataHora'), 
-				bolsao :  that.comboBolsao.getJsonValue(),
-				generador :  that.comboGenerador.getJsonValue(),
-				cargo :  that.comboCargo.getJsonValue(),
 				variedade :  that.comboVariedade.getJsonValue(),
-				latada :  that.comboLatada.getJsonValue(),
-				embalagem :  that.comboEmbalagem.getJsonValue(),
-				cabine :  that.comboCabine.getJsonValue(),
-				sacola :  that.comboSacola.getJsonValue(),
-				cliente :  that.comboCliente.getJsonValue(),
-				packing :  that.comboPacking.getJsonValue(),
 
 			});
 			return apontamentoQualidadePacking;

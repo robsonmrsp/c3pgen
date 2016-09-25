@@ -1,4 +1,4 @@
-/* generated: 24/09/2016 11:56:32 */
+/* generated: 24/09/2016 12:52:11 */
 define(function(require) {
 	// Start "Import´s" Definition"
 	var _ = require('adapters/underscore-adapter');
@@ -17,14 +17,6 @@ define(function(require) {
 
 		defaults : {
 			id: null,
-	    	tipoControle : '',    	
-	    	cor : '',    	
-	    	classificacao : '',    	
-	    	qualidade : '',    	
-	    	condicao : '',    	
-	    	pallet : '',    	
-	    	dataAnalise : '',    	
-	    	dataColheita : '',    	
 	    	aparencia : '',    	
 	    	diametroMinimo : '',    	
 	    	diametroMaximo : '',    	
@@ -63,6 +55,7 @@ define(function(require) {
 			anexos : null,
 			bolsao : null,
 			generador : null,
+			cor : null,
 			cargo : null,
 			variedade : null,
 			latada : null,

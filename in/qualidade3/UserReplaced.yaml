@@ -1,6 +1,6 @@
 - name: User
   displayName: Usuário
-  tableName: TB_USER
+  tableName: APP_USER
   hasOwner: false
   attributes:
   - name: name

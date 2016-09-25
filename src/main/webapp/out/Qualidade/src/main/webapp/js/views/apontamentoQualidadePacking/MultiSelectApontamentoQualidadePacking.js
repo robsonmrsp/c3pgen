@@ -1,4 +1,4 @@
-/* generated: 24/09/2016 11:56:32 */
+/* generated: 24/09/2016 12:52:11 */
 define(function(require) {
 	// Start "Import´s" Definition"
 	var _ = require('adapters/underscore-adapter');
@@ -50,62 +50,6 @@ define(function(require) {
 		_getColumns : function() {
 			var columns = [
 
-			{
-				name : "tipoControle",
-				editable : false,
-				sortable : false,
-				label 	 : "Tipo de Controle",
-				cell : CustomNumberCell.extend({}),
-			}, 
-			{
-				name : "cor",
-				editable : false,
-				sortable : false,
-				label 	 : "Cor",
-				cell : CustomNumberCell.extend({}),
-			}, 
-			{
-				name : "classificacao",
-				editable : false,
-				sortable : false,
-				label 	 : "Classificação",
-				cell : CustomNumberCell.extend({}),
-			}, 
-			{
-				name : "qualidade",
-				editable : false,
-				sortable : false,
-				label 	 : "Qualidade",
-				cell : CustomNumberCell.extend({}),
-			}, 
-			{
-				name : "condicao",
-				editable : false,
-				sortable : false,
-				label 	 : "Condição",
-				cell : CustomNumberCell.extend({}),
-			}, 
-			{
-				name : "pallet",
-				editable : false,
-				sortable : false,
-				label 	 : "Pallet",
-				cell 	 : "string",
-			}, 
-			{
-				name : "dataAnalise",
-				editable : false,
-				sortable : false,
-				label 	 : "Data da análise",
-				cell 	 : "string",
-			}, 
-			{
-				name : "dataColheita",
-				editable : false,
-				sortable : false,
-				label 	 : "Data da colheita",
-				cell 	 : "string",
-			}, 
 			{
 				name : "aparencia",
 				editable : false,

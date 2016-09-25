@@ -32,7 +32,7 @@ import br.com.gvs.core.serialization.CustomLocalDateTimeSerializer;
 import br.com.gvs.core.serialization.CustomLocalDateSerializer;
 import br.com.gvs.core.model.AbstractTimestampEntity;
 /**
-* generated: 24/09/2016 11:56:37
+* generated: 24/09/2016 12:52:16
 **/
 @Entity
 @Audited

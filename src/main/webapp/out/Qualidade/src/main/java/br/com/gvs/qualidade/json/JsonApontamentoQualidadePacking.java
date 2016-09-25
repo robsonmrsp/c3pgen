@@ -11,7 +11,7 @@ import br.com.gvs.core.serialization.CustomSyncObjectIdDeserializer;
 import br.com.gvs.core.serialization.CustomDoubleDeserializer;
 
 /**
-*  generated: 24/09/2016 11:56:32
+*  generated: 24/09/2016 12:52:11
 **/
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class JsonApontamentoQualidadePacking implements Serializable {
@@ -20,14 +20,6 @@ public class JsonApontamentoQualidadePacking implements Serializable {
 	@JsonDeserialize(using = CustomSyncObjectIdDeserializer.class)
 	private Integer id;
 	private SyncOperation syncOperation;
-	private Integer tipoControle;
-	private Integer cor;
-	private Integer classificacao;
-	private Integer qualidade;
-	private Integer condicao;
-	private String pallet;
-	private String dataAnalise;  			
-	private String dataColheita;  			
 	private Integer aparencia;
 	@JsonDeserialize(using = CustomDoubleDeserializer.class)
 	private Double diametroMinimo;
@@ -86,6 +78,7 @@ public class JsonApontamentoQualidadePacking implements Serializable {
 	private ArrayList<JsonAnexo> anexos = new ArrayList<JsonAnexo>();		
 	private JsonBolsao bolsao;		
 	private JsonGenerador generador;		
+	private JsonCor cor;		
 	private JsonCargo cargo;		
 	private JsonVariedade variedade;		
 	private JsonLatada latada;		
@@ -106,64 +99,6 @@ public class JsonApontamentoQualidadePacking implements Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public Integer getTipoControle() {
-		return tipoControle;
-	}
-
-	public void setTipoControle(Integer tipoControle) {
-		this.tipoControle = tipoControle;
-	}
-	public Integer getCor() {
-		return cor;
-	}
-
-	public void setCor(Integer cor) {
-		this.cor = cor;
-	}
-	public Integer getClassificacao() {
-		return classificacao;
-	}
-
-	public void setClassificacao(Integer classificacao) {
-		this.classificacao = classificacao;
-	}
-	public Integer getQualidade() {
-		return qualidade;
-	}
-
-	public void setQualidade(Integer qualidade) {
-		this.qualidade = qualidade;
-	}
-	public Integer getCondicao() {
-		return condicao;
-	}
-
-	public void setCondicao(Integer condicao) {
-		this.condicao = condicao;
-	}
-	public String getPallet() {
-		return pallet;
-	}
-
-	public void setPallet(String pallet) {
-		this.pallet = pallet;
-	}
-	public String getDataAnalise() {
-		return dataAnalise;
-	}
-
-	public void setDataAnalise(String dataAnalise) {
-		this.dataAnalise = dataAnalise;
-	}				
-								
-	public String getDataColheita() {
-		return dataColheita;
-	}
-
-	public void setDataColheita(String dataColheita) {
-		this.dataColheita = dataColheita;
-	}				
-								
 	public Integer getAparencia() {
 		return aparencia;
 	}
@@ -431,6 +366,13 @@ public class JsonApontamentoQualidadePacking implements Serializable {
 	
 	public void setGenerador(JsonGenerador generador) {
 		this.generador = generador;
+	}
+	public JsonCor getCor() {
+		return cor;
+	}
+	
+	public void setCor(JsonCor cor) {
+		this.cor = cor;
 	}
 	public JsonCargo getCargo() {
 		return cargo;

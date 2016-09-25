@@ -18,7 +18,7 @@ import br.com.gvs.core.persistence.pagination.Paginator;
 
 import br.com.gvs.qualidade.model.ApontamentoQualidadePacking;
 /**
-*  generated: 24/09/2016 11:56:32
+*  generated: 24/09/2016 12:52:11
 **/
 
 @Named
@@ -35,38 +35,6 @@ public class DaoApontamentoQualidadePacking extends AccessibleHibernateDao<Apont
 		FilterApontamentoQualidadePacking filterApontamentoQualidadePacking = (FilterApontamentoQualidadePacking) paginationParams.getFilter();
 		Criteria searchCriteria = criteria();
 		Criteria countCriteria = criteria();
-		if (filterApontamentoQualidadePacking.getTipoControle() != null) {
-			searchCriteria.add(Restrictions.eq("tipoControle", filterApontamentoQualidadePacking.getTipoControle()));
-			countCriteria.add(Restrictions.eq("tipoControle", filterApontamentoQualidadePacking.getTipoControle()));
-		}				
-		if (filterApontamentoQualidadePacking.getCor() != null) {
-			searchCriteria.add(Restrictions.eq("cor", filterApontamentoQualidadePacking.getCor()));
-			countCriteria.add(Restrictions.eq("cor", filterApontamentoQualidadePacking.getCor()));
-		}				
-		if (filterApontamentoQualidadePacking.getClassificacao() != null) {
-			searchCriteria.add(Restrictions.eq("classificacao", filterApontamentoQualidadePacking.getClassificacao()));
-			countCriteria.add(Restrictions.eq("classificacao", filterApontamentoQualidadePacking.getClassificacao()));
-		}				
-		if (filterApontamentoQualidadePacking.getQualidade() != null) {
-			searchCriteria.add(Restrictions.eq("qualidade", filterApontamentoQualidadePacking.getQualidade()));
-			countCriteria.add(Restrictions.eq("qualidade", filterApontamentoQualidadePacking.getQualidade()));
-		}				
-		if (filterApontamentoQualidadePacking.getCondicao() != null) {
-			searchCriteria.add(Restrictions.eq("condicao", filterApontamentoQualidadePacking.getCondicao()));
-			countCriteria.add(Restrictions.eq("condicao", filterApontamentoQualidadePacking.getCondicao()));
-		}				
-		if (filterApontamentoQualidadePacking.getPallet() != null) {
-			searchCriteria.add(Restrictions.ilike("pallet", filterApontamentoQualidadePacking.getPallet(), MatchMode.ANYWHERE));
-			countCriteria.add(Restrictions.ilike("pallet", filterApontamentoQualidadePacking.getPallet(), MatchMode.ANYWHERE));
-		}
-		if (filterApontamentoQualidadePacking.getDataAnalise() != null) {
-			searchCriteria.add(Restrictions.eq("dataAnalise", filterApontamentoQualidadePacking.getDataAnalise()));
-			countCriteria.add(Restrictions.eq("dataAnalise", filterApontamentoQualidadePacking.getDataAnalise()));
-		}				
-		if (filterApontamentoQualidadePacking.getDataColheita() != null) {
-			searchCriteria.add(Restrictions.eq("dataColheita", filterApontamentoQualidadePacking.getDataColheita()));
-			countCriteria.add(Restrictions.eq("dataColheita", filterApontamentoQualidadePacking.getDataColheita()));
-		}				
 		if (filterApontamentoQualidadePacking.getAparencia() != null) {
 			searchCriteria.add(Restrictions.eq("aparencia", filterApontamentoQualidadePacking.getAparencia()));
 			countCriteria.add(Restrictions.eq("aparencia", filterApontamentoQualidadePacking.getAparencia()));
@@ -219,6 +187,12 @@ public class DaoApontamentoQualidadePacking extends AccessibleHibernateDao<Apont
 			searchCriteria.add(Restrictions.eq("generador_.id", filterApontamentoQualidadePacking.getGenerador()));
 			countCriteria.add(Restrictions.eq("generador_.id", filterApontamentoQualidadePacking.getGenerador()));
 		}
+		if (filterApontamentoQualidadePacking.getCor() != null) {
+			searchCriteria.createAlias("cor", "cor_");
+			countCriteria.createAlias("cor", "cor_");
+			searchCriteria.add(Restrictions.eq("cor_.id", filterApontamentoQualidadePacking.getCor()));
+			countCriteria.add(Restrictions.eq("cor_.id", filterApontamentoQualidadePacking.getCor()));
+		}
 		if (filterApontamentoQualidadePacking.getCargo() != null) {
 			searchCriteria.createAlias("cargo", "cargo_");
 			countCriteria.createAlias("cargo", "cargo_");
@@ -275,30 +249,6 @@ public class DaoApontamentoQualidadePacking extends AccessibleHibernateDao<Apont
 		List<ApontamentoQualidadePacking> list = new ArrayList<ApontamentoQualidadePacking>();
 		FilterApontamentoQualidadePacking filterApontamentoQualidadePacking = (FilterApontamentoQualidadePacking) paginationParams.getFilter();
 		Criteria searchCriteria = criteria();
-		if (filterApontamentoQualidadePacking.getTipoControle() != null) {
-			searchCriteria.add(Restrictions.eq("tipoControle", filterApontamentoQualidadePacking.getTipoControle()));
-		}
-		if (filterApontamentoQualidadePacking.getCor() != null) {
-			searchCriteria.add(Restrictions.eq("cor", filterApontamentoQualidadePacking.getCor()));
-		}
-		if (filterApontamentoQualidadePacking.getClassificacao() != null) {
-			searchCriteria.add(Restrictions.eq("classificacao", filterApontamentoQualidadePacking.getClassificacao()));
-		}
-		if (filterApontamentoQualidadePacking.getQualidade() != null) {
-			searchCriteria.add(Restrictions.eq("qualidade", filterApontamentoQualidadePacking.getQualidade()));
-		}
-		if (filterApontamentoQualidadePacking.getCondicao() != null) {
-			searchCriteria.add(Restrictions.eq("condicao", filterApontamentoQualidadePacking.getCondicao()));
-		}
-		if (filterApontamentoQualidadePacking.getPallet() != null) {
-			searchCriteria.add(Restrictions.eq("pallet", filterApontamentoQualidadePacking.getPallet()));
-		}
-		if (filterApontamentoQualidadePacking.getDataAnalise() != null) {
-			searchCriteria.add(Restrictions.eq("dataAnalise", filterApontamentoQualidadePacking.getDataAnalise()));
-		}
-		if (filterApontamentoQualidadePacking.getDataColheita() != null) {
-			searchCriteria.add(Restrictions.eq("dataColheita", filterApontamentoQualidadePacking.getDataColheita()));
-		}
 		if (filterApontamentoQualidadePacking.getAparencia() != null) {
 			searchCriteria.add(Restrictions.eq("aparencia", filterApontamentoQualidadePacking.getAparencia()));
 		}
@@ -411,6 +361,10 @@ public class DaoApontamentoQualidadePacking extends AccessibleHibernateDao<Apont
 		if (filterApontamentoQualidadePacking.getGenerador() != null) {
 			searchCriteria.createAlias("generador", "generador_");
 			searchCriteria.add(Restrictions.eq("generador_.id", filterApontamentoQualidadePacking.getGenerador()));
+		}
+		if (filterApontamentoQualidadePacking.getCor() != null) {
+			searchCriteria.createAlias("cor", "cor_");
+			searchCriteria.add(Restrictions.eq("cor_.id", filterApontamentoQualidadePacking.getCor()));
 		}
 		if (filterApontamentoQualidadePacking.getCargo() != null) {
 			searchCriteria.createAlias("cargo", "cargo_");

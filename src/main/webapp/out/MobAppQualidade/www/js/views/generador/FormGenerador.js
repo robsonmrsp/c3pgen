@@ -1,4 +1,4 @@
-/* generated: 24/09/2016 11:56:51 */
+/* generated: 24/09/2016 12:52:33 */
 define(function(require) {
 	var _ = require('adapters/underscore-adapter');
 	var $ = require('adapters/jquery-adapter');

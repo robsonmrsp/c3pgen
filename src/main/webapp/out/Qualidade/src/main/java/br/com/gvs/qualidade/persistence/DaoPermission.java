@@ -18,7 +18,7 @@ import br.com.gvs.core.persistence.pagination.Paginator;
 
 import br.com.gvs.qualidade.model.Permission;
 /**
-*  generated: 24/09/2016 11:56:38
+*  generated: 24/09/2016 12:52:17
 **/
 
 @Named

@@ -32,7 +32,7 @@ import br.com.gvs.core.serialization.CustomLocalDateTimeSerializer;
 import br.com.gvs.core.serialization.CustomLocalDateSerializer;
 import br.com.gvs.core.model.AbstractTimestampEntity;
 /**
-* generated: 24/09/2016 11:56:34
+* generated: 24/09/2016 12:52:13
 **/
 @Entity
 @Audited
@@ -47,6 +47,9 @@ public class Cor extends AbstractTimestampEntity{
 		
 	@Column(name = "NOME")
 	private String nome;		
+	
+	@OneToMany(mappedBy="cor")
+	private List<ApontamentoQualidadePacking> apontamentoQualidadePackings;		
 		
 	public  Cor() {
 		
@@ -66,5 +69,24 @@ public class Cor extends AbstractTimestampEntity{
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	public void setApontamentoQualidadePackings(List<ApontamentoQualidadePacking> apontamentoQualidadePackings){
+		this.apontamentoQualidadePackings = apontamentoQualidadePackings;
+	}
+	
+	public List<ApontamentoQualidadePacking>  getApontamentoQualidadePackings() {
+		if(this.apontamentoQualidadePackings == null){
+			setApontamentoQualidadePackings(new ArrayList<ApontamentoQualidadePacking>());
+		}
+		return this.apontamentoQualidadePackings;
+	}
+		
+	public boolean addApontamentoQualidadePackings(ApontamentoQualidadePacking apontamentoQualidadePacking){
+		return getApontamentoQualidadePackings().add(apontamentoQualidadePacking);
+	}
+	
+	public boolean removeApontamentoQualidadePackings(ApontamentoQualidadePacking apontamentoQualidadePacking){
+		return getApontamentoQualidadePackings().remove(apontamentoQualidadePacking);
+	}
+	
 	
 }

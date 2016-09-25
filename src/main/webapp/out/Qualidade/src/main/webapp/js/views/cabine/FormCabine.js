@@ -1,4 +1,4 @@
-/* generated: 24/09/2016 11:56:32 */
+/* generated: 24/09/2016 12:52:12 */
 define(function(require) {
 	// Start "Import´s" Definition"
 	var _ = require('adapters/underscore-adapter');
@@ -13,7 +13,7 @@ define(function(require) {
 	var TemplateFormCabines = require('text!views/cabine/tpl/FormCabineTemplate.html');
 	var CabineModel = require('models/CabineModel');
 	var CabineCollection = require('collections/CabineCollection');
-	var SearchPackingModal = require('views/modalComponents/PackingModal');
+	var ModalPacking = require('views/modalComponents/PackingModal');
 	
 	// End of "Import´s" definition
 
@@ -31,7 +31,7 @@ define(function(require) {
 		events : {
 			'click 	.save' : 'save',
 			'click 	.saveAndContinue' : 'saveAndContinue',
-			'click #searchPackingModal' : 'showSearchPackingModal',
+			'click #searchPackingModal' : 'showModalPacking',
 		},
 		
 		ui : {
@@ -45,7 +45,7 @@ define(function(require) {
 
 		initialize : function() {
 			var that = this;
-			this.searchPackingModal = new SearchPackingModal({
+			this.modalPacking = new ModalPacking({
 				onSelectModel : function(model) {
 					that.selectPacking(model);
 				},
@@ -115,29 +115,16 @@ define(function(require) {
 				id: util.escapeById('inputId') || null,
 		    	nome : util.escapeById('inputNome'), 
 				
-					packing : that.getPacking(),
+					packing : that.modalPacking.getJsonValue(),
 			});
 			return cabine;
 		},
-		 
-		getPacking : function() {			
-			var id = util.escapeById('inputPackingId');
-			var nome = util.escapeById('inputPackingNome');
-			var packing = null;
-			
-			if (id && nome) {
-				packing = {
-					id : id,
-					nome : nome,
-				}
-			}
-			return packing;
-		},	
-		
-		showSearchPackingModal : function() {
-			this.searchPackingModal.showPage();
+		 		
+		showModalPacking : function() {
+			// add more before the modal is open
+			this.modalPacking.showPage();
 		},
-			
+
 		selectPacking : function(packing) {
 			this.searchPackingModal.hidePage();	
 			this.ui.inputPackingId.val(packing.get('id'));

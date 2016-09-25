@@ -228,14 +228,6 @@ public class Parser {
 	
 	private static void applyBasicJsonValues(JsonApontamentoQualidadePacking jsonApontamentoQualidadePacking, ApontamentoQualidadePacking apontamentoQualidadePacking) {
 		jsonApontamentoQualidadePacking.setId(apontamentoQualidadePacking.getId());
-	    jsonApontamentoQualidadePacking.setTipoControle(apontamentoQualidadePacking.getTipoControle());
-	    jsonApontamentoQualidadePacking.setCor(apontamentoQualidadePacking.getCor());
-	    jsonApontamentoQualidadePacking.setClassificacao(apontamentoQualidadePacking.getClassificacao());
-	    jsonApontamentoQualidadePacking.setQualidade(apontamentoQualidadePacking.getQualidade());
-	    jsonApontamentoQualidadePacking.setCondicao(apontamentoQualidadePacking.getCondicao());
-	    jsonApontamentoQualidadePacking.setPallet(apontamentoQualidadePacking.getPallet());
-		jsonApontamentoQualidadePacking.setDataAnalise(DateUtil.localDateAsString(apontamentoQualidadePacking.getDataAnalise()));
-		jsonApontamentoQualidadePacking.setDataColheita(DateUtil.localDateAsString(apontamentoQualidadePacking.getDataColheita()));
 	    jsonApontamentoQualidadePacking.setAparencia(apontamentoQualidadePacking.getAparencia());
 	    jsonApontamentoQualidadePacking.setDiametroMinimo(apontamentoQualidadePacking.getDiametroMinimo());
 	    jsonApontamentoQualidadePacking.setDiametroMaximo(apontamentoQualidadePacking.getDiametroMaximo());
@@ -274,14 +266,6 @@ public class Parser {
 	}	
 	private static void applyBasicEntityValues(ApontamentoQualidadePacking apontamentoQualidadePacking, JsonApontamentoQualidadePacking jsonApontamentoQualidadePacking) {
 		apontamentoQualidadePacking.setId(jsonApontamentoQualidadePacking.getId());
-		apontamentoQualidadePacking.setTipoControle(jsonApontamentoQualidadePacking.getTipoControle());
-		apontamentoQualidadePacking.setCor(jsonApontamentoQualidadePacking.getCor());
-		apontamentoQualidadePacking.setClassificacao(jsonApontamentoQualidadePacking.getClassificacao());
-		apontamentoQualidadePacking.setQualidade(jsonApontamentoQualidadePacking.getQualidade());
-		apontamentoQualidadePacking.setCondicao(jsonApontamentoQualidadePacking.getCondicao());
-		apontamentoQualidadePacking.setPallet(jsonApontamentoQualidadePacking.getPallet());
-	    apontamentoQualidadePacking.setDataAnalise(DateUtil.stringAsLocalDate(jsonApontamentoQualidadePacking.getDataAnalise()));
-	    apontamentoQualidadePacking.setDataColheita(DateUtil.stringAsLocalDate(jsonApontamentoQualidadePacking.getDataColheita()));
 		apontamentoQualidadePacking.setAparencia(jsonApontamentoQualidadePacking.getAparencia());
 		apontamentoQualidadePacking.setDiametroMinimo(jsonApontamentoQualidadePacking.getDiametroMinimo());
 		apontamentoQualidadePacking.setDiametroMaximo(jsonApontamentoQualidadePacking.getDiametroMaximo());
@@ -338,6 +322,10 @@ public class Parser {
 		if (generador_ != null) {
 			jsonApontamentoQualidadePacking.setGenerador(toJson(generador_));
 		}
+		Cor cor_ = apontamentoQualidadePacking.getCor();
+		if (cor_ != null) {
+			jsonApontamentoQualidadePacking.setCor(toJson(cor_));
+		}
 		Cargo cargo_ = apontamentoQualidadePacking.getCargo();
 		if (cargo_ != null) {
 			jsonApontamentoQualidadePacking.setCargo(toJson(cargo_));
@@ -388,6 +376,10 @@ public class Parser {
 		JsonGenerador generador_ = jsonApontamentoQualidadePacking.getGenerador();
 		if (generador_ != null) {
 			apontamentoQualidadePacking.setGenerador(toEntity(generador_));
+		}	
+		JsonCor cor_ = jsonApontamentoQualidadePacking.getCor();
+		if (cor_ != null) {
+			apontamentoQualidadePacking.setCor(toEntity(cor_));
 		}	
 		JsonCargo cargo_ = jsonApontamentoQualidadePacking.getCargo();
 		if (cargo_ != null) {
@@ -930,6 +922,12 @@ public class Parser {
 
 		applyBasicJsonValues(jsonCor, cor);
 
+		List<ApontamentoQualidadePacking> listApontamentoQualidadePackings = cor.getApontamentoQualidadePackings();
+		if (listApontamentoQualidadePackings != null) {
+			for (ApontamentoQualidadePacking loopApontamentoQualidadePacking : listApontamentoQualidadePackings) {
+				jsonCor.getApontamentoQualidadePackings().add(toBasicJson(loopApontamentoQualidadePacking));
+			}
+		}
 		return jsonCor;
 	}
 

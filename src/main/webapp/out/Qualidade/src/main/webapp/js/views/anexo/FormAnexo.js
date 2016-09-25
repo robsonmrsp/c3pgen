@@ -1,4 +1,4 @@
-/* generated: 24/09/2016 11:56:31 */
+/* generated: 24/09/2016 12:52:11 */
 define(function(require) {
 	// Start "Import´s" Definition"
 	var _ = require('adapters/underscore-adapter');
@@ -13,7 +13,7 @@ define(function(require) {
 	var TemplateFormAnexos = require('text!views/anexo/tpl/FormAnexoTemplate.html');
 	var AnexoModel = require('models/AnexoModel');
 	var AnexoCollection = require('collections/AnexoCollection');
-	var SearchApontamentoQualidadePackingModal = require('views/modalComponents/ApontamentoQualidadePackingModal');
+	var ModalApontamentoQualidadePacking = require('views/modalComponents/ApontamentoQualidadePackingModal');
 	
 	// End of "Import´s" definition
 
@@ -31,7 +31,7 @@ define(function(require) {
 		events : {
 			'click 	.save' : 'save',
 			'click 	.saveAndContinue' : 'saveAndContinue',
-			'click #searchApontamentoQualidadePackingModal' : 'showSearchApontamentoQualidadePackingModal',
+			'click #searchApontamentoQualidadePackingModal' : 'showModalApontamentoQualidadePacking',
 		},
 		
 		ui : {
@@ -46,7 +46,7 @@ define(function(require) {
 
 		initialize : function() {
 			var that = this;
-			this.searchApontamentoQualidadePackingModal = new SearchApontamentoQualidadePackingModal({
+			this.modalApontamentoQualidadePacking = new ModalApontamentoQualidadePacking({
 				onSelectModel : function(model) {
 					that.selectApontamentoQualidadePacking(model);
 				},
@@ -119,29 +119,16 @@ define(function(require) {
 				
 		    	conteudo : util.escapeById('inputConteudo'), 
 				
-					apontamentoQualidadePacking : that.getApontamentoQualidadePacking(),
+					apontamentoQualidadePacking : that.modalApontamentoQualidadePacking.getJsonValue(),
 			});
 			return anexo;
 		},
-		 
-		getApontamentoQualidadePacking : function() {			
-			var id = util.escapeById('inputApontamentoQualidadePackingId');
-			var nome = util.escapeById('inputApontamentoQualidadePackingNome');
-			var apontamentoQualidadePacking = null;
-			
-			if (id && nome) {
-				apontamentoQualidadePacking = {
-					id : id,
-					nome : nome,
-				}
-			}
-			return apontamentoQualidadePacking;
-		},	
-		
-		showSearchApontamentoQualidadePackingModal : function() {
-			this.searchApontamentoQualidadePackingModal.showPage();
+		 		
+		showModalApontamentoQualidadePacking : function() {
+			// add more before the modal is open
+			this.modalApontamentoQualidadePacking.showPage();
 		},
-			
+
 		selectApontamentoQualidadePacking : function(apontamentoQualidadePacking) {
 			this.searchApontamentoQualidadePackingModal.hidePage();	
 			this.ui.inputApontamentoQualidadePackingId.val(apontamentoQualidadePacking.get('id'));

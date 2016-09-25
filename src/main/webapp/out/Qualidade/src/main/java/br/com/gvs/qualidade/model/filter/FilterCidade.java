@@ -15,7 +15,7 @@ import br.com.gvs.core.serialization.CustomLocalDateTimeDeserializer;
 
 
 /**
-*  generated: 24/09/2016 11:56:36
+*  generated: 24/09/2016 12:52:16
 **/
 public class FilterCidade implements Serializable {
 	private static final long serialVersionUID = 1L;

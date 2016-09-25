@@ -1,4 +1,4 @@
-/* generated: 24/09/2016 11:56:37 */
+/* generated: 24/09/2016 12:52:16 */
 define(function(require) {
 	// Start "Import´s" Definition"
 	var _ = require('adapters/underscore-adapter');
@@ -122,8 +122,8 @@ define(function(require) {
 			});
 			return estado;
 		},
-		 
-		
+		 		
+
 				
 		changeNome : function() {
 			var that = this;
@@ -131,7 +131,7 @@ define(function(require) {
 				element : that.ui.inputNome,
 				fieldName : 'nome',
 				fieldDisplayName : 'Nome',
-				//onlyNumber : true,     //caso queira que as mascaras sejam removidas e somente NUMEROS sejam enviados na consulta.
+				//onlyNumber : true,     
 				view : that,
 				collection : EstadoCollection,
 			})

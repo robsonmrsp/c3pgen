@@ -1,4 +1,4 @@
-/* generated: 24/09/2016 11:56:37 */
+/* generated: 24/09/2016 12:52:17 */
 define(function(require) {
 	// Start "Import´s" Definition"
 	var _ = require('adapters/underscore-adapter');
@@ -13,7 +13,7 @@ define(function(require) {
 	var TemplateFormItems = require('text!views/item/tpl/FormItemTemplate.html');
 	var ItemModel = require('models/ItemModel');
 	var ItemCollection = require('collections/ItemCollection');
-	var SearchTypeModal = require('views/modalComponents/ItemTypeModal');
+	var ModalType = require('views/modalComponents/ItemTypeModal');
 	var PermissionCollection = require('collections/PermissionCollection');
 	var MultiSelectPermission = require('views/permission/MultiSelectPermission');			
 	
@@ -34,7 +34,7 @@ define(function(require) {
 		events : {
 			'click 	.save' : 'save',
 			'click 	.saveAndContinue' : 'saveAndContinue',
-			'click #searchTypeModal' : 'showSearchTypeModal',
+			'click #searchTypeModal' : 'showModalType',
 		},
 		
 		ui : {
@@ -49,7 +49,7 @@ define(function(require) {
 
 		initialize : function() {
 			var that = this;
-			this.searchTypeModal = new SearchTypeModal({
+			this.modalType = new ModalType({
 				onSelectModel : function(model) {
 					that.selectType(model);
 				},
@@ -130,30 +130,17 @@ define(function(require) {
 				
 		    	description : util.escapeById('inputDescription'), 
 				
-					type : that.getType(),
+					type : that.modalType.getJsonValue(),
 					permissions : that.permissions.toJSON(),
 			});
 			return item;
 		},
-		 
-		getType : function() {			
-			var id = util.escapeById('inputTypeId');
-			var name = util.escapeById('inputTypeName');
-			var type = null;
-			
-			if (id && name) {
-				type = {
-					id : id,
-					name : name,
-				}
-			}
-			return type;
-		},	
-		
-		showSearchTypeModal : function() {
-			this.searchTypeModal.showPage();
+		 		
+		showModalType : function() {
+			// add more before the modal is open
+			this.modalType.showPage();
 		},
-			
+
 		selectType : function(type) {
 			this.searchTypeModal.hidePage();	
 			this.ui.inputTypeId.val(type.get('id'));

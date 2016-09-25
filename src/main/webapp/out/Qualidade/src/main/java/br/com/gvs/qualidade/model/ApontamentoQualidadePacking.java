@@ -32,7 +32,7 @@ import br.com.gvs.core.serialization.CustomLocalDateTimeSerializer;
 import br.com.gvs.core.serialization.CustomLocalDateSerializer;
 import br.com.gvs.core.model.AbstractTimestampEntity;
 /**
-* generated: 24/09/2016 11:56:32
+* generated: 24/09/2016 12:52:11
 **/
 @Entity
 @Audited
@@ -44,34 +44,6 @@ public class ApontamentoQualidadePacking extends AbstractTimestampEntity{
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "APONTAMENTOQUALIDADEPACKING_SEQUENCE")	
 	private Integer id;
-		
-	@Column(name = "TIPO_CONTROLE")
-	private Integer tipoControle;  			
-		
-	@Column(name = "COR")
-	private Integer cor;  			
-		
-	@Column(name = "CLASSIFICACAO")
-	private Integer classificacao;  			
-		
-	@Column(name = "QUALIDADE")
-	private Integer qualidade;  			
-		
-	@Column(name = "CONDICAO")
-	private Integer condicao;  			
-		
-	@Column(name = "PALLET")
-	private String pallet;		
-		
-	@Column(name = "DATA_ANALISE")
-	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
-	@JsonSerialize(using = CustomLocalDateSerializer.class)
-	private LocalDate dataAnalise;  			
-		
-	@Column(name = "DATA_COLHEITA")
-	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
-	@JsonSerialize(using = CustomLocalDateSerializer.class)
-	private LocalDate dataColheita;  			
 		
 	@Column(name = "APARENCIA")
 	private Integer aparencia;  			
@@ -192,6 +164,10 @@ public class ApontamentoQualidadePacking extends AbstractTimestampEntity{
 	private Generador generador;		
 	
 	@ManyToOne
+	@JoinColumn(name = "ID_COR")
+	private Cor cor;		
+	
+	@ManyToOne
 	@JoinColumn(name = "ID_CARGO")
 	private Cargo cargo;		
 	
@@ -234,62 +210,6 @@ public class ApontamentoQualidadePacking extends AbstractTimestampEntity{
 		this.id = id;
 	}
 	
-	public Integer getTipoControle() {
-		return tipoControle;
-	}
-
-	public void setTipoControle(Integer tipoControle) {
-		this.tipoControle = tipoControle;
-	}
-	public Integer getCor() {
-		return cor;
-	}
-
-	public void setCor(Integer cor) {
-		this.cor = cor;
-	}
-	public Integer getClassificacao() {
-		return classificacao;
-	}
-
-	public void setClassificacao(Integer classificacao) {
-		this.classificacao = classificacao;
-	}
-	public Integer getQualidade() {
-		return qualidade;
-	}
-
-	public void setQualidade(Integer qualidade) {
-		this.qualidade = qualidade;
-	}
-	public Integer getCondicao() {
-		return condicao;
-	}
-
-	public void setCondicao(Integer condicao) {
-		this.condicao = condicao;
-	}
-	public String getPallet() {
-		return pallet;
-	}
-
-	public void setPallet(String pallet) {
-		this.pallet = pallet;
-	}
-	public LocalDate getDataAnalise() {
-		return dataAnalise;
-	}
-
-	public void setDataAnalise(LocalDate dataAnalise) {
-		this.dataAnalise = dataAnalise;
-	}
-	public LocalDate getDataColheita() {
-		return dataColheita;
-	}
-
-	public void setDataColheita(LocalDate dataColheita) {
-		this.dataColheita = dataColheita;
-	}
 	public Integer getAparencia() {
 		return aparencia;
 	}
@@ -568,6 +488,14 @@ public class ApontamentoQualidadePacking extends AbstractTimestampEntity{
 	
 	public void setGenerador(Generador generador) {
 		this.generador = generador;
+	}
+	
+	public Cor getCor() {
+		return cor;
+	}
+	
+	public void setCor(Cor cor) {
+		this.cor = cor;
 	}
 	
 	public Cargo getCargo() {

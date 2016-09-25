@@ -11,7 +11,7 @@ import br.com.gvs.core.serialization.CustomSyncObjectIdDeserializer;
 import br.com.gvs.core.serialization.CustomDoubleDeserializer;
 
 /**
-*  generated: 24/09/2016 11:56:33
+*  generated: 24/09/2016 12:52:13
 **/
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class JsonControleCumbuca implements Serializable {

@@ -1,4 +1,4 @@
-/* generated: 24/09/2016 11:56:34 */
+/* generated: 24/09/2016 12:52:14 */
 define(function(require) {
 	// Start "Import´s" Definition"
 	var _ = require('adapters/underscore-adapter');
@@ -233,48 +233,8 @@ define(function(require) {
 			});
 			return funcionario;
 		},
-		 
-		getCargo : function() {
-			var id =  this.comboCargo.getRawValue();			
-			
-			if(id){
-				return {
-					id: id,
-				}
-			}
-			return null;
-		},				
-		getCbo : function() {
-			var id =  this.comboCbo.getRawValue();			
-			
-			if(id){
-				return {
-					id: id,
-				}
-			}
-			return null;
-		},				
-		getDepartamento : function() {
-			var id =  this.comboDepartamento.getRawValue();			
-			
-			if(id){
-				return {
-					id: id,
-				}
-			}
-			return null;
-		},				
-		getFuncao : function() {
-			var id =  this.comboFuncao.getRawValue();			
-			
-			if(id){
-				return {
-					id: id,
-				}
-			}
-			return null;
-		},				
-		
+		 		
+
 				
 		
 	});

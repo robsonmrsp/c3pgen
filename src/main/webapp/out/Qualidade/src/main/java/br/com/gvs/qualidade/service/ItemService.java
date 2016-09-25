@@ -6,7 +6,7 @@ import br.com.gvs.qualidade.model.Item;
 import br.com.gvs.core.persistence.pagination.Pager;
 import br.com.gvs.core.persistence.pagination.PaginationParams;
 /**
-*  generated: 24/09/2016 11:56:37
+*  generated: 24/09/2016 12:52:17
 **/
 public interface ItemService {
 

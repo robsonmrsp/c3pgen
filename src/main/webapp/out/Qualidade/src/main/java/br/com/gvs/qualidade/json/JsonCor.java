@@ -11,7 +11,7 @@ import br.com.gvs.core.serialization.CustomSyncObjectIdDeserializer;
 import br.com.gvs.core.serialization.CustomDoubleDeserializer;
 
 /**
-*  generated: 24/09/2016 11:56:34
+*  generated: 24/09/2016 12:52:13
 **/
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class JsonCor implements Serializable {
@@ -21,6 +21,7 @@ public class JsonCor implements Serializable {
 	private Integer id;
 	private SyncOperation syncOperation;
 	private String nome;
+	private ArrayList<JsonApontamentoQualidadePacking> apontamentoQualidadePackings = new ArrayList<JsonApontamentoQualidadePacking>();		
 	
 	public  JsonCor() {
 		
@@ -41,6 +42,14 @@ public class JsonCor implements Serializable {
 		this.nome = nome;
 	}
 	
+	public ArrayList<JsonApontamentoQualidadePacking> getApontamentoQualidadePackings() {
+		return apontamentoQualidadePackings;
+	}
+	
+	public void setApontamentoQualidadePackings(ArrayList<JsonApontamentoQualidadePacking> apontamentoQualidadePacking) {
+		this.apontamentoQualidadePackings = apontamentoQualidadePacking;
+	}
+
 	public SyncOperation getSyncOperation (){
 		if(syncOperation == null){
 			this.syncOperation = SyncOperation.NONE;

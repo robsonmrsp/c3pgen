@@ -15,30 +15,10 @@ import br.com.gvs.core.serialization.CustomLocalDateTimeDeserializer;
 
 
 /**
-*  generated: 24/09/2016 11:56:32
+*  generated: 24/09/2016 12:52:11
 **/
 public class FilterApontamentoQualidadePacking implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
-	private Integer tipoControle;  			
-	
-	private Integer cor;  			
-	
-	private Integer classificacao;  			
-	
-	private Integer qualidade;  			
-	
-	private Integer condicao;  			
-	
-	private String pallet;  			
-	
-	@JsonSerialize(using = CustomLocalDateSerializer.class)
-	@JsonDeserialize(using = CustomLocalDateDeserializer.class)		
-	private LocalDate dataAnalise;  			
-	
-	@JsonSerialize(using = CustomLocalDateSerializer.class)
-	@JsonDeserialize(using = CustomLocalDateDeserializer.class)		
-	private LocalDate dataColheita;  			
 	
 	private Integer aparencia;  			
 	
@@ -114,6 +94,7 @@ public class FilterApontamentoQualidadePacking implements Serializable {
 
 	private Integer bolsao;		
 	private Integer generador;		
+	private Integer cor;		
 	private Integer cargo;		
 	private Integer variedade;		
 	private Integer latada;		
@@ -128,62 +109,6 @@ public class FilterApontamentoQualidadePacking implements Serializable {
 	}
 	
 
-	public Integer getTipoControle() {
-		return tipoControle;
-	}
-
-	public void setTipoControle(Integer tipoControle) {
-		this.tipoControle = tipoControle;
-	}
-	public Integer getCor() {
-		return cor;
-	}
-
-	public void setCor(Integer cor) {
-		this.cor = cor;
-	}
-	public Integer getClassificacao() {
-		return classificacao;
-	}
-
-	public void setClassificacao(Integer classificacao) {
-		this.classificacao = classificacao;
-	}
-	public Integer getQualidade() {
-		return qualidade;
-	}
-
-	public void setQualidade(Integer qualidade) {
-		this.qualidade = qualidade;
-	}
-	public Integer getCondicao() {
-		return condicao;
-	}
-
-	public void setCondicao(Integer condicao) {
-		this.condicao = condicao;
-	}
-	public String getPallet() {
-		return pallet;
-	}
-
-	public void setPallet(String pallet) {
-		this.pallet = pallet;
-	}
-	public LocalDate getDataAnalise() {
-		return dataAnalise;
-	}
-
-	public void setDataAnalise(LocalDate dataAnalise) {
-		this.dataAnalise = dataAnalise;
-	}
-	public LocalDate getDataColheita() {
-		return dataColheita;
-	}
-
-	public void setDataColheita(LocalDate dataColheita) {
-		this.dataColheita = dataColheita;
-	}
 	public Integer getAparencia() {
 		return aparencia;
 	}
@@ -443,6 +368,13 @@ public class FilterApontamentoQualidadePacking implements Serializable {
 	
 	public void setGenerador(Integer generador) {
 		this.generador = generador;
+	}
+	public Integer getCor() {
+		return cor;
+	}
+	
+	public void setCor(Integer cor) {
+		this.cor = cor;
 	}
 	public Integer getCargo() {
 		return cargo;

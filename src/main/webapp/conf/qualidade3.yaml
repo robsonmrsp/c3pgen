@@ -1,4 +1,4 @@
-appName: Qualidade
+appName: Quali
 skin: ace
 view: backbone
 rootPackage: br.com.gvs.qualidade
@@ -32,6 +32,7 @@ entities:
       textField: nome 
 - name: ApontamentoQualidadePacking
   hasOwner: false 
+  hasMobile: true 
   displayName: Apontamento qualidade packing
   tableName: APONTAMENTO_QUALIDADE_PACKING
   attributes:                     
@@ -289,9 +290,9 @@ entities:
     model: Variedade                       
     displayName: Variedade
     viewApproach:   
-      type: modal 
-      hiddenField: id 
-      textField: nome 
+      type: combo 
+      comboId: id 
+      comboVal: nome 
   - name: latada             
     type: ManyToOne
     model: Latada                       
@@ -342,6 +343,7 @@ entities:
       textField: nome 
 - name: Bolsao
   hasOwner: false 
+  hasMobile: true  
   displayName: Bolsao
   tableName: BOLSAO
   attributes:                     
@@ -791,6 +793,7 @@ entities:
     
 - name: Generador
   hasOwner: false 
+  hasMobile: true
   displayName: Generador
   tableName: GENERADOR
   attributes:                     
@@ -1252,7 +1255,7 @@ entities:
       comboVal: name
 - name: User
   displayName: Usuário
-  tableName: TB_USER
+  tableName: APP_USER
   hasOwner: false
   attributes:
   - name: name

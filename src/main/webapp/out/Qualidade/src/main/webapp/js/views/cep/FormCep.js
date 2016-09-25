@@ -1,4 +1,4 @@
-/* generated: 24/09/2016 11:56:36 */
+/* generated: 24/09/2016 12:52:16 */
 define(function(require) {
 	// Start "Import´s" Definition"
 	var _ = require('adapters/underscore-adapter');
@@ -13,9 +13,9 @@ define(function(require) {
 	var TemplateFormCeps = require('text!views/cep/tpl/FormCepTemplate.html');
 	var CepModel = require('models/CepModel');
 	var CepCollection = require('collections/CepCollection');
-	var SearchBairroModal = require('views/modalComponents/BairroModal');
-	var SearchCidadeModal = require('views/modalComponents/CidadeModal');
-	var SearchEstadoModal = require('views/modalComponents/EstadoModal');
+	var ModalBairro = require('views/modalComponents/BairroModal');
+	var ModalCidade = require('views/modalComponents/CidadeModal');
+	var ModalEstado = require('views/modalComponents/EstadoModal');
 	
 	// End of "Import´s" definition
 
@@ -35,9 +35,9 @@ define(function(require) {
 		events : {
 			'click 	.save' : 'save',
 			'click 	.saveAndContinue' : 'saveAndContinue',
-			'click #searchBairroModal' : 'showSearchBairroModal',
-			'click #searchCidadeModal' : 'showSearchCidadeModal',
-			'click #searchEstadoModal' : 'showSearchEstadoModal',
+			'click #searchBairroModal' : 'showModalBairro',
+			'click #searchCidadeModal' : 'showModalCidade',
+			'click #searchEstadoModal' : 'showModalEstado',
 		},
 		
 		ui : {
@@ -56,17 +56,17 @@ define(function(require) {
 
 		initialize : function() {
 			var that = this;
-			this.searchBairroModal = new SearchBairroModal({
+			this.modalBairro = new ModalBairro({
 				onSelectModel : function(model) {
 					that.selectBairro(model);
 				},
 			});
-			this.searchCidadeModal = new SearchCidadeModal({
+			this.modalCidade = new ModalCidade({
 				onSelectModel : function(model) {
 					that.selectCidade(model);
 				},
 			});
-			this.searchEstadoModal = new SearchEstadoModal({
+			this.modalEstado = new ModalEstado({
 				onSelectModel : function(model) {
 					that.selectEstado(model);
 				},
@@ -145,75 +145,36 @@ define(function(require) {
 				
 		    	numero : util.escapeById('inputNumero'), 
 				
-					bairro : that.getBairro(),
-					cidade : that.getCidade(),
-					estado : that.getEstado(),
+					bairro : that.modalBairro.getJsonValue(),
+					cidade : that.modalCidade.getJsonValue(),
+					estado : that.modalEstado.getJsonValue(),
 			});
 			return cep;
 		},
-		 
-		getBairro : function() {			
-			var id = util.escapeById('inputBairroId');
-			var nome = util.escapeById('inputBairroNome');
-			var bairro = null;
-			
-			if (id && nome) {
-				bairro = {
-					id : id,
-					nome : nome,
-				}
-			}
-			return bairro;
-		},	
-		getCidade : function() {			
-			var id = util.escapeById('inputCidadeId');
-			var nome = util.escapeById('inputCidadeNome');
-			var cidade = null;
-			
-			if (id && nome) {
-				cidade = {
-					id : id,
-					nome : nome,
-				}
-			}
-			return cidade;
-		},	
-		getEstado : function() {			
-			var id = util.escapeById('inputEstadoId');
-			var nome = util.escapeById('inputEstadoNome');
-			var estado = null;
-			
-			if (id && nome) {
-				estado = {
-					id : id,
-					nome : nome,
-				}
-			}
-			return estado;
-		},	
-		
-		showSearchBairroModal : function() {
-			this.searchBairroModal.showPage();
+		 		
+		showModalBairro : function() {
+			// add more before the modal is open
+			this.modalBairro.showPage();
 		},
-			
+		showModalCidade : function() {
+			// add more before the modal is open
+			this.modalCidade.showPage();
+		},
+		showModalEstado : function() {
+			// add more before the modal is open
+			this.modalEstado.showPage();
+		},
+
 		selectBairro : function(bairro) {
 			this.searchBairroModal.hidePage();	
 			this.ui.inputBairroId.val(bairro.get('id'));
 			this.ui.inputBairroNome.val(bairro.get('nome'));		
 		},
-		showSearchCidadeModal : function() {
-			this.searchCidadeModal.showPage();
-		},
-			
 		selectCidade : function(cidade) {
 			this.searchCidadeModal.hidePage();	
 			this.ui.inputCidadeId.val(cidade.get('id'));
 			this.ui.inputCidadeNome.val(cidade.get('nome'));		
 		},
-		showSearchEstadoModal : function() {
-			this.searchEstadoModal.showPage();
-		},
-			
 		selectEstado : function(estado) {
 			this.searchEstadoModal.hidePage();	
 			this.ui.inputEstadoId.val(estado.get('id'));

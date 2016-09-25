@@ -259,8 +259,8 @@
     displayName: Variedade
     viewApproach:   
       type: combo 
-      hiddenField: id 
-      textField: nome 
+      comboId: id 
+      comboVal: nome 
   - name: latada             
     type: ManyToOne
     model: Latada                       

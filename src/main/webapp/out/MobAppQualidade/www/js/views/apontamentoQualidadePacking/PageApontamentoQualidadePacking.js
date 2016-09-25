@@ -50,13 +50,13 @@ define(function(require) {
 				// onde os primeiros elementos serem os mais importantes. pra
 				// poder gerar essa linha abaixo.
 				primaryInfo : {
-					name : 'tipoControle',
+					name : 'aparencia',
 				},
 				secondaryInfo : {
-					name : 'cor',
+					name : 'diametroMinimo',
 				},
 				tertiaryInfo : {
-					name : 'classificacao',
+					name : 'diametroMaximo',
 					//formatter : function(dataLancamento) {
 					//	return 'Lancado em : ' + Util.moment(dataLancamento, 'YYYY-MM-DD').format('DD/MM/YYYY');
 					//}

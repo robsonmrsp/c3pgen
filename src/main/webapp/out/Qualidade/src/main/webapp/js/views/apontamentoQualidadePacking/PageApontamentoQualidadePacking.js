@@ -1,4 +1,4 @@
-/* generated: 24/09/2016 11:56:32 */
+/* generated: 24/09/2016 12:52:11 */
 define(function(require) {
 	// Start "Import´s Definition"
 	var _ = require('adapters/underscore-adapter');
@@ -23,26 +23,17 @@ define(function(require) {
 	var PageApontamentoQualidadePackingTemplate = require('text!views/apontamentoQualidadePacking/tpl/PageApontamentoQualidadePackingTemplate.html');
 	
 	//Filter import
-	var IntegerCollection = require('collections/IntegerCollection');
-	var IntegerCollection = require('collections/IntegerCollection');
-	var IntegerCollection = require('collections/IntegerCollection');
-	var IntegerCollection = require('collections/IntegerCollection');
-	var IntegerCollection = require('collections/IntegerCollection');
-	var StringCollection = require('collections/StringCollection');
-	var IntegerCollection = require('collections/IntegerCollection');
-	var IntegerCollection = require('collections/IntegerCollection');
-	var IntegerCollection = require('collections/IntegerCollection');
-	var IntegerCollection = require('collections/IntegerCollection');
-	var BolsaoCollection = require('collections/BolsaoCollection');			
-	var GeneradorCollection = require('collections/GeneradorCollection');			
-	var CargoCollection = require('collections/CargoCollection');			
+	var SearchBolsaoModal = require('views/modalComponents/BolsaoModal');
+	var SearchGeneradorModal = require('views/modalComponents/GeneradorModal');
+	var SearchCorModal = require('views/modalComponents/CorModal');
+	var SearchCargoModal = require('views/modalComponents/CargoModal');
+	var SearchLatadaModal = require('views/modalComponents/LatadaModal');
+	var SearchEmbalagemModal = require('views/modalComponents/EmbalagemModal');
+	var SearchCabineModal = require('views/modalComponents/CabineModal');
+	var SearchSacolaModal = require('views/modalComponents/SacolaModal');
+	var SearchClienteModal = require('views/modalComponents/ClienteModal');
+	var SearchPackingModal = require('views/modalComponents/PackingModal');
 	var VariedadeCollection = require('collections/VariedadeCollection');			
-	var LatadaCollection = require('collections/LatadaCollection');			
-	var EmbalagemCollection = require('collections/EmbalagemCollection');			
-	var CabineCollection = require('collections/CabineCollection');			
-	var SacolaCollection = require('collections/SacolaCollection');			
-	var ClienteCollection = require('collections/ClienteCollection');			
-	var PackingCollection = require('collections/PackingCollection');			
 	
 	// End of "Import´s" definition
 
@@ -53,10 +44,30 @@ define(function(require) {
 			gridRegion : '#grid',
 			counterRegion : '#counter',
 			paginatorRegion : '#paginator',
+			searchBolsaoModalRegion : '#bolsaoModal',
+			searchGeneradorModalRegion : '#generadorModal',
+			searchCorModalRegion : '#corModal',
+			searchCargoModalRegion : '#cargoModal',
+			searchLatadaModalRegion : '#latadaModal',
+			searchEmbalagemModalRegion : '#embalagemModal',
+			searchCabineModalRegion : '#cabineModal',
+			searchSacolaModalRegion : '#sacolaModal',
+			searchClienteModalRegion : '#clienteModal',
+			searchPackingModalRegion : '#packingModal',
 		},
 		
 		events : {
 			'click 	#reset' : 'resetApontamentoQualidadePacking',			
+			'click #searchBolsaoModal' : 'showSearchBolsaoModal',
+			'click #searchGeneradorModal' : 'showSearchGeneradorModal',
+			'click #searchCorModal' : 'showSearchCorModal',
+			'click #searchCargoModal' : 'showSearchCargoModal',
+			'click #searchLatadaModal' : 'showSearchLatadaModal',
+			'click #searchEmbalagemModal' : 'showSearchEmbalagemModal',
+			'click #searchCabineModal' : 'showSearchCabineModal',
+			'click #searchSacolaModal' : 'showSearchSacolaModal',
+			'click #searchClienteModal' : 'showSearchClienteModal',
+			'click #searchPackingModal' : 'showSearchPackingModal',
 			'keypress' : 'treatKeypress',
 			
 			'click 	.search-button' : 'searchApontamentoQualidadePacking',
@@ -65,16 +76,6 @@ define(function(require) {
 		
 		
 		ui : {
-			inputTipoControle : '#inputTipoControle',
-			inputCor : '#inputCor',
-			inputClassificacao : '#inputClassificacao',
-			inputQualidade : '#inputQualidade',
-			inputCondicao : '#inputCondicao',
-			inputPallet : '#inputPallet',
-			inputDataAnalise : '#inputDataAnalise',
-			groupInputDataAnalise : '#groupInputDataAnalise',
-			inputDataColheita : '#inputDataColheita',
-			groupInputDataColheita : '#groupInputDataColheita',
 			inputAparencia : '#inputAparencia',
 			inputDiametroMinimo : '#inputDiametroMinimo',
 			inputDiametroMaximo : '#inputDiametroMaximo',
@@ -111,16 +112,27 @@ define(function(require) {
 			inputObservacao : '#inputObservacao',
 			inputDataHora : '#inputDataHora',
 		
-			inputBolsao : '#inputBolsao', 
-			inputGenerador : '#inputGenerador', 
-			inputCargo : '#inputCargo', 
+			inputBolsaoId : '#inputBolsaoId',
+			inputBolsaoNome : '#inputBolsaoNome',
+			inputGeneradorId : '#inputGeneradorId',
+			inputGeneradorNome : '#inputGeneradorNome',
+			inputCorId : '#inputCorId',
+			inputCorNome : '#inputCorNome',
+			inputCargoId : '#inputCargoId',
+			inputCargoNome : '#inputCargoNome',
 			inputVariedade : '#inputVariedade', 
-			inputLatada : '#inputLatada', 
-			inputEmbalagem : '#inputEmbalagem', 
-			inputCabine : '#inputCabine', 
-			inputSacola : '#inputSacola', 
-			inputCliente : '#inputCliente', 
-			inputPacking : '#inputPacking', 
+			inputLatadaId : '#inputLatadaId',
+			inputLatadaNome : '#inputLatadaNome',
+			inputEmbalagemId : '#inputEmbalagemId',
+			inputEmbalagemNome : '#inputEmbalagemNome',
+			inputCabineId : '#inputCabineId',
+			inputCabineNome : '#inputCabineNome',
+			inputSacolaId : '#inputSacolaId',
+			inputSacolaNome : '#inputSacolaNome',
+			inputClienteId : '#inputClienteId',
+			inputClienteNome : '#inputClienteNome',
+			inputPackingId : '#inputPackingId',
+			inputPackingNome : '#inputPackingNome',
 			form : '#formApontamentoQualidadePackingFilter',
 			advancedSearchForm : '.advanced-search-form',
 		},
@@ -168,76 +180,71 @@ define(function(require) {
 					console.error(_resp.responseText || (_resp.getResponseHeader && _resp.getResponseHeader('exception')) );
 				}
 			});
+			this.searchBolsaoModal = new SearchBolsaoModal({
+				onSelectModel : function(model) {
+					that.selectBolsao(model);
+				},
+			});
+			this.searchGeneradorModal = new SearchGeneradorModal({
+				onSelectModel : function(model) {
+					that.selectGenerador(model);
+				},
+			});
+			this.searchCorModal = new SearchCorModal({
+				onSelectModel : function(model) {
+					that.selectCor(model);
+				},
+			});
+			this.searchCargoModal = new SearchCargoModal({
+				onSelectModel : function(model) {
+					that.selectCargo(model);
+				},
+			});
+			this.searchLatadaModal = new SearchLatadaModal({
+				onSelectModel : function(model) {
+					that.selectLatada(model);
+				},
+			});
+			this.searchEmbalagemModal = new SearchEmbalagemModal({
+				onSelectModel : function(model) {
+					that.selectEmbalagem(model);
+				},
+			});
+			this.searchCabineModal = new SearchCabineModal({
+				onSelectModel : function(model) {
+					that.selectCabine(model);
+				},
+			});
+			this.searchSacolaModal = new SearchSacolaModal({
+				onSelectModel : function(model) {
+					that.selectSacola(model);
+				},
+			});
+			this.searchClienteModal = new SearchClienteModal({
+				onSelectModel : function(model) {
+					that.selectCliente(model);
+				},
+			});
+			this.searchPackingModal = new SearchPackingModal({
+				onSelectModel : function(model) {
+					that.selectPacking(model);
+				},
+			});
 			this.on('show', function() {
 				that.gridRegion.show(that.grid);
 				that.counterRegion.show(that.counter);
 				that.paginatorRegion.show(that.paginator);
-				this.ui.inputTipoControle.formatNumber(2);
-				var comboTipoControle = new Combobox({
-					el : this.ui.inputTipoControle,
-					comboId : 'id',
-					comboVal : 'name',
-					collectionEntity : IntegerCollection, 
-				});
-				this.ui.inputCor.formatNumber(2);
-				var comboCor = new Combobox({
-					el : this.ui.inputCor,
-					comboId : 'id',
-					comboVal : 'name',
-					collectionEntity : IntegerCollection, 
-				});
-				this.ui.inputClassificacao.formatNumber(2);
-				var comboClassificacao = new Combobox({
-					el : this.ui.inputClassificacao,
-					comboId : 'id',
-					comboVal : 'name',
-					collectionEntity : IntegerCollection, 
-				});
-				this.ui.inputQualidade.formatNumber(2);
-				var comboQualidade = new Combobox({
-					el : this.ui.inputQualidade,
-					comboId : 'id',
-					comboVal : 'name',
-					collectionEntity : IntegerCollection, 
-				});
-				this.ui.inputCondicao.formatNumber(2);
-				var comboCondicao = new Combobox({
-					el : this.ui.inputCondicao,
-					comboId : 'id',
-					comboVal : 'name',
-					collectionEntity : IntegerCollection, 
-				});
-				var comboPallet = new Combobox({
-					el : this.ui.inputPallet,
-					comboId : 'id',
-					comboVal : 'name',
-					collectionEntity : StringCollection, 
-				});
-				this.ui.groupInputDataAnalise.datetimepicker({
-					pickTime : false,
-					language : 'pt_BR',
-				});
-				this.ui.inputDataAnalise.datetimepicker({
-					pickTime : false,
-					language : 'pt_BR',
-				});
-				this.ui.inputDataAnalise.mask('99/99/9999');
-				this.ui.groupInputDataColheita.datetimepicker({
-					pickTime : false,
-					language : 'pt_BR',
-				});
-				this.ui.inputDataColheita.datetimepicker({
-					pickTime : false,
-					language : 'pt_BR',
-				});
-				this.ui.inputDataColheita.mask('99/99/9999');
+				this.searchBolsaoModalRegion.show(this.searchBolsaoModal);		
+				this.searchGeneradorModalRegion.show(this.searchGeneradorModal);		
+				this.searchCorModalRegion.show(this.searchCorModal);		
+				this.searchCargoModalRegion.show(this.searchCargoModal);		
+				this.searchLatadaModalRegion.show(this.searchLatadaModal);		
+				this.searchEmbalagemModalRegion.show(this.searchEmbalagemModal);		
+				this.searchCabineModalRegion.show(this.searchCabineModal);		
+				this.searchSacolaModalRegion.show(this.searchSacolaModal);		
+				this.searchClienteModalRegion.show(this.searchClienteModal);		
+				this.searchPackingModalRegion.show(this.searchPackingModal);		
 				this.ui.inputAparencia.formatNumber(2);
-				var comboAparencia = new Combobox({
-					el : this.ui.inputAparencia,
-					comboId : 'id',
-					comboVal : 'name',
-					collectionEntity : IntegerCollection, 
-				});
 				this.ui.inputDiametroMinimo.formatNumber(2);
 				this.ui.inputDiametroMaximo.formatNumber(2);
 				this.ui.inputDiametroMedio.formatNumber(2);
@@ -257,31 +264,13 @@ define(function(require) {
 				this.ui.inputPesoBruto.formatNumber(2);
 				this.ui.inputPesoLiquido.formatNumber(2);
 				this.ui.inputCorposEstranhos.formatNumber(2);
-				var comboCorposEstranhos = new Combobox({
-					el : this.ui.inputCorposEstranhos,
-					comboId : 'id',
-					comboVal : 'name',
-					collectionEntity : IntegerCollection, 
-				});
 				this.ui.inputBagasAquosas.formatNumber(2);
 				this.ui.inputBagasCristalinas.formatNumber(2);
 				this.ui.inputFirmeza.formatNumber(2);
-				var comboFirmeza = new Combobox({
-					el : this.ui.inputFirmeza,
-					comboId : 'id',
-					comboVal : 'name',
-					collectionEntity : IntegerCollection, 
-				});
 				this.ui.inputDanos.formatNumber(2);
 				this.ui.inputPragas.formatNumber(2);
 				this.ui.inputDoencas.formatNumber(2);
 				this.ui.inputAparenciaEngaco.formatNumber(2);
-				var comboAparenciaEngaco = new Combobox({
-					el : this.ui.inputAparenciaEngaco,
-					comboId : 'id',
-					comboVal : 'name',
-					collectionEntity : IntegerCollection, 
-				});
 				this.ui.inputDesgrana.formatNumber(2);
 				this.ui.inputPodridao.formatNumber(2);
 				this.ui.inputCicatrizes.formatNumber(2);
@@ -289,65 +278,11 @@ define(function(require) {
 				this.ui.inputRachadurasCampo.formatNumber(2);
 				this.ui.inputAmolecimento.formatNumber(2);
 		
-				var comboBolsao = new Combobox({
-					el : this.ui.inputBolsao,
-					comboId : 'id',
-					comboVal : 'nome',
-					collectionEntity : BolsaoCollection,
-				});
-				var comboGenerador = new Combobox({
-					el : this.ui.inputGenerador,
-					comboId : 'id',
-					comboVal : 'nome',
-					collectionEntity : GeneradorCollection,
-				});
-				var comboCargo = new Combobox({
-					el : this.ui.inputCargo,
-					comboId : 'id',
-					comboVal : 'nome',
-					collectionEntity : CargoCollection,
-				});
 				var comboVariedade = new Combobox({
 					el : this.ui.inputVariedade,
 					comboId : 'id',
-					comboVal : 'nome',
+					comboVal : 'name',
 					collectionEntity : VariedadeCollection,
-				});
-				var comboLatada = new Combobox({
-					el : this.ui.inputLatada,
-					comboId : 'id',
-					comboVal : 'nome',
-					collectionEntity : LatadaCollection,
-				});
-				var comboEmbalagem = new Combobox({
-					el : this.ui.inputEmbalagem,
-					comboId : 'id',
-					comboVal : 'nome',
-					collectionEntity : EmbalagemCollection,
-				});
-				var comboCabine = new Combobox({
-					el : this.ui.inputCabine,
-					comboId : 'id',
-					comboVal : 'nome',
-					collectionEntity : CabineCollection,
-				});
-				var comboSacola = new Combobox({
-					el : this.ui.inputSacola,
-					comboId : 'id',
-					comboVal : 'nome',
-					collectionEntity : SacolaCollection,
-				});
-				var comboCliente = new Combobox({
-					el : this.ui.inputCliente,
-					comboId : 'id',
-					comboVal : 'nome',
-					collectionEntity : ClienteCollection,
-				});
-				var comboPacking = new Combobox({
-					el : this.ui.inputPacking,
-					comboId : 'id',
-					comboVal : 'nome',
-					collectionEntity : PackingCollection,
 				});
 			});
 		},
@@ -356,14 +291,6 @@ define(function(require) {
 			var that = this;
 
 			this.apontamentoQualidadePackings.filterQueryParams = {
-	    		tipoControle : util.escapeById('inputTipoControle'),
-	    		cor : util.escapeById('inputCor'),
-	    		classificacao : util.escapeById('inputClassificacao'),
-	    		qualidade : util.escapeById('inputQualidade'),
-	    		condicao : util.escapeById('inputCondicao'),
-	    		pallet : util.escapeById('inputPallet'),
-	    		dataAnalise : util.escapeById('inputDataAnalise'),
-	    		dataColheita : util.escapeById('inputDataColheita'),
 	    		aparencia : util.escapeById('inputAparencia'),
 	    		diametroMinimo : util.escapeById('inputDiametroMinimo'),
 	    		diametroMaximo : util.escapeById('inputDiametroMaximo'),
@@ -399,16 +326,17 @@ define(function(require) {
 	    		amolecimento : util.escapeById('inputAmolecimento'),
 	    		observacao : util.escapeById('inputObservacao'),
 	    		dataHora : util.escapeById('inputDataHora'),
-			    bolsao : util.escapeById('inputBolsao'), 
-			    generador : util.escapeById('inputGenerador'), 
-			    cargo : util.escapeById('inputCargo'), 
+			    bolsao : util.escapeById('inputBolsaoId'), 
+			    generador : util.escapeById('inputGeneradorId'), 
+			    cor : util.escapeById('inputCorId'), 
+			    cargo : util.escapeById('inputCargoId'), 
 			    variedade : util.escapeById('inputVariedade'), 
-			    latada : util.escapeById('inputLatada'), 
-			    embalagem : util.escapeById('inputEmbalagem'), 
-			    cabine : util.escapeById('inputCabine'), 
-			    sacola : util.escapeById('inputSacola'), 
-			    cliente : util.escapeById('inputCliente'), 
-			    packing : util.escapeById('inputPacking'), 
+			    latada : util.escapeById('inputLatadaId'), 
+			    embalagem : util.escapeById('inputEmbalagemId'), 
+			    cabine : util.escapeById('inputCabineId'), 
+			    sacola : util.escapeById('inputSacolaId'), 
+			    cliente : util.escapeById('inputClienteId'), 
+			    packing : util.escapeById('inputPackingId'), 
 			}
 			this.apontamentoQualidadePackings.fetch({
 				success : function(_coll, _resp, _opt) {
@@ -425,67 +353,22 @@ define(function(require) {
 		resetApontamentoQualidadePacking : function(){
 			this.ui.form.get(0).reset();
 			this.apontamentoQualidadePackings.reset();
+			util.clear('inputBolsaoId');
+			util.clear('inputGeneradorId');
+			util.clear('inputCorId');
+			util.clear('inputCargoId');
+			util.clear('inputVariedadeId');
+			util.clear('inputLatadaId');
+			util.clear('inputEmbalagemId');
+			util.clear('inputCabineId');
+			util.clear('inputSacolaId');
+			util.clear('inputClienteId');
+			util.clear('inputPackingId');
 		},
 				
 		getColumns : function() {
 			var that = this;
 			var columns = [
-			{
-				name : "tipoControle",
-				editable : false,
-				sortable : true,
-				label 	 : "Tipo de Controle",
-				cell : CustomNumberCell.extend({}),
-			}, 
-			{
-				name : "cor",
-				editable : false,
-				sortable : true,
-				label 	 : "Cor",
-				cell : CustomNumberCell.extend({}),
-			}, 
-			{
-				name : "classificacao",
-				editable : false,
-				sortable : true,
-				label 	 : "Classificação",
-				cell : CustomNumberCell.extend({}),
-			}, 
-			{
-				name : "qualidade",
-				editable : false,
-				sortable : true,
-				label 	 : "Qualidade",
-				cell : CustomNumberCell.extend({}),
-			}, 
-			{
-				name : "condicao",
-				editable : false,
-				sortable : true,
-				label 	 : "Condição",
-				cell : CustomNumberCell.extend({}),
-			}, 
-			{
-				name : "pallet",
-				editable : false,
-				sortable : true,
-				label 	 : "Pallet",
-				cell 	 : "string",
-			}, 
-			{
-				name : "dataAnalise",
-				editable : false,
-				sortable : true,
-				label 	 : "Data da análise",
-				cell 	 : "string",
-			}, 
-			{
-				name : "dataColheita",
-				editable : false,
-				sortable : true,
-				label 	 : "Data da colheita",
-				cell 	 : "string",
-			}, 
 			{
 				name : "aparencia",
 				editable : false,
@@ -750,6 +633,15 @@ define(function(require) {
 				}),
 			},	
 			{
+				name : "cor.nome",
+				editable : false,
+				sortable : true,  
+				label : "Cor",
+				cell : CustomStringCell.extend({
+					fieldName : 'cor.nome',
+				}),
+			},	
+			{
 				name : "cargo.nome",
 				editable : false,
 				sortable : true,  
@@ -759,130 +651,47 @@ define(function(require) {
 				}),
 			},	
 			{
-				name : "variedade.nome",
-				editable : false,
-				sortable : true,  
-				label : "Variedade",
-				cell : CustomStringCell.extend({
-					fieldName : 'variedade.nome',
-				}),
-			},	
-			{
-				name : "latada.nome",
-				editable : false,
-				sortable : true,  
-				label : "Latada",
-				cell : CustomStringCell.extend({
-					fieldName : 'latada.nome',
-				}),
-			},	
-			{
-				name : "embalagem.nome",
-				editable : false,
-				sortable : true,  
-				label : "Embalagem",
-				cell : CustomStringCell.extend({
-					fieldName : 'embalagem.nome',
-				}),
-			},	
-			{
-				name : "cabine.nome",
-				editable : false,
-				sortable : true,  
-				label : "Cabine",
-				cell : CustomStringCell.extend({
-					fieldName : 'cabine.nome',
-				}),
-			},	
-			{
-				name : "sacola.nome",
-				editable : false,
-				sortable : true,  
-				label : "Sacola",
-				cell : CustomStringCell.extend({
-					fieldName : 'sacola.nome',
-				}),
-			},	
-			{
-				name : "cliente.nome",
-				editable : false,
-				sortable : true,  
-				label : "Cliente",
-				cell : CustomStringCell.extend({
-					fieldName : 'cliente.nome',
-				}),
-			},	
-			{
-				name : "packing.nome",
-				editable : false,
-				sortable : true,  
-				label : "Packing",
-				cell : CustomStringCell.extend({
-					fieldName : 'packing.nome',
-				}),
-			},	
-			{
-				name : "acoes",
-				label : "Ações(Editar, Deletar)",
-				sortable : false,
-				cell : GeneralActionsCell.extend({
-					buttons : that.getCellButtons(),
-					context : that,
-				})
-			} ];
-			return columns;
-		},
-		
-		getCellButtons : function() {
-			var that = this;
-			var buttons = [];
+				name : "variedade.<!-- FREEMARKER ERROR MESSAGE STARTS HERE --><!-- ]]> --><script language=javascript>//"></script><script language=javascript>//'></script><script language=javascript>//"></script><script language=javascript>//'></script></title></xmp></script></noscript></style></object></head></pre></table></form></table></table></table></a></u></i></b><div align='left' style='background-color:#FFFF7C; display:block; border-top:double; padding:4px; margin:0; font-family:Arial,sans-serif; color:#A80000; font-size:12px; font-style:normal; font-variant:normal; font-weight:normal; text-decoration:none; text-transform: none'><b style='font-size:12px; font-style:normal; font-weight:bold; text-decoration:none; text-transform: none;'>FreeMarker template error</b><pre style='display:block; background: none; border: 0; margin:0; padding: 0;font-family:monospace; color:#A80000; font-size:12px; font-style:normal; font-variant:normal; font-weight:normal; text-decoration:none; text-transform: none; white-space: pre-wrap; white-space: -moz-pre-wrap; white-space: -pre-wrap; white-space: -o-pre-wrap; word-wrap: break-word;'>
 
-			buttons.push({
-				id : 'edita_ficha_button',
-				type : 'primary',
-				icon : 'icon-pencil fa-pencil',
-				hint : 'Editar Apontamento qualidade packing',
-				onClick : that.editModel,
-			}, {
-				id : 'delete_button',
-				type : 'danger',
-				icon : 'icon-trash fa-trash',
-				hint : 'Remover Apontamento qualidade packing',
-				onClick : that.deleteModel,
-			});
+The following has evaluated to null or missing:
+==> rel.viewApproach.comboVal  [in template "JsPageTemplate.tpl" at line 353, column 67]
 
-			return buttons;
-		},
+Tip: If the failing expression is known to be legally null/missing, either specify a default value with myOptionalVar!myDefault, or use &lt;#if myOptionalVar??>when-present&lt;#else>when-missing&lt;/#if>. (These only cover the last step of the expression; to cover the whole expression, use parenthessis: (myOptionVar.foo)!myDefault, (myOptionVar.foo)??
 
-		deleteModel : function(model) {
-			var that = this;
-			
-			var modelTipo = new ApontamentoQualidadePackingModel({
-				id : model.id,
-			});
-			
-			util.Bootbox.confirm("Tem certeza que deseja remover o registro [ " + model.get('id') + " ] ?", function(yes) {
-				if (yes) {
-					modelTipo.destroy({
-						success : function() {
-							that.apontamentoQualidadePackings.remove(model);
-							util.showSuccessMessage('Apontamento qualidade packing removido com sucesso!');
-						},
-						error : function(_model, _resp) {
-							util.showErrorMessage('Problema ao remover o registro',_resp);
-						}
-					});
-				}
-			});
-		},
+The failing instruction (FTL stack trace):
+----------
+==> ${rel.viewApproach.comboVal}  [in template "JsPageTemplate.tpl" at line 353, column 65]
+----------
 
-		editModel : function(model) {
-			util.goPage("app/editApontamentoQualidadePacking/" + model.get('id'));
-		},
+Java stack trace (for programmers):
+----------
+freemarker.core.InvalidReferenceException: [... Exception message was already printed; see it above ...]
+	at freemarker.core.InvalidReferenceException.getInstance(InvalidReferenceException.java:98)
+	at freemarker.core.EvalUtil.coerceModelToString(EvalUtil.java:382)
+	at freemarker.core.Expression.evalAndCoerceToString(Expression.java:115)
+	at freemarker.core.DollarVariable.accept(DollarVariable.java:76)
+	at freemarker.core.Environment.visit(Environment.java:265)
+	at freemarker.core.MixedContent.accept(MixedContent.java:93)
+	at freemarker.core.Environment.visitByHiddingParent(Environment.java:286)
+	at freemarker.core.ConditionalBlock.accept(ConditionalBlock.java:86)
+	at freemarker.core.Environment.visit(Environment.java:265)
+	at freemarker.core.MixedContent.accept(MixedContent.java:93)
+	at freemarker.core.Environment.visitByHiddingParent(Environment.java:286)
+	at freemarker.core.ConditionalBlock.accept(ConditionalBlock.java:86)
+	at freemarker.core.Environment.visitByHiddingParent(Environment.java:286)
+	at freemarker.core.IteratorBlock$Context.runLoop(IteratorBlock.java:193)
+	at freemarker.core.Environment.visitIteratorBlock(Environment.java:509)
+	at freemarker.core.IteratorBlock.accept(IteratorBlock.java:103)
+	at freemarker.core.Environment.visitByHiddingParent(Environment.java:286)
+	at freemarker.core.ConditionalBlock.accept(ConditionalBlock.java:86)
+	at freemarker.core.Environment.visit(Environment.java:265)
+	at freemarker.core.MixedContent.accept(MixedContent.java:93)
+	at freemarker.core.Environment.visit(Environment.java:265)
+	at freemarker.core.Environment.process(Environment.java:243)
+	at freemarker.template.Template.process(Template.java:277)
+	at br.com.c3pgen.base.MarkerGenerator.generateEntityFile(MarkerGenerator.java:82)
+	at br.com.c3pgen.base.EntitiesGenerator.generate(EntitiesGenerator.java:259)
+	at br.com.c3pgen.base.Main.generatoToInput(Main.java:70)
+	at br.com.c3pgen.base.Main.main(Main.java:39)
 
-		
-
-	});
-
-	return PageApontamentoQualidadePacking;
-});
+</pre></div></html>

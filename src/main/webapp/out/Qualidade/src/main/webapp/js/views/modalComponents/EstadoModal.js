@@ -1,4 +1,4 @@
-/* generated: 24/09/2016 11:56:37 */
+/* generated: 24/09/2016 12:52:16 */
 define(function(require) {
 	// Start "Import´s" Definition"
 	var _ = require('adapters/underscore-adapter');
@@ -96,8 +96,21 @@ define(function(require) {
 
 		selectRow : function(e) {
 			var modelEstado = util.getWrappedModel(e);
-			if (modelEstado)
+			if (modelEstado){
+				this.modelSelect = modelEstado; 
 				this.onSelectModel(modelEstado);
+			}
+		},
+		getJsonValue : function() {
+			var ret = {}; 
+			if(this.modelSelect){
+				return this.modelSelect.toJSON();
+			}
+			return ret;
+		},
+		
+		getValue : function() {
+			return this.modelSelect;
 		},
 		
 		getColumns : function() {
