@@ -1,5 +1,6 @@
 - name: Bolsao
   hasOwner: false 
+  hasMobile: true  
   displayName: Bolsao
   tableName: BOLSAO
   attributes:                     

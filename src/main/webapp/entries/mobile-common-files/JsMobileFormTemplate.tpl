@@ -13,13 +13,14 @@ define(function(require) {
 	var TemplateForm${entity.name}s = require('text!views/${firstLower(entity.name)}/tpl/Form${entity.name}Template.html');
 	var ${entity.name}Model = require('models/${entity.name}Model');
 	var ${entity.name}Collection = require('collections/${entity.name}Collection');
-	<#list entity.attributes as att>
-		<#if att.viewApproach?? >
-			<#if att.viewApproach.type == 'combo'>		
-	var ${att.type.className}Collection = require('collections/${att.type.className}Collection');
+
+	<#if entity.relationships??>	
+		<#list entity.relationships as rel >
+			<#if rel.viewApproach.type == 'combo'>
+	var ${rel.model}Collection = require('collections/${rel.model}Collection');			
 			</#if>
-		</#if>
-	</#list>
+		</#list>
+	</#if>
 	
 	// End of "Import´s" definition
 	var Form${entity.name}s = Marionette.LayoutView.extend({
@@ -37,6 +38,28 @@ define(function(require) {
 		<#list entity.attributes as att>
 			input${firstUpper(att.name)} : '#input${firstUpper(att.name)}',
 		</#list>
+		<#if entity.relationships??>	
+		<#list entity.relationships as rel>
+			<#if rel.type == 'OneToMany'>
+			<#elseif rel.type == 'ManyToOne'>
+				<#if rel.viewApproach?? >
+					<#if rel.viewApproach.type  == 'combo'  >
+			input${firstUpper(rel.name)} : '#input${firstUpper(rel.name)}', 
+					<#elseif rel.viewApproach.type  == 'modal'  >
+					<#if rel.viewApproach.hiddenField??>
+			input${firstUpper(rel.name)}${firstUpper(rel.viewApproach.hiddenField)} : '#input${firstUpper(rel.name)}${firstUpper(rel.viewApproach.hiddenField)}',
+					</#if>					
+					<#if rel.viewApproach.textField??>
+			input${firstUpper(rel.name)}${firstUpper(rel.viewApproach.textField)} : '#input${firstUpper(rel.name)}${firstUpper(rel.viewApproach.textField)}',
+					</#if>					
+					</#if>
+				</#if>
+			<#elseif rel.type == 'ManyToMany'>
+			<#elseif rel.type == 'OneToOne'>
+			</#if>
+		</#list>
+		</#if>			
+
 		},
 
 		initialize : function() {
@@ -57,6 +80,26 @@ define(function(require) {
 			
 			this.on('show', function() {
 				this.floatButtonSaveRegion.show(this.floatButtonSave);
+				
+				
+		<#if entity.relationships??>	
+		<#list entity.relationships as rel>
+			<#if rel.viewApproach.type  == 'combo'  >
+			this.combo${firstUpper(rel.name)} = new Combobox({
+				el : this.ui.input${firstUpper(rel.name)},
+			   <#if rel.viewApproach.values??>
+			    values : '${toString(rel.viewApproach.values)}'
+				<#else>
+				comboId : '${(rel.viewApproach.comboId)!'id'}',
+				comboVal : '${(rel.viewApproach.comboVal)!'name'}',
+				collectionEntity : ${firstUpper(rel.model)}Collection, 
+				</#if>
+			});
+			this.combo${firstUpper(rel.name)}.setValue(this.model.get('${firstLower(rel.name)}'));					
+			</#if>
+		</#list>
+		</#if>
+				
 			})
 		},
 		
@@ -80,6 +123,14 @@ define(function(require) {
 				<#list entity.attributes as att>
 		    	${firstLower(att.name)} : Util.escapeById('input${firstUpper(att.name)}'), 
 				</#list>
+				<#if entity.relationships??>	
+					<#list entity.relationships as rel >
+						<#if rel.viewApproach.type == 'combo'>
+				${firstLower(rel.name)} :  that.combo${firstUpper(rel.name)}.getJsonValue(),
+						</#if>
+					</#list>
+				</#if>
+
 			});
 			return ${firstLower(entity.name)};
 		},

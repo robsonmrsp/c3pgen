@@ -1,5 +1,6 @@
 - name: Generador
   hasOwner: false 
+  hasMobile: true
   displayName: Generador
   tableName: GENERADOR
   attributes:                     

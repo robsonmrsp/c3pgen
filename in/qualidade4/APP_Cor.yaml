@@ -1,0 +1,13 @@
+- name: Cor
+  hasOwner: false
+  hasMobile: true
+  displayName: Cor
+  tableName: COR
+  attributes:
+  - name: nome
+    tableFieldName: NOME
+    basicSearch: true
+    required: true
+    displayName: Nome
+    type:
+      className: String

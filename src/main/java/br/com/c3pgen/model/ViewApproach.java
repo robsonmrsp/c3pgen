@@ -58,7 +58,9 @@ public class ViewApproach extends AbstractTimestampEntity {
 
 	@Column(name = "HIDDEN_FIELD")
 	private String hiddenField;
-
+	
+	
+	
 	@ManyToOne
 	@JoinColumn(name = "id_client")
 	private Client owner;

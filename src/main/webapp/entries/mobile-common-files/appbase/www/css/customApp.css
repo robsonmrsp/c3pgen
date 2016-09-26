@@ -211,3 +211,8 @@ i.large {
 	-webkit-font-feature-settings: 'liga';
 	-webkit-font-smoothing: antialiased;
 }
+#popup_container {
+	background-color: white !important;
+	max-width: 247px;
+	min-width: 237px;
+}

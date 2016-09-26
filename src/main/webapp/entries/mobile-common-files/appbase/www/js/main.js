@@ -20,6 +20,8 @@ require.config({
 		'wow' : '../vendor/wow/wow',
 		'nativedroid2' : '../vendor/theme/nativedroid2',
 		"velocity" : "../vendor/velocity-1.2.2/velocity",
+		"simpleAlerts" : "../vendor/jquery/jquery.simplealerts",
+
 	},
 	shim : {
 		"velocity" : {
@@ -52,19 +54,22 @@ require.config({
 
 		'wow' : [ 'jquery' ],
 
+		'simpleAlerts' : [ 'jquery' ],
+
 	},
 	wrapShim : true,
 });
 
-require([ "adapters/jquery-adapter", "adapters/backbone-adapter", "MobileRouter", 'CorsHelper' ], function($, Backbone, MobileRouter, CorsHelper) {
+require([ "adapters/jquery-adapter", "backbone", "MobileRouter", 'CorsHelper' ], function($, Backbone, MobileRouter, CorsHelper) {
 	$(document).on("mobileinit", function() {
 		$.mobile.linkBindingEnabled = false;
 		$.mobile.hashListeningEnabled = false;
+
 	})
 	CorsHelper.initCorsSuportWithCredentials();
 	// deve ser chamado depois, pois do contrário o evento "mobileinit" só será
 	// assinado DEPOIS de lancado, o que nao adiantará mais.
-	require([ "jquerymobile", 'nativedroid2', 'waves', 'AppScripts' ], function() {
+	require([ "jquerymobile", 'nativedroid2', 'waves', 'AppScripts', 'simpleAlerts' ], function() {
 		this.router = new MobileRouter();
 	});
 });

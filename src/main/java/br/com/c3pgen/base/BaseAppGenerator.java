@@ -65,7 +65,7 @@ public class BaseAppGenerator {
 	}
 
 	private static void generateStaticFromMobileCommonFiles(Application application) throws IOException {
-		String baseCommonFolder = Util.currentDir() + File.separator + "entries" +  "mobile-common-files" + File.separator;
+		String baseCommonFolder = Util.currentDir() + File.separator + "entries/" +  "mobile-common-files" + File.separator;
 
 		String fileOutput = Util.currentDir() + File.separator + "out" + File.separator + "MobApp" + application.getAppName();
 		String fileInputWebApp = baseCommonFolder + "/appbase/www";

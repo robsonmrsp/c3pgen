@@ -15,22 +15,40 @@
 						<label for="input${firstUpper(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}:</label>
 						<input type="date" data-role="date" id="input${firstUpper(att.name)}" value="{{${firstLower(att.name)}}}" data-clear-btn="true" class="${getRequiredClass(att.required)}" placeholder="Digite aqui ${firstUpper(att.displayName)!firstLower(att.name)}...">
 					<#elseif att.viewApproach.type  == 'combo'>
-					<div id="groupInput${firstUpper(att.name)}" class="form-group">
 						<label for="inputinput${firstUpper(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}:</label>
-						<select id="inputinput${firstUpper(att.name)}"> </select>
-					</div>
+						<select id="input${firstUpper(att.name)}">
+							<option value="">&nbsp;SELECIONE </option> 
+						</select>
 
 					<#elseif att.viewApproach.type  == 'textarea'>
 						<label for="input${firstUpper(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}:</label>
 						<textarea cols="40" rows="8" id="input${firstUpper(att.name)}" placeholder="Entre com ">{{${firstLower(att.name)}}}</textarea>
 					<#else>
 						<label for="input${firstUpper(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}:</label>
+						
+					  <#if att.type.hasNumeric()  >
+						<input type="number" id="input${firstUpper(att.name)}" placeholder="${(att.placeholder)!''}" value="{{${firstLower(att.name)}}}" class="${getRequiredClass(att.required)}">
+					<#else>
 						<input type="text" id="input${firstUpper(att.name)}" placeholder="${(att.placeholder)!''}" value="{{${firstLower(att.name)}}}" class="${getRequiredClass(att.required)}">
+					</#if>
 					</#if>
   				  <#else>
 						<label for="input${firstUpper(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}:</label>
+						<#if att.type.hasNumeric()  >
 						<input type="text" id="input${firstUpper(att.name)}" placeholder="${(att.placeholder)!''}" value="{{${firstLower(att.name)}}}" class="${getRequiredClass(att.required)}">
+					   <#else>
+					  </#if>
 				  </#if>
+				</#list>
+				<#list entity.relationships as rel>
+						<#if rel.viewApproach?? >
+							<#if rel.viewApproach.type  == 'combo'  >
+						<label for="input${firstUpper(rel.name)}">${firstUpper(rel.displayName)!firstLower(rel.name)}:</label>
+						<select id="input${firstUpper(rel.name)}">
+							<option value="">&nbsp;SELECIONE</option>
+						</select>
+						</#if>
+					</#if>
 				</#list>
 				</div>
 			</div>

@@ -5,19 +5,19 @@ define(function(require) {
 	var $ = require('jquery');
 	var Backbone = require('backbone');
 	var LocalStorage = require('localStorage');
-	var Global = require('models/Global');
 	var BaseCollection = require('collections/BaseCollection');
 	var ${entity.name}Model = require('models/${entity.name}Model');
 
 	var ${entity.name}Collection = BaseCollection.extend({
 
 		model : ${entity.name}Model,
-		
-		url : function(){
-			return this.global.get('url') +  '/rs/crud/${firstLower(entity.name)}s/all'
-		},
 	
-		localStorage : new LocalStorage("table_${firstLower(entity.name)}"),
+		initialize : function() {
+			BaseCollection.prototype.initialize.apply(this, arguments)
+			this.url = GLOBAL.getRemoteUrl() + '/rs/crud/${firstLower(entity.name)}s/all'
+		},
+
+		//localStorage : new LocalStorage("table_${firstLower(entity.name)}"),
 	});
 
 	return ${entity.name}Collection;

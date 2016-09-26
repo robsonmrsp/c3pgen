@@ -1,5 +1,6 @@
 - name: ApontamentoQualidadePacking
   hasOwner: false 
+  hasMobile: true 
   displayName: Apontamento qualidade packing
   tableName: APONTAMENTO_QUALIDADE_PACKING
   attributes:                     
@@ -257,7 +258,7 @@
     model: Variedade                       
     displayName: Variedade
     viewApproach:   
-      type: modal 
+      type: combo 
       hiddenField: id 
       textField: nome 
   - name: latada             

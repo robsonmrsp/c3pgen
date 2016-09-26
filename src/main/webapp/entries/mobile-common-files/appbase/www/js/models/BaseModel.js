@@ -4,8 +4,9 @@ define(function(require) {
 	var Backbone = require('backbone');
 
 	var BaseColl = Backbone.Model.extend({
-	// colocar aki as particularidades
+		token : function() {
+			return GLOBAL.getTokenCredentials();
+		},
 	});
-
 	return BaseColl;
 });

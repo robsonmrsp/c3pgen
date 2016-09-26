@@ -106,4 +106,11 @@ public class AttributeType extends AbstractTimestampEntity {
 		return map.get(name);
 	}
 
+	public Boolean hasNumeric() {
+		if (getClassName().equalsIgnoreCase("integer") || getClassName().equalsIgnoreCase("double") || getClassName().equalsIgnoreCase("float")) {
+			return Boolean.TRUE;
+		}
+		return Boolean.FALSE;
+	}
+
 }
