@@ -1,0 +1,41 @@
+- name: Usuario
+  hasOwner: false 
+  displayName: Usuario
+  tableName: USUARIO
+  attributes:                     
+  - name: usuario
+    tableFieldName: USUARIO
+    required: true
+    displayName: Usuario
+    type: 
+      className: String
+  - name: login
+    tableFieldName: LOGIN
+    required: true
+    displayName: Login
+    type: 
+      className: String
+  - name: senha
+    tableFieldName: SENHA
+    required: true
+    displayName: Senha
+    type: 
+      className: String
+  - name: email
+    tableFieldName: EMAIL
+    required: false
+    displayName: Email
+    type: 
+      className: String
+  - name: perfil
+    tableFieldName: PERFIL
+    required: false
+    displayName: Perfil
+    type: 
+      className: String
+  relationships:                     
+  - name: usuarioFuncionalidades
+    type: OneToMany
+    ownerName: usuario
+    model: UsuarioFuncionalidade                       
+    displayName: Usuario funcionalidade

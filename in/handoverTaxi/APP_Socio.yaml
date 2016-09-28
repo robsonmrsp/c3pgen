@@ -1,0 +1,26 @@
+- name: Socio
+  hasOwner: false 
+  displayName: Socio
+  tableName: SOCIO
+  attributes:                     
+  - name: nome
+    tableFieldName: NOME
+    required: false
+    displayName: Nome
+    type: 
+      className: String
+  - name: cpf
+    tableFieldName: CPF
+    required: false
+    displayName: Cpf
+    type: 
+      className: String
+  relationships:                     
+  - name: empresa             
+    type: ManyToOne
+    model: Empresa                       
+    displayName: Empresa
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 

@@ -1,0 +1,22 @@
+- name: UsuarioFuncionalidade
+  hasOwner: false 
+  displayName: Usuario funcionalidade
+  tableName: USUARIO_FUNCIONALIDADE
+  attributes:                     
+  relationships:                     
+  - name: usuario             
+    type: ManyToOne
+    model: Usuario                       
+    displayName: Usuario
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+  - name: funcionalidade             
+    type: ManyToOne
+    model: Funcionalidade                       
+    displayName: Funcionalidade
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 

@@ -1,0 +1,59 @@
+- name: Cliente
+  hasOwner: false 
+  displayName: Cliente
+  tableName: CLIENTE
+  attributes:                     
+  - name: nome
+    tableFieldName: NOME
+    required: false
+    displayName: Nome
+    type: 
+      className: String
+  - name: referencia
+    tableFieldName: REFERENCIA
+    required: false
+    displayName: Referencia
+    type: 
+      className: String
+  - name: tipo
+    tableFieldName: TIPO
+    required: false
+    displayName: Tipo
+    type: 
+      className: Integer
+  - name: status
+    tableFieldName: STATUS
+    required: false
+    displayName: Status
+    type: 
+      className: String
+  - name: dataAtivacao
+    tableFieldName: DATA_ATIVACAO
+    required: false
+    displayName: Data ativacao
+    type: 
+      className: Date
+    dateFormat: DD/MM/YYYY              
+    mask: 99/99/9999                    
+    viewApproach:                        
+      type: datepicker                  
+  - name: email
+    tableFieldName: EMAIL
+    required: false
+    displayName: Email
+    type: 
+      className: String
+  relationships:                     
+  - name: clienteTelefones
+    type: OneToMany
+    ownerName: cliente
+    model: ClienteTelefone                       
+    displayName: Cliente telefone
+  - name: endereco             
+    type: ManyToOne
+    model: Endereco                       
+    displayName: Endereco
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 

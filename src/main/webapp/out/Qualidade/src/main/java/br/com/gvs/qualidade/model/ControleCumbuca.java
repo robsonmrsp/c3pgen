@@ -47,8 +47,8 @@ public class ControleCumbuca extends AbstractTimestampEntity{
 		
 	@Column(name = "DT_REGISTRO")
 	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
-	@JsonSerialize(using = CustomLocalDateSerializer.class)
-	private LocalDate dataRegistro;  			
+	@JsonSerialize(using = CustomLocalDateTimeSerializer.class)
+	private LocalDateTime dataRegistro;  			
 		
 	@Column(name = "PESO")
 	private Double peso;  			

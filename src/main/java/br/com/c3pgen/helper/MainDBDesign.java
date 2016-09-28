@@ -17,6 +17,11 @@ import com.google.common.base.CaseFormat;
 import br.com.c3pgen.base.util.Util;
 
 public class MainDBDesign {
+
+	public static void extractYaml(String[] args) throws FileNotFoundException, IOException {
+
+	}
+
 	public static void main(String[] args) throws FileNotFoundException, IOException {
 		Serializer serializer = new Persister();
 		List<String> fileLines = new ArrayList<String>();
@@ -24,7 +29,8 @@ public class MainDBDesign {
 		new File(folderOutput).mkdirs();
 		// File source = new
 		// File("C:\\cyg\\home\\robso\\repos\\mercadodelivery\\src\\main\\resources\\c3p-files\\mercado-delivery.xml");
-		File source = new File("C:\\cyg\\home\\robson\\repos\\c3pgen\\in\\qualidade\\qualidade.xml");
+		String string = "C:\\cyg\\home\\robson\\repos\\c3pgen\\in\\handoverTaxi\\HandoverTaxi.xml";
+		File source = new File(string);
 		DBModel example = null;
 		try {
 			example = serializer.read(DBModel.class, source);
@@ -53,6 +59,17 @@ public class MainDBDesign {
 					fileLines.add("    displayName: " + Util.firstNotNullUpper(column.getComments(), column.getColName()).replaceAll("_", " "));
 					fileLines.add("    type: ");
 					fileLines.add("      className: " + column.getDataType().getDescricao());
+					if (DataType.BIT.equals(column.getDataType()) || DataType.BIT.equals(column.getDataType())) {
+						fileLines.add("    viewApproach: ");
+						fileLines.add("      type: check");
+					}
+					if (DataType.DATE.equals(column.getDataType()) || DataType.DATE.equals(column.getDataType())) {
+						fileLines.add("    dateFormat: DD/MM/YYYY              ");
+						fileLines.add("    mask: 99/99/9999                    ");
+						fileLines.add("    viewApproach:                        ");
+						fileLines.add("      type: datepicker                  ");
+					}
+
 				}
 			}
 			fileLines.add("  relationships:                     ");

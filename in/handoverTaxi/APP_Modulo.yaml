@@ -1,0 +1,33 @@
+- name: Modulo
+  hasOwner: false 
+  displayName: Modulo
+  tableName: MODULO
+  attributes:                     
+  - name: nome
+    tableFieldName: NOME
+    required: false
+    displayName: Nome
+    type: 
+      className: String
+  - name: inativo
+    tableFieldName: INATIVO
+    required: false
+    displayName: Inativo
+    type: 
+      className: Boolean
+    viewApproach: 
+      type: check
+  relationships:                     
+  - name: funcionalidades
+    type: OneToMany
+    ownerName: modulo
+    model: Funcionalidade                       
+    displayName: Funcionalidade
+  - name: aplicacao             
+    type: ManyToOne
+    model: Aplicacao                       
+    displayName: Aplicacao
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 

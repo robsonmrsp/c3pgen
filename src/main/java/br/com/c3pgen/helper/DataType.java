@@ -2,7 +2,7 @@ package br.com.c3pgen.helper;
 
 public enum DataType {
 
-	SMALLINT("2", "SMALLINT", "Integer"), MEDIUMINT("3", "MEDIUMINT", "Integer"), INT("4", "INT", "Integer"), INTEGER("5", "INTEGER", "Integer"), BIGINT("6", "BIGINT", "Long"), FLOAT("7", "FLOAT", "Double"), FLOAT_("8", "FLOAT", "Double"), DOUBLE("9", "DOUBLE", "Double"), DOUBLE_PRECISION(
+	TINYINT("1", "TINYINT", "Integer"),SMALLINT("2", "SMALLINT", "Integer"), MEDIUMINT("3", "MEDIUMINT", "Integer"), INT("4", "INT", "Integer"), INTEGER("5", "INTEGER", "Integer"), BIGINT("6", "BIGINT", "Long"), FLOAT("7", "FLOAT", "Double"), FLOAT_("8", "FLOAT", "Double"), DOUBLE("9", "DOUBLE", "Double"), DOUBLE_PRECISION(
 			"10", "DOUBLE PRECISION", "Double"), REAL("11", "REAL", "Double"), DECIMAL("12", "DECIMAL", "Double"), NUMERIC("13", "NUMERIC", "Double"), DATE("14", "DATE", "Date"), DATETIME("15", "DATETIME", "Datetime"), TIMESTAMP("16", "TIMESTAMP", "Datetime"), TIME("17", "TIME",
 			"Datetime"), YEAR("18", "YEAR", "Datetime"), CHAR("19", "CHAR", "String"), VARCHAR("20", "VARCHAR", "String"), BIT("21", "BIT", "Boolean"), BOOL("22", "BOOL", "Boolean"), TINYBLOB("23", "TINYBLOB", "String"), BLOB("24", "BLOB", "String"), MEDIUMBLOB("25",
 			"MEDIUMBLOB", "String"), LONGBLOB("26", "LONGBLOB", "String"), TINYTEXT("27", "TINYTEXT", "String"), TEXT("28", "TEXT", "String"), MEDIUMTEXT("29", "MEDIUMTEXT", "String"), LONGTEXT("30", "LONGTEXT", "String"), ENUM("31", "ENUM", "String"), SET("32", "SET", "String"), Varchar_20(

@@ -1,0 +1,1119 @@
+appName: HandoverTaxi
+skin: ace
+view: backbone
+rootPackage: br.com.invista
+corePackage: br.com.invista.core
+entities:
+- name: Aplicacao
+  hasOwner: false 
+  displayName: Aplicacao
+  tableName: APLICACAO
+  attributes:                     
+  - name: nome
+    tableFieldName: NOME
+    required: false
+    displayName: Nome
+    type: 
+      className: String
+  - name: inativo
+    tableFieldName: INATIVO
+    required: false
+    displayName: Inativo
+    type: 
+      className: Boolean
+    viewApproach: 
+      type: check
+  relationships:                     
+  - name: modulos
+    type: OneToMany
+    ownerName: aplicacao
+    model: Modulo                       
+    displayName: Modulo
+- name: CentroCusto
+  hasOwner: false 
+  displayName: Centro custo
+  tableName: CENTRO_CUSTO
+  attributes:                     
+  - name: descricao
+    tableFieldName: DESCRICAO
+    required: false
+    displayName: Descricao
+    type: 
+      className: String
+  - name: valorLimite
+    tableFieldName: VALOR_LIMITE
+    required: false
+    displayName: Valor limite
+    type: 
+      className: Double
+  - name: observacao
+    tableFieldName: OBSERVACAO
+    required: false
+    displayName: Observacao
+    type: 
+      className: String
+  - name: obseracaoTaxista
+    tableFieldName: OBSERACAO_TAXISTA
+    required: false
+    displayName: Obseracao taxista
+    type: 
+      className: String
+  - name: inativo
+    tableFieldName: INATIVO
+    required: false
+    displayName: Inativo
+    type: 
+      className: Boolean
+    viewApproach: 
+      type: check
+  relationships:                     
+  - name: funcionarios
+    type: OneToMany
+    ownerName: centroCusto
+    model: Funcionario                       
+    displayName: Funcionario
+  - name: empresa             
+    type: ManyToOne
+    model: Empresa                       
+    displayName: Empresa
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+- name: Client
+  hasOwner: false
+  displayName: Empresa
+  tableName: CLIENT
+  attributes: 
+  - name: nome
+    tableFieldName: NOME
+    basicSearch : true    
+    required: true
+    displayName: Nome
+    type: 
+      className: String  
+- name: Cliente
+  hasOwner: false 
+  displayName: Cliente
+  tableName: CLIENTE
+  attributes:                     
+  - name: nome
+    tableFieldName: NOME
+    required: false
+    displayName: Nome
+    type: 
+      className: String
+  - name: referencia
+    tableFieldName: REFERENCIA
+    required: false
+    displayName: Referencia
+    type: 
+      className: String
+  - name: tipo
+    tableFieldName: TIPO
+    required: false
+    displayName: Tipo
+    type: 
+      className: Integer
+  - name: status
+    tableFieldName: STATUS
+    required: false
+    displayName: Status
+    type: 
+      className: String
+  - name: dataAtivacao
+    tableFieldName: DATA_ATIVACAO
+    required: false
+    displayName: Data ativacao
+    type: 
+      className: Date
+    dateFormat: DD/MM/YYYY              
+    mask: 99/99/9999                    
+    viewApproach:                        
+      type: datepicker                  
+  - name: email
+    tableFieldName: EMAIL
+    required: false
+    displayName: Email
+    type: 
+      className: String
+  relationships:                     
+  - name: clienteTelefones
+    type: OneToMany
+    ownerName: cliente
+    model: ClienteTelefone                       
+    displayName: Cliente telefone
+  - name: endereco             
+    type: ManyToOne
+    model: Endereco                       
+    displayName: Endereco
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+- name: ClienteTelefone
+  hasOwner: false 
+  displayName: Cliente telefone
+  tableName: CLIENTE_TELEFONE
+  attributes:                     
+  - name: numero
+    tableFieldName: NUMERO
+    required: false
+    displayName: Numero
+    type: 
+      className: String
+  relationships:                     
+  - name: cliente             
+    type: ManyToOne
+    model: Cliente                       
+    displayName: Cliente
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+- name: Contato
+  hasOwner: false 
+  displayName: Contato
+  tableName: CONTATO
+  attributes:                     
+  - name: nome
+    tableFieldName: NOME
+    required: false
+    displayName: Nome
+    type: 
+      className: String
+  - name: telefone
+    tableFieldName: TELEFONE
+    required: false
+    displayName: Telefone
+    type: 
+      className: String
+  - name: setor
+    tableFieldName: SETOR
+    required: false
+    displayName: Setor
+    type: 
+      className: String
+  relationships:                     
+  - name: empresa             
+    type: ManyToOne
+    model: Empresa                       
+    displayName: Empresa
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+- name: Empresa
+  hasOwner: false 
+  displayName: Empresa
+  tableName: EMPRESA
+  attributes:                     
+  - name: cnpj
+    tableFieldName: CNPJ
+    required: false
+    displayName: Cnpj
+    type: 
+      className: String
+  - name: numerocontrato
+    tableFieldName: NUMEROCONTRATO
+    required: true
+    displayName: NumeroContrato
+    type: 
+      className: String
+  - name: razaoSocial
+    tableFieldName: RAZAO_SOCIAL
+    required: false
+    displayName: Razao social
+    type: 
+      className: String
+  - name: nomeFantasia
+    tableFieldName: NOME_FANTASIA
+    required: false
+    displayName: Nome fantasia
+    type: 
+      className: String
+  - name: utilizaVoucher
+    tableFieldName: UTILIZA_VOUCHER
+    required: false
+    displayName: Utiliza voucher
+    type: 
+      className: Boolean
+    viewApproach: 
+      type: check
+  - name: utilizaTicket
+    tableFieldName: UTILIZA_TICKET
+    required: false
+    displayName: Utiliza ticket
+    type: 
+      className: Boolean
+    viewApproach: 
+      type: check
+  - name: observacaoTaxista
+    tableFieldName: OBSERVACAO_TAXISTA
+    required: false
+    displayName: Observacao taxista
+    type: 
+      className: String
+  - name: observacaoCentral
+    tableFieldName: OBSERVACAO_CENTRAL
+    required: false
+    displayName: Observacao central
+    type: 
+      className: String
+  - name: percursoDesconto
+    tableFieldName: PERCURSO_DESCONTO
+    required: false
+    displayName: Percurso desconto
+    type: 
+      className: Double
+  - name: inscricaoMunicipal
+    tableFieldName: INSCRICAO_MUNICIPAL
+    required: false
+    displayName: Inscricao municipal
+    type: 
+      className: String
+  - name: inscricaoEstadual
+    tableFieldName: INSCRICAO_ESTADUAL
+    required: false
+    displayName: Inscricao estadual
+    type: 
+      className: String
+  - name: nf
+    tableFieldName: NF
+    required: false
+    displayName: Nf
+    type: 
+      className: Boolean
+    viewApproach: 
+      type: check
+  - name: percentualIss
+    tableFieldName: PERCENTUAL_ISS
+    required: false
+    displayName: Percentual ISS
+    type: 
+      className: Double
+  - name: percentualIrf
+    tableFieldName: PERCENTUAL_IRF
+    required: false
+    displayName: Percentual IRF
+    type: 
+      className: Double
+  - name: percentualInss
+    tableFieldName: PERCENTUAL_INSS
+    required: false
+    displayName: Percentual INSS
+    type: 
+      className: Double
+  - name: diaVencimento
+    tableFieldName: DIA_VENCIMENTO
+    required: false
+    displayName: Dia vencimento
+    type: 
+      className: Integer
+  - name: percentualMotorista
+    tableFieldName: PERCENTUAL_MOTORISTA
+    required: false
+    displayName: Percentual motorista
+    type: 
+      className: Double
+  - name: banco
+    tableFieldName: BANCO
+    required: false
+    displayName: Banco
+    type: 
+      className: Integer
+  - name: agencia
+    tableFieldName: AGENCIA
+    required: false
+    displayName: Agencia
+    type: 
+      className: String
+  - name: conta
+    tableFieldName: CONTA
+    required: false
+    displayName: Conta
+    type: 
+      className: String
+  - name: email
+    tableFieldName: EMAIL
+    required: false
+    displayName: Email
+    type: 
+      className: String
+  relationships:                     
+  - name: centroCustos
+    type: OneToMany
+    ownerName: empresa
+    model: CentroCusto                       
+    displayName: Centro custo
+  - name: empresaTelefones
+    type: OneToMany
+    ownerName: empresa
+    model: EmpresaTelefone                       
+    displayName: Empresa telefone
+  - name: contatos
+    type: OneToMany
+    ownerName: empresa
+    model: Contato                       
+    displayName: Contato
+  - name: funcionarios
+    type: OneToMany
+    ownerName: empresa
+    model: Funcionario                       
+    displayName: Funcionario
+  - name: socios
+    type: OneToMany
+    ownerName: empresa
+    model: Socio                       
+    displayName: Socio
+  - name: endereco             
+    type: ManyToOne
+    model: Endereco                       
+    displayName: Endereco
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+- name: EmpresaTelefone
+  hasOwner: false 
+  displayName: Empresa telefone
+  tableName: EMPRESA_TELEFONE
+  attributes:                     
+  relationships:                     
+  - name: empresa             
+    type: ManyToOne
+    model: Empresa                       
+    displayName: Empresa
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+- name: Endereco
+  hasOwner: false 
+  displayName: Endereco
+  tableName: ENDERECO
+  attributes:                     
+  - name: complemento
+    tableFieldName: COMPLEMENTO
+    required: false
+    displayName: Complemento
+    type: 
+      className: Integer
+  - name: referencia
+    tableFieldName: REFERENCIA
+    required: false
+    displayName: Referencia
+    type: 
+      className: Integer
+  - name: numero
+    tableFieldName: NUMERO
+    required: false
+    displayName: Numero
+    type: 
+      className: Integer
+  relationships:                     
+  - name: empresas
+    type: OneToMany
+    ownerName: endereco
+    model: Empresa                       
+    displayName: Empresa
+  - name: estabelecimentos
+    type: OneToMany
+    ownerName: endereco
+    model: Estabelecimento                       
+    displayName: Estabelecimento
+  - name: clientes
+    type: OneToMany
+    ownerName: endereco
+    model: Cliente                       
+    displayName: Cliente
+- name: Estabelecimento
+  hasOwner: false 
+  displayName: Estabelecimento
+  tableName: ESTABELECIMENTO
+  attributes:                     
+  - name: nome
+    tableFieldName: NOME
+    required: false
+    displayName: Nome
+    type: 
+      className: String
+  - name: telefone
+    tableFieldName: TELEFONE
+    required: false
+    displayName: Telefone
+    type: 
+      className: String
+  - name: cnpj
+    tableFieldName: CNPJ
+    required: false
+    displayName: Cnpj
+    type: 
+      className: String
+  - name: contato
+    tableFieldName: CONTATO
+    required: false
+    displayName: Contato
+    type: 
+      className: String
+  - name: referencia
+    tableFieldName: REFERENCIA
+    required: false
+    displayName: Referencia
+    type: 
+      className: String
+  relationships:                     
+  - name: endereco             
+    type: ManyToOne
+    model: Endereco                       
+    displayName: Endereco
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+- name: Funcionalidade
+  hasOwner: false 
+  displayName: Funcionalidade
+  tableName: FUNCIONALIDADE
+  attributes:                     
+  - name: nome
+    tableFieldName: NOME
+    required: false
+    displayName: Nome
+    type: 
+      className: String
+  - name: inativo
+    tableFieldName: INATIVO
+    required: false
+    displayName: Inativo
+    type: 
+      className: Boolean
+    viewApproach: 
+      type: check
+  relationships:                     
+  - name: usuarioFuncionalidades
+    type: OneToMany
+    ownerName: funcionalidade
+    model: UsuarioFuncionalidade                       
+    displayName: Usuario funcionalidade
+  - name: modulo             
+    type: ManyToOne
+    model: Modulo                       
+    displayName: Modulo
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+- name: Funcionario
+  hasOwner: false 
+  displayName: Funcionario
+  tableName: FUNCIONARIO
+  attributes:                     
+  - name: nome
+    tableFieldName: NOME
+    required: false
+    displayName: Nome
+    type: 
+      className: String
+  - name: email
+    tableFieldName: EMAIL
+    required: false
+    displayName: Email
+    type: 
+      className: String
+  - name: telefone
+    tableFieldName: TELEFONE
+    required: false
+    displayName: Telefone
+    type: 
+      className: String
+  - name: limiteMensal
+    tableFieldName: LIMITE_MENSAL
+    required: false
+    displayName: Limite mensal
+    type: 
+      className: Double
+  - name: cpf
+    tableFieldName: CPF
+    required: false
+    displayName: Cpf
+    type: 
+      className: String
+  - name: matricula
+    tableFieldName: MATRICULA
+    required: false
+    displayName: Matricula
+    type: 
+      className: String
+  - name: statusFuncionario
+    tableFieldName: STATUS_FUNCIONARIO
+    required: false
+    displayName: Status funcionario
+    type: 
+      className: String
+  - name: autorizadoTicket
+    tableFieldName: AUTORIZADO_TICKET
+    required: false
+    displayName: Autorizado ticket
+    type: 
+      className: Boolean
+    viewApproach: 
+      type: check
+  - name: observacao
+    tableFieldName: OBSERVACAO
+    required: false
+    displayName: Observacao
+    type: 
+      className: String
+  relationships:                     
+  - name: empresa             
+    type: ManyToOne
+    model: Empresa                       
+    displayName: Empresa
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+  - name: centroCusto             
+    type: ManyToOne
+    model: CentroCusto                       
+    displayName: Centro custo
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+- name: Modulo
+  hasOwner: false 
+  displayName: Modulo
+  tableName: MODULO
+  attributes:                     
+  - name: nome
+    tableFieldName: NOME
+    required: false
+    displayName: Nome
+    type: 
+      className: String
+  - name: inativo
+    tableFieldName: INATIVO
+    required: false
+    displayName: Inativo
+    type: 
+      className: Boolean
+    viewApproach: 
+      type: check
+  relationships:                     
+  - name: funcionalidades
+    type: OneToMany
+    ownerName: modulo
+    model: Funcionalidade                       
+    displayName: Funcionalidade
+  - name: aplicacao             
+    type: ManyToOne
+    model: Aplicacao                       
+    displayName: Aplicacao
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+- name: Socio
+  hasOwner: false 
+  displayName: Socio
+  tableName: SOCIO
+  attributes:                     
+  - name: nome
+    tableFieldName: NOME
+    required: false
+    displayName: Nome
+    type: 
+      className: String
+  - name: cpf
+    tableFieldName: CPF
+    required: false
+    displayName: Cpf
+    type: 
+      className: String
+  relationships:                     
+  - name: empresa             
+    type: ManyToOne
+    model: Empresa                       
+    displayName: Empresa
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+- name: Usuario
+  hasOwner: false 
+  displayName: Usuario
+  tableName: USUARIO
+  attributes:                     
+  - name: usuario
+    tableFieldName: USUARIO
+    required: true
+    displayName: Usuario
+    type: 
+      className: String
+  - name: login
+    tableFieldName: LOGIN
+    required: true
+    displayName: Login
+    type: 
+      className: String
+  - name: senha
+    tableFieldName: SENHA
+    required: true
+    displayName: Senha
+    type: 
+      className: String
+  - name: email
+    tableFieldName: EMAIL
+    required: false
+    displayName: Email
+    type: 
+      className: String
+  - name: perfil
+    tableFieldName: PERFIL
+    required: false
+    displayName: Perfil
+    type: 
+      className: String
+  relationships:                     
+  - name: usuarioFuncionalidades
+    type: OneToMany
+    ownerName: usuario
+    model: UsuarioFuncionalidade                       
+    displayName: Usuario funcionalidade
+- name: UsuarioFuncionalidade
+  hasOwner: false 
+  displayName: Usuario funcionalidade
+  tableName: USUARIO_FUNCIONALIDADE
+  attributes:                     
+  relationships:                     
+  - name: usuario             
+    type: ManyToOne
+    model: Usuario                       
+    displayName: Usuario
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+  - name: funcionalidade             
+    type: ManyToOne
+    model: Funcionalidade                       
+    displayName: Funcionalidade
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+- name: Bairro
+  displayName: Bairro
+  tableName: BAIRRO
+  hasOwner: false
+  attributes:
+  - name: nome
+    tableFieldName: nome
+    required :  true
+    displayName: Nome
+    type:
+      className: String
+  relationships:
+  - name: cidade
+    type: ManyToOne
+    model: Cidade
+    viewApproach:
+      type: modal
+      textField: nome
+      hiddenField: id
+    displayName: Cidade
+  - name: estado
+    type: ManyToOne
+    model: Estado
+    viewApproach:
+      type: modal
+      textField: nome
+      hiddenField: id
+    displayName: Estado
+- name: Cep
+  displayName: Cep
+  tableName: CEP
+  hasOwner: false
+  attributes:
+  - name: logradouro
+    tableFieldName: LOGRADOURO
+    displayName: Logadouro
+    type:
+      className: String
+  - name: numero
+    tableFieldName: NUMERO
+    displayName: Numero
+    type:
+      className: String
+  relationships:
+  - name: bairro
+    type: ManyToOne
+    model: Bairro
+    viewApproach:
+      type: modal
+      textField: nome
+      hiddenField: id
+    displayName: Bairro
+  - name: cidade
+    type: ManyToOne
+    model: Cidade
+    viewApproach:
+      type: modal
+      textField: nome
+      hiddenField: id
+    displayName: Cidade
+  - name: estado
+    type: ManyToOne
+    model: Estado
+    viewApproach:
+      type: modal
+      textField: nome
+      hiddenField: id
+    displayName: Estado
+- name: Cidade
+  displayName: Cidade
+  tableName: CIDADE
+  hasOwner: false
+  attributes:
+  - name: nome
+    tableFieldName: nome
+    required :  true
+    displayName: Nome
+    type:
+      className: String
+  - name: cep
+    tableFieldName: CEP
+    displayName: Cep
+    type:
+      className: String
+  relationships:
+  - name: estado
+    type: ManyToOne
+    model: Estado
+    viewApproach:
+      type: modal
+      textField: nome
+      hiddenField: id
+    displayName: Cidade
+- name: Endereco
+  displayName: Endereco
+  tableName: ENDERECO
+  hasOwner: false
+  attributes:
+  - name: complemento
+    tableFieldName: COMPLEMENTO
+    displayName: Complemento
+    type:
+      className: String
+  - name: numero
+    tableFieldName: NUMERO
+    displayName: Número
+    type:
+      className: String
+  relationships:
+  - name: cep
+    type: ManyToOne
+    model: Cep
+    viewApproach:
+      type: modal
+      textField: cep
+      hiddenField: id
+    displayName: Cep
+- name: Estado
+  displayName: Estado
+  tableName: ESTADO
+  hasOwner: false
+  attributes:
+  - name: nome
+    tableFieldName: nome
+    required :  true
+    unique : true
+    displayName: Nome
+    type:
+      className: String
+  - name: faixaCep1Ini
+    tableFieldName: FAIXA_CEP1_INI
+    displayName: faixa_cep1_ini
+    type:
+      className: String
+  - name: faixaCep1Fim
+    tableFieldName: FAIXA_CEP1_FIM
+    displayName: faixa_cep1_fim
+    type:
+      className: String
+  - name: faixaCep2Ini
+    tableFieldName: FAIXA_CEP2_INI
+    displayName: faixa_cep2_ini
+    type:
+      className: String
+  - name: faixaCep2Fim
+    tableFieldName: FAIXA_CEP2_FIM
+    displayName: faixa_cep2_fim
+    type:
+      className: String
+- name: Pais
+  displayName: Pais
+  tableName: PAIS
+  hasOwner: false
+  attributes:
+  - name: codigo
+    tableFieldName: CODIGO
+    displayName: Código
+    type:
+      className: Integer
+  - name: nome
+    tableFieldName: nome
+    displayName: Nome
+    type:
+      className: String
+      
+- name: Item
+  displayName: Item
+  tableName: item
+  hasOwner: false
+  attributes:
+  - name: name
+    tableFieldName: name
+    type:
+      className: String
+    displayName: Nome
+  - name: description
+    tableFieldName: description
+    type:
+      className: String
+    displayName: Descrição
+  relationships:
+  - name: type
+    type: ManyToOne
+    model: ItemType
+    viewApproach:
+      type: modal
+      textField: name
+      hiddenField: id
+    displayName: Tipo
+  - name: permissions
+    viewApproach:
+      type: multiselect
+    type: OneToMany
+    model: Permission
+    displayName: Permissões
+- name: ItemType
+  displayName: Tipo de Item
+  tableName: item_type
+  hasOwner: false
+  attributes:
+  - name: name
+    tableFieldName: name
+    type:
+      className: String
+    displayName: Nome
+  - name: description
+    tableFieldName: description
+    type:
+      className: String
+    displayName: Descrição
+- name: Operation
+  displayName: Operação
+  tableName: operation
+  hasOwner: false
+  attributes:
+  - name: name
+    tableFieldName: name
+    type:
+      className: String
+    displayName: Nome
+  - name: canEdit
+    tableFieldName: can_edit
+    type:
+      className: Boolean
+    displayName: Pode Editar
+    viewApproach:
+      type: check
+  - name: canRead
+    tableFieldName: can_read
+    type:
+      className: Boolean
+    displayName: Pode Ler
+    viewApproach:
+      type: check
+  - name: canUpdate
+    tableFieldName: can_update
+    type:
+      className: Boolean
+    displayName: Pode atualizar
+    viewApproach:
+      type: check
+  - name: canDelete
+    tableFieldName: can_delete
+    type:
+      className: Boolean
+    displayName: Pode Deletar
+    viewApproach:
+      type: check
+  - name: canExecute
+    tableFieldName: can_execute
+    type:
+      className: Boolean
+    displayName: Pode executar
+    viewApproach:
+      type: check
+  relationships:
+  - name: permissions
+    type: OneToMany
+    viewApproach:
+      type: multiselect
+    model: Permission
+    displayName: Permissões
+- name: Permission
+  displayName: Permissão
+  tableName: permission
+  hasOwner: false
+  attributes:
+  - name: name
+    tableFieldName: name
+    type:
+      className: String
+    displayName: Nome
+  relationships:
+  - name: roles
+    ownerName: permissions
+    type: ManyToMany
+    viewApproach:
+      type: multiselect
+    model: Role
+    displayName: Papeis
+  - name: operation
+    type: ManyToOne
+    ownerName: permissions
+    model: Operation
+    displayName: Operação
+    viewApproach:
+      type: modal
+      textField: name
+      hiddenField: id
+  - name: item
+    type: ManyToOne
+    model: Item
+    ownerName: permissions
+    displayName: Item
+    viewApproach:
+      type: modal
+      textField: name
+      hiddenField: id
+- name: Role
+  displayName: Papel
+  tableName: role
+  hasOwner: false
+  attributes:
+  - name: authority
+    tableFieldName: authority
+    required: true
+    type:
+      className: String
+    displayName: Autoridade
+  - name: description
+    tableFieldName: DESCRIPTION
+    required: true
+    type:
+      className: String
+    displayName: Descrição
+  relationships:
+  - name: sessions
+    ownerName: roles
+    type: ManyToMany
+    model: Session
+    displayName: Sessões
+  - name: users
+    type: ManyToMany
+    ownerName: roles
+    model: User
+    displayName: Usuários
+  - name: permissions
+    type: ManyToMany
+    viewApproach:
+      type: multiselect
+    model: Permission
+    displayName: Permissões
+- name: Session
+  displayName: Sessão
+  tableName: session
+  hasOwner: false
+  attributes:
+  - name: name
+    tableFieldName: name
+    type:
+      className: String
+    displayName: Nome
+  - name: creationDate
+    tableFieldName: creation_date
+    type:
+      className: Datetime
+    displayName: Data da criação
+    dateFormat: DD/MM/YYYY DD:MM
+    mask: 99/99/9999
+    viewApproach:
+      type: datepicker
+  relationships:
+  - name: roles
+    type: ManyToMany
+    viewApproach:
+      type: multiselect
+    model: Role
+    displayName: Papeis
+  - name: user
+    type: ManyToOne
+    model: User
+    displayName: Usuario
+    viewApproach:
+      type: combo
+      comboId: id
+      comboVal: name
+- name: User
+  displayName: Usuário
+  tableName: APP_USER
+  hasOwner: false
+  attributes:
+  - name: name
+    tableFieldName: name
+    displayName: Nome
+    type:
+      className: String
+  - name: username
+    unique: true
+    required: true
+    tableFieldName: username
+    type:
+      className: String
+    displayName: Username
+  - name: password
+    required: true
+    tableFieldName: password
+    type:
+      className: String
+    displayName: Password
+  - name: enable
+    tableFieldName: enable
+    type:
+      className: Boolean
+    displayName: Ativo
+    viewApproach:
+      type: check
+  - name: image
+    tableFieldName: image
+    showInPages: false
+    type:
+      className: String
+    displayName: Imagem
+  relationships:
+  - name: roles
+    type: ManyToMany
+    viewApproach:
+      type: multiselect
+    model: Role
+    displayName: Papeis
+  - name: owner
+    type: ManyToOne
+    model: Client
+    displayName: Owner

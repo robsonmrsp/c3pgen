@@ -247,14 +247,13 @@ define(function(require) {
 					comboVal : 'nome',
 					collectionEntity : BolsaoCollection, 
 				});
-				this.comboBolsao.setValue(this.model.get('bolsao'));					
+					
 				this.comboGenerador = new Combobox({
 					el : this.ui.inputGenerador,
 					comboId : 'id',
 					comboVal : 'nome',
 					collectionEntity : GeneradorCollection, 
 				});
-				this.comboGenerador.setValue(this.model.get('generador'));					
 				this.comboCargo = new Combobox({
 					el : this.ui.inputCargo,
 					comboId : 'id',
@@ -275,7 +274,6 @@ define(function(require) {
 					comboVal : 'nome',
 					collectionEntity : LatadaCollection, 
 				});
-				this.comboLatada.setValue(this.model.get('latada'));					
 				this.comboEmbalagem = new Combobox({
 					el : this.ui.inputEmbalagem,
 					comboId : 'id',
@@ -289,14 +287,12 @@ define(function(require) {
 					comboVal : 'nome',
 					collectionEntity : CabineCollection, 
 				});
-				this.comboCabine.setValue(this.model.get('cabine'));					
 				this.comboSacola = new Combobox({
 					el : this.ui.inputSacola,
 					comboId : 'id',
 					comboVal : 'nome',
 					collectionEntity : SacolaCollection, 
 				});
-				this.comboSacola.setValue(this.model.get('sacola'));					
 				this.comboCliente = new Combobox({
 					el : this.ui.inputCliente,
 					comboId : 'id',
@@ -310,7 +306,6 @@ define(function(require) {
 					comboVal : 'nome',
 					collectionEntity : PackingCollection, 
 				});
-				this.comboPacking.setValue(this.model.get('packing'));					
 				this.ui.form.validationEngine('attach', {
 					promptPosition : "topLeft",
 					isOverflown : false,

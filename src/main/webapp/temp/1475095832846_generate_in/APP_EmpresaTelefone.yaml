@@ -1,0 +1,14 @@
+- name: EmpresaTelefone
+  hasOwner: false 
+  displayName: Empresa telefone
+  tableName: EMPRESA_TELEFONE
+  attributes:                     
+  relationships:                     
+  - name: empresa             
+    type: ManyToOne
+    model: Empresa                       
+    displayName: Empresa
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 

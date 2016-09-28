@@ -33,16 +33,19 @@ define(function(require) {
 	var IntegerCollection = require('collections/IntegerCollection');
 	var IntegerCollection = require('collections/IntegerCollection');
 	var IntegerCollection = require('collections/IntegerCollection');
+	
+	
+	var LatadaCollection = require('collections/LatadaCollection');			
+	var CabineCollection = require('collections/CabineCollection');			
+	var PackingCollection = require('collections/PackingCollection');			
 	var BolsaoCollection = require('collections/BolsaoCollection');			
 	var GeneradorCollection = require('collections/GeneradorCollection');			
+	var SacolaCollection = require('collections/SacolaCollection');			
+
+	var EmbalagemCollection = require('collections/EmbalagemCollection');			
+	var ClienteCollection = require('collections/ClienteCollection');			
 	var CargoCollection = require('collections/CargoCollection');			
 	var VariedadeCollection = require('collections/VariedadeCollection');			
-	var LatadaCollection = require('collections/LatadaCollection');			
-	var EmbalagemCollection = require('collections/EmbalagemCollection');			
-	var CabineCollection = require('collections/CabineCollection');			
-	var SacolaCollection = require('collections/SacolaCollection');			
-	var ClienteCollection = require('collections/ClienteCollection');			
-	var PackingCollection = require('collections/PackingCollection');			
 	
 	// End of "Import´s" definition
 
@@ -289,18 +292,7 @@ define(function(require) {
 				this.ui.inputRachadurasCampo.formatNumber(2);
 				this.ui.inputAmolecimento.formatNumber(2);
 		
-				var comboBolsao = new Combobox({
-					el : this.ui.inputBolsao,
-					comboId : 'id',
-					comboVal : 'nome',
-					collectionEntity : BolsaoCollection,
-				});
-				var comboGenerador = new Combobox({
-					el : this.ui.inputGenerador,
-					comboId : 'id',
-					comboVal : 'nome',
-					collectionEntity : GeneradorCollection,
-				});
+
 				var comboCargo = new Combobox({
 					el : this.ui.inputCargo,
 					comboId : 'id',
@@ -313,24 +305,42 @@ define(function(require) {
 					comboVal : 'nome',
 					collectionEntity : VariedadeCollection,
 				});
+				
 				var comboLatada = new Combobox({
 					el : this.ui.inputLatada,
 					comboId : 'id',
 					comboVal : 'nome',
 					collectionEntity : LatadaCollection,
 				});
-				var comboEmbalagem = new Combobox({
-					el : this.ui.inputEmbalagem,
-					comboId : 'id',
-					comboVal : 'nome',
-					collectionEntity : EmbalagemCollection,
-				});
+				
 				var comboCabine = new Combobox({
 					el : this.ui.inputCabine,
 					comboId : 'id',
 					comboVal : 'nome',
 					collectionEntity : CabineCollection,
 				});
+
+				var comboPacking = new Combobox({
+					el : this.ui.inputPacking,
+					comboId : 'id',
+					comboVal : 'nome',
+					collectionEntity : PackingCollection,
+				});
+				
+				var comboBolsao = new Combobox({
+					el : this.ui.inputBolsao,
+					comboId : 'id',
+					comboVal : 'nome',
+					collectionEntity : BolsaoCollection,
+				});
+				var comboGenerador = new Combobox({
+					el : this.ui.inputGenerador,
+					comboId : 'id',
+					comboVal : 'nome',
+					collectionEntity : GeneradorCollection,
+				});
+				
+			
 				var comboSacola = new Combobox({
 					el : this.ui.inputSacola,
 					comboId : 'id',
@@ -343,12 +353,13 @@ define(function(require) {
 					comboVal : 'nome',
 					collectionEntity : ClienteCollection,
 				});
-				var comboPacking = new Combobox({
-					el : this.ui.inputPacking,
+				var comboEmbalagem = new Combobox({
+					el : this.ui.inputEmbalagem,
 					comboId : 'id',
 					comboVal : 'nome',
-					collectionEntity : PackingCollection,
+					collectionEntity : EmbalagemCollection,
 				});
+				
 			});
 		},
 		 

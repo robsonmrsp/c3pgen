@@ -1,0 +1,33 @@
+- name: Funcionalidade
+  hasOwner: false 
+  displayName: Funcionalidade
+  tableName: FUNCIONALIDADE
+  attributes:                     
+  - name: nome
+    tableFieldName: NOME
+    required: false
+    displayName: Nome
+    type: 
+      className: String
+  - name: inativo
+    tableFieldName: INATIVO
+    required: false
+    displayName: Inativo
+    type: 
+      className: Boolean
+    viewApproach: 
+      type: check
+  relationships:                     
+  - name: usuarioFuncionalidades
+    type: OneToMany
+    ownerName: funcionalidade
+    model: UsuarioFuncionalidade                       
+    displayName: Usuario funcionalidade
+  - name: modulo             
+    type: ManyToOne
+    model: Modulo                       
+    displayName: Modulo
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
