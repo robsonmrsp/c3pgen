@@ -388,45 +388,6 @@ entities:
       type: modal 
       hiddenField: id 
       textField: nome 
-- name: Endereco
-  hasOwner: false 
-  displayName: Endereco
-  tableName: ENDERECO
-  attributes:                     
-  - name: complemento
-    tableFieldName: COMPLEMENTO
-    required: false
-    displayName: Complemento
-    type: 
-      className: Integer
-  - name: referencia
-    tableFieldName: REFERENCIA
-    required: false
-    displayName: Referencia
-    type: 
-      className: Integer
-  - name: numero
-    tableFieldName: NUMERO
-    required: false
-    displayName: Numero
-    type: 
-      className: Integer
-  relationships:                     
-  - name: empresas
-    type: OneToMany
-    ownerName: endereco
-    model: Empresa                       
-    displayName: Empresa
-  - name: estabelecimentos
-    type: OneToMany
-    ownerName: endereco
-    model: Estabelecimento                       
-    displayName: Estabelecimento
-  - name: clientes
-    type: OneToMany
-    ownerName: endereco
-    model: Cliente                       
-    displayName: Cliente
 - name: Estabelecimento
   hasOwner: false 
   displayName: Estabelecimento
