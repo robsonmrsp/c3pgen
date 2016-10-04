@@ -133,7 +133,7 @@
     
     <insert id="salva" parameterType="${entity.name}">
     	<selectKey keyProperty="id" order="BEFORE" resultType="Integer" >
-	    	SELECT GSH_SEQ_${uppercase(entity.sequence)}.NEXTVAL FROM DUAL
+	    	SELECT ${uppercase(entity.sequence)}.NEXTVAL FROM DUAL
     	</selectKey>
     	  	INSERT INTO 
             ${uppercase(entity.tableName!entity.name)}

@@ -270,21 +270,21 @@ public class EntitiesGenerator {
 						jsModalGenerator.generateEntityFile(application, ent);
 					}
 
-					fragmentsGenerator.generateAppFragmentFile(application.getEntities());
-
-					jsRouterGenerator.generate(application);
-					jsRouterSpecGenerator.generate(application);
-					beansGenerator.generate(application);
-					pomGenerator.generate(application);
-
-					buildPropertiesGenerator.generate(application);
-					buildXmlGenerator.generate(application);
-
-					produIndexGenerator.generate(application);
-					desenvIndexGenerator.generate(application);
-					produLoginGenerator.generate(application);
-					desenvLoginGenerator.generate(application);
 				}
+				fragmentsGenerator.generateAppFragmentFile(application.getEntities());
+				
+				jsRouterGenerator.generate(application);
+				jsRouterSpecGenerator.generate(application);
+				beansGenerator.generate(application);
+				pomGenerator.generate(application);
+				
+				buildPropertiesGenerator.generate(application);
+				buildXmlGenerator.generate(application);
+				
+				produIndexGenerator.generate(application);
+				desenvIndexGenerator.generate(application);
+				produLoginGenerator.generate(application);
+				desenvLoginGenerator.generate(application);
 			}
 		} catch (TemplateException e) {
 			LOGGER.error(e);
