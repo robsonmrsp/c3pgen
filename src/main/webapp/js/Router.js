@@ -108,6 +108,8 @@ define(function(require) {
 	var Editor = require('views/editor/Editor');
 	var PageHelpGenerateYaml = require('views/helpGenerateYaml/PageHelpGenerateYaml');
 
+	var FormApplicationModulo = require('views/applicationModulo/FormApplicationModulo');
+	
 	util.NProgress.setBlockerPanel('block_panel');
 
 	// REMOVER ESSA GAMBA NO FUTURO
@@ -245,6 +247,8 @@ define(function(require) {
 
 			'app/helpGenerateYaml/:appId' : 'helpGenerateYaml',
 			'app/editor/:id' : 'editor',
+
+			'app/application/:idApplication/newModule' : 'newApplicationModulo',
 		},
 		initialize : function() {
 			this.App = new Marionette.Application();
@@ -1607,6 +1611,21 @@ define(function(require) {
 		newModulo : function() {
 			util.markActiveItem('modulos');
 			var formModulo = new FormModulo({
+				model : new ModuloModel(),
+			});
+			this.App.mainRegion.show(formModulo);
+			util.breadcrumb({
+				iconClass : 'fa-desktop',
+				itemLabel : 'Módulo',
+				itemSubFolderName : 'Formulário de cadastro',
+				url : 'app/modulos'
+			});
+		},
+		
+		newApplicationModulo : function(idApplication) {
+			util.markActiveItem('modulos');
+			var formModulo = new FormApplicationModulo({
+				appId : idApplication,
 				model : new ModuloModel(),
 			});
 			this.App.mainRegion.show(formModulo);

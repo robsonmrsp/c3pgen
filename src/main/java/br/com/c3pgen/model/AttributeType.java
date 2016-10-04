@@ -16,13 +16,7 @@ import javax.persistence.Table;
 import org.hibernate.envers.Audited;
 
 /**
- * generated: 03/09/2015 14:51:48 Entity [name=AttributeType, displayName=Tipo
- * do atributo, hasOwner=true, attributes=[Attribute [name=className,
- * displayName=Nome, type=AttributeType [className=String], mask=,
- * dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute
- * [name=format, displayName=Formato, type=AttributeType [className=String],
- * mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null]],
- * relationships=[]]
+ * generated: 03/09/2015 14:51:48 
  **/
 @Entity
 @Audited
