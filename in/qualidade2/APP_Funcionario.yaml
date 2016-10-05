@@ -111,7 +111,7 @@
   - name: endereco
     type: OneToOne
     model: Endereco
-    displayName: Endereco
+    displayName: Endereço
   - name: cargo
     type: ManyToOne
     model: Cargo

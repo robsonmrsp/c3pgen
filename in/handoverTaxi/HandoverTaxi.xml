@@ -1,7 +1,7 @@
 <?xml version="1.0" standalone="yes" ?>
 <DBMODEL Version="4.0">
 <SETTINGS>
-<GLOBALSETTINGS ModelName="HandoverTaxi" IDModel="0" IDVersion="0" VersionStr="1.0.0.0" Comments="" UseVersionHistroy="1" AutoIncVersion="1" DatabaseType="MySQL" ZoomFac="118.00" XPos="0" YPos="216" DefaultDataType="5" DefaultTablePrefix="0" DefSaveDBConn="" DefSyncDBConn="" DefQueryDBConn="" Printer="Microsoft Print to PDF" HPageCount="4.0" PageAspectRatio="1.441928111365053" PageOrientation="0" PageFormat="A4 (210x297 mm, 8.26x11.7 inches)" SelectedPages="0;1;4" UsePositionGrid="0" PositionGridX="20" PositionGridY="20" TableNameInRefs="1" DefaultTableType="0" ActivateRefDefForNewRelations="1" FKPrefix="" FKPostfix="" CreateFKRefDefIndex="1" DBQuoteCharacter="`" CreateSQLforLinkedObjects="0" DefModelFont="Tahoma" CanvasWidth="4096" CanvasHeight="2842" />
+<GLOBALSETTINGS ModelName="HandoverTaxi" IDModel="0" IDVersion="0" VersionStr="1.0.0.0" Comments="" UseVersionHistroy="1" AutoIncVersion="1" DatabaseType="MySQL" ZoomFac="74.00" XPos="0" YPos="0" DefaultDataType="5" DefaultTablePrefix="0" DefSaveDBConn="" DefSyncDBConn="" DefQueryDBConn="" Printer="Microsoft Print to PDF" HPageCount="4.0" PageAspectRatio="1.441928111365053" PageOrientation="0" PageFormat="A4 (210x297 mm, 8.26x11.7 inches)" SelectedPages="0;1;4" UsePositionGrid="0" PositionGridX="20" PositionGridY="20" TableNameInRefs="1" DefaultTableType="0" ActivateRefDefForNewRelations="1" FKPrefix="" FKPostfix="" CreateFKRefDefIndex="1" DBQuoteCharacter="`" CreateSQLforLinkedObjects="0" DefModelFont="Tahoma" CanvasWidth="4096" CanvasHeight="2842" />
 <DATATYPEGROUPS>
 <DATATYPEGROUP Name="Numeric Types" Icon="1" />
 <DATATYPEGROUP Name="Date and Time Types" Icon="2" />
@@ -260,7 +260,7 @@
 <REGIONS>
 </REGIONS>
 <TABLES>
-<TABLE ID="1720" Tablename="hd_usuario" PrevTableName="Table_01" XPos="247" YPos="1006" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="6" >
+<TABLE ID="1720" Tablename="usuario" PrevTableName="Table_01" XPos="257" YPos="984" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="6" >
 <COLUMNS>
 <COLUMN ID="1722" ColName="id" PrevColName="id_usuario" Pos="0" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="1" NotNull="1" AutoInc="1" IsForeignKey="0" DefaultValue="" Comments="">
 <OPTIONSELECTED>
@@ -304,7 +304,7 @@
 <OPTIONSELECT Value="0" />
 </OPTIONSELECTED>
 </COLUMN>
-<COLUMN ID="1729" ColName="datainclusao" PrevColName="dt_insert" Pos="5" idDatatype="15" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<COLUMN ID="1729" ColName="data_hora_inclusao" PrevColName="dt_insert" Pos="5" idDatatype="15" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
 <OPTIONSELECTED>
 </OPTIONSELECTED>
 </COLUMN>
@@ -331,9 +331,15 @@
 </INDEX>
 </INDICES>
 </TABLE>
-<TABLE ID="1786" Tablename="empresa" PrevTableName="Table_07" XPos="29" YPos="75" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="19" >
+<TABLE ID="1786" Tablename="empresa" PrevTableName="Table_07" XPos="36" YPos="128" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="19" >
 <COLUMNS>
 <COLUMN ID="1789" ColName="id" PrevColName="id_empresa" Pos="0" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="1" NotNull="1" AutoInc="1" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="1" />
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4881" ColName="endereco_id" PrevColName="" Pos="1" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="1" DefaultValue="" Comments="">
 <OPTIONSELECTED>
 <OPTIONSELECT Value="1" />
 <OPTIONSELECT Value="0" />
@@ -356,59 +362,6 @@
 </COLUMN>
 <COLUMN ID="1793" ColName="fantasia" PrevColName="nm_fantasia" Pos="3" idDatatype="20" DatatypeParams="(200)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
 <OPTIONSELECTED>
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="1832" ColName="endereco" PrevColName="nm_endereco" Pos="5" idDatatype="20" DatatypeParams="(200)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="1833" ColName="numero_endereco" PrevColName="nr_endereco" Pos="6" idDatatype="20" DatatypeParams="(10)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="1834" ColName="complemento" PrevColName="nm_complemento" Pos="7" idDatatype="20" DatatypeParams="(100)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="1840" ColName="uf" PrevColName="ds_uf" Pos="8" idDatatype="20" DatatypeParams="(2)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="1841" ColName="cidade" PrevColName="ds_cidade" Pos="9" idDatatype="20" DatatypeParams="(50)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="1842" ColName="bairro" PrevColName="ds_bairro" Pos="10" idDatatype="20" DatatypeParams="(100)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="1843" ColName="cep" PrevColName="ds_cep" Pos="11" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-<OPTIONSELECT Value="1" />
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="1884" ColName="referencia_endereco" PrevColName="ds_referencia_endereco" Pos="16" idDatatype="20" DatatypeParams="(200)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="4597" ColName="ddd" PrevColName="" Pos="32" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-<OPTIONSELECT Value="1" />
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="4598" ColName="fone" PrevColName="" Pos="33" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-<OPTIONSELECT Value="1" />
 <OPTIONSELECT Value="0" />
 </OPTIONSELECTED>
 </COLUMN>
@@ -514,16 +467,25 @@
 <RELATION_START ID="4531" />
 <RELATION_START ID="4539" />
 <RELATION_START ID="4589" />
+<RELATION_START ID="4908" />
 </RELATIONS_START>
+<RELATIONS_END>
+<RELATION_END ID="4877" />
+</RELATIONS_END>
 <INDICES>
 <INDEX ID="1790" IndexName="PRIMARY" IndexKind="0" FKRefDef_Obj_id="-1">
 <INDEXCOLUMNS>
 <INDEXCOLUMN idColumn="1789" LengthParam="0" />
 </INDEXCOLUMNS>
 </INDEX>
+<INDEX ID="4879" IndexName="empresa_FKIndex1" IndexKind="1" FKRefDef_Obj_id="4877">
+<INDEXCOLUMNS>
+<INDEXCOLUMN idColumn="4881" LengthParam="0" />
+</INDEXCOLUMNS>
+</INDEX>
 </INDICES>
 </TABLE>
-<TABLE ID="1787" Tablename="centro_custo" PrevTableName="Table_08" XPos="388" YPos="260" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="13" >
+<TABLE ID="1787" Tablename="centro_custo" PrevTableName="Table_08" XPos="408" YPos="272" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="13" >
 <COLUMNS>
 <COLUMN ID="1795" ColName="id" PrevColName="id_centrocusto" Pos="0" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="1" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
 <OPTIONSELECTED>
@@ -547,7 +509,7 @@
 <OPTIONSELECT Value="0" />
 </OPTIONSELECTED>
 </COLUMN>
-<COLUMN ID="1824" ColName="observa\231\227o" PrevColName="tx_observa\231\227o" Pos="3" idDatatype="20" DatatypeParams="(300)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<COLUMN ID="1824" ColName="observacao" PrevColName="tx_observa\231\227o" Pos="3" idDatatype="20" DatatypeParams="(300)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
 <OPTIONSELECTED>
 <OPTIONSELECT Value="0" />
 </OPTIONSELECTED>
@@ -622,7 +584,7 @@
 </INDEX>
 </INDICES>
 </TABLE>
-<TABLE ID="1908" Tablename="contato" PrevTableName="Table_12" XPos="401" YPos="59" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="19" >
+<TABLE ID="1908" Tablename="contato" PrevTableName="Table_12" XPos="454" YPos="49" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="19" >
 <COLUMNS>
 <COLUMN ID="1910" ColName="id" PrevColName="idht_contatos" Pos="0" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="1" NotNull="1" AutoInc="1" IsForeignKey="0" DefaultValue="" Comments="">
 <OPTIONSELECTED>
@@ -675,9 +637,15 @@
 </INDEX>
 </INDICES>
 </TABLE>
-<TABLE ID="1922" Tablename="cliente" PrevTableName="Table_13" XPos="751" YPos="44" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="14" >
+<TABLE ID="1922" Tablename="cliente" PrevTableName="Table_13" XPos="836" YPos="423" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="14" >
 <COLUMNS>
 <COLUMN ID="1924" ColName="id" PrevColName="idht_cliente" Pos="0" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="1" NotNull="1" AutoInc="1" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="1" />
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4884" ColName="endereco_id" PrevColName="" Pos="1" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="1" DefaultValue="" Comments="">
 <OPTIONSELECTED>
 <OPTIONSELECT Value="1" />
 <OPTIONSELECT Value="0" />
@@ -696,42 +664,6 @@
 </OPTIONSELECTED>
 </COLUMN>
 <COLUMN ID="1926" ColName="nome" PrevColName="nm_cliente" Pos="1" idDatatype="20" DatatypeParams="(200)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="1928" ColName="endereco" PrevColName="ds_endereco" Pos="2" idDatatype="20" DatatypeParams="(200)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="1929" ColName="numero_endereco" PrevColName="nr_endereco" Pos="3" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-<OPTIONSELECT Value="1" />
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="1930" ColName="complemento" PrevColName="ds_complemento" Pos="4" idDatatype="20" DatatypeParams="(200)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="1931" ColName="uf" PrevColName="ds_uf" Pos="5" idDatatype="20" DatatypeParams="(2)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="1932" ColName="cidade" PrevColName="ds_cidade" Pos="6" idDatatype="20" DatatypeParams="(50)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="1933" ColName="bairro" PrevColName="ds_bairro" Pos="7" idDatatype="20" DatatypeParams="(100)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="1934" ColName="cep" PrevColName="ds_cep" Pos="8" idDatatype="20" DatatypeParams="(9)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
 <OPTIONSELECTED>
 <OPTIONSELECT Value="0" />
 </OPTIONSELECTED>
@@ -793,14 +725,14 @@
 </COLUMN>
 </COLUMNS>
 <RELATIONS_START>
-<RELATION_START ID="4555" />
-<RELATION_START ID="4566" />
 <RELATION_START ID="4570" />
 <RELATION_START ID="4808" />
+<RELATION_START ID="4902" />
 </RELATIONS_START>
 <RELATIONS_END>
 <RELATION_END ID="4589" />
 <RELATION_END ID="4592" />
+<RELATION_END ID="4883" />
 </RELATIONS_END>
 <INDICES>
 <INDEX ID="1925" IndexName="PRIMARY" IndexKind="0" FKRefDef_Obj_id="-1">
@@ -818,9 +750,14 @@
 <INDEXCOLUMN idColumn="4593" LengthParam="0" />
 </INDEXCOLUMNS>
 </INDEX>
+<INDEX ID="4885" IndexName="cliente_FKIndex3" IndexKind="1" FKRefDef_Obj_id="4883">
+<INDEXCOLUMNS>
+<INDEXCOLUMN idColumn="4884" LengthParam="0" />
+</INDEXCOLUMNS>
+</INDEX>
 </INDICES>
 </TABLE>
-<TABLE ID="1942" Tablename="cliente_fone" PrevTableName="Table_14" XPos="783" YPos="693" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="16" >
+<TABLE ID="1942" Tablename="telefone" PrevTableName="Table_14" XPos="812" YPos="58" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="16" >
 <COLUMNS>
 <COLUMN ID="4563" ColName="id" PrevColName="" Pos="3" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="1" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
 <OPTIONSELECTED>
@@ -828,21 +765,31 @@
 <OPTIONSELECT Value="0" />
 </OPTIONSELECTED>
 </COLUMN>
-<COLUMN ID="4567" ColName="ht_cliente_id" PrevColName="" Pos="1" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="1" DefaultValue="" Comments="">
+<COLUMN ID="4909" ColName="empresa_id" PrevColName="" Pos="1" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="1" DefaultValue="" Comments="">
 <OPTIONSELECTED>
 <OPTIONSELECT Value="1" />
 <OPTIONSELECT Value="0" />
 </OPTIONSELECTED>
 </COLUMN>
-<COLUMN ID="4439" ColName="ddd" PrevColName="nr_ddd" Pos="2" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<COLUMN ID="4906" ColName="motorista_id" PrevColName="" Pos="1" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="1" DefaultValue="" Comments="">
 <OPTIONSELECTED>
 <OPTIONSELECT Value="1" />
 <OPTIONSELECT Value="0" />
 </OPTIONSELECTED>
 </COLUMN>
-<COLUMN ID="1946" ColName="fone" PrevColName="nr_telefone" Pos="1" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<COLUMN ID="4903" ColName="cliente_id" PrevColName="" Pos="1" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="1" DefaultValue="" Comments="">
 <OPTIONSELECTED>
 <OPTIONSELECT Value="1" />
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4439" ColName="ddd" PrevColName="nr_ddd" Pos="2" idDatatype="20" DatatypeParams="(3)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="1946" ColName="fone" PrevColName="nr_telefone" Pos="1" idDatatype="20" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
 <OPTIONSELECT Value="0" />
 </OPTIONSELECTED>
 </COLUMN>
@@ -850,9 +797,24 @@
 <OPTIONSELECTED>
 </OPTIONSELECTED>
 </COLUMN>
+<COLUMN ID="4898" ColName="celular" PrevColName="" Pos="4" idDatatype="21" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4899" ColName="whatsapp" PrevColName="watsapp" Pos="5" idDatatype="21" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4901" ColName="tipo" PrevColName="" Pos="6" idDatatype="20" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
 </COLUMNS>
 <RELATIONS_END>
-<RELATION_END ID="4566" />
+<RELATION_END ID="4902" />
+<RELATION_END ID="4905" />
+<RELATION_END ID="4908" />
 </RELATIONS_END>
 <INDICES>
 <INDEX ID="4565" IndexName="PRIMARY" IndexKind="0" FKRefDef_Obj_id="-1">
@@ -860,16 +822,32 @@
 <INDEXCOLUMN idColumn="4563" LengthParam="0" />
 </INDEXCOLUMNS>
 </INDEX>
-<INDEX ID="4568" IndexName="ht_cliente_fone_FKIndex1" IndexKind="1" FKRefDef_Obj_id="4566">
+<INDEX ID="4904" IndexName="telefone_FKIndex1" IndexKind="1" FKRefDef_Obj_id="4902">
 <INDEXCOLUMNS>
-<INDEXCOLUMN idColumn="4567" LengthParam="0" />
+<INDEXCOLUMN idColumn="4903" LengthParam="0" />
+</INDEXCOLUMNS>
+</INDEX>
+<INDEX ID="4907" IndexName="telefone_FKIndex2" IndexKind="1" FKRefDef_Obj_id="4905">
+<INDEXCOLUMNS>
+<INDEXCOLUMN idColumn="4906" LengthParam="0" />
+</INDEXCOLUMNS>
+</INDEX>
+<INDEX ID="4910" IndexName="telefone_FKIndex3" IndexKind="1" FKRefDef_Obj_id="4908">
+<INDEXCOLUMNS>
+<INDEXCOLUMN idColumn="4909" LengthParam="0" />
 </INDEXCOLUMNS>
 </INDEX>
 </INDICES>
 </TABLE>
-<TABLE ID="4169" Tablename="motorista" PrevTableName="Table_17" XPos="1624" YPos="358" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="29" >
+<TABLE ID="4169" Tablename="motorista" PrevTableName="Table_17" XPos="1462" YPos="562" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="29" >
 <COLUMNS>
 <COLUMN ID="4209" ColName="id" PrevColName="id_motorista" Pos="28" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="1" NotNull="1" AutoInc="1" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="1" />
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4889" ColName="endereco_id" PrevColName="" Pos="1" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="1" DefaultValue="" Comments="">
 <OPTIONSELECTED>
 <OPTIONSELECT Value="1" />
 <OPTIONSELECT Value="0" />
@@ -890,43 +868,7 @@
 <OPTIONSELECT Value="0" />
 </OPTIONSELECTED>
 </COLUMN>
-<COLUMN ID="4446" ColName="ddd" PrevColName="nr_ddd" Pos="53" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-<OPTIONSELECT Value="1" />
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="4176" ColName="fone" PrevColName="nr_fone" Pos="3" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-<OPTIONSELECT Value="1" />
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="4447" ColName="ddd2" PrevColName="nr_ddd2" Pos="54" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-<OPTIONSELECT Value="1" />
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="4177" ColName="fone2" PrevColName="nr_fone2" Pos="4" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-<OPTIONSELECT Value="1" />
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="4448" ColName="ddd_whatsapp" PrevColName="nr_ddd_whatsapp" Pos="55" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-<OPTIONSELECT Value="1" />
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="4178" ColName="whatsapp" PrevColName="nr_whatsapp" Pos="5" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-<OPTIONSELECT Value="1" />
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="4180" ColName="data_nascimento" PrevColName="dt_nascimento" Pos="6" idDatatype="15" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<COLUMN ID="4180" ColName="data_nascimento" PrevColName="dt_nascimento" Pos="6" idDatatype="14" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
 <OPTIONSELECTED>
 </OPTIONSELECTED>
 </COLUMN>
@@ -941,7 +883,7 @@
 <OPTIONSELECT Value="0" />
 </OPTIONSELECTED>
 </COLUMN>
-<COLUMN ID="4183" ColName="data_expedicao" PrevColName="dt_expedicao" Pos="9" idDatatype="15" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<COLUMN ID="4183" ColName="data_expedicao" PrevColName="dt_expedicao" Pos="9" idDatatype="14" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
 <OPTIONSELECTED>
 </OPTIONSELECTED>
 </COLUMN>
@@ -960,7 +902,7 @@
 <OPTIONSELECT Value="0" />
 </OPTIONSELECTED>
 </COLUMN>
-<COLUMN ID="4187" ColName="emissao_cnh" PrevColName="dt_emissao_habilitacao" Pos="13" idDatatype="15" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<COLUMN ID="4187" ColName="emissao_cnh" PrevColName="dt_emissao_habilitacao" Pos="13" idDatatype="14" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
 <OPTIONSELECTED>
 </OPTIONSELECTED>
 </COLUMN>
@@ -969,7 +911,7 @@
 <OPTIONSELECT Value="0" />
 </OPTIONSELECTED>
 </COLUMN>
-<COLUMN ID="4190" ColName="validade_cnh" PrevColName="dt_validade_habilitacao" Pos="15" idDatatype="15" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<COLUMN ID="4190" ColName="validade_cnh" PrevColName="dt_validade_habilitacao" Pos="15" idDatatype="14" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
 <OPTIONSELECTED>
 </OPTIONSELECTED>
 </COLUMN>
@@ -989,47 +931,6 @@
 </OPTIONSELECTED>
 </COLUMN>
 <COLUMN ID="4195" ColName="status_motorista" PrevColName="st_motorista" Pos="19" idDatatype="20" DatatypeParams="(20)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="4197" ColName="endereco" PrevColName="ds_endereco" Pos="20" idDatatype="20" DatatypeParams="(200)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="4198" ColName="numero_endereco" PrevColName="nr_endereco" Pos="21" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-<OPTIONSELECT Value="1" />
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="4199" ColName="complemento" PrevColName="ds_complemento" Pos="22" idDatatype="20" DatatypeParams="(200)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="4200" ColName="uf" PrevColName="ds_uf" Pos="23" idDatatype="20" DatatypeParams="(2)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="4201" ColName="cidade" PrevColName="ds_cidade" Pos="24" idDatatype="20" DatatypeParams="(50)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="4202" ColName="bairro" PrevColName="ds_bairro" Pos="25" idDatatype="20" DatatypeParams="(100)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="4205" ColName="cep" PrevColName="ds_cep" Pos="26" idDatatype="20" DatatypeParams="(9)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="4206" ColName="referencia_endereco" PrevColName="ds_referencia" Pos="27" idDatatype="20" DatatypeParams="(200)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
 <OPTIONSELECTED>
 <OPTIONSELECT Value="0" />
 </OPTIONSELECTED>
@@ -1129,10 +1030,8 @@
 <OPTIONSELECTED>
 </OPTIONSELECTED>
 </COLUMN>
-<COLUMN ID="4249" ColName="cartao_debito" PrevColName="fl_cartao_debito" Pos="48" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<COLUMN ID="4249" ColName="cartao_debito" PrevColName="fl_cartao_debito" Pos="48" idDatatype="21" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
 <OPTIONSELECTED>
-<OPTIONSELECT Value="1" />
-<OPTIONSELECT Value="0" />
 </OPTIONSELECTED>
 </COLUMN>
 <COLUMN ID="4250" ColName="vaucher" PrevColName="f_vaucher" Pos="49" idDatatype="21" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
@@ -1158,16 +1057,25 @@
 <RELATION_START ID="4359" />
 <RELATION_START ID="4579" />
 <RELATION_START ID="4585" />
+<RELATION_START ID="4905" />
 </RELATIONS_START>
+<RELATIONS_END>
+<RELATION_END ID="4888" />
+</RELATIONS_END>
 <INDICES>
 <INDEX ID="4216" IndexName="PRIMARY" IndexKind="0" FKRefDef_Obj_id="-1">
 <INDEXCOLUMNS>
 <INDEXCOLUMN idColumn="4209" LengthParam="0" />
 </INDEXCOLUMNS>
 </INDEX>
+<INDEX ID="4890" IndexName="motorista_FKIndex1" IndexKind="1" FKRefDef_Obj_id="4888">
+<INDEXCOLUMNS>
+<INDEXCOLUMN idColumn="4889" LengthParam="0" />
+</INDEXCOLUMNS>
+</INDEX>
 </INDICES>
 </TABLE>
-<TABLE ID="4238" Tablename="area" PrevTableName="Table_18" XPos="388" YPos="1302" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="30" >
+<TABLE ID="4238" Tablename="area" PrevTableName="Table_18" XPos="541" YPos="1134" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="30" >
 <COLUMNS>
 <COLUMN ID="4240" ColName="id_area" PrevColName="idht_area" Pos="0" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="1" NotNull="1" AutoInc="1" IsForeignKey="0" DefaultValue="" Comments="">
 <OPTIONSELECTED>
@@ -1197,7 +1105,7 @@
 </INDEX>
 </INDICES>
 </TABLE>
-<TABLE ID="4254" Tablename="tarifa" PrevTableName="Table_19" XPos="1171" YPos="1106" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="31" >
+<TABLE ID="4254" Tablename="tarifa" PrevTableName="Table_19" XPos="26" YPos="1295" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="31" >
 <COLUMNS>
 <COLUMN ID="4256" ColName="id_tarifa" PrevColName="" Pos="0" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="1" NotNull="1" AutoInc="1" IsForeignKey="0" DefaultValue="" Comments="">
 <OPTIONSELECTED>
@@ -1234,7 +1142,7 @@
 </INDEX>
 </INDICES>
 </TABLE>
-<TABLE ID="4291" Tablename="tarifa_adicional" PrevTableName="Table_20" XPos="1024" YPos="1253" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="32" >
+<TABLE ID="4291" Tablename="tarifa_adicional" PrevTableName="Table_20" XPos="290" YPos="1333" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="32" >
 <COLUMNS>
 <COLUMN ID="4293" ColName="id_tarifa_adicional" PrevColName="idht_tarifa_adicional" Pos="0" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="1" NotNull="1" AutoInc="1" IsForeignKey="0" DefaultValue="" Comments="">
 <OPTIONSELECTED>
@@ -1262,7 +1170,7 @@
 </INDEX>
 </INDICES>
 </TABLE>
-<TABLE ID="4299" Tablename="mensagem" PrevTableName="Table_21" XPos="1230" YPos="1005" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="33" >
+<TABLE ID="4299" Tablename="mensagem" PrevTableName="Table_21" XPos="887" YPos="1070" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="33" >
 <COLUMNS>
 <COLUMN ID="4301" ColName="id" PrevColName="id_mensagem" Pos="0" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="1" NotNull="1" AutoInc="1" IsForeignKey="0" DefaultValue="" Comments="">
 <OPTIONSELECTED>
@@ -1287,7 +1195,7 @@
 </INDEX>
 </INDICES>
 </TABLE>
-<TABLE ID="4304" Tablename="mensagem_motorista" PrevTableName="Table_22" XPos="1203" YPos="740" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="34" >
+<TABLE ID="4304" Tablename="mensagem_motorista" PrevTableName="Table_22" XPos="877" YPos="1228" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="34" >
 <COLUMNS>
 <COLUMN ID="4790" ColName="id" PrevColName="" Pos="4" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="1" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
 <OPTIONSELECTED>
@@ -1307,11 +1215,11 @@
 <OPTIONSELECT Value="0" />
 </OPTIONSELECTED>
 </COLUMN>
-<COLUMN ID="4329" ColName="data_envio" PrevColName="dt_envio" Pos="2" idDatatype="15" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<COLUMN ID="4329" ColName="data_hora_envio" PrevColName="dt_envio" Pos="2" idDatatype="15" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
 <OPTIONSELECTED>
 </OPTIONSELECTED>
 </COLUMN>
-<COLUMN ID="4330" ColName="data_leitura" PrevColName="dt_leitura" Pos="3" idDatatype="15" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<COLUMN ID="4330" ColName="data_hora_leitura" PrevColName="dt_leitura" Pos="3" idDatatype="15" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
 <OPTIONSELECTED>
 </OPTIONSELECTED>
 </COLUMN>
@@ -1338,7 +1246,7 @@
 </INDEX>
 </INDICES>
 </TABLE>
-<TABLE ID="4331" Tablename="faixa_voucher" PrevTableName="Table_25" XPos="477" YPos="981" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="37" >
+<TABLE ID="4331" Tablename="faixa_voucher" PrevTableName="Table_25" XPos="400" YPos="628" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="37" >
 <COLUMNS>
 <COLUMN ID="4333" ColName="id_" PrevColName="id_faixa_voucher" Pos="0" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="1" NotNull="1" AutoInc="1" IsForeignKey="0" DefaultValue="" Comments="">
 <OPTIONSELECTED>
@@ -1386,7 +1294,7 @@
 </INDEX>
 </INDICES>
 </TABLE>
-<TABLE ID="4349" Tablename="punicao" PrevTableName="Table_27" XPos="1348" YPos="354" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="39" >
+<TABLE ID="4349" Tablename="punicao" PrevTableName="Table_27" XPos="1469" YPos="330" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="39" >
 <COLUMNS>
 <COLUMN ID="4351" ColName="id" PrevColName="id_punicao" Pos="0" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="1" NotNull="1" AutoInc="1" IsForeignKey="0" DefaultValue="" Comments="">
 <OPTIONSELECTED>
@@ -1405,11 +1313,11 @@
 <OPTIONSELECT Value="0" />
 </OPTIONSELECTED>
 </COLUMN>
-<COLUMN ID="4355" ColName="data_inicio" PrevColName="dt_inicio" Pos="3" idDatatype="15" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<COLUMN ID="4355" ColName="data_hora_inicio" PrevColName="dt_inicio" Pos="3" idDatatype="15" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
 <OPTIONSELECTED>
 </OPTIONSELECTED>
 </COLUMN>
-<COLUMN ID="4356" ColName="data_fim" PrevColName="dt_fim" Pos="4" idDatatype="15" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<COLUMN ID="4356" ColName="data_hora_fim" PrevColName="dt_fim" Pos="4" idDatatype="15" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
 <OPTIONSELECTED>
 </OPTIONSELECTED>
 </COLUMN>
@@ -1436,22 +1344,11 @@
 </INDEX>
 </INDICES>
 </TABLE>
-<TABLE ID="4362" Tablename="cliente_endereco" PrevTableName="Table_28" XPos="408" YPos="541" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="41" >
+<TABLE ID="4362" Tablename="endereco" PrevTableName="Table_28" XPos="570" YPos="811" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="41" >
 <COLUMNS>
-<COLUMN ID="4365" ColName="id_cliente_endereco" PrevColName="" Pos="0" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="1" NotNull="1" AutoInc="1" IsForeignKey="0" DefaultValue="" Comments="">
+<COLUMN ID="4365" ColName="id" PrevColName="id_cliente_endereco" Pos="0" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="1" NotNull="1" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
 <OPTIONSELECTED>
 <OPTIONSELECT Value="1" />
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="4561" ColName="ht_cliente_id" PrevColName="" Pos="1" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="1" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-<OPTIONSELECT Value="1" />
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="4367" ColName="endereco" PrevColName="ds_endereco" Pos="1" idDatatype="20" DatatypeParams="(200)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
-<OPTIONSELECTED>
 <OPTIONSELECT Value="0" />
 </OPTIONSELECTED>
 </COLUMN>
@@ -1462,21 +1359,6 @@
 </OPTIONSELECTED>
 </COLUMN>
 <COLUMN ID="4370" ColName="complemento" PrevColName="ds_complemento" Pos="3" idDatatype="20" DatatypeParams="(200)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="4371" ColName="uf" PrevColName="ds_uf" Pos="4" idDatatype="20" DatatypeParams="(2)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="4373" ColName="cidade" PrevColName="ds_cidade" Pos="5" idDatatype="20" DatatypeParams="(50)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="4374" ColName="bairro" PrevColName="ds_bairro" Pos="6" idDatatype="20" DatatypeParams="(100)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
 <OPTIONSELECTED>
 <OPTIONSELECT Value="0" />
 </OPTIONSELECTED>
@@ -1501,27 +1383,61 @@
 <OPTIONSELECTED>
 </OPTIONSELECTED>
 </COLUMN>
+<COLUMN ID="4866" ColName="latitude" PrevColName="" Pos="7" idDatatype="9" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4867" ColName="longitude" PrevColName="" Pos="8" idDatatype="9" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4868" ColName="endereco_formatado" PrevColName="" Pos="9" idDatatype="20" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4870" ColName="valido" PrevColName="" Pos="10" idDatatype="21" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4872" ColName="logradouro" PrevColName="" Pos="11" idDatatype="20" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4873" ColName="estado" PrevColName="" Pos="12" idDatatype="20" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4874" ColName="cidade" PrevColName="" Pos="13" idDatatype="20" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4875" ColName="bairro" PrevColName="" Pos="14" idDatatype="20" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
 </COLUMNS>
 <RELATIONS_START>
-<RELATION_START ID="4784" />
+<RELATION_START ID="4877" />
+<RELATION_START ID="4883" />
+<RELATION_START ID="4888" />
+<RELATION_START ID="4892" />
 </RELATIONS_START>
-<RELATIONS_END>
-<RELATION_END ID="4555" />
-</RELATIONS_END>
 <INDICES>
 <INDEX ID="4366" IndexName="PRIMARY" IndexKind="0" FKRefDef_Obj_id="-1">
 <INDEXCOLUMNS>
 <INDEXCOLUMN idColumn="4365" LengthParam="0" />
 </INDEXCOLUMNS>
 </INDEX>
-<INDEX ID="4557" IndexName="ht_cliente_endereco_FKIndex1" IndexKind="1" FKRefDef_Obj_id="4555">
-<INDEXCOLUMNS>
-<INDEXCOLUMN idColumn="4561" LengthParam="0" />
-</INDEXCOLUMNS>
-</INDEX>
 </INDICES>
 </TABLE>
-<TABLE ID="4392" Tablename="corrida" PrevTableName="Table_29" XPos="1739" YPos="69" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="43" >
+<TABLE ID="4392" Tablename="corrida" PrevTableName="Table_29" XPos="1118" YPos="-1" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="43" >
 <COLUMNS>
 <COLUMN ID="4395" ColName="id_corrida" PrevColName="" Pos="0" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="1" NotNull="1" AutoInc="1" IsForeignKey="0" DefaultValue="" Comments="">
 <OPTIONSELECTED>
@@ -1541,7 +1457,7 @@
 <OPTIONSELECT Value="0" />
 </OPTIONSELECTED>
 </COLUMN>
-<COLUMN ID="4492" ColName="data_corrida" PrevColName="dt_atendimento" Pos="2" idDatatype="15" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<COLUMN ID="4492" ColName="data_hora_corrida" PrevColName="dt_atendimento" Pos="2" idDatatype="15" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
 <OPTIONSELECTED>
 </OPTIONSELECTED>
 </COLUMN>
@@ -1582,7 +1498,7 @@
 </INDEX>
 </INDICES>
 </TABLE>
-<TABLE ID="4397" Tablename="bloqueio_motorista" PrevTableName="Table_30" XPos="1079" YPos="465" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="44" >
+<TABLE ID="4397" Tablename="bloqueio_motorista" PrevTableName="Table_30" XPos="1111" YPos="591" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="44" >
 <COLUMNS>
 <COLUMN ID="4403" ColName="id" PrevColName="id_mtorista_bloqueado" Pos="0" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="1" NotNull="1" AutoInc="1" IsForeignKey="0" DefaultValue="" Comments="">
 <OPTIONSELECTED>
@@ -1602,10 +1518,8 @@
 <OPTIONSELECT Value="0" />
 </OPTIONSELECTED>
 </COLUMN>
-<COLUMN ID="4422" ColName="data_bloqueio" PrevColName="dt_bloqueio" Pos="2" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
+<COLUMN ID="4422" ColName="data_hora_bloqueio" PrevColName="dt_bloqueio" Pos="2" idDatatype="15" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
 <OPTIONSELECTED>
-<OPTIONSELECT Value="1" />
-<OPTIONSELECT Value="0" />
 </OPTIONSELECTED>
 </COLUMN>
 <COLUMN ID="4423" ColName="usuario_bloqueio" PrevColName="id_usuario_bloqueio" Pos="3" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
@@ -1637,7 +1551,7 @@
 </INDEX>
 </INDICES>
 </TABLE>
-<TABLE ID="4480" Tablename="atendente" PrevTableName="Table_31" XPos="2540" YPos="248" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="54" >
+<TABLE ID="4480" Tablename="atendente" PrevTableName="Table_31" XPos="1459" YPos="26" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="54" >
 <COLUMNS>
 <COLUMN ID="4482" ColName="id_atendente" PrevColName="" Pos="0" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="1" NotNull="1" AutoInc="1" IsForeignKey="0" DefaultValue="" Comments="">
 <OPTIONSELECTED>
@@ -1667,56 +1581,7 @@
 </INDEX>
 </INDICES>
 </TABLE>
-<TABLE ID="4775" Tablename="coordenada_endereco_cliente" PrevTableName="Table_23" XPos="760" YPos="877" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="41" >
-<COLUMNS>
-<COLUMN ID="4777" ColName="idcliente_endereco_coord" PrevColName="" Pos="0" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="1" NotNull="1" AutoInc="1" IsForeignKey="0" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-<OPTIONSELECT Value="1" />
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="4785" ColName="ht_cliente_endereco_id_cliente_endereco" PrevColName="" Pos="1" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="1" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-<OPTIONSELECT Value="1" />
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="4780" ColName="latitude" PrevColName="" Pos="1" idDatatype="7" DatatypeParams="(15)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="4781" ColName="longitude" PrevColName="" Pos="2" idDatatype="7" DatatypeParams="(15)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="4782" ColName="endereco_formatado" PrevColName="enderecoformatado" Pos="3" idDatatype="28" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="4783" ColName="valido" PrevColName="" Pos="4" idDatatype="21" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-</OPTIONSELECTED>
-</COLUMN>
-</COLUMNS>
-<RELATIONS_END>
-<RELATION_END ID="4784" />
-</RELATIONS_END>
-<INDICES>
-<INDEX ID="4778" IndexName="PRIMARY" IndexKind="0" FKRefDef_Obj_id="-1">
-<INDEXCOLUMNS>
-<INDEXCOLUMN idColumn="4777" LengthParam="0" />
-</INDEXCOLUMNS>
-</INDEX>
-<INDEX ID="4786" IndexName="cliente_endereco_coord_FKIndex1" IndexKind="1" FKRefDef_Obj_id="4784">
-<INDEXCOLUMNS>
-<INDEXCOLUMN idColumn="4785" LengthParam="0" />
-</INDEXCOLUMNS>
-</INDEX>
-</INDICES>
-</TABLE>
-<TABLE ID="4793" Tablename="ponto_area" PrevTableName="Table_24" XPos="742" YPos="1274" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="43" >
+<TABLE ID="4793" Tablename="ponto_area" PrevTableName="Table_24" XPos="536" YPos="1292" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="43" >
 <COLUMNS>
 <COLUMN ID="4795" ColName="idht_pontos_area" PrevColName="" Pos="0" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="1" NotNull="1" AutoInc="1" IsForeignKey="0" DefaultValue="" Comments="">
 <OPTIONSELECTED>
@@ -1757,9 +1622,15 @@
 </INDEX>
 </INDICES>
 </TABLE>
-<TABLE ID="4815" Tablename="endereco_corrida" PrevTableName="Table_26" XPos="1989" YPos="337" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="46" >
+<TABLE ID="4815" Tablename="endereco_corrida" PrevTableName="Table_26" XPos="1724" YPos="169" TableType="0" TablePrefix="0" nmTable="0" Temporary="0" UseStandardInserts="0" StandardInserts="\n" TableOptions="DelayKeyTblUpdates=0\nPackKeys=0\nRowChecksum=0\nRowFormat=0\nUseRaid=0\nRaidType=0\n" Comments="" Collapsed="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="46" >
 <COLUMNS>
 <COLUMN ID="4817" ColName="id" PrevColName="" Pos="0" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="1" NotNull="1" AutoInc="1" IsForeignKey="0" DefaultValue="" Comments="">
+<OPTIONSELECTED>
+<OPTIONSELECT Value="1" />
+<OPTIONSELECT Value="0" />
+</OPTIONSELECTED>
+</COLUMN>
+<COLUMN ID="4893" ColName="endereco_id" PrevColName="" Pos="1" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="1" AutoInc="0" IsForeignKey="1" DefaultValue="" Comments="">
 <OPTIONSELECTED>
 <OPTIONSELECT Value="1" />
 <OPTIONSELECT Value="0" />
@@ -1771,93 +1642,10 @@
 <OPTIONSELECT Value="0" />
 </OPTIONSELECTED>
 </COLUMN>
-<COLUMN ID="4823" ColName="endereco_origem" PrevColName="" Pos="2" idDatatype="20" DatatypeParams="(200)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="4825" ColName="numero_origem" PrevColName="" Pos="3" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-<OPTIONSELECT Value="1" />
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="4828" ColName="complemento_origem" PrevColName="" Pos="4" idDatatype="20" DatatypeParams="(50)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="4835" ColName="bairro_origem" PrevColName="" Pos="8" idDatatype="20" DatatypeParams="(100)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="4829" ColName="uf_origem" PrevColName="" Pos="5" idDatatype="20" DatatypeParams="(2)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="4830" ColName="cidade_origem" PrevColName="" Pos="6" idDatatype="20" DatatypeParams="(50)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="4832" ColName="cep_origem" PrevColName="ce_origem" Pos="7" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-<OPTIONSELECT Value="1" />
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="4836" ColName="referencia_origem" PrevColName="" Pos="9" idDatatype="20" DatatypeParams="(200)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="4838" ColName="endereco_destino" PrevColName="" Pos="10" idDatatype="20" DatatypeParams="(200)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="4839" ColName="numero_destino" PrevColName="" Pos="11" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-<OPTIONSELECT Value="1" />
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="4844" ColName="complemento_destino" PrevColName="" Pos="12" idDatatype="20" DatatypeParams="(50)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="4846" ColName="bairro_destino" PrevColName="" Pos="13" idDatatype="20" DatatypeParams="(100)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="4847" ColName="uf_destino" PrevColName="-destinouf" Pos="14" idDatatype="20" DatatypeParams="(2)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="4850" ColName="cidade_destino" PrevColName="" Pos="15" idDatatype="20" DatatypeParams="(50)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="4852" ColName="cep_destino" PrevColName="" Pos="16" idDatatype="5" DatatypeParams="" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-<OPTIONSELECT Value="1" />
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
-<COLUMN ID="4853" ColName="referencia_destino" PrevColName="" Pos="17" idDatatype="20" DatatypeParams="(200)" Width="-1" Prec="-1" PrimaryKey="0" NotNull="0" AutoInc="0" IsForeignKey="0" DefaultValue="" Comments="">
-<OPTIONSELECTED>
-<OPTIONSELECT Value="0" />
-</OPTIONSELECTED>
-</COLUMN>
 </COLUMNS>
 <RELATIONS_END>
 <RELATION_END ID="4819" />
+<RELATION_END ID="4892" />
 </RELATIONS_END>
 <INDICES>
 <INDEX ID="4818" IndexName="PRIMARY" IndexKind="0" FKRefDef_Obj_id="-1">
@@ -1870,6 +1658,11 @@
 <INDEXCOLUMN idColumn="4820" LengthParam="0" />
 </INDEXCOLUMNS>
 </INDEX>
+<INDEX ID="4894" IndexName="endereco_corrida_FKIndex2" IndexKind="1" FKRefDef_Obj_id="4892">
+<INDEXCOLUMNS>
+<INDEXCOLUMN idColumn="4893" LengthParam="0" />
+</INDEXCOLUMNS>
+</INDEX>
 </INDICES>
 </TABLE>
 </TABLES>
@@ -1880,19 +1673,23 @@
 <RELATION ID="4507" RelationName="Rel_20" Kind="2" SrcTable="1786" DestTable="1720" FKFields="id=ht_empresa_id\n" FKFieldsComments="\n" relDirection="3" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="4509" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="44" />
 <RELATION ID="4528" RelationName="Rel_17" Kind="2" SrcTable="1786" DestTable="1908" FKFields="id=ht_empresa_id\n" FKFieldsComments="\n" relDirection="2" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="4530" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="44" />
 <RELATION ID="4531" RelationName="Rel_18" Kind="2" SrcTable="1786" DestTable="1899" FKFields="id=ht_empresa_id\n" FKFieldsComments="\n" relDirection="3" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="4533" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="44" />
-<RELATION ID="4539" RelationName="Rel_19" Kind="2" SrcTable="1786" DestTable="4331" FKFields="id=ht_empresa_id\n" FKFieldsComments="\n" relDirection="3" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="4541" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="44" />
-<RELATION ID="4555" RelationName="Rel_21" Kind="2" SrcTable="1922" DestTable="4362" FKFields="id=ht_cliente_id\n" FKFieldsComments="\n" relDirection="4" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="4557" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="44" />
-<RELATION ID="4566" RelationName="Rel_22" Kind="2" SrcTable="1922" DestTable="1942" FKFields="id=ht_cliente_id\n" FKFieldsComments="\n" relDirection="3" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="4568" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="43" />
+<RELATION ID="4539" RelationName="Rel_19" Kind="2" SrcTable="1786" DestTable="4331" FKFields="id=ht_empresa_id\n" FKFieldsComments="\n" relDirection="2" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="4541" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="44" />
 <RELATION ID="4570" RelationName="Rel_23" Kind="2" SrcTable="1922" DestTable="4397" FKFields="id=ht_cliente_id\n" FKFieldsComments="\n" relDirection="2" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="4572" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="43" />
 <RELATION ID="4579" RelationName="Rel_24" Kind="2" SrcTable="4169" DestTable="4304" FKFields="id=ht_motorista_id\n" FKFieldsComments="\n" relDirection="4" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="4581" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="42" />
-<RELATION ID="4582" RelationName="Rel_25" Kind="2" SrcTable="4299" DestTable="4304" FKFields="id=ht_mensagem_id\n" FKFieldsComments="\n" relDirection="1" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="4584" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="43" />
+<RELATION ID="4582" RelationName="Rel_25" Kind="2" SrcTable="4299" DestTable="4304" FKFields="id=ht_mensagem_id\n" FKFieldsComments="\n" relDirection="3" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="4584" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="43" />
 <RELATION ID="4585" RelationName="Rel_26" Kind="2" SrcTable="4169" DestTable="4397" FKFields="id=ht_motorista_id\n" FKFieldsComments="\n" relDirection="4" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="4587" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="44" />
 <RELATION ID="4589" RelationName="Rel_27" Kind="2" SrcTable="1786" DestTable="1922" FKFields="id=ht_empresa_id\n" FKFieldsComments="\n" relDirection="2" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="4591" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="41" />
 <RELATION ID="4592" RelationName="Rel_28" Kind="2" SrcTable="1787" DestTable="1922" FKFields="id=ht_centrocusto_id\n" FKFieldsComments="\n" relDirection="2" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="4594" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="42" />
-<RELATION ID="4784" RelationName="Rel_29" Kind="2" SrcTable="4362" DestTable="4775" FKFields="id_cliente_endereco=ht_cliente_endereco_id_cliente_endereco\n" FKFieldsComments="\n" relDirection="2" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="4786" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="42" />
-<RELATION ID="4800" RelationName="Rel_30" Kind="2" SrcTable="4238" DestTable="4793" FKFields="id_area=ht_area_id_area\n" FKFieldsComments="\n" relDirection="2" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="4802" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="44" />
-<RELATION ID="4808" RelationName="Rel_32" Kind="2" SrcTable="1922" DestTable="4392" FKFields="id=ht_cliente_id\n" FKFieldsComments="\n" relDirection="2" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="4810" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="45" />
-<RELATION ID="4819" RelationName="Rel_33" Kind="2" SrcTable="4392" DestTable="4815" FKFields="id_corrida=ht_corrida_id_corrida\n" FKFieldsComments="\n" relDirection="3" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="4821" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="47" />
+<RELATION ID="4800" RelationName="Rel_30" Kind="2" SrcTable="4238" DestTable="4793" FKFields="id_area=ht_area_id_area\n" FKFieldsComments="\n" relDirection="3" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="4802" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="44" />
+<RELATION ID="4808" RelationName="Rel_32" Kind="2" SrcTable="1922" DestTable="4392" FKFields="id=ht_cliente_id\n" FKFieldsComments="\n" relDirection="1" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="4810" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="45" />
+<RELATION ID="4819" RelationName="Rel_33" Kind="2" SrcTable="4392" DestTable="4815" FKFields="id_corrida=ht_corrida_id_corrida\n" FKFieldsComments="\n" relDirection="2" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="4821" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="47" />
+<RELATION ID="4877" RelationName="Rel_20" Kind="2" SrcTable="4362" DestTable="1786" FKFields="id=endereco_id\n" FKFieldsComments="\n" relDirection="4" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="4879" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="45" />
+<RELATION ID="4883" RelationName="Rel_21" Kind="2" SrcTable="4362" DestTable="1922" FKFields="id=endereco_id\n" FKFieldsComments="\n" relDirection="2" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="4885" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="46" />
+<RELATION ID="4888" RelationName="Rel_22" Kind="2" SrcTable="4362" DestTable="4169" FKFields="id=endereco_id\n" FKFieldsComments="\n" relDirection="2" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="4890" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="47" />
+<RELATION ID="4892" RelationName="Rel_23" Kind="2" SrcTable="4362" DestTable="4815" FKFields="id=endereco_id\n" FKFieldsComments="\n" relDirection="2" MidOffset="153" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="4894" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="48" />
+<RELATION ID="4902" RelationName="Rel_24" Kind="2" SrcTable="1922" DestTable="1942" FKFields="id=cliente_id\n" FKFieldsComments="\n" relDirection="1" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="4904" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="48" />
+<RELATION ID="4905" RelationName="Rel_25" Kind="2" SrcTable="4169" DestTable="1942" FKFields="id=motorista_id\n" FKFieldsComments="\n" relDirection="4" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="4907" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="49" />
+<RELATION ID="4908" RelationName="Rel_26" Kind="2" SrcTable="1786" DestTable="1942" FKFields="id=empresa_id\n" FKFieldsComments="\n" relDirection="2" MidOffset="0" OptionalStart="0" OptionalEnd="0" CaptionOffsetX="0" CaptionOffsetY="0" StartIntervalOffsetX="0" StartIntervalOffsetY="0" EndIntervalOffsetX="0" EndIntervalOffsetY="0" CreateRefDef="1" Invisible="0" RefDef="Matching=0\nOnDelete=3\nOnUpdate=3\n" Comments="" FKRefDefIndex_Obj_id="4910" Splitted="0" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="50" />
 </RELATIONS>
 <NOTES>
 <NOTE ID="4414" NoteName="Note_02" XPos="182" YPos="19" NoteText="Handover Taxi - Lig Moto Taxi\n" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="51" />

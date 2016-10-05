@@ -1,0 +1,62 @@
+- name: Usuario
+  hasOwner: false 
+  displayName: Usuario
+  tableName: USUARIO
+  attributes:                     
+  - name: nome
+    tableFieldName: NOME
+    required: true
+    displayName: Nome
+    type: 
+      className: String
+  - name: email
+    tableFieldName: EMAIL
+    required: false
+    displayName: Email
+    type: 
+      className: String
+  - name: senha
+    tableFieldName: SENHA
+    required: true
+    displayName: Senha
+    type: 
+      className: String
+  - name: tipo
+    tableFieldName: TIPO
+    required: false
+    displayName: Tipo
+    type: 
+      className: String
+  - name: perfil
+    tableFieldName: PERFIL
+    required: false
+    displayName: Perfil
+    type: 
+      className: String
+  - name: statusUsuario
+    tableFieldName: STATUS_USUARIO
+    required: true
+    displayName: Status usuario
+    type: 
+      className: String
+  - name: dataHoraInclusao
+    tableFieldName: DATA_HORA_INCLUSAO
+    required: false
+    displayName: Data hora inclusao
+    type: 
+      className: Datetime
+  - name: usuarioinclusao
+    tableFieldName: USUARIOINCLUSAO
+    required: false
+    displayName: Usuarioinclusao
+    type: 
+      className: Integer
+  relationships:                     
+  - name: empresa             
+    type: ManyToOne
+    model: Empresa                       
+    displayName: Empresa
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 

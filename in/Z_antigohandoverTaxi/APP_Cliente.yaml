@@ -52,7 +52,7 @@
   - name: endereco             
     type: ManyToOne
     model: Endereco                       
-    displayName: Endereco
+    displayName: Endereço
     viewApproach:   
       type: modal 
       hiddenField: id 

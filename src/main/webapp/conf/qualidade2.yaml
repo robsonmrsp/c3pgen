@@ -713,7 +713,7 @@ entities:
   - name: endereco
     type: OneToOne
     model: Endereco
-    displayName: Endereco
+    displayName: Endereço
   - name: cargo
     type: ManyToOne
     model: Cargo
@@ -936,7 +936,7 @@ entities:
       hiddenField: id
     displayName: Cidade
 - name: Endereco
-  displayName: Endereco
+  displayName: Endereço
   tableName: ENDERECO
   hasOwner: false
   attributes:

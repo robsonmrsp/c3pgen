@@ -38,7 +38,7 @@ public class Main {
 //		generatoToInput("qualidade4", new File("C:\\cyg\\home\\robson\\repos\\c3pgen\\in\\qualidade4"));
 		
 //		generatoToInput("handoverTaxi", new File("G:\\cyg\\home\\robso\\repos\\c3pgen\\in\\handoverTaxi"));
-		generatoToInput("handoverTaxiLite", new File("C:\\cyg\\home\\robson\\repos\\c3pgen\\in\\handoverTaxiLite"));
+		generatoToInput("handoverTaxiLite", new File("C:\\cyg\\home\\robson\\repos\\c3pgen\\in\\handoverTaxi"));
 		//
 	}
 

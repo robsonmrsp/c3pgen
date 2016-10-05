@@ -6,13 +6,13 @@
   - name: cnpj
     tableFieldName: CNPJ
     required: false
-    displayName: Cnpj
+    displayName: CNPJ
     type: 
       className: String
-  - name: numerocontrato
-    tableFieldName: NUMEROCONTRATO
+  - name: contrato
+    tableFieldName: CONTRATO
     required: true
-    displayName: NumeroContrato
+    displayName: Contrato
     type: 
       className: String
   - name: razaoSocial
@@ -22,9 +22,9 @@
     type: 
       className: String
   - name: nomeFantasia
-    tableFieldName: NOME_FANTASIA
+    tableFieldName: FANTASIA
     required: false
-    displayName: Nome fantasia
+    displayName: Nome Fantasia
     type: 
       className: String
   - name: utilizaVoucher
@@ -35,10 +35,10 @@
       className: Boolean
     viewApproach: 
       type: check
-  - name: utilizaTicket
-    tableFieldName: UTILIZA_TICKET
+  - name: utilizaEticket
+    tableFieldName: UTILIZA_ETICKET
     required: false
-    displayName: Utiliza ticket
+    displayName: Utiliza eticket
     type: 
       className: Boolean
     viewApproach: 
@@ -55,10 +55,10 @@
     displayName: Observacao central
     type: 
       className: String
-  - name: percursoDesconto
-    tableFieldName: PERCURSO_DESCONTO
+  - name: percentualDesconto
+    tableFieldName: PERCENTUAL_DESCONTO
     required: false
-    displayName: Percurso desconto
+    displayName: Percentual desconto
     type: 
       className: Double
   - name: inscricaoMunicipal
@@ -73,10 +73,10 @@
     displayName: Inscricao estadual
     type: 
       className: String
-  - name: nf
-    tableFieldName: NF
+  - name: emiteNf
+    tableFieldName: EMITE_NF
     required: false
-    displayName: Nf
+    displayName: Emite nf
     type: 
       className: Boolean
     viewApproach: 
@@ -135,36 +135,61 @@
     displayName: Email
     type: 
       className: String
+  - name: usuarioCadastro
+    tableFieldName: USUARIO_CADASTRO
+    required: false
+    displayName: Usuario cadastro
+    type: 
+      className: Integer
+  - name: dataCadastro
+    tableFieldName: DATA_CADASTRO
+    required: false
+    displayName: Data cadastro
+    type: 
+      className: Date
+    dateFormat: DD/MM/YYYY              
+    mask: 99/99/9999                    
+    viewApproach:                        
+      type: datepicker                  
   relationships:                     
   - name: centroCustos
     type: OneToMany
     ownerName: empresa
     model: CentroCusto                       
     displayName: Centro custo
-  - name: empresaTelefones
+  - name: usuarios
     type: OneToMany
     ownerName: empresa
-    model: EmpresaTelefone                       
-    displayName: Empresa telefone
+    model: Usuario                       
+    displayName: Usuario
   - name: contatos
     type: OneToMany
     ownerName: empresa
     model: Contato                       
     displayName: Contato
-  - name: funcionarios
-    type: OneToMany
-    ownerName: empresa
-    model: Funcionario                       
-    displayName: Funcionario
   - name: socios
     type: OneToMany
     ownerName: empresa
     model: Socio                       
     displayName: Socio
+  - name: faixaVouchers
+    type: OneToMany
+    ownerName: empresa
+    model: FaixaVoucher                       
+    displayName: Faixa voucher
+  - name: clientes
+    type: OneToMany
+    ownerName: empresa
+    model: Cliente                       
+    displayName: Cliente
+  - name: telefones
+    type: OneToMany
+    model: Telefone                       
+    displayName: Telefone
   - name: endereco             
     type: ManyToOne
     model: Endereco                       
-    displayName: Endereco
+    displayName: Endereço
     viewApproach:   
       type: modal 
       hiddenField: id 

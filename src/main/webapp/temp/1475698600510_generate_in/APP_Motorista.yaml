@@ -1,0 +1,308 @@
+- name: Motorista
+  hasOwner: false 
+  displayName: Motorista
+  tableName: MOTORISTA
+  attributes:                     
+  - name: nome
+    tableFieldName: NOME
+    required: false
+    displayName: Nome
+    type: 
+      className: String
+  - name: nomeReduzido
+    tableFieldName: NOME_REDUZIDO
+    required: false
+    displayName: Nome reduzido
+    type: 
+      className: String
+  - name: email
+    tableFieldName: EMAIL
+    required: false
+    displayName: Email
+    type: 
+      className: String
+  - name: dataNascimento
+    tableFieldName: DATA_NASCIMENTO
+    required: false
+    displayName: Data nascimento
+    type: 
+      className: Date
+    dateFormat: DD/MM/YYYY              
+    mask: 99/99/9999                    
+    viewApproach:                        
+      type: datepicker                  
+  - name: rg
+    tableFieldName: RG
+    required: false
+    displayName: Rg
+    type: 
+      className: String
+  - name: orgaoExpedidor
+    tableFieldName: ORGAO_EXPEDIDOR
+    required: false
+    displayName: Orgao expedidor
+    type: 
+      className: Integer
+  - name: dataExpedicao
+    tableFieldName: DATA_EXPEDICAO
+    required: false
+    displayName: Data expedicao
+    type: 
+      className: Date
+    dateFormat: DD/MM/YYYY              
+    mask: 99/99/9999                    
+    viewApproach:                        
+      type: datepicker                  
+  - name: naturalidade
+    tableFieldName: NATURALIDADE
+    required: false
+    displayName: Naturalidade
+    type: 
+      className: String
+  - name: cpf
+    tableFieldName: CPF
+    required: false
+    displayName: Cpf
+    type: 
+      className: String
+  - name: cnh
+    tableFieldName: CNH
+    required: false
+    displayName: Cnh
+    type: 
+      className: String
+  - name: emissaoCnh
+    tableFieldName: EMISSAO_CNH
+    required: false
+    displayName: Emissao cnh
+    type: 
+      className: Date
+    dateFormat: DD/MM/YYYY              
+    mask: 99/99/9999                    
+    viewApproach:                        
+      type: datepicker                  
+  - name: categoriaCnh
+    tableFieldName: CATEGORIA_CNH
+    required: false
+    displayName: Categoria cnh
+    type: 
+      className: String
+  - name: validadeCnh
+    tableFieldName: VALIDADE_CNH
+    required: false
+    displayName: Validade cnh
+    type: 
+      className: Date
+    dateFormat: DD/MM/YYYY              
+    mask: 99/99/9999                    
+    viewApproach:                        
+      type: datepicker                  
+  - name: foto1
+    tableFieldName: FOTO1
+    required: false
+    displayName: Foto1
+    type: 
+      className: String
+  - name: foto2
+    tableFieldName: FOTO2
+    required: false
+    displayName: Foto2
+    type: 
+      className: String
+  - name: foto3
+    tableFieldName: FOTO3
+    required: false
+    displayName: Foto3
+    type: 
+      className: String
+  - name: statusMotorista
+    tableFieldName: STATUS_MOTORISTA
+    required: false
+    displayName: Status motorista
+    type: 
+      className: String
+  - name: mae
+    tableFieldName: MAE
+    required: false
+    displayName: Mae
+    type: 
+      className: String
+  - name: pai
+    tableFieldName: PAI
+    required: false
+    displayName: Pai
+    type: 
+      className: String
+  - name: conjuge
+    tableFieldName: CONJUGE
+    required: false
+    displayName: Conjuge
+    type: 
+      className: String
+  - name: referenciaPessoal1
+    tableFieldName: REFERENCIA_PESSOAL1
+    required: false
+    displayName: Referencia pessoal1
+    type: 
+      className: String
+  - name: foneReferencia1
+    tableFieldName: FONE_REFERENCIA1
+    required: false
+    displayName: Fone referencia1
+    type: 
+      className: String
+  - name: parentescoReferencia1
+    tableFieldName: PARENTESCO_REFERENCIA1
+    required: false
+    displayName: Parentesco referencia1
+    type: 
+      className: String
+  - name: referenciaPessoal2
+    tableFieldName: REFERENCIA_PESSOAL2
+    required: false
+    displayName: Referencia pessoal2
+    type: 
+      className: String
+  - name: foneReferencia2
+    tableFieldName: FONE_REFERENCIA2
+    required: false
+    displayName: Fone referencia2
+    type: 
+      className: String
+  - name: parentescoReferencia2
+    tableFieldName: PARENTESCO_REFERENCIA2
+    required: false
+    displayName: Parentesco referencia2
+    type: 
+      className: String
+  - name: viatura
+    tableFieldName: VIATURA
+    required: false
+    displayName: Viatura
+    type: 
+      className: String
+  - name: marcaVeiculo
+    tableFieldName: MARCA_VEICULO
+    required: false
+    displayName: Marca veiculo
+    type: 
+      className: String
+  - name: modeloVeiculo
+    tableFieldName: MODELO_VEICULO
+    required: false
+    displayName: Modelo veiculo
+    type: 
+      className: String
+  - name: placaVeiculo
+    tableFieldName: PLACA_VEICULO
+    required: false
+    displayName: Placa veiculo
+    type: 
+      className: String
+  - name: corVeiculo
+    tableFieldName: COR_VEICULO
+    required: false
+    displayName: Cor veiculo
+    type: 
+      className: String
+  - name: anoVeiculo
+    tableFieldName: ANO_VEICULO
+    required: false
+    displayName: Ano veiculo
+    type: 
+      className: Integer
+  - name: renavam
+    tableFieldName: RENAVAM
+    required: false
+    displayName: Renavam
+    type: 
+      className: String
+  - name: chassi
+    tableFieldName: CHASSI
+    required: false
+    displayName: Chassi
+    type: 
+      className: String
+  - name: imei
+    tableFieldName: IMEI
+    required: false
+    displayName: Imei
+    type: 
+      className: String
+  - name: cartaoCredito
+    tableFieldName: CARTAO_CREDITO
+    required: false
+    displayName: Cartao credito
+    type: 
+      className: Boolean
+    viewApproach: 
+      type: check
+  - name: cartaoDebito
+    tableFieldName: CARTAO_DEBITO
+    required: false
+    displayName: Cartao debito
+    type: 
+      className: Boolean
+    viewApproach: 
+      type: check
+  - name: vaucher
+    tableFieldName: VAUCHER
+    required: false
+    displayName: Vaucher
+    type: 
+      className: Boolean
+    viewApproach: 
+      type: check
+  - name: eticket
+    tableFieldName: ETICKET
+    required: false
+    displayName: Eticket
+    type: 
+      className: Boolean
+    viewApproach: 
+      type: check
+  - name: usuarioCadastro
+    tableFieldName: USUARIO_CADASTRO
+    required: false
+    displayName: Usuario cadastro
+    type: 
+      className: Integer
+  - name: dataCadastro
+    tableFieldName: DATA_CADASTRO
+    required: false
+    displayName: Data cadastro
+    type: 
+      className: Date
+    dateFormat: DD/MM/YYYY              
+    mask: 99/99/9999                    
+    viewApproach:                        
+      type: datepicker                  
+  relationships:                     
+  - name: punicaos
+    type: OneToMany
+    ownerName: motorista
+    model: Punicao                       
+    displayName: Punicao
+  - name: mensagemMotoristas
+    type: OneToMany
+    ownerName: motorista
+    model: MensagemMotorista                       
+    displayName: Mensagem motorista
+  - name: bloqueioMotoristas
+    type: OneToMany
+    ownerName: motorista
+    model: BloqueioMotorista                       
+    displayName: Bloqueio motorista
+  - name: telefones
+    type: OneToMany
+    ownerName: motorista
+    model: Telefone                       
+    displayName: Telefone
+  - name: endereco             
+    type: ManyToOne
+    model: Endereco                       
+    displayName: Endereço
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 

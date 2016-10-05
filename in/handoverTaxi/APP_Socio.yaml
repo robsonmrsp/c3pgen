@@ -1,8 +1,20 @@
-- name: EmpresaTelefone
+- name: Socio
   hasOwner: false 
-  displayName: Empresa telefone
-  tableName: EMPRESA_TELEFONE
+  displayName: Sócio
+  tableName: SOCIO
   attributes:                     
+  - name: nome
+    tableFieldName: NOME
+    required: false
+    displayName: Nome
+    type: 
+      className: String
+  - name: cpf
+    tableFieldName: CPF
+    required: false
+    displayName: CPF
+    type: 
+      className: String
   relationships:                     
   - name: empresa             
     type: ManyToOne

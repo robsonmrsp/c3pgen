@@ -146,7 +146,7 @@ entities:
   - name: endereco             
     type: ManyToOne
     model: Endereco                       
-    displayName: Endereco
+    displayName: Endereço
     viewApproach:   
       type: modal 
       hiddenField: id 
@@ -369,7 +369,7 @@ entities:
   - name: endereco             
     type: ManyToOne
     model: Endereco                       
-    displayName: Endereco
+    displayName: Endereço
     viewApproach:   
       type: modal 
       hiddenField: id 
@@ -427,7 +427,7 @@ entities:
   - name: endereco             
     type: ManyToOne
     model: Endereco                       
-    displayName: Endereco
+    displayName: Endereço
     viewApproach:   
       type: modal 
       hiddenField: id 
@@ -759,7 +759,7 @@ entities:
       hiddenField: id
     displayName: Cidade
 - name: Endereco
-  displayName: Endereco
+  displayName: Endereço
   tableName: ENDERECO
   hasOwner: false
   attributes:

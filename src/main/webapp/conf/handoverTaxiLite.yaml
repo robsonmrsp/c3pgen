@@ -1,9 +1,93 @@
-appName: HandoverTaxiLite
+appName: HandoverTaxi
 skin: ace
 view: backbone
 rootPackage: br.com.invista
 corePackage: br.com.invista.core
 entities:
+- name: Area
+  hasOwner: false 
+  displayName: Area
+  tableName: AREA
+  attributes:                     
+  - name: descricao
+    tableFieldName: DESCRICAO
+    required: false
+    displayName: Descricao
+    type: 
+      className: String
+  - name: coordenadas
+    tableFieldName: COORDENADAS
+    required: false
+    displayName: Coordenadas
+    type: 
+      className: String
+  relationships:                     
+  - name: pontoAreas
+    type: OneToMany
+    ownerName: area
+    model: PontoArea                       
+    displayName: Ponto area
+- name: Atendente
+  hasOwner: false 
+  displayName: Atendente
+  tableName: ATENDENTE
+  attributes:                     
+  - name: nome
+    tableFieldName: NOME
+    required: false
+    displayName: Nome
+    type: 
+      className: String
+  - name: situacao
+    tableFieldName: SITUACAO
+    required: false
+    displayName: Situação
+    type: 
+      className: String
+  relationships:                     
+  - name: corridas
+    type: OneToMany
+    ownerName: atendente
+    model: Corrida                       
+    displayName: Corrida
+- name: BloqueioMotorista
+  hasOwner: false 
+  displayName: Bloqueio motorista
+  tableName: BLOQUEIO_MOTORISTA
+  attributes:                     
+  - name: dataHoraBloqueio
+    tableFieldName: DATA_HORA_BLOQUEIO
+    required: false
+    displayName: Data hora bloqueio
+    type: 
+      className: Datetime
+    dateFormat: DD/MM/YYYY HH:MM   
+    mask: 99/99/9999 99:99         
+    viewApproach:                  
+      type: datepicker                   
+  - name: usuarioBloqueio
+    tableFieldName: USUARIO_BLOQUEIO
+    required: false
+    displayName: Usuario bloqueio
+    type: 
+      className: Integer
+  relationships:                     
+  - name: cliente             
+    type: ManyToOne
+    model: Cliente                       
+    displayName: Cliente
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+  - name: motorista             
+    type: ManyToOne
+    model: Motorista                       
+    displayName: Motorista
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
 - name: CentroCusto
   hasOwner: false 
   displayName: Centro custo
@@ -27,10 +111,10 @@ entities:
     displayName: Observacao
     type: 
       className: String
-  - name: obseracaoTaxista
-    tableFieldName: OBSERACAO_TAXISTA
+  - name: observacaoTaxista
+    tableFieldName: OBSERVACAO_TAXISTA
     required: false
-    displayName: Obseracao taxista
+    displayName: Observacao taxista
     type: 
       className: String
   - name: inativo
@@ -42,11 +126,171 @@ entities:
     viewApproach: 
       type: check
   relationships:                     
-  - name: funcionarios
+  - name: clientes
     type: OneToMany
     ownerName: centroCusto
-    model: Funcionario                       
-    displayName: Funcionario
+    model: Cliente                       
+    displayName: Cliente
+  - name: empresa             
+    type: ManyToOne
+    model: Empresa                       
+    displayName: Empresa
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+- name: Cliente
+  hasOwner: false 
+  displayName: Cliente
+  tableName: CLIENTE
+  attributes:                     
+  - name: nome
+    tableFieldName: NOME
+    required: false
+    displayName: Nome
+    type: 
+      className: String
+  - name: referencia
+    tableFieldName: REFERENCIA
+    required: false
+    displayName: Referencia
+    type: 
+      className: String
+  - name: email
+    tableFieldName: EMAIL
+    required: false
+    displayName: Email
+    type: 
+      className: String
+  - name: tipo
+    tableFieldName: TIPO
+    required: false
+    displayName: Tipo
+    type: 
+      className: String
+  - name: statusCliente
+    tableFieldName: STATUS_CLIENTE
+    required: false
+    displayName: Status cliente
+    type: 
+      className: String
+  - name: usuarioCadastro
+    tableFieldName: USUARIO_CADASTRO
+    required: false
+    displayName: Usuario cadastro
+    type: 
+      className: Integer
+  - name: dataCadastro
+    tableFieldName: DATA_CADASTRO
+    required: false
+    displayName: Data cadastro
+    type: 
+      className: Date
+    dateFormat: DD/MM/YYYY              
+    mask: 99/99/9999                    
+    viewApproach:                        
+      type: datepicker                  
+  - name: matricula
+    tableFieldName: MATRICULA
+    required: false
+    displayName: Matricula
+    type: 
+      className: Integer
+  - name: limiteMensal
+    tableFieldName: LIMITE_MENSAL
+    required: false
+    displayName: Limite mensal
+    type: 
+      className: Double
+  - name: cnpjCpf
+    tableFieldName: CNPJ_CPF
+    required: false
+    displayName: Cnpj cpf
+    type: 
+      className: String
+  - name: altorizaEticket
+    tableFieldName: ALTORIZA_ETICKET
+    required: false
+    displayName: Altoriza eticket
+    type: 
+      className: Boolean
+    viewApproach: 
+      type: check
+  - name: observacao
+    tableFieldName: OBSERVACAO
+    required: false
+    displayName: Observacao
+    type: 
+      className: String
+  relationships:                     
+  - name: bloqueioMotoristas
+    type: OneToMany
+    ownerName: cliente
+    model: BloqueioMotorista                       
+    displayName: Bloqueio motorista
+  - name: corridas
+    type: OneToMany
+    ownerName: cliente
+    model: Corrida                       
+    displayName: Corrida
+  - name: telefones
+    type: OneToMany
+    model: Telefone                       
+    displayName: Telefone
+  - name: empresa             
+    type: ManyToOne
+    model: Empresa                       
+    displayName: Empresa
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+  - name: centroCusto             
+    type: ManyToOne
+    model: CentroCusto                       
+    displayName: Centro custo
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+  - name: endereco             
+    type: ManyToOne
+    model: Endereco                       
+    displayName: Endereço
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+- name: Contato
+  hasOwner: false 
+  displayName: Contato
+  tableName: CONTATO
+  attributes:                     
+  - name: nome
+    tableFieldName: NOME
+    required: false
+    displayName: Nome
+    type: 
+      className: String
+  - name: ddd
+    tableFieldName: DDD
+    required: false
+    displayName: DDD
+    type: 
+      className: String
+  - name: fone
+    tableFieldName: FONE
+    required: false
+    displayName: Fone
+    type: 
+      className: String
+  - name: setor
+    tableFieldName: SETOR
+    required: false
+    displayName: Setor
+    type: 
+      className: String
+  relationships:                     
   - name: empresa             
     type: ManyToOne
     model: Empresa                       
@@ -55,6 +299,55 @@ entities:
       type: modal 
       hiddenField: id 
       textField: razaoSocial 
+- name: Corrida
+  hasOwner: false 
+  displayName: Corrida
+  tableName: CORRIDA
+  attributes:                     
+  - name: dataHoraCorrida
+    tableFieldName: DATA_HORA_CORRIDA
+    required: false
+    displayName: Data hora corrida
+    type: 
+      className: Datetime
+  - name: tipoPagamento
+    tableFieldName: TIPO_PAGAMENTO
+    required: false
+    dateFormat: DD/MM/YYYY HH:MM   
+    mask: 99/99/9999 99:99         
+    viewApproach:                  
+      type: datepicker                 
+    displayName: Tipo pagamento
+    type: 
+      className: Integer
+  - name: valor
+    tableFieldName: VALOR
+    required: false
+    displayName: Valor
+    type: 
+      className: Double
+  relationships:                     
+  - name: enderecoCorridas
+    type: OneToMany
+    ownerName: corrida
+    model: EnderecoCorrida                       
+    displayName: Endereço corrida
+  - name: atendente             
+    type: ManyToOne
+    model: Atendente                       
+    displayName: Atendente
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+  - name: cliente             
+    type: ManyToOne
+    model: Cliente                       
+    displayName: Cliente
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
 - name: Empresa
   hasOwner: false 
   displayName: Empresa
@@ -63,13 +356,13 @@ entities:
   - name: cnpj
     tableFieldName: CNPJ
     required: false
-    displayName: Cnpj
+    displayName: CNPJ
     type: 
       className: String
-  - name: numeroContrato
-    tableFieldName: NUMERO_CONTRATO
+  - name: contrato
+    tableFieldName: CONTRATO
     required: true
-    displayName: Numero do Contrato
+    displayName: Contrato
     type: 
       className: String
   - name: razaoSocial
@@ -79,9 +372,9 @@ entities:
     type: 
       className: String
   - name: nomeFantasia
-    tableFieldName: NOME_FANTASIA
+    tableFieldName: FANTASIA
     required: false
-    displayName: Nome fantasia
+    displayName: Nome Fantasia
     type: 
       className: String
   - name: utilizaVoucher
@@ -92,10 +385,10 @@ entities:
       className: Boolean
     viewApproach: 
       type: check
-  - name: utilizaTicket
-    tableFieldName: UTILIZA_TICKET
+  - name: utilizaEticket
+    tableFieldName: UTILIZA_ETICKET
     required: false
-    displayName: Utiliza ticket
+    displayName: Utiliza eticket
     type: 
       className: Boolean
     viewApproach: 
@@ -112,10 +405,10 @@ entities:
     displayName: Observacao central
     type: 
       className: String
-  - name: percursoDesconto
-    tableFieldName: PERCURSO_DESCONTO
+  - name: percentualDesconto
+    tableFieldName: PERCENTUAL_DESCONTO
     required: false
-    displayName: Percurso desconto
+    displayName: Percentual desconto
     type: 
       className: Double
   - name: inscricaoMunicipal
@@ -130,10 +423,10 @@ entities:
     displayName: Inscricao estadual
     type: 
       className: String
-  - name: nf
-    tableFieldName: NF
+  - name: emiteNf
+    tableFieldName: EMITE_NF
     required: false
-    displayName: Nf
+    displayName: Emite nf
     type: 
       className: Boolean
     viewApproach: 
@@ -192,26 +485,286 @@ entities:
     displayName: Email
     type: 
       className: String
+  - name: usuarioCadastro
+    tableFieldName: USUARIO_CADASTRO
+    required: false
+    displayName: Usuario cadastro
+    type: 
+      className: Integer
+  - name: dataCadastro
+    tableFieldName: DATA_CADASTRO
+    required: false
+    displayName: Data cadastro
+    type: 
+      className: Date
+    dateFormat: DD/MM/YYYY              
+    mask: 99/99/9999                    
+    viewApproach:                        
+      type: datepicker                  
   relationships:                     
   - name: centroCustos
     type: OneToMany
     ownerName: empresa
     model: CentroCusto                       
     displayName: Centro custo
-  - name: funcionarios
+  - name: usuarios
     type: OneToMany
     ownerName: empresa
-    model: Funcionario                       
-    displayName: Funcionario
-- name: Funcionario
+    model: Usuario                       
+    displayName: Usuario
+  - name: contatos
+    type: OneToMany
+    ownerName: empresa
+    model: Contato                       
+    displayName: Contato
+  - name: socios
+    type: OneToMany
+    ownerName: empresa
+    model: Socio                       
+    displayName: Socio
+  - name: faixaVouchers
+    type: OneToMany
+    ownerName: empresa
+    model: FaixaVoucher                       
+    displayName: Faixa voucher
+  - name: clientes
+    type: OneToMany
+    ownerName: empresa
+    model: Cliente                       
+    displayName: Cliente
+  - name: telefones
+    type: OneToMany
+    model: Telefone                       
+    displayName: Telefone
+  - name: endereco             
+    type: ManyToOne
+    model: Endereco                       
+    displayName: Endereço
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+- name: Endereco
   hasOwner: false 
-  displayName: Funcionario
-  tableName: FUNCIONARIO
+  displayName: Endereço
+  tableName: ENDERECO
+  attributes:                     
+  - name: numero
+    tableFieldName: NUMERO
+    required: false
+    displayName: Numero
+    type: 
+      className: Integer
+  - name: complemento
+    tableFieldName: COMPLEMENTO
+    required: false
+    displayName: Complemento
+    type: 
+      className: String
+  - name: cep
+    tableFieldName: CEP
+    required: false
+    displayName: Cep
+    type: 
+      className: Integer
+  - name: referencia
+    tableFieldName: REFERENCIA
+    required: false
+    displayName: Referencia
+    type: 
+      className: String
+  - name: tipo
+    tableFieldName: TIPO
+    required: false
+    displayName: Tipo
+    type: 
+      className: String
+  - name: favorito
+    tableFieldName: FAVORITO
+    required: false
+    displayName: Favorito
+    type: 
+      className: Boolean
+    viewApproach: 
+      type: check
+  - name: latitude
+    tableFieldName: LATITUDE
+    required: false
+    displayName: Latitude
+    type: 
+      className: Double
+  - name: longitude
+    tableFieldName: LONGITUDE
+    required: false
+    displayName: Longitude
+    type: 
+      className: Double
+  - name: enderecoFormatado
+    tableFieldName: ENDERECO_FORMATADO
+    required: false
+    displayName: Endereço formatado
+    type: 
+      className: String
+  - name: valido
+    tableFieldName: VALIDO
+    required: false
+    displayName: Valido
+    type: 
+      className: Boolean
+    viewApproach: 
+      type: check
+  - name: logradouro
+    tableFieldName: LOGRADOURO
+    required: false
+    displayName: Logradouro
+    type: 
+      className: String
+  - name: estado
+    tableFieldName: ESTADO
+    required: false
+    displayName: Estado
+    type: 
+      className: String
+  - name: cidade
+    tableFieldName: CIDADE
+    required: false
+    displayName: Cidade
+    type: 
+      className: String
+  - name: bairro
+    tableFieldName: BAIRRO
+    required: false
+    displayName: Bairro
+    type: 
+      className: String
+- name: EnderecoCorrida
+  hasOwner: false 
+  displayName: Endereço corrida
+  tableName: ENDERECO_CORRIDA
+  attributes:                     
+  relationships:                     
+  - name: corrida             
+    type: ManyToOne
+    model: Corrida                       
+    displayName: Corrida
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+  - name: endereco             
+    type: ManyToOne
+    model: Endereco                       
+    displayName: Endereço
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+- name: FaixaVoucher
+  hasOwner: false 
+  displayName: Faixa voucher
+  tableName: FAIXA_VOUCHER
+  attributes:                     
+  - name: serie
+    tableFieldName: SERIE
+    required: false
+    displayName: Serie
+    type: 
+      className: String
+  - name: numeroInicial
+    tableFieldName: NUMERO_INICIAL
+    required: false
+    displayName: Numero inicial
+    type: 
+      className: Integer
+  - name: numeroFinal
+    tableFieldName: NUMERO_FINAL
+    required: false
+    displayName: Numero final
+    type: 
+      className: Integer
+  relationships:                     
+  - name: empresa             
+    type: ManyToOne
+    model: Empresa                       
+    displayName: Empresa
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+- name: Mensagem
+  hasOwner: false 
+  displayName: Mensagem
+  tableName: MENSAGEM
+  attributes:                     
+  - name: descricao
+    tableFieldName: DESCRICAO
+    required: false
+    displayName: Descricao
+    type: 
+      className: String
+  relationships:                     
+  - name: mensagemMotoristas
+    type: OneToMany
+    ownerName: mensagem
+    model: MensagemMotorista                       
+    displayName: Mensagem motorista
+- name: MensagemMotorista
+  hasOwner: false 
+  displayName: Mensagem motorista
+  tableName: MENSAGEM_MOTORISTA
+  attributes:                     
+  - name: dataHoraEnvio
+    tableFieldName: DATA_HORA_ENVIO
+    required: false
+    displayName: Data hora envio
+    type: 
+      className: Datetime
+    dateFormat: DD/MM/YYYY HH:MM   
+    mask: 99/99/9999 99:99         
+    viewApproach:                  
+      type: datepicker                   
+  - name: dataHoraLeitura
+    tableFieldName: DATA_HORA_LEITURA
+    required: false
+    displayName: Data hora leitura
+    type: 
+      className: Datetime
+    dateFormat: DD/MM/YYYY HH:MM   
+    mask: 99/99/9999 99:99         
+    viewApproach:                  
+      type: datepicker                   
+  relationships:                     
+  - name: motorista             
+    type: ManyToOne
+    model: Motorista                       
+    displayName: Motorista
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+  - name: mensagem             
+    type: ManyToOne
+    model: Mensagem                       
+    displayName: Mensagem
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+- name: Motorista
+  hasOwner: false 
+  displayName: Motorista
+  tableName: MOTORISTA
   attributes:                     
   - name: nome
     tableFieldName: NOME
     required: false
     displayName: Nome
+    type: 
+      className: String
+  - name: nomeReduzido
+    tableFieldName: NOME_REDUZIDO
+    required: false
+    displayName: Nome reduzido
     type: 
       className: String
   - name: email
@@ -220,48 +773,369 @@ entities:
     displayName: Email
     type: 
       className: String
-  - name: telefone
-    tableFieldName: TELEFONE
+  - name: dataNascimento
+    tableFieldName: DATA_NASCIMENTO
     required: false
-    displayName: Telefone
+    displayName: Data nascimento
+    type: 
+      className: Date
+    dateFormat: DD/MM/YYYY              
+    mask: 99/99/9999                    
+    viewApproach:                        
+      type: datepicker                  
+  - name: rg
+    tableFieldName: RG
+    required: false
+    displayName: Rg
     type: 
       className: String
-  - name: limiteMensal
-    tableFieldName: LIMITE_MENSAL
+  - name: orgaoExpedidor
+    tableFieldName: ORGAO_EXPEDIDOR
     required: false
-    displayName: Limite mensal
+    displayName: Órgão expedidor
     type: 
-      className: Double
+      className: Integer
+  - name: dataExpedicao
+    tableFieldName: DATA_EXPEDICAO
+    required: false
+    displayName: Data expedição
+    type: 
+      className: Date
+    dateFormat: DD/MM/YYYY              
+    mask: 99/99/9999                    
+    viewApproach:                        
+      type: datepicker                  
+  - name: naturalidade
+    tableFieldName: NATURALIDADE
+    required: false
+    displayName: Naturalidade
+    type: 
+      className: String
   - name: cpf
     tableFieldName: CPF
     required: false
-    displayName: Cpf
+    displayName: CPF
     type: 
       className: String
-  - name: matricula
-    tableFieldName: MATRICULA
+  - name: cnh
+    tableFieldName: CNH
     required: false
-    displayName: Matricula
+    displayName: CNH
     type: 
       className: String
-  - name: statusFuncionario
-    tableFieldName: STATUS_FUNCIONARIO
+  - name: emissaoCnh
+    tableFieldName: EMISSAO_CNH
     required: false
-    displayName: Status funcionario
+    displayName: Emissão CNH
+    type: 
+      className: Date
+    dateFormat: DD/MM/YYYY              
+    mask: 99/99/9999                    
+    viewApproach:                        
+      type: datepicker                  
+  - name: categoriaCnh
+    tableFieldName: CATEGORIA_CNH
+    required: false
+    displayName: Categoria CNH
     type: 
       className: String
-  - name: autorizadoTicket
-    tableFieldName: AUTORIZADO_TICKET
+  - name: validadeCnh
+    tableFieldName: VALIDADE_CNH
     required: false
-    displayName: Autorizado ticket
+    displayName: Validade CNH
+    type: 
+      className: Date
+    dateFormat: DD/MM/YYYY              
+    mask: 99/99/9999                    
+    viewApproach:                        
+      type: datepicker                  
+  - name: foto1
+    tableFieldName: FOTO1
+    required: false
+    displayName: Foto1
+    type: 
+      className: String
+  - name: foto2
+    tableFieldName: FOTO2
+    required: false
+    displayName: Foto2
+    type: 
+      className: String
+  - name: foto3
+    tableFieldName: FOTO3
+    required: false
+    displayName: Foto3
+    type: 
+      className: String
+  - name: statusMotorista
+    tableFieldName: STATUS_MOTORISTA
+    required: false
+    displayName: Status motorista
+    type: 
+      className: String
+  - name: mae
+    tableFieldName: MAE
+    required: false
+    displayName: Nome da Mãe
+    type: 
+      className: String
+  - name: pai
+    tableFieldName: PAI
+    required: false
+    displayName: Nome do Pai
+    type: 
+      className: String
+  - name: conjuge
+    tableFieldName: CONJUGE
+    required: false
+    displayName: Nome do Cônjuge
+    type: 
+      className: String
+  - name: referenciaPessoal1
+    tableFieldName: REFERENCIA_PESSOAL1
+    required: false
+    displayName: Referência pessoal 1
+    type: 
+      className: String
+  - name: foneReferencia1
+    tableFieldName: FONE_REFERENCIA1
+    required: false
+    displayName: Fone referência1
+    type: 
+      className: String
+  - name: parentescoReferencia1
+    tableFieldName: PARENTESCO_REFERENCIA1
+    required: false
+    displayName: Parentesco referência1
+    type: 
+      className: String
+  - name: referenciaPessoal2
+    tableFieldName: REFERENCIA_PESSOAL2
+    required: false
+    displayName: Referência pessoal2
+    type: 
+      className: String
+  - name: foneReferencia2
+    tableFieldName: FONE_REFERENCIA2
+    required: false
+    displayName: Fone referência2
+    type: 
+      className: String
+  - name: parentescoReferencia2
+    tableFieldName: PARENTESCO_REFERENCIA2
+    required: false
+    displayName: Parentesco referência2
+    type: 
+      className: String
+  - name: viatura
+    tableFieldName: VIATURA
+    required: false
+    displayName: Viatura
+    type: 
+      className: String
+  - name: marcaVeiculo
+    tableFieldName: MARCA_VEICULO
+    required: false
+    displayName: Marca veiculo
+    type: 
+      className: String
+  - name: modeloVeiculo
+    tableFieldName: MODELO_VEICULO
+    required: false
+    displayName: Modelo veiculo
+    type: 
+      className: String
+  - name: placaVeiculo
+    tableFieldName: PLACA_VEICULO
+    required: false
+    displayName: Placa veículo
+    type: 
+      className: String
+  - name: corVeiculo
+    tableFieldName: COR_VEICULO
+    required: false
+    displayName: Cor veículo
+    type: 
+      className: String
+  - name: anoVeiculo
+    tableFieldName: ANO_VEICULO
+    required: false
+    displayName: Ano veículo
+    type: 
+      className: Integer
+  - name: renavam
+    tableFieldName: RENAVAM
+    required: false
+    displayName: Renavam
+    type: 
+      className: String
+  - name: chassi
+    tableFieldName: CHASSI
+    required: false
+    displayName: Chassi
+    type: 
+      className: String
+  - name: imei
+    tableFieldName: IMEI
+    required: false
+    displayName: IMEI
+    type: 
+      className: String
+  - name: cartaoCredito
+    tableFieldName: CARTAO_CREDITO
+    required: false
+    displayName: Cartão credito
     type: 
       className: Boolean
     viewApproach: 
       type: check
-  - name: observacao
-    tableFieldName: OBSERVACAO
+  - name: cartaoDebito
+    tableFieldName: CARTAO_DEBITO
     required: false
-    displayName: Observacao
+    displayName: Cartão debito
+    type: 
+      className: Boolean
+    viewApproach: 
+      type: check
+  - name: vaucher
+    tableFieldName: VAUCHER
+    required: false
+    displayName: Vaucher
+    type: 
+      className: Boolean
+    viewApproach: 
+      type: check
+  - name: eticket
+    tableFieldName: ETICKET
+    required: false
+    displayName: Eticket
+    type: 
+      className: Boolean
+    viewApproach: 
+      type: check
+  - name: usuarioCadastro
+    tableFieldName: USUARIO_CADASTRO
+    required: false
+    displayName: Usuario cadastro
+    type: 
+      className: Integer
+  - name: dataCadastro
+    tableFieldName: DATA_CADASTRO
+    required: false
+    displayName: Data cadastro
+    type: 
+      className: Date
+    dateFormat: DD/MM/YYYY              
+    mask: 99/99/9999                    
+    viewApproach:                        
+      type: datepicker                  
+  relationships:                     
+  - name: punicaos
+    type: OneToMany
+    ownerName: motorista
+    model: Punicao                       
+    displayName: Punicao
+  - name: mensagemMotoristas
+    type: OneToMany
+    ownerName: motorista
+    model: MensagemMotorista                       
+    displayName: Mensagem motorista
+  - name: bloqueioMotoristas
+    type: OneToMany
+    ownerName: motorista
+    model: BloqueioMotorista                       
+    displayName: Bloqueio motorista
+  - name: telefones
+    type: OneToMany
+    model: Telefone                       
+    displayName: Telefone
+  - name: endereco             
+    type: ManyToOne
+    model: Endereco                       
+    displayName: Endereço
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+- name: PontoArea
+  hasOwner: false 
+  displayName: Ponto area
+  tableName: PONTO_AREA
+  attributes:                     
+  - name: latitude
+    tableFieldName: LATITUDE
+    required: false
+    displayName: Latitude
+    type: 
+      className: Double
+  - name: longitude
+    tableFieldName: LONGITUDE
+    required: false
+    displayName: Longitude
+    type: 
+      className: Double
+  relationships:                     
+  - name: area             
+    type: ManyToOne
+    model: Area                       
+    displayName: Area
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+- name: Punicao
+  hasOwner: false 
+  displayName: Punicao
+  tableName: PUNICAO
+  attributes:                     
+  - name: motivo
+    tableFieldName: MOTIVO
+    required: false
+    displayName: Motivo
+    type: 
+      className: String
+  - name: dataHoraInicio
+    tableFieldName: DATA_HORA_INICIO
+    required: false
+    displayName: Data hora inicio
+    type: 
+      className: Datetime
+  - name: dataHoraFim
+    tableFieldName: DATA_HORA_FIM
+    required: false
+    displayName: Data hora fim
+    type: 
+      className: Datetime
+  - name: qtTempo
+    tableFieldName: QT_TEMPO
+    required: false
+    displayName: Qt tempo
+    type: 
+      className: Integer
+  relationships:                     
+  - name: motorista             
+    type: ManyToOne
+    model: Motorista                       
+    displayName: Motorista
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+- name: Socio
+  hasOwner: false 
+  displayName: Sócio
+  tableName: SOCIO
+  attributes:                     
+  - name: nome
+    tableFieldName: NOME
+    required: false
+    displayName: Nome
+    type: 
+      className: String
+  - name: cpf
+    tableFieldName: CPF
+    required: false
+    displayName: CPF
     type: 
       className: String
   relationships:                     
@@ -273,14 +1147,163 @@ entities:
       type: modal 
       hiddenField: id 
       textField: nome 
-  - name: centroCusto             
+- name: Tarifa
+  hasOwner: false 
+  displayName: Tarifa
+  tableName: TARIFA
+  attributes:                     
+  - name: descricao
+    tableFieldName: DESCRICAO
+    required: false
+    displayName: Descricao
+    type: 
+      className: String
+  - name: bairroOrigem
+    tableFieldName: BAIRRO_ORIGEM
+    required: false
+    displayName: Bairro origem
+    type: 
+      className: String
+  - name: bairroDestino
+    tableFieldName: BAIRRO_DESTINO
+    required: false
+    displayName: Bairro destino
+    type: 
+      className: String
+  - name: valor
+    tableFieldName: VALOR
+    required: false
+    displayName: Valor
+    type: 
+      className: Double
+  relationships:                     
+- name: TarifaAdicional
+  hasOwner: false 
+  displayName: Tarifa adicional
+  tableName: TARIFA_ADICIONAL
+  attributes:                     
+  - name: descricao
+    tableFieldName: DESCRICAO
+    required: false
+    displayName: Descricao
+    type: 
+      className: Integer
+  - name: valor
+    tableFieldName: VALOR
+    required: false
+    displayName: Valor
+    type: 
+      className: Double
+  relationships:                     
+- name: Telefone
+  hasOwner: false 
+  displayName: Telefone
+  tableName: TELEFONE
+  attributes:                     
+  - name: ddd
+    tableFieldName: DDD
+    required: true
+    displayName: Ddd
+    type: 
+      className: String
+  - name: fone
+    tableFieldName: FONE
+    required: true
+    displayName: Fone
+    type: 
+      className: String
+  - name: favorito
+    tableFieldName: FAVORITO
+    required: false
+    displayName: Favorito
+    type: 
+      className: Boolean
+    viewApproach: 
+      type: check
+  - name: celular
+    tableFieldName: CELULAR
+    required: false
+    displayName: Celular
+    type: 
+      className: Boolean
+    viewApproach: 
+      type: check
+  - name: whatsapp
+    tableFieldName: WHATSAPP
+    required: false
+    displayName: Whatsapp
+    type: 
+      className: Boolean
+    viewApproach: 
+      type: check
+  - name: tipo
+    tableFieldName: TIPO
+    required: false
+    displayName: Tipo
+    type: 
+      className: String
+- name: Usuario
+  hasOwner: false 
+  displayName: Usuario
+  tableName: USUARIO
+  attributes:                     
+  - name: nome
+    tableFieldName: NOME
+    required: true
+    displayName: Nome
+    type: 
+      className: String
+  - name: email
+    tableFieldName: EMAIL
+    required: false
+    displayName: Email
+    type: 
+      className: String
+  - name: senha
+    tableFieldName: SENHA
+    required: true
+    displayName: Senha
+    type: 
+      className: String
+  - name: tipo
+    tableFieldName: TIPO
+    required: false
+    displayName: Tipo
+    type: 
+      className: String
+  - name: perfil
+    tableFieldName: PERFIL
+    required: false
+    displayName: Perfil
+    type: 
+      className: String
+  - name: statusUsuario
+    tableFieldName: STATUS_USUARIO
+    required: true
+    displayName: Status usuario
+    type: 
+      className: String
+  - name: dataHoraInclusao
+    tableFieldName: DATA_HORA_INCLUSAO
+    required: false
+    displayName: Data hora inclusao
+    type: 
+      className: Datetime
+  - name: usuarioinclusao
+    tableFieldName: USUARIOINCLUSAO
+    required: false
+    displayName: Usuarioinclusao
+    type: 
+      className: Integer
+  relationships:                     
+  - name: empresa             
     type: ManyToOne
-    model: CentroCusto                       
-    displayName: Centro custo
+    model: Empresa                       
+    displayName: Empresa
     viewApproach:   
-      type: combo 
-      comboId: id 
-      comboVal: nome 
+      type: modal 
+      hiddenField: id 
+      textField: nome 
 - name: Bairro
   displayName: Bairro
   tableName: BAIRRO
@@ -374,30 +1397,6 @@ entities:
       textField: nome
       hiddenField: id
     displayName: Cidade
-- name: Endereco
-  displayName: Endereco
-  tableName: ENDERECO
-  hasOwner: false
-  attributes:
-  - name: complemento
-    tableFieldName: COMPLEMENTO
-    displayName: Complemento
-    type:
-      className: String
-  - name: numero
-    tableFieldName: NUMERO
-    displayName: Número
-    type:
-      className: String
-  relationships:
-  - name: cep
-    type: ManyToOne
-    model: Cep
-    viewApproach:
-      type: modal
-      textField: cep
-      hiddenField: id
-    displayName: Cep
 - name: Estado
   displayName: Estado
   tableName: ESTADO

@@ -1,5 +1,5 @@
 - name: Endereco
-  displayName: Endereco
+  displayName: Endereço
   tableName: ENDERECO
   hasOwner: false
   attributes:

@@ -41,7 +41,3 @@
       type: multiselect
     model: Role
     displayName: Papeis
-  - name: owner
-    type: ManyToOne
-    model: Client
-    displayName: Owner

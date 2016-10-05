@@ -69,6 +69,12 @@ public class MainDBDesign {
 						fileLines.add("    viewApproach:                        ");
 						fileLines.add("      type: datepicker                  ");
 					}
+					if (DataType.DATETIME.equals(column.getDataType()) || DataType.DATETIME.equals(column.getDataType())) {
+						fileLines.add("    dateFormat: DD/MM/YYYY HH:MM             ");
+						fileLines.add("    mask: 99/99/9999 99:99                  ");
+						fileLines.add("    viewApproach:                        ");
+						fileLines.add("      type: datepicker                  ");
+					}
 
 				}
 			}

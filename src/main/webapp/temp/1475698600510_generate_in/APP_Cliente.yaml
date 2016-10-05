@@ -1,0 +1,123 @@
+- name: Cliente
+  hasOwner: false 
+  displayName: Cliente
+  tableName: CLIENTE
+  attributes:                     
+  - name: nome
+    tableFieldName: NOME
+    required: false
+    displayName: Nome
+    type: 
+      className: String
+  - name: referencia
+    tableFieldName: REFERENCIA
+    required: false
+    displayName: Referencia
+    type: 
+      className: String
+  - name: email
+    tableFieldName: EMAIL
+    required: false
+    displayName: Email
+    type: 
+      className: String
+  - name: tipo
+    tableFieldName: TIPO
+    required: false
+    displayName: Tipo
+    type: 
+      className: String
+  - name: statusCliente
+    tableFieldName: STATUS_CLIENTE
+    required: false
+    displayName: Status cliente
+    type: 
+      className: String
+  - name: usuarioCadastro
+    tableFieldName: USUARIO_CADASTRO
+    required: false
+    displayName: Usuario cadastro
+    type: 
+      className: Integer
+  - name: dataCadastro
+    tableFieldName: DATA_CADASTRO
+    required: false
+    displayName: Data cadastro
+    type: 
+      className: Date
+    dateFormat: DD/MM/YYYY              
+    mask: 99/99/9999                    
+    viewApproach:                        
+      type: datepicker                  
+  - name: matricula
+    tableFieldName: MATRICULA
+    required: false
+    displayName: Matricula
+    type: 
+      className: Integer
+  - name: limiteMensal
+    tableFieldName: LIMITE_MENSAL
+    required: false
+    displayName: Limite mensal
+    type: 
+      className: Double
+  - name: cnpjCpf
+    tableFieldName: CNPJ_CPF
+    required: false
+    displayName: Cnpj cpf
+    type: 
+      className: String
+  - name: altorizaEticket
+    tableFieldName: ALTORIZA_ETICKET
+    required: false
+    displayName: Altoriza eticket
+    type: 
+      className: Boolean
+    viewApproach: 
+      type: check
+  - name: observacao
+    tableFieldName: OBSERVACAO
+    required: false
+    displayName: Observacao
+    type: 
+      className: String
+  relationships:                     
+  - name: bloqueioMotoristas
+    type: OneToMany
+    ownerName: cliente
+    model: BloqueioMotorista                       
+    displayName: Bloqueio motorista
+  - name: corridas
+    type: OneToMany
+    ownerName: cliente
+    model: Corrida                       
+    displayName: Corrida
+  - name: telefones
+    type: OneToMany
+    ownerName: cliente
+    model: Telefone                       
+    displayName: Telefone
+  - name: empresa             
+    type: ManyToOne
+    model: Empresa                       
+    displayName: Empresa
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+  - name: centroCusto             
+    type: ManyToOne
+    model: CentroCusto                       
+    displayName: Centro custo
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+  - name: endereco             
+    type: ManyToOne
+    model: Endereco                       
+    displayName: Endereço
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 

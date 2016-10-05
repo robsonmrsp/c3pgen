@@ -1,0 +1,38 @@
+- name: Contato
+  hasOwner: false 
+  displayName: Contato
+  tableName: CONTATO
+  attributes:                     
+  - name: nome
+    tableFieldName: NOME
+    required: false
+    displayName: Nome
+    type: 
+      className: String
+  - name: ddd
+    tableFieldName: DDD
+    required: false
+    displayName: Ddd
+    type: 
+      className: Integer
+  - name: fone
+    tableFieldName: FONE
+    required: false
+    displayName: Fone
+    type: 
+      className: Integer
+  - name: setor
+    tableFieldName: SETOR
+    required: false
+    displayName: Setor
+    type: 
+      className: String
+  relationships:                     
+  - name: empresa             
+    type: ManyToOne
+    model: Empresa                       
+    displayName: Empresa
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 

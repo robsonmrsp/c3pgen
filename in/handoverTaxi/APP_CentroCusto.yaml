@@ -21,10 +21,10 @@
     displayName: Observacao
     type: 
       className: String
-  - name: obseracaoTaxista
-    tableFieldName: OBSERACAO_TAXISTA
+  - name: observacaoTaxista
+    tableFieldName: OBSERVACAO_TAXISTA
     required: false
-    displayName: Obseracao taxista
+    displayName: Observacao taxista
     type: 
       className: String
   - name: inativo
@@ -36,11 +36,11 @@
     viewApproach: 
       type: check
   relationships:                     
-  - name: funcionarios
+  - name: clientes
     type: OneToMany
     ownerName: centroCusto
-    model: Funcionario                       
-    displayName: Funcionario
+    model: Cliente                       
+    displayName: Cliente
   - name: empresa             
     type: ManyToOne
     model: Empresa                       

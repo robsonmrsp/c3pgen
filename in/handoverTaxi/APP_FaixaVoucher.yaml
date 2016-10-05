@@ -1,26 +1,26 @@
-- name: Contato
+- name: FaixaVoucher
   hasOwner: false 
-  displayName: Contato
-  tableName: CONTATO
+  displayName: Faixa voucher
+  tableName: FAIXA_VOUCHER
   attributes:                     
-  - name: nome
-    tableFieldName: NOME
+  - name: serie
+    tableFieldName: SERIE
     required: false
-    displayName: Nome
+    displayName: Serie
     type: 
       className: String
-  - name: telefone
-    tableFieldName: TELEFONE
+  - name: numeroInicial
+    tableFieldName: NUMERO_INICIAL
     required: false
-    displayName: Telefone
+    displayName: Numero inicial
     type: 
-      className: String
-  - name: setor
-    tableFieldName: SETOR
+      className: Integer
+  - name: numeroFinal
+    tableFieldName: NUMERO_FINAL
     required: false
-    displayName: Setor
+    displayName: Numero final
     type: 
-      className: String
+      className: Integer
   relationships:                     
   - name: empresa             
     type: ManyToOne
