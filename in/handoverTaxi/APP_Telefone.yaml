@@ -6,7 +6,7 @@
   - name: ddd
     tableFieldName: DDD
     required: true
-    displayName: Ddd
+    displayName: DDD
     type: 
       className: String
   - name: fone
