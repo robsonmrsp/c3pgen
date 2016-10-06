@@ -1,0 +1,20 @@
+- name: ClienteTelefone
+  hasOwner: false 
+  displayName: Cliente telefone
+  tableName: CLIENTE_TELEFONE
+  attributes:                     
+  - name: numero
+    tableFieldName: NUMERO
+    required: false
+    displayName: Numero
+    type: 
+      className: String
+  relationships:                     
+  - name: cliente             
+    type: ManyToOne
+    model: Cliente                       
+    displayName: Cliente
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 

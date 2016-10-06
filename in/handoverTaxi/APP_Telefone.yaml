@@ -1,0 +1,47 @@
+- name: Telefone
+  hasOwner: false 
+  displayName: Telefone
+  tableName: TELEFONE
+  attributes:                     
+  - name: ddd
+    tableFieldName: DDD
+    required: true
+    displayName: Ddd
+    type: 
+      className: String
+  - name: fone
+    tableFieldName: FONE
+    required: true
+    displayName: Fone
+    type: 
+      className: String
+  - name: favorito
+    tableFieldName: FAVORITO
+    required: false
+    displayName: Favorito
+    type: 
+      className: Boolean
+    viewApproach: 
+      type: check
+  - name: celular
+    tableFieldName: CELULAR
+    required: false
+    displayName: Celular
+    type: 
+      className: Boolean
+    viewApproach: 
+      type: check
+  - name: whatsapp
+    tableFieldName: WHATSAPP
+    required: false
+    displayName: Whatsapp
+    type: 
+      className: Boolean
+    viewApproach: 
+      type: check
+  - name: tipo
+    tableFieldName: TIPO
+    required: false
+    displayName: Tipo
+    type: 
+      className: String

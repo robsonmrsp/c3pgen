@@ -20,20 +20,7 @@ import org.hibernate.annotations.CascadeType;
 import org.hibernate.envers.Audited;
 
 /**
- * generated: 03/09/2015 14:51:47 Entity [name=Application,
- * displayName=Aplicação, hasOwner=true, attributes=[Attribute [name=name,
- * displayName=Nome, type=AttributeType [className=String], mask=,
- * dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute
- * [name=skin, displayName=Template, type=AttributeType [className=String],
- * mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null],
- * Attribute [name=description, displayName=Descrição, type=AttributeType
- * [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null,
- * validationRules=null], Attribute [name=rootPackage, displayName=Pacote raiz,
- * type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy,
- * placeholder=null, validationRules=null]], relationships=[Relationship
- * [name=entities, model=TheEntity,
- * viewApproach=com.mr.codegenerator.entities.ViewApproach@26f67b76,
- * type=OneToMany, displayName=Entidades, implementation=]]]
+ * generated: 03/09/2015 14:51:47
  **/
 @Entity
 @Audited

@@ -1,0 +1,16 @@
+- name: Pais
+  displayName: Pais
+  tableName: PAIS
+  hasOwner: false
+  attributes:
+  - name: codigo
+    tableFieldName: CODIGO
+    displayName: Código
+    type:
+      className: Integer
+  - name: nome
+    tableFieldName: nome
+    displayName: Nome
+    type:
+      className: String
+      

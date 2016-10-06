@@ -1,0 +1,43 @@
+- name: User
+  displayName: Usuário
+  tableName: APP_USER
+  hasOwner: false
+  attributes:
+  - name: name
+    tableFieldName: name
+    displayName: Nome
+    type:
+      className: String
+  - name: username
+    unique: true
+    required: true
+    tableFieldName: username
+    type:
+      className: String
+    displayName: Username
+  - name: password
+    required: true
+    tableFieldName: password
+    type:
+      className: String
+    displayName: Password
+  - name: enable
+    tableFieldName: enable
+    type:
+      className: Boolean
+    displayName: Ativo
+    viewApproach:
+      type: check
+  - name: image
+    tableFieldName: image
+    showInPages: false
+    type:
+      className: String
+    displayName: Imagem
+  relationships:
+  - name: roles
+    type: ManyToMany
+    viewApproach:
+      type: multiselect
+    model: Role
+    displayName: Papeis

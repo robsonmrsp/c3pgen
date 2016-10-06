@@ -11,7 +11,9 @@ import java.util.List;
 
 
 import ${corepackage}.serialization.CustomLocalDateSerializer;
+import ${corepackage}.serialization.CustomLocalDateDeserializer;
 import ${corepackage}.serialization.CustomLocalDateTimeSerializer;
+import ${corepackage}.serialization.CustomLocalDateTimeDeserializer;
 
 
 /**
@@ -24,20 +26,25 @@ public class ${entity.name} {
 	<#list entity.attributes as att>
 		<#if att.name != 'id'>
 		
-		<#if dataType(att.type.className) ==  "LocalDateTime" >
+			<#if dataType(att.type.className) ==  "LocalDateTime" >
 	@JsonSerialize(using = CustomLocalDateTimeSerializer.class)
+	@JsonDeserialize(using = CustomLocalDateTimeDeserializer.class)
 	private ${dataType(att.type.className)} ${att.name};
-		<#elseif  dataType(att.type.className) ==  "LocalDate" >
+			<#elseif  dataType(att.type.className) ==  "LocalDate" >
 	@JsonSerialize(using = CustomLocalDateSerializer.class)
+	@JsonDeserialize(using = CustomLocalDateDeserializer.class)
 	private ${dataType(att.type.className)} ${att.name};  			
-		<#elseif  dataType(att.type.className) ==  "String" >
-		<#if att.maxLen?? >
-		<#else>
-		</#if>
+			<#elseif  dataType(att.type.className) ==  "String" >
+				<#if att.maxLen?? >
+				<#else>
+				</#if>
 	private String ${att.name};		
-		<#else>
-	private ${dataType(att.type.className)} ${att.name};  			
-		</#if>  
+			<#elseif dataType(att.type.className)!=''>
+				<#if dataType(att.type.className) == 'Double'>
+	@JsonDeserialize(using = CustomDoubleDeserializer.class)
+				</#if>  
+	private ${dataType(att.type.className)} ${att.name};
+			</#if>  
 		</#if>
 	</#list>
 	</#if>

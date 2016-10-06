@@ -1,0 +1,45 @@
+- name: Corrida
+  hasOwner: false 
+  displayName: Corrida
+  tableName: CORRIDA
+  attributes:                     
+  - name: dataHoraCorrida
+    tableFieldName: DATA_HORA_CORRIDA
+    required: false
+    displayName: Data hora corrida
+    type: 
+      className: Datetime
+  - name: tipoPagamento
+    tableFieldName: TIPO_PAGAMENTO
+    required: false
+    displayName: Tipo pagamento
+    type: 
+      className: Integer
+  - name: valor
+    tableFieldName: VALOR
+    required: false
+    displayName: Valor
+    type: 
+      className: Double
+  relationships:                     
+  - name: enderecoCorridas
+    type: OneToMany
+    ownerName: corrida
+    model: EnderecoCorrida                       
+    displayName: Endereço corrida
+  - name: atendente             
+    type: ManyToOne
+    model: Atendente                       
+    displayName: Atendente
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+  - name: cliente             
+    type: ManyToOne
+    model: Cliente                       
+    displayName: Cliente
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 

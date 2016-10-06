@@ -17,6 +17,7 @@ define(function(require) {
 		urlRoot : 'rs/crud/modulos',
 
 		defaults : {
+
 			id : null,
 			nome : '',
 			packageName : '',
