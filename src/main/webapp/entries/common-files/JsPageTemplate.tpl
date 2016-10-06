@@ -16,7 +16,6 @@ define(function(require) {
 
 	var CustomNumberCell = require('views/components/CustomNumberCell');
 
-	var TemplateForm${entity.name}s = require('text!views/${firstLower(entity.name)}/tpl/Form${entity.name}Template.html');
 	var ${entity.name}Model = require('models/${entity.name}Model');
 	var ${entity.name}Collection = require('collections/${entity.name}Collection');
 	var ${entity.name}PageCollection = require('collections/${entity.name}PageCollection');
@@ -36,7 +35,7 @@ define(function(require) {
 	<#list entity.relationships as rel >
 	<#if rel.showInPages >
 		<#if rel.viewApproach.type == 'modal'>
-	var Search${firstUpper(rel.name)}Modal = require('views/modalComponents/${firstUpper(rel.model)}Modal');
+	var Modal${firstUpper(rel.name)} = require('views/modalComponents/${firstUpper(rel.model)}Modal');
 		</#if>
 		</#if>
 	</#list>
@@ -65,7 +64,7 @@ define(function(require) {
 			<#if entity.relationships??>	
 			<#list entity.relationships as rel >
 				<#if rel.viewApproach.type == 'modal'>
-			search${firstUpper(rel.name)}ModalRegion : '#${firstLower(rel.name)}Modal',
+			modal${firstUpper(rel.name)}Region : '#${firstLower(rel.name)}Modal',
 				</#if>
 			</#list>
 			</#if>			
@@ -76,7 +75,7 @@ define(function(require) {
 			<#if entity.relationships??>	
 			<#list entity.relationships as rel >
 				<#if rel.viewApproach.type == 'modal'>
-			'click #search${firstUpper(rel.name)}Modal' : 'showSearch${firstUpper(rel.name)}Modal',
+			'click #search${firstUpper(rel.name)}Modal' : 'showModal${firstUpper(rel.name)}',
 				</#if>
 			</#list>
 			</#if>
@@ -173,9 +172,9 @@ define(function(require) {
 		<#list entity.relationships as rel >
 			<#if rel.showInPages >
 			<#if rel.viewApproach.type == 'modal'>
-			this.search${firstUpper(rel.name)}Modal = new Search${firstUpper(rel.name)}Modal({
+			this.modal${firstUpper(rel.name)} = new Modal${firstUpper(rel.name)}({
 				onSelectModel : function(model) {
-					that.select${firstUpper(rel.name)}(model);
+					that.onSelect${firstUpper(rel.name)}(model);
 				},
 			});
 			</#if>
@@ -190,7 +189,7 @@ define(function(require) {
 		<#list entity.relationships as rel >
 			<#if rel.showInPages >		
 			<#if rel.viewApproach.type == 'modal'>
-				this.search${firstUpper(rel.name)}ModalRegion.show(this.search${firstUpper(rel.name)}Modal);		
+				this.modal${firstUpper(rel.name)}Region.show(this.modal${firstUpper(rel.name)});		
 			</#if>
 			</#if>
 		</#list>
@@ -425,12 +424,12 @@ define(function(require) {
 		<#list entity.relationships as rel >
 				<#if rel.showInPages >		
 			<#if rel.viewApproach.type == 'modal'>
-		showSearch${firstUpper(rel.name)}Modal : function() {
-			this.search${firstUpper(rel.name)}Modal.showPage();
+		showModal${firstUpper(rel.name)} : function() {
+			this.modal${firstUpper(rel.name)}.showPage();
 		},
 			
-		select${firstUpper(rel.name)} : function(${firstLower(rel.name)}) {
-			this.search${firstUpper(rel.name)}Modal.hidePage();	
+		onSelect${firstUpper(rel.name)} : function(${firstLower(rel.name)}) {
+			this.modal${firstUpper(rel.name)}.hidePage();	
 			this.ui.input${firstUpper(rel.name)}${firstUpper(rel.viewApproach.hiddenField)}.val(${firstLower(rel.name)}.get('${firstLower(rel.viewApproach.hiddenField)}'));
 			this.ui.input${firstUpper(rel.name)}${firstUpper(rel.viewApproach.textField)}.val(${firstLower(rel.name)}.get('${firstLower(rel.viewApproach.textField)}'));		
 		},
