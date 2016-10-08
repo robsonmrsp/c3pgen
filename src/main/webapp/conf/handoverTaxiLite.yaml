@@ -349,201 +349,208 @@ entities:
       hiddenField: id 
       textField: nome 
 - name: Empresa
-  hasOwner: false 
+  hasOwner: false
   displayName: Empresa
   tableName: EMPRESA
-  attributes:                     
+  attributes:
   - name: cnpj
     tableFieldName: CNPJ
+    mask: 99.999.999/9999-99
     required: false
     displayName: CNPJ
-    type: 
+    type:
       className: String
   - name: contrato
     tableFieldName: CONTRATO
     required: true
     displayName: Contrato
-    type: 
+    type:
       className: String
   - name: razaoSocial
     tableFieldName: RAZAO_SOCIAL
     required: false
     displayName: Razao social
-    type: 
+    type:
       className: String
   - name: nomeFantasia
     tableFieldName: FANTASIA
     required: false
     displayName: Nome Fantasia
-    type: 
+    type:
       className: String
   - name: utilizaVoucher
     tableFieldName: UTILIZA_VOUCHER
     required: false
     displayName: Utiliza voucher
-    type: 
+    type:
       className: Boolean
-    viewApproach: 
+    viewApproach:
       type: check
   - name: utilizaEticket
     tableFieldName: UTILIZA_ETICKET
     required: false
     displayName: Utiliza eticket
-    type: 
+    type:
       className: Boolean
-    viewApproach: 
+    viewApproach:
       type: check
   - name: observacaoTaxista
     tableFieldName: OBSERVACAO_TAXISTA
     required: false
     displayName: Observacao taxista
-    type: 
+    type:
       className: String
   - name: observacaoCentral
     tableFieldName: OBSERVACAO_CENTRAL
     required: false
     displayName: Observacao central
-    type: 
+    type:
       className: String
   - name: percentualDesconto
     tableFieldName: PERCENTUAL_DESCONTO
     required: false
     displayName: Percentual desconto
-    type: 
+    type:
       className: Double
   - name: inscricaoMunicipal
     tableFieldName: INSCRICAO_MUNICIPAL
     required: false
     displayName: Inscricao municipal
-    type: 
+    type:
       className: String
   - name: inscricaoEstadual
     tableFieldName: INSCRICAO_ESTADUAL
     required: false
     displayName: Inscricao estadual
-    type: 
+    type:
       className: String
   - name: emiteNf
     tableFieldName: EMITE_NF
     required: false
     displayName: Emite nf
-    type: 
+    type:
       className: Boolean
-    viewApproach: 
+    viewApproach:
       type: check
   - name: percentualIss
     tableFieldName: PERCENTUAL_ISS
     required: false
     displayName: Percentual ISS
-    type: 
+    type:
       className: Double
   - name: percentualIrf
     tableFieldName: PERCENTUAL_IRF
     required: false
     displayName: Percentual IRF
-    type: 
+    type:
       className: Double
   - name: percentualInss
     tableFieldName: PERCENTUAL_INSS
     required: false
     displayName: Percentual INSS
-    type: 
+    type:
       className: Double
   - name: diaVencimento
     tableFieldName: DIA_VENCIMENTO
     required: false
     displayName: Dia vencimento
-    type: 
+    type:
       className: Integer
   - name: percentualMotorista
     tableFieldName: PERCENTUAL_MOTORISTA
     required: false
     displayName: Percentual motorista
-    type: 
+    type:
       className: Double
   - name: banco
     tableFieldName: BANCO
     required: false
     displayName: Banco
-    type: 
+    type:
       className: Integer
   - name: agencia
     tableFieldName: AGENCIA
     required: false
     displayName: Agencia
-    type: 
+    type:
       className: String
   - name: conta
     tableFieldName: CONTA
     required: false
     displayName: Conta
-    type: 
+    type:
       className: String
   - name: email
     tableFieldName: EMAIL
     required: false
     displayName: Email
-    type: 
+    type:
       className: String
   - name: usuarioCadastro
     tableFieldName: USUARIO_CADASTRO
     required: false
     displayName: Usuario cadastro
-    type: 
+    type:
       className: Integer
   - name: dataCadastro
     tableFieldName: DATA_CADASTRO
     required: false
     displayName: Data cadastro
-    type: 
+    type:
       className: Date
-    dateFormat: DD/MM/YYYY              
-    mask: 99/99/9999                    
-    viewApproach:                        
-      type: datepicker                  
-  relationships:                     
+    dateFormat: DD/MM/YYYY
+    mask: 99/99/9999
+    viewApproach:
+      type: datepicker
+  relationships:
   - name: centroCustos
     type: OneToMany
     ownerName: empresa
-    model: CentroCusto                       
+    model: CentroCusto
     displayName: Centro custo
+    viewApproach:
+      type: multiselect
   - name: usuarios
     type: OneToMany
     ownerName: empresa
-    model: Usuario                       
+    model: Usuario
     displayName: Usuario
   - name: contatos
     type: OneToMany
     ownerName: empresa
-    model: Contato                       
+    model: Contato
     displayName: Contato
+    viewApproach:
+      type: multiselect
   - name: socios
     type: OneToMany
     ownerName: empresa
-    model: Socio                       
+    model: Socio
     displayName: Socio
+    viewApproach:
+      type: multiselect
   - name: faixaVouchers
     type: OneToMany
     ownerName: empresa
-    model: FaixaVoucher                       
+    model: FaixaVoucher
     displayName: Faixa voucher
   - name: clientes
     type: OneToMany
     ownerName: empresa
-    model: Cliente                       
+    model: Cliente
     displayName: Cliente
   - name: telefones
     type: OneToMany
-    model: Telefone                       
+    model: Telefone
     displayName: Telefone
-  - name: endereco             
+  - name: endereco
     type: ManyToOne
-    model: Endereco                       
+    model: Endereco
     displayName: Endereço
-    viewApproach:   
-      type: modal 
-      hiddenField: id 
-      textField: nome 
+    viewApproach:
+      type: modal
+      hiddenField: id
+      textField: nome
 - name: Endereco
   hasOwner: false 
   displayName: Endereço
