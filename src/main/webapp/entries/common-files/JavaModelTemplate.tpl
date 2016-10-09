@@ -64,12 +64,11 @@ import ${corepackage}.model.AbstractTimestampEntity;
 @Table(name = "${uppercase(entity.tableName!entity.name)}")
 	</#if>
 </#if>
-@SequenceGenerator(name = "${uppercase(entity.name)}_SEQUENCE", sequenceName = "${uppercase(entity.name)}_SEQUENCE")
 public class ${entity.name} extends AbstractTimestampEntity{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "${uppercase(entity.name)}_SEQUENCE")	
+	@GeneratedValue(strategy = GenerationType.AUTO)	
 	private Integer id;
 	<#if entity.attributes??>	
 	<#list entity.attributes as att>

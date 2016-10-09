@@ -9,6 +9,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
 
@@ -29,7 +30,9 @@ public class MainDBDesign {
 		new File(folderOutput).mkdirs();
 		// File source = new
 		// File("C:\\cyg\\home\\robso\\repos\\mercadodelivery\\src\\main\\resources\\c3p-files\\mercado-delivery.xml");
-		String string = "C:\\cyg\\home\\robson\\repos\\c3pgen\\in\\handoverTaxi\\HandoverTaxi.xml";
+		// String string =
+		// "C:\\cyg\\home\\robson\\repos\\c3pgen\\in\\handoverTaxi\\HandoverTaxi.xml";
+		String string = "G:\\cyg\\home\\robso\\repos\\c3pgen\\in\\handoverTaxi\\HandoverTaxi.xml";
 		File source = new File(string);
 		DBModel example = null;
 		try {
@@ -53,7 +56,19 @@ public class MainDBDesign {
 				if (column.isNotKey()) {
 					fileLines.add("  - name: " + Util.firstLowerCase(CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, column.getColName())));
 					fileLines.add("    tableFieldName: " + column.getColName().toUpperCase());
-					fileLines.add("    required: " + extracted(column));
+
+					fileLines.add("    required: " + getRequired(column));
+
+					String maxLen = Util.getMaxLen(column.getDatatypeParams());
+
+					if (StringUtils.isNotEmpty(maxLen)) {
+						fileLines.add("    maxLen: " + maxLen);
+						if (StringUtils.isNumeric(maxLen) && Integer.valueOf(maxLen) > 255) {
+							fileLines.add("    viewApproach:                        ");
+							fileLines.add("      type: textarea                  ");
+						}
+					}
+
 					// fileLines.add(" displayName: " +
 					// Util.firstUpperCaseOnly(column.getColName().toUpperCase()));
 					fileLines.add("    displayName: " + Util.firstNotNullUpper(column.getComments(), column.getColName()).replaceAll("_", " "));
@@ -75,7 +90,7 @@ public class MainDBDesign {
 						fileLines.add("    viewApproach:                        ");
 						fileLines.add("      type: datepicker                  ");
 					}
-
+					System.out.println("MainDBDesign.main()" + Util.getMaxLen(column.getDatatypeParams()));
 				}
 			}
 			fileLines.add("  relationships:                     ");
@@ -127,7 +142,7 @@ public class MainDBDesign {
 
 	}
 
-	private static String extracted(Column column) {
+	private static String getRequired(Column column) {
 		return column.getNotNull().equals("1") ? "true" : "false";
 	}
 

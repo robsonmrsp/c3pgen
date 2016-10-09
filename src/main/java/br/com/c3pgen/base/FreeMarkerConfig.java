@@ -12,6 +12,7 @@ import br.com.c3pgen.base.methods.FirstLowerCaseMethod;
 import br.com.c3pgen.base.methods.FirstUpperCaseMethod;
 import br.com.c3pgen.base.methods.IsNumericMethod;
 import br.com.c3pgen.base.methods.IsRequiredMethod;
+import br.com.c3pgen.base.methods.MaxLenMethod;
 import br.com.c3pgen.base.methods.SnakeCaseStringMethod;
 import br.com.c3pgen.base.methods.ToLowerCaseMethod;
 import br.com.c3pgen.base.methods.ToStringMethod;
@@ -52,7 +53,6 @@ public class FreeMarkerConfig {
 			String templateCorePathName = Util.currentDir() + File.separator + "entries" + File.separator + "templates" + File.separator + skin + File.separator + "appbase" + File.separator + "core" + File.separator;
 			String mobileTemplateCorePathName = Util.currentDir() + File.separator + "entries" + File.separator + "mobile-templates" + File.separator + "nativedroid" + File.separator + "appbase" + File.separator + "core" + File.separator;
 
-			
 			FileTemplateLoader ftl1 = new FileTemplateLoader(new File(commonPathName));
 			FileTemplateLoader ftlMobileCommon = new FileTemplateLoader(new File(commonMobilePathName));
 			FileTemplateLoader ftlMobileTemplateCommon = new FileTemplateLoader(new File(mobileTemplateCorePathName));
@@ -110,6 +110,7 @@ public class FreeMarkerConfig {
 		data.put("lowercase", new ToLowerCaseMethod());
 		data.put("isNumeric", new IsNumericMethod());
 		data.put("getRequiredClass", new IsRequiredMethod());
+		data.put("getMaxLen", new MaxLenMethod());
 		data.put("dataType", new DataTypeMethod());
 		data.put("package", application.getRootPackage());
 		data.put("toListString", new ToStringMethod());

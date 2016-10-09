@@ -63,18 +63,18 @@
 							<#elseif att.viewApproach.type  == 'textarea'  >
 							<div id="groupInput${firstUpper(att.name)}" class="form-group">
 								<label class="control-label" for="input${firstUpper(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}  ${att.required ? string('*','')}</label>
-								<textarea rows="3" id="input${firstUpper(att.name)}" placeholder="${firstUpper(att.displayName)!firstLower(att.name)}" value="{{${att.name}}}"  class="form-control ${getRequiredClass(att.required)}">{{${att.name}}} </textarea>
+								<textarea rows="3" id="input${firstUpper(att.name)}" placeholder="${firstUpper(att.displayName)!firstLower(att.name)}" value="{{${att.name}}}"  class="form-control ${getRequiredClass(att.required)}" ${getMaxLen(att.maxLen)}>{{${att.name}}} </textarea>
 							</div>					
 							<#else>
 							<div id="groupInput${firstUpper(att.name)}" class="form-group">
 								<label class="control-label" for="input${firstUpper(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}  ${att.required ? string('*','')}</label>
-								<input type="text" id="input${firstUpper(att.name)}" placeholder="${(att.placeholder)!''}" value="{{${firstLower(att.name)}}}" class="form-control ${getRequiredClass(att.required)}">
+								<input type="text"  id="input${firstUpper(att.name)}" placeholder="${(att.placeholder)!''}" value="{{${firstLower(att.name)}}}" class="form-control ${getRequiredClass(att.required)} " ${getMaxLen(att.maxLen)}>
 							</div>
 							</#if>
 		  				  <#else>
 							<div id="groupInput${firstUpper(att.name)}" class="form-group">
 								<label class="control-label" for="input${firstUpper(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}  ${att.required ? string('*','')}</label>
-								<input type="text" id="input${firstUpper(att.name)}" placeholder="${(att.placeholder)!''}" value="{{${firstLower(att.name)}}}" class="form-control ${getRequiredClass(att.required)}">
+								<input type="text" id="input${firstUpper(att.name)}" placeholder="${(att.placeholder)!''}" value="{{${firstLower(att.name)}}}" class="form-control ${getRequiredClass(att.required)} "  ${getMaxLen(att.maxLen)}>
 							</div>
 						  </#if>
 						</#list>		
