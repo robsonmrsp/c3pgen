@@ -283,8 +283,8 @@ public class Util {
 	}
 
 	public static String currentDir() {
-		// return currentDir;
-		return templateFolder();
+		return currentDir;
+		// return templateFolder();
 	}
 
 	public static String firstLowerCase(String verb) {
@@ -355,7 +355,7 @@ public class Util {
 
 			destFileWriter.append("appName: AghosWeb");
 			destFileWriter.append("\n");
-			destFileWriter.append("skin: b2");
+			destFileWriter.append("skin: ace");
 			destFileWriter.append("\n");
 			destFileWriter.append("view: backbone");
 			destFileWriter.append("\n");
@@ -363,9 +363,9 @@ public class Util {
 			// modulo.getNome());
 			destFileWriter.append("rootPackage: " + modulo.getPackageName());
 			destFileWriter.append("\n");
-			destFileWriter.append("corePackage: br.com.gsh.aghos.core");
+			destFileWriter.append("corePackage: br.com.gvs.core");
 			destFileWriter.append("\n");
-			destFileWriter.append("persistenceFramework : mybatis");
+			destFileWriter.append("persistenceFramework : hibernate");
 			destFileWriter.append("\n");
 			destFileWriter.append("entities:");
 			destFileWriter.append("\n");

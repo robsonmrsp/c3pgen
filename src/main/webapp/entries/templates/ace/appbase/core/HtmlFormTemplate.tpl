@@ -1,4 +1,3 @@
-<!-- generated: ${.now} -->
 <!-- ${entity.name}´s form -->
 <div class="breadcrumbs" id="breadcrumbs">
 	<ul class="breadcrumb">

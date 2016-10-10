@@ -21,6 +21,8 @@ import org.joda.time.format.DateTimeFormatter;
 public class Util {
 	private static SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
 	private static final DateTimeFormatter DATE_FORMAT = DateTimeFormat.forPattern("dd/MM/yyyy");
+	
+	private static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormat.forPattern("dd/MM/yyyy HH:mm");
 
 	public static String createHash(String event) {
 
