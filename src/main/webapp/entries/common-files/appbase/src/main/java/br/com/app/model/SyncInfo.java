@@ -21,12 +21,11 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 @Entity
 @Audited
 @Table(name = "SYNC_INFO")
-@SequenceGenerator(name = "SYNC_INFO_SEQUENCE", sequenceName = "SYNC_INFO_SEQUENCE")
 public class SyncInfo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SYNC_INFO_SEQUENCE")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
 	@Column(name = "MOBILE_CLIENT_ID")

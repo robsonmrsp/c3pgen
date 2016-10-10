@@ -264,6 +264,12 @@
 		</dependency>
 
 		<dependency>
+			<groupId>com.microsoft.sqlserver</groupId>
+			<artifactId>sqljdbc4</artifactId>
+			<version>4.0</version>
+		</dependency>
+
+		<dependency>
 			<groupId>postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<!-- Com essa linha abaixo, o arquivo de driver não foi copiado para a pasta lib da aplicação, consequentemente o war não foi completo -->
@@ -466,10 +472,17 @@
 		</plugins>
 	</build>
 	<repositories>
+		
 		<repository>
 			<id>OSGEO GeoTools repo</id>
 			<url>http://download.osgeo.org/webdav/geotools</url>
 		</repository>
+		
+		<repository>
+			<id>SqlServer repo</id>
+			<url>http://clojars.org/repo</url>
+		</repository>
+		
 		<repository>
 			<id>Hibernate Spatial repo</id>
 			<url>http://www.hibernatespatial.org/repository</url>
