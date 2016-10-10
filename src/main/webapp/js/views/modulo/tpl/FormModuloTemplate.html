@@ -21,6 +21,10 @@
 								<form role="form" id="formModulo">
 									<br>
 									<input type="hidden" id="inputId" value="{{id}}">
+									<div id="groupInputApplication" class="form-group">
+										<label class="control-label" for="inputApplication">Aplicação</label>
+										<select type="text" id="inputApplication" placeholder="Nome da Aplicação" value="{{application && application.id}}" class="form-control  validate[required]"></select>
+									</div>
 									<div id="groupInputNome" class="form-group">
 										<label class="control-label" for="inputNome">Nome do Módulo</label>
 										<input type="text" id="inputNome" placeholder="Nome do Módulo" value="{{nome}}" class="form-control  validate[required]">

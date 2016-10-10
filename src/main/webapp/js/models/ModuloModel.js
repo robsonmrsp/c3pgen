@@ -19,6 +19,7 @@ define(function(require) {
 		defaults : {
 
 			id : null,
+			application : null,
 			nome : '',
 			packageName : '',
 			items : null,
