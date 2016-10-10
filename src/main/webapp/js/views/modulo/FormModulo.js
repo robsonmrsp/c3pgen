@@ -11,6 +11,7 @@ define(function(require) {
 	var Combobox = require('views/components/Combobox');
 	var FrameItemModulo = require('views/itemModulo/FrameItemModulo');
 	var ItemModuloCollection = require('collections/ItemModuloCollection');
+	var ApplicationCollection = require('collections/ApplicationCollection');
 	var PageHelpGenerateYaml = require('views/helpGenerateYaml/PageHelpGenerateYaml');
 
 	var TemplateFormModulos = require('text!views/modulo/tpl/FormModuloTemplate.html');
@@ -45,6 +46,7 @@ define(function(require) {
 		ui : {
 			inputId : '#inputId',
 			inputNome : '#inputNome',
+			inputApplication : '#inputApplication',
 			inputPackageName : '#inputPackageName',
 
 			form : '#formModulo',
@@ -71,6 +73,14 @@ define(function(require) {
 					isOverflown : false,
 					validationEventTrigger : "change"
 				});
+
+				this.comboApplication = new Combobox({
+					el : this.ui.inputApplication,
+					comboId : 'id',
+					comboVal : 'name',
+					collectionEntity : ApplicationCollection,
+				});
+
 			});
 		},
 
@@ -153,6 +163,7 @@ define(function(require) {
 				nome : util.escapeById('inputNome'),
 				packageName : util.escapeById('inputPackageName'),
 				items : that.itemCollection.toJSON(),
+				application : that.comboApplication.getJsonValue(),
 
 			});
 			return modulo;

@@ -284,6 +284,7 @@ public class Util {
 
 	public static String currentDir() {
 		return currentDir;
+		
 		// return templateFolder();
 	}
 
@@ -353,19 +354,19 @@ public class Util {
 		StringBuilder destFileWriter = new StringBuilder();
 		try {
 
-			destFileWriter.append("appName: AghosWeb");
+			destFileWriter.append("appName: " + modulo.getApplication().getAppName());
 			destFileWriter.append("\n");
-			destFileWriter.append("skin: ace");
+			destFileWriter.append("skin: " + modulo.getApplication().getSkin());
 			destFileWriter.append("\n");
-			destFileWriter.append("view: backbone");
+			destFileWriter.append("view: " + modulo.getApplication().getView());
 			destFileWriter.append("\n");
 			// destFileWriter.append("rootPackage: br.com.gsh.aghos."+
 			// modulo.getNome());
 			destFileWriter.append("rootPackage: " + modulo.getPackageName());
 			destFileWriter.append("\n");
-			destFileWriter.append("corePackage: br.com.gvs.core");
+			destFileWriter.append("corePackage: " + modulo.getApplication().getCorePackage());
 			destFileWriter.append("\n");
-			destFileWriter.append("persistenceFramework : hibernate");
+			destFileWriter.append("persistenceFramework : " + modulo.getApplication().getPersistenceFramework());
 			destFileWriter.append("\n");
 			destFileWriter.append("entities:");
 			destFileWriter.append("\n");
