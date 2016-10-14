@@ -45,6 +45,7 @@ public class AttributeType extends AbstractTimestampEntity {
 	public static final AttributeType DOUBLE = new AttributeType("Double");
 	public static final AttributeType DATE = new AttributeType("Date");
 	public static final AttributeType DATETIME = new AttributeType("DateTime");
+	public static final AttributeType TIMESTAMP = new AttributeType("DateTime");
 	public static final AttributeType BOOLEAN = new AttributeType("Boolean");
 	static {
 		map.put("String", STRING);
@@ -52,6 +53,8 @@ public class AttributeType extends AbstractTimestampEntity {
 		map.put("Double", DOUBLE);
 		map.put("Date", DATE);
 		map.put("DateTime", DATETIME);
+		map.put("Datetime", DATETIME);
+		map.put("timestamp", DATETIME);
 		map.put("Boolean", BOOLEAN);
 
 	}

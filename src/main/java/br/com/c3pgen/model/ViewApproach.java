@@ -58,9 +58,7 @@ public class ViewApproach extends AbstractTimestampEntity {
 
 	@Column(name = "HIDDEN_FIELD")
 	private String hiddenField;
-	
-	
-	
+
 	@ManyToOne
 	@JoinColumn(name = "id_client")
 	private Client owner;
@@ -74,6 +72,23 @@ public class ViewApproach extends AbstractTimestampEntity {
 		approach.setType("combo");
 		approach.setComboId(comboId);
 		approach.setComboVal(comboVal);
+		return approach;
+	}
+
+	public static ViewApproach textarea() {
+		ViewApproach approach = new ViewApproach();
+		approach.setType("textarea");
+		return approach;
+	}
+	public static ViewApproach check() {
+		ViewApproach approach = new ViewApproach();
+		approach.setType("check");
+		return approach;
+	}
+
+	public static ViewApproach datepicker() {
+		ViewApproach approach = new ViewApproach();
+		approach.setType("datepicker");
 		return approach;
 	}
 
@@ -117,10 +132,10 @@ public class ViewApproach extends AbstractTimestampEntity {
 		if (type == null) {
 			setType("NONE");
 		}
-		if(type.equalsIgnoreCase("DateTimepicker")){
+		if (type.equalsIgnoreCase("DateTimepicker")) {
 			setType("datepicker");
 		}
-		
+
 		return type.toLowerCase();
 	}
 
@@ -167,5 +182,7 @@ public class ViewApproach extends AbstractTimestampEntity {
 	public void setHiddenField(String hiddenField) {
 		this.hiddenField = hiddenField;
 	}
+
+	
 
 }

@@ -42,6 +42,8 @@ require.config({
 		'selectize' : '../vendor/selectize/js/standalone/selectize',
 		'i18next' : '../vendor/i18next-3.4.1/i18next',
 		'i18nextJquery' : '../vendor/jquery-i18next-1.1.0/jquery-i18next',
+		
+		'jqueryForm' : '../vendor/jquery.form/jquery.form',
 	},
 	shim : {
 		'underscore' : {
@@ -131,6 +133,8 @@ require.config({
 		'jqueryGritter' : [ 'jquery' ],
 		'selectize' : [ 'jquery' ],
 		'i18nextJquery' : [ 'jquery' ],
+		
+		'jqueryForm' : [ 'jquery' ],
 	},
 	wrapShim : true,
 });

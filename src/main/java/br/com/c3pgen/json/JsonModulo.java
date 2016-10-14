@@ -22,6 +22,7 @@ public class JsonModulo implements Serializable {
 	private String nome;
 	private String packageName;
 	private ArrayList<JsonItemModulo> items = new ArrayList<JsonItemModulo>();		
+	private JsonApplication application = new JsonApplication();
 	
 	public  JsonModulo() {
 		
@@ -67,6 +68,14 @@ public class JsonModulo implements Serializable {
 
 	public void setPackageName(String packageName) {
 		this.packageName = packageName;
+	}
+
+	public JsonApplication getApplication() {
+		return application;
+	}
+
+	public void setApplication(JsonApplication application) {
+		this.application = application;
 	}
 	
 }

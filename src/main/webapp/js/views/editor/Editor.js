@@ -88,9 +88,34 @@ define(function(require) {
 		},
 
 		addItemModulo : function() {
+			var yaml = [];
+			yaml.push('- name: NomeClasse');
+			yaml.push('\n');
+			yaml.push('  hasOwner: false');
+			yaml.push('\n');
+			yaml.push('  displayName: Nome da Classe');
+			yaml.push('\n');
+			yaml.push('  tableName: NOME_CLASSE');
+			yaml.push('\n');
+			yaml.push('  attributes:');
+			yaml.push('\n');
+			yaml.push('  - name: nome');
+			yaml.push('\n');
+			yaml.push('    tableFieldName: NOME');
+			yaml.push('\n');
+			yaml.push('    basicSearch : true');
+			yaml.push('\n');
+			yaml.push('    required: true');
+			yaml.push('\n');
+			yaml.push('    displayName: Nome');
+			yaml.push('\n');
+			yaml.push('    type:');
+			yaml.push('\n');
+			yaml.push('      className: String');
+			yaml.push('\n');
 			this.itemsModelo.add(new ItemModulo({
 				name : 'novaClasse',
-				yamlContent : '- name: novaClasse'
+				yamlContent : yaml.join(''),
 			}));
 		},
 

@@ -17,7 +17,7 @@ define(function(require) {
 		events : {
 			'click #btnImportApplication' : 'importApplication',
 			'click #btnConnectionTest' : 'connectionTest',
-
+			'change #inputUploadXml' : 'uploadXml',
 		},
 
 		regions : {
@@ -33,6 +33,7 @@ define(function(require) {
 			inputDatabaseColumnNameExceptions : '#inputDatabaseColumnNameExceptions',
 			inputSupressPrefix : '#inputSupressPrefix',
 			modalScreen : '.modal',
+			inputUploadXml : '#inputUploadXml',
 			form : '.formConfig',
 		},
 
@@ -47,6 +48,25 @@ define(function(require) {
 					isOverflown : false,
 					validationEventTrigger : "change"
 				});
+
+				$('.showhide').click(function(event) {
+					event.preventDefault();
+					var hpanel = $(this).closest('div.hpanel');
+					var icon = $(this).find('i:first');
+					var body = hpanel.find('div.panel-body');
+					var footer = hpanel.find('div.panel-footer');
+					body.slideToggle(100);
+					footer.slideToggle(50);
+
+					// Toggle icon from up to down
+					icon.toggleClass('fa-chevron-up').toggleClass('fa-chevron-down');
+					hpanel.toggleClass('').toggleClass('panel-collapse');
+					setTimeout(function() {
+						hpanel.resize();
+						hpanel.find('[id^=map-]').resize();
+					}, 50);
+				});
+
 			});
 		},
 
@@ -55,6 +75,18 @@ define(function(require) {
 				promptPosition : "topLeft",
 				isOverflown : false,
 				validationEventTrigger : "change"
+			});
+		},
+
+		uploadXml : function() {
+			$('.form-upload-xml').ajaxSubmit({
+				success : function(_model, _resp) {
+					that.onExtract.call(that.context, _model);
+				},
+				error : function(_model, _resp) {
+					util.showMessage('error', "Não foi possivel extrair a base de dados");
+					console.log('não extraiu', _resp.responseJSON.errorMessage);
+				},
 			});
 		},
 

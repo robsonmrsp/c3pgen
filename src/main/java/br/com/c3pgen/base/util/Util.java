@@ -41,6 +41,17 @@ public class Util {
 	private static final DateTimeFormatter DATE_FORMAT = DateTimeFormat.forPattern("dd/MM/yyyy");
 	private static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormat.forPattern("dd/MM/yyyy HH:mm");
 
+	public static String templateFolder() {
+		// return "G:\\cyg\\home\\robso\\repos\\c3pgen\\src\\main\\webapp";
+		return "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp";
+	}
+
+	public static String currentDir() {
+		return currentDir;
+
+		// return templateFolder();
+	}
+
 	private static String currentDir = Paths.get(".").toAbsolutePath().toString();
 
 	public static void setCurrentDir(String a) {
@@ -275,17 +286,6 @@ public class Util {
 
 		return LocalDate.fromDateFields(rand);
 
-	}
-
-	public static String templateFolder() {
-		// return "G:\\cyg\\home\\robso\\repos\\c3pgen\\src\\main\\webapp";
-		return "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp";
-	}
-
-	public static String currentDir() {
-		// return currentDir;
-
-		return templateFolder();
 	}
 
 	public static String firstLowerCase(String verb) {
@@ -538,7 +538,7 @@ public class Util {
 	}
 
 	public static String getMaxLen(String datatypeParams) {
-		String len = datatypeParams.replace("(", "").replaceAll(")", "");
+		String len = datatypeParams.replaceAll("[()]", "");
 
 		if (len.contains(",")) {
 			return "";

@@ -16,6 +16,7 @@ import org.simpleframework.xml.core.Persister;
 import com.google.common.base.CaseFormat;
 
 import br.com.c3pgen.base.util.Util;
+import br.com.c3pgen.model.ApplicationEntity;
 
 public class MainDBDesign {
 
@@ -51,6 +52,9 @@ public class MainDBDesign {
 			fileLines.add("  displayName: " + Util.firstUpperCaseOnly(table.getTablename()).replaceAll("_", " "));
 			fileLines.add("  tableName: " + table.getTablename().toUpperCase());
 			fileLines.add("  attributes:                     ");
+			
+			ApplicationEntity applicationEntity = new ApplicationEntity(nomeDaClasse, nomeDaClasse);
+			
 			Collection<Column> colunas = table.getColumns();
 			for (Column column : colunas) {
 				if (column.isNotKey()) {

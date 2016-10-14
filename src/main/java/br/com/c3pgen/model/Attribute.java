@@ -89,18 +89,17 @@ public class Attribute extends AbstractTimestampEntity {
 		this.owner = owner;
 	}
 
-	public Attribute(String name, String tableFieldName, Boolean required, Boolean unique, Boolean showInPages, AttributeType type) {
-		super();
-		this.name = name;
-		this.tableFieldName = tableFieldName;
+	public Attribute() {
+
+	}
+
+	public Attribute(String attributeName, String dataBaseFieldName, Boolean required, boolean unique, boolean showInPages, AttributeType type) {
+		this.name = attributeName;
+		this.tableFieldName = dataBaseFieldName;
 		this.required = required;
 		this.unique = unique;
 		this.showInPages = showInPages;
 		this.type = type;
-	}
-
-	public Attribute() {
-
 	}
 
 	public Integer getId() {

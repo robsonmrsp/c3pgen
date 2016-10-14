@@ -138,10 +138,9 @@ public class ApplicationServiceImp implements ApplicationService {
 		// options.addExclusionColumnNamePatterns("(.*)user_change(.*)");
 		// options.addExclusionColumnNamePatterns("(.*)user_create(.*)");
 		//
-		// options.addExclusionTableNamePatterns("(.*)AUD", "(.*)aud");
-		// options.addExclusionTableNamePatterns("public.RBAC(.*)", "public.Rbac(.*)", "public.rbac(.*)");
-		//
-		// options.addExclusionTableNamePatterns("(.*)AUD", "(.*)aud", "(.*)revinfo(.*)");
+		 options.addExclusionTableNamePatterns("(.*)AUD", "(.*)aud");
+		 options.addExclusionTableNamePatterns("public.RBAC(.*)", "public.Rbac(.*)", "public.rbac(.*)");
+		 options.addExclusionTableNamePatterns("(.*)AUD", "(.*)aud", "(.*)revinfo(.*)");
 
 		options.setPrefixToSupress(supressPrefix);
 

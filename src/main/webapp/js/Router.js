@@ -109,7 +109,7 @@ define(function(require) {
 	var PageHelpGenerateYaml = require('views/helpGenerateYaml/PageHelpGenerateYaml');
 
 	var FormApplicationModulo = require('views/applicationModulo/FormApplicationModulo');
-	
+
 	util.NProgress.setBlockerPanel('block_panel');
 
 	// REMOVER ESSA GAMBA NO FUTURO
@@ -1621,14 +1621,28 @@ define(function(require) {
 				url : 'app/modulos'
 			});
 		},
-		
+
 		newApplicationModulo : function(idApplication) {
 			util.markActiveItem('modulos');
-			var formModulo = new FormApplicationModulo({
-				appId : idApplication,
-				model : new ModuloModel(),
+			var that = this;
+
+			var model = new ApplicationModel({
+				id : idApplication,
+			})
+
+			model.fetch({
+				success : function(model) {
+					var formModulo = new FormApplicationModulo({
+						application : model.toJSON(),
+						model : new ModuloModel(),
+					});
+					that.App.mainRegion.show(formModulo);
+				},
+				error : function(x, y, z) {
+					console.error(x, y, z);
+				}
 			});
-			this.App.mainRegion.show(formModulo);
+
 			util.breadcrumb({
 				iconClass : 'fa-desktop',
 				itemLabel : 'Módulo',

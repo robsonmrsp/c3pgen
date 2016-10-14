@@ -1,7 +1,11 @@
 package br.com.c3pgen.rs;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.util.List;
 
+import javax.activation.DataHandler;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
@@ -18,6 +22,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
+import org.apache.commons.io.IOUtils;
+import org.apache.cxf.jaxrs.ext.multipart.Attachment;
 import org.apache.log4j.Logger;
 
 import br.com.c3pgen.base.ApplicationValidatorMessages;
@@ -34,6 +40,7 @@ import br.com.c3pgen.model.filter.FilterApplication;
 import br.com.c3pgen.model.filter.FilterExtrationTools;
 import br.com.c3pgen.persistence.pagination.Pager;
 import br.com.c3pgen.persistence.pagination.PaginationParams;
+import br.com.c3pgen.reverseengineering.DBDesignerImporter;
 import br.com.c3pgen.reverseengineering.crawler.DBImportResult;
 import br.com.c3pgen.rs.exception.ValidationException;
 import br.com.c3pgen.security.SpringSecurityUserContext;
@@ -340,6 +347,43 @@ public class ApplicationResources {
 			LOGGER.error(message, e);
 			return Response.serverError().entity(new JsonError(message, id)).build();
 		}
+	}
+
+	@POST
+	@Path("/upload/xml")
+	@Consumes(MediaType.MULTIPART_FORM_DATA)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response uploadFile(List<Attachment> attachments, @Context HttpServletRequest httpServletRequest) {
+		DataUpload dataUpload = null;
+		String uploadFolder = httpServletRequest.getServletContext().getRealPath("/uploads");
+		for (Attachment attr : attachments) {
+			DataHandler handler = attr.getDataHandler();
+			String nameFile = "";
+			try {
+				InputStream stream = handler.getInputStream();
+
+				nameFile = System.currentTimeMillis() + "_" + Util.removeNonUnicodeCharAndSpaces(handler.getName());
+
+				String folder = uploadFolder + File.separator;
+
+				File dbdesignerXmlFile = new File(folder + nameFile);
+
+				FileOutputStream fileOutputStream = new FileOutputStream(dbdesignerXmlFile);
+
+				IOUtils.copy(stream, fileOutputStream);
+
+				IOUtils.closeQuietly(stream);
+				IOUtils.closeQuietly(fileOutputStream);
+
+				Application extractApplication = DBDesignerImporter.extractApplication(dbdesignerXmlFile);
+
+				return Response.ok().entity(extractApplication).build();
+			} catch (Exception e) {
+				e.printStackTrace();
+				return Response.serverError().entity(new JsonError("Problema durante upload da mídia [ " + nameFile + " ] error [" + e.getMessage() + "]", nameFile)).build();
+			}
+		}
+		return Response.ok(dataUpload).build();
 	}
 }
 // Ao criar um relacionamento, será criado um model que guarda tudo aquilo

@@ -9,12 +9,10 @@ define(function(require) {
 	var Backgrid = require('adapters/backgrid-adapter');
 	var util = require('utilities/utils');
 	var Combobox = require('views/components/Combobox');
-//	var FrameItemModulo = require('views/itemModulo/FrameItemModulo');
+	// var FrameItemModulo = require('views/itemModulo/FrameItemModulo');
 	var ItemModuloCollection = require('collections/ItemModuloCollection');
 	var PageHelpGenerateYaml = require('views/helpGenerateYaml/PageHelpGenerateYaml');
-	
-	
-	
+
 	var FormApplicationModulo = require('text!views/applicationModulo/tpl/FormApplicationModulo.html');
 
 	var ModuloModel = require('models/ModuloModel');
@@ -41,7 +39,7 @@ define(function(require) {
 		events : {
 			'click 	.save' : 'save',
 			'click 	.generateModule' : 'generateModulo',
-//			'click 	.open-page-help' : 'openPageHelpGenerateYaml',
+			// 'click .open-page-help' : 'openPageHelpGenerateYaml',
 			'click 	.saveAndContinue' : 'saveAndContinue',
 		},
 
@@ -53,22 +51,10 @@ define(function(require) {
 			form : '#formModulo',
 		},
 
-		initialize : function() {
+		initialize : function(options) {
 			var that = this;
-//			this.itemCollection = new ItemModuloCollection(this.model && this.model.get('items'));
-//
-//			this.itemsView = new FrameItemModulo({
-//				collection : this.itemCollection,
-//			});
-
-//			this.pageHelpGenerateYaml = new PageHelpGenerateYaml({
-//				context : that,
-//				onExtract : that.loadResultTables,
-//			});
-
+			this.application = options.application;
 			this.on('show', function() {
-//				this.itemsRegion.show(this.itemsView);
-//				this.pageHelpGenerateYamlRegion.show(this.pageHelpGenerateYaml);
 				this.ui.form.validationEngine('attach', {
 					promptPosition : "topLeft",
 					isOverflown : false,
@@ -153,9 +139,9 @@ define(function(require) {
 			var modulo = that.model;
 			modulo.set({
 				id : util.escapeById('inputId') || null,
+				application : that.application,
 				nome : util.escapeById('inputNome'),
 				packageName : util.escapeById('inputPackageName'),
-				items : that.itemCollection.toJSON(),
 
 			});
 			return modulo;
