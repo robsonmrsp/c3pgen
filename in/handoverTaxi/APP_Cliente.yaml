@@ -1,122 +1,150 @@
 - name: Cliente
-  hasOwner: false 
+  hasOwner: false
   displayName: Cliente
   tableName: CLIENTE
-  attributes:                     
+  attributes:
   - name: nome
     tableFieldName: NOME
     required: false
+    maxLen: 200
     displayName: Nome
-    type: 
-      className: String
-  - name: referencia
-    tableFieldName: REFERENCIA
-    required: false
-    displayName: Referencia
-    type: 
+    type:
       className: String
   - name: email
     tableFieldName: EMAIL
     required: false
-    displayName: Email
-    type: 
+    maxLen: 100
+    displayName: E-mail
+    type:
+      className: String
+  - name: senha
+    tableFieldName: SENHA
+    required: false
+    maxLen: 100
+    displayName: Senha
+    type:
       className: String
   - name: tipo
     tableFieldName: TIPO
     required: false
+    maxLen: 10
     displayName: Tipo
-    type: 
+    type:
       className: String
-  - name: statusCliente
-    tableFieldName: STATUS_CLIENTE
+  - name: inativo
+    tableFieldName: INATIVO
     required: false
-    displayName: Status cliente
-    type: 
-      className: String
+    displayName: Inativo
+    type:
+      className: Boolean
+    viewApproach:
+      type: check
   - name: usuarioCadastro
     tableFieldName: USUARIO_CADASTRO
     required: false
     displayName: Usuario cadastro
-    type: 
+    showInPages: false
+    type:
       className: Integer
   - name: dataCadastro
     tableFieldName: DATA_CADASTRO
     required: false
     displayName: Data cadastro
-    type: 
+    showInPages: false
+    type:
       className: Date
-    dateFormat: DD/MM/YYYY              
-    mask: 99/99/9999                    
-    viewApproach:                        
-      type: datepicker                  
+    dateFormat: DD/MM/YYYY
+    mask: 99/99/9999
+    viewApproach:
+      type: datepicker
   - name: matricula
     tableFieldName: MATRICULA
     required: false
     displayName: Matricula
-    type: 
+    showInPages: false
+    type:
       className: Integer
   - name: limiteMensal
     tableFieldName: LIMITE_MENSAL
     required: false
     displayName: Limite mensal
-    type: 
+    showInPages: false
+    type:
       className: Double
   - name: cnpjCpf
     tableFieldName: CNPJ_CPF
     required: false
-    displayName: Cnpj cpf
-    type: 
+    maxLen: 18
+    displayName: CNPJ CPF
+    showInPages: false
+    type:
       className: String
-  - name: altorizaEticket
-    tableFieldName: ALTORIZA_ETICKET
+  - name: cnpj
+    tableFieldName: CNPJ
     required: false
-    displayName: Altoriza eticket
-    type: 
+    maxLen: 18
+    mask: 99.999.999/9999-99
+    displayName: CNPJ
+    showInPages: false
+    type:
+      className: String
+  - name: cpf
+    tableFieldName: CPF
+    required: false
+    maxLen: 14
+    mask: 999.999.999-99
+    displayName: CPF
+    showInPages: false
+    type:
+      className: String
+  - name: autorizaEticket
+    tableFieldName: AUTORIZA_ETICKET
+    required: false
+    displayName: Autoriza eticket
+    showInPages: false
+    type:
       className: Boolean
-    viewApproach: 
+    viewApproach:
       type: check
   - name: observacao
     tableFieldName: OBSERVACAO
     required: false
-    displayName: Observacao
-    type: 
+    maxLen: 500
+    viewApproach:
+      type: textarea
+    displayName: Observação
+    showInPages: false
+    type:
       className: String
-  relationships:                     
-  - name: bloqueioMotoristas
+  relationships:
+  - name: clienteEnderecos
     type: OneToMany
     ownerName: cliente
-    model: BloqueioMotorista                       
-    displayName: Bloqueio motorista
-  - name: corridas
+    model: ClienteEndereco
+    displayName: Cliente endereco
+  - name: clienteFones
     type: OneToMany
     ownerName: cliente
-    model: Corrida                       
-    displayName: Corrida
-  - name: telefones
+    model: ClienteFone
+    displayName: Cliente fone
+  - name: motoristaBloqueados
     type: OneToMany
-    model: Telefone                       
-    displayName: Telefone
-  - name: empresa             
+    ownerName: cliente
+    model: MotoristaBloqueado
+    displayName: Motorista bloqueado
+  - name: empresa
     type: ManyToOne
-    model: Empresa                       
+    model: Empresa
     displayName: Empresa
-    viewApproach:   
-      type: modal 
-      hiddenField: id 
-      textField: nome 
-  - name: centroCusto             
+    viewApproach:
+      type: modal
+      hiddenField: id
+      textField: nome
+  - name: centroCusto
     type: ManyToOne
-    model: CentroCusto                       
+    model: CentroCusto
     displayName: Centro custo
-    viewApproach:   
-      type: modal 
-      hiddenField: id 
-      textField: nome 
-  - name: endereco             
-    type: ManyToOne
-    model: Endereco                       
-    displayName: Endereço
-    viewApproach:   
-      type: modal 
-      hiddenField: id 
-      textField: nome 
+    viewApproach:
+      type: modal
+      hiddenField: id
+      textField: nome

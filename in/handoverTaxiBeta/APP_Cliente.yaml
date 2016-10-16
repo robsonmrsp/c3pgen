@@ -78,7 +78,7 @@
   - name: observacao
     tableFieldName: OBSERVACAO
     required: false
-    displayName: Observacao
+    displayName: Observação
     type: 
       className: String
   relationships:                     
@@ -94,7 +94,6 @@
     displayName: Corrida
   - name: telefones
     type: OneToMany
-    ownerName: cliente
     model: Telefone                       
     displayName: Telefone
   - name: empresa             

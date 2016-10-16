@@ -1,6 +1,6 @@
 - name: Socio
   hasOwner: false 
-  displayName: Socio
+  displayName: Sócio
   tableName: SOCIO
   attributes:                     
   - name: nome
@@ -12,7 +12,7 @@
   - name: cpf
     tableFieldName: CPF
     required: false
-    displayName: Cpf
+    displayName: CPF
     type: 
       className: String
   relationships:                     

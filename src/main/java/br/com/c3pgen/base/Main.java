@@ -35,11 +35,15 @@ public class Main {
 		// generatoToInput("gamification", new
 		// File("G:\\cyg\\home\\robso\\repos\\pizza\\in\\gamification"));
 
-//		generatoToInput("qualidade4", new File("C:\\cyg\\home\\robson\\repos\\c3pgen\\in\\qualidade4"));
-//		generatoToInput("qualidade3", new File("G:\\cyg\\home\\robso\\repos\\c3pgen\\in\\qualidade3"));
-		
-//		generatoToInput("handoverTaxi", new File("G:\\cyg\\home\\robso\\repos\\c3pgen\\in\\handoverTaxi"));
-		generatoToInput("handoverTaxiLite", new File("C:\\cyg\\home\\robson\\repos\\c3pgen\\in\\handoverTaxiLite"));
+		// generatoToInput("qualidade4", new
+		// File("C:\\cyg\\home\\robson\\repos\\c3pgen\\in\\qualidade4"));
+		// generatoToInput("qualidade3", new
+		// File("G:\\cyg\\home\\robso\\repos\\c3pgen\\in\\qualidade3"));
+
+		// generatoToInput("handoverTaxi", new
+		// File("G:\\cyg\\home\\robso\\repos\\c3pgen\\in\\handoverTaxi"));
+		// generatoToInput("handoverTaxi", new
+		// File("G:\\cyg\\home\\robso\\repos\\c3pgen\\in\\handoverTaxi"));
 		//
 	}
 

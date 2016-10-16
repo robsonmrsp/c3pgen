@@ -1,50 +1,60 @@
-- name: Usuario
+- name: HdUsuario
   hasOwner: false 
-  displayName: Usuario
-  tableName: USUARIO
+  displayName: Hd usuario
+  tableName: HD_USUARIO
   attributes:                     
   - name: nome
     tableFieldName: NOME
     required: true
+    maxLen: 100
     displayName: Nome
     type: 
       className: String
   - name: email
     tableFieldName: EMAIL
     required: false
+    maxLen: 100
     displayName: Email
     type: 
       className: String
   - name: senha
     tableFieldName: SENHA
     required: true
+    maxLen: 100
     displayName: Senha
     type: 
       className: String
   - name: tipo
     tableFieldName: TIPO
     required: false
+    maxLen: 20
     displayName: Tipo
     type: 
       className: String
   - name: perfil
     tableFieldName: PERFIL
     required: false
+    maxLen: 20
     displayName: Perfil
     type: 
       className: String
   - name: statusUsuario
     tableFieldName: STATUS_USUARIO
     required: true
+    maxLen: 10
     displayName: Status usuario
     type: 
       className: String
-  - name: dataHoraInclusao
-    tableFieldName: DATA_HORA_INCLUSAO
+  - name: datainclusao
+    tableFieldName: DATAINCLUSAO
     required: false
-    displayName: Data hora inclusao
+    displayName: Datainclusao
     type: 
       className: Datetime
+    dateFormat: DD/MM/YYYY HH:MM             
+    mask: 99/99/9999 99:99                  
+    viewApproach:                        
+      type: datepicker                  
   - name: usuarioinclusao
     tableFieldName: USUARIOINCLUSAO
     required: false

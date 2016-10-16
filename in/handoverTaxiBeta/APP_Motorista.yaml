@@ -40,13 +40,13 @@
   - name: orgaoExpedidor
     tableFieldName: ORGAO_EXPEDIDOR
     required: false
-    displayName: Orgao expedidor
+    displayName: Órgão expedidor
     type: 
       className: Integer
   - name: dataExpedicao
     tableFieldName: DATA_EXPEDICAO
     required: false
-    displayName: Data expedicao
+    displayName: Data expedição
     type: 
       className: Date
     dateFormat: DD/MM/YYYY              
@@ -62,19 +62,19 @@
   - name: cpf
     tableFieldName: CPF
     required: false
-    displayName: Cpf
+    displayName: CPF
     type: 
       className: String
   - name: cnh
     tableFieldName: CNH
     required: false
-    displayName: Cnh
+    displayName: CNH
     type: 
       className: String
   - name: emissaoCnh
     tableFieldName: EMISSAO_CNH
     required: false
-    displayName: Emissao cnh
+    displayName: Emissão CNH
     type: 
       className: Date
     dateFormat: DD/MM/YYYY              
@@ -84,13 +84,13 @@
   - name: categoriaCnh
     tableFieldName: CATEGORIA_CNH
     required: false
-    displayName: Categoria cnh
+    displayName: Categoria CNH
     type: 
       className: String
   - name: validadeCnh
     tableFieldName: VALIDADE_CNH
     required: false
-    displayName: Validade cnh
+    displayName: Validade CNH
     type: 
       className: Date
     dateFormat: DD/MM/YYYY              
@@ -124,55 +124,55 @@
   - name: mae
     tableFieldName: MAE
     required: false
-    displayName: Mae
+    displayName: Nome da Mãe
     type: 
       className: String
   - name: pai
     tableFieldName: PAI
     required: false
-    displayName: Pai
+    displayName: Nome do Pai
     type: 
       className: String
   - name: conjuge
     tableFieldName: CONJUGE
     required: false
-    displayName: Conjuge
+    displayName: Nome do Cônjuge
     type: 
       className: String
   - name: referenciaPessoal1
     tableFieldName: REFERENCIA_PESSOAL1
     required: false
-    displayName: Referencia pessoal1
+    displayName: Referência pessoal 1
     type: 
       className: String
   - name: foneReferencia1
     tableFieldName: FONE_REFERENCIA1
     required: false
-    displayName: Fone referencia1
+    displayName: Fone referência1
     type: 
       className: String
   - name: parentescoReferencia1
     tableFieldName: PARENTESCO_REFERENCIA1
     required: false
-    displayName: Parentesco referencia1
+    displayName: Parentesco referência1
     type: 
       className: String
   - name: referenciaPessoal2
     tableFieldName: REFERENCIA_PESSOAL2
     required: false
-    displayName: Referencia pessoal2
+    displayName: Referência pessoal2
     type: 
       className: String
   - name: foneReferencia2
     tableFieldName: FONE_REFERENCIA2
     required: false
-    displayName: Fone referencia2
+    displayName: Fone referência2
     type: 
       className: String
   - name: parentescoReferencia2
     tableFieldName: PARENTESCO_REFERENCIA2
     required: false
-    displayName: Parentesco referencia2
+    displayName: Parentesco referência2
     type: 
       className: String
   - name: viatura
@@ -196,19 +196,19 @@
   - name: placaVeiculo
     tableFieldName: PLACA_VEICULO
     required: false
-    displayName: Placa veiculo
+    displayName: Placa veículo
     type: 
       className: String
   - name: corVeiculo
     tableFieldName: COR_VEICULO
     required: false
-    displayName: Cor veiculo
+    displayName: Cor veículo
     type: 
       className: String
   - name: anoVeiculo
     tableFieldName: ANO_VEICULO
     required: false
-    displayName: Ano veiculo
+    displayName: Ano veículo
     type: 
       className: Integer
   - name: renavam
@@ -226,13 +226,13 @@
   - name: imei
     tableFieldName: IMEI
     required: false
-    displayName: Imei
+    displayName: IMEI
     type: 
       className: String
   - name: cartaoCredito
     tableFieldName: CARTAO_CREDITO
     required: false
-    displayName: Cartao credito
+    displayName: Cartão credito
     type: 
       className: Boolean
     viewApproach: 
@@ -240,7 +240,7 @@
   - name: cartaoDebito
     tableFieldName: CARTAO_DEBITO
     required: false
-    displayName: Cartao debito
+    displayName: Cartão debito
     type: 
       className: Boolean
     viewApproach: 
@@ -295,7 +295,6 @@
     displayName: Bloqueio motorista
   - name: telefones
     type: OneToMany
-    ownerName: motorista
     model: Telefone                       
     displayName: Telefone
   - name: endereco             

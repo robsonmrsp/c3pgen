@@ -56,7 +56,7 @@
   - name: observacao
     tableFieldName: OBSERVACAO
     required: false
-    displayName: Observacao
+    displayName: Observação
     type: 
       className: String
   relationships:                     

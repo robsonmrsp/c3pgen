@@ -6,7 +6,10 @@
   - name: descricao
     tableFieldName: DESCRICAO
     required: false
-    displayName: Descricao
+    maxLen: 400
+    viewApproach:                        
+      type: textarea                  
+    displayName: Descrição
     type: 
       className: String
   relationships:                     

@@ -1,17 +1,19 @@
-- name: PontoArea
+- name: PontosArea
   hasOwner: false 
-  displayName: Ponto area
-  tableName: PONTO_AREA
+  displayName: Pontos area
+  tableName: PONTOS_AREA
   attributes:                     
   - name: latitude
     tableFieldName: LATITUDE
     required: false
+    maxLen: 15
     displayName: Latitude
     type: 
       className: Double
   - name: longitude
     tableFieldName: LONGITUDE
     required: false
+    maxLen: 15
     displayName: Longitude
     type: 
       className: Double

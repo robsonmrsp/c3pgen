@@ -6,24 +6,28 @@
   - name: nome
     tableFieldName: NOME
     required: false
+    maxLen: 100
     displayName: Nome
     type: 
       className: String
   - name: ddd
     tableFieldName: DDD
     required: false
+    maxLen: 3
     displayName: DDD
     type: 
       className: String
   - name: fone
     tableFieldName: FONE
     required: false
+    maxLen: 15
     displayName: Fone
     type: 
       className: String
   - name: setor
     tableFieldName: SETOR
     required: false
+    maxLen: 100
     displayName: Setor
     type: 
       className: String
@@ -35,4 +39,4 @@
     viewApproach:   
       type: modal 
       hiddenField: id 
-      textField: razaoSocial 
+      textField: nome 

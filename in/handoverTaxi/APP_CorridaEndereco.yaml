@@ -1,0 +1,126 @@
+- name: CorridaEndereco
+  hasOwner: false 
+  displayName: Corrida endereco
+  tableName: CORRIDA_ENDERECO
+  attributes:                     
+  - name: enderecoOrigem
+    tableFieldName: ENDERECO_ORIGEM
+    required: false
+    maxLen: 200
+    displayName: Endereco origem
+    type: 
+      className: String
+  - name: numeroOrigem
+    tableFieldName: NUMERO_ORIGEM
+    required: false
+    maxLen: 10
+    displayName: Numero origem
+    type: 
+      className: String
+  - name: complementoOrigem
+    tableFieldName: COMPLEMENTO_ORIGEM
+    required: false
+    maxLen: 50
+    displayName: Complemento origem
+    type: 
+      className: String
+  - name: bairroOrigem
+    tableFieldName: BAIRRO_ORIGEM
+    required: false
+    maxLen: 100
+    displayName: Bairro origem
+    type: 
+      className: String
+  - name: ufOrigem
+    tableFieldName: UF_ORIGEM
+    required: true
+    maxLen: 2
+    displayName: Uf origem
+    type: 
+      className: String
+  - name: cidadeOrigem
+    tableFieldName: CIDADE_ORIGEM
+    required: false
+    maxLen: 50
+    displayName: Cidade origem
+    type: 
+      className: String
+  - name: cepOrigem
+    tableFieldName: CEP_ORIGEM
+    required: false
+    maxLen: 9
+    displayName: Cep origem
+    type: 
+      className: String
+  - name: referenciaOrigem
+    tableFieldName: REFERENCIA_ORIGEM
+    required: false
+    maxLen: 200
+    displayName: Referencia origem
+    type: 
+      className: String
+  - name: enderecoDestino
+    tableFieldName: ENDERECO_DESTINO
+    required: false
+    maxLen: 200
+    displayName: Endereco destino
+    type: 
+      className: String
+  - name: numeroDestino
+    tableFieldName: NUMERO_DESTINO
+    required: false
+    maxLen: 10
+    displayName: Numero destino
+    type: 
+      className: String
+  - name: complementoDestino
+    tableFieldName: COMPLEMENTO_DESTINO
+    required: false
+    maxLen: 50
+    displayName: Complemento destino
+    type: 
+      className: String
+  - name: bairroDestino
+    tableFieldName: BAIRRO_DESTINO
+    required: false
+    maxLen: 100
+    displayName: Bairro destino
+    type: 
+      className: String
+  - name: ufDestino
+    tableFieldName: UF_DESTINO
+    required: false
+    maxLen: 2
+    displayName: Uf destino
+    type: 
+      className: String
+  - name: cidadeDestino
+    tableFieldName: CIDADE_DESTINO
+    required: false
+    maxLen: 50
+    displayName: Cidade destino
+    type: 
+      className: String
+  - name: cepDestino
+    tableFieldName: CEP_DESTINO
+    required: false
+    maxLen: 9
+    displayName: Cep destino
+    type: 
+      className: String
+  - name: referenciaDestino
+    tableFieldName: REFERENCIA_DESTINO
+    required: false
+    maxLen: 200
+    displayName: Referencia destino
+    type: 
+      className: String
+  relationships:                     
+  - name: corrida             
+    type: ManyToOne
+    model: Corrida                       
+    displayName: Corrida
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 

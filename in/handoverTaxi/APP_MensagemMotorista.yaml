@@ -3,26 +3,26 @@
   displayName: Mensagem motorista
   tableName: MENSAGEM_MOTORISTA
   attributes:                     
-  - name: dataHoraEnvio
-    tableFieldName: DATA_HORA_ENVIO
+  - name: dataEnvio
+    tableFieldName: DATA_ENVIO
     required: false
-    displayName: Data hora envio
+    displayName: Data envio
     type: 
       className: Datetime
-    dateFormat: DD/MM/YYYY HH:MM   
-    mask: 99/99/9999 99:99         
-    viewApproach:                  
-      type: datepicker                   
-  - name: dataHoraLeitura
-    tableFieldName: DATA_HORA_LEITURA
+    dateFormat: DD/MM/YYYY HH:MM             
+    mask: 99/99/9999 99:99                  
+    viewApproach:                        
+      type: datepicker                  
+  - name: dataLeitura
+    tableFieldName: DATA_LEITURA
     required: false
-    displayName: Data hora leitura
+    displayName: Data leitura
     type: 
       className: Datetime
-    dateFormat: DD/MM/YYYY HH:MM   
-    mask: 99/99/9999 99:99         
-    viewApproach:                  
-      type: datepicker                   
+    dateFormat: DD/MM/YYYY HH:MM             
+    mask: 99/99/9999 99:99                  
+    viewApproach:                        
+      type: datepicker                  
   relationships:                     
   - name: motorista             
     type: ManyToOne

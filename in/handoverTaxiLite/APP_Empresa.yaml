@@ -46,13 +46,13 @@
   - name: observacaoTaxista
     tableFieldName: OBSERVACAO_TAXISTA
     required: false
-    displayName: Observacao taxista
+    displayName: Observação taxista
     type: 
       className: String
   - name: observacaoCentral
     tableFieldName: OBSERVACAO_CENTRAL
     required: false
-    displayName: Observacao central
+    displayName: Observação central
     type: 
       className: String
   - name: percursoDesconto

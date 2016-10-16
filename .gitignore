@@ -6,5 +6,6 @@ target/
 *.jar
 src/main/webapp/out
 src/main/webapp/out/*
+src/main/webapp/temp
 
 /bin/

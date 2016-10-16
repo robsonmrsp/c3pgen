@@ -3,21 +3,17 @@
   displayName: Tarifa
   tableName: TARIFA
   attributes:                     
-  - name: descricao
-    tableFieldName: DESCRICAO
-    required: false
-    displayName: Descricao
-    type: 
-      className: String
   - name: bairroOrigem
     tableFieldName: BAIRRO_ORIGEM
     required: false
+    maxLen: 100
     displayName: Bairro origem
     type: 
       className: String
   - name: bairroDestino
     tableFieldName: BAIRRO_DESTINO
     required: false
+    maxLen: 100
     displayName: Bairro destino
     type: 
       className: String

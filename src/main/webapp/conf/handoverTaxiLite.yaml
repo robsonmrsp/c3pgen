@@ -12,7 +12,7 @@ entities:
   - name: descricao
     tableFieldName: DESCRICAO
     required: false
-    displayName: Descricao
+    displayName: Descrição
     type: 
       className: String
   - name: valorLimite
@@ -24,7 +24,7 @@ entities:
   - name: observacao
     tableFieldName: OBSERVACAO
     required: false
-    displayName: Observacao
+    displayName: Observação
     type: 
       className: String
   - name: obseracaoTaxista
@@ -103,13 +103,13 @@ entities:
   - name: observacaoTaxista
     tableFieldName: OBSERVACAO_TAXISTA
     required: false
-    displayName: Observacao taxista
+    displayName: Observação taxista
     type: 
       className: String
   - name: observacaoCentral
     tableFieldName: OBSERVACAO_CENTRAL
     required: false
-    displayName: Observacao central
+    displayName: Observação central
     type: 
       className: String
   - name: percursoDesconto
@@ -261,7 +261,7 @@ entities:
   - name: observacao
     tableFieldName: OBSERVACAO
     required: false
-    displayName: Observacao
+    displayName: Observação
     type: 
       className: String
   relationships:                     

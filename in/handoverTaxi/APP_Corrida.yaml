@@ -3,19 +3,19 @@
   displayName: Corrida
   tableName: CORRIDA
   attributes:                     
-  - name: dataHoraCorrida
-    tableFieldName: DATA_HORA_CORRIDA
+  - name: dataCorrida
+    tableFieldName: DATA_CORRIDA
     required: false
-    displayName: Data hora corrida
+    displayName: Data corrida
     type: 
       className: Datetime
+    dateFormat: DD/MM/YYYY HH:MM             
+    mask: 99/99/9999 99:99                  
+    viewApproach:                        
+      type: datepicker                  
   - name: tipoPagamento
     tableFieldName: TIPO_PAGAMENTO
     required: false
-    dateFormat: DD/MM/YYYY HH:MM   
-    mask: 99/99/9999 99:99         
-    viewApproach:                  
-      type: datepicker                 
     displayName: Tipo pagamento
     type: 
       className: Integer
@@ -25,12 +25,26 @@
     displayName: Valor
     type: 
       className: Double
+  - name: observacao
+    tableFieldName: OBSERVACAO
+    required: false
+    maxLen: 200
+    displayName: Observação
+    type: 
+      className: String
+  - name: statusCorrida
+    tableFieldName: STATUS_CORRIDA
+    required: false
+    maxLen: 10
+    displayName: Status corrida
+    type: 
+      className: String
   relationships:                     
-  - name: enderecoCorridas
+  - name: corridaEnderecos
     type: OneToMany
     ownerName: corrida
-    model: EnderecoCorrida                       
-    displayName: Endereço corrida
+    model: CorridaEndereco                       
+    displayName: Corrida endereco
   - name: atendente             
     type: ManyToOne
     model: Atendente                       
@@ -39,10 +53,10 @@
       type: modal 
       hiddenField: id 
       textField: nome 
-  - name: cliente             
+  - name: motorista             
     type: ManyToOne
-    model: Cliente                       
-    displayName: Cliente
+    model: Motorista                       
+    displayName: Motorista
     viewApproach:   
       type: modal 
       hiddenField: id 

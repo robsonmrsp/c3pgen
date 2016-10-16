@@ -6,12 +6,14 @@
   - name: nome
     tableFieldName: NOME
     required: false
+    maxLen: 50
     displayName: Nome
     type: 
       className: String
   - name: situacao
     tableFieldName: SITUACAO
     required: false
+    maxLen: 10
     displayName: Situação
     type: 
       className: String

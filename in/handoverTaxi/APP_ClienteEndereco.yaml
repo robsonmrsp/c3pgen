@@ -1,0 +1,90 @@
+- name: ClienteEndereco
+  hasOwner: false 
+  displayName: Cliente endereco
+  tableName: CLIENTE_ENDERECO
+  attributes:                     
+  - name: endereco
+    tableFieldName: ENDERECO
+    required: false
+    maxLen: 200
+    displayName: Endereco
+    type: 
+      className: String
+  - name: numero
+    tableFieldName: NUMERO
+    required: false
+    maxLen: 10
+    displayName: úmero
+    type: 
+      className: String
+  - name: complemento
+    tableFieldName: COMPLEMENTO
+    required: false
+    maxLen: 200
+    displayName: Complemento
+    type: 
+      className: String
+  - name: uf
+    tableFieldName: UF
+    required: false
+    maxLen: 2
+    displayName: Uf
+    type: 
+      className: String
+  - name: cidade
+    tableFieldName: CIDADE
+    required: false
+    maxLen: 50
+    displayName: Cidade
+    type: 
+      className: String
+  - name: bairro
+    tableFieldName: BAIRRO
+    required: false
+    maxLen: 100
+    displayName: Bairro
+    type: 
+      className: String
+  - name: cep
+    tableFieldName: CEP
+    required: false
+    maxLen: 9
+    displayName: Cep
+    type: 
+      className: String
+  - name: referencia
+    tableFieldName: REFERENCIA
+    required: false
+    maxLen: 200
+    displayName: Referência
+    type: 
+      className: String
+  - name: tipo
+    tableFieldName: TIPO
+    required: false
+    maxLen: 10
+    displayName: Tipo
+    type: 
+      className: String
+  - name: favorito
+    tableFieldName: FAVORITO
+    required: false
+    displayName: Favorito
+    type: 
+      className: Boolean
+    viewApproach: 
+      type: check
+  relationships:                     
+  - name: clienteEnderecoCoords
+    type: OneToMany
+    ownerName: clienteEndereco
+    model: ClienteEnderecoCoord                       
+    displayName: Cliente endereco coord
+  - name: cliente             
+    type: ManyToOne
+    model: Cliente                       
+    displayName: Cliente
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 

@@ -1,0 +1,42 @@
+- name: ClienteEnderecoCoord
+  hasOwner: false 
+  displayName: Cliente endereco coord
+  tableName: CLIENTE_ENDERECO_COORD
+  attributes:                     
+  - name: latitude
+    tableFieldName: LATITUDE
+    required: false
+    maxLen: 15
+    displayName: Latitude
+    type: 
+      className: Double
+  - name: longitude
+    tableFieldName: LONGITUDE
+    required: false
+    maxLen: 15
+    displayName: Longitude
+    type: 
+      className: Double
+  - name: enderecoFormatado
+    tableFieldName: ENDERECO_FORMATADO
+    required: false
+    displayName: Endereco formatado
+    type: 
+      className: String
+  - name: valido
+    tableFieldName: VALIDO
+    required: false
+    displayName: Válido
+    type: 
+      className: Boolean
+    viewApproach: 
+      type: check
+  relationships:                     
+  - name: clienteEndereco             
+    type: ManyToOne
+    model: ClienteEndereco                       
+    displayName: Cliente endereco
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 

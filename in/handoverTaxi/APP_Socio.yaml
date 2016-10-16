@@ -6,13 +6,15 @@
   - name: nome
     tableFieldName: NOME
     required: false
+    maxLen: 100
     displayName: Nome
     type: 
       className: String
   - name: cpf
     tableFieldName: CPF
     required: false
-    displayName: CPF
+    maxLen: 14
+    displayName: Cpf
     type: 
       className: String
   relationships:                     

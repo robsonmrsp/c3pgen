@@ -6,9 +6,10 @@
   - name: descricao
     tableFieldName: DESCRICAO
     required: false
-    displayName: Descricao
+    maxLen: 200
+    displayName: Descrição
     type: 
-      className: Integer
+      className: String
   - name: valor
     tableFieldName: VALOR
     required: false

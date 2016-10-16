@@ -6,21 +6,30 @@
   - name: serie
     tableFieldName: SERIE
     required: false
+    maxLen: 2
     displayName: Serie
     type: 
       className: String
   - name: numeroInicial
     tableFieldName: NUMERO_INICIAL
     required: false
-    displayName: Numero inicial
+    displayName: Número inicial
     type: 
       className: Integer
   - name: numeroFinal
     tableFieldName: NUMERO_FINAL
     required: false
-    displayName: Numero final
+    displayName: Número final
     type: 
       className: Integer
+  - name: inativo
+    tableFieldName: INATIVO
+    required: false
+    displayName: Inativo
+    type: 
+      className: Boolean
+    viewApproach: 
+      type: check
   relationships:                     
   - name: empresa             
     type: ManyToOne

@@ -12,6 +12,10 @@
   - name: tipoPagamento
     tableFieldName: TIPO_PAGAMENTO
     required: false
+    dateFormat: DD/MM/YYYY HH:MM   
+    mask: 99/99/9999 99:99         
+    viewApproach:                  
+      type: datepicker                 
     displayName: Tipo pagamento
     type: 
       className: Integer

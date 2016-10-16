@@ -1,15 +1,8 @@
-- name: Punicao
+- name: Plantao
   hasOwner: false 
-  displayName: Punicao
-  tableName: PUNICAO
+  displayName: Plantao
+  tableName: PLANTAO
   attributes:                     
-  - name: motivo
-    tableFieldName: MOTIVO
-    required: false
-    maxLen: 100
-    displayName: Motivo
-    type: 
-      className: String
   - name: dataInicio
     tableFieldName: DATA_INICIO
     required: false
@@ -30,18 +23,9 @@
     mask: 99/99/9999 99:99                  
     viewApproach:                        
       type: datepicker                  
-  - name: quantidadetempo
-    tableFieldName: QUANTIDADETEMPO
-    required: false
-    displayName: QuantidadeTempo
-    type: 
-      className: Integer
   relationships:                     
-  - name: motorista             
-    type: ManyToOne
-    model: Motorista                       
-    displayName: Motorista
-    viewApproach:   
-      type: modal 
-      hiddenField: id 
-      textField: nome 
+  - name: motoristaHasPlantaos
+    type: OneToMany
+    ownerName: plantao
+    model: MotoristaHasPlantao                       
+    displayName: Motorista has plantao

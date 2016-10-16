@@ -6,7 +6,7 @@
   - name: descricao
     tableFieldName: DESCRICAO
     required: false
-    displayName: Descricao
+    displayName: Descrição
     type: 
       className: String
   relationships:                     

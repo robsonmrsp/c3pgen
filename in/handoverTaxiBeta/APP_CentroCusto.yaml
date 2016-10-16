@@ -6,7 +6,7 @@
   - name: descricao
     tableFieldName: DESCRICAO
     required: false
-    displayName: Descricao
+    displayName: Descrição
     type: 
       className: String
   - name: valorLimite
@@ -18,13 +18,13 @@
   - name: observacao
     tableFieldName: OBSERVACAO
     required: false
-    displayName: Observacao
+    displayName: Observação
     type: 
       className: String
   - name: observacaoTaxista
     tableFieldName: OBSERVACAO_TAXISTA
     required: false
-    displayName: Observacao taxista
+    displayName: Observação taxista
     type: 
       className: String
   - name: inativo

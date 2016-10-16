@@ -12,15 +12,15 @@
   - name: ddd
     tableFieldName: DDD
     required: false
-    displayName: Ddd
+    displayName: DDD
     type: 
-      className: Integer
+      className: String
   - name: fone
     tableFieldName: FONE
     required: false
     displayName: Fone
     type: 
-      className: Integer
+      className: String
   - name: setor
     tableFieldName: SETOR
     required: false
@@ -35,4 +35,4 @@
     viewApproach:   
       type: modal 
       hiddenField: id 
-      textField: nome 
+      textField: razaoSocial 

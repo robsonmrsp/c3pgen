@@ -6,18 +6,22 @@
   - name: descricao
     tableFieldName: DESCRICAO
     required: false
-    displayName: Descricao
+    maxLen: 100
+    displayName: Descrição
     type: 
       className: String
   - name: coordenadas
     tableFieldName: COORDENADAS
     required: false
+    maxLen: 500
+    viewApproach:                        
+      type: textarea                  
     displayName: Coordenadas
     type: 
       className: String
   relationships:                     
-  - name: pontoAreas
+  - name: pontosAreas
     type: OneToMany
     ownerName: area
-    model: PontoArea                       
-    displayName: Ponto area
+    model: PontosArea                       
+    displayName: Pontos área

@@ -1,14 +1,18 @@
-- name: BloqueioMotorista
+- name: MotoristaBloqueado
   hasOwner: false 
-  displayName: Bloqueio motorista
-  tableName: BLOQUEIO_MOTORISTA
+  displayName: Motorista bloqueado
+  tableName: MOTORISTA_BLOQUEADO
   attributes:                     
-  - name: dataHoraBloqueio
-    tableFieldName: DATA_HORA_BLOQUEIO
+  - name: dataBloqueio
+    tableFieldName: DATA_BLOQUEIO
     required: false
-    displayName: Data hora bloqueio
+    displayName: Data bloqueio
     type: 
       className: Datetime
+    dateFormat: DD/MM/YYYY HH:MM             
+    mask: 99/99/9999 99:99                  
+    viewApproach:                        
+      type: datepicker                  
   - name: usuarioBloqueio
     tableFieldName: USUARIO_BLOQUEIO
     required: false

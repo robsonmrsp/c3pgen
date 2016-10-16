@@ -6,7 +6,8 @@
   - name: descricao
     tableFieldName: DESCRICAO
     required: false
-    displayName: Descricao
+    maxLen: 200
+    displayName: Descrição
     type: 
       className: String
   - name: valorLimite
@@ -18,13 +19,10 @@
   - name: observacao
     tableFieldName: OBSERVACAO
     required: false
-    displayName: Observacao
-    type: 
-      className: String
-  - name: observacaoTaxista
-    tableFieldName: OBSERVACAO_TAXISTA
-    required: false
-    displayName: Observacao taxista
+    maxLen: 300
+    viewApproach:                        
+      type: textarea                  
+    displayName: Observação
     type: 
       className: String
   - name: inativo

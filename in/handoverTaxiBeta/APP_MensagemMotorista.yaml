@@ -9,12 +9,20 @@
     displayName: Data hora envio
     type: 
       className: Datetime
+    dateFormat: DD/MM/YYYY HH:MM   
+    mask: 99/99/9999 99:99         
+    viewApproach:                  
+      type: datepicker                   
   - name: dataHoraLeitura
     tableFieldName: DATA_HORA_LEITURA
     required: false
     displayName: Data hora leitura
     type: 
       className: Datetime
+    dateFormat: DD/MM/YYYY HH:MM   
+    mask: 99/99/9999 99:99         
+    viewApproach:                  
+      type: datepicker                   
   relationships:                     
   - name: motorista             
     type: ManyToOne
