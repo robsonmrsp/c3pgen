@@ -387,8 +387,7 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 		 */
 		breadcrumb : function(itemMenu) {
 			if (itemMenu) {
-				var content = "<ul class='breadcrumb'>" + "	<li>" + "		<i class='fa " + itemMenu.iconClass + " '></i>" + "		<a href='#" + itemMenu.url + " '> &nbsp; " + itemMenu.itemLabel + "</a>" + "	</li>" + "	<li class='active realce-breadcumb'>" + itemMenu.itemSubFolderName
-						+ "</li>" + "</ul>";
+				var content = "<ul class='breadcrumb'>" + "	<li>" + "		<i class='fa " + itemMenu.iconClass + " '></i>" + "		<a href='#" + itemMenu.url + " '> &nbsp; " + itemMenu.itemLabel + "</a>" + "	</li>" + "	<li class='active realce-breadcumb'>" + itemMenu.itemSubFolderName + "</li>" + "</ul>";
 				$('#breadcrumbs').html(content);
 			}
 		},
@@ -687,6 +686,33 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 				hpanel.find('[id^=map-]').resize();
 			}, 50);
 
+		},
+		mostPopularNumber : function(numbers, len) {
+			var numberCount = [];
+			var sum = 0
+			for (index = 0; index < len; index++) {
+				sum+=number[index];
+				var newNumbers = numbers;
+				var countRep = 0;
+				for (index2 = 0; index2 < len; index2++) {
+					if (newNumbers[index2] == number[index]) {
+						countRep++
+					}
+				}
+				if (countRep > 1) {
+					numberCount.push([number[index], countRep])
+				}
+			}
+			
+			var minNumber = sum;
+			for (index = 0; index < numberCount.length; index++) {
+				var arNum = numberCount[index];
+				if(arNum[0] < minNumber  ){
+					minNumber = arNum[0];
+				}
+			}
+			
+			return minNumber;
 		}
 	};
 	return util;

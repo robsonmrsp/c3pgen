@@ -31,9 +31,9 @@ public class MainDBDesign {
 		new File(folderOutput).mkdirs();
 		// File source = new
 		// File("C:\\cyg\\home\\robso\\repos\\mercadodelivery\\src\\main\\resources\\c3p-files\\mercado-delivery.xml");
+		String string = "C:\\cyg\\home\\robson\\repos\\c3pgen\\in\\qualidade\\modelo-dados-laudo.xml";
 		// String string =
-		// "C:\\cyg\\home\\robson\\repos\\c3pgen\\in\\handoverTaxi\\HandoverTaxi.xml";
-		String string = "G:\\cyg\\home\\robso\\repos\\c3pgen\\in\\handoverTaxi\\HandoverTaxi.xml";
+		// "G:\\cyg\\home\\robso\\repos\\c3pgen\\in\\handoverTaxi\\qualidade.xml";
 		File source = new File(string);
 		DBModel example = null;
 		try {
@@ -52,9 +52,9 @@ public class MainDBDesign {
 			fileLines.add("  displayName: " + Util.firstUpperCaseOnly(table.getTablename()).replaceAll("_", " "));
 			fileLines.add("  tableName: " + table.getTablename().toUpperCase());
 			fileLines.add("  attributes:                     ");
-			
+
 			ApplicationEntity applicationEntity = new ApplicationEntity(nomeDaClasse, nomeDaClasse);
-			
+
 			Collection<Column> colunas = table.getColumns();
 			for (Column column : colunas) {
 				if (column.isNotKey()) {
@@ -62,6 +62,7 @@ public class MainDBDesign {
 					fileLines.add("    tableFieldName: " + column.getColName().toUpperCase());
 
 					fileLines.add("    required: " + getRequired(column));
+					fileLines.add("    showInPages: false");
 
 					String maxLen = Util.getMaxLen(column.getDatatypeParams());
 

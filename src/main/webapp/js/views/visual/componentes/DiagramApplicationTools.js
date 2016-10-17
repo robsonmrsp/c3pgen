@@ -79,9 +79,10 @@ define(function(require) {
 		},
 
 		uploadXml : function() {
+			var that = this;
 			$('.form-upload-xml').ajaxSubmit({
 				success : function(_model, _resp) {
-					that.onExtract.call(that.context, _model);
+					that.onExtract.call(that.context, new ApplicationModel(_model));
 				},
 				error : function(_model, _resp) {
 					util.showMessage('error', "Não foi possivel extrair a base de dados");

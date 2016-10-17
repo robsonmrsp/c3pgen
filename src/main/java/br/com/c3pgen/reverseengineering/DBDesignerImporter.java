@@ -104,6 +104,7 @@ public class DBDesignerImporter {
 			// TODOS OS RELACIONAMENTOS DE PRODUTO QUE COMECAO EM PRODUTO
 			for (RelationStart relStart : table.getRelationsStart()) {
 				Relation byId = getById(relations, relStart.getId());
+
 				String destTable = byId.getDestTable();
 				String comments = byId.getComments();
 				///
@@ -128,6 +129,7 @@ public class DBDesignerImporter {
 				appRel.setSource(relationshipSource);
 				appRel.setTarget(relationshipTarget);
 
+				System.out.println("DBDesignerImporter.extractApplication() 1-> " + appRel);
 				applicationRelationships.add(appRel);
 
 			}
@@ -135,9 +137,19 @@ public class DBDesignerImporter {
 			for (RelationEnd relEnd : table.getRelationsEnd()) {
 				Relation byId = getById(relations, relEnd.getId());
 
-				String name = byId.getRelationName();
+//				System.out.println("SrcTable  " + getTableById(tables, byId.getSrcTable()));
 
-				String relName = Util.firstLowerCase(CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, tableName));
+				// String name = byId.getRelationName();
+				String name = Util.firstLowerCase(CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, tableName));
+
+				// String modelName =
+				// CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL,
+				// Util.firstUpperCase(getTableById(tables,
+				// destTable).getTablename())) + " ";
+				// String displayName = Util.firstUpperCase(getTableById(tables,
+				// destTable).getTablename()).replaceAll("_", " ");
+
+				String relName = Util.firstLowerCase(CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, getTableById(tables, byId.getSrcTable()).getTablename()));
 				String displayName = Util.firstUpperCase(tableName);
 				String model = Util.firstUpperCase(CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, tableName));
 
@@ -152,6 +164,7 @@ public class DBDesignerImporter {
 				appRel.setSource(relationshipSource);
 				appRel.setTarget(relationshipTarget);
 
+				System.out.println("DBDesignerImporter.extractApplication() 2- >" + appRel);
 				applicationRelationships.add(appRel);
 
 			}
@@ -179,7 +192,9 @@ public class DBDesignerImporter {
 			if (tabela.getId().equalsIgnoreCase(id))
 				return tabela;
 		}
+		Thread t = new Thread();
 		return null;
+
 	}
 
 }

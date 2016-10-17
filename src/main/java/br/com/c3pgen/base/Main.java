@@ -37,13 +37,10 @@ public class Main {
 
 		// generatoToInput("qualidade4", new
 		// File("C:\\cyg\\home\\robson\\repos\\c3pgen\\in\\qualidade4"));
-		// generatoToInput("qualidade3", new
-		// File("G:\\cyg\\home\\robso\\repos\\c3pgen\\in\\qualidade3"));
+		 generatoToInput("qualidade", new		 File("C:\\cyg\\home\\robson\\repos\\c3pgen\\in\\qualidade5"));
+		// generatoToInput("handoverTaxi", new
+		// File("G:\\cyg\\home\\robso\\repos\\c3pgen\\in\\handoverTaxi"));
 
-		// generatoToInput("handoverTaxi", new
-		// File("G:\\cyg\\home\\robso\\repos\\c3pgen\\in\\handoverTaxi"));
-		// generatoToInput("handoverTaxi", new
-		// File("G:\\cyg\\home\\robso\\repos\\c3pgen\\in\\handoverTaxi"));
 		//
 	}
 

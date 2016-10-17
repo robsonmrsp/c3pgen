@@ -376,8 +376,8 @@ public class ApplicationResources {
 				IOUtils.closeQuietly(fileOutputStream);
 
 				Application extractApplication = DBDesignerImporter.extractApplication(dbdesignerXmlFile);
-
-				return Response.ok().entity(extractApplication).build();
+				JsonApplication jsonApplication = Parser.toJson(extractApplication);
+				return Response.ok().entity(jsonApplication).build();
 			} catch (Exception e) {
 				e.printStackTrace();
 				return Response.serverError().entity(new JsonError("Problema durante upload da mídia [ " + nameFile + " ] error [" + e.getMessage() + "]", nameFile)).build();
