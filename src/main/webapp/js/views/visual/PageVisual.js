@@ -115,8 +115,8 @@ define(function(require) {
 
 				window.paper = new Joint.dia.Paper({
 					el : $('#paper'),
-					height : 2 * window.innerHeight,
-					width : 1.5 * window.innerWidth,
+					height : 3 * window.innerHeight,
+					width : 2.5 * window.innerWidth,
 					gridSize : 1,
 					model : that.graph,
 					// ROBSON para impedir que a cada click sobbre a linha do
@@ -132,6 +132,8 @@ define(function(require) {
 				// linkConnectionPoint :
 				// Joint.util.shapePerimeterConnectionPoint
 				});
+
+				$('#paper').css('width', (window.innerWidth - 455) + 'px')
 
 				window.paper.on('link:options', function(_evento, _link, x, y) {
 					that.inspetorRelacionamentosView.setVisual(_link.model);
@@ -263,7 +265,7 @@ define(function(require) {
 				linha++;
 			}
 			var posY = 20 + ((contador++ % 2 - 1) * 240) + linha * 240; // TOP
-			var posX = 120 + ((contador - 1) * 120); // LEFT
+			var posX = 180 + ((contador - 1) * 180); // LEFT
 
 			console.log(posX, posY);
 			var visualEntity = new VisualEntity({
@@ -274,7 +276,7 @@ define(function(require) {
 
 				},
 				size : {
-					width : 120,
+					width : 140,
 					height : 100
 				},
 			});
@@ -336,7 +338,7 @@ define(function(require) {
 			application.fetch({
 				success : function(_model, _resp, _options) {
 					console.log(_resp)
-//					that.modalError.showMessage(_resp);
+					// that.modalError.showMessage(_resp);
 				},
 				error : function(_model, _resp, _options) {
 					util.showMessage('error', util.getJson(_resp.responseText).legalMessage || '');
