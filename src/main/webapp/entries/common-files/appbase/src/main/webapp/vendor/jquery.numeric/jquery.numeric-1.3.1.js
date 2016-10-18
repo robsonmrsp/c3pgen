@@ -28,7 +28,7 @@
 			config.negative = true;
 		}
 		// set decimal point
-		var decimal = (config.decimal === false) ? "" : config.decimal || ".";
+		var decimal = (config.decimal === false) ? "" : config.decimal || ",";
 		// allow negatives
 		var negative = (config.negative === true) ? true : false;
 		// callback function
