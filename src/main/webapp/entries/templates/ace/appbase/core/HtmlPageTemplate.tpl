@@ -62,14 +62,14 @@
 								<#if att.showInPages && !att.basicSearch>
 								  <#if att.viewApproach?? >
 									<#if att.type.className == 'Boolean' && att.viewApproach.type  == 'check'  >
-									<div id="groupInput${firstUpper(att.name)}" class="form-group checkbox">
+									<div id="groupInput${firstUpper(att.name)}" class="form-group col-sm-	col-md-	col-lg-   checkbox">
 										<label class="checkbox ">
 											<input id="input${firstUpper(att.name)}" type="checkbox" >
 											${firstUpper(att.displayName)}
 										</label>
 									</div>
 									<#elseif att.viewApproach.type  == 'datepicker'  >
-									<div id="groupInput${firstUpper(att.name)}Container" class="form-group">
+									<div id="groupInput${firstUpper(att.name)}Container" class="form-group col-sm-	col-md-	col-lg-  ">
 										<label class="control-label" for="input${firstUpper(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}</label>
 										<div id="groupInput${firstUpper(att.name)}" class="input-group date" data-date-format="${att.dateFormat}">
 											<input id="input${firstUpper(att.name)}" placeholder="Pesquise pela ${firstUpper(att.displayName)}" type="text" class="form-control append-left" />
@@ -79,7 +79,7 @@
 										</div>
 									</div>
 									<#elseif att.viewApproach.type  == 'radiogroup'>
-									<div id="groupInput${firstUpper(att.name)}" class="form-group">
+									<div id="groupInput${firstUpper(att.name)}" class="form-group col-sm-	col-md-	col-lg-  ">
 										<label class="control-label" for="input${firstUpper(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}</label>
 										<#list att.viewApproach.values as val>	
 										<div id="groupInput${firstUpper(att.name)}_${val}" class="radio">
@@ -91,18 +91,18 @@
 										</#list>
 									</div>
 								<#elseif att.viewApproach.type  == 'combo'  >
-									<div id="groupInput${firstUpper(att.name)}" class="form-group">
+									<div id="groupInput${firstUpper(att.name)}" class="form-group col-sm-	col-md-	col-lg-  ">
 										<label class="control-label" for="input${firstUpper(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}</label>
 										<select class="form-control" id="input${firstUpper(att.name)}"></select>
 									</div>					
 					  				<#else>
-									<div id="groupInput${firstUpper(att.name)}" class="form-group">
+									<div id="groupInput${firstUpper(att.name)}" class="form-group col-sm-	col-md-	col-lg-  ">
 										<label class="control-label" for="input${firstUpper(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}</label>
 										<input type="text" id="input${firstUpper(att.name)}" placeholder="Pesquise pelo ${firstUpper(att.displayName)}"  class="form-control">
 									</div>
 								  	</#if>							
 					  			<#else>
-									<div id="groupInput${firstUpper(att.name)}" class="form-group">
+									<div id="groupInput${firstUpper(att.name)}" class="form-group col-sm-	col-md-	col-lg-  ">
 										<label class="control-label" for="input${firstUpper(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}</label>
 										<input type="text" id="input${firstUpper(att.name)}" placeholder="Pesquise pelo ${firstUpper(att.displayName)}"  class="form-control">
 									</div>
@@ -117,12 +117,12 @@
 									<#elseif rel.type == 'ManyToOne'>
 										<#if rel.viewApproach?? >
 											<#if rel.viewApproach.type  == 'combo'  >
-									<div id="groupInput${firstUpper(rel.name)}" class="form-group">
+									<div id="groupInput${firstUpper(rel.name)}" class="form-group col-sm-	col-md-	col-lg-  ">
 										<label class="control-label" for="input${firstUpper(rel.name)}">${firstUpper(rel.displayName)!firstLower(rel.name)}</label>
 										<select class="form-control" id="input${firstUpper(rel.name)}"></select>
 									</div>					
 											<#elseif rel.viewApproach.type  == 'modal'  >					
-									<div id="groupInput${firstUpper(rel.name)}Container" class="form-group">
+									<div id="groupInput${firstUpper(rel.name)}Container" class="form-group col-sm-	col-md-	col-lg-  ">
 										<label class="control-label" for="input${firstUpper(rel.name)}">${firstUpper(rel.displayName)!firstUpper(rel.name)}</label>
 										<div id="groupInput${firstUpper(rel.name)}" class="input-group">
 											<#if rel.viewApproach.hiddenField??>							

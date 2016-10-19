@@ -1,6 +1,6 @@
 - name: Motorista
   hasOwner: false
-  displayName: Motorista
+  displayName: Motoqueiro
   tableName: MOTORISTA
   attributes:
   - name: nome
@@ -444,24 +444,6 @@
       className: Boolean
     viewApproach:
       type: check
-  - name: usuarioCadastro
-    tableFieldName: USUARIO_CADASTRO
-    required: false
-    displayName: Usuario cadastro
-    showInPages: false
-    type:
-      className: Integer
-  - name: dataCadastro
-    tableFieldName: DATA_CADASTRO
-    required: false
-    displayName: Data cadastro
-    showInPages: false
-    type:
-      className: Date
-    dateFormat: DD/MM/YYYY
-    mask: 99/99/9999
-    viewApproach:
-      type: datepicker
   - name: senha
     tableFieldName: SENHA
     required: false
@@ -518,8 +500,8 @@
     ownerName: motorista
     model: Corrida
     displayName: Corrida
-  - name: motoristaHasPlantaos
-    type: OneToMany
-    ownerName: motorista
-    model: MotoristaHasPlantao
-    displayName: Motorista has plantao
+  - name: plantoes
+    type: ManyToMany
+    ownerName: motoristas
+    model: Plantao
+    displayName: Prantões

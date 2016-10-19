@@ -1289,7 +1289,7 @@ entities:
       textField: nome 
 - name: Motorista
   hasOwner: false
-  displayName: Motorista
+  displayName: Motoqueiro
   tableName: MOTORISTA
   attributes:
   - name: nome
@@ -1733,24 +1733,6 @@ entities:
       className: Boolean
     viewApproach:
       type: check
-  - name: usuarioCadastro
-    tableFieldName: USUARIO_CADASTRO
-    required: false
-    displayName: Usuario cadastro
-    showInPages: false
-    type:
-      className: Integer
-  - name: dataCadastro
-    tableFieldName: DATA_CADASTRO
-    required: false
-    displayName: Data cadastro
-    showInPages: false
-    type:
-      className: Date
-    dateFormat: DD/MM/YYYY
-    mask: 99/99/9999
-    viewApproach:
-      type: datepicker
   - name: senha
     tableFieldName: SENHA
     required: false
@@ -1807,11 +1789,11 @@ entities:
     ownerName: motorista
     model: Corrida
     displayName: Corrida
-  - name: motoristaHasPlantaos
-    type: OneToMany
-    ownerName: motorista
-    model: MotoristaHasPlantao
-    displayName: Motorista has plantao
+  - name: plantoes
+    type: ManyToMany
+    ownerName: motoristas
+    model: Plantao
+    displayName: Prantões
 - name: MotoristaBloqueado
   hasOwner: false 
   displayName: Motorista bloqueado
@@ -1850,59 +1832,36 @@ entities:
       type: modal 
       hiddenField: id 
       textField: nome 
-- name: MotoristaHasPlantao
-  hasOwner: false 
-  displayName: Motorista has plantao
-  tableName: MOTORISTA_HAS_PLANTAO
-  attributes:                     
-  relationships:                     
-  - name: motorista             
-    type: ManyToOne
-    model: Motorista                       
-    displayName: Motorista
-    viewApproach:   
-      type: modal 
-      hiddenField: id 
-      textField: nome 
-  - name: plantao             
-    type: ManyToOne
-    model: Plantao                       
-    displayName: Plantao
-    viewApproach:   
-      type: modal 
-      hiddenField: id 
-      textField: nome 
 - name: Plantao
-  hasOwner: false 
+  hasOwner: false
   displayName: Plantao
   tableName: PLANTAO
-  attributes:                     
+  attributes:
   - name: dataInicio
     tableFieldName: DATA_INICIO
     required: false
     displayName: Data inicio
-    type: 
+    type:
       className: Datetime
-    dateFormat: DD/MM/YYYY HH:MM             
-    mask: 99/99/9999 99:99                  
-    viewApproach:                        
-      type: datepicker                  
+    dateFormat: DD/MM/YYYY HH:MM
+    mask: 99/99/9999 99:99
+    viewApproach:
+      type: datepicker
   - name: dataFim
     tableFieldName: DATA_FIM
     required: false
     displayName: Data fim
-    type: 
+    type:
       className: Datetime
-    dateFormat: DD/MM/YYYY HH:MM             
-    mask: 99/99/9999 99:99                  
-    viewApproach:                        
-      type: datepicker                  
-  relationships:                     
-  - name: motoristaHasPlantaos
-    type: OneToMany
-    ownerName: plantao
-    model: MotoristaHasPlantao                       
-    displayName: Motorista has plantao
+    dateFormat: DD/MM/YYYY HH:MM
+    mask: 99/99/9999 99:99
+    viewApproach:
+      type: datepicker
+  relationships:
+  - name: motoristas
+    type: ManyToMany
+    model: Motorista
+    displayName: Motoqueiros
 - name: PontosArea
   hasOwner: false 
   displayName: Pontos area

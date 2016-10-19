@@ -16,14 +16,14 @@
 						<#if att.showInPages >
 						  <#if att.viewApproach?? >
 							<#if att.type.className == 'Boolean' && att.viewApproach.type  == 'check'  >
-							<div id="groupInputModal${firstUpper(att.name)}" class="form-group checkbox">
+							<div id="groupInputModal${firstUpper(att.name)}" class="form-group col-sm-	col-md-	col-lg-   checkbox">
 								<label class="checkbox ">
 									<input id="inputModal${firstUpper(att.name)}" type="checkbox" >
 									${firstUpper(att.displayName)}
 								</label>
 							</div>
 							<#elseif att.viewApproach.type  == 'datepicker'  >
-							<div id="groupInputModal${firstUpper(att.name)}Container" class="form-group">
+							<div id="groupInputModal${firstUpper(att.name)}Container" class="form-group col-sm-	col-md-	col-lg-  ">
 								<label class="control-label" for="inputModal${firstUpper(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}</label>
 								<div id="groupInputModal${firstUpper(att.name)}" class="input-group date" data-date-format="${att.dateFormat}">
 									<input id="inputModal${firstUpper(att.name)}" type="text" class="form-control append-left"  />
@@ -33,7 +33,7 @@
 								</div>
 							</div>
 							<#elseif att.viewApproach.type  == 'radiogroup'>
-							<div id="groupInputModal${firstUpper(att.name)}" class="form-group">
+							<div id="groupInputModal${firstUpper(att.name)}" class="form-group col-sm-	col-md-	col-lg-  ">
 								<label class="control-label" for="inputModal${firstUpper(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}</label>
 								<#list att.viewApproach.values as val>	
 								<div id="groupInputModal${firstUpper(att.name)}_${val}" class="radio">
@@ -45,19 +45,19 @@
 								</#list>
 							</div>
 							<#elseif att.viewApproach.type  == 'combo'  >
-							<div id="groupInputModal${firstUpper(att.name)}" class="form-group">
+							<div id="groupInputModal${firstUpper(att.name)}" class="form-group col-sm-	col-md-	col-lg-  ">
 								<label class="control-label" for="inputModal${firstUpper(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}</label>
 								<select class="form-control" id="inputModal${firstUpper(att.name)}"></select>
 							</div>					
 						  <#else>
-							<div id="groupInputModal${firstUpper(att.name)}" class="form-group">
+							<div id="groupInputModal${firstUpper(att.name)}" class="form-group col-sm-	col-md-	col-lg-  ">
 								<label class="control-label" for="inputModal${firstUpper(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}</label>
 								<input type="text" id="inputModal${firstUpper(att.name)}" placeholder="${(att.placeholder)!''}"  class="form-control">
 							</div>
 						  </#if>
 							
 		  				  <#else>
-							<div id="groupInputModal${firstUpper(att.name)}" class="form-group">
+							<div id="groupInputModal${firstUpper(att.name)}" class="form-group col-sm-	col-md-	col-lg-  ">
 								<label class="control-label" for="inputModal${firstUpper(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}</label>
 								<input type="text" id="inputModal${firstUpper(att.name)}" placeholder="${(att.placeholder)!''}"  class="form-control">
 							</div>
@@ -72,7 +72,7 @@
 							<#elseif rel.type == 'ManyToOne'>
 								<#if rel.viewApproach?? >
 									<#if rel.viewApproach.type  == 'combo'  >
-							<div id="groupInputModal${firstUpper(rel.model)}" class="form-group">
+							<div id="groupInputModal${firstUpper(rel.model)}" class="form-group col-sm-	col-md-	col-lg-  ">
 								<label class="control-label" for="inputModal${firstUpper(rel.model)}">${firstUpper(rel.displayName)!firstLower(rel.model)}</label>
 								<select class="form-control" id="inputModal${firstUpper(rel.model)}"></select>
 							</div>					

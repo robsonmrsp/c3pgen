@@ -32,7 +32,7 @@ define([ 'jquery', 'bootbox', 'bootstrap', 'jqueryNumeric', 'jqueryMaskInput', '
 			if (str[j] != ".") {
 				output.push(str[j]);
 				if (i % 3 == 0 && j < (len - 1)) {
-					output.push(".");
+					output.push("");
 				}
 				i++;
 			}

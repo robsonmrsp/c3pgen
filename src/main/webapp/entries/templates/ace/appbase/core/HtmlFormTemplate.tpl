@@ -26,14 +26,14 @@
 						<#list entity.attributes as att>
 						  <#if att.viewApproach?? >
 							<#if att.type.className == 'Boolean' && att.viewApproach.type  == 'check'  >
-							<div id="groupInput${firstUpper(att.name)}" class="form-group checkbox">
+							<div id="groupInput${firstUpper(att.name)}" class="form-group col-sm-	col-md-	col-lg-   checkbox">
 								<label class="checkbox ">
 									<input id="input${firstUpper(att.name)}" type="checkbox" {{${firstLower(att.name)} ? 'checked' :''}}>
 									${firstUpper(att.displayName)}
 								</label>
 							</div>
 							<#elseif att.viewApproach.type  == 'datepicker'  >
-							<div id="groupInput${firstUpper(att.name)}Container" class="form-group">
+							<div id="groupInput${firstUpper(att.name)}Container" class="form-group col-sm-	col-md-	col-lg-  ">
 								<label class="control-label" for="input${firstUpper(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}  ${att.required ? string('*','')}</label>
 								<div id="groupInput${firstUpper(att.name)}" class="input-group date" data-date-format="${att.dateFormat}">
 									<input id="input${firstUpper(att.name)}" placeholder="Escolha ou digite uma data." type="text" class="form-control ${getRequiredClass(att.required)} append-left" value="{{${firstLower(att.name)}}}" />
@@ -43,7 +43,7 @@
 								</div>
 							</div>
 							<#elseif att.viewApproach.type  == 'radiogroup'>
-							<div id="groupInput${firstUpper(att.name)}" class="form-group">
+							<div id="groupInput${firstUpper(att.name)}" class="form-group col-sm-	col-md-	col-lg-  ">
 								<label class="control-label" for="input${firstUpper(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}</label>
 								<#list att.viewApproach.values as val>	
 								<div id="groupInput${firstUpper(att.name)}_${val}" class="radio">
@@ -55,23 +55,23 @@
 								</#list>
 							</div>
 							<#elseif att.viewApproach.type  == 'combo'  >
-							<div id="groupInput${firstUpper(att.name)}" class="form-group">
+							<div id="groupInput${firstUpper(att.name)}" class="form-group col-sm-	col-md-	col-lg-  ">
 								<label class="control-label" for="input${firstUpper(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}  ${att.required ? string('*','')}</label>
 								<select class="form-control" id="input${firstUpper(att.name)}"></select>
 							</div>					
 							<#elseif att.viewApproach.type  == 'textarea'  >
-							<div id="groupInput${firstUpper(att.name)}" class="form-group">
+							<div id="groupInput${firstUpper(att.name)}" class="form-group col-sm-	col-md-	col-lg-  ">
 								<label class="control-label" for="input${firstUpper(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}  ${att.required ? string('*','')}</label>
 								<textarea rows="3" id="input${firstUpper(att.name)}" placeholder="${firstUpper(att.displayName)!firstLower(att.name)}" value="{{${att.name}}}"  class="form-control ${getRequiredClass(att.required)}" ${getMaxLen(att.maxLen)}>{{${att.name}}} </textarea>
 							</div>					
 							<#else>
-							<div id="groupInput${firstUpper(att.name)}" class="form-group">
+							<div id="groupInput${firstUpper(att.name)}" class="form-group col-sm-	col-md-	col-lg-  ">
 								<label class="control-label" for="input${firstUpper(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}  ${att.required ? string('*','')}</label>
 								<input type="text"  id="input${firstUpper(att.name)}" placeholder="${(att.placeholder)!''}" value="{{${firstLower(att.name)}}}" class="form-control ${getRequiredClass(att.required)} " ${getMaxLen(att.maxLen)}>
 							</div>
 							</#if>
 		  				  <#else>
-							<div id="groupInput${firstUpper(att.name)}" class="form-group">
+							<div id="groupInput${firstUpper(att.name)}" class="form-group col-sm-	col-md-	col-lg-  ">
 								<label class="control-label" for="input${firstUpper(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}  ${att.required ? string('*','')}</label>
 								<input type="text" id="input${firstUpper(att.name)}" placeholder="${(att.placeholder)!''}" value="{{${firstLower(att.name)}}}" class="form-control ${getRequiredClass(att.required)} "  ${getMaxLen(att.maxLen)}>
 							</div>
@@ -84,12 +84,12 @@
 							<#elseif rel.type == 'ManyToOne'>
 								<#if rel.viewApproach?? >
 									<#if rel.viewApproach.type  == 'combo'  >
-							<div id="groupInput${firstUpper(rel.name)}" class="form-group">
+							<div id="groupInput${firstUpper(rel.name)}" class="form-group col-sm-	col-md-	col-lg-  ">
 								<label class="control-label" for="input${firstUpper(rel.name)}">${firstUpper(rel.displayName)!firstLower(rel.name)}</label>
 								<select class="form-control" id="input${firstUpper(rel.name)}"></select>
 							</div>					
 									<#elseif rel.viewApproach.type  == 'modal'  >					
-							<div id="groupInput${firstUpper(rel.name)}Container" class="form-group">
+							<div id="groupInput${firstUpper(rel.name)}Container" class="form-group col-sm-	col-md-	col-lg-  ">
 								<label class="control-label" for="input${firstUpper(rel.name)}">${firstUpper(rel.displayName)!firstUpper(rel.name)}</label>
 								<div id="groupInput${firstUpper(rel.name)}" class="input-group">
 									<#if rel.viewApproach.hiddenField??>							
