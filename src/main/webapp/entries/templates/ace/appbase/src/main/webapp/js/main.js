@@ -3,7 +3,7 @@ require.config({
 	paths : {
 		'jquery' : '../vendor/jquery/jquery-1.10.2',
 		'jqueryUI' : '../vendor/jquery.ui/jquery-ui-1.10.4.custom.min',
-		'jqueryMaskInput' : '../vendor/jquery.maskedinput/jquery.maskedinput-1.3.1',
+		'jqueryMaskInput' : '../vendor/jQuery-Mask-Plugin-1.14.0/jquery.mask',
 		'jqueryScrollTo' : '../vendor/jquery.scrollTo/jquery.scrollTo',
 		'jqueryValidatorEngine' : '../vendor/jquery.validationEngine/jquery.validationEngine-2.6.2',
 		'jqueryValidatorEnginePtBr' : '../vendor/jquery.validationEngine/jquery.validationEngine-pt_BR',
