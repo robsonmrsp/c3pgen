@@ -1,0 +1,18 @@
+- name: Variedade
+  hasOwner: false 
+  displayName: Variedade
+  tableName: VARIEDADE
+  attributes:                     
+  - name: nome
+    tableFieldName: NOME
+    basicSearch : true    
+    required: true
+    displayName: Nome
+    type: 
+      className: String
+  relationships:                     
+  - name: apontamentoQualidadePackings
+    type: OneToMany
+    ownerName: variedade
+    model: ApontamentoQualidadePacking                       
+    displayName: Apontamento qualidade packing

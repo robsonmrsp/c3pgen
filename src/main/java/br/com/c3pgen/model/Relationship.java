@@ -10,6 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.apache.commons.lang3.StringUtils;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 import org.hibernate.envers.Audited;
@@ -104,11 +105,11 @@ public class Relationship extends AbstractTimestampEntity {
 
 	public Relationship(String name, String displayName, String type, String ownerName, String model, Boolean uniDirecional, ViewApproach viewApproach) {
 		super();
-		this.name = name;
-		this.displayName = displayName;
-		this.type = type;
-		this.ownerName = ownerName;
-		this.model = model;
+		this.name = StringUtils.trim(name);
+		this.displayName = StringUtils.trim(displayName);
+		this.type = StringUtils.trim(type);
+		this.ownerName = StringUtils.trim(ownerName);
+		this.model = StringUtils.trim(model);
 		if (uniDirecional == null) {
 			this.uniDirecional = Boolean.FALSE;
 		} else {

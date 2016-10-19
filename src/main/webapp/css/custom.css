@@ -270,7 +270,7 @@ body {
 }
 /* paineis e toolbars  */
 .inspetor {
-	position: fixed;
+/* 	position: fixed; */
 	top: 62px;
 	right: 10px;
 	/* 	width: 450px; */
@@ -278,7 +278,7 @@ body {
 }
 
 .inspetor-relacionamentos {
-	position: fixed;
+/* 	position: fixed; */
 	bottom: 362px;
 	right: 10px;
 	/* 	width: 800px; */
