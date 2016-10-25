@@ -6,6 +6,7 @@
   - name: enderecoOrigem
     tableFieldName: ENDERECO_ORIGEM
     required: false
+    showInPages: false
     maxLen: 200
     displayName: Endereco origem
     type: 
@@ -13,6 +14,7 @@
   - name: numeroOrigem
     tableFieldName: NUMERO_ORIGEM
     required: false
+    showInPages: false
     maxLen: 10
     displayName: Numero origem
     type: 
@@ -20,6 +22,7 @@
   - name: complementoOrigem
     tableFieldName: COMPLEMENTO_ORIGEM
     required: false
+    showInPages: false
     maxLen: 50
     displayName: Complemento origem
     type: 
@@ -27,6 +30,7 @@
   - name: bairroOrigem
     tableFieldName: BAIRRO_ORIGEM
     required: false
+    showInPages: false
     maxLen: 100
     displayName: Bairro origem
     type: 
@@ -34,6 +38,7 @@
   - name: ufOrigem
     tableFieldName: UF_ORIGEM
     required: true
+    showInPages: false
     maxLen: 2
     displayName: Uf origem
     type: 
@@ -41,6 +46,7 @@
   - name: cidadeOrigem
     tableFieldName: CIDADE_ORIGEM
     required: false
+    showInPages: false
     maxLen: 50
     displayName: Cidade origem
     type: 
@@ -48,6 +54,7 @@
   - name: cepOrigem
     tableFieldName: CEP_ORIGEM
     required: false
+    showInPages: false
     maxLen: 9
     displayName: Cep origem
     type: 
@@ -55,6 +62,7 @@
   - name: referenciaOrigem
     tableFieldName: REFERENCIA_ORIGEM
     required: false
+    showInPages: false
     maxLen: 200
     displayName: Referencia origem
     type: 
@@ -62,6 +70,7 @@
   - name: enderecoDestino
     tableFieldName: ENDERECO_DESTINO
     required: false
+    showInPages: false
     maxLen: 200
     displayName: Endereco destino
     type: 
@@ -69,6 +78,7 @@
   - name: numeroDestino
     tableFieldName: NUMERO_DESTINO
     required: false
+    showInPages: false
     maxLen: 10
     displayName: Numero destino
     type: 
@@ -76,6 +86,7 @@
   - name: complementoDestino
     tableFieldName: COMPLEMENTO_DESTINO
     required: false
+    showInPages: false
     maxLen: 50
     displayName: Complemento destino
     type: 
@@ -83,6 +94,7 @@
   - name: bairroDestino
     tableFieldName: BAIRRO_DESTINO
     required: false
+    showInPages: false
     maxLen: 100
     displayName: Bairro destino
     type: 
@@ -90,6 +102,7 @@
   - name: ufDestino
     tableFieldName: UF_DESTINO
     required: false
+    showInPages: false
     maxLen: 2
     displayName: Uf destino
     type: 
@@ -97,6 +110,7 @@
   - name: cidadeDestino
     tableFieldName: CIDADE_DESTINO
     required: false
+    showInPages: false
     maxLen: 50
     displayName: Cidade destino
     type: 
@@ -104,6 +118,7 @@
   - name: cepDestino
     tableFieldName: CEP_DESTINO
     required: false
+    showInPages: false
     maxLen: 9
     displayName: Cep destino
     type: 
@@ -111,8 +126,19 @@
   - name: referenciaDestino
     tableFieldName: REFERENCIA_DESTINO
     required: false
+    showInPages: false
     maxLen: 200
     displayName: Referencia destino
+    type: 
+      className: String
+  - name: descricao
+    tableFieldName: DESCRICAO
+    required: false
+    showInPages: false
+    maxLen: 400
+    viewApproach:                        
+      type: textarea                  
+    displayName: Descricao
     type: 
       className: String
   relationships:                     

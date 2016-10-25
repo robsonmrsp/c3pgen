@@ -31,8 +31,9 @@ public class MainDBDesign {
 		new File(folderOutput).mkdirs();
 		// File source = new
 		// File("C:\\cyg\\home\\robso\\repos\\mercadodelivery\\src\\main\\resources\\c3p-files\\mercado-delivery.xml");
-		String string = "C:\\cyg\\home\\robson\\repos\\c3pgen\\in\\qualidade\\modelo-dados-laudo.xml";
-		// String string =
+//		String string = "C:\\cyg\\home\\robson\\repos\\c3pgen\\in\\qualidade\\.xml";
+
+		String string = "C:\\cyg\\home\\robson\\repos\\c3pgen\\in\\handoverTaxi\\HandoverTaxi.xml";
 		// "G:\\cyg\\home\\robso\\repos\\c3pgen\\in\\handoverTaxi\\qualidade.xml";
 		File source = new File(string);
 		DBModel example = null;

@@ -15,7 +15,8 @@ public class Helper {
 		// "Nome Completo, RG, CPF, Data De Nascimento,Telefone Fixo, Telefone Celular, E-Mail, Nome da Mae Ou Responsável , CPF Mae Ou Responsável, Pai ou Responsável, CPF Do Pai ou Responsável, Endereço, Bairro, Cidade, CEP,Turno, Grau, Série, Curso, Horário , Nome Da Escola, Endereço Da Escola, Bairro Da Escola, Cidade Da Escola, CEP Da Escola, Malote, imagem, foto".split(",");
 		// String[] atributos =
 		// "Nome Do Campo, px1,py1,px2,py2,ativo,".split(",");
-		String[] atributos = "title, 	 description, 	 link, 	 author, 	 guid".split(",");		
+//		String[] atributos = "title, 	 description, 	 link, 	 author, 	 guid".split(",");		
+		String[] atributos = "codigo,codigoAntigo,descricao,preparo,sexo".split(",");		
 		// String[] atributos =		// "Title,  Link,   Description,   Language,   Copyright,   PubDate,".split(",");
 
 		for (String atributo : atributos) {
@@ -64,3 +65,11 @@ public class Helper {
 		return localStr;
 	}
 }
+
+
+
+
+
+
+
+

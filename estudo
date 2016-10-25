@@ -1,2 +1,48 @@
 Linha para gerar os arquivos de acesso ao WS-SOAP para o CXF, essa linha foi executada pelo soapui 5.2.1
 wsdl2java.bat, -p, br.com.teste, -d, C:\tools\soapui, -client, -server, -impl, -all, -exsh, false, -dns, true, -dex, true, -verbose, C:\Users\robson\AppData\Local\Temp\tempdir947763975262644081.tmp\country_1.wsdl]
+
+
+20/10/2016
+-------------------------------------------------------------------------------------------------------------
+- Sobre autorização (spring security, segurança, autenticação, interceptor, filter)
+-------------------------------------------------------------------------------------------------------------
+	Fonte: 
+		http://cxf.apache.org/docs/secure-jax-rs-services.html#SecureJAX-RSServices-Authorization
+	
+	Importante notar:
+	
+A seguinte  configuração:
+
+<jaxrs:server address="/jaas">
+    <jaxrs:serviceBeans>
+        <bean class="org.apache.cxf.systest.jaxrs.security.SecureBookStoreNoAnnotations"/>
+    </jaxrs:serviceBeans>        
+    <jaxrs:providers>
+        <ref bean="authorizationFilter"/>
+    </jaxrs:providers>
+</jaxrs:server>
+  
+<!-- Configure aqui seu mecanismo de autorização -->  
+<bean id="authorizationFilter" class="org.apache.cxf.jaxrs.security.SimpleAuthorizingFilter">
+    <property name="methodRolesMap" ref="rolesMap"/>
+</bean>
+   
+<util:map id="rolesMap">
+    <entry key="getThatBook" value="ROLE_BOOK_OWNER"/>
+    <entry key="getBook" value="ROLE_BOOK_OWNER"/>
+</util:map>	
+
+Sugere que basta implementar um novo interceptor, talvez lendo da infra do RBAC para autorizar ou negar um acesso.
+
+
+A lógica é simples, 
+
+	Ler o RBACK para ver o que o usuário pode fazer ou não.
+	Permite ou Nega Acesso.
+	Em caso de negação, deve-se devolver um 403 para o cliente.
+
+Nessa situação, o cliente DEVERÁ tratar os erros 403 globalmente para mostrar que o usuário não tem acesso aquela 
+operação/url.
+¨
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+

@@ -473,6 +473,7 @@ entities:
   - name: dataCorrida
     tableFieldName: DATA_CORRIDA
     required: false
+    showInPages: false
     displayName: Data corrida
     type: 
       className: Datetime
@@ -483,25 +484,31 @@ entities:
   - name: tipoPagamento
     tableFieldName: TIPO_PAGAMENTO
     required: false
+    showInPages: false
     displayName: Tipo pagamento
     type: 
       className: Integer
   - name: valor
     tableFieldName: VALOR
     required: false
+    showInPages: false
     displayName: Valor
     type: 
       className: Double
   - name: observacao
     tableFieldName: OBSERVACAO
     required: false
-    maxLen: 200
-    displayName: Observação
+    showInPages: false
+    maxLen: 400
+    viewApproach:                        
+      type: textarea                  
+    displayName: Observacao
     type: 
       className: String
   - name: statusCorrida
     tableFieldName: STATUS_CORRIDA
     required: false
+    showInPages: false
     maxLen: 10
     displayName: Status corrida
     type: 
@@ -536,6 +543,7 @@ entities:
   - name: enderecoOrigem
     tableFieldName: ENDERECO_ORIGEM
     required: false
+    showInPages: false
     maxLen: 200
     displayName: Endereco origem
     type: 
@@ -543,6 +551,7 @@ entities:
   - name: numeroOrigem
     tableFieldName: NUMERO_ORIGEM
     required: false
+    showInPages: false
     maxLen: 10
     displayName: Numero origem
     type: 
@@ -550,6 +559,7 @@ entities:
   - name: complementoOrigem
     tableFieldName: COMPLEMENTO_ORIGEM
     required: false
+    showInPages: false
     maxLen: 50
     displayName: Complemento origem
     type: 
@@ -557,6 +567,7 @@ entities:
   - name: bairroOrigem
     tableFieldName: BAIRRO_ORIGEM
     required: false
+    showInPages: false
     maxLen: 100
     displayName: Bairro origem
     type: 
@@ -564,6 +575,7 @@ entities:
   - name: ufOrigem
     tableFieldName: UF_ORIGEM
     required: true
+    showInPages: false
     maxLen: 2
     displayName: Uf origem
     type: 
@@ -571,6 +583,7 @@ entities:
   - name: cidadeOrigem
     tableFieldName: CIDADE_ORIGEM
     required: false
+    showInPages: false
     maxLen: 50
     displayName: Cidade origem
     type: 
@@ -578,6 +591,7 @@ entities:
   - name: cepOrigem
     tableFieldName: CEP_ORIGEM
     required: false
+    showInPages: false
     maxLen: 9
     displayName: Cep origem
     type: 
@@ -585,6 +599,7 @@ entities:
   - name: referenciaOrigem
     tableFieldName: REFERENCIA_ORIGEM
     required: false
+    showInPages: false
     maxLen: 200
     displayName: Referencia origem
     type: 
@@ -592,6 +607,7 @@ entities:
   - name: enderecoDestino
     tableFieldName: ENDERECO_DESTINO
     required: false
+    showInPages: false
     maxLen: 200
     displayName: Endereco destino
     type: 
@@ -599,6 +615,7 @@ entities:
   - name: numeroDestino
     tableFieldName: NUMERO_DESTINO
     required: false
+    showInPages: false
     maxLen: 10
     displayName: Numero destino
     type: 
@@ -606,6 +623,7 @@ entities:
   - name: complementoDestino
     tableFieldName: COMPLEMENTO_DESTINO
     required: false
+    showInPages: false
     maxLen: 50
     displayName: Complemento destino
     type: 
@@ -613,6 +631,7 @@ entities:
   - name: bairroDestino
     tableFieldName: BAIRRO_DESTINO
     required: false
+    showInPages: false
     maxLen: 100
     displayName: Bairro destino
     type: 
@@ -620,6 +639,7 @@ entities:
   - name: ufDestino
     tableFieldName: UF_DESTINO
     required: false
+    showInPages: false
     maxLen: 2
     displayName: Uf destino
     type: 
@@ -627,6 +647,7 @@ entities:
   - name: cidadeDestino
     tableFieldName: CIDADE_DESTINO
     required: false
+    showInPages: false
     maxLen: 50
     displayName: Cidade destino
     type: 
@@ -634,6 +655,7 @@ entities:
   - name: cepDestino
     tableFieldName: CEP_DESTINO
     required: false
+    showInPages: false
     maxLen: 9
     displayName: Cep destino
     type: 
@@ -641,8 +663,19 @@ entities:
   - name: referenciaDestino
     tableFieldName: REFERENCIA_DESTINO
     required: false
+    showInPages: false
     maxLen: 200
     displayName: Referencia destino
+    type: 
+      className: String
+  - name: descricao
+    tableFieldName: DESCRICAO
+    required: false
+    showInPages: false
+    maxLen: 400
+    viewApproach:                        
+      type: textarea                  
+    displayName: Descricao
     type: 
       className: String
   relationships:                     
