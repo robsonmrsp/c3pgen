@@ -3,18 +3,20 @@
   displayName: Atendente
   tableName: ATENDENTE
   attributes:                     
-  - name: nome
-    tableFieldName: NOME
+  - name: nmAtendente
+    tableFieldName: NM_ATENDENTE
     required: false
+    showInPages: false
     maxLen: 50
-    displayName: Nome
+    displayName: Nm atendente
     type: 
       className: String
-  - name: situacao
-    tableFieldName: SITUACAO
+  - name: stAtendente
+    tableFieldName: ST_ATENDENTE
     required: false
-    maxLen: 10
-    displayName: Situação
+    showInPages: false
+    maxLen: 1
+    displayName: St atendente
     type: 
       className: String
   relationships:                     

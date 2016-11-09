@@ -1,33 +1,37 @@
-- name: CentroCusto
+- name: Centrocusto
   hasOwner: false 
-  displayName: Centro custo
-  tableName: CENTRO_CUSTO
+  displayName: Centrocusto
+  tableName: CENTROCUSTO
   attributes:                     
   - name: descricao
     tableFieldName: DESCRICAO
     required: false
+    showInPages: false
     maxLen: 200
-    displayName: Descrição
+    displayName: Descricao
     type: 
       className: String
   - name: valorLimite
     tableFieldName: VALOR_LIMITE
     required: false
+    showInPages: false
     displayName: Valor limite
     type: 
       className: Double
-  - name: observacao
-    tableFieldName: OBSERVACAO
+  - name: observa\231\227o
+    tableFieldName: OBSERVA\231\227O
     required: false
+    showInPages: false
     maxLen: 300
     viewApproach:                        
       type: textarea                  
-    displayName: Observação
+    displayName: Observa\231\227o
     type: 
       className: String
   - name: inativo
     tableFieldName: INATIVO
     required: false
+    showInPages: false
     displayName: Inativo
     type: 
       className: Boolean
@@ -36,7 +40,7 @@
   relationships:                     
   - name: clientes
     type: OneToMany
-    ownerName: centroCusto
+    ownerName: centrocusto
     model: Cliente                       
     displayName: Cliente
   - name: empresa             

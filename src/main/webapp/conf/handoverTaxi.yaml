@@ -9,45 +9,49 @@ entities:
   displayName: Area
   tableName: AREA
   attributes:                     
-  - name: descricao
-    tableFieldName: DESCRICAO
+  - name: dsArea
+    tableFieldName: DS_AREA
     required: false
+    showInPages: false
     maxLen: 100
-    displayName: Descrição
+    displayName: Ds area
     type: 
       className: String
-  - name: coordenadas
-    tableFieldName: COORDENADAS
+  - name: dsCoordenadas
+    tableFieldName: DS_COORDENADAS
     required: false
+    showInPages: false
     maxLen: 500
     viewApproach:                        
       type: textarea                  
-    displayName: Coordenadas
+    displayName: Ds coordenadas
     type: 
       className: String
   relationships:                     
   - name: pontosAreas
     type: OneToMany
     ownerName: area
-    model: PontosArea                       
-    displayName: Pontos área
+    model: PontoArea                       
+    displayName: Pontos area
 - name: Atendente
   hasOwner: false 
   displayName: Atendente
   tableName: ATENDENTE
   attributes:                     
-  - name: nome
-    tableFieldName: NOME
+  - name: nmAtendente
+    tableFieldName: NM_ATENDENTE
     required: false
+    showInPages: false
     maxLen: 50
-    displayName: Nome
+    displayName: Nm atendente
     type: 
       className: String
-  - name: situacao
-    tableFieldName: SITUACAO
+  - name: stAtendente
+    tableFieldName: ST_ATENDENTE
     required: false
-    maxLen: 10
-    displayName: Situação
+    showInPages: false
+    maxLen: 1
+    displayName: St atendente
     type: 
       className: String
   relationships:                     
@@ -56,36 +60,40 @@ entities:
     ownerName: atendente
     model: Corrida                       
     displayName: Corrida
-- name: CentroCusto
+- name: Centrocusto
   hasOwner: false 
-  displayName: Centro custo
-  tableName: CENTRO_CUSTO
+  displayName: Centrocusto
+  tableName: CENTROCUSTO
   attributes:                     
   - name: descricao
     tableFieldName: DESCRICAO
     required: false
+    showInPages: false
     maxLen: 200
-    displayName: Descrição
+    displayName: Descricao
     type: 
       className: String
   - name: valorLimite
     tableFieldName: VALOR_LIMITE
     required: false
+    showInPages: false
     displayName: Valor limite
     type: 
       className: Double
-  - name: observacao
-    tableFieldName: OBSERVACAO
+  - name: observa\231\227o
+    tableFieldName: OBSERVA\231\227O
     required: false
+    showInPages: false
     maxLen: 300
     viewApproach:                        
       type: textarea                  
-    displayName: Observação
+    displayName: Observa\231\227o
     type: 
       className: String
   - name: inativo
     tableFieldName: INATIVO
     required: false
+    showInPages: false
     displayName: Inativo
     type: 
       className: Boolean
@@ -94,7 +102,7 @@ entities:
   relationships:                     
   - name: clientes
     type: OneToMany
-    ownerName: centroCusto
+    ownerName: centrocusto
     model: Cliente                       
     displayName: Cliente
   - name: empresa             
@@ -106,155 +114,142 @@ entities:
       hiddenField: id 
       textField: nome 
 - name: Cliente
-  hasOwner: false
+  hasOwner: false 
   displayName: Cliente
   tableName: CLIENTE
-  attributes:
+  attributes:                     
   - name: nome
     tableFieldName: NOME
     required: false
+    showInPages: false
     maxLen: 200
     displayName: Nome
-    type:
+    type: 
       className: String
   - name: email
     tableFieldName: EMAIL
     required: false
+    showInPages: false
     maxLen: 100
-    displayName: E-mail
-    type:
+    displayName: Email
+    type: 
       className: String
   - name: senha
     tableFieldName: SENHA
     required: false
+    showInPages: false
     maxLen: 100
     displayName: Senha
-    type:
+    type: 
       className: String
   - name: tipo
     tableFieldName: TIPO
     required: false
-    maxLen: 10
+    showInPages: false
+    maxLen: 1
     displayName: Tipo
-    type:
+    type: 
       className: String
   - name: inativo
     tableFieldName: INATIVO
     required: false
+    showInPages: false
     displayName: Inativo
-    type:
+    type: 
       className: Boolean
-    viewApproach:
+    viewApproach: 
       type: check
   - name: usuarioCadastro
     tableFieldName: USUARIO_CADASTRO
     required: false
-    displayName: Usuario cadastro
     showInPages: false
-    type:
+    displayName: Usuario cadastro
+    type: 
       className: Integer
   - name: dataCadastro
     tableFieldName: DATA_CADASTRO
     required: false
-    displayName: Data cadastro
     showInPages: false
-    type:
+    displayName: Data cadastro
+    type: 
       className: Date
-    dateFormat: DD/MM/YYYY
-    mask: 99/99/9999
-    viewApproach:
-      type: datepicker
+    dateFormat: DD/MM/YYYY              
+    mask: 99/99/9999                    
+    viewApproach:                        
+      type: datepicker                  
   - name: matricula
     tableFieldName: MATRICULA
     required: false
-    displayName: Matricula
     showInPages: false
-    type:
+    displayName: Matricula
+    type: 
       className: Integer
   - name: limiteMensal
     tableFieldName: LIMITE_MENSAL
     required: false
-    displayName: Limite mensal
     showInPages: false
-    type:
+    displayName: Limite mensal
+    type: 
       className: Double
   - name: cnpjCpf
     tableFieldName: CNPJ_CPF
     required: false
-    maxLen: 18
-    displayName: CNPJ CPF
     showInPages: false
-    type:
-      className: String
-  - name: cnpj
-    tableFieldName: CNPJ
-    required: false
-    maxLen: 18
-    mask: 99.999.999/9999-99
-    displayName: CNPJ
-    showInPages: false
-    type:
-      className: String
-  - name: cpf
-    tableFieldName: CPF
-    required: false
     maxLen: 14
-    mask: 999.999.999-99
-    displayName: CPF
-    showInPages: false
-    type:
+    displayName: Cnpj cpf
+    type: 
       className: String
   - name: autorizaEticket
     tableFieldName: AUTORIZA_ETICKET
     required: false
-    displayName: Autoriza eticket
     showInPages: false
-    type:
+    displayName: Autoriza eticket
+    type: 
       className: Boolean
-    viewApproach:
+    viewApproach: 
       type: check
   - name: observacao
     tableFieldName: OBSERVACAO
     required: false
-    maxLen: 500
-    viewApproach:
-      type: textarea
-    displayName: Observação
     showInPages: false
-    type:
+    maxLen: 500
+    viewApproach:                        
+      type: textarea                  
+    displayName: Observacao
+    type: 
       className: String
-  relationships:
+  relationships:                     
   - name: clienteEnderecos
     type: OneToMany
     ownerName: cliente
-    model: ClienteEndereco
+    model: ClienteEndereco                       
     displayName: Cliente endereco
   - name: clienteFones
     type: OneToMany
     ownerName: cliente
-    model: ClienteFone
+    model: ClienteFone                       
     displayName: Cliente fone
   - name: motoristaBloqueados
     type: OneToMany
     ownerName: cliente
-    model: MotoristaBloqueado
+    model: MotoristaBloqueado                       
     displayName: Motorista bloqueado
-  - name: empresa
+  - name: empresa             
     type: ManyToOne
-    model: Empresa
+    model: Empresa                       
     displayName: Empresa
-    viewApproach:
-      type: modal
-      hiddenField: id
-      textField: nome
-  - name: centroCusto
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+  - name: centrocusto             
     type: ManyToOne
-    model: CentroCusto
-    displayName: Centro custo
-    viewApproach:
-      type: modal
-      hiddenField: id
-      textField: nome
+    model: Centrocusto                       
+    displayName: Centrocusto
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
 - name: ClienteEndereco
   hasOwner: false 
   displayName: Cliente endereco
@@ -263,6 +258,7 @@ entities:
   - name: endereco
     tableFieldName: ENDERECO
     required: false
+    showInPages: false
     maxLen: 200
     displayName: Endereco
     type: 
@@ -270,13 +266,15 @@ entities:
   - name: numero
     tableFieldName: NUMERO
     required: false
+    showInPages: false
     maxLen: 10
-    displayName: úmero
+    displayName: Numero
     type: 
       className: String
   - name: complemento
     tableFieldName: COMPLEMENTO
     required: false
+    showInPages: false
     maxLen: 200
     displayName: Complemento
     type: 
@@ -284,6 +282,7 @@ entities:
   - name: uf
     tableFieldName: UF
     required: false
+    showInPages: false
     maxLen: 2
     displayName: Uf
     type: 
@@ -291,6 +290,7 @@ entities:
   - name: cidade
     tableFieldName: CIDADE
     required: false
+    showInPages: false
     maxLen: 50
     displayName: Cidade
     type: 
@@ -298,6 +298,7 @@ entities:
   - name: bairro
     tableFieldName: BAIRRO
     required: false
+    showInPages: false
     maxLen: 100
     displayName: Bairro
     type: 
@@ -305,27 +306,31 @@ entities:
   - name: cep
     tableFieldName: CEP
     required: false
-    maxLen: 9
+    showInPages: false
+    maxLen: 8
     displayName: Cep
     type: 
       className: String
   - name: referencia
     tableFieldName: REFERENCIA
     required: false
+    showInPages: false
     maxLen: 200
-    displayName: Referência
+    displayName: Referencia
     type: 
       className: String
   - name: tipo
     tableFieldName: TIPO
     required: false
-    maxLen: 10
+    showInPages: false
+    maxLen: 1
     displayName: Tipo
     type: 
       className: String
   - name: favorito
     tableFieldName: FAVORITO
     required: false
+    showInPages: false
     displayName: Favorito
     type: 
       className: Boolean
@@ -353,6 +358,7 @@ entities:
   - name: latitude
     tableFieldName: LATITUDE
     required: false
+    showInPages: false
     maxLen: 15
     displayName: Latitude
     type: 
@@ -360,6 +366,7 @@ entities:
   - name: longitude
     tableFieldName: LONGITUDE
     required: false
+    showInPages: false
     maxLen: 15
     displayName: Longitude
     type: 
@@ -367,13 +374,15 @@ entities:
   - name: enderecoFormatado
     tableFieldName: ENDERECO_FORMATADO
     required: false
+    showInPages: false
     displayName: Endereco formatado
     type: 
       className: String
   - name: valido
     tableFieldName: VALIDO
     required: false
-    displayName: Válido
+    showInPages: false
+    displayName: Valido
     type: 
       className: Boolean
     viewApproach: 
@@ -395,6 +404,7 @@ entities:
   - name: ddd
     tableFieldName: DDD
     required: true
+    showInPages: false
     maxLen: 3
     displayName: Ddd
     type: 
@@ -402,6 +412,7 @@ entities:
   - name: fone
     tableFieldName: FONE
     required: true
+    showInPages: false
     maxLen: 15
     displayName: Fone
     type: 
@@ -409,6 +420,7 @@ entities:
   - name: favorito
     tableFieldName: FAVORITO
     required: false
+    showInPages: false
     displayName: Favorito
     type: 
       className: Boolean
@@ -431,6 +443,7 @@ entities:
   - name: nome
     tableFieldName: NOME
     required: false
+    showInPages: false
     maxLen: 100
     displayName: Nome
     type: 
@@ -438,13 +451,15 @@ entities:
   - name: ddd
     tableFieldName: DDD
     required: false
+    showInPages: false
     maxLen: 3
-    displayName: DDD
+    displayName: Ddd
     type: 
       className: String
   - name: fone
     tableFieldName: FONE
     required: false
+    showInPages: false
     maxLen: 15
     displayName: Fone
     type: 
@@ -452,6 +467,7 @@ entities:
   - name: setor
     tableFieldName: SETOR
     required: false
+    showInPages: false
     maxLen: 100
     displayName: Setor
     type: 
@@ -509,16 +525,46 @@ entities:
     tableFieldName: STATUS_CORRIDA
     required: false
     showInPages: false
-    maxLen: 10
+    maxLen: 1
     displayName: Status corrida
     type: 
       className: String
+  - name: seqEmAtendimento
+    tableFieldName: SEQ_EM_ATENDIMENTO
+    required: false
+    showInPages: false
+    displayName: Seq em atendimento
+    type: 
+      className: Integer
+  - name: motoGrande
+    tableFieldName: MOTO_GRANDE
+    required: false
+    showInPages: false
+    displayName: Moto grande
+    type: 
+      className: Boolean
+    viewApproach: 
+      type: check
+  - name: bau
+    tableFieldName: BAU
+    required: false
+    showInPages: false
+    displayName: Bau
+    type: 
+      className: Boolean
+    viewApproach: 
+      type: check
   relationships:                     
-  - name: corridaEnderecos
+  - name: enderecoCorridas
     type: OneToMany
     ownerName: corrida
-    model: CorridaEndereco                       
-    displayName: Corrida endereco
+    model: EnderecoCorrida                       
+    displayName: Endereco corrida
+  - name: distanciaMotoCorridas
+    type: OneToMany
+    ownerName: corrida
+    model: DistanciaMotoCorrida                       
+    displayName: Distancia moto corrida
   - name: atendente             
     type: ManyToOne
     model: Atendente                       
@@ -535,137 +581,420 @@ entities:
       type: modal 
       hiddenField: id 
       textField: nome 
-- name: CorridaEndereco
+- name: DistanciaMotoCorrida
   hasOwner: false 
-  displayName: Corrida endereco
-  tableName: CORRIDA_ENDERECO
+  displayName: Distancia moto corrida
+  tableName: DISTANCIA_MOTO_CORRIDA
   attributes:                     
-  - name: enderecoOrigem
-    tableFieldName: ENDERECO_ORIGEM
+  - name: distancia
+    tableFieldName: DISTANCIA
+    required: false
+    showInPages: false
+    displayName: Distancia
+    type: 
+      className: Double
+  - name: sequencia
+    tableFieldName: SEQUENCIA
+    required: false
+    showInPages: false
+    displayName: Sequencia
+    type: 
+      className: Integer
+  relationships:                     
+  - name: motorista             
+    type: ManyToOne
+    model: Motorista                       
+    displayName: Motorista
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+  - name: corrida             
+    type: ManyToOne
+    model: Corrida                       
+    displayName: Corrida
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+- name: Empresa
+  hasOwner: false 
+  displayName: Empresa
+  tableName: EMPRESA
+  attributes:                     
+  - name: razaosocial
+    tableFieldName: RAZAOSOCIAL
     required: false
     showInPages: false
     maxLen: 200
-    displayName: Endereco origem
+    displayName: Razaosocial
     type: 
       className: String
-  - name: numeroOrigem
-    tableFieldName: NUMERO_ORIGEM
+  - name: fantasia
+    tableFieldName: FANTASIA
+    required: false
+    showInPages: false
+    maxLen: 200
+    displayName: Fantasia
+    type: 
+      className: String
+  - name: contrato
+    tableFieldName: CONTRATO
+    required: true
+    showInPages: false
+    maxLen: 20
+    displayName: Contrato
+    type: 
+      className: String
+  - name: endereco
+    tableFieldName: ENDERECO
+    required: false
+    showInPages: false
+    maxLen: 200
+    displayName: Endereco
+    type: 
+      className: String
+  - name: numeroEndereco
+    tableFieldName: NUMERO_ENDERECO
     required: false
     showInPages: false
     maxLen: 10
-    displayName: Numero origem
+    displayName: Numero endereco
     type: 
       className: String
-  - name: complementoOrigem
-    tableFieldName: COMPLEMENTO_ORIGEM
-    required: false
-    showInPages: false
-    maxLen: 50
-    displayName: Complemento origem
-    type: 
-      className: String
-  - name: bairroOrigem
-    tableFieldName: BAIRRO_ORIGEM
+  - name: complemento
+    tableFieldName: COMPLEMENTO
     required: false
     showInPages: false
     maxLen: 100
-    displayName: Bairro origem
+    displayName: Complemento
     type: 
       className: String
-  - name: ufOrigem
-    tableFieldName: UF_ORIGEM
+  - name: uf
+    tableFieldName: UF
+    required: false
+    showInPages: false
+    maxLen: 2
+    displayName: Uf
+    type: 
+      className: String
+  - name: cidade
+    tableFieldName: CIDADE
+    required: false
+    showInPages: false
+    maxLen: 50
+    displayName: Cidade
+    type: 
+      className: String
+  - name: bairro
+    tableFieldName: BAIRRO
+    required: false
+    showInPages: false
+    maxLen: 100
+    displayName: Bairro
+    type: 
+      className: String
+  - name: cep
+    tableFieldName: CEP
+    required: false
+    showInPages: false
+    maxLen: 8
+    displayName: Cep
+    type: 
+      className: String
+  - name: referenciaEndereco
+    tableFieldName: REFERENCIA_ENDERECO
+    required: false
+    showInPages: false
+    maxLen: 200
+    displayName: Referencia endereco
+    type: 
+      className: String
+  - name: ddd
+    tableFieldName: DDD
+    required: false
+    showInPages: false
+    maxLen: 3
+    displayName: Ddd
+    type: 
+      className: String
+  - name: fone
+    tableFieldName: FONE
+    required: false
+    showInPages: false
+    maxLen: 15
+    displayName: Fone
+    type: 
+      className: String
+  - name: utilizaVoucher
+    tableFieldName: UTILIZA_VOUCHER
+    required: false
+    showInPages: false
+    displayName: Utiliza voucher
+    type: 
+      className: Boolean
+    viewApproach: 
+      type: check
+  - name: utilizaEticket
+    tableFieldName: UTILIZA_ETICKET
+    required: false
+    showInPages: false
+    displayName: Utiliza eticket
+    type: 
+      className: Boolean
+    viewApproach: 
+      type: check
+  - name: observacaoTaxista
+    tableFieldName: OBSERVACAO_TAXISTA
+    required: false
+    showInPages: false
+    maxLen: 400
+    viewApproach:                        
+      type: textarea                  
+    displayName: Observacao taxista
+    type: 
+      className: String
+  - name: observacaoCentral
+    tableFieldName: OBSERVACAO_CENTRAL
+    required: false
+    showInPages: false
+    maxLen: 400
+    viewApproach:                        
+      type: textarea                  
+    displayName: Observacao central
+    type: 
+      className: String
+  - name: percentualDesconto
+    tableFieldName: PERCENTUAL_DESCONTO
+    required: false
+    showInPages: false
+    displayName: Percentual desconto
+    type: 
+      className: Double
+  - name: inscricaoMunicipal
+    tableFieldName: INSCRICAO_MUNICIPAL
+    required: false
+    showInPages: false
+    maxLen: 14
+    displayName: Inscricao municipal
+    type: 
+      className: String
+  - name: cnpj
+    tableFieldName: CNPJ
+    required: false
+    showInPages: false
+    maxLen: 14
+    displayName: Cnpj
+    type: 
+      className: String
+  - name: inscricaoEstadual
+    tableFieldName: INSCRICAO_ESTADUAL
+    required: false
+    showInPages: false
+    maxLen: 14
+    displayName: Inscricao estadual
+    type: 
+      className: String
+  - name: emiteNf
+    tableFieldName: EMITE_NF
+    required: false
+    showInPages: false
+    displayName: Emite nf
+    type: 
+      className: Boolean
+    viewApproach: 
+      type: check
+  - name: percentualIss
+    tableFieldName: PERCENTUAL_ISS
+    required: false
+    showInPages: false
+    displayName: Percentual ISS
+    type: 
+      className: Double
+  - name: percentualIrf
+    tableFieldName: PERCENTUAL_IRF
+    required: false
+    showInPages: false
+    displayName: Percentual IRF
+    type: 
+      className: Double
+  - name: percentualInss
+    tableFieldName: PERCENTUAL_INSS
+    required: false
+    showInPages: false
+    displayName: Percentual INSS
+    type: 
+      className: Double
+  - name: diaVencimento
+    tableFieldName: DIA_VENCIMENTO
+    required: false
+    showInPages: false
+    displayName: Dia vencimento
+    type: 
+      className: Integer
+  - name: percentualMotorista
+    tableFieldName: PERCENTUAL_MOTORISTA
+    required: false
+    showInPages: false
+    displayName: Percentual motorista
+    type: 
+      className: Double
+  - name: banco
+    tableFieldName: BANCO
+    required: false
+    showInPages: false
+    maxLen: 10
+    displayName: Banco
+    type: 
+      className: String
+  - name: agencia
+    tableFieldName: AGENCIA
+    required: false
+    showInPages: false
+    maxLen: 10
+    displayName: Agencia
+    type: 
+      className: String
+  - name: conta
+    tableFieldName: CONTA
+    required: false
+    showInPages: false
+    maxLen: 20
+    displayName: Conta
+    type: 
+      className: String
+  - name: email
+    tableFieldName: EMAIL
+    required: false
+    showInPages: false
+    maxLen: 100
+    displayName: Email
+    type: 
+      className: String
+  - name: usuarioCadastro
+    tableFieldName: USUARIO_CADASTRO
+    required: false
+    showInPages: false
+    displayName: Usuario cadastro
+    type: 
+      className: Integer
+  - name: dataCadastro
+    tableFieldName: DATA_CADASTRO
+    required: false
+    showInPages: false
+    displayName: Data cadastro
+    type: 
+      className: Datetime
+    dateFormat: DD/MM/YYYY HH:MM             
+    mask: 99/99/9999 99:99                  
+    viewApproach:                        
+      type: datepicker                  
+  - name: statusEmpresa
+    tableFieldName: STATUS_EMPRESA
+    required: false
+    showInPages: false
+    maxLen: 10
+    displayName: Status empresa
+    type: 
+      className: String
+  relationships:                     
+  - name: hdUsuarios
+    type: OneToMany
+    ownerName: empresa
+    model: HdUsuario                       
+    displayName: Hd usuario
+  - name: clientes
+    type: OneToMany
+    ownerName: empresa
+    model: Cliente                       
+    displayName: Cliente
+  - name: contatos
+    type: OneToMany
+    ownerName: empresa
+    model: Contato                       
+    displayName: Contato
+  - name: socios
+    type: OneToMany
+    ownerName: empresa
+    model: Socio                       
+    displayName: Socio
+  - name: faixaVouchers
+    type: OneToMany
+    ownerName: empresa
+    model: FaixaVoucher                       
+    displayName: Faixa voucher
+  - name: centrocustos
+    type: OneToMany
+    ownerName: empresa
+    model: Centrocusto                       
+    displayName: Centrocusto
+- name: EnderecoCorrida
+  hasOwner: false 
+  displayName: Endereco corrida
+  tableName: ENDERECO_CORRIDA
+  attributes:                     
+  - name: endereco
+    tableFieldName: ENDERECO
+    required: false
+    showInPages: false
+    maxLen: 200
+    displayName: Endereco
+    type: 
+      className: String
+  - name: numero
+    tableFieldName: NUMERO
+    required: false
+    showInPages: false
+    maxLen: 10
+    displayName: Numero
+    type: 
+      className: String
+  - name: complemento
+    tableFieldName: COMPLEMENTO
+    required: false
+    showInPages: false
+    maxLen: 100
+    displayName: Complemento
+    type: 
+      className: String
+  - name: bairro
+    tableFieldName: BAIRRO
+    required: false
+    showInPages: false
+    maxLen: 100
+    displayName: Bairro
+    type: 
+      className: String
+  - name: uf
+    tableFieldName: UF
     required: true
     showInPages: false
     maxLen: 2
-    displayName: Uf origem
+    displayName: Uf
     type: 
       className: String
-  - name: cidadeOrigem
-    tableFieldName: CIDADE_ORIGEM
+  - name: cidade
+    tableFieldName: CIDADE
     required: false
     showInPages: false
     maxLen: 50
-    displayName: Cidade origem
+    displayName: Cidade
     type: 
       className: String
-  - name: cepOrigem
-    tableFieldName: CEP_ORIGEM
+  - name: cep
+    tableFieldName: CEP
     required: false
     showInPages: false
     maxLen: 9
-    displayName: Cep origem
+    displayName: Cep
     type: 
       className: String
-  - name: referenciaOrigem
-    tableFieldName: REFERENCIA_ORIGEM
+  - name: referencia
+    tableFieldName: REFERENCIA
     required: false
     showInPages: false
     maxLen: 200
-    displayName: Referencia origem
-    type: 
-      className: String
-  - name: enderecoDestino
-    tableFieldName: ENDERECO_DESTINO
-    required: false
-    showInPages: false
-    maxLen: 200
-    displayName: Endereco destino
-    type: 
-      className: String
-  - name: numeroDestino
-    tableFieldName: NUMERO_DESTINO
-    required: false
-    showInPages: false
-    maxLen: 10
-    displayName: Numero destino
-    type: 
-      className: String
-  - name: complementoDestino
-    tableFieldName: COMPLEMENTO_DESTINO
-    required: false
-    showInPages: false
-    maxLen: 50
-    displayName: Complemento destino
-    type: 
-      className: String
-  - name: bairroDestino
-    tableFieldName: BAIRRO_DESTINO
-    required: false
-    showInPages: false
-    maxLen: 100
-    displayName: Bairro destino
-    type: 
-      className: String
-  - name: ufDestino
-    tableFieldName: UF_DESTINO
-    required: false
-    showInPages: false
-    maxLen: 2
-    displayName: Uf destino
-    type: 
-      className: String
-  - name: cidadeDestino
-    tableFieldName: CIDADE_DESTINO
-    required: false
-    showInPages: false
-    maxLen: 50
-    displayName: Cidade destino
-    type: 
-      className: String
-  - name: cepDestino
-    tableFieldName: CEP_DESTINO
-    required: false
-    showInPages: false
-    maxLen: 9
-    displayName: Cep destino
-    type: 
-      className: String
-  - name: referenciaDestino
-    tableFieldName: REFERENCIA_DESTINO
-    required: false
-    showInPages: false
-    maxLen: 200
-    displayName: Referencia destino
+    displayName: Referencia
     type: 
       className: String
   - name: descricao
@@ -678,7 +1007,50 @@ entities:
     displayName: Descricao
     type: 
       className: String
+  - name: ordem
+    tableFieldName: ORDEM
+    required: false
+    showInPages: false
+    displayName: Ordem
+    type: 
+      className: Integer
+  - name: latitude
+    tableFieldName: LATITUDE
+    required: false
+    showInPages: false
+    displayName: Latitude
+    type: 
+      className: Double
+  - name: longitude
+    tableFieldName: LONGITUDE
+    required: false
+    showInPages: false
+    displayName: Longitude
+    type: 
+      className: Double
+  - name: enderecoFormatado
+    tableFieldName: ENDERECO_FORMATADO
+    required: false
+    showInPages: false
+    maxLen: 100
+    displayName: Endereco formatado
+    type: 
+      className: String
+  - name: origem
+    tableFieldName: ORIGEM
+    required: false
+    showInPages: false
+    displayName: Origem
+    type: 
+      className: Boolean
+    viewApproach: 
+      type: check
   relationships:                     
+  - name: eventos
+    type: OneToMany
+    ownerName: enderecoCorrida
+    model: Evento                       
+    displayName: Evento
   - name: corrida             
     type: ManyToOne
     model: Corrida                       
@@ -687,314 +1059,72 @@ entities:
       type: modal 
       hiddenField: id 
       textField: nome 
-- name: Empresa
-  hasOwner: false
-  displayName: Empresa
-  tableName: EMPRESA
-  attributes:
-  - name: nomeFantasia
-    tableFieldName: NOME_FANTASIA
+- name: Evento
+  hasOwner: false 
+  displayName: Evento
+  tableName: EVENTO
+  attributes:                     
+  - name: descricao
+    tableFieldName: DESCRICAO
     required: false
-    maxLen: 200
-    displayName: Nome Fantasia
-    type:
+    showInPages: false
+    displayName: Descricao
+    type: 
       className: String
-  - name: cnpj
-    tableFieldName: CNPJ
+  - name: dataInicio
+    tableFieldName: DATA_INICIO
     required: false
-    mask: 99.999.999/9999-99
-    maxLen: 18
-    displayName: CNPJ
-    type:
+    showInPages: false
+    displayName: Data inicio
+    type: 
+      className: Long
+  - name: dataFim
+    tableFieldName: DATA_FIM
+    required: false
+    showInPages: false
+    displayName: Data fim
+    type: 
+      className: Long
+  - name: descricaoCurta
+    tableFieldName: DESCRICAO_CURTA
+    required: false
+    showInPages: false
+    displayName: Descricao curta
+    type: 
       className: String
-  - name: contrato
-    tableFieldName: CONTRATO
-    required: true
-    maxLen: 20
-    displayName: Contrato
-    type:
-      className: String
-  - name: razaoSocial
-    tableFieldName: RAZAO_SOCIAL
-    required: false
-    maxLen: 200
-    displayName: Razão social
-    type:
-      className: String
-  - name: endereco
-    showInPages : false  
-    tableFieldName: ENDERECO
-    required: false
-    maxLen: 200
-    displayName: Endereço
-    type:
-      className: String
-  - name: numeroEndereco
-    showInPages : false
-    tableFieldName: NUMERO_ENDERECO
-    required: false
-    maxLen: 10
-    displayName: Número
-    type:
-      className: String
-  - name: complemento
-    tableFieldName: COMPLEMENTO
-    showInPages : false
-    required: false
-    maxLen: 100
-    displayName: Complemento
-    type:
-      className: String
-  - name: uf
-    tableFieldName: UF
-    showInPages : false
-    required: false
-    maxLen: 2
-    displayName: Uf
-    type:
-      className: String
-  - name: cidade
-    tableFieldName: CIDADE
-    showInPages : false
-    required: false
-    maxLen: 50
-    displayName: Cidade
-    type:
-      className: String
-  - name: bairro
-    tableFieldName: BAIRRO
-    showInPages : false
-    required: false
-    maxLen: 100
-    displayName: Bairro
-    type:
-      className: String
-  - name: cep
-    tableFieldName: CEP
-    showInPages : false
-    required: false
-    maxLen: 9
-    displayName: Cep
-    type:
-      className: String
-  - name: referenciaEndereco
-    tableFieldName: REFERENCIA_ENDERECO
-    showInPages : false
-    required: false
-    maxLen: 200
-    displayName: Referência endereco
-    type:
-      className: String
-  - name: ddd
-    tableFieldName: DDD
-    showInPages : false
-    required: false
-    maxLen: 3
-    displayName: DDD
-    type:
-      className: String
-  - name: fone
-    tableFieldName: FONE
-    showInPages : false
-    required: false
-    maxLen: 15
-    displayName: Fone
-    type:
-      className: String
-  - name: utilizaVoucher
-    tableFieldName: UTILIZA_VOUCHER
-    showInPages : false
-    required: false
-    displayName: Utiliza voucher
-    type:
-      className: Boolean
-    viewApproach:
-      type: check
-  - name: utilizaEticket
-    tableFieldName: UTILIZA_ETICKET
-    showInPages : false
-    required: false
-    displayName: Utiliza eticket
-    type:
-      className: Boolean
-    viewApproach:
-      type: check
-  - name: observacaoTaxista
-    tableFieldName: OBSERVACAO_TAXISTA
-    showInPages : false
-    required: false
-    maxLen: 400
-    viewApproach:
-      type: textarea
-    displayName: Observação taxista
-    type:
-      className: String
-  - name: observacaoCentral
-    tableFieldName: OBSERVACAO_CENTRAL
-    showInPages : false
-    required: false
-    maxLen: 400
-    viewApproach:
-      type: textarea
-    displayName: Observação central
-    type:
-      className: String
-  - name: percentualDesconto
-    tableFieldName: PERCENTUAL_DESCONTO
-    showInPages : false
-    required: false
-    displayName: Percentual desconto
-    type:
-      className: Double
-  - name: inscricaoMunicipal
-    tableFieldName: INSCRICAO_MUNICIPAL
-    showInPages : false
-    required: false
-    maxLen: 14
-    displayName: Inscrição municipal
-    type:
-      className: String
-  - name: inscricaoEstadual
-    tableFieldName: INSCRICAO_ESTADUAL
-    showInPages : false
-    required: false
-    maxLen: 14
-    displayName: Inscrição estadual
-    type:
-      className: String
-  - name: emiteNf
-    tableFieldName: EMITE_NF
-    showInPages : false
-    required: false
-    displayName: Emite nf
-    type:
-      className: Boolean
-    viewApproach:
-      type: check
-  - name: percentualIss
-    tableFieldName: PERCENTUAL_ISS
-    showInPages : false
-    required: false
-    displayName: Percentual ISS
-    type:
-      className: Double
-  - name: percentualIrf
-    tableFieldName: PERCENTUAL_IRF
-    showInPages : false
-    required: false
-    displayName: Percentual IRF
-    type:
-      className: Double
-  - name: percentualInss
-    tableFieldName: PERCENTUAL_INSS
-    showInPages : false
-    required: false
-    displayName: Percentual INSS
-    type:
-      className: Double
-  - name: diaVencimento
-    tableFieldName: DIA_VENCIMENTO
-    showInPages : false
-    required: false
-    displayName: Dia vencimento
-    type:
-      className: Integer
-  - name: percentualMotorista
-    tableFieldName: PERCENTUAL_MOTORISTA
-    showInPages : false
-    required: false
-    displayName: Percentual motorista
-    type:
-      className: Double
-  - name: banco
-    tableFieldName: BANCO
-    showInPages : false
-    required: false
-    maxLen: 10
-    displayName: Banco
-    type:
-      className: String
-  - name: agencia
-    tableFieldName: AGENCIA
-    showInPages : false
-    required: false
-    maxLen: 10
-    displayName: Agencia
-    type:
-      className: String
-  - name: conta
-    tableFieldName: CONTA
-    showInPages : false
-    required: false
-    maxLen: 20
-    displayName: Conta
-    type:
-      className: String
-  - name: email
-    tableFieldName: EMAIL
-    showInPages : false
-    required: false
-    maxLen: 100
-    displayName: Email
-    type:
-      className: String
-  - name: usuarioCadastro
-    tableFieldName: USUARIO_CADASTRO
-    showInPages : false
-    required: false
-    displayName: Usuario cadastro
-    type:
-      className: Integer
-  - name: dataCadastro
-    tableFieldName: DATA_CADASTRO
-    showInPages : false
-    required: false
-    displayName: Data cadastro
-    type:
-      className: Datetime
-    dateFormat: DD/MM/YYYY HH:MM
-    mask: 99/99/9999 99:99
-    viewApproach:
-      type: datepicker
-  - name: statusEmpresa
-    tableFieldName: STATUS_EMPRESA
-    showInPages : false
-    required: false
-    maxLen: 1
-    displayName: Status empresa
-    type:
-      className: String
-  relationships:
-  - name: centroCustos
-    type: OneToMany
-    ownerName: empresa
-    model: CentroCusto
-    displayName: Centro custo
-  - name: hdUsuarios
-    type: OneToMany
-    ownerName: empresa
-    model: HdUsuario
-    displayName: Hd usuario
-  - name: contatos
-    type: OneToMany
-    ownerName: empresa
-    model: Contato
-    displayName: Contato
-  - name: socios
-    type: OneToMany
-    ownerName: empresa
-    model: Socio
-    displayName: Socio
-  - name: faixaVouchers
-    type: OneToMany
-    ownerName: empresa
-    model: FaixaVoucher
-    displayName: Faixa voucher
-  - name: clientes
-    type: OneToMany
-    ownerName: empresa
-    model: Cliente
-    displayName: Cliente
+  relationships:                     
+  - name: enderecoCorrida             
+    type: ManyToOne
+    model: EnderecoCorrida                       
+    displayName: Endereco corrida
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+  - name: motorista             
+    type: ManyToOne
+    model: Motorista                       
+    displayName: Motorista
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+  - name: visitaTracker             
+    type: ManyToOne
+    model: VisitaTracker                       
+    displayName: Visita tracker
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+  - name: visitaTracker             
+    type: ManyToOne
+    model: VisitaTracker                       
+    displayName: Visita tracker
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
 - name: FaixaVoucher
   hasOwner: false 
   displayName: Faixa voucher
@@ -1003,6 +1133,7 @@ entities:
   - name: serie
     tableFieldName: SERIE
     required: false
+    showInPages: false
     maxLen: 2
     displayName: Serie
     type: 
@@ -1010,18 +1141,21 @@ entities:
   - name: numeroInicial
     tableFieldName: NUMERO_INICIAL
     required: false
-    displayName: Número inicial
+    showInPages: false
+    displayName: Numero inicial
     type: 
       className: Integer
   - name: numeroFinal
     tableFieldName: NUMERO_FINAL
     required: false
-    displayName: Número final
+    showInPages: false
+    displayName: Numero final
     type: 
       className: Integer
   - name: inativo
     tableFieldName: INATIVO
     required: false
+    showInPages: false
     displayName: Inativo
     type: 
       className: Boolean
@@ -1036,156 +1170,6 @@ entities:
       type: modal 
       hiddenField: id 
       textField: nome 
-- name: Funcionario
-  hasOwner: false
-  displayName: Funcionario
-  tableName: CLIENTE
-  attributes:
-  - name: nome
-    tableFieldName: NOME
-    required: false
-    maxLen: 200
-    displayName: Nome
-    type:
-      className: String
-  - name: email
-    tableFieldName: EMAIL
-    required: false
-    maxLen: 100
-    displayName: E-mail
-    type:
-      className: String
-  - name: senha
-    tableFieldName: SENHA
-    required: false
-    maxLen: 100
-    displayName: Senha
-    type:
-      className: String
-  - name: tipo
-    tableFieldName: TIPO
-    required: false
-    maxLen: 10
-    displayName: Tipo
-    type:
-      className: String
-  - name: inativo
-    tableFieldName: INATIVO
-    required: false
-    displayName: Inativo
-    type:
-      className: Boolean
-    viewApproach:
-      type: check
-  - name: usuarioCadastro
-    tableFieldName: USUARIO_CADASTRO
-    required: false
-    displayName: Usuario cadastro
-    showInPages: false
-    type:
-      className: Integer
-  - name: dataCadastro
-    tableFieldName: DATA_CADASTRO
-    required: false
-    displayName: Data cadastro
-    showInPages: false
-    type:
-      className: Date
-    dateFormat: DD/MM/YYYY
-    mask: 99/99/9999
-    viewApproach:
-      type: datepicker
-  - name: matricula
-    tableFieldName: MATRICULA
-    required: false
-    displayName: Matricula
-    showInPages: false
-    type:
-      className: Integer
-  - name: limiteMensal
-    tableFieldName: LIMITE_MENSAL
-    required: false
-    displayName: Limite mensal
-    showInPages: false
-    type:
-      className: Double
-  - name: cnpjCpf
-    tableFieldName: CNPJ_CPF
-    required: false
-    maxLen: 18
-    displayName: CNPJ CPF
-    showInPages: false
-    type:
-      className: String
-  - name: cnpj
-    tableFieldName: CNPJ
-    required: false
-    maxLen: 18
-    mask: 99.999.999/9999-99
-    displayName: CNPJ
-    showInPages: false
-    type:
-      className: String
-  - name: cpf
-    tableFieldName: CPF
-    required: false
-    maxLen: 14
-    mask: 999.999.999-99
-    displayName: CPF
-    showInPages: false
-    type:
-      className: String
-  - name: autorizaEticket
-    tableFieldName: AUTORIZA_ETICKET
-    required: false
-    displayName: Autoriza eticket
-    showInPages: false
-    type:
-      className: Boolean
-    viewApproach:
-      type: check
-  - name: observacao
-    tableFieldName: OBSERVACAO
-    required: false
-    maxLen: 500
-    viewApproach:
-      type: textarea
-    displayName: Observação
-    showInPages: false
-    type:
-      className: String
-  relationships:
-  - name: clienteEnderecos
-    type: OneToMany
-    ownerName: cliente
-    model: ClienteEndereco
-    displayName: Cliente endereco
-  - name: clienteFones
-    type: OneToMany
-    ownerName: cliente
-    model: ClienteFone
-    displayName: Cliente fone
-  - name: motoristaBloqueados
-    type: OneToMany
-    ownerName: cliente
-    model: MotoristaBloqueado
-    displayName: Motorista bloqueado
-  - name: empresa
-    type: ManyToOne
-    model: Empresa
-    displayName: Empresa
-    viewApproach:
-      type: modal
-      hiddenField: id
-      textField: nome
-  - name: centroCusto
-    type: ManyToOne
-    model: CentroCusto
-    displayName: Centro custo
-    viewApproach:
-      type: modal
-      hiddenField: id
-      textField: nome
 - name: HdUsuario
   hasOwner: false 
   displayName: Hd usuario
@@ -1194,6 +1178,7 @@ entities:
   - name: nome
     tableFieldName: NOME
     required: true
+    showInPages: false
     maxLen: 100
     displayName: Nome
     type: 
@@ -1201,6 +1186,7 @@ entities:
   - name: email
     tableFieldName: EMAIL
     required: false
+    showInPages: false
     maxLen: 100
     displayName: Email
     type: 
@@ -1208,6 +1194,7 @@ entities:
   - name: senha
     tableFieldName: SENHA
     required: true
+    showInPages: false
     maxLen: 100
     displayName: Senha
     type: 
@@ -1215,6 +1202,7 @@ entities:
   - name: tipo
     tableFieldName: TIPO
     required: false
+    showInPages: false
     maxLen: 20
     displayName: Tipo
     type: 
@@ -1222,6 +1210,7 @@ entities:
   - name: perfil
     tableFieldName: PERFIL
     required: false
+    showInPages: false
     maxLen: 20
     displayName: Perfil
     type: 
@@ -1229,6 +1218,7 @@ entities:
   - name: statusUsuario
     tableFieldName: STATUS_USUARIO
     required: true
+    showInPages: false
     maxLen: 10
     displayName: Status usuario
     type: 
@@ -1236,6 +1226,7 @@ entities:
   - name: datainclusao
     tableFieldName: DATAINCLUSAO
     required: false
+    showInPages: false
     displayName: Datainclusao
     type: 
       className: Datetime
@@ -1246,6 +1237,7 @@ entities:
   - name: usuarioinclusao
     tableFieldName: USUARIOINCLUSAO
     required: false
+    showInPages: false
     displayName: Usuarioinclusao
     type: 
       className: Integer
@@ -1266,10 +1258,11 @@ entities:
   - name: descricao
     tableFieldName: DESCRICAO
     required: false
+    showInPages: false
     maxLen: 400
     viewApproach:                        
       type: textarea                  
-    displayName: Descrição
+    displayName: Descricao
     type: 
       className: String
   relationships:                     
@@ -1286,6 +1279,7 @@ entities:
   - name: dataEnvio
     tableFieldName: DATA_ENVIO
     required: false
+    showInPages: false
     displayName: Data envio
     type: 
       className: Datetime
@@ -1296,6 +1290,7 @@ entities:
   - name: dataLeitura
     tableFieldName: DATA_LEITURA
     required: false
+    showInPages: false
     displayName: Data leitura
     type: 
       className: Datetime
@@ -1835,28 +1830,18 @@ entities:
   - name: dataBloqueio
     tableFieldName: DATA_BLOQUEIO
     required: false
+    showInPages: false
     displayName: Data bloqueio
     type: 
-      className: Datetime
-    dateFormat: DD/MM/YYYY HH:MM             
-    mask: 99/99/9999 99:99                  
-    viewApproach:                        
-      type: datepicker                  
+      className: Integer
   - name: usuarioBloqueio
     tableFieldName: USUARIO_BLOQUEIO
     required: false
+    showInPages: false
     displayName: Usuario bloqueio
     type: 
       className: Integer
   relationships:                     
-  - name: cliente             
-    type: ManyToOne
-    model: Cliente                       
-    displayName: Cliente
-    viewApproach:   
-      type: modal 
-      hiddenField: id 
-      textField: nome 
   - name: motorista             
     type: ManyToOne
     model: Motorista                       
@@ -1865,37 +1850,69 @@ entities:
       type: modal 
       hiddenField: id 
       textField: nome 
+  - name: cliente             
+    type: ManyToOne
+    model: Cliente                       
+    displayName: Cliente
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+- name: MotoristaHasPlantao
+  hasOwner: false 
+  displayName: Motorista has plantao
+  tableName: MOTORISTA_HAS_PLANTAO
+  attributes:                     
+  relationships:                     
+  - name: motorista             
+    type: ManyToOne
+    model: Motorista                       
+    displayName: Motorista
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+  - name: plantao             
+    type: ManyToOne
+    model: Plantao                       
+    displayName: Plantao
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
 - name: Plantao
-  hasOwner: false
+  hasOwner: false 
   displayName: Plantao
   tableName: PLANTAO
-  attributes:
+  attributes:                     
   - name: dataInicio
     tableFieldName: DATA_INICIO
     required: false
+    showInPages: false
     displayName: Data inicio
-    type:
+    type: 
       className: Datetime
-    dateFormat: DD/MM/YYYY HH:MM
-    mask: 99/99/9999 99:99
-    viewApproach:
-      type: datepicker
+    dateFormat: DD/MM/YYYY HH:MM             
+    mask: 99/99/9999 99:99                  
+    viewApproach:                        
+      type: datepicker                  
   - name: dataFim
     tableFieldName: DATA_FIM
     required: false
+    showInPages: false
     displayName: Data fim
-    type:
+    type: 
       className: Datetime
-    dateFormat: DD/MM/YYYY HH:MM
-    mask: 99/99/9999 99:99
-    viewApproach:
-      type: datepicker
+    dateFormat: DD/MM/YYYY HH:MM             
+    mask: 99/99/9999 99:99                  
+    viewApproach:                        
+      type: datepicker                  
   relationships:
   - name: motoristas
     type: ManyToMany
     model: Motorista
     displayName: Motoqueiros
-- name: PontosArea
+- name: PontoArea
   hasOwner: false 
   displayName: Pontos area
   tableName: PONTOS_AREA
@@ -1903,6 +1920,7 @@ entities:
   - name: latitude
     tableFieldName: LATITUDE
     required: false
+    showInPages: false
     maxLen: 15
     displayName: Latitude
     type: 
@@ -1910,6 +1928,7 @@ entities:
   - name: longitude
     tableFieldName: LONGITUDE
     required: false
+    showInPages: false
     maxLen: 15
     displayName: Longitude
     type: 
@@ -1931,6 +1950,7 @@ entities:
   - name: motivo
     tableFieldName: MOTIVO
     required: false
+    showInPages: false
     maxLen: 100
     displayName: Motivo
     type: 
@@ -1938,6 +1958,7 @@ entities:
   - name: dataInicio
     tableFieldName: DATA_INICIO
     required: false
+    showInPages: false
     displayName: Data inicio
     type: 
       className: Datetime
@@ -1948,6 +1969,7 @@ entities:
   - name: dataFim
     tableFieldName: DATA_FIM
     required: false
+    showInPages: false
     displayName: Data fim
     type: 
       className: Datetime
@@ -1961,6 +1983,14 @@ entities:
     displayName: QuantidadeTempo
     type: 
       className: Integer
+  - name: statusPunicao
+    tableFieldName: STATUS_PUNICAO
+    required: false
+    showInPages: false
+    maxLen: 10
+    displayName: Status punicao
+    type: 
+      className: String
   relationships:                     
   - name: motorista             
     type: ManyToOne
@@ -1972,12 +2002,13 @@ entities:
       textField: nome 
 - name: Socio
   hasOwner: false 
-  displayName: Sócio
+  displayName: Socio
   tableName: SOCIO
   attributes:                     
   - name: nome
     tableFieldName: NOME
     required: false
+    showInPages: false
     maxLen: 100
     displayName: Nome
     type: 
@@ -1985,7 +2016,8 @@ entities:
   - name: cpf
     tableFieldName: CPF
     required: false
-    maxLen: 14
+    showInPages: false
+    maxLen: 11
     displayName: Cpf
     type: 
       className: String
@@ -1998,6 +2030,103 @@ entities:
       type: modal 
       hiddenField: id 
       textField: nome 
+- name: StatusTracker
+  hasOwner: false 
+  displayName: Status tracker
+  tableName: STATUS_TRACKER
+  attributes:                     
+  - name: latitude
+    tableFieldName: LATITUDE
+    required: true
+    showInPages: false
+    displayName: Latitude
+    type: 
+      className: Double
+  - name: longitude
+    tableFieldName: LONGITUDE
+    required: false
+    showInPages: false
+    displayName: Longitude
+    type: 
+      className: Double
+  - name: timestamp
+    tableFieldName: TIMESTAMP
+    required: false
+    showInPages: false
+    displayName: Timestamp
+    type: 
+      className: Long
+  - name: speed
+    tableFieldName: SPEED
+    required: false
+    showInPages: false
+    displayName: Speed
+    type: 
+      className: Double
+  - name: accuracy
+    tableFieldName: ACCURACY
+    required: false
+    showInPages: false
+    displayName: Accuracy
+    type: 
+      className: Double
+  - name: direction
+    tableFieldName: DIRECTION
+    required: false
+    showInPages: false
+    displayName: Direction
+    type: 
+      className: Double
+  - name: altitude
+    tableFieldName: ALTITUDE
+    required: false
+    showInPages: false
+    displayName: Altitude
+    type: 
+      className: Double
+  - name: bateryLevel
+    tableFieldName: BATERY_LEVEL
+    required: false
+    showInPages: false
+    displayName: Batery level
+    type: 
+      className: Double
+  - name: gpsEnabled
+    tableFieldName: GPS_ENABLED
+    required: false
+    showInPages: false
+    displayName: Gps enabled
+    type: 
+      className: Boolean
+    viewApproach: 
+      type: check
+  - name: wifiEnabled
+    tableFieldName: WIFI_ENABLED
+    required: false
+    showInPages: false
+    displayName: Wifi enabled
+    type: 
+      className: Boolean
+    viewApproach: 
+      type: check
+  - name: mobileEnabled
+    tableFieldName: MOBILE_ENABLED
+    required: false
+    showInPages: false
+    displayName: Mobile enabled
+    type: 
+      className: Boolean
+    viewApproach: 
+      type: check
+  relationships:                     
+  - name: motorista             
+    type: ManyToOne
+    model: Motorista                       
+    displayName: Motorista
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
 - name: Tarifa
   hasOwner: false 
   displayName: Tarifa
@@ -2006,6 +2135,7 @@ entities:
   - name: bairroOrigem
     tableFieldName: BAIRRO_ORIGEM
     required: false
+    showInPages: false
     maxLen: 100
     displayName: Bairro origem
     type: 
@@ -2013,14 +2143,16 @@ entities:
   - name: bairroDestino
     tableFieldName: BAIRRO_DESTINO
     required: false
+    showInPages: false
     maxLen: 100
     displayName: Bairro destino
     type: 
       className: String
-  - name: valor
-    tableFieldName: VALOR
+  - name: vlValor
+    tableFieldName: VL_VALOR
     required: false
-    displayName: Valor
+    showInPages: false
+    displayName: Vl valor
     type: 
       className: Double
   relationships:                     
@@ -2029,20 +2161,123 @@ entities:
   displayName: Tarifa adicional
   tableName: TARIFA_ADICIONAL
   attributes:                     
-  - name: descricao
-    tableFieldName: DESCRICAO
+  - name: dsTarifa
+    tableFieldName: DS_TARIFA
     required: false
+    showInPages: false
     maxLen: 200
-    displayName: Descrição
+    displayName: Ds tarifa
     type: 
       className: String
-  - name: valor
-    tableFieldName: VALOR
+  - name: vlValor
+    tableFieldName: VL_VALOR
     required: false
-    displayName: Valor
+    showInPages: false
+    displayName: Vl valor
     type: 
       className: Double
   relationships:                     
+- name: VisitaTracker
+  hasOwner: false 
+  displayName: Visita tracker
+  tableName: VISITA_TRACKER
+  attributes:                     
+  - name: latitude
+    tableFieldName: LATITUDE
+    required: false
+    showInPages: false
+    displayName: Latitude
+    type: 
+      className: Double
+  - name: longitude
+    tableFieldName: LONGITUDE
+    required: false
+    showInPages: false
+    displayName: Longitude
+    type: 
+      className: Double
+  - name: timestamp
+    tableFieldName: TIMESTAMP
+    required: false
+    showInPages: false
+    displayName: Timestamp
+    type: 
+      className: Long
+  - name: speed
+    tableFieldName: SPEED
+    required: false
+    showInPages: false
+    displayName: Speed
+    type: 
+      className: Double
+  - name: accuracy
+    tableFieldName: ACCURACY
+    required: false
+    showInPages: false
+    displayName: Accuracy
+    type: 
+      className: Double
+  - name: direction
+    tableFieldName: DIRECTION
+    required: false
+    showInPages: false
+    displayName: Direction
+    type: 
+      className: Double
+  - name: altitude
+    tableFieldName: ALTITUDE
+    required: false
+    showInPages: false
+    displayName: Altitude
+    type: 
+      className: Double
+  - name: baterryLevel
+    tableFieldName: BATERRY_LEVEL
+    required: false
+    showInPages: false
+    displayName: Baterry level
+    type: 
+      className: Boolean
+    viewApproach: 
+      type: check
+  - name: gpsEnabled
+    tableFieldName: GPS_ENABLED
+    required: false
+    showInPages: false
+    displayName: Gps enabled
+    type: 
+      className: Boolean
+    viewApproach: 
+      type: check
+  - name: wifiEnabled
+    tableFieldName: WIFI_ENABLED
+    required: false
+    showInPages: false
+    displayName: Wifi enabled
+    type: 
+      className: Boolean
+    viewApproach: 
+      type: check
+  - name: mobileEnabled
+    tableFieldName: MOBILE_ENABLED
+    required: false
+    showInPages: false
+    displayName: Mobile enabled
+    type: 
+      className: Boolean
+    viewApproach: 
+      type: check
+  relationships:                     
+  - name: eventos
+    type: OneToMany
+    ownerName: visitaTracker
+    model: Evento                       
+    displayName: Evento
+  - name: eventos
+    type: OneToMany
+    ownerName: visitaTracker
+    model: Evento                       
+    displayName: Evento
 - name: Bairro
   displayName: Bairro
   tableName: BAIRRO

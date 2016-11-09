@@ -31,6 +31,17 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 		})
 	};
 
+	// //para a mascara de telefone que pode assumir vários formatos
+	var maskPhoneBehavior = function(val) {
+		return val.replace(/\D/g, '').length === 11 ? '(99) 99999-9999' : '(99) 9999-99990';
+	};
+
+	var optionsMaskPhone = {
+		onKeyPress : function(val, e, field, options) {
+			field.mask(maskPhoneBehavior.apply({}, arguments), options);
+		}
+	};
+
 	var spinnerOpts = {
 		lines : 11, // The number of lines to draw
 		length : 7, // The length of each line
@@ -97,7 +108,7 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 				} else {
 					var text = object.val();
 					if (text) {
-						returnValue = text.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;').replace('"', '&quot;').replace("'", '&#x27;');
+						returnValue = text.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;').replace('"', '&quot;').replace("'", '&#x27;').trim();
 					}
 				}
 			}
@@ -108,7 +119,8 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 				} else {
 					returnValue = returnValue.replace(/\./g, '').replace(/\,/g, '.')
 				}
-			}
+			} 
+
 			return returnValue;
 		},
 
@@ -409,12 +421,12 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 		},
 
 		/*
-		 * Usage: breadcrumb({iconClass:'',itemLabel:'', itemSubFolderName:'',url:''});
+		 * Usage: breadcrumb({iconClass:'',itemLabel:'',
+		 * itemSubFolderName:'',url:''});
 		 */
 		breadcrumb : function(itemMenu) {
 			if (itemMenu) {
-				var content = "<ul class='breadcrumb'>" + "	<li>" + "		<i class='fa " + itemMenu.iconClass + " '></i>" + "		<a href='#" + itemMenu.url + " '> &nbsp; " + itemMenu.itemLabel + "</a>" + "	</li>" + "	<li class='active realce-breadcumb'>" + itemMenu.itemSubFolderName
-						+ "</li>" + "</ul>";
+				var content = "<ul class='breadcrumb'>" + "	<li>" + "		<i class='fa " + itemMenu.iconClass + " '></i>" + "		<a href='#" + itemMenu.url + " '> &nbsp; " + itemMenu.itemLabel + "</a>" + "	</li>" + "	<li class='active realce-breadcumb'>" + itemMenu.itemSubFolderName + "</li>" + "</ul>";
 				$('#breadcrumbs').html(content);
 			}
 		},
@@ -525,6 +537,26 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 			for (var j = 0, len = str.length; j < len; j++) {
 				if (str[j] != ".") {
 					output.push(str[j]);
+					i++;
+				}
+			}
+			formatted = output.reverse().join("");
+			return (formatted + ((parts) ? "," + parts[1].substr(0, 2) : ""));
+		},
+
+		formatMoney : function(num) {
+
+			num = this.toStrNumber(num);
+
+			var str = num.toString().replace("$", ""), parts = false, output = [], i = 1, formatted = null;
+			if (str.indexOf(",") > 0) {
+				parts = str.split(",");
+				str = parts[0];
+			}
+			str = str.split("").reverse();
+			for (var j = 0, len = str.length; j < len; j++) {
+				if (str[j] != ".") {
+					output.push(str[j]);
 					if (i % 3 == 0 && j < (len - 1)) {
 						output.push(".");
 					}
@@ -536,7 +568,9 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 		},
 
 		onlyNumber : function(valor) {
-			return valor.replace(/[^0-9]+/, '');
+			if (valor)
+				return valor.replace(/[^0-9]+/, '');
+			return '';
 		},
 		notificationError : function(options) {
 
@@ -602,7 +636,8 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 					text : 'Aparentemente voce não está conectado',
 				})
 			} else {
-				// console.error(resp.responseText || (resp.getResponseHeader && resp.getResponseHeader('exception')));
+				// console.error(resp.responseText || (resp.getResponseHeader &&
+				// resp.getResponseHeader('exception')));
 			}
 		},
 
@@ -630,7 +665,10 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 			window.addLogEntry(entry);
 
 			console.error("veja no console o erro: [ window.showStoreLog()]");
-		}
+		},
+		PHONE_BEHAVIOR : maskPhoneBehavior,
+		PHONE_OPTIONS : optionsMaskPhone,
+
 	};
 
 	return util;

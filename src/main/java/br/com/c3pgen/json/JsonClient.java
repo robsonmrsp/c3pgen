@@ -21,6 +21,7 @@ public class JsonClient implements Serializable {
 	private String logo;
 	private String name;
 	private String cnpj;
+	private String telefone;
 	private String phoneNumber;
 	private String corporateName;
 	
@@ -80,6 +81,14 @@ public class JsonClient implements Serializable {
 	
 	public void setSyncOperation (SyncOperation  syncOperation){
 		this.syncOperation = syncOperation;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
 	
 }

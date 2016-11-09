@@ -6,6 +6,7 @@
   - name: serie
     tableFieldName: SERIE
     required: false
+    showInPages: false
     maxLen: 2
     displayName: Serie
     type: 
@@ -13,18 +14,21 @@
   - name: numeroInicial
     tableFieldName: NUMERO_INICIAL
     required: false
-    displayName: Número inicial
+    showInPages: false
+    displayName: Numero inicial
     type: 
       className: Integer
   - name: numeroFinal
     tableFieldName: NUMERO_FINAL
     required: false
-    displayName: Número final
+    showInPages: false
+    displayName: Numero final
     type: 
       className: Integer
   - name: inativo
     tableFieldName: INATIVO
     required: false
+    showInPages: false
     displayName: Inativo
     type: 
       className: Boolean

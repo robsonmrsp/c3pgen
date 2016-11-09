@@ -1,308 +1,311 @@
 - name: Empresa
-  hasOwner: false
+  hasOwner: false 
   displayName: Empresa
   tableName: EMPRESA
-  attributes:
-  - name: nomeFantasia
-    tableFieldName: NOME_FANTASIA
+  attributes:                     
+  - name: razaosocial
+    tableFieldName: RAZAOSOCIAL
     required: false
+    showInPages: false
     maxLen: 200
-    displayName: Nome Fantasia
-    type:
+    displayName: Razaosocial
+    type: 
       className: String
-  - name: cnpj
-    tableFieldName: CNPJ
+  - name: fantasia
+    tableFieldName: FANTASIA
     required: false
-    mask: 99.999.999/9999-99
-    maxLen: 18
-    displayName: CNPJ
-    type:
+    showInPages: false
+    maxLen: 200
+    displayName: Fantasia
+    type: 
       className: String
   - name: contrato
     tableFieldName: CONTRATO
     required: true
+    showInPages: false
     maxLen: 20
     displayName: Contrato
-    type:
-      className: String
-  - name: razaoSocial
-    tableFieldName: RAZAO_SOCIAL
-    required: false
-    maxLen: 200
-    displayName: Razão social
-    type:
+    type: 
       className: String
   - name: endereco
-    showInPages : false  
     tableFieldName: ENDERECO
     required: false
+    showInPages: false
     maxLen: 200
-    displayName: Endereço
-    type:
+    displayName: Endereco
+    type: 
       className: String
   - name: numeroEndereco
-    showInPages : false
     tableFieldName: NUMERO_ENDERECO
     required: false
+    showInPages: false
     maxLen: 10
-    displayName: Número
-    type:
+    displayName: Numero endereco
+    type: 
       className: String
   - name: complemento
     tableFieldName: COMPLEMENTO
-    showInPages : false
     required: false
+    showInPages: false
     maxLen: 100
     displayName: Complemento
-    type:
+    type: 
       className: String
   - name: uf
     tableFieldName: UF
-    showInPages : false
     required: false
+    showInPages: false
     maxLen: 2
     displayName: Uf
-    type:
+    type: 
       className: String
   - name: cidade
     tableFieldName: CIDADE
-    showInPages : false
     required: false
+    showInPages: false
     maxLen: 50
     displayName: Cidade
-    type:
+    type: 
       className: String
   - name: bairro
     tableFieldName: BAIRRO
-    showInPages : false
     required: false
+    showInPages: false
     maxLen: 100
     displayName: Bairro
-    type:
+    type: 
       className: String
   - name: cep
     tableFieldName: CEP
-    showInPages : false
     required: false
-    maxLen: 9
+    showInPages: false
+    maxLen: 8
     displayName: Cep
-    type:
+    type: 
       className: String
   - name: referenciaEndereco
     tableFieldName: REFERENCIA_ENDERECO
-    showInPages : false
     required: false
+    showInPages: false
     maxLen: 200
-    displayName: Referência endereco
-    type:
+    displayName: Referencia endereco
+    type: 
       className: String
   - name: ddd
     tableFieldName: DDD
-    showInPages : false
     required: false
+    showInPages: false
     maxLen: 3
-    displayName: DDD
-    type:
+    displayName: Ddd
+    type: 
       className: String
   - name: fone
     tableFieldName: FONE
-    showInPages : false
     required: false
+    showInPages: false
     maxLen: 15
     displayName: Fone
-    type:
+    type: 
       className: String
   - name: utilizaVoucher
     tableFieldName: UTILIZA_VOUCHER
-    showInPages : false
     required: false
+    showInPages: false
     displayName: Utiliza voucher
-    type:
+    type: 
       className: Boolean
-    viewApproach:
+    viewApproach: 
       type: check
   - name: utilizaEticket
     tableFieldName: UTILIZA_ETICKET
-    showInPages : false
     required: false
+    showInPages: false
     displayName: Utiliza eticket
-    type:
+    type: 
       className: Boolean
-    viewApproach:
+    viewApproach: 
       type: check
   - name: observacaoTaxista
     tableFieldName: OBSERVACAO_TAXISTA
-    showInPages : false
     required: false
+    showInPages: false
     maxLen: 400
-    viewApproach:
-      type: textarea
-    displayName: Observação taxista
-    type:
+    viewApproach:                        
+      type: textarea                  
+    displayName: Observacao taxista
+    type: 
       className: String
   - name: observacaoCentral
     tableFieldName: OBSERVACAO_CENTRAL
-    showInPages : false
     required: false
+    showInPages: false
     maxLen: 400
-    viewApproach:
-      type: textarea
-    displayName: Observação central
-    type:
+    viewApproach:                        
+      type: textarea                  
+    displayName: Observacao central
+    type: 
       className: String
   - name: percentualDesconto
     tableFieldName: PERCENTUAL_DESCONTO
-    showInPages : false
     required: false
+    showInPages: false
     displayName: Percentual desconto
-    type:
+    type: 
       className: Double
   - name: inscricaoMunicipal
     tableFieldName: INSCRICAO_MUNICIPAL
-    showInPages : false
     required: false
+    showInPages: false
     maxLen: 14
-    displayName: Inscrição municipal
-    type:
+    displayName: Inscricao municipal
+    type: 
+      className: String
+  - name: cnpj
+    tableFieldName: CNPJ
+    required: false
+    showInPages: false
+    maxLen: 14
+    displayName: Cnpj
+    type: 
       className: String
   - name: inscricaoEstadual
     tableFieldName: INSCRICAO_ESTADUAL
-    showInPages : false
     required: false
+    showInPages: false
     maxLen: 14
-    displayName: Inscrição estadual
-    type:
+    displayName: Inscricao estadual
+    type: 
       className: String
   - name: emiteNf
     tableFieldName: EMITE_NF
-    showInPages : false
     required: false
+    showInPages: false
     displayName: Emite nf
-    type:
+    type: 
       className: Boolean
-    viewApproach:
+    viewApproach: 
       type: check
   - name: percentualIss
     tableFieldName: PERCENTUAL_ISS
-    showInPages : false
     required: false
+    showInPages: false
     displayName: Percentual ISS
-    type:
+    type: 
       className: Double
   - name: percentualIrf
     tableFieldName: PERCENTUAL_IRF
-    showInPages : false
     required: false
+    showInPages: false
     displayName: Percentual IRF
-    type:
+    type: 
       className: Double
   - name: percentualInss
     tableFieldName: PERCENTUAL_INSS
-    showInPages : false
     required: false
+    showInPages: false
     displayName: Percentual INSS
-    type:
+    type: 
       className: Double
   - name: diaVencimento
     tableFieldName: DIA_VENCIMENTO
-    showInPages : false
     required: false
+    showInPages: false
     displayName: Dia vencimento
-    type:
+    type: 
       className: Integer
   - name: percentualMotorista
     tableFieldName: PERCENTUAL_MOTORISTA
-    showInPages : false
     required: false
+    showInPages: false
     displayName: Percentual motorista
-    type:
+    type: 
       className: Double
   - name: banco
     tableFieldName: BANCO
-    showInPages : false
     required: false
+    showInPages: false
     maxLen: 10
     displayName: Banco
-    type:
+    type: 
       className: String
   - name: agencia
     tableFieldName: AGENCIA
-    showInPages : false
     required: false
+    showInPages: false
     maxLen: 10
     displayName: Agencia
-    type:
+    type: 
       className: String
   - name: conta
     tableFieldName: CONTA
-    showInPages : false
     required: false
+    showInPages: false
     maxLen: 20
     displayName: Conta
-    type:
+    type: 
       className: String
   - name: email
     tableFieldName: EMAIL
-    showInPages : false
     required: false
+    showInPages: false
     maxLen: 100
     displayName: Email
-    type:
+    type: 
       className: String
   - name: usuarioCadastro
     tableFieldName: USUARIO_CADASTRO
-    showInPages : false
     required: false
+    showInPages: false
     displayName: Usuario cadastro
-    type:
+    type: 
       className: Integer
   - name: dataCadastro
     tableFieldName: DATA_CADASTRO
-    showInPages : false
     required: false
+    showInPages: false
     displayName: Data cadastro
-    type:
+    type: 
       className: Datetime
-    dateFormat: DD/MM/YYYY HH:MM
-    mask: 99/99/9999 99:99
-    viewApproach:
-      type: datepicker
+    dateFormat: DD/MM/YYYY HH:MM             
+    mask: 99/99/9999 99:99                  
+    viewApproach:                        
+      type: datepicker                  
   - name: statusEmpresa
     tableFieldName: STATUS_EMPRESA
-    showInPages : false
     required: false
-    maxLen: 1
+    showInPages: false
+    maxLen: 10
     displayName: Status empresa
-    type:
+    type: 
       className: String
-  relationships:
-  - name: centroCustos
-    type: OneToMany
-    ownerName: empresa
-    model: CentroCusto
-    displayName: Centro custo
+  relationships:                     
   - name: hdUsuarios
     type: OneToMany
     ownerName: empresa
-    model: HdUsuario
+    model: HdUsuario                       
     displayName: Hd usuario
+  - name: clientes
+    type: OneToMany
+    ownerName: empresa
+    model: Cliente                       
+    displayName: Cliente
   - name: contatos
     type: OneToMany
     ownerName: empresa
-    model: Contato
+    model: Contato                       
     displayName: Contato
   - name: socios
     type: OneToMany
     ownerName: empresa
-    model: Socio
+    model: Socio                       
     displayName: Socio
   - name: faixaVouchers
     type: OneToMany
     ownerName: empresa
-    model: FaixaVoucher
+    model: FaixaVoucher                       
     displayName: Faixa voucher
-  - name: clientes
+  - name: centrocustos
     type: OneToMany
     ownerName: empresa
-    model: Cliente
-    displayName: Cliente
+    model: Centrocusto                       
+    displayName: Centrocusto

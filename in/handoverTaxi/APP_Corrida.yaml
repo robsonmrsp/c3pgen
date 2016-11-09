@@ -42,16 +42,46 @@
     tableFieldName: STATUS_CORRIDA
     required: false
     showInPages: false
-    maxLen: 10
+    maxLen: 1
     displayName: Status corrida
     type: 
       className: String
+  - name: seqEmAtendimento
+    tableFieldName: SEQ_EM_ATENDIMENTO
+    required: false
+    showInPages: false
+    displayName: Seq em atendimento
+    type: 
+      className: Integer
+  - name: motoGrande
+    tableFieldName: MOTO_GRANDE
+    required: false
+    showInPages: false
+    displayName: Moto grande
+    type: 
+      className: Boolean
+    viewApproach: 
+      type: check
+  - name: bau
+    tableFieldName: BAU
+    required: false
+    showInPages: false
+    displayName: Bau
+    type: 
+      className: Boolean
+    viewApproach: 
+      type: check
   relationships:                     
-  - name: corridaEnderecos
+  - name: enderecoCorridas
     type: OneToMany
     ownerName: corrida
-    model: CorridaEndereco                       
-    displayName: Corrida endereco
+    model: EnderecoCorrida                       
+    displayName: Endereco corrida
+  - name: distanciaMotoCorridas
+    type: OneToMany
+    ownerName: corrida
+    model: DistanciaMotoCorrida                       
+    displayName: Distancia moto corrida
   - name: atendente             
     type: ManyToOne
     model: Atendente                       

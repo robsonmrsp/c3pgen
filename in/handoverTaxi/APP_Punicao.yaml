@@ -6,6 +6,7 @@
   - name: motivo
     tableFieldName: MOTIVO
     required: false
+    showInPages: false
     maxLen: 100
     displayName: Motivo
     type: 
@@ -13,6 +14,7 @@
   - name: dataInicio
     tableFieldName: DATA_INICIO
     required: false
+    showInPages: false
     displayName: Data inicio
     type: 
       className: Datetime
@@ -23,6 +25,7 @@
   - name: dataFim
     tableFieldName: DATA_FIM
     required: false
+    showInPages: false
     displayName: Data fim
     type: 
       className: Datetime
@@ -36,6 +39,14 @@
     displayName: QuantidadeTempo
     type: 
       className: Integer
+  - name: statusPunicao
+    tableFieldName: STATUS_PUNICAO
+    required: false
+    showInPages: false
+    maxLen: 10
+    displayName: Status punicao
+    type: 
+      className: String
   relationships:                     
   - name: motorista             
     type: ManyToOne

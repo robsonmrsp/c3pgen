@@ -6,6 +6,7 @@
   - name: nome
     tableFieldName: NOME
     required: false
+    showInPages: false
     maxLen: 100
     displayName: Nome
     type: 
@@ -13,13 +14,15 @@
   - name: ddd
     tableFieldName: DDD
     required: false
+    showInPages: false
     maxLen: 3
-    displayName: DDD
+    displayName: Ddd
     type: 
       className: String
   - name: fone
     tableFieldName: FONE
     required: false
+    showInPages: false
     maxLen: 15
     displayName: Fone
     type: 
@@ -27,6 +30,7 @@
   - name: setor
     tableFieldName: SETOR
     required: false
+    showInPages: false
     maxLen: 100
     displayName: Setor
     type: 

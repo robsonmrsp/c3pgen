@@ -6,6 +6,7 @@
   - name: dataEnvio
     tableFieldName: DATA_ENVIO
     required: false
+    showInPages: false
     displayName: Data envio
     type: 
       className: Datetime
@@ -16,6 +17,7 @@
   - name: dataLeitura
     tableFieldName: DATA_LEITURA
     required: false
+    showInPages: false
     displayName: Data leitura
     type: 
       className: Datetime

@@ -6,6 +6,7 @@
   - name: ddd
     tableFieldName: DDD
     required: true
+    showInPages: false
     maxLen: 3
     displayName: Ddd
     type: 
@@ -13,6 +14,7 @@
   - name: fone
     tableFieldName: FONE
     required: true
+    showInPages: false
     maxLen: 15
     displayName: Fone
     type: 
@@ -20,6 +22,7 @@
   - name: favorito
     tableFieldName: FAVORITO
     required: false
+    showInPages: false
     displayName: Favorito
     type: 
       className: Boolean

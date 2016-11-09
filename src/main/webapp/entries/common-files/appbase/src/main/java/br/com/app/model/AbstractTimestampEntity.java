@@ -12,15 +12,15 @@ import javax.persistence.PreUpdate;
 import org.hibernate.annotations.Type;
 import org.joda.time.LocalDateTime;
 
-import ${application.corePackage}.serialization.CustomLocalDateTimeSerializer;
-import ${application.rootPackage}.model.User;
+import ${application.corePackage}.serialization.CustomLocalDateTimeSerializer;import ${application.rootPackage}.model.User;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 @MappedSuperclass
 public abstract class AbstractTimestampEntity implements Serializable {
 
 	private static final long serialVersionUID = -7964355524118760783L;
-	@Column(name = "CREATE_DATETIME")
+	@Column(name = "CREATE_DATETIME", insertable = true, updatable = false))
 	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDateTime")
 	@JsonSerialize(using = CustomLocalDateTimeSerializer.class)
 	private LocalDateTime createDatetime;
@@ -30,10 +30,10 @@ public abstract class AbstractTimestampEntity implements Serializable {
 	@JsonSerialize(using = CustomLocalDateTimeSerializer.class)
 	private LocalDateTime lastUpdateDatetime;
 
-	@Column(name="USER_CREATE")
+	@Column(name = "USER_CREATE" , insertable = true, updatable = false)
 	private String userCreate;
 
-	@Column(name="USER_CHANGE")
+	@Column(name = "USER_CHANGE")
 	private String userChange;
 
 	public LocalDateTime getCreateDatetime() {

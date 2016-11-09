@@ -6,6 +6,7 @@
   - name: nome
     tableFieldName: NOME
     required: true
+    showInPages: false
     maxLen: 100
     displayName: Nome
     type: 
@@ -13,6 +14,7 @@
   - name: email
     tableFieldName: EMAIL
     required: false
+    showInPages: false
     maxLen: 100
     displayName: Email
     type: 
@@ -20,6 +22,7 @@
   - name: senha
     tableFieldName: SENHA
     required: true
+    showInPages: false
     maxLen: 100
     displayName: Senha
     type: 
@@ -27,6 +30,7 @@
   - name: tipo
     tableFieldName: TIPO
     required: false
+    showInPages: false
     maxLen: 20
     displayName: Tipo
     type: 
@@ -34,6 +38,7 @@
   - name: perfil
     tableFieldName: PERFIL
     required: false
+    showInPages: false
     maxLen: 20
     displayName: Perfil
     type: 
@@ -41,6 +46,7 @@
   - name: statusUsuario
     tableFieldName: STATUS_USUARIO
     required: true
+    showInPages: false
     maxLen: 10
     displayName: Status usuario
     type: 
@@ -48,6 +54,7 @@
   - name: datainclusao
     tableFieldName: DATAINCLUSAO
     required: false
+    showInPages: false
     displayName: Datainclusao
     type: 
       className: Datetime
@@ -58,6 +65,7 @@
   - name: usuarioinclusao
     tableFieldName: USUARIOINCLUSAO
     required: false
+    showInPages: false
     displayName: Usuarioinclusao
     type: 
       className: Integer

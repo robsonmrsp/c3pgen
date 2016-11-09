@@ -218,16 +218,22 @@ define(function(require) {
 			}
 		},
 		getJsonValue : function() {
-			if(this.modelSelect){
+			if (this.modelSelect) {
 				return this.modelSelect.toJSON();
+			} else {
+				return this.jsonValue;
 			}
 			return null;
 		},
-		
+
 		getValue : function() {
 			return this.modelSelect;
 		},
-		
+
+		setValue : function(value) {
+			this.jsonValue = value;
+		},
+
 		getColumns : function() {
 			var columns = [	
 

@@ -6,6 +6,7 @@
   - name: bairroOrigem
     tableFieldName: BAIRRO_ORIGEM
     required: false
+    showInPages: false
     maxLen: 100
     displayName: Bairro origem
     type: 
@@ -13,14 +14,16 @@
   - name: bairroDestino
     tableFieldName: BAIRRO_DESTINO
     required: false
+    showInPages: false
     maxLen: 100
     displayName: Bairro destino
     type: 
       className: String
-  - name: valor
-    tableFieldName: VALOR
+  - name: vlValor
+    tableFieldName: VL_VALOR
     required: false
-    displayName: Valor
+    showInPages: false
+    displayName: Vl valor
     type: 
       className: Double
   relationships:                     

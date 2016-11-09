@@ -3,17 +3,19 @@
   displayName: Tarifa adicional
   tableName: TARIFA_ADICIONAL
   attributes:                     
-  - name: descricao
-    tableFieldName: DESCRICAO
+  - name: dsTarifa
+    tableFieldName: DS_TARIFA
     required: false
+    showInPages: false
     maxLen: 200
-    displayName: Descrição
+    displayName: Ds tarifa
     type: 
       className: String
-  - name: valor
-    tableFieldName: VALOR
+  - name: vlValor
+    tableFieldName: VL_VALOR
     required: false
-    displayName: Valor
+    showInPages: false
+    displayName: Vl valor
     type: 
       className: Double
   relationships:                     

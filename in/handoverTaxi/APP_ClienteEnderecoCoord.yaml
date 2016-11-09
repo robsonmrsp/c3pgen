@@ -6,6 +6,7 @@
   - name: latitude
     tableFieldName: LATITUDE
     required: false
+    showInPages: false
     maxLen: 15
     displayName: Latitude
     type: 
@@ -13,6 +14,7 @@
   - name: longitude
     tableFieldName: LONGITUDE
     required: false
+    showInPages: false
     maxLen: 15
     displayName: Longitude
     type: 
@@ -20,13 +22,15 @@
   - name: enderecoFormatado
     tableFieldName: ENDERECO_FORMATADO
     required: false
+    showInPages: false
     displayName: Endereco formatado
     type: 
       className: String
   - name: valido
     tableFieldName: VALIDO
     required: false
-    displayName: Válido
+    showInPages: false
+    displayName: Valido
     type: 
       className: Boolean
     viewApproach: 

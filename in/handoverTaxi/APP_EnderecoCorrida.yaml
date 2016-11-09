@@ -1,7 +1,7 @@
-- name: ClienteEndereco
+- name: EnderecoCorrida
   hasOwner: false 
-  displayName: Cliente endereco
-  tableName: CLIENTE_ENDERECO
+  displayName: Endereco corrida
+  tableName: ENDERECO_CORRIDA
   attributes:                     
   - name: endereco
     tableFieldName: ENDERECO
@@ -23,13 +23,21 @@
     tableFieldName: COMPLEMENTO
     required: false
     showInPages: false
-    maxLen: 200
+    maxLen: 100
     displayName: Complemento
+    type: 
+      className: String
+  - name: bairro
+    tableFieldName: BAIRRO
+    required: false
+    showInPages: false
+    maxLen: 100
+    displayName: Bairro
     type: 
       className: String
   - name: uf
     tableFieldName: UF
-    required: false
+    required: true
     showInPages: false
     maxLen: 2
     displayName: Uf
@@ -43,19 +51,11 @@
     displayName: Cidade
     type: 
       className: String
-  - name: bairro
-    tableFieldName: BAIRRO
-    required: false
-    showInPages: false
-    maxLen: 100
-    displayName: Bairro
-    type: 
-      className: String
   - name: cep
     tableFieldName: CEP
     required: false
     showInPages: false
-    maxLen: 8
+    maxLen: 9
     displayName: Cep
     type: 
       className: String
@@ -67,33 +67,64 @@
     displayName: Referencia
     type: 
       className: String
-  - name: tipo
-    tableFieldName: TIPO
+  - name: descricao
+    tableFieldName: DESCRICAO
     required: false
     showInPages: false
-    maxLen: 1
-    displayName: Tipo
+    maxLen: 400
+    viewApproach:                        
+      type: textarea                  
+    displayName: Descricao
     type: 
       className: String
-  - name: favorito
-    tableFieldName: FAVORITO
+  - name: ordem
+    tableFieldName: ORDEM
     required: false
     showInPages: false
-    displayName: Favorito
+    displayName: Ordem
+    type: 
+      className: Integer
+  - name: latitude
+    tableFieldName: LATITUDE
+    required: false
+    showInPages: false
+    displayName: Latitude
+    type: 
+      className: Double
+  - name: longitude
+    tableFieldName: LONGITUDE
+    required: false
+    showInPages: false
+    displayName: Longitude
+    type: 
+      className: Double
+  - name: enderecoFormatado
+    tableFieldName: ENDERECO_FORMATADO
+    required: false
+    showInPages: false
+    maxLen: 100
+    displayName: Endereco formatado
+    type: 
+      className: String
+  - name: origem
+    tableFieldName: ORIGEM
+    required: false
+    showInPages: false
+    displayName: Origem
     type: 
       className: Boolean
     viewApproach: 
       type: check
   relationships:                     
-  - name: clienteEnderecoCoords
+  - name: eventos
     type: OneToMany
-    ownerName: clienteEndereco
-    model: ClienteEnderecoCoord                       
-    displayName: Cliente endereco coord
-  - name: cliente             
+    ownerName: enderecoCorrida
+    model: Evento                       
+    displayName: Evento
+  - name: corrida             
     type: ManyToOne
-    model: Cliente                       
-    displayName: Cliente
+    model: Corrida                       
+    displayName: Corrida
     viewApproach:   
       type: modal 
       hiddenField: id 

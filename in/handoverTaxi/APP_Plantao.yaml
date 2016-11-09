@@ -1,28 +1,30 @@
 - name: Plantao
-  hasOwner: false
+  hasOwner: false 
   displayName: Plantao
   tableName: PLANTAO
-  attributes:
+  attributes:                     
   - name: dataInicio
     tableFieldName: DATA_INICIO
     required: false
+    showInPages: false
     displayName: Data inicio
-    type:
+    type: 
       className: Datetime
-    dateFormat: DD/MM/YYYY HH:MM
-    mask: 99/99/9999 99:99
-    viewApproach:
-      type: datepicker
+    dateFormat: DD/MM/YYYY HH:MM             
+    mask: 99/99/9999 99:99                  
+    viewApproach:                        
+      type: datepicker                  
   - name: dataFim
     tableFieldName: DATA_FIM
     required: false
+    showInPages: false
     displayName: Data fim
-    type:
+    type: 
       className: Datetime
-    dateFormat: DD/MM/YYYY HH:MM
-    mask: 99/99/9999 99:99
-    viewApproach:
-      type: datepicker
+    dateFormat: DD/MM/YYYY HH:MM             
+    mask: 99/99/9999 99:99                  
+    viewApproach:                        
+      type: datepicker                  
   relationships:
   - name: motoristas
     type: ManyToMany

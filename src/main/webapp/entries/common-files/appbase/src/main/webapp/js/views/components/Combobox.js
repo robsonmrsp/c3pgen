@@ -12,6 +12,8 @@ function(util, _, $, Backbone, Marionette) {
 			// this.el = options.comboEl;
 			this.collectionEntity = options.collectionEntity;
 			this.values = options.values;
+			this.comboVal = options.comboVal;
+			this.comboId = options.comboId;
 			this.$el.find('option').remove();
 			this.$el.append('<option value selected>       -- Selecione --      </option>');
 			if (this.collectionEntity) {
@@ -51,7 +53,7 @@ function(util, _, $, Backbone, Marionette) {
 			else if (model.get) {
 				this.$el.append('<option value=' + model.get(this.comboId) + '>' + model.get(this.comboVal) + '</option>');
 			} else {
-				this.$el.append('<option value=' + model.id + '>' + model.value + '</option>');
+				this.$el.append('<option value=' + model[this.comboId] + '>' + model[this.comboVal] + '</option>');
 			}
 
 		},

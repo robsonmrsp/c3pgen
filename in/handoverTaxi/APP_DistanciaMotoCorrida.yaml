@@ -1,20 +1,20 @@
-- name: MotoristaBloqueado
+- name: DistanciaMotoCorrida
   hasOwner: false 
-  displayName: Motorista bloqueado
-  tableName: MOTORISTA_BLOQUEADO
+  displayName: Distancia moto corrida
+  tableName: DISTANCIA_MOTO_CORRIDA
   attributes:                     
-  - name: dataBloqueio
-    tableFieldName: DATA_BLOQUEIO
+  - name: distancia
+    tableFieldName: DISTANCIA
     required: false
     showInPages: false
-    displayName: Data bloqueio
+    displayName: Distancia
     type: 
-      className: Integer
-  - name: usuarioBloqueio
-    tableFieldName: USUARIO_BLOQUEIO
+      className: Double
+  - name: sequencia
+    tableFieldName: SEQUENCIA
     required: false
     showInPages: false
-    displayName: Usuario bloqueio
+    displayName: Sequencia
     type: 
       className: Integer
   relationships:                     
@@ -26,10 +26,10 @@
       type: modal 
       hiddenField: id 
       textField: nome 
-  - name: cliente             
+  - name: corrida             
     type: ManyToOne
-    model: Cliente                       
-    displayName: Cliente
+    model: Corrida                       
+    displayName: Corrida
     viewApproach:   
       type: modal 
       hiddenField: id 
