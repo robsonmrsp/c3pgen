@@ -17,6 +17,7 @@ import br.com.c3pgen.base.methods.FirstLowerCaseMethod;
 import br.com.c3pgen.base.methods.FirstUpperCaseMethod;
 import br.com.c3pgen.base.methods.IsNumericMethod;
 import br.com.c3pgen.base.methods.IsRequiredMethod;
+import br.com.c3pgen.base.methods.MybatisJdbcType;
 import br.com.c3pgen.base.methods.OnlyFirstUpperCaseMethod;
 import br.com.c3pgen.base.methods.SnakeCaseStringMethod;
 import br.com.c3pgen.base.methods.ToLowerCaseMethod;
@@ -99,6 +100,7 @@ public class MarkerGenerator {
 		data.put("lowercase", new ToLowerCaseMethod());
 		data.put("isNumeric", new IsNumericMethod());
 		data.put("getRequiredClass", new IsRequiredMethod());
+		data.put("getMybatisJdbcType", new MybatisJdbcType());
 		data.put("dataType", new DataTypeMethod());
 		data.put("package", application.getRootPackage());
 		data.put("corepackage", application.getCorePackage());
@@ -118,6 +120,7 @@ public class MarkerGenerator {
 		data.put("snakeCase", new SnakeCaseStringMethod());
 		data.put("toListString", new ToStringMethod());
 		data.put("getRequiredClass", new IsRequiredMethod());
+		data.put("getMybatisJdbcType", new MybatisJdbcType());
 		data.put("uppercase", new ToUpperCaseMethod());
 		data.put("lowercase", new ToLowerCaseMethod());
 		data.put("dataType", new DataTypeMethod());

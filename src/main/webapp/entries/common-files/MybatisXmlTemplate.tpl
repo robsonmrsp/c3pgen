@@ -48,11 +48,11 @@
     
     <!-- Evitando fullscan -->
     <select id="lista" resultMap="result">
-        SELECT
-        	*
+        SELECT 	*
         FROM
-        	${uppercase(entity.tableName!entity.name)}
-        ROWNUM &lt;= 1000
+        	${uppercase(entity.tableName!entity.name)} 
+        WHERE
+            ROWNUM &lt;= 1000
     </select>
     
     <select id="pesquisa" resultMap="result" parameterType="map">
@@ -110,7 +110,7 @@
 	<#if entity.relationships??>	
 	<#list entity.relationships as rel>
 		<if test=" ${firstLower(entity.name)}.${firstLower(rel.name)!firstLower(rel.model)} != null ">
-	    	AND ${uppercase(rel.fk)} = ${r"#{"}  ${ firstLower(entity.name)}.${firstLower(rel.name)!firstLower(rel.model)} ${r"}"}
+	    	AND ${uppercase(rel.fk)} = ${r"#{"}  ${ firstLower(entity.name)}.${firstLower(rel.name)!firstLower(rel.model)} ${r"}" }
 	    </if> 
 	</#list>
 	</#if>												 
@@ -118,14 +118,15 @@
     </select>
     
     <select id="filtra" parameterType="map" resultMap="result">
-        SELECT 
-        	*  FROM ${uppercase(entity.tableName!entity.name)} X_TABLE 
+        SELECT *
+        FROM 
+        	${uppercase(entity.tableName!entity.name)} X_TABLE 
         WHERE 
         	1 = 1
 		<#if entity.attributes??>	
 			<#list entity.attributes as att>
 			<if test=" ${att.name} != null ">
-	    	AND ${uppercase(att.tableFieldName!att.name)} = ${r"#{"} ${att.name} ${r"}"}
+	    	AND ${uppercase(att.tableFieldName!att.name)} = ${r"#{"} ${att.name} ${r"}" , jdbcType = ${getMybatisJdbcType(att.type.className)} }
 		    </if> 
 			</#list>
 		</#if>									 
@@ -139,21 +140,20 @@
             ${uppercase(entity.tableName!entity.name)}
             (   
 		<#if entity.attributes??>
-				${entity.pk} 
+				  ${entity.pk} 
 		<#list entity.attributes as att>
-	    		,${uppercase(att.tableFieldName!att.name)}  
+	    		, ${uppercase(att.tableFieldName!att.name)}  
 		</#list>
 		</#if>
             )
             VALUES
             (
 		<#if entity.attributes??>            
-				${r"#{"} id ${r"}"}
+				  ${ r"#{"} id ${r"}" }
         <#list entity.attributes as att>
-				,${r"#{"} ${att.name} ${r"}"}
+				, ${r"#{"} ${att.name} ${r"}" , jdbcType = ${getMybatisJdbcType(att.type.className)} } 
 		</#list>
 		</#if>	
-		
             )
 	 </insert>   
 
@@ -165,11 +165,10 @@
  		    ${entity.pk} = ${r"#{"} id ${r"}"}
         <#list entity.attributes as att>
 			<if test=" ${att.name} != null ">
-			, ${uppercase(att.tableFieldName!att.name)} = ${r"#{"} ${att.name} ${r"}"} 
+			, ${uppercase(att.tableFieldName!att.name)} = ${r"#{"} ${att.name} ${r"}" ,  jdbcType = ${getMybatisJdbcType(att.type.className)}} 
 			</if>	
 		</#list>
 		</#if>	
-			
  		WHERE 
             ${entity.pk} = ${r"#{"} id ${r"}"}
     </update>

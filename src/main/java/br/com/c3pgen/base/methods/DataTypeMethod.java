@@ -11,7 +11,7 @@ import freemarker.template.TemplateModelException;
 
 public class DataTypeMethod implements TemplateMethodModelEx {
 
-	static Map<String, String> dataTypes = new HashMap<String, String>();
+	public static final Map<String, String> dataTypes = new HashMap<String, String>();
 	static {
 		dataTypes.put("String", "String");
 		dataTypes.put("string", "String");
@@ -20,11 +20,14 @@ public class DataTypeMethod implements TemplateMethodModelEx {
 		dataTypes.put("Double", "Double");
 		dataTypes.put("double", "Double");
 		dataTypes.put("Long", "Long");
+		dataTypes.put("long", "Long");
+		
 		dataTypes.put("Boolean", "Boolean");
 		dataTypes.put("boolean", "Boolean");
-		dataTypes.put("long", "Long");
-		dataTypes.put("Date", "LocalDate");
-		dataTypes.put("date", "LocalDate");
+		
+		dataTypes.put("Date",   	"LocalDate");
+		dataTypes.put("date", 		"LocalDate");
+		
 		dataTypes.put("datetime", "LocalDateTime");
 		dataTypes.put("Datetime", "LocalDateTime");
 		dataTypes.put("DateTime", "LocalDateTime");

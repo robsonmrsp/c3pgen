@@ -101,7 +101,7 @@
 						</fieldset>
 					
 					<div class="form-actions">
-						<a href="javascript:void(0)" id="query" class="btn btn-primary btn-large">
+						<a href="javascript:void(0)" class="btn btn-primary btn-large search-button">
 							<i class="icon-search"></i>
 							Pesquisar
 						</a>

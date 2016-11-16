@@ -1,20 +1,16 @@
 package ${package}.model;
 
 import java.io.Serializable;
-
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import ${corepackage}.serialization.CustomLocalDateSerializer;
 import ${corepackage}.serialization.CustomLocalDateDeserializer;
 import ${corepackage}.serialization.CustomLocalDateTimeSerializer;
 import ${corepackage}.serialization.CustomLocalDateTimeDeserializer;
-
 
 /**
 * generated: ${.now}
