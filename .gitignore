@@ -4,6 +4,7 @@
 target/
 *.class
 *.jar
+bin/
 src/main/webapp/out
 src/main/webapp/out/*
 
