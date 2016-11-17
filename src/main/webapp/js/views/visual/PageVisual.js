@@ -257,15 +257,15 @@ define(function(require) {
 		// fica assim
 		addVisualEntity : function(entity) {
 			var that = this;
-			var _mod = this.quantidadeEntidades > 9 ? 11 : 5
+			var _mod = this.quantidadeEntidades > 9 ? 6 : 4
 
-			if (contador++ % _mod == 0) {
+			if (contador % 6 == 0) {
 				coluna = 0;
 				contador = 0;
-				linha++;
+				++linha;
 			}
-			var posY = 20 + ((contador++ % 2 - 1) * 240) + linha * 240; // TOP
-			var posX = 180 + ((contador - 1) * 180); // LEFT
+			var posY = 40 + ((contador++ % 2 - 1) * 240) + linha * 240; // TOP
+			var posX = 150 + ((contador - 1) * 180); // LEFT
 
 			console.log(posX, posY);
 			var visualEntity = new VisualEntity({

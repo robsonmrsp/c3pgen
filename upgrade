@@ -1,0 +1,24 @@
+Em 17-11-2016
+Verificar a compatibilidade dos seguintes libs e frameworks, se possivel fazer as atualizações
+
+java8
+Spring
+Hibernate    (http://www.thoughts-on-java.org/hibernate-5-date-and-time/)
+Jackson
+Jasper
+CXF
+Spring - security
+
+
+no front
+
+Bootstrap
+backbone
+marionette
+jquery
+underscore
+moment.js
+bootbox
+chart.js
+
+
