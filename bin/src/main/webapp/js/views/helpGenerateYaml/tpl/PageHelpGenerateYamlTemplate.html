@@ -1,0 +1,71 @@
+<div class="modal fade" id="dialogApplication" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">
+					<span aria-hidden="true">&times;</span>
+					<span class="sr-only">Close</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel">Engenharia reversa de base de dados</h4>
+			</div>
+			<div class="modal-body">
+				<div id="messages_modal_div"></div>
+				<div class="hpanel" style="margin-bottom: 0px;">
+					<div class="panel-heading">Banco de dados</div>
+					<div class="panel-body">
+						<div class="row">
+							<div id="groupInputDatabaseType" class="form-group col-xs-2 col-sm-2">
+								<label class="control-label" for="inputModalName">Tipo</label>
+								<select id="inputDatabaseType" class="form-control validate[required]">
+									<option selected value="POSTGRES">Postgres</option>
+									<option  value="ORACLE">Oracle</option>
+								</select>
+							</div>
+							<div id="groupInputDatabaseUrl" class="form-group col-xs-4 col-sm-4">
+								<label class="control-label" for="inputDatabaseUrl">url</label>
+								<input type="text" id="inputDatabaseUrl" placeholder="Url" class="form-control validate[required]" value="jdbc:postgresql://localhost:5432/db_locadora">
+							</div>
+							<div id="groupInputDatabaseUsername" class="form-group col-xs-2 col-sm-2">
+								<label class="control-label" for="inputModalName">Usuario</label>
+								<input type="text" id="inputDatabaseUsername" placeholder="usuário do banco de dados" class="form-control validate[required]" value="postgres">
+							</div>
+							<div id="groupInputDatabasePassword" class="form-group col-xs-2 col-sm-2">
+								<label class="control-label" for="inputDatabasePassword">Senha</label>
+								<input type="password" id="inputDatabasePassword" placeholder="Senha do banco de dados " class="form-control validate[required]" value="sints">
+							</div>
+							<div id="spinApplication" class="form-group col-xs-2 col-sm-2" style="padding-top: 20px;">
+								<a href="javascript:void(0)" id="btnConnectionTest" class="btn btn-success btn btn-block  ">
+									<i class="fa fa-database" aria-hidden="true"></i>
+									Testar
+								</a>
+							</div>
+						</div>
+						<div class="row">
+							<div id="groupInputDatabaseTableNameExceptions" class="form-group col-xs-12 col-sm-12">
+								<label class="control-label" for="inputDatabaseTableNameExceptions">Nomes de tabelas </label>
+								<textarea type="text" id="inputDatabaseTableNameExceptions" rows="3" placeholder="Nomes de tabelas (regex*)" class="form-control"> bairro; cep; cidade; endereco; estado; pais	 </textarea>
+							</div>
+							<div id="groupInputDatabaseColumnNameExceptions" class="form-group col-xs-12 col-sm-12">
+								<div class="hpanel" style="margin-bottom: 0px;"></div>
+							</div>
+						</div>
+						<!-- 			<div class=" row"> -->
+						<!-- 				<div id="grid" class=" col-xs-6 col-sm-6"></div> -->
+						<!-- 			</div> -->
+						<div class="form-actions spinner" id="spinApplication">
+							<a href="javascript:void(0)" id="btnImportApplication" class="btn w-xs btn-success">
+								<i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i>
+								Importar
+							</a>
+							<a href="javascript:void(0)" class="btn w-xs btn-warning clos" data-dismiss="modal">
+								<i class="fa fa-times "></i>
+								Cancelar
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			</form>
+		</div>
+	</div>
+</div>

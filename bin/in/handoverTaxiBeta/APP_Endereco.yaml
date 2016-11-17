@@ -1,0 +1,93 @@
+- name: Endereco
+  hasOwner: false 
+  displayName: Endereço
+  tableName: ENDERECO
+  attributes:                     
+  - name: numero
+    tableFieldName: NUMERO
+    required: false
+    displayName: Numero
+    type: 
+      className: Integer
+  - name: complemento
+    tableFieldName: COMPLEMENTO
+    required: false
+    displayName: Complemento
+    type: 
+      className: String
+  - name: cep
+    tableFieldName: CEP
+    required: false
+    displayName: Cep
+    type: 
+      className: Integer
+  - name: referencia
+    tableFieldName: REFERENCIA
+    required: false
+    displayName: Referencia
+    type: 
+      className: String
+  - name: tipo
+    tableFieldName: TIPO
+    required: false
+    displayName: Tipo
+    type: 
+      className: String
+  - name: favorito
+    tableFieldName: FAVORITO
+    required: false
+    displayName: Favorito
+    type: 
+      className: Boolean
+    viewApproach: 
+      type: check
+  - name: latitude
+    tableFieldName: LATITUDE
+    required: false
+    displayName: Latitude
+    type: 
+      className: Double
+  - name: longitude
+    tableFieldName: LONGITUDE
+    required: false
+    displayName: Longitude
+    type: 
+      className: Double
+  - name: enderecoFormatado
+    tableFieldName: ENDERECO_FORMATADO
+    required: false
+    displayName: Endereço formatado
+    type: 
+      className: String
+  - name: valido
+    tableFieldName: VALIDO
+    required: false
+    displayName: Valido
+    type: 
+      className: Boolean
+    viewApproach: 
+      type: check
+  - name: logradouro
+    tableFieldName: LOGRADOURO
+    required: false
+    displayName: Logradouro
+    type: 
+      className: String
+  - name: estado
+    tableFieldName: ESTADO
+    required: false
+    displayName: Estado
+    type: 
+      className: String
+  - name: cidade
+    tableFieldName: CIDADE
+    required: false
+    displayName: Cidade
+    type: 
+      className: String
+  - name: bairro
+    tableFieldName: BAIRRO
+    required: false
+    displayName: Bairro
+    type: 
+      className: String

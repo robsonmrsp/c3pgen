@@ -1,0 +1,29 @@
+- name: Area
+  hasOwner: false 
+  displayName: Area
+  tableName: AREA
+  attributes:                     
+  - name: dsArea
+    tableFieldName: DS_AREA
+    required: false
+    showInPages: false
+    maxLen: 100
+    displayName: Ds area
+    type: 
+      className: String
+  - name: dsCoordenadas
+    tableFieldName: DS_COORDENADAS
+    required: false
+    showInPages: false
+    maxLen: 500
+    viewApproach:                        
+      type: textarea                  
+    displayName: Ds coordenadas
+    type: 
+      className: String
+  relationships:                     
+  - name: pontosAreas
+    type: OneToMany
+    ownerName: area
+    model: PontoArea                       
+    displayName: Pontos area

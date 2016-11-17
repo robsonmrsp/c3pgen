@@ -1,0 +1,45 @@
+- name: FaixaVoucher
+  hasOwner: false 
+  displayName: Faixa voucher
+  tableName: FAIXA_VOUCHER
+  attributes:                     
+  - name: serie
+    tableFieldName: SERIE
+    required: false
+    showInPages: false
+    maxLen: 2
+    displayName: Serie
+    type: 
+      className: String
+  - name: numeroInicial
+    tableFieldName: NUMERO_INICIAL
+    required: false
+    showInPages: false
+    displayName: Numero inicial
+    type: 
+      className: Integer
+  - name: numeroFinal
+    tableFieldName: NUMERO_FINAL
+    required: false
+    showInPages: false
+    displayName: Numero final
+    type: 
+      className: Integer
+  - name: inativo
+    tableFieldName: INATIVO
+    required: false
+    showInPages: false
+    displayName: Inativo
+    type: 
+      className: Boolean
+    viewApproach: 
+      type: check
+  relationships:                     
+  - name: empresa             
+    type: ManyToOne
+    model: Empresa                       
+    displayName: Empresa
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 

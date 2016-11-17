@@ -1,0 +1,154 @@
+.image-recipe-view {
+	border: 1;
+	background-color: #eff2f7;
+	text-align: center;
+}
+
+.append-right {
+	border-bottom-left-radius: 0 !important;
+	border-top-left-radius: 0 !important;
+}
+
+.append-left {
+	border-bottom-right-radius: 0 !important;
+	border-top-right-radius: 0 !important;
+}
+
+.cell-center {
+	text-align: center;
+	padding-top: 0px ! important;
+	padding-bottom: 0px !important;
+	vertical-align: middle !important;
+}
+
+.group-margin10 {
+	margin-right: 10px;
+	margin-left: 10px
+}
+
+.group-padding20 {
+	margin-top: 22px
+}
+
+.append-right {
+	border-bottom-left-radius: 0 !important;
+	border-top-left-radius: 0 !important;
+}
+
+.append-left {
+	border-bottom-right-radius: 0 !important;
+	border-top-right-radius: 0 !important;
+}
+
+.custom-form-actions {
+	display: block;
+	background-color: #F5F5F5;
+	border-top: 1px solid #E5E5E5;
+	/*   margin-bottom: 20px; */
+	/*   margin-top: 20px; */
+	padding: 19px 20px 20px;
+}
+
+.backgrid tr td {
+	padding: 8px !important;
+}
+
+.expand-col {
+	width: 80px !important;
+	text-align: center !important;
+}
+
+.expandable :HOVER {
+	background-color: #eee !important;
+}
+
+.expandable {
+	background-color: #eee !important;
+}
+
+.login-page {
+	background: #dfe0e2 url('../images/pattern.jpg') repeat;
+}
+
+.login-page .widget-box {
+	padding: 1px 1px 0;
+	-webkit-box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.12);
+	box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.12);
+	border-bottom: 1px solid rgba(50, 50, 50, 0.33);
+}
+
+.login-page .widget-box .toolbar {
+	border-top-width: 1px;
+}
+
+.login-page .widget-box.login-box {
+	background-color: #BCC6CF;
+	background-color: rgba(100, 110, 120, 0.4);
+}
+
+.login-page .widget-box.signup-box {
+	background-color: #C1CEC4;
+	background-color: rgba(110, 120, 100, 0.4);
+}
+
+.login-page .widget-box.forgot-box {
+	background-color: #D2C5C5;
+	background-color: rgba(120, 110, 100, 0.4);
+}
+
+.td-actions {
+	max-width: 160px !important;
+	width: 160px !important;
+	text-align: center !important;
+}
+.acoes {
+	max-width: 160px !important;
+	width: 160px !important;
+	text-align: center !important;
+}
+
+.button_cell {
+	margin-left: 2px !important;
+	margin-right: 2px !important;
+	border-radius: 3px !important;
+}
+.fader.fadedOut {
+	opacity: 0 !important;
+}
+
+.backgrid .select-row-cell,.backgrid .select-all-header-cell {
+	text-align: center;
+	max-width: 60px;
+}
+.splash {
+	position: absolute;
+	z-index: 2000;
+	background: #438eb9;
+	color: gray;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0
+}
+
+.splash-title {
+	text-align: center;
+	max-width: 500px;
+	margin: 15% auto;
+	color : white ;
+	padding: 20px
+}
+.splash-title h1 {
+	font-size: 26px
+}
+.custom-number-cel {
+	max-width: 130px !important;
+	width: 130px !important;
+	text-align: right !important;
+}
+
+.custom-number-cel-170 {
+	max-width: 170px !important;
+	width: 170px !important;
+	text-align: right !important;
+}

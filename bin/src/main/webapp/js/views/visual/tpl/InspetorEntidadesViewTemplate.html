@@ -1,0 +1,49 @@
+<div class="panel-body no-padding" attrb-name="inspetorEntidadesViewTemplate">
+	<ul class="list-group">
+		<li class="list-group-item panel-heading hbuilt">
+			<h5 style="text-align: center; cursor: move;">Inspetor de Entidades</h5>
+			<div class="hpanel  entity_{{id}}" style="margin-bottom: 3px">
+				<div class="panel-heading hbuilt" style="padding: 2px">
+					<input id="inputId" type="hidden" value={{id}}>
+					<div class="panel-tools" style="margin-top: 10px;">
+						<input id="inputId" type="hidden" value={{id}}>
+						<a class="show-hide-ent" data-toggle="tooltip" data-placement="top" title="" data-original-title="mostrar/esconder atributos">
+							<i class="fa fa-15x fa-chevron-up"></i>
+						</a>
+						<a class="add-attribute" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Novo Atributo">
+							<i class="fa fa-15x fa-plus add-attr"></i>
+						</a>
+					</div>
+					<h4>
+						<a href="javascript:void(-1)" data-type="text" data-placement="right" data-title="Nome da Entidade" class="editable editable-click inputEntityName" data-original-title="" title="">{{name}}</a>
+					</h4>
+				</div>
+				<div class="panel-body " style="padding: 2px">
+					<div class="entity-content">
+						<span>
+							Mobile?:&nbsp;
+							<input style="margin: 0px" type="checkbox" class="inputHasMobile"{{hasMobile ? 'checked' :''}}>
+						</span>
+						<br>
+						<span>
+							Nome de exibição:&nbsp;
+							<a class="editable editable-click inputDisplayName" data-placement="right" data-title="Digite o nome a exibir">{{displayName}}</a>
+						</span>
+						<br>
+						<span>
+							Nome Tabela: &nbsp;
+							<a class="editable editable-click inputTableName " data-placement="right" data-title="Digite um nome para a tabela">{{tableName}} </a>
+						</span>
+						<br>
+						<div class="widget-entidade attributes"></div>
+					</div>
+				</div>
+				<div class="panel-footer entity-content">
+					Observações: &nbsp;
+					<p class="editable editable-click" data-title="Observações da entidade">{{notes}}</p>
+				</div>
+			</div>
+		</li>
+	</ul>
+</div>
+<div class="panel-footer message-entity-inspector" ></div>

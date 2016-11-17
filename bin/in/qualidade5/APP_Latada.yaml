@@ -1,0 +1,18 @@
+- name: Latada
+  hasOwner: true
+  displayName: Latada
+  tableName: LATADA
+  attributes:
+  - name: nome
+    tableFieldName: NOME
+    required: true
+    basicSearch : true    
+    displayName: Nome
+    type:
+      className: String
+  relationships:
+  - name: apontamentoQualidadePackings
+    type: OneToMany
+    ownerName: latada
+    model: ApontamentoQualidadePacking
+    displayName: Apontamento qualidade packing

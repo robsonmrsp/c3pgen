@@ -1,0 +1,21 @@
+- name: Mensagem
+  hasOwner: false 
+  displayName: Mensagem
+  tableName: MENSAGEM
+  attributes:                     
+  - name: descricao
+    tableFieldName: DESCRICAO
+    required: false
+    showInPages: false
+    maxLen: 400
+    viewApproach:                        
+      type: textarea                  
+    displayName: Descricao
+    type: 
+      className: String
+  relationships:                     
+  - name: mensagemMotoristas
+    type: OneToMany
+    ownerName: mensagem
+    model: MensagemMotorista                       
+    displayName: Mensagem motorista

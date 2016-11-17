@@ -1,0 +1,46 @@
+- name: Contato
+  hasOwner: false 
+  displayName: Contato
+  tableName: CONTATO
+  attributes:                     
+  - name: nome
+    tableFieldName: NOME
+    required: false
+    showInPages: false
+    maxLen: 100
+    displayName: Nome
+    type: 
+      className: String
+  - name: ddd
+    tableFieldName: DDD
+    required: false
+    showInPages: false
+    maxLen: 3
+    displayName: Ddd
+    type: 
+      className: String
+  - name: fone
+    tableFieldName: FONE
+    required: false
+    showInPages: false
+    maxLen: 15
+    displayName: Fone
+    type: 
+      className: String
+  - name: setor
+    tableFieldName: SETOR
+    required: false
+    showInPages: false
+    maxLen: 100
+    displayName: Setor
+    type: 
+      className: String
+  relationships:                     
+  - name: empresa             
+    type: ManyToOne
+    model: Empresa                       
+    displayName: Empresa
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 

@@ -1,0 +1,1257 @@
+appName: Qualidade
+skin: ace
+view: backbone
+rootPackage: br.com.gvs.qualidade
+corePackage: br.com.gvs.core
+entities:
+- name: Anexo
+  hasOwner: false 
+  displayName: Anexo
+  tableName: ANEXO
+  attributes:                     
+  - name: nome
+    tableFieldName: NOME
+    required: false
+    displayName: Nome
+    type: 
+      className: String
+  - name: conteudo
+    tableFieldName: CONTEUDO
+    required: false
+    displayName: Conteudo
+    type: 
+      className: String
+  relationships:                     
+  - name: apontamentoQualidadePacking             
+    type: ManyToOne
+    model: ApontamentoQualidadePacking                       
+    displayName: Apontamento qualidade packing
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+- name: ApontamentoQualidadePacking
+  hasOwner: false 
+  displayName: Apontamento qualidade packing
+  tableName: APONTAMENTO_QUALIDADE_PACKING
+  attributes:                     
+  - name: aparencia
+    tableFieldName: APARENCIA
+    required: false
+    basicSearch : true
+    displayName: Aparência
+    type: 
+      className: Integer
+  - name: diametroMinimo
+    tableFieldName: DIAMETRO_MINIMO
+    required: false
+    displayName: Diametro mínimo
+    type: 
+      className: Double
+  - name: diametroMaximo
+    tableFieldName: DIAMETRO_MAXIMO
+    required: false
+    displayName: Diametro máximo
+    type: 
+      className: Double
+  - name: diametroMedio
+    tableFieldName: DIAMETRO_MEDIO
+    required: false
+    displayName: Diametro médio
+    type: 
+      className: Double
+  - name: brixMinimo
+    tableFieldName: BRIX_MINIMO
+    required: false
+    displayName: Brix mínimo
+    type: 
+      className: Double
+  - name: brixMaximo
+    tableFieldName: BRIX_MAXIMO
+    required: false
+    displayName: Brix máximo
+    type: 
+      className: Double
+  - name: brixMedio
+    tableFieldName: BRIX_MEDIO
+    required: false
+    displayName: Brix médio
+    type: 
+      className: Double
+  - name: pesoCachoMinimo
+    tableFieldName: PESO_CACHO_MINIMO
+    required: false
+    displayName: Peso cacho mínimo
+    type: 
+      className: Double
+  - name: pesoCachoMaximo
+    tableFieldName: PESO_CACHO_MAXIMO
+    required: false
+    displayName: Peso cacho máximo
+    type: 
+      className: Double
+  - name: pesoSacolaMinimo
+    tableFieldName: PESO_SACOLA_MINIMO
+    required: false
+    displayName: Peso sacola mínimo
+    type: 
+      className: Double
+  - name: pesoSacolaMaximo
+    tableFieldName: PESO_SACOLA_MAXIMO
+    required: false
+    displayName: Peso sacola máximo
+    type: 
+      className: Double
+  - name: numeroCachoSacola
+    tableFieldName: NUMERO_CACHO_SACOLA
+    required: false
+    displayName: Número cacho sacola
+    type: 
+      className: Integer
+  - name: numeroSacola
+    tableFieldName: NUMERO_SACOLA
+    required: false
+    displayName: Número sacola
+    type: 
+      className: Integer
+  - name: pesoCumbucaMinimo
+    tableFieldName: PESO_CUMBUCA_MINIMO
+    required: false
+    displayName: Peso cumbuca mínimo
+    type: 
+      className: Double
+  - name: pesoCumbucaMaximo
+    tableFieldName: PESO_CUMBUCA_MAXIMO
+    required: false
+    displayName: Peso cumbuca máximo
+    type: 
+      className: Double
+  - name: numeroCachosCumbuca
+    tableFieldName: NUMERO_CACHOS_CUMBUCA
+    required: false
+    displayName: Número cachos cumbuca
+    type: 
+      className: Integer
+  - name: numeroCumbucas
+    tableFieldName: NUMERO_CUMBUCAS
+    required: false
+    displayName: Número cumbucas
+    type: 
+      className: Integer
+  - name: pesoBruto
+    tableFieldName: PESO_BRUTO
+    required: false
+    displayName: Peso bruto
+    type: 
+      className: Double
+  - name: pesoLiquido
+    tableFieldName: PESO_LIQUIDO
+    required: false
+    displayName: Peso líquido
+    type: 
+      className: Double
+  - name: corposEstranhos
+    tableFieldName: CORPOS_ESTRANHOS
+    required: false
+    displayName: Corpos estranhos
+    type: 
+      className: Integer
+  - name: bagasAquosas
+    tableFieldName: BAGAS_AQUOSAS
+    required: false
+    displayName: Bagas aquosas
+    type: 
+      className: Integer
+  - name: bagasCristalinas
+    tableFieldName: BAGAS_CRISTALINAS
+    required: false
+    displayName: Bagas cristalinas
+    type: 
+      className: Integer
+  - name: firmeza
+    tableFieldName: FIRMEZA
+    required: false
+    displayName: Firmeza
+    type: 
+      className: Integer
+  - name: danos
+    tableFieldName: DANOS
+    required: false
+    displayName: Danos
+    type: 
+      className: Integer
+  - name: pragas
+    tableFieldName: PRAGAS
+    required: false
+    displayName: Pragas
+    type: 
+      className: Integer
+  - name: doencas
+    tableFieldName: DOENCAS
+    required: false
+    displayName: Doencas
+    type: 
+      className: Integer
+  - name: aparenciaEngaco
+    tableFieldName: APARENCIA_ENGACO
+    required: false
+    displayName: Aparência engaco
+    type: 
+      className: Integer
+  - name: desgrana
+    tableFieldName: DESGRANA
+    required: false
+    displayName: Desgrana
+    type: 
+      className: Double
+  - name: podridao
+    tableFieldName: PODRIDAO
+    required: false
+    displayName: Podridão
+    type: 
+      className: Double
+  - name: cicatrizes
+    tableFieldName: CICATRIZES
+    required: false
+    displayName: Cicatrizes
+    type: 
+      className: Double
+  - name: rachaduras
+    tableFieldName: RACHADURAS
+    required: false
+    displayName: Rachaduras
+    type: 
+      className: Double
+  - name: rachadurasCampo
+    tableFieldName: RACHADURAS_CAMPO
+    required: false
+    displayName: Rachaduras campo
+    type: 
+      className: Double
+  - name: amolecimento
+    tableFieldName: AMOLECIMENTO
+    required: false
+    displayName: Amolecimento
+    type: 
+      className: Double
+  - name: observacao
+    tableFieldName: OBSERVACAO
+    required: false
+    displayName: Observação
+    type: 
+      className: String
+  - name: dataHora
+    tableFieldName: DATA_HORA
+    required: false
+    displayName: Data hora
+    type: 
+      className: Datetime
+  relationships:                     
+  - name: anexos
+    type: OneToMany
+    ownerName: apontamentoQualidadePacking
+    model: Anexo                       
+    displayName: Anexo
+  - name: bolsao             
+    type: ManyToOne
+    model: Bolsao                       
+    displayName: Bolsao
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+  - name: generador             
+    type: ManyToOne
+    model: Generador                       
+    displayName: Generador
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+  - name: cor             
+    type: ManyToOne
+    model: Cor                       
+    displayName: Cor
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+  - name: cargo             
+    type: ManyToOne
+    model: Cargo                       
+    displayName: Cargo
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+  - name: variedade             
+    type: ManyToOne
+    model: Variedade                       
+    displayName: Variedade
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+  - name: latada             
+    type: ManyToOne
+    model: Latada                       
+    displayName: Latada
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+  - name: embalagem             
+    type: ManyToOne
+    model: Embalagem                       
+    displayName: Embalagem
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+  - name: cabine             
+    type: ManyToOne
+    model: Cabine                       
+    displayName: Cabine
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+  - name: sacola             
+    type: ManyToOne
+    model: Sacola                       
+    displayName: Sacola
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+  - name: cliente             
+    type: ManyToOne
+    model: Cliente                       
+    displayName: Cliente
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+  - name: packing             
+    type: ManyToOne
+    model: Packing                       
+    displayName: Packing
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+- name: Bolsao
+  hasOwner: false 
+  displayName: Bolsao
+  tableName: BOLSAO
+  attributes:                     
+  - name: nome
+    tableFieldName: NOME
+    basicSearch : true    
+    required: true
+    displayName: Nome
+    type: 
+      className: String
+  relationships:                     
+  - name: apontamentoQualidadePackings
+    type: OneToMany
+    ownerName: bolsao
+    model: ApontamentoQualidadePacking                       
+    displayName: Apontamento qualidade packing
+- name: Cabine
+  hasOwner: false 
+  displayName: Cabine
+  tableName: CABINE
+  attributes:                     
+  - name: nome
+    tableFieldName: NOME
+    basicSearch : true    
+    required: true
+    displayName: Nome
+    type: 
+      className: String
+  relationships:                     
+  - name: apontamentoQualidadePackings
+    type: OneToMany
+    ownerName: cabine
+    model: ApontamentoQualidadePacking                       
+    displayName: Apontamento qualidade packing
+  - name: packing             
+    type: ManyToOne
+    model: Packing                       
+    displayName: Packing
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+- name: Cargo
+  hasOwner: false 
+  displayName: Cargo
+  tableName: CARGO
+  attributes:                     
+  - name: nome
+    tableFieldName: NOME
+    basicSearch : true    
+    required: true
+    displayName: Nome
+    type: 
+      className: String
+  relationships:                     
+  - name: funcionarios
+    type: OneToMany
+    ownerName: cargo
+    model: Funcionario                       
+    displayName: Funcionario
+  - name: apontamentoQualidadePackings
+    type: OneToMany
+    ownerName: cargo
+    model: ApontamentoQualidadePacking                       
+    displayName: Apontamento qualidade packing
+- name: Cbo
+  displayName: Cbo
+  tableName: CBO
+  hasOwner: false
+  attributes:
+  - name: codigo
+    required: true
+    tableFieldName: CODIGO
+    basicSearch : true    
+    type:
+      className: String
+    displayName: Código
+  - name: nome
+    tableFieldName: NOME
+    type:
+      className: String
+    displayName: Nome
+- name: Client
+  hasOwner: false
+  displayName: Empresa
+  tableName: CLIENT
+  attributes: 
+  - name: nome
+    tableFieldName: NOME
+    basicSearch : true    
+    required: true
+    displayName: Nome
+    type: 
+      className: String  
+  relationships:
+  - name: packings
+    type: OneToMany
+    model: Packing
+    displayName: Packing
+  - name: latadas
+    type: OneToMany
+    model: Latada
+    displayName: Latada
+  - name: funcionarios
+    type: OneToMany
+    model: Funcionario
+    displayName: Funcionario
+- name: Cliente
+  displayName: Cliente
+  tableName: CLIENTE
+  hasOwner: false
+  attributes:
+  - name: nome
+    tableFieldName: NOME
+    basicSearch : true    
+    required: true
+    type:
+      className: String
+    displayName: Nome
+  - name: nomeFantasia
+    required: true
+    tableFieldName: NOME_FANTASIA
+    type:
+      className: String
+    displayName: Nome Fantasia
+  - name: nomeContato
+    tableFieldName: NOME_CONTATO
+    type:
+      className: String
+    displayName: Nome do Contato
+  - name: telefoneContato
+    tableFieldName: TELEFONE_CONTATO
+    type:
+      className: String
+    displayName: Telefone do  Contato
+  - name: razaoSocial
+    tableFieldName: raxaoSocial
+    required: true
+    type:
+      className: String
+    displayName: Razão Social
+  - name: observacao
+    tableFieldName: OBSERVACAO
+    showInPages: false
+    type:
+      className: String
+    displayName: Observação
+  - name: cpf
+    tableFieldName: CPF
+    mask: 999.999.999-99
+    type:
+      className: String
+    displayName: CPF
+  - name: cnpj
+    tableFieldName: CNPJ
+    mask: 99.999.999/9999-99
+    type:
+      className: String
+    displayName: CNPJ
+  - name: email
+    tableFieldName: EMAIL
+    showInPages: false
+    type:
+      className: String
+    displayName: E-mail
+  - name: email2
+    tableFieldName: EMAIL_2
+    showInPages: false
+    type:
+      className: String
+    displayName: E-mail 2
+  - name: pessoaFisica
+    tableFieldName: PESSOA_FISICA
+    showInPages: false
+    type:
+      className: String
+    displayName: E-mail 2
+  - name: dataNascimento
+    tableFieldName: DATA_NASCIMENTO
+    showInPages: false
+    type:
+      className: Date
+    displayName: Data Nascimento
+    dateFormat: DD/MM/YYYY
+    mask: 99/99/9999
+    viewApproach:
+      type: datepicker
+ 
+- name: Cor
+  hasOwner: false 
+  displayName: Cor
+  tableName: COR
+  attributes:                     
+  - name: nome
+    tableFieldName: NOME
+    basicSearch : true
+    required: true
+    displayName: Nome
+    type: 
+      className: String
+  relationships:                     
+  - name: apontamentoQualidadePackings
+    type: OneToMany
+    ownerName: cor
+    model: ApontamentoQualidadePacking                       
+    displayName: Apontamento qualidade packing
+- name: Departamento
+  displayName: Departamento
+  tableName: DEPARTAMENTO
+  hasOwner: true
+  attributes:
+  - name: nome
+    required: true
+    tableFieldName: NOME
+    basicSearch : true    
+    type:
+      className: String
+    displayName: Nome
+  - name: descricao
+    tableFieldName: DESCRICAO
+    type:
+      className: String
+    displayName: Descrição
+- name: Embalagem
+  hasOwner: false 
+  displayName: Embalagem
+  tableName: EMBALAGEM
+  attributes:                     
+  - name: nome
+    tableFieldName: NOME
+    required: true
+    displayName: Nome
+    basicSearch : true    
+    type: 
+      className: String
+  relationships:                     
+  - name: apontamentoQualidadePackings
+    type: OneToMany
+    ownerName: embalagem
+    model: ApontamentoQualidadePacking                       
+    displayName: Apontamento qualidade packing
+- name: Funcao
+  displayName: Funcao
+  tableName: FUNCAO
+  hasOwner: false
+  attributes:
+  - name: nome
+    required: true
+    tableFieldName: NOME
+    basicSearch : true    
+    type:
+      className: String
+    displayName: Nome
+  - name: descricao
+    tableFieldName: DESCRICAO
+    type:
+      className: String
+    displayName: Descrição
+- name: Funcionario
+  displayName: Funcionario
+  tableName: FUNCIONARIO
+  hasOwner: true
+  attributes:
+  - name: matricula
+    required: true
+    tableFieldName: MATRICULA
+    type:
+      className: String
+    displayName: Matricula
+  - name: foto
+    tableFieldName: FOTO
+    showInPages: false
+    type:
+      className: String
+    displayName: Foto
+  - name: nome
+    basicSearch : true  
+    tableFieldName: NOME
+    required: true
+    type:
+      className: String
+    displayName: Nome
+  - name: telefone
+    tableFieldName: TELEFONE
+    type:
+      className: String
+    displayName: Telefone
+  - name: telefone2
+    tableFieldName: TELEFONE_2
+    type:
+      className: String
+    displayName: Telefone 2
+  - name: sexo
+    tableFieldName: SEXO
+    type:
+      className: String
+    displayName: Sexo
+  - name: dataNascimento
+    tableFieldName: DT_NASCIMENTO
+    showInPages: false
+    type:
+      className: Date
+    displayName: Data de Nascimento
+    dateFormat: DD/MM/YYYY
+    mask: 99/99/9999
+    viewApproach:
+      type: datepicker
+  - name: salario
+    tableFieldName: SALARIO
+    type:
+      className: Double
+    displayName: Salário
+  - name: escolaridade
+    tableFieldName: ESCOLARIDADE
+    type:
+      className: String
+    displayName: Escolaridade
+  - name: dataAdmissao
+    tableFieldName: DATA_ADMISSAO
+    type:
+      className: Date
+    displayName: Data  de Admissão
+  - name: dataDemissao
+    tableFieldName: DATA_DEMISSAO
+    type:
+      className: Date
+    displayName: DataDemissao
+  - name: valorHoraExtra
+    tableFieldName: VALOR_HORA_EXTRA
+    type:
+      className: Double
+    displayName: ValorHoraExtra
+  - name: carteiraTrabalho
+    tableFieldName: CARTEIRA_TRABALHO
+    type:
+      className: String
+    displayName: CarteiraTrabalho
+  - name: rg
+    tableFieldName: RG
+    type:
+      className: String
+    displayName: Rg
+  - name: rgOrgaoEmissor
+    tableFieldName: RG_ORGAO_EMISSOR
+    type:
+      className: String
+    displayName: RgOrgaoEmissor
+  - name: nomeBanco
+    tableFieldName: NOME_BANCO
+    type:
+      className: String
+    displayName: Banco
+  - name: bancoNumeroAgencia
+    tableFieldName: BANCO_NUMERO_AGENCIA
+    type:
+      className: String
+    displayName: Agência
+  - name: bancoNumeroConta
+    tableFieldName: BANCO_NUMERO_CONTA
+    type:
+      className: String
+    displayName: Conta
+  - name: pis
+    tableFieldName: PIS
+    type:
+      className: String
+    displayName: Pis
+  relationships:
+  - name: endereco
+    type: OneToOne
+    model: Endereco
+    displayName: Endereço
+  - name: cargo
+    type: ManyToOne
+    model: Cargo
+    viewApproach:
+      type: combo
+      comboId: id
+      comboVal: nome
+    displayName: Cargo
+  - name: cbo
+    type: ManyToOne
+    model: Cbo
+    viewApproach:
+      type: combo
+      comboId: id
+      comboVal: nome
+    displayName: Cbo
+  - name: departamento
+    type: ManyToOne
+    model: Departamento
+    viewApproach:
+      type: combo
+      comboId: id
+      comboVal: nome
+    displayName: Departamento
+  - name: funcao
+    type: ManyToOne
+    model: Funcao
+    viewApproach:
+      type: combo
+      comboId: id
+      comboVal: nome
+    displayName: Função
+    
+- name: Generador
+  hasOwner: false 
+  displayName: Generador
+  tableName: GENERADOR
+  attributes:                     
+  - name: nome
+    tableFieldName: NOME
+    basicSearch : true    
+    required: true
+    displayName: Nome
+    type: 
+      className: String
+  relationships:                     
+  - name: apontamentoQualidadePackings
+    type: OneToMany
+    ownerName: generador
+    model: ApontamentoQualidadePacking                       
+    displayName: Apontamento qualidade packing
+- name: Latada
+  hasOwner: true
+  displayName: Latada
+  tableName: LATADA
+  attributes:
+  - name: nome
+    tableFieldName: NOME
+    required: true
+    basicSearch : true    
+    displayName: Nome
+    type:
+      className: String
+  relationships:
+  - name: apontamentoQualidadePackings
+    type: OneToMany
+    ownerName: latada
+    model: ApontamentoQualidadePacking
+    displayName: Apontamento qualidade packing
+- name: Packing
+  hasOwner: true 
+  displayName: Packing
+  tableName: PACKING
+  attributes:   
+  - name: nome
+    tableFieldName: NOME
+    required: true
+    basicSearch : true    
+    displayName: Nome
+    type:
+      className: String                    
+  relationships:                     
+  - name: apontamentoQualidadePackings
+    type: OneToMany
+    ownerName: packing
+    model: ApontamentoQualidadePacking                       
+    displayName: Apontamento qualidade packing
+  - name: cabines
+    type: OneToMany
+    ownerName: packing
+    model: Cabine                       
+    displayName: Cabine
+- name: Sacola
+  hasOwner: false 
+  displayName: Sacola
+  tableName: SACOLA
+  attributes:                     
+  - name: nome
+    tableFieldName: NOME
+    basicSearch : true    
+    required: true
+    displayName: Nome
+    type: 
+      className: String
+  relationships:                     
+  - name: apontamentoQualidadePackings
+    type: OneToMany
+    ownerName: sacola
+    model: ApontamentoQualidadePacking                       
+    displayName: Apontamento qualidade packing
+- name: Variedade
+  hasOwner: false 
+  displayName: Variedade
+  tableName: VARIEDADE
+  attributes:                     
+  - name: nome
+    tableFieldName: NOME
+    basicSearch : true    
+    required: true
+    displayName: Nome
+    type: 
+      className: String
+  relationships:                     
+  - name: apontamentoQualidadePackings
+    type: OneToMany
+    ownerName: variedade
+    model: ApontamentoQualidadePacking                       
+    displayName: Apontamento qualidade packing
+- name: Bairro
+  displayName: Bairro
+  tableName: BAIRRO
+  hasOwner: false
+  attributes:
+  - name: nome
+    tableFieldName: nome
+    required :  true
+    displayName: Nome
+    type:
+      className: String
+  relationships:
+  - name: cidade
+    type: ManyToOne
+    model: Cidade
+    viewApproach:
+      type: modal
+      textField: nome
+      hiddenField: id
+    displayName: Cidade
+  - name: estado
+    type: ManyToOne
+    model: Estado
+    viewApproach:
+      type: modal
+      textField: nome
+      hiddenField: id
+    displayName: Estado
+- name: Cep
+  displayName: Cep
+  tableName: CEP
+  hasOwner: false
+  attributes:
+  - name: logradouro
+    tableFieldName: LOGRADOURO
+    displayName: Logadouro
+    type:
+      className: String
+  - name: numero
+    tableFieldName: NUMERO
+    displayName: Numero
+    type:
+      className: String
+  relationships:
+  - name: bairro
+    type: ManyToOne
+    model: Bairro
+    viewApproach:
+      type: modal
+      textField: nome
+      hiddenField: id
+    displayName: Bairro
+  - name: cidade
+    type: ManyToOne
+    model: Cidade
+    viewApproach:
+      type: modal
+      textField: nome
+      hiddenField: id
+    displayName: Cidade
+  - name: estado
+    type: ManyToOne
+    model: Estado
+    viewApproach:
+      type: modal
+      textField: nome
+      hiddenField: id
+    displayName: Estado
+- name: Cidade
+  displayName: Cidade
+  tableName: CIDADE
+  hasOwner: false
+  attributes:
+  - name: nome
+    tableFieldName: nome
+    required :  true
+    displayName: Nome
+    type:
+      className: String
+  - name: cep
+    tableFieldName: CEP
+    displayName: Cep
+    type:
+      className: String
+  relationships:
+  - name: estado
+    type: ManyToOne
+    model: Estado
+    viewApproach:
+      type: modal
+      textField: nome
+      hiddenField: id
+    displayName: Cidade
+- name: Endereco
+  displayName: Endereço
+  tableName: ENDERECO
+  hasOwner: false
+  attributes:
+  - name: complemento
+    tableFieldName: COMPLEMENTO
+    displayName: Complemento
+    type:
+      className: String
+  - name: numero
+    tableFieldName: NUMERO
+    displayName: Número
+    type:
+      className: String
+  relationships:
+  - name: cep
+    type: ManyToOne
+    model: Cep
+    viewApproach:
+      type: modal
+      textField: cep
+      hiddenField: id
+    displayName: Cep
+- name: Estado
+  displayName: Estado
+  tableName: ESTADO
+  hasOwner: false
+  attributes:
+  - name: nome
+    tableFieldName: nome
+    required :  true
+    unique : true
+    displayName: Nome
+    type:
+      className: String
+  - name: faixaCep1Ini
+    tableFieldName: FAIXA_CEP1_INI
+    displayName: faixa_cep1_ini
+    type:
+      className: String
+  - name: faixaCep1Fim
+    tableFieldName: FAIXA_CEP1_FIM
+    displayName: faixa_cep1_fim
+    type:
+      className: String
+  - name: faixaCep2Ini
+    tableFieldName: FAIXA_CEP2_INI
+    displayName: faixa_cep2_ini
+    type:
+      className: String
+  - name: faixaCep2Fim
+    tableFieldName: FAIXA_CEP2_FIM
+    displayName: faixa_cep2_fim
+    type:
+      className: String
+- name: Pais
+  displayName: Pais
+  tableName: PAIS
+  hasOwner: false
+  attributes:
+  - name: codigo
+    tableFieldName: CODIGO
+    displayName: Código
+    type:
+      className: Integer
+  - name: nome
+    tableFieldName: nome
+    displayName: Nome
+    type:
+      className: String
+      
+- name: Item
+  displayName: Item
+  tableName: item
+  hasOwner: false
+  attributes:
+  - name: name
+    tableFieldName: name
+    type:
+      className: String
+    displayName: Nome
+  - name: description
+    tableFieldName: description
+    type:
+      className: String
+    displayName: Descrição
+  relationships:
+  - name: type
+    type: ManyToOne
+    model: ItemType
+    viewApproach:
+      type: modal
+      textField: name
+      hiddenField: id
+    displayName: Tipo
+  - name: permissions
+    viewApproach:
+      type: multiselect
+    type: OneToMany
+    model: Permission
+    displayName: Permissões
+- name: ItemType
+  displayName: Tipo de Item
+  tableName: item_type
+  hasOwner: false
+  attributes:
+  - name: name
+    tableFieldName: name
+    type:
+      className: String
+    displayName: Nome
+  - name: description
+    tableFieldName: description
+    type:
+      className: String
+    displayName: Descrição
+- name: Operation
+  displayName: Operação
+  tableName: operation
+  hasOwner: false
+  attributes:
+  - name: name
+    tableFieldName: name
+    type:
+      className: String
+    displayName: Nome
+  - name: canEdit
+    tableFieldName: can_edit
+    type:
+      className: Boolean
+    displayName: Pode Editar
+    viewApproach:
+      type: check
+  - name: canRead
+    tableFieldName: can_read
+    type:
+      className: Boolean
+    displayName: Pode Ler
+    viewApproach:
+      type: check
+  - name: canUpdate
+    tableFieldName: can_update
+    type:
+      className: Boolean
+    displayName: Pode atualizar
+    viewApproach:
+      type: check
+  - name: canDelete
+    tableFieldName: can_delete
+    type:
+      className: Boolean
+    displayName: Pode Deletar
+    viewApproach:
+      type: check
+  - name: canExecute
+    tableFieldName: can_execute
+    type:
+      className: Boolean
+    displayName: Pode executar
+    viewApproach:
+      type: check
+  relationships:
+  - name: permissions
+    type: OneToMany
+    viewApproach:
+      type: multiselect
+    model: Permission
+    displayName: Permissões
+- name: Permission
+  displayName: Permissão
+  tableName: permission
+  hasOwner: false
+  attributes:
+  - name: name
+    tableFieldName: name
+    type:
+      className: String
+    displayName: Nome
+  relationships:
+  - name: roles
+    ownerName: permissions
+    type: ManyToMany
+    viewApproach:
+      type: multiselect
+    model: Role
+    displayName: Papeis
+  - name: operation
+    type: ManyToOne
+    ownerName: permissions
+    model: Operation
+    displayName: Operação
+    viewApproach:
+      type: modal
+      textField: name
+      hiddenField: id
+  - name: item
+    type: ManyToOne
+    model: Item
+    ownerName: permissions
+    displayName: Item
+    viewApproach:
+      type: modal
+      textField: name
+      hiddenField: id
+- name: Role
+  displayName: Papel
+  tableName: role
+  hasOwner: false
+  attributes:
+  - name: authority
+    tableFieldName: authority
+    required: true
+    type:
+      className: String
+    displayName: Autoridade
+  - name: description
+    tableFieldName: DESCRIPTION
+    required: true
+    type:
+      className: String
+    displayName: Descrição
+  relationships:
+  - name: sessions
+    ownerName: roles
+    type: ManyToMany
+    model: Session
+    displayName: Sessões
+  - name: users
+    type: ManyToMany
+    ownerName: roles
+    model: User
+    displayName: Usuários
+  - name: permissions
+    type: ManyToMany
+    viewApproach:
+      type: multiselect
+    model: Permission
+    displayName: Permissões
+- name: Session
+  displayName: Sessão
+  tableName: session
+  hasOwner: false
+  attributes:
+  - name: name
+    tableFieldName: name
+    type:
+      className: String
+    displayName: Nome
+  - name: creationDate
+    tableFieldName: creation_date
+    type:
+      className: Datetime
+    displayName: Data da criação
+    dateFormat: DD/MM/YYYY DD:MM
+    mask: 99/99/9999
+    viewApproach:
+      type: datepicker
+  relationships:
+  - name: roles
+    type: ManyToMany
+    viewApproach:
+      type: multiselect
+    model: Role
+    displayName: Papeis
+  - name: user
+    type: ManyToOne
+    model: User
+    displayName: Usuario
+    viewApproach:
+      type: combo
+      comboId: id
+      comboVal: name
+- name: User
+  displayName: Usuário
+  tableName: TB_USER
+  hasOwner: false
+  attributes:
+  - name: name
+    tableFieldName: name
+    displayName: Nome
+    type:
+      className: String
+  - name: username
+    unique: true
+    required: true
+    tableFieldName: username
+    type:
+      className: String
+    displayName: Username
+  - name: password
+    required: true
+    tableFieldName: password
+    type:
+      className: String
+    displayName: Password
+  - name: enable
+    tableFieldName: enable
+    type:
+      className: Boolean
+    displayName: Ativo
+    viewApproach:
+      type: check
+  - name: image
+    tableFieldName: image
+    showInPages: false
+    type:
+      className: String
+    displayName: Imagem
+  relationships:
+  - name: roles
+    type: ManyToMany
+    viewApproach:
+      type: multiselect
+    model: Role
+    displayName: Papeis
+  - name: owner
+    type: ManyToOne
+    model: Client
+    displayName: Owner

@@ -126,7 +126,7 @@
 		<#if entity.attributes??>	
 			<#list entity.attributes as att>
 			<if test=" ${att.name} != null ">
-	    	AND ${uppercase(att.tableFieldName!att.name)} = ${r"#{"} ${att.name} ${r"}" , jdbcType = ${getMybatisJdbcType(att.type.className)} }
+	    	AND ${uppercase(att.tableFieldName!att.name)} = ${r"#{"} ${att.name} ${r"}"}
 		    </if> 
 			</#list>
 		</#if>									 
@@ -151,7 +151,7 @@
 		<#if entity.attributes??>            
 				  ${ r"#{"} id ${r"}" }
         <#list entity.attributes as att>
-				, ${r"#{"} ${att.name} ${r"}" , jdbcType = ${getMybatisJdbcType(att.type.className)} } 
+				, ${r"#{"} ${att.name}  , jdbcType = ${getMybatisJdbcType(att.type.className)}  ${r"}"}
 		</#list>
 		</#if>	
             )
@@ -165,7 +165,7 @@
  		    ${entity.pk} = ${r"#{"} id ${r"}"}
         <#list entity.attributes as att>
 			<if test=" ${att.name} != null ">
-			, ${uppercase(att.tableFieldName!att.name)} = ${r"#{"} ${att.name} ${r"}" ,  jdbcType = ${getMybatisJdbcType(att.type.className)}} 
+			, ${uppercase(att.tableFieldName!att.name)} = ${r"#{"} ${att.name} ,  jdbcType = ${getMybatisJdbcType(att.type.className)} ${r"}" } 
 			</if>	
 		</#list>
 		</#if>	

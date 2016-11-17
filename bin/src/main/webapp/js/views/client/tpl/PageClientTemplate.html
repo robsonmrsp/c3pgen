@@ -1,0 +1,78 @@
+<!-- generated: 30/08/2015 20:23:12 -->
+<!-- Client´s page -->
+<div class="main-content-inner">
+	<div class="breadcrumbs" id="breadcrumbs">
+		<ul class="breadcrumb">
+			<li>
+				<i class="ace-icon fa fa-home home-icon"></i>
+				<a href="#">Home</a>
+			</li>
+			<li class="active">Pesquisar Cliente</li>
+		</ul>
+	</div>
+	<div class="page-content">
+		<h1>Pesquisar Cliente</h1>
+		<div class="main-content">
+			<div class="panel panel-default plain">
+				<div class="">
+					<div class="col-xs-12 col-sm-12">
+				<form role="form" id="formClientFilter">
+					<br>
+							<div id="groupInputLogo" class="form-group">
+								<label class="control-label" for="inputLogo">Logotipo</label>
+								<input type="text" id="inputLogo" placeholder="Pesquise pelo Logotipo"  class="form-control">
+							</div>
+							<div id="groupInputName" class="form-group">
+								<label class="control-label" for="inputName">Nome</label>
+								<input type="text" id="inputName" placeholder="Pesquise pelo Nome"  class="form-control">
+							</div>
+							<div id="groupInputCnpj" class="form-group">
+								<label class="control-label" for="inputCnpj">CNPJ</label>
+								<input type="text" id="inputCnpj" placeholder="Pesquise pelo CNPJ"  class="form-control">
+							</div>
+							<div id="groupInputPhoneNumber" class="form-group">
+								<label class="control-label" for="inputPhoneNumber">Telefone</label>
+								<input type="text" id="inputPhoneNumber" placeholder="Pesquise pelo Telefone"  class="form-control">
+							</div>
+							<div id="groupInputCorporateName" class="form-group">
+								<label class="control-label" for="inputCorporateName">Razão Social</label>
+								<input type="text" id="inputCorporateName" placeholder="Pesquise pelo Razão Social"  class="form-control">
+							</div>
+					
+					</form>
+				</div>
+			</div>
+			<div class="clearfix form-actions form-group mb15">
+				<div class="col-md-9">
+					<a href="javascript:void(0)" id="query" class="btn btn-primary">
+						<i class="fa fa-search"></i>
+						Pesquisar
+					</a>
+					&nbsp;
+					<a href="#app/newClient" class="btn btn-info">
+						<i class="fa fa-plus "></i>
+						Novo
+					</a>
+					&nbsp;
+					<a href="javascript:void(0)" id="reset" class="btn btn-default">Limpar</a>
+				</div>
+			</div>
+			</div>
+			<div class="panel panel-default plain toggle panelClose panelRefresh">
+				<div class="panel-body">
+					<h3 class="header smaller lighter blue">Resultados</h3>
+					<div>
+						<div id="sample-table-2_wrapper" class="dataTables_wrapper form-inline no-footer">
+							<div id="messages_div"></div>
+							<div id="grid" class="table-responsive"></div>
+							<div class="">
+								<div id="counter" class=" pull-left"></div>
+								<div id="paginator" class=" pull-right"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,27 @@
+- name: Atendente
+  hasOwner: false 
+  displayName: Atendente
+  tableName: ATENDENTE
+  attributes:                     
+  - name: nmAtendente
+    tableFieldName: NM_ATENDENTE
+    required: false
+    showInPages: false
+    maxLen: 50
+    displayName: Nm atendente
+    type: 
+      className: String
+  - name: stAtendente
+    tableFieldName: ST_ATENDENTE
+    required: false
+    showInPages: false
+    maxLen: 1
+    displayName: St atendente
+    type: 
+      className: String
+  relationships:                     
+  - name: corridas
+    type: OneToMany
+    ownerName: atendente
+    model: Corrida                       
+    displayName: Corrida

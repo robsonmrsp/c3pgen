@@ -1,0 +1,32 @@
+<div>
+	<h1>Cadastro De Cirurgia - Cadastro de Atuação Profissional</h1>
+	<div id="messages"></div>
+		<fieldset>
+			<legend></legend>
+			<form role="form" id="formCirurgiaAtuacaoProfissional">
+			<input type="hidden" id="inputId" value="{{id}}">
+				<div id="groupInputAtuacao" class="form-group">
+					<label class="control-label" for="inputAtuacao">Atuação  *</label>
+					<input type="text" id="inputAtuacao" placeholder="" value="{{atuacao}}" class="form-control  validate[required]">
+				</div>
+			</form>
+		</fieldset>
+		
+		
+		<div class="clearfix form-actions">
+			<a href="javascript:void(0)" id="save"  class="save btn btn-primary btn-large ">
+				<i class="ace-icon save fa fa-check bigger-110"></i>
+				Salvar
+			</a>
+			&nbsp;
+			<a href="javascript:void(0)" class=" saveAndContinue  btn-large btn btn-info" style="display: {{ id ? 'none' : 'inline-block' }} ">
+				<i class="ace-icon fa fa-check bigger-110"></i>
+				Salvar e Continuar
+			</a>
+			<a class="go-back-link btn-large btn-light" href="#app/cirurgiaAtuacaoProfissionals">
+				<i class="ace-icon fa fa-undo bigger-110"></i>
+				Voltar para a listagem
+			</a>
+		</div>
+	</div>
+</div>

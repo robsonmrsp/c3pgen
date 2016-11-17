@@ -1,0 +1,29 @@
+- name: Tarifa
+  hasOwner: false 
+  displayName: Tarifa
+  tableName: TARIFA
+  attributes:                     
+  - name: bairroOrigem
+    tableFieldName: BAIRRO_ORIGEM
+    required: false
+    showInPages: false
+    maxLen: 100
+    displayName: Bairro origem
+    type: 
+      className: String
+  - name: bairroDestino
+    tableFieldName: BAIRRO_DESTINO
+    required: false
+    showInPages: false
+    maxLen: 100
+    displayName: Bairro destino
+    type: 
+      className: String
+  - name: vlValor
+    tableFieldName: VL_VALOR
+    required: false
+    showInPages: false
+    displayName: Vl valor
+    type: 
+      className: Double
+  relationships:                     

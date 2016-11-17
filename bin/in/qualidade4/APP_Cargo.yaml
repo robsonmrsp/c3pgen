@@ -1,0 +1,24 @@
+- name: Cargo
+  hasOwner: false 
+  displayName: Cargo
+  tableName: CARGO
+  hasMobile: true  
+  attributes:                     
+  - name: nome
+    tableFieldName: NOME
+    basicSearch : true    
+    required: true
+    displayName: Nome
+    type: 
+      className: String
+  relationships:                     
+  - name: funcionarios
+    type: OneToMany
+    ownerName: cargo
+    model: Funcionario                       
+    displayName: Funcionario
+  - name: apontamentoQualidadePackings
+    type: OneToMany
+    ownerName: cargo
+    model: ApontamentoQualidadePacking                       
+    displayName: Apontamento qualidade packing

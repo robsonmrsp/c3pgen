@@ -1,0 +1,507 @@
+- name: Motorista
+  hasOwner: false
+  displayName: Motoqueiro
+  tableName: MOTORISTA
+  attributes:
+  - name: nome
+    tableFieldName: NOME
+    required: false
+    maxLen: 200
+    displayName: Nome
+    type:
+      className: String
+  - name: nomeReduzido
+    tableFieldName: NOME_REDUZIDO
+    required: false
+    maxLen: 50
+    displayName: Nome reduzido
+    type:
+      className: String
+  - name: viatura
+    tableFieldName: VIATURA
+    required: false
+    maxLen: 10
+    displayName: Viatura
+    type:
+      className: String
+  - name: email
+    tableFieldName: EMAIL
+    required: false
+    maxLen: 100
+    displayName: E-mail
+    type:
+      className: String
+  - name: ddd
+    tableFieldName: DDD
+    required: false
+    maxLen: 3
+    displayName: DDD
+    type:
+      className: String
+  - name: fone
+    tableFieldName: FONE
+    required: false
+    maxLen: 15
+    displayName: Fone
+    type:
+      className: String
+  - name: statusMotorista
+    tableFieldName: STATUS_MOTORISTA
+    required: false
+    maxLen: 20
+    displayName: Status motorista
+    type:
+      className: String
+  - name: ddd2
+    tableFieldName: DDD2
+    required: false
+    maxLen: 3
+    showInPages: false
+    displayName: DDD2
+    type:
+      className: String
+  - name: fone2
+    tableFieldName: FONE2
+    required: false
+    maxLen: 15
+    displayName: Fone2
+    showInPages: false
+    type:
+      className: String
+  - name: dddWhatsapp
+    tableFieldName: DDD_WHATSAPP
+    required: false
+    maxLen: 3
+    displayName: Ddd whatsapp
+    showInPages: false
+    type:
+      className: String
+  - name: whatsapp
+    tableFieldName: WHATSAPP
+    required: false
+    maxLen: 15
+    displayName: Whatsapp
+    showInPages: false
+    type:
+      className: String
+  - name: dataNascimento
+    tableFieldName: DATA_NASCIMENTO
+    required: false
+    displayName: Data nascimento
+    showInPages: false
+    type:
+      className: Datetime
+    dateFormat: DD/MM/YYYY HH:MM
+    mask: 99/99/9999 99:99
+    viewApproach:
+      type: datepicker
+  - name: rg
+    tableFieldName: RG
+    required: false
+    maxLen: 12
+    displayName: RG
+    showInPages: false
+    type:
+      className: String
+  - name: orgaoExpedidor
+    tableFieldName: ORGAO_EXPEDIDOR
+    required: false
+    maxLen: 10
+    displayName: Órgao expedidor
+    showInPages: false
+    type:
+      className: String
+  - name: dataExpedicao
+    tableFieldName: DATA_EXPEDICAO
+    required: false
+    displayName: Data expedicao
+    showInPages: false
+    type:
+      className: Datetime
+    dateFormat: DD/MM/YYYY HH:MM
+    mask: 99/99/9999 99:99
+    viewApproach:
+      type: datepicker
+  - name: naturalidade
+    tableFieldName: NATURALIDADE
+    required: false
+    maxLen: 50
+    displayName: Naturalidade
+    showInPages: false
+    type:
+      className: String
+  - name: cpf
+    tableFieldName: CPF
+    mask: 999.999.999-99
+    required: false
+    maxLen: 14
+    displayName: CPF
+    showInPages: false
+    type:
+      className: String
+  - name: cnh
+    tableFieldName: CNH
+    required: false
+    maxLen: 12
+    displayName: CNH
+    showInPages: false
+    type:
+      className: String
+  - name: emissaoCnh
+    tableFieldName: EMISSAO_CNH
+    required: false
+    displayName: Emissão CNH
+    showInPages: false
+    type:
+      className: Datetime
+    dateFormat: DD/MM/YYYY HH:MM
+    mask: 99/99/9999 99:99
+    viewApproach:
+      type: datepicker
+  - name: categoriaCnh
+    tableFieldName: CATEGORIA_CNH
+    required: false
+    maxLen: 2
+    displayName: Categoria CNH
+    showInPages: false
+    type:
+      className: String
+  - name: validadeCnh
+    tableFieldName: VALIDADE_CNH
+    required: false
+    displayName: Validade CNH
+    showInPages: false
+    type:
+      className: Datetime
+    dateFormat: DD/MM/YYYY HH:MM
+    mask: 99/99/9999 99:99
+    viewApproach:
+      type: datepicker
+  - name: foto1
+    tableFieldName: FOTO1
+    required: false
+    maxLen: 100
+    displayName: Foto1
+    showInPages: false
+    type:
+      className: String
+  - name: foto2
+    tableFieldName: FOTO2
+    required: false
+    maxLen: 100
+    displayName: Foto2
+    showInPages: false
+    type:
+      className: String
+  - name: foto3
+    tableFieldName: FOTO3
+    required: false
+    maxLen: 100
+    displayName: Foto3
+    showInPages: false
+    type:
+      className: String
+  - name: endereco
+    tableFieldName: ENDERECO
+    required: false
+    maxLen: 200
+    displayName: Endereco
+    showInPages: false
+    type:
+      className: String
+  - name: numeroEndereco
+    tableFieldName: NUMERO_ENDERECO
+    required: false
+    maxLen: 10
+    displayName: Número endereco
+    showInPages: false
+    type:
+      className: String
+  - name: complemento
+    tableFieldName: COMPLEMENTO
+    required: false
+    maxLen: 200
+    displayName: Complemento
+    showInPages: false
+    type:
+      className: String
+  - name: uf
+    tableFieldName: UF
+    required: false
+    maxLen: 2
+    displayName: Uf
+    showInPages: false
+    type:
+      className: String
+  - name: cidade
+    tableFieldName: CIDADE
+    required: false
+    maxLen: 50
+    displayName: Cidade
+    showInPages: false
+    type:
+      className: String
+  - name: bairro
+    tableFieldName: BAIRRO
+    required: false
+    maxLen: 100
+    displayName: Bairro
+    showInPages: false
+    type:
+      className: String
+  - name: cep
+    tableFieldName: CEP
+    required: false
+    maxLen: 9
+    displayName: Cep
+    showInPages: false
+    type:
+      className: String
+  - name: referenciaEndereco
+    tableFieldName: REFERENCIA_ENDERECO
+    required: false
+    maxLen: 200
+    displayName: Referencia endereco
+    showInPages: false
+    type:
+      className: String
+  - name: mae
+    tableFieldName: MAE
+    required: false
+    maxLen: 200
+    displayName: Nome da Mãe
+    showInPages: false
+    type:
+      className: String
+  - name: pai
+    tableFieldName: PAI
+    required: false
+    maxLen: 200
+    displayName: Nome do Pai
+    showInPages: false
+    type:
+      className: String
+  - name: conjuge
+    tableFieldName: CONJUGE
+    required: false
+    maxLen: 200
+    displayName: Cônjuge
+    showInPages: false
+    type:
+      className: String
+  - name: referenciaPessoal1
+    tableFieldName: REFERENCIA_PESSOAL1
+    required: false
+    maxLen: 200
+    displayName: Referencia pessoal1
+    showInPages: false
+    type:
+      className: String
+  - name: foneReferencia1
+    tableFieldName: FONE_REFERENCIA1
+    required: false
+    maxLen: 15
+    displayName: Fone referência 1
+    showInPages: false
+    type:
+      className: String
+  - name: parentescoReferencia1
+    tableFieldName: PARENTESCO_REFERENCIA1
+    required: false
+    maxLen: 20
+    displayName: Parentesco referencia1
+    showInPages: false
+    type:
+      className: String
+  - name: referenciaPessoal2
+    tableFieldName: REFERENCIA_PESSOAL2
+    required: false
+    maxLen: 200
+    displayName: Referencia pessoal2
+    showInPages: false
+    type:
+      className: String
+  - name: foneReferencia2
+    tableFieldName: FONE_REFERENCIA2
+    required: false
+    maxLen: 15
+    displayName: Fone referencia2
+    showInPages: false
+    type:
+      className: String
+  - name: parentescoReferencia2
+    tableFieldName: PARENTESCO_REFERENCIA2
+    required: false
+    maxLen: 20
+    displayName: Parentesco referencia2
+    showInPages: false
+    type:
+      className: String
+  - name: marcaVeiculo
+    tableFieldName: MARCA_VEICULO
+    required: false
+    maxLen: 20
+    displayName: Marca veiculo
+    showInPages: false
+    type:
+      className: String
+  - name: modeloVeiculo
+    tableFieldName: MODELO_VEICULO
+    required: false
+    maxLen: 50
+    displayName: Modelo veiculo
+    showInPages: false
+    type:
+      className: String
+  - name: placaVeiculo
+    tableFieldName: PLACA_VEICULO
+    required: false
+    maxLen: 8
+    displayName: Placa veiculo
+    showInPages: false
+    type:
+      className: String
+  - name: corVeiculo
+    tableFieldName: COR_VEICULO
+    required: false
+    maxLen: 20
+    displayName: Cor veiculo
+    showInPages: false
+    type:
+      className: String
+  - name: anoVeiculo
+    tableFieldName: ANO_VEICULO
+    required: false
+    displayName: Ano veiculo
+    showInPages: false
+    type:
+      className: Integer
+  - name: renavam
+    tableFieldName: RENAVAM
+    required: false
+    maxLen: 20
+    displayName: Renavam
+    showInPages: false
+    type:
+      className: String
+  - name: chassi
+    tableFieldName: CHASSI
+    required: false
+    maxLen: 20
+    displayName: Chassi
+    showInPages: false
+    type:
+      className: String
+  - name: categoria
+    tableFieldName: CATEGORIA
+    required: false
+    maxLen: 20
+    displayName: Categoria
+    showInPages: false
+    type:
+      className: String
+  - name: imei
+    tableFieldName: IMEI
+    required: false
+    maxLen: 20
+    displayName: Imei
+    showInPages: false
+    type:
+      className: String
+  - name: cartaoCredito
+    tableFieldName: CARTAO_CREDITO
+    required: false
+    displayName: Cartao credito
+    showInPages: false
+    type:
+      className: Boolean
+    viewApproach:
+      type: check
+  - name: cartaoDebito
+    tableFieldName: CARTAO_DEBITO
+    required: false
+    displayName: Cartao débito
+    showInPages: false
+    type:
+      className: Boolean
+    viewApproach:
+      type: check
+  - name: voucher
+    tableFieldName: VOUCHER
+    required: false
+    displayName: Voucher
+    showInPages: false
+    type:
+      className: Boolean
+    viewApproach:
+      type: check
+  - name: eticket
+    tableFieldName: ETICKET
+    required: false
+    displayName: Eticket
+    showInPages: false
+    type:
+      className: Boolean
+    viewApproach:
+      type: check
+  - name: senha
+    tableFieldName: SENHA
+    required: false
+    maxLen: 100
+    displayName: Senha
+    showInPages: false
+    type:
+      className: String
+  - name: colete
+    tableFieldName: COLETE
+    required: false
+    displayName: Colete
+    showInPages: false
+    type:
+      className: Boolean
+    viewApproach:
+      type: check
+  - name: bau
+    tableFieldName: BAU
+    required: false
+    displayName: Bau
+    showInPages: false
+    type:
+      className: Boolean
+    viewApproach:
+      type: check
+  - name: motoGrande
+    tableFieldName: MOTO_GRANDE
+    required: false
+    displayName: Moto grande
+    showInPages: false
+    type:
+      className: Boolean
+    viewApproach:
+      type: check
+  relationships:
+  - name: punicaos
+    type: OneToMany
+    ownerName: motorista
+    model: Punicao
+    displayName: Punição
+  - name: mensagemMotoristas
+    type: OneToMany
+    ownerName: motorista
+    model: MensagemMotorista
+    displayName: Mensagem motorista
+  - name: motoristaBloqueados
+    type: OneToMany
+    ownerName: motorista
+    model: MotoristaBloqueado
+    displayName: Motorista bloqueado
+  - name: corridas
+    type: OneToMany
+    ownerName: motorista
+    model: Corrida
+    displayName: Corrida
+  - name: plantoes
+    type: ManyToMany
+    ownerName: motoristas
+    model: Plantao
+    displayName: Prantões

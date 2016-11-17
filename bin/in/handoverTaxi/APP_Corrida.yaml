@@ -1,0 +1,100 @@
+- name: Corrida
+  hasOwner: false 
+  displayName: Corrida
+  tableName: CORRIDA
+  attributes:                     
+  - name: dataCorrida
+    tableFieldName: DATA_CORRIDA
+    required: false
+    showInPages: false
+    displayName: Data corrida
+    type: 
+      className: Datetime
+    dateFormat: DD/MM/YYYY HH:MM             
+    mask: 99/99/9999 99:99                  
+    viewApproach:                        
+      type: datepicker                  
+  - name: tipoPagamento
+    tableFieldName: TIPO_PAGAMENTO
+    required: false
+    showInPages: false
+    displayName: Tipo pagamento
+    type: 
+      className: Integer
+  - name: valor
+    tableFieldName: VALOR
+    required: false
+    showInPages: false
+    displayName: Valor
+    type: 
+      className: Double
+  - name: observacao
+    tableFieldName: OBSERVACAO
+    required: false
+    showInPages: false
+    maxLen: 400
+    viewApproach:                        
+      type: textarea                  
+    displayName: Observacao
+    type: 
+      className: String
+  - name: statusCorrida
+    tableFieldName: STATUS_CORRIDA
+    required: false
+    showInPages: false
+    maxLen: 1
+    displayName: Status corrida
+    type: 
+      className: String
+  - name: seqEmAtendimento
+    tableFieldName: SEQ_EM_ATENDIMENTO
+    required: false
+    showInPages: false
+    displayName: Seq em atendimento
+    type: 
+      className: Integer
+  - name: motoGrande
+    tableFieldName: MOTO_GRANDE
+    required: false
+    showInPages: false
+    displayName: Moto grande
+    type: 
+      className: Boolean
+    viewApproach: 
+      type: check
+  - name: bau
+    tableFieldName: BAU
+    required: false
+    showInPages: false
+    displayName: Bau
+    type: 
+      className: Boolean
+    viewApproach: 
+      type: check
+  relationships:                     
+  - name: enderecoCorridas
+    type: OneToMany
+    ownerName: corrida
+    model: EnderecoCorrida                       
+    displayName: Endereco corrida
+  - name: distanciaMotoCorridas
+    type: OneToMany
+    ownerName: corrida
+    model: DistanciaMotoCorrida                       
+    displayName: Distancia moto corrida
+  - name: atendente             
+    type: ManyToOne
+    model: Atendente                       
+    displayName: Atendente
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+  - name: motorista             
+    type: ManyToOne
+    model: Motorista                       
+    displayName: Motorista
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 

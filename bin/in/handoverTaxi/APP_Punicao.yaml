@@ -1,0 +1,58 @@
+- name: Punicao
+  hasOwner: false 
+  displayName: Punicao
+  tableName: PUNICAO
+  attributes:                     
+  - name: motivo
+    tableFieldName: MOTIVO
+    required: false
+    showInPages: false
+    maxLen: 100
+    displayName: Motivo
+    type: 
+      className: String
+  - name: dataInicio
+    tableFieldName: DATA_INICIO
+    required: false
+    showInPages: false
+    displayName: Data inicio
+    type: 
+      className: Datetime
+    dateFormat: DD/MM/YYYY HH:MM             
+    mask: 99/99/9999 99:99                  
+    viewApproach:                        
+      type: datepicker                  
+  - name: dataFim
+    tableFieldName: DATA_FIM
+    required: false
+    showInPages: false
+    displayName: Data fim
+    type: 
+      className: Datetime
+    dateFormat: DD/MM/YYYY HH:MM             
+    mask: 99/99/9999 99:99                  
+    viewApproach:                        
+      type: datepicker                  
+  - name: quantidadetempo
+    tableFieldName: QUANTIDADETEMPO
+    required: false
+    displayName: QuantidadeTempo
+    type: 
+      className: Integer
+  - name: statusPunicao
+    tableFieldName: STATUS_PUNICAO
+    required: false
+    showInPages: false
+    maxLen: 10
+    displayName: Status punicao
+    type: 
+      className: String
+  relationships:                     
+  - name: motorista             
+    type: ManyToOne
+    model: Motorista                       
+    displayName: Motorista
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 

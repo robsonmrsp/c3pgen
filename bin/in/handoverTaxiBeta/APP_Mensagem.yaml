@@ -1,0 +1,17 @@
+- name: Mensagem
+  hasOwner: false 
+  displayName: Mensagem
+  tableName: MENSAGEM
+  attributes:                     
+  - name: descricao
+    tableFieldName: DESCRICAO
+    required: false
+    displayName: Descrição
+    type: 
+      className: String
+  relationships:                     
+  - name: mensagemMotoristas
+    type: OneToMany
+    ownerName: mensagem
+    model: MensagemMotorista                       
+    displayName: Mensagem motorista

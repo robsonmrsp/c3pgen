@@ -1,0 +1,44 @@
+- name: MensagemMotorista
+  hasOwner: false 
+  displayName: Mensagem motorista
+  tableName: MENSAGEM_MOTORISTA
+  attributes:                     
+  - name: dataEnvio
+    tableFieldName: DATA_ENVIO
+    required: false
+    showInPages: false
+    displayName: Data envio
+    type: 
+      className: Datetime
+    dateFormat: DD/MM/YYYY HH:MM             
+    mask: 99/99/9999 99:99                  
+    viewApproach:                        
+      type: datepicker                  
+  - name: dataLeitura
+    tableFieldName: DATA_LEITURA
+    required: false
+    showInPages: false
+    displayName: Data leitura
+    type: 
+      className: Datetime
+    dateFormat: DD/MM/YYYY HH:MM             
+    mask: 99/99/9999 99:99                  
+    viewApproach:                        
+      type: datepicker                  
+  relationships:                     
+  - name: motorista             
+    type: ManyToOne
+    model: Motorista                       
+    displayName: Motorista
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+  - name: mensagem             
+    type: ManyToOne
+    model: Mensagem                       
+    displayName: Mensagem
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 

@@ -1,0 +1,72 @@
+<!-- generated: 30/08/2015 20:23:12 -->
+<!-- Modal Cliente´s form -->
+<div class="modal fade" id="dialogCliente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">
+					<span aria-hidden="true">&times;</span>
+					<span class="sr-only">Close</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel">Pesquisa de Cliente</h4>
+			</div>
+			<div class="modal-body">
+				<form id="formSearchCliente">
+							<div id="groupInputModalNome" class="form-group">
+								<label class="control-label" for="inputModalNome">Nome</label>
+								<input type="text" id="inputModalNome" placeholder="Nome"  class="form-control">
+							</div>
+							
+							<div id="groupInputModalEmail" class="form-group">
+								<label class="control-label" for="inputModalEmail">Email</label>
+								<input type="text" id="inputModalEmail" placeholder="Email"  class="form-control">
+							</div>
+							
+							<div id="groupInputModalCpf" class="form-group">
+								<label class="control-label" for="inputModalCpf">Cpf</label>
+								<input type="text" id="inputModalCpf" placeholder="cpf"  class="form-control">
+							</div>
+							
+							<div id="groupInputModalTelefone" class="form-group">
+								<label class="control-label" for="inputModalTelefone">Outro Telefone</label>
+								<input type="text" id="inputModalTelefone" placeholder="Outro Telefone"  class="form-control">
+							</div>
+							
+							<div id="groupInputModalOutroTelefone" class="form-group">
+								<label class="control-label" for="inputModalOutroTelefone">Outro Telefone</label>
+								<input type="text" id="inputModalOutroTelefone" placeholder="Outro Telefone"  class="form-control">
+							</div>
+							
+		
+					<div class="form-actions spinner" id="spinCliente">
+						<a href="javascript:void(0)" id="btnSearchCliente" class="btn btn-primary btn-large" >
+							<i class="fa fa-search"></i>
+							Pesquisar
+						</a>
+						<a href="javascript:void(0)" id="btnClearCliente" class="btn btn-info btn-large">
+							<i class="fa fa-trash"></i>
+							Nova Pesquisa
+						</a>
+					</div>
+					
+				<div class="row">
+				<div class="col-xs-12">
+					<h3 class="header smaller lighter blue">Resultados</h3>
+					<div class="divTableResults" id="resultadoClienteDiv" >
+						<div id="sample-table-2_wrapper" class="dataTables_wrapper form-inline no-footer">
+							<div id="messages_div"></div>
+							<div id="grid-cliente" class="table-responsive"></div>
+							<div class="">
+								<div id="counter" class=" pull-left"></div>
+								<div id="paginator-cliente" class="pull-right"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				</div>
+				</form>				
+			</div>
+		</div>
+	</div>
+</div>
+

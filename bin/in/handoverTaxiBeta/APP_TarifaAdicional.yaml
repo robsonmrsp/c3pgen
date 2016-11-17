@@ -1,0 +1,18 @@
+- name: TarifaAdicional
+  hasOwner: false 
+  displayName: Tarifa adicional
+  tableName: TARIFA_ADICIONAL
+  attributes:                     
+  - name: descricao
+    tableFieldName: DESCRICAO
+    required: false
+    displayName: Descrição
+    type: 
+      className: Integer
+  - name: valor
+    tableFieldName: VALOR
+    required: false
+    displayName: Valor
+    type: 
+      className: Double
+  relationships:                     

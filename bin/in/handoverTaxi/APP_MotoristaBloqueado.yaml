@@ -1,0 +1,36 @@
+- name: MotoristaBloqueado
+  hasOwner: false 
+  displayName: Motorista bloqueado
+  tableName: MOTORISTA_BLOQUEADO
+  attributes:                     
+  - name: dataBloqueio
+    tableFieldName: DATA_BLOQUEIO
+    required: false
+    showInPages: false
+    displayName: Data bloqueio
+    type: 
+      className: Integer
+  - name: usuarioBloqueio
+    tableFieldName: USUARIO_BLOQUEIO
+    required: false
+    showInPages: false
+    displayName: Usuario bloqueio
+    type: 
+      className: Integer
+  relationships:                     
+  - name: motorista             
+    type: ManyToOne
+    model: Motorista                       
+    displayName: Motorista
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+  - name: cliente             
+    type: ManyToOne
+    model: Cliente                       
+    displayName: Cliente
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 

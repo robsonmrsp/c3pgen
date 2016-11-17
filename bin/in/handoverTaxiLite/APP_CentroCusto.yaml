@@ -1,0 +1,51 @@
+- name: CentroCusto
+  hasOwner: false 
+  displayName: Centro custo
+  tableName: CENTRO_CUSTO
+  attributes:                     
+  - name: descricao
+    tableFieldName: DESCRICAO
+    required: false
+    displayName: Descrição
+    type: 
+      className: String
+  - name: valorLimite
+    tableFieldName: VALOR_LIMITE
+    required: false
+    displayName: Valor limite
+    type: 
+      className: Double
+  - name: observacao
+    tableFieldName: OBSERVACAO
+    required: false
+    displayName: Observação
+    type: 
+      className: String
+  - name: obseracaoTaxista
+    tableFieldName: OBSERACAO_TAXISTA
+    required: false
+    displayName: Obseracao taxista
+    type: 
+      className: String
+  - name: inativo
+    tableFieldName: INATIVO
+    required: false
+    displayName: Inativo
+    type: 
+      className: Boolean
+    viewApproach: 
+      type: check
+  relationships:                     
+  - name: funcionarios
+    type: OneToMany
+    ownerName: centroCusto
+    model: Funcionario                       
+    displayName: Funcionario
+  - name: empresa             
+    type: ManyToOne
+    model: Empresa                       
+    displayName: Empresa
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: razaoSocial 

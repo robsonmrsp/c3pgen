@@ -1,0 +1,22 @@
+- name: MotoristaHasPlantao
+  hasOwner: false 
+  displayName: Motorista has plantao
+  tableName: MOTORISTA_HAS_PLANTAO
+  attributes:                     
+  relationships:                     
+  - name: motorista             
+    type: ManyToOne
+    model: Motorista                       
+    displayName: Motorista
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+  - name: plantao             
+    type: ManyToOne
+    model: Plantao                       
+    displayName: Plantao
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
