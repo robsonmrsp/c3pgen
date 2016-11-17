@@ -42,6 +42,11 @@ define(function(require) {
 			this.diagramEntityView = new DiagramEntityView({
 				model : this.entity,
 				container : this,
+				onClickRemove : function(evt) {
+					console.log('Removendo a entidade...');
+					that.$el.remove();
+					util.removeView(that.$box, that.diagramEntityView);
+				},
 			});
 
 			this.$box = $(_.template(this.template)());
@@ -55,7 +60,7 @@ define(function(require) {
 			});
 
 			this.updateBox();
-			
+
 			this.entity.on('change', this._changeEntity, this);
 		},
 

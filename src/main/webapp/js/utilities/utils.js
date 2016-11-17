@@ -397,6 +397,11 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 			container.append(view.render().el);
 			Marionette.triggerMethod.call(view, "show");
 		},
+		
+		removeView : function(container, view) {
+			container.remove(view.render().el);
+			Marionette.triggerMethod.call(view, "remove");
+		},
 		showSpinner : function(target) {
 			var target = document.getElementById(target);
 			// if (target)
