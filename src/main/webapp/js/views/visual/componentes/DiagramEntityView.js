@@ -29,9 +29,9 @@ define(function(require) {
 		},
 
 		removeEntity : function() {
-			
-			if(this.onClickRemove)
+			if (this.onClickRemove) {
 				this.onClickRemove();
+			}
 		},
 		ui : {
 			entityName : '.entity-name',
@@ -40,6 +40,7 @@ define(function(require) {
 		initialize : function(opt) {
 			var that = this;
 			this.container = opt.container;
+
 			this.onClickRemove = opt.onClickRemove;
 
 			this.attributesCollection = new AttributeCollection(this.model.get('attributes'));
@@ -78,3 +79,4 @@ define(function(require) {
 
 	return DiagramEntityView;
 });
+// html-element

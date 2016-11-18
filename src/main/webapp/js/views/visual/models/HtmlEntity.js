@@ -16,8 +16,13 @@ define(function(require) {
 
 	Joint.shapes.html.Element = Joint.shapes.basic.Rect.extend({
 		nomeClasse : 'HtmlEntity:Element',
+
+		initialize : function(opt) {
+			this.onClickRemove = opt.onClickRemove;
+		},
 		defaults : Joint.util.deepSupplement({
 			type : 'html.Element',
+
 			attrs : {
 				rect : {
 					stroke : 'none',
@@ -34,6 +39,7 @@ define(function(require) {
 
 		initialize : function(opt) {
 			var that = this;
+			this.onClickRemove = opt.onClickRemove;
 			_.bindAll(this, 'updateBox');
 			Joint.dia.ElementView.prototype.initialize.apply(this, arguments);
 
@@ -43,9 +49,9 @@ define(function(require) {
 				model : this.entity,
 				container : this,
 				onClickRemove : function(evt) {
-					console.log('Removendo a entidade...');
-					that.$el.remove();
-					util.removeView(that.$box, that.diagramEntityView);
+					if (that.model.onClickRemove) {
+						that.model.onClickRemove(that);
+					}
 				},
 			});
 

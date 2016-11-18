@@ -218,6 +218,9 @@ define(function(require) {
 								width : 120,
 								height : 100
 							},
+							onClickRemove : function(visualE) {
+								console.log("Removendo a entidade : " + visualE);
+							},
 						});
 
 						that.graph.addCell(visualEntity);
@@ -233,7 +236,6 @@ define(function(require) {
 				that.loadApplication(that.application);
 			});
 		},
-
 		loadApplication : function(application, clean) {
 			var that = this;
 			if (clean) {
@@ -279,6 +281,10 @@ define(function(require) {
 					width : 140,
 					height : 100
 				},
+				onClickRemove : function(visualE) {
+					console.log("Removendo a entidade : " + visualE);
+				},
+
 			});
 
 			that.graph.addCell(visualEntity);
