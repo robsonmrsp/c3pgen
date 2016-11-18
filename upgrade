@@ -22,3 +22,24 @@ bootbox
 chart.js
 
 
+
+
+
+para o novo visual, será usado o d3
+
+
+//desenhando formas
+http://bl.ocks.org/explunit/4659227
+https://github.com/hnakamur/d3.js-class-diagram-example
+
+//tratamento de eventos
+http://jsfiddle.net/NH6zD/1/
+
+//fazendo a seleção de vários objetos no PAINTER
+http://bl.ocks.org/musically-ut/4747894
+
+//fazendo grag and drop 
+http://bl.ocks.org/mbostock/1557377
+
+//evitando sobreposição de elementos no PAINTER
+http://bl.ocks.org/mbostock/3231298
