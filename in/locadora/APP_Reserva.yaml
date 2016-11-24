@@ -1,0 +1,34 @@
+- name: Reserva
+  hasMobile: true
+  hasOwner: false
+  displayName: Reserva
+  tableName: RESERVA
+  attributes:
+  - name: dataHora
+    tableFieldName: DATA_HORA
+    required: true
+    showInPages: true
+    displayName: Data hora da reserva
+    type:
+      className: Datetime
+    dateFormat: DD/MM/YYYY HH:MM
+    mask: 99/99/9999 99:99
+    viewApproach:
+      type: datepicker
+  relationships:
+  - name: filme
+    type: ManyToOne
+    model: Filme
+    displayName: Filme
+    viewApproach:
+      type: modal
+      hiddenField: id
+      textField: nome
+  - name: cliente
+    type: ManyToOne
+    model: Cliente
+    displayName: Cliente
+    viewApproach:
+      type: modal
+      hiddenField: id
+      textField: nome

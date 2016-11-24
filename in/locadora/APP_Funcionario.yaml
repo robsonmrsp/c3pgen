@@ -1,0 +1,27 @@
+- name: Funcionario
+  hasOwner: false
+  displayName: Funcionario
+  tableName: FUNCIONARIO
+  attributes:
+  - name: nome
+    tableFieldName: NOME
+    required: true
+    showInPages: true
+    displayName: Nome
+    type:
+      className: String
+      
+  - name: cpf
+    tableFieldName: CPF
+    required: true
+    showInPages: true
+    displayName: CPF
+    type:
+      className: String
+      format : cpf      
+  relationships:
+  - name: locacaos
+    type: OneToMany
+    ownerName: funcionario
+    model: Locacao
+    displayName: Locacao

@@ -1,0 +1,33 @@
+- name: Classificacao
+  hasOwner: false 
+  hasMobile: true
+  displayName: Classificacao
+  tableName: CLASSIFICACAO
+  attributes:                     
+  - name: nome
+    tableFieldName: NOME
+    required: true
+    showInPages: true
+    displayName: Nome
+    type: 
+      className: String
+  - name: idadeMinima
+    tableFieldName: IDADE_MINIMA
+    required: false
+    showInPages: true
+    displayName: Idade minima
+    type: 
+      className: Integer
+  - name: descricao
+    tableFieldName: DESCRICAO
+    required: false
+    showInPages: true
+    displayName: Descricao
+    type: 
+      className: String
+  relationships:                     
+  - name: filmes
+    type: OneToMany
+    ownerName: classificacao
+    model: Filme                       
+    displayName: Filme

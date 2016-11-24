@@ -1,0 +1,32 @@
+- name: Permission
+  displayName: Permissão
+  tableName: permission
+  hasOwner: false
+  attributes:
+  - name: name
+    tableFieldName: name
+    type:
+      className: String
+    displayName: Nome
+  - name: operacao
+    tableFieldName: OPERACAO
+    type:
+      className: String
+    displayName: Operação
+  relationships:
+  - name: roles
+    ownerName: permissions
+    type: ManyToMany
+    viewApproach:
+      type: multiselect
+    model: Role
+    displayName: Papeis
+  - name: item
+    type: ManyToOne
+    model: Item
+    ownerName: permissions
+    displayName: Item
+    viewApproach:
+      type: modal
+      textField: name
+      hiddenField: id

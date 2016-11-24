@@ -1,0 +1,63 @@
+- name: Locacao
+  hasOwner: false 
+  hasMobile: true
+  displayName: Locacao
+  tableName: LOCACAO
+  attributes:                     
+  - name: dataHoraRecebimento
+    tableFieldName: DATA_HORA_RECEBIMENTO
+    required: true
+    showInPages: true
+    displayName: Data hora recebimento
+    type: 
+      className: Datetime
+    dateFormat: DD/MM/YYYY HH:MM             
+    mask: 99/99/9999 99:99                  
+    viewApproach:                        
+      type: datepicker                  
+  - name: dataHoraEntrega
+    tableFieldName: DATA_HORA_ENTREGA
+    required: true
+    showInPages: true
+    displayName: Data hora entrega
+    type: 
+      className: Datetime
+    dateFormat: DD/MM/YYYY HH:MM             
+    mask: 99/99/9999 99:99                  
+    viewApproach:                        
+      type: datepicker                  
+  - name: observacao
+    tableFieldName: OBSERVACAO
+    required: false
+    showInPages: true
+    maxLen: 500
+    viewApproach:                        
+      type: textarea                  
+    displayName: Observacao
+    type: 
+      className: String
+  relationships:                     
+  - name: filme             
+    type: ManyToOne
+    model: Filme                       
+    displayName: Filme
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+  - name: cliente             
+    type: ManyToOne
+    model: Cliente                       
+    displayName: Cliente
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+  - name: funcionario             
+    type: ManyToOne
+    model: Funcionario                       
+    displayName: Funcionario
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 

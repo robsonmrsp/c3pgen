@@ -22,30 +22,7 @@ public class Main {
 	}
 
 	public static void main(String[] args) throws Exception {
-		//
-		// generatoToInput("c3pgen", new
-		// File("C:\\cyg\\home\\robson\\repos\\gerador\\in\\c3pgen"));
-		//
-		// generatoToInput("mercado-delivery", new
-		// File("C:\\cyg\\home\\robso\\repos\\pizza\\in\\mercado-delivery"));
-		// generatoToInput("mercado-delivery", new
-		// File("C:\\cyg\\home\\robson\\repos\\gerador\\in\\mercado-delivery"));
-		// generatoToInput("idc", new
-		// File("C:\\cyg\\home\\robson\\repos\\gerador\\in\\idc"));
-		// generatoToInput("gamification", new
-		// File("G:\\cyg\\home\\robso\\repos\\pizza\\in\\gamification"));
-
-		// generatoToInput("qualidade4", new
-		// File("C:\\cyg\\home\\robson\\repos\\c3pgen\\in\\qualidade4"));
-
-		// generatoToInput("qualidade3", new
-		// File("G:\\cyg\\home\\robso\\repos\\c3pgen\\in\\qualidade3"));
-
-		// generatoToInput("handoverTaxi", new
-		// File("G:\\cyg\\home\\robso\\repos\\c3pgen\\in\\handoverTaxi"));
-		generatoToInput("handoverTaxi", new File("C:\\cyg\\home\\robson\\repos\\c3pgen\\in\\handoverTaxi"));
-
-		//
+		generatoToInput("handoverTaxi", new File("C:\\cyg\\home\\robson\\repos\\c3pgen\\in\\locadora"));
 	}
 
 	public static void generatoToInput(String folderInputName, File generatorFilesFolder) throws Exception {
