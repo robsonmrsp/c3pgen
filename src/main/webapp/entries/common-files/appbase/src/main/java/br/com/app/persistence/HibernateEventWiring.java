@@ -2,7 +2,7 @@ package ${application.corePackage}.persistence;
 
 import javax.annotation.PostConstruct;
 
-
+import org.apache.commons.lang3.ArrayUtils;
 import org.hibernate.SessionFactory;
 import org.hibernate.event.service.spi.EventListenerRegistry;
 import org.hibernate.event.spi.EventType;
@@ -27,7 +27,6 @@ public class HibernateEventWiring {
 	@Autowired
 	UserContext context;
 
-
 	private CustomUpdateInsertListener listener = new CustomUpdateInsertListener();
 
 	@PostConstruct
@@ -45,8 +44,15 @@ public class HibernateEventWiring {
 			Object entity = event.getEntity();
 			if (entity instanceof AbstractTimestampEntity) {
 				AbstractTimestampEntity abs = (AbstractTimestampEntity) entity;
-				abs.setLastUpdateDatetime(LocalDateTime.now());
-				abs.setUserChange(context.getCurrentUserName());
+				LocalDateTime currentTime = LocalDateTime.now();
+				String currentUser = context.getCurrentUserName();
+
+				String[] propertyNames = event.getPersister().getEntityMetamodel().getPropertyNames();
+				Object[] state = event.getState();
+				// updates
+				setValue(state, propertyNames, "userChange", currentUser, entity);
+				setValue(state, propertyNames, "lastUpdateDatetime", currentTime, entity);
+
 			}
 			return false;
 		}
@@ -56,11 +62,26 @@ public class HibernateEventWiring {
 			Object entity = event.getEntity();
 			if (entity instanceof AbstractTimestampEntity) {
 				AbstractTimestampEntity abs = (AbstractTimestampEntity) entity;
-				abs.setLastUpdateDatetime(LocalDateTime.now());
-				abs.setCreateDatetime(LocalDateTime.now());
-				abs.setUserCreate(context.getCurrentUserName());
+
+				LocalDateTime currentTime = LocalDateTime.now();
+				String currentUser = context.getCurrentUserName();
+
+				String[] propertyNames = event.getPersister().getEntityMetamodel().getPropertyNames();
+				Object[] state = event.getState();
+				// updates
+				setValue(state, propertyNames, "userCreate", currentUser, entity);
+				setValue(state, propertyNames, "createDatetime", currentTime, entity);
 			}
+
 			return false;
 		}
+
+		void setValue(Object[] currentState, String[] propertyNames, String propertyToSet, Object value, Object entity) {
+			int index = ArrayUtils.indexOf(propertyNames, propertyToSet);
+			if (index >= 0) {
+				currentState[index] = value;
+			}
+		}
+
 	}
 }

@@ -11,7 +11,12 @@ public class CustomEnversListener implements RevisionListener {
 	public void newRevision(Object revisionEntity) {
 
 		CustomRevisionEntity customRevisionEntity = (CustomRevisionEntity) revisionEntity;
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		customRevisionEntity.setUsername(authentication.getName());
+		try {
+			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+			customRevisionEntity.setUsername(authentication.getName());
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+			customRevisionEntity.setUsername("async_task");
+		}
 	}
 }

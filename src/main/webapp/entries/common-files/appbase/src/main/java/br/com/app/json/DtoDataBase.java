@@ -3,6 +3,11 @@ package ${application.corePackage}.json;
 import java.util.ArrayList;
 import java.util.List;
 
+<#list application.entities as entity>
+<#if entity.hasMobile == true>		
+import ${application.rootPackage}.json.Json${firstUpper(entity.name)};
+</#if>
+</#list>
 
 public class DtoDataBase {
 

@@ -1,8 +1,7 @@
 package ${application.corePackage}.service;
 
+
 import java.util.List;
-
-
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -11,11 +10,14 @@ import org.joda.time.LocalDateTime;
 
 import ${application.corePackage}.model.SyncInfo;
 import ${application.corePackage}.json.*;
-import ${application.corePackage}.model.*;
+import ${application.rootPackage}.json.*;
+import ${application.rootPackage}.model.*;
+import ${application.rootPackage}.service.*;
+
+
 import ${application.corePackage}.persistence.DaoSyncInfo;
 import ${application.corePackage}.json.DtoDataBase;
 import ${application.corePackage}.utils.Parser;
-
 
 @Named
 @Transactional
