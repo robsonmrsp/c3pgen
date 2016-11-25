@@ -1,0 +1,17 @@
+- name: Departamento
+  displayName: Departamento
+  tableName: DEPARTAMENTO
+  hasOwner: true
+  attributes:
+  - name: nome
+    required: true
+    tableFieldName: NOME
+    basicSearch : true    
+    type:
+      className: String
+    displayName: Nome
+  - name: descricao
+    tableFieldName: DESCRICAO
+    type:
+      className: String
+    displayName: Descrição

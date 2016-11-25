@@ -484,11 +484,6 @@
 		</repository>
 		
 		<repository>
-			<id>Hibernate Spatial repo</id>
-			<url>http://www.hibernatespatial.org/repository</url>
-		</repository>
-
-		<repository>
 			<id>maven2-repository.dev.java.net</id>
 			<name>Java.net Maven 2 Repository</name>
 			<url>http://download.java.net/maven/2</url>
