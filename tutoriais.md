@@ -41,3 +41,5 @@ para:
 ```javascript
 	emiteNf : util.escapeByName('inputEmiteNf'),
 ```
+# Validação de campos de input
+Utilizamos o https://github.com/posabsolute/jQuery-Validation-Engine

@@ -1,0 +1,34 @@
+########################################################################################                                 25/11/2016                                 ################################################################################
+!- Melhoria nos campos de input com a criação de plugins jquery:
+		initialize : function() {
+			var that = this;
+			this.on('show', function() {
+
+				this.ui.inputCpf.cpf();
+				this.ui.inputTelefone.telefone();
+				this.ui.inputSalario.money();
+				this.ui.inputPercentualComissao.decimal();
+				this.ui.inputIdade.integer()
+				this.ui.inputDataNascimento.date();
+				this.ui.groupInputDataNascimento.date({configDate : {} config});
+
+				
+				this.ui.form.validationEngine('attach', {
+					promptPosition : "topLeft",
+					isOverflown : false,
+					validationEventTrigger : "change"
+				});
+			});
+		},
+		
+Alterações na geração de todas as views
+ FormFuncionario
+ PageFuncionario
+ ModalFuncionario    (mudar o nome do arquivo gerado.)
+
+Alteração no Main.js para adicionar o js do novo plugin
+
+Alteração no jquery-adapter para adicionar os novos plugins
+####################################################################################################################################################################################################################################################
+
+Pensar em sobrecargas de métodos para diminuir o código gerado na visualidzação do programador 
