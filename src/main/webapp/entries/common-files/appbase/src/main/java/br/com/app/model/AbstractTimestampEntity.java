@@ -20,7 +20,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 public abstract class AbstractTimestampEntity implements Serializable {
 
 	private static final long serialVersionUID = -7964355524118760783L;
-	@Column(name = "CREATE_DATETIME", insertable = true, updatable = false))
+	@Column(name = "CREATE_DATETIME", insertable = true, updatable = false)
 	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDateTime")
 	@JsonSerialize(using = CustomLocalDateTimeSerializer.class)
 	private LocalDateTime createDatetime;

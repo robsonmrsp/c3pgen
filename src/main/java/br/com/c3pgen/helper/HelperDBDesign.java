@@ -23,7 +23,7 @@ public class HelperDBDesign {
 
 		new File(folderOutput).mkdirs();
 
-		File source = new File("C:\\cyg\\home\\robso\\repos\\pizza\\in\\finaceiro2.xml");
+		File source = new File("C:\\cyg\\home\\robson\\repos\\c3pgen\\in\\locadora\\locadora.xml");
 		DBModel example = null;
 		try {
 			example = serializer.read(DBModel.class, source);

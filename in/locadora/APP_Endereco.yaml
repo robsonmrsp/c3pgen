@@ -1,0 +1,41 @@
+- name: Endereco
+  hasOwner: false 
+  displayName: Endereco
+  tableName: ENDERECO
+  attributes:                     
+  - name: referencia
+    tableFieldName: REFERENCIA
+    required: false
+    showInPages: true
+    displayName: Referencia
+    type: 
+      className: String
+  - name: logradouro
+    tableFieldName: LOGRADOURO
+    required: true
+    showInPages: true
+    maxLen: 100
+    displayName: Logradouro
+    type: 
+      className: String
+  - name: numero
+    tableFieldName: NUMERO
+    required: false
+    showInPages: true
+    displayName: Número
+    type: 
+      className: String
+  relationships:                     
+  - name: clientes
+    type: OneToMany
+    ownerName: endereco
+    model: Cliente                       
+    displayName: Cliente
+  - name: cep             
+    type: ManyToOne
+    model: Cep                       
+    displayName: Cep
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
