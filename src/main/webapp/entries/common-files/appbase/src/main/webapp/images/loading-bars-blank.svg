@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   viewBox="0 0 32 32"
+   width="32"
+   height="32"
+   fill="#62cb31"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="loading-bars.svg">
+  <metadata
+     id="metadata18">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs16" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     id="namedview14"
+     showgrid="false"
+     inkscape:zoom="7.375"
+     inkscape:cx="16"
+     inkscape:cy="16"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2" />
+  <path
+     transform="translate(2)"
+     d="M0 12 V20 H4 V12z"
+     id="path4"
+     style="fill:#f9f9f9">
+    <animate
+       attributeName="d"
+       values="M0 12 V20 H4 V12z; M0 4 V28 H4 V4z; M0 12 V20 H4 V12z; M0 12 V20 H4 V12z"
+       dur="1.2s"
+       repeatCount="indefinite"
+       begin="0"
+       keytimes="0;.2;.5;1"
+       keySplines="0.2 0.2 0.4 0.8;0.2 0.6 0.4 0.8;0.2 0.8 0.4 0.8"
+       calcMode="spline" />
+  </path>
+  <path
+     transform="translate(8)"
+     d="M0 12 V20 H4 V12z"
+     id="path6"
+     style="fill:#f9f9f9">
+    <animate
+       attributeName="d"
+       values="M0 12 V20 H4 V12z; M0 4 V28 H4 V4z; M0 12 V20 H4 V12z; M0 12 V20 H4 V12z"
+       dur="1.2s"
+       repeatCount="indefinite"
+       begin="0.2"
+       keytimes="0;.2;.5;1"
+       keySplines="0.2 0.2 0.4 0.8;0.2 0.6 0.4 0.8;0.2 0.8 0.4 0.8"
+       calcMode="spline" />
+  </path>
+  <path
+     transform="translate(14)"
+     d="M0 12 V20 H4 V12z"
+     id="path8"
+     style="fill:#f9f9f9">
+    <animate
+       attributeName="d"
+       values="M0 12 V20 H4 V12z; M0 4 V28 H4 V4z; M0 12 V20 H4 V12z; M0 12 V20 H4 V12z"
+       dur="1.2s"
+       repeatCount="indefinite"
+       begin="0.4"
+       keytimes="0;.2;.5;1"
+       keySplines="0.2 0.2 0.4 0.8;0.2 0.6 0.4 0.8;0.2 0.8 0.4 0.8"
+       calcMode="spline" />
+  </path>
+  <path
+     transform="translate(20)"
+     d="M0 12 V20 H4 V12z"
+     id="path10"
+     style="fill:#f9f9f9">
+    <animate
+       attributeName="d"
+       values="M0 12 V20 H4 V12z; M0 4 V28 H4 V4z; M0 12 V20 H4 V12z; M0 12 V20 H4 V12z"
+       dur="1.2s"
+       repeatCount="indefinite"
+       begin="0.6"
+       keytimes="0;.2;.5;1"
+       keySplines="0.2 0.2 0.4 0.8;0.2 0.6 0.4 0.8;0.2 0.8 0.4 0.8"
+       calcMode="spline" />
+  </path>
+  <path
+     transform="translate(26)"
+     d="M0 12 V20 H4 V12z"
+     id="path12"
+     style="fill:#f9f9f9">
+    <animate
+       attributeName="d"
+       values="M0 12 V20 H4 V12z; M0 4 V28 H4 V4z; M0 12 V20 H4 V12z; M0 12 V20 H4 V12z"
+       dur="1.2s"
+       repeatCount="indefinite"
+       begin="0.8"
+       keytimes="0;.2;.5;1"
+       keySplines="0.2 0.2 0.4 0.8;0.2 0.6 0.4 0.8;0.2 0.8 0.4 0.8"
+       calcMode="spline" />
+  </path>
+</svg>
