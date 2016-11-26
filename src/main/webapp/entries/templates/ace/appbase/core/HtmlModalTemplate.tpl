@@ -16,50 +16,50 @@
 						<#if att.showInPages >
 						  <#if att.viewApproach?? >
 							<#if att.type.className == 'Boolean' && att.viewApproach.type  == 'check'  >
-							<div id="groupInputModal${firstUpper(att.name)}" class="form-group col-sm-	col-md-	col-lg-   checkbox">
+							<div id="groupInputModal${firstUpper(att.name)}" class=" groupInputModal${firstUpper(att.name)} form-group col-sm-	col-md-	col-lg-   checkbox">
 								<label class="checkbox ">
-									<input id="inputModal${firstUpper(att.name)}" type="checkbox" >
+									<input id="inputModal${firstUpper(att.name)}" type="checkbox" class="inputModal${firstUpper(att.name)}">
 									${firstUpper(att.displayName)}
 								</label>
 							</div>
 							<#elseif att.viewApproach.type  == 'datepicker'  >
-							<div id="groupInputModal${firstUpper(att.name)}Container" class="form-group col-sm-	col-md-	col-lg-  ">
+							<div id="groupInputModal${firstUpper(att.name)}Container" class=" groupInputModal${firstUpper(att.name)} form-group col-sm-	col-md-	col-lg-  ">
 								<label class="control-label" for="inputModal${firstUpper(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}</label>
 								<div id="groupInputModal${firstUpper(att.name)}" class="input-group date" data-date-format="${att.dateFormat}">
-									<input id="inputModal${firstUpper(att.name)}" type="text" class="form-control append-left"  />
+									<input id="inputModal${firstUpper(att.name)}" type="text" class="form-control append-left inputModal${firstUpper(att.name)}"  />
 									<div class="input-group-addon	append-right">
 										<span class="fa fa-calendar"></span>
 									</div>
 								</div>
 							</div>
 							<#elseif att.viewApproach.type  == 'radiogroup'>
-							<div id="groupInputModal${firstUpper(att.name)}" class="form-group col-sm-	col-md-	col-lg-  ">
+							<div id="groupInputModal${firstUpper(att.name)}" class=" groupInputModal${firstUpper(att.name)} form-group col-sm-	col-md-	col-lg-  ">
 								<label class="control-label" for="inputModal${firstUpper(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}</label>
 								<#list att.viewApproach.values as val>	
 								<div id="groupInputModal${firstUpper(att.name)}_${val}" class="radio">
 									<label>
-										<input type="radio" name="inputModal${firstUpper(att.name)}" value="${val}" >
+										<input type="radio" name="inputModal${firstUpper(att.name)}" value="${val}" class="inputModal${firstUpper(att.name)}">
 										${firstUpper(val)}
 									</label>
 								</div>
 								</#list>
 							</div>
 							<#elseif att.viewApproach.type  == 'combo'  >
-							<div id="groupInputModal${firstUpper(att.name)}" class="form-group col-sm-	col-md-	col-lg-  ">
+							<div id="groupInputModal${firstUpper(att.name)}" class="groupInputModal${firstUpper(att.name)} form-group col-sm-	col-md-	col-lg-  ">
 								<label class="control-label" for="inputModal${firstUpper(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}</label>
-								<select class="form-control" id="inputModal${firstUpper(att.name)}"></select>
+								<select class="form-control inputModal${firstUpper(att.name)}" id="inputModal${firstUpper(att.name)}" ></select>
 							</div>					
 						  <#else>
 							<div id="groupInputModal${firstUpper(att.name)}" class="form-group col-sm-	col-md-	col-lg-  ">
 								<label class="control-label" for="inputModal${firstUpper(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}</label>
-								<input type="text" id="inputModal${firstUpper(att.name)}" placeholder="${(att.placeholder)!''}"  class="form-control">
+								<input type="text" id="inputModal${firstUpper(att.name)}" placeholder="${(att.placeholder)!''}"  class="form-control inputModal${firstUpper(att.name)}">
 							</div>
 						  </#if>
 							
 		  				  <#else>
 							<div id="groupInputModal${firstUpper(att.name)}" class="form-group col-sm-	col-md-	col-lg-  ">
 								<label class="control-label" for="inputModal${firstUpper(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}</label>
-								<input type="text" id="inputModal${firstUpper(att.name)}" placeholder="${(att.placeholder)!''}"  class="form-control">
+								<input type="text" id="inputModal${firstUpper(att.name)}" placeholder="${(att.placeholder)!''}"  class="form-control inputModal${firstUpper(att.name)}">
 							</div>
 						  </#if>
 						  </#if>
@@ -72,9 +72,9 @@
 							<#elseif rel.type == 'ManyToOne'>
 								<#if rel.viewApproach?? >
 									<#if rel.viewApproach.type  == 'combo'  >
-							<div id="groupInputModal${firstUpper(rel.model)}" class="form-group col-sm-	col-md-	col-lg-  ">
+							<div id="groupInputModal${firstUpper(rel.model)}" class="groupInputModal${firstUpper(rel.model)} form-group col-sm-	col-md-	col-lg-  ">
 								<label class="control-label" for="inputModal${firstUpper(rel.model)}">${firstUpper(rel.displayName)!firstLower(rel.model)}</label>
-								<select class="form-control" id="inputModal${firstUpper(rel.model)}"></select>
+								<select class="form-control inputModal${firstUpper(rel.name)}" id="inputModal${firstUpper(rel.model)}"></select>
 							</div>					
 									</#if>
 								</#if>
@@ -85,11 +85,11 @@
 						</#list>
 						</#if>
 					<div class="form-actions spinner" id="spin${firstUpper(entity.name)}">
-						<a href="javascript:void(0)" id="btnSearch${firstUpper(entity.name)}" class="btn btn-primary btn-large" >
+						<a href="javascript:void(0)" id="btnSearch${firstUpper(entity.name)}" class="btnSearch${firstUpper(entity.name)} btn btn-primary btn-large" >
 							<i class="fa fa-search"></i>
 							Pesquisar
 						</a>
-						<a href="javascript:void(0)" id="btnClear${firstUpper(entity.name)}" class="btn btn-info btn-large">
+						<a href="javascript:void(0)" id="btnClear${firstUpper(entity.name)}" class="btnClear${firstUpper(entity.name)} btn btn-info btn-large">
 							<i class="fa fa-trash"></i>
 							Nova Pesquisa
 						</a>
@@ -101,10 +101,10 @@
 					<div class="divTableResults" id="resultado${firstUpper(entity.name)}Div" >
 						<div id="sample-table-2_wrapper" class="dataTables_wrapper form-inline no-footer">
 							<div id="messages_div"></div>
-							<div id="grid-${firstLower(entity.name)}" class="table-responsive"></div>
+							<div id="grid-${firstLower(entity.name)}" class="grid-${firstLower(entity.name)} table-responsive"></div>
 							<div class="">
-								<div id="counter-${firstLower(entity.name)}" class=" pull-left"></div>
-								<div id="paginator-${firstLower(entity.name)}" class="pull-right"></div>
+								<div id="counter-${firstLower(entity.name)}" class="counter-${firstLower(entity.name)} pull-left"></div>
+								<div id="paginator-${firstLower(entity.name)}" class="paginator-${firstLower(entity.name)} pull-right"></div>
 							</div>
 						</div>
 					</div>

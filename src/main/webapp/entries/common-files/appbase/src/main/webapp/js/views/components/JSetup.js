@@ -1,5 +1,14 @@
 define([ 'adapters/backgrid-adapter', 'utilities/utils' ], function(Backgrid, Utils) {
 
+	var RowClick = Backgrid.Row.extend({
+		className : 'custom-row-click',
+		render : function() {
+			RowClick.__super__.render.apply(this, arguments);
+			this.$el.data('model', this.model);
+			return this;
+		}
+	});
+
 	var NumericCell = Backgrid.Cell.extend({
 		className : "custom-number-cell",
 		type : 'decimal',
@@ -63,7 +72,6 @@ define([ 'adapters/backgrid-adapter', 'utilities/utils' ], function(Backgrid, Ut
 		}
 	});
 
-	
 	var CustomStringCell = Backgrid.Cell.extend({
 		editor : Backgrid.CellEditor,
 		className : 'general-string-cell',
@@ -88,8 +96,7 @@ define([ 'adapters/backgrid-adapter', 'utilities/utils' ], function(Backgrid, Ut
 			return this;
 		}
 	});
-	
-	
+
 	var Counter = Marionette.ItemView.extend({
 		initialize : function(options) {
 			var collection = this.collection;
@@ -122,8 +129,6 @@ define([ 'adapters/backgrid-adapter', 'utilities/utils' ], function(Backgrid, Ut
 		},
 	});
 
-	
-	
 	var JSetup = {
 		MoneyCell : NumericCell.extend({
 			type : 'money'
@@ -140,10 +145,11 @@ define([ 'adapters/backgrid-adapter', 'utilities/utils' ], function(Backgrid, Ut
 		PercentCell : NumericCell.extend({
 			type : 'percent'
 		}),
-		
+
 		ActionCell : GeneralCell,
 		Counter : Counter,
 		CustomStringCell : CustomStringCell,
+		RowClick : RowClick,
 	}
 	return JSetup;
 });

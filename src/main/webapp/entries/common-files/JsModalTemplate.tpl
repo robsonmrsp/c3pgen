@@ -1,18 +1,13 @@
 /* generated: ${.now} */
 define(function(require) {
-	// Start "Import´s" Definition"
 	var _ = require('adapters/underscore-adapter');
 	var $ = require('adapters/jquery-adapter');
-	var Col = require('adapters/col-adapter');
-	var Backbone = require('adapters/backbone-adapter');
-	var Marionette = require('marionette');
-	var Backgrid = require('adapters/backgrid-adapter');
 	var util = require('utilities/utils');
-	var RadioButtonCell = require('views/components/RadioButtonCell');
-	var Counter = require('views/components/Counter');
-	var RowClick = require('views/components/CustomClickedRow');
 	var Combobox = require('views/components/Combobox');
-	var CustomNumberCell = require('views/components/CustomNumberCell');
+	var JSetup = require('views/components/JSetup');
+	var JSetupView = require('views/core/JSetupView');
+
+	var Combobox = require('views/components/Combobox');
 
 	var ${entity.name}Modal = require('text!views/modalComponents/tpl/${entity.name}ModalTemplate.html');
 	var ${entity.name}PageCollection = require('collections/${entity.name}PageCollection');
@@ -46,33 +41,29 @@ define(function(require) {
 		</#if>
 		</#if>
 	</#list>
-	// End of "Import´s" definition
-	// #####################################################################################################
-	// .............................................MAIN-BODY.............................................
-	// #####################################################################################################
 
-	var ${entity.name}Modal = Marionette.LayoutView.extend({
+	var ${entity.name}Modal = JSetupView.extend({
 		template : _.template(${entity.name}Modal),
 
 		events : {
-			'click #btnSearch${entity.name}' : 'search${entity.name}',
-			'click #btnClear${entity.name}' : 'clearModal',
+			'click .btnSearch${entity.name}' : 'search${entity.name}',
+			'click .btnClear${entity.name}' : 'clearModal',
 			'click tr' : 'selectRow',
 			'keypress' : 'treatKeypress',
 		},
 
 		regions : {
-			counterRegion : 	'#counter-${firstLower(entity.name)}',
-			gridRegion : 		'#grid-${firstLower(entity.name)}',
-			paginatorRegion : 	'#paginator-${firstLower(entity.name)}',
+			counterRegion : 	'.counter-${firstLower(entity.name)}',
+			gridRegion : 		'.grid-${firstLower(entity.name)}',
+			paginatorRegion : 	'.paginator-${firstLower(entity.name)}',
 		},
 
 		ui : {
 		<#list entity.attributes as att>
-    		inputModal${firstUpper(att.name)} : '#inputModal${firstUpper(att.name)}',
+    		inputModal${firstUpper(att.name)} : '.inputModal${firstUpper(att.name)}',
     		<#if att.viewApproach?? >
 				<#if att.viewApproach.type == 'datepicker'>			
-			groupInputModal${firstUpper(att.name)} : '#groupInputModal${firstUpper(att.name)}',
+			groupInputModal${firstUpper(att.name)} : '.groupInputModal${firstUpper(att.name)}',
 				</#if>
 			</#if>
 		</#list>
@@ -83,7 +74,7 @@ define(function(require) {
 			<#elseif rel.type == 'ManyToOne'>
 				<#if rel.viewApproach?? >
 					<#if rel.viewApproach.type  == 'combo'  >
-			inputModal${firstUpper(rel.model)} : '#inputModal${firstUpper(rel.model)}', 
+			inputModal${firstUpper(rel.model)} : '.inputModal${firstUpper(rel.model)}', 
 					</#if>
 				</#if>
 			<#elseif rel.type == 'ManyToMany'>
@@ -114,7 +105,7 @@ define(function(require) {
 			this.${firstLower(entity.name)}Collection.on('fetched', this.stopFetch, this);
 
 			this.grid = new Backgrid.Grid({
-				row : RowClick,
+				row : JSetup.RowClick,
 				className : 'table backgrid table-striped table-bordered table-hover dataTable no-footer  ',
 				columns : this.getColumns(),
 				emptyText : "Sem registros",
@@ -123,7 +114,7 @@ define(function(require) {
 
 			});
 			
-			this.counter = new Counter({
+			this.counter = new JSetup.Counter({
 				collection : this.${firstLower(entity.name)}Collection ,
 			});
 			
@@ -139,49 +130,48 @@ define(function(require) {
 				that.gridRegion.show(that.grid);
 				that.counterRegion.show(that.counter);
 				that.paginatorRegion.show(that.paginator);
-						<#list entity.attributes as att>
-						<#if att.showInPages >
-		  <#if att.viewApproach?? >
-			<#if att.viewApproach.type == 'datepicker'>		
-				this.ui.groupInputModal${firstUpper(att.name)}.datetimepicker({
-				<#if att.type.className == 'Date'>		
-					pickTime : false,
-				</#if>			
-				<#if att.type.className == 'Datetime'>		
-					pickTime : true,
-				</#if>										
-					language : 'pt_BR',
-				});
-				this.ui.inputModal${firstUpper(att.name)}.datetimepicker({
-				<#if att.type.className == 'Date'>		
-					pickTime : false,
+		 <#list entity.attributes as att>
+	   	   <#if att.showInPages >
+			  <#if att.inputAs == 'cpf' >
+					this.ui.inputModal${firstUpper(att.name)}.cpf();
+			  </#if>	
+			  <#if att.inputAs == 'fone' >
+					this.ui.inputModal${firstUpper(att.name)}.fone();
+			  </#if>
+			  <#if att.inputAs == 'date' >
+					this.ui.inputModal${firstUpper(att.name)}.date();
+					this.ui.groupInputModal${firstUpper(att.name)}.date();
+			  </#if>	
+			  <#if att.inputAs == 'datetime' >
+					this.ui.inputModal${firstUpper(att.name)}.datetime();
+					this.ui.groupInputModal${firstUpper(att.name)}.datetime();
+			  </#if>	
+			  <#if att.inputAs == 'decimal' >
+					this.ui.inputModal${firstUpper(att.name)}.decimal();
+			  </#if>	
+			  <#if att.inputAs == 'integer' >
+					this.ui.inputModal${firstUpper(att.name)}.integer();
+			  </#if>	
+			  <#if att.inputAs == 'money' >
+					this.ui.inputModal${firstUpper(att.name)}.money();
+			  </#if>	
+			  <#if att.viewApproach?? >
+				<#if att.viewApproach.type == 'combo'>		
+					var combo${firstUpper(att.name)} = new Combobox({
+						el : this.ui.inputModal${firstUpper(att.name)},
+					   <#if att.viewApproach.values??>
+					    values : ${toListString(att.viewApproach.values)}
+						<#else>
+						comboId : '${(att.viewApproach.comboId)!'id'}',
+						comboVal : '${(att.viewApproach.comboVal)!'name'}',
+						collectionEntity : ${att.type.className}Collection, 
+						</#if>
+					});
 				</#if>
-				<#if att.type.className == 'Datetime'>		
-					pickTime : true,
-				</#if>								
-					language : 'pt_BR',
-				});
-			</#if>
-			<#if att.viewApproach.type == 'combo'>		
-				var combo${firstUpper(att.name)} = new Combobox({
-					el : this.ui.inputModal${firstUpper(att.name)},
-				   <#if att.viewApproach.values??>
-				    values : ${toListString(att.viewApproach.values)}
-					<#else>
-					comboId : '${(att.viewApproach.comboId)!'id'}',
-					comboVal : '${(att.viewApproach.comboVal)!'name'}',
-					collectionEntity : ${att.type.className}Collection, 
-					</#if>
-				});
-			</#if>
-		  </#if>
-		  <#if att.mask??>
-			<#if att.mask != ''>
-				this.ui.inputModal${firstUpper(att.name)}.mask('${att.mask}');
-			</#if>
-		  </#if>
+			  </#if>
 		  </#if>
 		</#list>
+		
 		<#if entity.relationships??>	
 		<#list entity.relationships as rel>
 		<#if rel.showInPages >
@@ -196,7 +186,7 @@ define(function(require) {
 					<#else>
 					comboId : '${(rel.viewApproach.comboId)!'id'}',
 					comboVal : '${(rel.viewApproach.comboVal)!'name'}',
-					collectionEntity : ${firstUpper(rel.model)}Collection, //provavelmente vá ocorrer um erro pois ${rel.model}Collection não foi declarado
+					collectionEntity : ${firstUpper(rel.model)}Collection, 
 					</#if>
 				});
 					</#if>
@@ -245,50 +235,29 @@ define(function(require) {
 			var columns = [	
 
 			<#list entity.attributes as att>
-			<#if att.showInPages >
+				<#if att.showInPages >			
 			{
 				name : "${att.name}",
-				editable : false,
 				sortable : true,
 				label 	 : "${firstUpper(att.displayName)!firstUpper(att.name)}",
-				<#if isNumeric(att.type.className)>
-				cell : CustomNumberCell.extend({}),
-		  		<#else>	
+				<#if att.inputAs == 'percent'>
+				cell : JSetup.PercentCell,
+		  		<#elseif att.inputAs == 'money'>
+		  		cell : JSetup.MoneyCell,	
+		  		<#else>
 				cell 	 : "string",
 		  		</#if>	
 			}, 
-	  		</#if>	
-			</#list>
-			];
+		  		</#if>	
+			</#list>			];
 			return columns;
-		},
-
-		clearFields : function() {
-			util.clear('inputModalId');
-		<#list entity.attributes as att>
-		<#if att.showInPages >
-			util.clear('inputModal${firstUpper(att.name)}'); 
-		</#if>
-		</#list>
-		<#if entity.relationships??>	
-		<#list entity.relationships as rel >
-		<#if rel.showInPages >
-			<#if rel.viewApproach?? >
-				<#if rel.viewApproach.type  == 'combo'  >
-			util.clear('inputModal${firstUpper(rel.name)}'); 					 	
-				</#if>
-			</#if>
-		</#if>
-		</#list>
-		</#if>
-			util.scrollUpModal();
 		},
 
 		search${entity.name} : function() {
 			this.${firstLower(entity.name)}Collection.filterQueryParams = {
 			<#list entity.attributes as att>
 			<#if att.showInPages >
-	    		${firstLower(att.name)} : util.escapeById('inputModal${firstUpper(att.name)}'),
+	    		${firstLower(att.name)} : this.ui.inputModal${firstUpper(att.name)}.escape(),
 			</#if>
 			</#list>		
 			};
@@ -309,21 +278,15 @@ define(function(require) {
 		},
 
 		showPage : function() {
-			this.clearModal();
-
+			this.clearForm();
 			this.ui.modalScreen.modal('show');
-			this.${firstLower(entity.name)}Collection.getFirstPage({
-				success : function(_col, _resp, _opts) {
-					//caso queira algum tratamento de sucesso adicional
-				},
-				error : function(_col, _resp, _opts) {
-					console.error(_resp.responseText || (_resp.getResponseHeader && _resp.getResponseHeader('exception')));
-				}
-			});
+			
+			this.search${entity.name}();
 		},
 
 		clearModal : function() {
-			this.clearFields();
+			this.clearForm();
+			util.scrollUpModal();
 			this.ui.form.get(0).reset();
 			this.${firstLower(entity.name)}Collection.reset();
 		},

@@ -263,8 +263,16 @@ public class Attribute extends AbstractTimestampEntity {
 	}
 
 	public String getInputAs() {
+
 		if (inputAs == null) {
-			setInputAs("text");
+			if (getType().getClassName().equalsIgnoreCase("Double") || getType().getClassName().equalsIgnoreCase("Float"))
+				setInputAs("decimal");
+			else if (getType().getClassName().equalsIgnoreCase("date"))
+				setInputAs("date");
+			else if (getType().getClassName().equalsIgnoreCase("datetime"))
+				setInputAs("datetime");
+			else
+				setInputAs("text");
 		}
 		return inputAs;
 	}

@@ -224,7 +224,6 @@ define(function(require) {
 		  </#if>
 		  <#if att.mask??>
 			<#if att.mask != ''>
-				this.ui.input${firstUpper(att.name)}.mask('${att.mask}');
 			</#if>
 		  </#if>
 		  </#if>
