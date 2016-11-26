@@ -11,6 +11,15 @@
     displayName: Nome
     type:
       className: String
+  - name: foto
+    tableFieldName: FOTO
+    required: true
+    showInPages: true
+    displayName: Foto
+    type:
+      className: String
+    viewApproach:
+      type : upload
   - name: avaliacao
     tableFieldName: AVALIACAO
     required: true

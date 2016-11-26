@@ -116,6 +116,17 @@ define([ 'jquery', 'bootbox', 'bootstrap', 'jqueryScrollTo', 'jqueryValidatorEng
 			placeholder : '0',
 		});
 	};
+
+	$.fn.percent = function() {
+		this.inputmask('numeric', {
+			radixPoint : ',',
+			groupSeparator : '.',
+			autoGroup : true,
+			digits : 2,
+			digitsOptional : true,
+			placeholder : '',
+		});
+	};
 	$.fn.decimal = function() {
 		this.inputmask('numeric', {
 			radixPoint : ',',

@@ -3,8 +3,8 @@ define(function(require) {
 	var _ = require('adapters/underscore-adapter');
 	var $ = require('adapters/jquery-adapter');
 	var util = require('utilities/utils');
-	var Combobox = require('views/components/Combobox');
 	var JSetupView = require('views/core/JSetupView');
+	var JSetup = require('views/components/JSetup');
 
 	var TemplateForm${entity.name}s = require('text!views/${firstLower(entity.name)}/tpl/Form${entity.name}Template.html');
 	var ${entity.name}Model = require('models/${entity.name}Model');
@@ -41,6 +41,11 @@ define(function(require) {
 		template : _.template(TemplateForm${entity.name}s),
 
 		regions : {
+			<#list entity.attributes as att >
+			<#if att.viewApproach.type == 'upload'>
+			upload${firstUpper(att.name)}Region : '.${firstLower(att.name)}-container',		
+			</#if>
+			</#list>
 			<#if entity.relationships??>	
 			<#list entity.relationships as rel >
 			<#if (rel.type == 'OneToMany' || rel.type == 'ManyToMany' ) && rel.viewApproach.type == 'multiselect'>
@@ -106,6 +111,20 @@ define(function(require) {
 		},
 		initialize : function() {
 			var that = this;
+		<#list entity.attributes as att >
+			<#if att.viewApproach.type == 'upload'>
+			this.uploadView${firstUpper(att.name)} = new JSetup.InputUpload({
+				bindElement : that.ui.input${firstUpper(att.name)},
+				onSuccess : function(resp, options) {
+					console.info('Upload da ${att.name} concluido...[ ' + resp + ' ]')
+				},
+				onError : function(resp, options) {
+					console.error('Problemas ao uppar foto1')
+				}
+			});
+			</#if>
+		</#list >
+				
 		<#if entity.relationships??>	
 		<#list entity.relationships as rel >
 			<#if (rel.type == 'OneToMany' || rel.type == 'ManyToMany' ) && rel.viewApproach.type == 'multiselect'>
@@ -133,11 +152,19 @@ define(function(require) {
 			</#if>
 		</#list>
 		</#if>
+		<#list entity.attributes as att >
+			<#if att.viewApproach.type == 'upload'>
+				this.upload${firstUpper(att.name)}Region.show(this.uploadView${firstUpper(att.name)});		
+			</#if>
+		</#list>
                 //Formating inputs as		
 		<#list entity.attributes as att>
 		  <#if att.inputAs == 'cpf' >
 				this.ui.input${firstUpper(att.name)}.cpf();
 		  </#if>	
+		  <#if att.inputAs == 'percent' >
+				this.ui.input${firstUpper(att.name)}.decimal();
+		  </#if>
 		  <#if att.inputAs == 'fone' >
 				this.ui.input${firstUpper(att.name)}.fone();
 		  </#if>
@@ -160,7 +187,7 @@ define(function(require) {
 		  </#if>	
 		  <#if att.viewApproach?? >
 			<#if att.viewApproach.type == 'combo'>		
-				this.combo${firstUpper(att.name)} = new Combobox({
+				this.combo${firstUpper(att.name)} = new JSetup.Combobox({
 					el : this.ui.input${firstUpper(att.name)},
 				   <#if att.viewApproach.values??>
 				    values : ${toListString(att.viewApproach.values)}
@@ -181,7 +208,7 @@ define(function(require) {
 			<#elseif rel.type == 'ManyToOne'>
 				<#if rel.viewApproach?? >
 					<#if rel.viewApproach.type  == 'combo'  >
-				this.combo${firstUpper(rel.name)} = new Combobox({
+				this.combo${firstUpper(rel.name)} = new JSetup.Combobox({
 					el : this.ui.input${firstUpper(rel.name)},
 				   <#if rel.viewApproach.values??>
 				    values : '${toString(rel.viewApproach.values)}'
@@ -253,7 +280,7 @@ define(function(require) {
 			});
 			return ${firstLower(entity.name)};
 		},
-		 		
+
 		<#if entity.relationships??>	
 		<#list entity.relationships as rel >
 			<#if rel.viewApproach.type == 'modal'>

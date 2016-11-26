@@ -4,7 +4,6 @@ define(function(require) {
 	var $ = require('adapters/jquery-adapter');
 	var Backgrid = require('adapters/backgrid-adapter');
 	var util = require('utilities/utils');
-	var Combobox = require('views/components/Combobox');
 	var JSetup = require('views/components/JSetup');
 	var JSetupView = require('views/core/JSetupView');
 	
@@ -188,6 +187,9 @@ define(function(require) {
 		  <#if att.inputAs == 'cpf' >
 				this.ui.input${firstUpper(att.name)}.cpf();
 		  </#if>	
+		  <#if att.inputAs == 'percent' >
+				this.ui.input${firstUpper(att.name)}.decimal();
+		  </#if>	
 		  <#if att.inputAs == 'fone' >
 				this.ui.input${firstUpper(att.name)}.fone();
 		  </#if>
@@ -210,7 +212,7 @@ define(function(require) {
 		  </#if>	
 		  <#if att.viewApproach?? >
 			<#if att.viewApproach.type == 'combo'>		
-				this.combo${firstUpper(att.name)} = new Combobox({
+				this.combo${firstUpper(att.name)} = new JSetup.Combobox({
 					el : this.ui.input${firstUpper(att.name)},
 				   <#if att.viewApproach.values??>
 				    values : ${toListString(att.viewApproach.values)}
@@ -236,7 +238,7 @@ define(function(require) {
 			<#elseif rel.type == 'ManyToOne'>
 				<#if rel.viewApproach?? >
 					<#if rel.viewApproach.type  == 'combo'  >
-				this.combo${firstUpper(rel.model)} = new Combobox({
+				this.combo${firstUpper(rel.model)} = new JSetup.Combobox({
 					el : this.ui.input${firstUpper(rel.name)},
 				   <#if rel.viewApproach.values??>
 				    values : '${toString(rel.viewApproach.values)}'

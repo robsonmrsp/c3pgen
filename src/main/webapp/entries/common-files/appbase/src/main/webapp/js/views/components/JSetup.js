@@ -1,4 +1,8 @@
-define([ 'adapters/backgrid-adapter', 'utilities/utils' ], function(Backgrid, Utils) {
+define(function(require) {
+	var Backgrid = require('adapters/backgrid-adapter');
+	var Utils = require('utilities/utils');
+	var InputUpload = require('views/components/InputUpload');
+	var Combobox = require('views/components/Combobox');
 
 	var RowClick = Backgrid.Row.extend({
 		className : 'custom-row-click',
@@ -150,6 +154,8 @@ define([ 'adapters/backgrid-adapter', 'utilities/utils' ], function(Backgrid, Ut
 		Counter : Counter,
 		CustomStringCell : CustomStringCell,
 		RowClick : RowClick,
+		InputUpload : InputUpload,
+		Combobox : Combobox,
 	}
 	return JSetup;
 });
