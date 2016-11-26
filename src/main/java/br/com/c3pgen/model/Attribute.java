@@ -42,6 +42,9 @@ public class Attribute extends AbstractTimestampEntity {
 	@Column(name = "MASK")
 	private String mask;
 
+	@Column(name = "INPUT_AS")
+	private String inputAs;
+
 	@Column(name = "DEFAULT_VALUE")
 	private String defaultValue;
 
@@ -257,5 +260,16 @@ public class Attribute extends AbstractTimestampEntity {
 
 	public void setBasicSearch(Boolean basicSearch) {
 		this.basicSearch = basicSearch;
+	}
+
+	public String getInputAs() {
+		if (inputAs == null) {
+			setInputAs("text");
+		}
+		return inputAs;
+	}
+
+	public void setInputAs(String inputAs) {
+		this.inputAs = inputAs;
 	}
 }

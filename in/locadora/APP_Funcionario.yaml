@@ -1,5 +1,6 @@
 - name: Funcionario
   hasOwner: false
+  hasMobile : true  
   displayName: Funcionario
   tableName: FUNCIONARIO
   attributes:
@@ -10,22 +11,44 @@
     displayName: Nome
     type:
       className: String
+  - name: avaliacao
+    tableFieldName: AVALIACAO
+    required: true
+    showInPages: true
+    displayName: Avaliação
+    maxLen : 999
+    type:
+      className: String
+    viewApproach:
+      type : textarea  
+  - name: ativo
+    tableFieldName: ATIVO
+    required: true
+    showInPages: true
+    displayName: Ativo?
+    type:
+      className: Boolean
+    viewApproach:
+      type : check  
   - name: telefone
     tableFieldName: TELEFONE
     required: true
+    inputAs : telephone
     showInPages: true
     displayName: Telefone
     type:
       className: String
   - name: salario
     tableFieldName: SALARIO
+    inputAs : money    
     required: true
     showInPages: true
-    displayName: Nome
+    displayName: Salário
     type:
       className: Double
   - name: idade
     tableFieldName: IDADE
+    inputAs : integer    
     required: true
     showInPages: true
     displayName: Idade
@@ -34,6 +57,7 @@
   - name: percentualComissao
     tableFieldName: PERCENTUAL_COMISSAO
     required: true
+    inputAs : percent    
     showInPages: true
     displayName: Percentual de comissão
     type:
@@ -41,12 +65,23 @@
   - name: dataNascimento
     tableFieldName: DATA_NASCIMENTO
     required: true
+    inputAs : date    
     showInPages: true
     displayName: Data nascimento
     type: 
       className: Date
     dateFormat: DD/MM/YYYY              
-    mask: 99/99/9999                    
+    viewApproach:                        
+      type: datepicker                        
+  - name: dataHoraContratacao
+    tableFieldName: DATA_HORA_CONTRATACAO
+    required: true
+    inputAs : datetime    
+    showInPages: true
+    displayName: Data e Hora da contratação
+    type: 
+      className: Datetime
+    dateFormat: DD/MM/YYYY HH:MM              
     viewApproach:                        
       type: datepicker                        
   - name: cpf
@@ -54,6 +89,7 @@
     required: true
     showInPages: true
     displayName: CPF
+    inputAs: cpf
     type:
       className: String
       format : cpf      
@@ -63,3 +99,20 @@
     ownerName: funcionario
     model: Locacao
     displayName: Locacao
+  - name: funcao             
+    type: ManyToOne
+    model: Funcao                       
+    displayName: Função
+    viewApproach:   
+      type: combo 
+      comboId: id 
+      comboVal: nome 
+  - name: departamento             
+    type: ManyToOne
+    model: Departamento                       
+    displayName: Departamento
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+    

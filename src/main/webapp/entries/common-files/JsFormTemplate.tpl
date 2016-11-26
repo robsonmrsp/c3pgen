@@ -1,14 +1,10 @@
 /* generated: ${.now} */
 define(function(require) {
-	// Start "Import´s" Definition"
 	var _ = require('adapters/underscore-adapter');
 	var $ = require('adapters/jquery-adapter');
-	var Col = require('adapters/col-adapter');
-	var Backbone = require('adapters/backbone-adapter');
-	var Marionette = require('marionette');
-	var Backgrid = require('adapters/backgrid-adapter');
 	var util = require('utilities/utils');
 	var Combobox = require('views/components/Combobox');
+	var JSetupView = require('views/core/JSetupView');
 
 	var TemplateForm${entity.name}s = require('text!views/${firstLower(entity.name)}/tpl/Form${entity.name}Template.html');
 	var ${entity.name}Model = require('models/${entity.name}Model');
@@ -41,13 +37,7 @@ define(function(require) {
 	</#list>
 	</#if>			
 	
-	// End of "Import´s" definition
-
-	// #####################################################################################################
-	// ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨MAIN BODY¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
-	// #####################################################################################################
-
-	var Form${entity.name}s = Marionette.LayoutView.extend({
+	var Form${entity.name}s = JSetupView.extend({
 		template : _.template(TemplateForm${entity.name}s),
 
 		regions : {
@@ -91,7 +81,6 @@ define(function(require) {
 				</#if>
 			</#if>
 		</#list>
-		
 		<#if entity.relationships??>	
 		<#list entity.relationships as rel>
 			<#if rel.type == 'OneToMany'>
@@ -115,7 +104,6 @@ define(function(require) {
 		</#if>			
 			form : '#form${firstUpper(entity.name)}',
 		},
-
 		initialize : function() {
 			var that = this;
 		<#if entity.relationships??>	
@@ -133,6 +121,7 @@ define(function(require) {
 					that.onSelect${firstUpper(rel.name)}(model);
 				},
 			});
+			this.modal${firstUpper(rel.name)}.setValue(this.model.get('${firstLower(rel.name)}'));
 			</#if>
 		</#list>
 		</#if>
@@ -144,32 +133,32 @@ define(function(require) {
 			</#if>
 		</#list>
 		</#if>
-		
+                //Formating inputs as		
 		<#list entity.attributes as att>
-		  <#if isNumeric(att.type.className)>
-				this.ui.input${firstUpper(att.name)}.formatNumber(2);
+		  <#if att.inputAs == 'cpf' >
+				this.ui.input${firstUpper(att.name)}.cpf();
+		  </#if>	
+		  <#if att.inputAs == 'fone' >
+				this.ui.input${firstUpper(att.name)}.fone();
+		  </#if>
+		  <#if att.inputAs == 'date' >
+				this.ui.input${firstUpper(att.name)}.date();
+				this.ui.groupInput${firstUpper(att.name)}.date();
+		  </#if>	
+		  <#if att.inputAs == 'datetime' >
+				this.ui.input${firstUpper(att.name)}.datetime();
+				this.ui.groupInput${firstUpper(att.name)}.datetime();
+		  </#if>	
+		  <#if att.inputAs == 'decimal' >
+				this.ui.input${firstUpper(att.name)}.decimal();
+		  </#if>	
+		  <#if att.inputAs == 'integer' >
+				this.ui.input${firstUpper(att.name)}.integer();
+		  </#if>	
+		  <#if att.inputAs == 'money' >
+				this.ui.input${firstUpper(att.name)}.money();
 		  </#if>	
 		  <#if att.viewApproach?? >
-			<#if att.viewApproach.type == 'datepicker'>		
-				this.ui.groupInput${firstUpper(att.name)}.datetimepicker({
-				<#if att.type.className == 'Date'>		
-					pickTime : false,
-				</#if>					
-				<#if att.type.className == 'Datetime'>		
-					pickTime : true,
-				</#if>					
-					language : 'pt_BR',
-				});
-				this.ui.input${firstUpper(att.name)}.datetimepicker({
-				<#if att.type.className == 'Date'>		
-					pickTime : false,
-				</#if>
-				<#if att.type.className == 'Datetime'>		
-					pickTime : true,
-				</#if>				
-					language : 'pt_BR',
-				});
-			</#if>
 			<#if att.viewApproach.type == 'combo'>		
 				this.combo${firstUpper(att.name)} = new Combobox({
 					el : this.ui.input${firstUpper(att.name)},
@@ -182,17 +171,10 @@ define(function(require) {
 					</#if>
 				});
 				this.combo${firstUpper(att.name)}.setValue(this.model.get('${firstLower(att.name)}'));//getJsonValue
-				
-			</#if>
-		  </#if>
-		  <#if att.mask??>
-			<#if att.mask != ''>
-				this.ui.input${firstUpper(att.name)}.mask('${att.mask}');
 			</#if>
 		  </#if>
 		</#list>
 		<#if entity.relationships??>
-			
 		<#list entity.relationships as rel>
 			<#if (rel.type == 'OneToMany' || rel.type == 'ManyToMany' ) && rel.viewApproach.type == 'multiselect'>
 				this.${firstLower(rel.name)}Region.show(this.multiSelect${firstUpper(rel.model)});
@@ -215,11 +197,6 @@ define(function(require) {
 			</#if>
 		</#list>
 		</#if>
-				this.ui.form.validationEngine('attach', {
-					promptPosition : "topLeft",
-					isOverflown : false,
-					validationEventTrigger : "change"
-				});
 			});
 		},
 
@@ -250,54 +227,16 @@ define(function(require) {
 				util.showMessage('error', 'Verifique campos em destaque!');
 			}
 		},
-
 		
-		clearForm : function() {
-			util.clear('inputId');
-		<#list entity.attributes as att>
-			util.clear('input${firstUpper(att.name)}'); 
-		</#list>
-		<#if entity.relationships??>	
-		<#list entity.relationships as rel >
-			<#if rel.viewApproach?? >
-				<#if rel.viewApproach.type == 'multiselect'>			
-			this.${firstLower(rel.name)}.reset();
-			this.multiSelect${firstUpper(rel.model)}.clear();
-				<#elseif rel.viewApproach.type  == 'modal'  >
-					<#if rel.viewApproach.hiddenField??>
-			util.clear('input${firstUpper(rel.name)}${firstUpper(rel.viewApproach.hiddenField)}');
-					</#if>					
-					<#if rel.viewApproach.textField??>
-			util.clear('input${firstUpper(rel.name)}${firstUpper(rel.viewApproach.textField)}');
-					</#if>
-				<#elseif rel.viewApproach.type  == 'combo'  >
-			util.clear('input${firstUpper(rel.name)}'); 					 	
-				</#if>
-			</#if>
-		</#list>
-		</#if>
-		},
-
-		isValid : function() {
-			return this.ui.form.validationEngine('validate', {
-				promptPosition : "topLeft",
-				isOverflown : false,
-				validationEventTrigger : "change"
-			});
-		},
-
 		getModel : function() {
 			var that = this;
 			var ${firstLower(entity.name)} = that.model; 
 			${firstLower(entity.name)}.set({
-				id: util.escapeById('inputId') || null,
+				id: this.ui.inputId.escape(),
 				<#list entity.attributes as att>
-				  	<#if isNumeric(att.type.className)>
-		    	${firstLower(att.name)} : util.escapeById('input${firstUpper(att.name)}', true), 
-		  			<#else>	
-		    	${firstLower(att.name)} : util.escapeById('input${firstUpper(att.name)}'), 
-					</#if>
+		    	${firstLower(att.name)} : this.ui.input${firstUpper(att.name)}.escape(), 
 				</#list>
+				
 				<#if entity.relationships??>	
 				<#list entity.relationships as rel >
 				<#if (rel.type == 'OneToMany' || rel.type == 'ManyToMany' ) && rel.viewApproach.type == 'multiselect'>
@@ -325,7 +264,6 @@ define(function(require) {
 			</#if>
 		</#list>
 		</#if>
-
 				<#if entity.relationships??>	
 		<#list entity.relationships as rel >
 			<#if rel.viewApproach.type == 'modal'>
@@ -337,7 +275,6 @@ define(function(require) {
 			</#if>
 		</#list>
 		</#if>
-				
 		<#list entity.attributes as att>
 			<#if att.unique>
 		change${firstUpper(att.name)} : function() {
@@ -353,7 +290,6 @@ define(function(require) {
 		},				
 			</#if>
 		</#list>		
-		
 	});
 
 	return Form${entity.name}s;

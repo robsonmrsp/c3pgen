@@ -4,7 +4,7 @@ function(util, _, $, Backbone, Marionette) {
 	// "<option value='saab'>Saab</option>"
 	});
 
-	Combobox = Backbone.View.extend({
+	var Combobox = Backbone.View.extend({
 		initialize : function(options) {
 
 			var that = this;
@@ -98,6 +98,13 @@ function(util, _, $, Backbone, Marionette) {
 				}
 				return null;
 			}
+		},
+
+		getRawValue : function() {
+			var json = this.getJsonValue();
+			if (json)
+				return json.id
+			return null;
 		},
 
 		setValue : function(model) {

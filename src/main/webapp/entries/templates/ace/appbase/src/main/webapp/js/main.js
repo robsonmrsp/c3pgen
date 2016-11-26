@@ -3,11 +3,10 @@ require.config({
 	paths : {
 		'jquery' : '../vendor/jquery/jquery-1.10.2',
 		'jqueryUI' : '../vendor/jquery.ui/jquery-ui-1.10.4.custom.min',
-		'jqueryMaskInput' : '../vendor/jQuery-Mask-Plugin-1.14.0/jquery.mask',
+		
 		'jqueryScrollTo' : '../vendor/jquery.scrollTo/jquery.scrollTo',
 		'jqueryValidatorEngine' : '../vendor/jquery.validationEngine/jquery.validationEngine-2.6.2',
 		'jqueryValidatorEnginePtBr' : '../vendor/jquery.validationEngine/jquery.validationEngine-pt_BR',
-		'jqueryNumeric' : '../vendor/jquery.numeric/jquery.numeric-1.3.1',
 		'nprogress' : '../vendor/nprogressbar/nprogress',
 		'spin' : '../vendor/spin/spin',
 		'morris' : '../vendor/morris/morris',
@@ -41,6 +40,7 @@ require.config({
 		'jqueryGritter' : '../vendor/jquery.gritter-1.7.4/js/jquery.gritter',
 		'selectize' : '../vendor/selectize/js/standalone/selectize',
 		'jqueryForm' : '../vendor/jquery.form/jquery.form',
+		'jqueryInputMask' : '../vendor/Inputmask-3.3.3/dist/jquery.inputmask.bundle',
 	},
 	shim : {
 		'underscore' : {
@@ -102,7 +102,6 @@ require.config({
 			deps : [ 'jquery', 'moment' ],
 			exports : 'datetimepicker_lang_pt_BR'
 		},
-		'jqueryNumeric' : [ 'jquery' ],
 
 		'multiselect' : [ 'jquery' ],
 		'list' : {
@@ -130,6 +129,7 @@ require.config({
 		'jqueryGritter' : [ 'jquery' ],
 		'selectize' : [ 'jquery' ],
 		'jqueryForm' : [ 'jquery' ],
+		'jqueryInputMask' : [ 'jquery' ],
 	},
 	wrapShim : true,
 });

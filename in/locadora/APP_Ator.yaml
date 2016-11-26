@@ -26,7 +26,7 @@
     tableFieldName: BIOGRAFIA
     required: false
     showInPages: false
-    maxLen: 1000
+    maxLen: 999
     viewApproach:                        
       type: textarea                  
     displayName: Biografia

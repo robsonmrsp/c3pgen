@@ -1,0 +1,25 @@
+- name: Funcao
+  displayName: Função
+  tableName: FUNCAO
+  hasOwner: false
+  hasMobile : true
+  attributes:
+  - name: nome
+    tableFieldName: nome
+    required : true
+    unique : true
+    type:
+      className: String
+    displayName: Nome
+  - name: description
+    tableFieldName: description
+    type:
+      className: String
+    displayName: Descrição
+  relationships:
+  - name: funcionarios
+    type: OneToMany
+    ownerName: funcao
+    model: Funcionario
+    displayName: Funcionarios
+    

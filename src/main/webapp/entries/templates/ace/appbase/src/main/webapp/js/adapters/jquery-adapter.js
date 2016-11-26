@@ -1,4 +1,5 @@
-define([ 'jquery', 'bootbox', 'bootstrap', 'jqueryNumeric', 'jqueryMaskInput', 'jqueryScrollTo', 'jqueryValidatorEngine', 'jqueryValidatorEnginePtBr', 'morris', 'raphael', 'datetimepicker', 'bootbox', 'datetimepicker_lang_pt_BR', 'jqueryUI', 'nprogress', 'aceSettings', 'ace', 'aceSidebar', 'jqueryGritter', 'selectize', 'jqueryForm' ], function($) {
+define([ 'jquery', 'bootbox', 'bootstrap', 'jqueryScrollTo', 'jqueryValidatorEngine', 'jqueryValidatorEnginePtBr', 'morris', 'raphael', 'datetimepicker', 'bootbox', 'datetimepicker_lang_pt_BR', 'jqueryUI', 'nprogress', 'aceSettings', 'ace', 'aceSidebar', 'jqueryGritter',
+		'selectize', 'jqueryForm', 'jqueryInputMask' ], function($) {
 	$.fn.datetimepicker.defaults.icons = {
 		time : "fa fa-clock-o",
 		date : "fa fa-calendar",
@@ -38,6 +39,109 @@ define([ 'jquery', 'bootbox', 'bootstrap', 'jqueryNumeric', 'jqueryMaskInput', '
 		formatted = output.reverse().join("");
 		return (formatted + ((parts) ? "," + parts[1].substr(0, places) : ""));
 	};
+
+	$.fn.escape = function(numeric) {
+		var returnValue = null;
+
+		if (this) {
+			if (this.prop('tagName') && this.prop('tagName')) {
+				var tagName = this.prop('tagName').toUpperCase();
+				if (tagName === 'SELECT') {
+					returnValue = this.children(":selected").attr("value") || null;
+				}
+			}
+			var type = this.attr('type');
+			if (type === 'checkbox' || type === 'radio') {
+				returnValue = this.is(':checked');
+			} else {
+				var text = this.val();
+				if (text) {
+					returnValue = text.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;').replace('"', '&quot;').replace("'", '&#x27;').trim();
+				}
+			}
+		}
+		if (returnValue && numeric) {
+			// contemplando numeros negativos
+			if (returnValue.indexOf('-') > 0) {
+				returnValue = returnValue.replace(/-/g, '').replace(/\./g, '').replace(/\,/g, '.');
+			} else {
+				returnValue = returnValue.replace(/\./g, '').replace(/\,/g, '.')
+			}
+		}
+
+		return returnValue;
+	}
+
+	$.fn.datetime = function() {
+		this.datetimepicker({
+			pickTime : true,
+			language : 'pt_BR',
+		});
+
+		if (this.prop('tagName') && this.prop('tagName')) {
+			var tagName = this.prop('tagName').toUpperCase();
+			if (tagName === 'INPUT') {
+				this.inputmask('datetime');
+			}
+		}
+
+	};
+
+	$.fn.date = function() {
+		this.datetimepicker({
+			pickTime : false,
+			language : 'pt_BR',
+		});
+
+		if (this.prop('tagName') && this.prop('tagName')) {
+			var tagName = this.prop('tagName').toUpperCase();
+			if (tagName === 'INPUT') {
+				this.inputmask('date');
+			}
+		}
+
+	};
+
+	$.fn.integer = function() {
+		this.inputmask('integer');
+	}
+
+	$.fn.money = function() {
+		this.inputmask('numeric', {
+			radixPoint : ',',
+			groupSeparator : '.',
+			autoGroup : true,
+			digits : 2,
+			digitsOptional : false,
+			placeholder : '0',
+		});
+	};
+	$.fn.decimal = function() {
+		this.inputmask('numeric', {
+			radixPoint : ',',
+			groupSeparator : '.',
+			autoGroup : true,
+			digits : 2,
+			digitsOptional : true,
+			placeholder : '',
+		});
+	};
+
+	$.fn.cpf = function(places) {
+
+		this.inputmask('999.999.999-99', {
+			"clearIncomplete" : true
+		});
+	}
+	$.fn.telefone = function(places) {
+
+		this.inputmask({
+			mask : [ '(99) 9999-9999', '(99) 99999-9999' ],
+			greedy : false,
+			clearIncomplete : true,
+		});
+	}
+
 	$.fn.formatNumber = function(places) {
 		var oldVal = this.val();
 		var newNumber = "" + oldVal;

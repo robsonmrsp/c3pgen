@@ -225,7 +225,14 @@ define(function(require) {
 			}
 			return null;
 		},
-
+		
+		getRawValue : function() {
+			var json = this.getJsonValue();
+			if(json )
+				return json.id
+			return null;
+		},
+		
 		getValue : function() {
 			return this.modelSelect;
 		},

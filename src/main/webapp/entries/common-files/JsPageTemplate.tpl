@@ -1,27 +1,18 @@
 /* generated: ${.now} */
 define(function(require) {
-	// Start "Import´s Definition"
 	var _ = require('adapters/underscore-adapter');
 	var $ = require('adapters/jquery-adapter');
-	var Col = require('adapters/col-adapter');
-	var Backbone = require('adapters/backbone-adapter');
-	var Marionette = require('marionette');
 	var Backgrid = require('adapters/backgrid-adapter');
 	var util = require('utilities/utils');
 	var Combobox = require('views/components/Combobox');
-	var CustomStringCell = require('views/components/CustomStringCell');
-	var Counter = require('views/components/Counter');
-	var ActionsCell = require('views/components/ActionsCell');
-	var GeneralActionsCell = require('views/components/GeneralActionsCell');
-
-	var CustomNumberCell = require('views/components/CustomNumberCell');
-
+	var JSetup = require('views/components/JSetup');
+	var JSetupView = require('views/core/JSetupView');
+	
 	var ${entity.name}Model = require('models/${entity.name}Model');
 	var ${entity.name}Collection = require('collections/${entity.name}Collection');
 	var ${entity.name}PageCollection = require('collections/${entity.name}PageCollection');
 	var Page${entity.name}Template = require('text!views/${firstLower(entity.name)}/tpl/Page${entity.name}Template.html');
-	
-	//Filter import
+
 	<#list entity.attributes as att>
 		<#if att.showInPages >
 		<#if att.viewApproach?? >
@@ -51,10 +42,8 @@ define(function(require) {
 		</#if>
 	</#list>
 	</#if>			
-	
-	// End of "Import´s" definition
 
-	var Page${entity.name} = Marionette.LayoutView.extend({
+	var Page${entity.name} = JSetupView.extend({
 		template : _.template(Page${entity.name}Template),
 
 		regions : {
@@ -149,7 +138,7 @@ define(function(require) {
 				collection : this.${firstLower(entity.name)}s
 			});
 
-			this.counter = new Counter({
+			this.counter = new JSetup.Counter({
 				collection : this.${firstLower(entity.name)}s,
 			});
 
@@ -196,32 +185,32 @@ define(function(require) {
 		</#if>
 		<#list entity.attributes as att>
 					<#if att.showInPages >
-		  <#if isNumeric(att.type.className)>
-				this.ui.input${firstUpper(att.name)}.formatNumber(2);
+		  <#if att.inputAs == 'cpf' >
+				this.ui.input${firstUpper(att.name)}.cpf();
+		  </#if>	
+		  <#if att.inputAs == 'fone' >
+				this.ui.input${firstUpper(att.name)}.fone();
+		  </#if>
+		  <#if att.inputAs == 'date' >
+				this.ui.input${firstUpper(att.name)}.date();
+				this.ui.groupInput${firstUpper(att.name)}.date();
+		  </#if>	
+		  <#if att.inputAs == 'datetime' >
+				this.ui.input${firstUpper(att.name)}.datetime();
+				this.ui.groupInput${firstUpper(att.name)}.datetime();
+		  </#if>	
+		  <#if att.inputAs == 'decimal' >
+				this.ui.input${firstUpper(att.name)}.decimal();
+		  </#if>	
+		  <#if att.inputAs == 'integer' >
+				this.ui.input${firstUpper(att.name)}.integer();
+		  </#if>	
+		  <#if att.inputAs == 'money' >
+				this.ui.input${firstUpper(att.name)}.money();
 		  </#if>	
 		  <#if att.viewApproach?? >
-			<#if att.viewApproach.type == 'datepicker'>		
-				this.ui.groupInput${firstUpper(att.name)}.datetimepicker({
-				<#if att.type.className == 'Date'>		
-					pickTime : false,
-				</#if>			
-				<#if att.type.className == 'Datetime'>		
-					pickTime : true,
-				</#if>										
-					language : 'pt_BR',
-				});
-				this.ui.input${firstUpper(att.name)}.datetimepicker({
-				<#if att.type.className == 'Date'>		
-					pickTime : false,
-				</#if>
-				<#if att.type.className == 'Datetime'>		
-					pickTime : true,
-				</#if>								
-					language : 'pt_BR',
-				});
-			</#if>
 			<#if att.viewApproach.type == 'combo'>		
-				var combo${firstUpper(att.name)} = new Combobox({
+				this.combo${firstUpper(att.name)} = new Combobox({
 					el : this.ui.input${firstUpper(att.name)},
 				   <#if att.viewApproach.values??>
 				    values : ${toListString(att.viewApproach.values)}
@@ -248,7 +237,7 @@ define(function(require) {
 			<#elseif rel.type == 'ManyToOne'>
 				<#if rel.viewApproach?? >
 					<#if rel.viewApproach.type  == 'combo'  >
-				var combo${firstUpper(rel.model)} = new Combobox({
+				this.combo${firstUpper(rel.model)} = new Combobox({
 					el : this.ui.input${firstUpper(rel.name)},
 				   <#if rel.viewApproach.values??>
 				    values : '${toString(rel.viewApproach.values)}'
@@ -266,6 +255,7 @@ define(function(require) {
 			</#if>
 		</#list>
 		</#if>
+				this.search${firstUpper(entity.name)}();
 			});
 		},
 		 
@@ -275,17 +265,17 @@ define(function(require) {
 			this.${firstLower(entity.name)}s.filterQueryParams = {
 			<#list entity.attributes as att>
 				<#if att.showInPages >
-	    		${firstLower(att.name)} : util.escapeById('input${firstUpper(att.name)}'),
+	    		${firstLower(att.name)} : this.ui.input${firstUpper(att.name)}.escape(), 
 				</#if>
 			</#list>
 			<#if entity.relationships??>	
 			<#list entity.relationships as rel >
 				<#if rel.showInPages >			
 				<#if rel.viewApproach.type == 'modal' >
-			    ${firstLower(rel.name)} : util.escapeById('input${firstUpper(rel.name)}${firstUpper(rel.viewApproach.hiddenField)}'), 
+			    ${firstLower(rel.name)} : this.modal${firstUpper(rel.name)}.getRawValue(), 
 				</#if> 
 				<#if  rel.viewApproach.type == 'combo'>
-			    ${firstLower(rel.name)} : util.escapeById('input${firstUpper(rel.name)}'), 
+			    ${firstLower(rel.name)} : this.combo${firstUpper(rel.model)}.getRawValue(), 
 				</#if>
 				</#if>
 			</#list>
@@ -297,9 +287,6 @@ define(function(require) {
 				},
 				error : function(_coll, _resp, _opt) {
 					console.error(_resp.responseText || (_resp.getResponseHeader && _resp.getResponseHeader('exception')));
-				},
-				complete : function() {
-					
 				},
 			})		
 		},
@@ -322,12 +309,13 @@ define(function(require) {
 				<#if att.showInPages >			
 			{
 				name : "${att.name}",
-				editable : false,
 				sortable : true,
 				label 	 : "${firstUpper(att.displayName)!firstUpper(att.name)}",
-				<#if isNumeric(att.type.className)>
-				cell : CustomNumberCell.extend({}),
-		  		<#else>	
+				<#if att.inputAs == 'percent'>
+				cell : JSetup.PercentCell,
+		  		<#elseif att.inputAs == 'money'>
+		  		cell : JSetup.MoneyCell,	
+		  		<#else>
 				cell 	 : "string",
 		  		</#if>	
 			}, 
@@ -339,10 +327,9 @@ define(function(require) {
 					<#if rel.viewApproach.type == 'modal'>
 			{
 				name : "${firstLower(rel.name)}.${rel.viewApproach.textField}",
-				editable : false,
 				sortable : true,  
 				label : "${rel.displayName}",
-				cell : CustomStringCell.extend({
+				cell : JSetup.CustomStringCell.extend({
 					fieldName : '${firstLower(rel.name)}.${rel.viewApproach.textField}',
 				}),
 			},	
@@ -350,10 +337,9 @@ define(function(require) {
 					<#if rel.viewApproach.type == 'combo'>
 			{
 				name : "${firstLower(rel.name)}.${rel.viewApproach.comboVal}",
-				editable : false,
 				sortable : true,  
 				label : "${rel.displayName}",
-				cell : CustomStringCell.extend({
+				cell : JSetup.CustomStringCell.extend({
 					fieldName : '${firstLower(rel.name)}.${rel.viewApproach.comboVal}',
 				}),
 			},	
@@ -365,7 +351,7 @@ define(function(require) {
 				name : "acoes",
 				label : "Ações(Editar, Deletar)",
 				sortable : false,
-				cell : GeneralActionsCell.extend({
+				cell : JSetup.ActionCell.extend({
 					buttons : that.getCellButtons(),
 					context : that,
 				})
@@ -437,8 +423,6 @@ define(function(require) {
 			</#if>
 		</#list>
 		</#if>
-		
-
 	});
 
 	return Page${entity.name};
