@@ -10,7 +10,45 @@
     displayName: Nome
     type:
       className: String
-      
+  - name: telefone
+    tableFieldName: TELEFONE
+    required: true
+    showInPages: true
+    displayName: Telefone
+    type:
+      className: String
+  - name: salario
+    tableFieldName: SALARIO
+    required: true
+    showInPages: true
+    displayName: Nome
+    type:
+      className: Double
+  - name: idade
+    tableFieldName: IDADE
+    required: true
+    showInPages: true
+    displayName: Idade
+    type:
+      className: Integer
+  - name: percentualComissao
+    tableFieldName: PERCENTUAL_COMISSAO
+    required: true
+    showInPages: true
+    displayName: Percentual de comissão
+    type:
+      className: Double
+  - name: dataNascimento
+    tableFieldName: DATA_NASCIMENTO
+    required: true
+    showInPages: true
+    displayName: Data nascimento
+    type: 
+      className: Date
+    dateFormat: DD/MM/YYYY              
+    mask: 99/99/9999                    
+    viewApproach:                        
+      type: datepicker                        
   - name: cpf
     tableFieldName: CPF
     required: true
