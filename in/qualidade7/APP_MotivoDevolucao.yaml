@@ -1,0 +1,15 @@
+- name: MotivoDevolucao
+  displayName: Motivo de Devolução
+  tableName: MOTIVO_DEVOLUCAO
+  hasOwner: false
+  attributes:
+  - name: descricao
+    required : true
+    unique : true
+    tableFieldName: DESCRICAO
+    type:
+      className: String
+    displayName: Descrição
+    
+    
+    

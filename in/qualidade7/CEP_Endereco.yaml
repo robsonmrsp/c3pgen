@@ -1,0 +1,24 @@
+- name: Endereco
+  displayName: Endereço
+  tableName: ENDERECO
+  hasOwner: false
+  attributes:
+  - name: complemento
+    tableFieldName: COMPLEMENTO
+    displayName: Complemento
+    type:
+      className: String
+  - name: numero
+    tableFieldName: NUMERO
+    displayName: Número
+    type:
+      className: String
+  relationships:
+  - name: cep
+    type: ManyToOne
+    model: Cep
+    viewApproach:
+      type: modal
+      textField: cep
+      hiddenField: id
+    displayName: Cep

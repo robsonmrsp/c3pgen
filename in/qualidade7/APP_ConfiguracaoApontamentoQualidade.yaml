@@ -1,0 +1,35 @@
+- name: ConfiguracaoApontamentoQualidade
+  hasOwner: false 
+  displayName: Configuracao do Apontamento de Qualidade
+  tableName: CONFIGURACAO_APONTAMENTO_QUALIDADE
+  attributes:                     
+  - name: tamanhoMedioBaga
+    tableFieldName: tamanho_Medio_Baga
+    required: false
+    displayName: Tamanho Médio de Baga
+    type: 
+      className: Double 
+  - name: valorMedioBrix
+    tableFieldName: VALOR_MEDIO_BRIX
+    required: false
+    displayName: TamanhValor  Médio do Brix
+    type: 
+      className: Double      
+  relationships:                     
+  - name: latada             
+    type: ManyToOne
+    model: Latada                       
+    displayName: Latada
+    viewApproach:   
+      type: combo 
+      comboId: id 
+      comboVal: nome 
+ 
+  - name: variedade             
+    type: ManyToOne
+    model: Variedade                       
+    displayName: Variedade
+    viewApproach:   
+      type: combo 
+      comboId: id 
+      comboVal: nome 
