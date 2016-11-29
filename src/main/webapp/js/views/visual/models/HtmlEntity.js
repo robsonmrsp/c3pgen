@@ -18,6 +18,7 @@ define(function(require) {
 		nomeClasse : 'HtmlEntity:Element',
 
 		initialize : function(opt) {
+			Joint.shapes.html.Element.__super__.initialize.apply(this, arguments);
 			this.onClickRemove = opt.onClickRemove;
 		},
 		defaults : Joint.util.deepSupplement({

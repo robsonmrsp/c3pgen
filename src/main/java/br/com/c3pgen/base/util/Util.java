@@ -43,13 +43,13 @@ public class Util {
 
 	public static String templateFolder() {
 		// return "G:\\cyg\\home\\robso\\repos\\c3pgen\\src\\main\\webapp";
-		return "D:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp";
+		return "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp";
 	}
 
 	public static String currentDir() {
-//		return currentDir;
+		 return currentDir;
 
-		 return templateFolder();
+//		return templateFolder();
 	}
 
 	private static String currentDir = Paths.get(".").toAbsolutePath().toString();
@@ -137,7 +137,7 @@ public class Util {
 		try {
 			firstChar = verb.substring(0, 1).toUpperCase() + verb.substring(1);
 		} catch (Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 		}
 		return firstChar;
 	}
@@ -289,7 +289,15 @@ public class Util {
 	}
 
 	public static String firstLowerCase(String verb) {
-		return verb.substring(0, 1).toLowerCase() + verb.substring(1);
+		
+		try{
+			String string = verb.substring(0, 1).toLowerCase() + verb.substring(1);
+			return string;
+		}catch (Exception e) {
+
+		}
+		
+		return "";
 	}
 
 	public static ApplicationEntity getTheEntity_() {

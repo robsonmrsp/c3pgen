@@ -22,7 +22,7 @@ public class Main {
 	}
 
 	public static void main(String[] args) throws Exception {
-		generatoToInput("locadora", new File("D:\\cyg\\home\\robson\\repos\\c3pgen\\in\\locadora"));
+		generatoToInput("locadora", new File("C:\\cyg\\home\\robson\\repos\\c3pgen\\in\\locadora"));
 	}
 
 	public static void generatoToInput(String folderInputName, File generatorFilesFolder) throws Exception {

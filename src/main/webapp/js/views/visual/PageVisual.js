@@ -244,7 +244,12 @@ define(function(require) {
 			}
 			that.quantidadeEntidades = application.get('entities').length
 			_.each(application.get('entities'), function(entity) {
-				that.addVisualEntity(new EntityModel(entity));
+				try {
+
+					that.addVisualEntity(new EntityModel(entity));
+				} catch (e) {
+					console.error(e);
+				}
 			});
 
 			_.each(application.get('applicationRelationships'), function(appRelation) {
