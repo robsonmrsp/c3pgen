@@ -102,62 +102,63 @@ public class DBDesignerImporter {
 				}
 			}
 			// TODOS OS RELACIONAMENTOS DE PRODUTO QUE COMECAO EM PRODUTO
-			for (RelationStart relStart : table.getRelationsStart()) {
+			List<RelationStart> relationsStart = table.getRelationsStart();
+			for (RelationStart relStart : relationsStart) {
 				Relation byId = getById(relations, relStart.getId());
 
-				String destTable = byId.getDestTable();
+				String destTable = byId.getDestTable(); // origem filme destino
+														// ator
 				String comments = byId.getComments();
+
+				// relacionamento
+				String nomeTabelaOrigem = table.getTablename();
+				String nomeTabelaDestino = getTableById(tables, destTable).getTablename();
 				///
 
-				String relationName = Util.firstLowerCase(CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, Util.firstNotNullLower(comments, getTableById(tables, destTable).getTablename()) + "s"));
-				String ownerName = Util.firstLowerCase(nomeDaClasse);
-				String modelName = CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, Util.firstUpperCase(getTableById(tables, destTable).getTablename())) + "                       ";
-				String displayName = Util.firstUpperCase(getTableById(tables, destTable).getTablename()).replaceAll("_", " ");
+				String relationNameOnOrigin = Util.firstLowerCase(CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, nomeTabelaDestino) + "s");
+				String ownerNameOnOrigin = Util.firstLowerCase(nomeTabelaOrigem);
+
+				String modelNameOnOrigin = CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, Util.firstUpperCase(nomeTabelaDestino));
+
+				String tablenameX = getTableById(tables, destTable).getTablename();
+				String displayNameOnOrigin = Util.firstUpperCase(tablenameX).replaceAll("_", " ");
 
 				String sourceRelModel = CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, tableName);
 				String sourceRelName = Util.firstLowerCase(sourceRelModel);
 
-				Relationship relationshipTarget = new Relationship(relationName, displayName, "OneToMany", ownerName, modelName, false, ViewApproach.multiselectInstance());
-				relationshipTarget.setEntity(applicationEntity);
+				// atores Atores ator Ator
+				Relationship relationshipOnEntitySource = new Relationship(relationNameOnOrigin, displayNameOnOrigin + "s", "OneToMany", ownerNameOnOrigin, modelNameOnOrigin, false, ViewApproach.multiselectInstance());
+				relationshipOnEntitySource.setEntity(new ApplicationEntity(nomeDaClasse, tableName));
 
-				// <<------
-				Relationship relationshipSource = new Relationship(Util.firstLowerCase(nomeDaClasse), Util.firstUpperCase(sourceRelName), "ManyToOne", null, sourceRelModel, false, ViewApproach.modalInstance("id", "nome"));
+				// <<------ filme filme Filme
+				Relationship relationshipOnEntityTarget = new Relationship(Util.firstLowerCase(nomeDaClasse), Util.firstUpperCase(sourceRelName), "ManyToOne", null, sourceRelModel, false, ViewApproach.modalInstance("id", "nome"));
 
-				relationshipSource.setEntity(new ApplicationEntity(nomeDaClasse, tableName));
+				relationshipOnEntityTarget.setEntity(new ApplicationEntity(modelNameOnOrigin, modelNameOnOrigin.toUpperCase()));
 
 				ApplicationRelationship appRel = new ApplicationRelationship();
-				appRel.setSource(relationshipSource);
-				appRel.setTarget(relationshipTarget);
+				appRel.setSource(relationshipOnEntitySource);
+				appRel.setTarget(relationshipOnEntityTarget);
 
 				System.out.println("DBDesignerImporter.extractApplication() 1-> " + appRel);
 				applicationRelationships.add(appRel);
 
 			}
 			// TODOS OS RELACIONAMENTOS QUE TERMINAM EM PRODUTO
-			for (RelationEnd relEnd : table.getRelationsEnd()) {
+			List<RelationEnd> relationsEnd = table.getRelationsEnd();
+			for (RelationEnd relEnd : relationsEnd) {
 				Relation byId = getById(relations, relEnd.getId());
 
-//				System.out.println("SrcTable  " + getTableById(tables, byId.getSrcTable()));
-
-				// String name = byId.getRelationName();
 				String name = Util.firstLowerCase(CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, tableName));
-
-				// String modelName =
-				// CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL,
-				// Util.firstUpperCase(getTableById(tables,
-				// destTable).getTablename())) + " ";
-				// String displayName = Util.firstUpperCase(getTableById(tables,
-				// destTable).getTablename()).replaceAll("_", " ");
 
 				String relName = Util.firstLowerCase(CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, getTableById(tables, byId.getSrcTable()).getTablename()));
 				String displayName = Util.firstUpperCase(tableName);
 				String model = Util.firstUpperCase(CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, tableName));
 
-				Relationship relationshipSource = new Relationship(name+ "s", displayName, "ManyToOne", null, model, false, ViewApproach.modalInstance("id", "nome"));
+				Relationship relationshipSource = new Relationship(name + "s", displayName, "ManyToOne", null, model, false, ViewApproach.modalInstance("id", "nome"));
 				relationshipSource.setEntity(applicationEntity);
 
 				// ---->>
-				Relationship relationshipTarget = new Relationship(relName, Util.firstUpperCase(relName), "OneToMany", Util.firstLowerCase(name+ "s"), Util.firstUpperCase(relName), false, ViewApproach.multiselectInstance());
+				Relationship relationshipTarget = new Relationship(relName, Util.firstUpperCase(relName), "OneToMany", Util.firstLowerCase(name + "s"), Util.firstUpperCase(relName), false, ViewApproach.multiselectInstance());
 				relationshipTarget.setEntity(new ApplicationEntity(relName, tableName));
 
 				ApplicationRelationship appRel = new ApplicationRelationship();
@@ -169,6 +170,7 @@ public class DBDesignerImporter {
 
 			}
 
+			System.out.println("DBDesignerImporter.extractApplication()" + applicationRelationships);
 			application.addEntities(applicationEntity);
 			application.addAllApplicationRelationships(applicationRelationships);
 		}

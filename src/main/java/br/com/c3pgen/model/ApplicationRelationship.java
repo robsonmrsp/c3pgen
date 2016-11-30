@@ -101,6 +101,6 @@ public class ApplicationRelationship {
 
 	@Override
 	public String toString() {
-		return "[ " + getSource().getName() + ", " + getSource().getModel() + "; " + getTarget().getName() + ", " + getTarget().getModel() + " ]";
+		return "[ " + getSource().getName() + ", " + getSource().getModel() + ", " + getSource().getOwnerName() + "; " + getTarget().getName() + ", " + getTarget().getModel() + ",  " + getTarget().getOwnerName() + " ]";
 	}
 }

@@ -279,4 +279,9 @@ public class Relationship extends AbstractTimestampEntity {
 		this.tableFieldName = tableFieldName;
 	}
 
+	@Override
+	public String toString() {
+		return "Relationship [name=" + name + ", displayName=" + displayName + ", ownerName=" + ownerName + "]";
+	}
+
 }
