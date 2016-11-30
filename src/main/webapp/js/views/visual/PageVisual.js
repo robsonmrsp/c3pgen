@@ -41,9 +41,7 @@ define(function(require) {
 	var ModalError = require('views/components/ModalError');
 
 	var lastPositionX = 0;
-
 	var contador = 0;
-
 	var linha = 0;
 	var coluna = 0;
 	var nextX = 0;
@@ -80,6 +78,13 @@ define(function(require) {
 		ui : {},
 		initialize : function() {
 			var that = this;
+			lastPositionX = 0;
+			contador = 0;
+			linha = 0;
+			coluna = 0;
+			nextX = 0;
+			nextY = 0;
+
 			globalVisualEntities.clear();
 			globalVisualRelations.clear();
 
