@@ -153,12 +153,12 @@ public class DBDesignerImporter {
 				String displayName = Util.firstUpperCase(tableName);
 				String model = Util.firstUpperCase(CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, tableName));
 
-				Relationship relationshipTarget = new Relationship(name, displayName, "ManyToOne", null, model, false, ViewApproach.modalInstance("id", "nome"));
-				relationshipTarget.setEntity(applicationEntity);
+				Relationship relationshipSource = new Relationship(name+ "s", displayName, "ManyToOne", null, model, false, ViewApproach.modalInstance("id", "nome"));
+				relationshipSource.setEntity(applicationEntity);
 
 				// ---->>
-				Relationship relationshipSource = new Relationship(relName + "s", Util.firstUpperCase(relName + "s"), "OneToMany", Util.firstLowerCase(relName), Util.firstUpperCase(relName), false, ViewApproach.multiselectInstance());
-				relationshipSource.setEntity(new ApplicationEntity(relName, tableName));
+				Relationship relationshipTarget = new Relationship(relName, Util.firstUpperCase(relName), "OneToMany", Util.firstLowerCase(name+ "s"), Util.firstUpperCase(relName), false, ViewApproach.multiselectInstance());
+				relationshipTarget.setEntity(new ApplicationEntity(relName, tableName));
 
 				ApplicationRelationship appRel = new ApplicationRelationship();
 				appRel.setSource(relationshipSource);

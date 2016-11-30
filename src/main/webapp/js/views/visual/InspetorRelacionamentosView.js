@@ -137,7 +137,7 @@ define(function(require) {
 
 			this.targetRelationModel = visualRelationship.get('targetRelationModel')
 
-			var targetName = (this.targetRelationModel.get('entity').get && this.targetRelationModel.get('entity').get('name')) || this.targetRelationModel.get('entity').name
+			var targetName = (this.targetRelationModel.get('entity') && this.targetRelationModel.get('entity').get && this.targetRelationModel.get('entity').get('name')) || ( this.targetRelationModel.get &&  this.targetRelationModel.get('entity') && this.targetRelationModel.get('entity').name ||  this.targetRelationModel.get('model'))
 
 			this.sourceView = new RelationshipItemView({
 				model : that.sourceRelationModel,
