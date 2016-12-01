@@ -127,13 +127,13 @@ define(function(require) {
 					// ROBSON para impedir que a cada click sobbre a linha do
 					// relacionamento seja adicionado um vertice novo
 					interactive : function(cellView) {
-						
-						//Impede que seja alterado o link
-//						if (cellView.model.isLink()) {
-//							return {
-//								vertexAdd : false
-//							};
-//						}
+
+						// Impede que seja alterado o link
+						// if (cellView.model.isLink()) {
+						// return {
+						// vertexAdd : false
+						// };
+						// }
 						return true;
 					},
 				// linkConnectionPoint :
@@ -146,15 +146,7 @@ define(function(require) {
 					that.inspetorRelacionamentosView.setVisual(_link.model);
 				});
 				window.paper.on('tool:remove', function(evt, linkView) {
-					console.log("Removing link" + linkView.model.id);
-					util.Bootbox.confirm("Tem certeza que deseja remover o					 relacionamento ?", function(yes) {
-						if (yes) {
-							console.log("Removing link", linkView);
-							// linkView.model.remove();
-						} else {
-							console.log(" Leaving  alone link", linkView);
-						}
-					});
+					that.removeApplicationRelationship(linkView);
 
 				})
 				window.paper.on('cell:pointerdown', function(cellView, evt, x, y) {
@@ -329,6 +321,7 @@ define(function(require) {
 			that.graph.addCell(relation);
 
 			window.globalVisualRelations.put(relation.id, relation);
+			console.log('Adicionado o seguinte relacionamento: ' + relation.id, relation);
 		},
 
 		validateApplication : function() {
@@ -436,6 +429,38 @@ define(function(require) {
 				posY : opts && opts.y,
 			})
 		},
+
+		removeApplicationRelationship : function(linkView) {
+			var model = new ApplicationRelationshipModel(linkView.model.get('applicationRelationshipModel'));
+
+			util.Bootbox.confirm("Tem certeza que deseja remover o					 relacionamento ?", function(yes) {
+				if (yes) {
+					model.destroy({
+
+						success : function() {
+							console.log("Removendo o relacionamento: " + linkView.model.get('id'))
+							var model =
+
+							linkView.remove();
+
+							window.globalVisualRelations.remove(linkView.model.get('id'));
+
+							console.log(' log');
+						},
+						error : function() {
+							console.error(' erro')
+						}
+
+					})
+
+				} else {
+					console.log(" Leaving  alone link", linkView);
+				}
+			});
+
+		},
+
+	// linkView.model.remove();
 
 	});
 

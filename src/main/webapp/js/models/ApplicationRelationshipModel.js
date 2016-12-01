@@ -15,6 +15,7 @@ define(function(require) {
 		_name : 'ApplicationRelationshipModel',
 
 		urlRoot : 'rs/crud/applicationRelationships',
+		
 		defaults : {
 			id : null,
 			source : null,

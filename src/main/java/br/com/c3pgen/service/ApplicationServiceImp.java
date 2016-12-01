@@ -41,6 +41,9 @@ public class ApplicationServiceImp implements ApplicationService {
 	RelationshipService relationshipService;
 	@Inject
 	TheEntityService entityService;
+	
+	@Inject
+	ApplicationRelationshipService  applicationRelationshipService;
 
 	@Override
 	public Application get(Integer id) {
@@ -97,6 +100,9 @@ public class ApplicationServiceImp implements ApplicationService {
 
 	@Override
 	public Application save(Application application) {
+		
+		applicationRelationshipService.removeAllByApplication(application);
+		
 		List<ApplicationEntity> entities = application.getEntities();
 		for (ApplicationEntity entity : entities) {
 			entityService.save(entity);

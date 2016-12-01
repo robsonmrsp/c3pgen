@@ -18,15 +18,15 @@ import br.com.c3pgen.persistence.pagination.Pagination;
 import br.com.c3pgen.persistence.pagination.PaginationParams;
 
 /**
-*  generated: 03/09/2015 14:51:48
-**/
+ * generated: 03/09/2015 14:51:48
+ **/
 
 @Named
 @Transactional
 public class RelationshipServiceImp implements RelationshipService {
 
 	private static final Logger LOGGER = Logger.getLogger(RelationshipServiceImp.class);
-	
+
 	@Inject
 	DaoRelationship daoRelationship;
 
@@ -34,7 +34,7 @@ public class RelationshipServiceImp implements RelationshipService {
 	public Relationship get(Integer id) {
 		return daoRelationship.find(id);
 	}
-	
+
 	@Override
 	public Relationship get(Integer id, Client client) {
 		return daoRelationship.find(id, client);
@@ -44,35 +44,31 @@ public class RelationshipServiceImp implements RelationshipService {
 	public List<Relationship> all(Client client) {
 		return daoRelationship.getAll(client);
 	}
-	
-	
 
 	@Override
 	public Pager<Relationship> all(PaginationParams paginationParams, Client owner) {
 		Pagination<Relationship> pagination = daoRelationship.getAll(paginationParams, owner);
 		return new Pager<Relationship>(pagination.getResults(), 0, pagination.getTotalRecords());
 	}
-	
-		@Override
+
+	@Override
 	public List<Relationship> filter(PaginationParams paginationParams, Client owner) {
 		List<Relationship> list = daoRelationship.filter(paginationParams, owner);
 		return list;
 	}
-	
 
 	@Override
 	public Pager<Relationship> all(PaginationParams paginationParams) {
 		Pagination<Relationship> pagination = daoRelationship.getAll(paginationParams);
 		return new Pager<Relationship>(pagination.getResults(), 0, pagination.getTotalRecords());
 	}
-	
-	
+
 	@Override
 	public List<Relationship> filter(PaginationParams paginationParams) {
 		List<Relationship> list = daoRelationship.filter(paginationParams);
 		return list;
 	}
-	
+
 	@Override
 	public List<Relationship> all() {
 		return daoRelationship.getAll();
@@ -82,11 +78,11 @@ public class RelationshipServiceImp implements RelationshipService {
 	public List<Relationship> search(String description) {
 		return new ArrayList<Relationship>();
 	}
-	
-	public List<Relationship> last(LocalDateTime lastSyncDate){
+
+	public List<Relationship> last(LocalDateTime lastSyncDate) {
 		return daoRelationship.last(lastSyncDate);
 	}
-			
+
 	@Override
 	public Relationship save(Relationship entity) {
 		return daoRelationship.save(entity);
@@ -101,6 +97,4 @@ public class RelationshipServiceImp implements RelationshipService {
 	public Boolean delete(Integer id) {
 		return daoRelationship.delete(id);
 	}
-
-
 }

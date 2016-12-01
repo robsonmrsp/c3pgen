@@ -15,31 +15,6 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 import org.hibernate.envers.Audited;
 
-/**
- * generated: 03/09/2015 14:51:48 Entity [name=Relationship,
- * displayName=Relacionamento, hasOwner=true, attributes=[Attribute [name=name,
- * displayName=Nome, type=AttributeType [className=String], mask=,
- * dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute
- * [name=type, displayName=Tipo de associação, type=AttributeType
- * [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null,
- * validationRules=null], Attribute [name=displayName, displayName=Nome
- * apresentado na tela, type=AttributeType [className=String], mask=,
- * dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute
- * [name=ownerName, displayName=Dono do relacionamento, type=AttributeType
- * [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null,
- * validationRules=null], Attribute [name=model, displayName=Entidade na outra
- * ponta do relacionamento, type=AttributeType [className=String], mask=,
- * dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute
- * [name=uniDirecional, displayName=É unidirecional, type=AttributeType
- * [className=Boolean], mask=, dateFormat=dd/MM/yyyy, placeholder=null,
- * validationRules=null]], relationships=[Relationship [name=entity,
- * model=TheEntity,
- * viewApproach=com.mr.codegenerator.entities.ViewApproach@6ea12c19,
- * type=ManyToOne, displayName=Entidade, implementation=], Relationship
- * [name=viewApproach, model=ViewApproach,
- * viewApproach=com.mr.codegenerator.entities.ViewApproach@6a024a67,
- * type=ManyToOne, displayName=Tipo, implementation=]]]
- **/
 @Entity
 @Audited
 @Table(name = "RELATIONSHIP")
