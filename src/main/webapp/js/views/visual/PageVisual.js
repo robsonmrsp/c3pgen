@@ -218,7 +218,7 @@ define(function(require) {
 								height : 100
 							},
 							onClickRemove : function(visualE) {
-								console.log("Removendo a entidade : " + visualE);
+								that.removeVisualEntity(visualE);
 							},
 						});
 
@@ -286,7 +286,7 @@ define(function(require) {
 					height : 100
 				},
 				onClickRemove : function(visualE) {
-					console.log("Removendo a entidade : " + visualE);
+					that.removeVisualEntity(visualE);
 				},
 
 			});
@@ -433,7 +433,7 @@ define(function(require) {
 		removeApplicationRelationship : function(linkView) {
 			var model = new ApplicationRelationshipModel(linkView.model.get('applicationRelationshipModel'));
 
-			util.Bootbox.confirm("Tem certeza que deseja remover o					 relacionamento ?", function(yes) {
+			util.Bootbox.confirm("Tem certeza que deseja remover o	 relacionamento ?", function(yes) {
 				if (yes) {
 					model.destroy({
 
@@ -457,10 +457,61 @@ define(function(require) {
 					console.log(" Leaving  alone link", linkView);
 				}
 			});
+		},
+		removeVisualEntity : function(visualE) {
+			var model = new EntityModel({
+				id : visualE.entity.get('id')
+			});
+
+			util.Bootbox.confirm("Tem certeza que deseja remover a entidade ?", function(yes) {
+				if (yes) {
+					model.destroy({
+						success : function(_model, resp, xhr) {
+							// Por enquanto forcando funcionar.
+							try {
+								$(visualE.el).remove()
+								visualE.diagramEntityView.remove()
+								$(visualE.$box).remove()
+								globalVisualEntities.remove(visualE.model && visualE.model.get('id'));
+								// remover os relacionamentos com essa entidade
+								// visualmente.
+
+								var relations = [];
+
+								_.each(globalVisualRelations.values(), function(relation) {
+									var source = relation.get('sourceRelationModel');
+									var target = relation.get('targetRelationModel')
+
+									console.log(source.get('model'), visualE.entity.get('name'))
+									if (source.get('model') === visualE.entity.get('name')) {
+										relations.push(relation)
+									}
+									if (target.get('model') === visualE.entity.get('name')) {
+										relations.push(relation)
+									}
+								});
+
+								//
+								_.each(relations, function(relation) {
+									relation.remove();
+									globalVisualRelations.remove(relation.get('id'));
+								});
+							} catch (e) {
+								console.error(e);
+							}
+							console.log('Entidade removida com sucesso.');
+						},
+
+						error : function(_model, resp, xhr) {
+							console.error(' erro')
+						}
+					})
+				} else {
+					console.log(" Leaving  alone link", linkView);
+				}
+			});
 
 		},
-
-	// linkView.model.remove();
 
 	});
 
