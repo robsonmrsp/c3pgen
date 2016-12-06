@@ -69,7 +69,12 @@
 								<label class="control-label" for="input${firstUpper(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}  </label>
 								<span class="${att.name}-container"> </span>
 								<input type="text"  id="input${firstUpper(att.name)}" placeholder="${(att.placeholder)!''}" value="{{${firstLower(att.name)}}}" class="form-control ${getRequiredClass(att.required)} " ${getMaxLen(att.maxLen)} style="display : none">
-							</div>				
+							</div>
+							<#else>
+							<div id="groupInput${firstUpper(att.name)}" class="form-group col-sm-	col-md-	col-lg-  ">
+								<label class="control-label" for="input${firstUpper(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}  ${att.required ? string('*','')}</label>
+								<input type="text"  id="input${firstUpper(att.name)}" placeholder="${(att.placeholder)!''}" value="{{${firstLower(att.name)}}}" class="form-control ${getRequiredClass(att.required)} " ${getMaxLen(att.maxLen)}>
+							</div>	
 							</#if>
 		  				  <#else>
 							<div id="groupInput${firstUpper(att.name)}" class="form-group col-sm-	col-md-	col-lg-  ">
