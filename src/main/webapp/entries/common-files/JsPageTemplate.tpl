@@ -1,14 +1,11 @@
 /* generated: ${.now} */
 define(function(require) {
-	var _ = require('adapters/underscore-adapter');
-	var $ = require('adapters/jquery-adapter');
-	var Backgrid = require('adapters/backgrid-adapter');
 	var util = require('utilities/utils');
 	var JSetup = require('views/components/JSetup');
+
 	var JSetupView = require('views/core/JSetupView');
 	
 	var ${entity.name}Model = require('models/${entity.name}Model');
-	var ${entity.name}Collection = require('collections/${entity.name}Collection');
 	var ${entity.name}PageCollection = require('collections/${entity.name}PageCollection');
 	var Page${entity.name}Template = require('text!views/${firstLower(entity.name)}/tpl/Page${entity.name}Template.html');
 
@@ -46,9 +43,8 @@ define(function(require) {
 		template : _.template(Page${entity.name}Template),
 
 		regions : {
-			gridRegion : '#grid',
-			counterRegion : '#counter',
-			paginatorRegion : '#paginator',
+			dataTable${firstUpper(entity.name)}Region : '.datatable-${firstLower(entity.name)}',
+
 			<#if entity.relationships??>	
 			<#list entity.relationships as rel >
 				<#if rel.viewApproach.type == 'modal'>
@@ -59,18 +55,18 @@ define(function(require) {
 		},
 		
 		events : {
-			'click 	#reset' : 'reset${firstUpper(entity.name)}',			
+			'click 	.reset-button' : 'reset${firstUpper(entity.name)}',			
 			<#if entity.relationships??>	
 			<#list entity.relationships as rel >
 				<#if rel.viewApproach.type == 'modal'>
-			'click #search${firstUpper(rel.name)}Modal' : 'showModal${firstUpper(rel.name)}',
+			'click .search-${firstLower(rel.name)}-modal' : 'showModal${firstUpper(rel.name)}',
 				</#if>
 			</#list>
 			</#if>
 			'keypress' : 'treatKeypress',
 			
 			'click 	.search-button' : 'search${firstUpper(entity.name)}',
-			'click .show-advanced-search-button' : 'toggleAdvancedForm',
+			'click  .show-advanced-search-button' : 'toggleAdvancedForm',
 		},
 		
 		
@@ -113,49 +109,16 @@ define(function(require) {
 			advancedSearchForm : '.advanced-search-form',
 		},
 		
-		toggleAdvancedForm : function() {
-			this.ui.advancedSearchForm.slideToggle("slow");
-		},
-
-		
-		treatKeypress : function (e){
-		    if (util.enterPressed(e)) {
-	    		e.preventDefault();
-	    		this.search${firstUpper(entity.name)}();
-	    	}
-		},
-
 		initialize : function() {
 			var that = this;
 
 			this.${firstLower(entity.name)}s = new ${entity.name}PageCollection();
 
-			this.grid = new Backgrid.Grid({
-				className : 'table backgrid table-striped table-bordered table-hover dataTable no-footer  ',
+			this.dataTable${firstUpper(entity.name)} = new JSetup.DataTable({
 				columns : this.getColumns(),
-				emptyText : "Sem registros",
 				collection : this.${firstLower(entity.name)}s
 			});
 
-			this.counter = new JSetup.Counter({
-				collection : this.${firstLower(entity.name)}s,
-			});
-
-			this.paginator = new Backgrid.Extension.Paginator({
-				columns : this.getColumns(),
-				collection : this.${firstLower(entity.name)}s,
-				className : ' paging_simple_numbers',
-				uiClassName : 'pagination',
-			});
-
-			this.${firstLower(entity.name)}s.getFirstPage({
-				success : function(_col, _resp, _opts) {
-					console.info('Primeira pagina do grid ${firstLower(entity.name)}');
-				},
-				error : function(_col, _resp, _opts) {
-					console.error(_resp.responseText || (_resp.getResponseHeader && _resp.getResponseHeader('exception')) );
-				}
-			});
 		<#if entity.relationships??>	
 		<#list entity.relationships as rel >
 			<#if rel.showInPages >
@@ -170,9 +133,7 @@ define(function(require) {
 		</#list>
 		</#if>
 			this.on('show', function() {
-				that.gridRegion.show(that.grid);
-				that.counterRegion.show(that.counter);
-				that.paginatorRegion.show(that.paginator);
+			   that.dataTable${firstUpper(entity.name)}Region.show(that.dataTable${firstUpper(entity.name)});
 		<#if entity.relationships??>	
 		<#list entity.relationships as rel >
 			<#if rel.showInPages >		
@@ -424,6 +385,18 @@ define(function(require) {
 			</#if>
 		</#list>
 		</#if>
+		
+		// adictional functions
+		toggleAdvancedForm : function() {
+			this.ui.advancedSearchForm.slideToggle("slow");
+		},
+
+		treatKeypress : function(e) {
+			if (util.enterPressed(e)) {
+				e.preventDefault();
+				this.searchFuncionario();
+			}
+		},
 	});
 
 	return Page${entity.name};

@@ -30,7 +30,7 @@
 										Novo Registro
 									</a>
 									&nbsp; &nbsp; &nbsp;
-									<a href="javascript:void(0)" id="reset" class="btn reset" >Limpar</a>
+									<a href="javascript:void(0)"  class="btn reset reset-button" >Limpar</a>
 								</div>
 								<div class="col-sm-6">
 									<#list entity.basicSearches as basicAttr>
@@ -131,7 +131,7 @@
 											<#if rel.viewApproach.textField??>							
 											<input id="input${firstUpper(rel.name)}${firstUpper(rel.viewApproach.textField)}" placeholder="Pesquise pelo ${firstUpper(rel.displayName)}"  type="text" class="form-control append-left" />
 											</#if>
-											<div class="input-group-addon append-right" id="search${firstUpper(rel.name)}Modal" data-toggle="modal">
+											<div class="input-group-addon append-right search-${firstLower(rel.name)}-modal" data-toggle="modal">
 												<span class="fa fa-search"></span>
 											</div>
 										</div>
@@ -153,21 +153,8 @@
 							</div>
 							</div>
 						</#if>
-							<div id="counter" class="pull-left"></div>
-							<div class="row center">
-								<div class="col-xs-12">
-									<div class="widget-box transparent ">
-										<div class="widget-body">
-											<div class="widget-main padding-0">
-												<div id="messages_div"></div>
-												<div id="grid" class="table-responsive"></div>
-												<div class="row">
-													<div id="paginator" class=""></div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
+							<div class="center">
+									<div  class="datatable-${firstLower(entity.name)} "></div>
 							</div>
 						</div>
 					</form>
