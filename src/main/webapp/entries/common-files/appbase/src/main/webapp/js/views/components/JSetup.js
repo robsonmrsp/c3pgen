@@ -10,13 +10,15 @@ define(function(require) {
 	var util = require('utilities/utils');
 	var GridTemplate = require('text!views/components/tpl/GridTemplate.html');
 
+	var Combobox = require('views/components/Combobox');
+	var InputUpload = require('views/components/InputUpload');
+
 	var Counter = Marionette.ItemView.extend({
 		initialize : function(options) {
 			var collection = this.collection;
 			this.listenTo(collection, "add", this.render);
 			this.listenTo(collection, "remove", this.render);
 			this.listenTo(collection, "reset", this.render);
-
 		},
 
 		render : function() {
@@ -152,8 +154,36 @@ define(function(require) {
 			return this;
 		}
 	});
+	var EntityCell = Backgrid.Cell.extend({
+		editor : Backgrid.CellEditor,
+		className : 'general-string-cell',
+		fieldName : '',
+		/**
+		 * Tipos de botão : default primary success info warning danger
+		 */
+		render : function() {
+			var that = this;
+			this.$el.empty();
+			if (this.fieldName) {
+				var fields = this.fieldName.split('.')
+
+				if (fields.length > 1) {
+					if (this.model.get(fields[0]))
+						that.$el.append(this.model.get(fields[0])[fields[1]])
+				} else {
+					that.$el.append(this.model.get(fields[0]));
+				}
+			}
+			this.delegateEvents();
+			return this;
+		}
+	});
 
 	var JSetup = {
+
+		Counter : Counter,
+		Combobox : Combobox,
+
 		MoneyCell : NumericCell.extend({
 			type : 'money'
 		}),
@@ -172,7 +202,11 @@ define(function(require) {
 
 		ActionCell : GeneralCell,
 
+		EntityCell : EntityCell,
+
 		DataTable : DataTable,
+
+		InputUpload : InputUpload,
 
 	}
 	return JSetup;

@@ -242,6 +242,7 @@ define(function(require) {
 			{
 				name : "${att.name}",
 				sortable : true,
+				editable : true,
 				label 	 : "${firstUpper(att.displayName)!firstUpper(att.name)}",
 				<#if att.inputAs == 'percent'>
 				cell : JSetup.PercentCell,

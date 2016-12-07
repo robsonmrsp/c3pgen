@@ -272,6 +272,7 @@ define(function(require) {
 			{
 				name : "${att.name}",
 				sortable : true,
+				editable : false,
 				label 	 : "${firstUpper(att.displayName)!firstUpper(att.name)}",
 				<#if att.inputAs == 'percent'>
 				cell : JSetup.PercentCell,
@@ -289,9 +290,10 @@ define(function(require) {
 					<#if rel.viewApproach.type == 'modal'>
 			{
 				name : "${firstLower(rel.name)}.${rel.viewApproach.textField}",
+				editable : false,  
 				sortable : true,  
 				label : "${rel.displayName}",
-				cell : JSetup.CustomStringCell.extend({
+				cell : JSetup.EntityCell.extend({
 					fieldName : '${firstLower(rel.name)}.${rel.viewApproach.textField}',
 				}),
 			},	
@@ -299,9 +301,10 @@ define(function(require) {
 					<#if rel.viewApproach.type == 'combo'>
 			{
 				name : "${firstLower(rel.name)}.${rel.viewApproach.comboVal}",
+				editable : false,
 				sortable : true,  
 				label : "${rel.displayName}",
-				cell : JSetup.CustomStringCell.extend({
+				cell : JSetup.EntityCell.extend({
 					fieldName : '${firstLower(rel.name)}.${rel.viewApproach.comboVal}',
 				}),
 			},	
