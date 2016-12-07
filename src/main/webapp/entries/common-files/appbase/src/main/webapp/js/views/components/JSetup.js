@@ -65,8 +65,10 @@ define(function(require) {
 			}
 
 			this.grid = new Backgrid.Grid({
+				row : options.row,
 				className : options.gridClass || 'table backgrid table-striped table-bordered table-hover dataTable no-footer  ',
 				columns : options.columns || [],
+
 				emptyText : options.emptyText || "Sem registros",
 				collection : options.collection
 			});

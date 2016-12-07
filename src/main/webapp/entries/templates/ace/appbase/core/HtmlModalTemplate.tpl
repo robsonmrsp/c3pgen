@@ -98,15 +98,8 @@
 				<div class="row">
 				<div class="col-xs-12">
 					<h3 class="header smaller lighter blue">Resultados</h3>
-					<div class="divTableResults" id="resultado${firstUpper(entity.name)}Div" >
-						<div id="sample-table-2_wrapper" class="dataTables_wrapper form-inline no-footer">
-							<div id="messages_div"></div>
-							<div id="grid-${firstLower(entity.name)}" class="grid-${firstLower(entity.name)} table-responsive"></div>
-							<div class="">
-								<div id="counter-${firstLower(entity.name)}" class="counter-${firstLower(entity.name)} pull-left"></div>
-								<div id="paginator-${firstLower(entity.name)}" class="paginator-${firstLower(entity.name)} pull-right"></div>
-							</div>
-						</div>
+					<div class="center">
+						<div  class="datatable-${firstLower(entity.name)} "></div>
 					</div>
 				</div>
 				</div>
@@ -115,4 +108,5 @@
 		</div>
 	</div>
 </div>
+
 

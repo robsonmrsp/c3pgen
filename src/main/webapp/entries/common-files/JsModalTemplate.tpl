@@ -1,13 +1,10 @@
 /* generated: ${.now} */
 define(function(require) {
-	var _ = require('adapters/underscore-adapter');
-	var $ = require('adapters/jquery-adapter');
+
 	var util = require('utilities/utils');
 
 	var JSetup = require('views/components/JSetup');
 	var JSetupView = require('views/core/JSetupView');
-
-	var Combobox = require('views/components/Combobox');
 
 	var ${entity.name}Modal = require('text!views/modalComponents/tpl/${entity.name}ModalTemplate.html');
 	var ${entity.name}PageCollection = require('collections/${entity.name}PageCollection');
@@ -53,9 +50,7 @@ define(function(require) {
 		},
 
 		regions : {
-			counterRegion : 	'.counter-${firstLower(entity.name)}',
-			gridRegion : 		'.grid-${firstLower(entity.name)}',
-			paginatorRegion : 	'.paginator-${firstLower(entity.name)}',
+			dataTable${firstUpper(entity.name)}Region : '.datatable-${firstLower(entity.name)}',
 		},
 
 		ui : {
@@ -104,32 +99,16 @@ define(function(require) {
 			this.${firstLower(entity.name)}Collection.on('fetching', this.startFetch, this);
 			this.${firstLower(entity.name)}Collection.on('fetched', this.stopFetch, this);
 
-			this.grid = new Backgrid.Grid({
+			this.dataTable${firstUpper(entity.name)} = new JSetup.DataTable({
 				row : JSetup.RowClick,
-				className : 'table backgrid table-striped table-bordered table-hover dataTable no-footer  ',
-				columns : this.getColumns(),
-				emptyText : "Sem registros",
-				collection : this.${firstLower(entity.name)}Collection,
-				emptyText : "Sem registros para exibir."
-
-			});
-			
-			this.counter = new JSetup.Counter({
-				collection : this.${firstLower(entity.name)}Collection ,
-			});
-			
-
-			this.paginator = new Backgrid.Extension.Paginator({
 				columns : this.getColumns(),
 				collection : this.${firstLower(entity.name)}Collection,
-				className : 'dataTables_paginate paging_simple_numbers',
-				uiClassName : 'pagination',
 			});
+			
 
 			this.on('show', function() {
-				that.gridRegion.show(that.grid);
-				that.counterRegion.show(that.counter);
-				that.paginatorRegion.show(that.paginator);
+				
+				that.dataTable${firstUpper(entity.name)}Region.show(this.dataTable${firstUpper(entity.name)});
 		 <#list entity.attributes as att>
 	   	   <#if att.showInPages >
 			  <#if att.inputAs == 'cpf' >
@@ -242,7 +221,7 @@ define(function(require) {
 			{
 				name : "${att.name}",
 				sortable : true,
-				editable : true,
+				editable : false,
 				label 	 : "${firstUpper(att.displayName)!firstUpper(att.name)}",
 				<#if att.inputAs == 'percent'>
 				cell : JSetup.PercentCell,
