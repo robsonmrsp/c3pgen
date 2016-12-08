@@ -144,7 +144,7 @@ define([ 'jquery', 'bootbox', 'bootstrap', 'jqueryScrollTo', 'jqueryValidatorEng
 			"clearIncomplete" : true
 		});
 	}
-	$.fn.telefone = function(places) {
+	$.fn.fone = function(places) {
 
 		this.inputmask({
 			mask : [ '(99) 9999-9999', '(99) 99999-9999' ],

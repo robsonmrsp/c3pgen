@@ -14,6 +14,7 @@ import ${application.rootPackage}.model.Client;
 
 import ${application.rootPackage}.model.${entity.name};
 import ${application.rootPackage}.persistence.Dao${entity.name};
+import ${application.rootPackage}.model.filter.Filter${entity.name};
 
 import ${application.corePackage}.persistence.pagination.Pager;
 import ${application.corePackage}.persistence.pagination.Pagination;
@@ -76,6 +77,12 @@ public class ${entity.name}ServiceImp implements ${entity.name}Service {
 	@Override
 	public List<${entity.name}> filter(PaginationParams paginationParams) {
 		List<${entity.name}> list = dao${entity.name}.filter(paginationParams);
+		return list;
+	}
+	
+	@Override
+	public List<${entity.name}> filter(Filter${entity.name} filter${entity.name}) {
+		List<${entity.name}> list = dao${entity.name}.filter(filter${entity.name});
 		return list;
 	}
 	

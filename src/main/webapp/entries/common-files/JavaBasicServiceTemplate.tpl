@@ -6,6 +6,8 @@ import org.joda.time.LocalDateTime;
 import ${application.rootPackage}.model.Client;
 </#if>
 import ${application.rootPackage}.model.${entity.name};
+import ${application.rootPackage}.model.filter.Filter${entity.name};
+
 import ${application.corePackage}.persistence.pagination.Pager;
 import ${application.corePackage}.persistence.pagination.PaginationParams;
 /**
@@ -27,8 +29,9 @@ public interface ${entity.name}Service {
 	List<${entity.name}> filter(PaginationParams paginationParams, Client owner);
 	
 	Pager<${entity.name}> all(PaginationParams paginationParams, Client owner);
-	
 	</#if>
+	List<${entity.name}> filter(Filter${entity.name} filter${entity.name});
+	
 	List<${entity.name}> filter(PaginationParams paginationParams);
 	
 	List<${entity.name}> search(String searchText);
@@ -36,6 +39,7 @@ public interface ${entity.name}Service {
 	${entity.name} save(${entity.name} entity);
 
 	${entity.name} update(${entity.name} entity);
+	
     List<${entity.name}> last(LocalDateTime lastSyncDate);		
 
 	Boolean delete(Integer id);
