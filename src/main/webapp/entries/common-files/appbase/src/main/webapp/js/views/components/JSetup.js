@@ -180,9 +180,18 @@ define(function(require) {
 			return this;
 		}
 	});
+	var RowClick = Backgrid.Row.extend({
+		className : 'custom-row-click',
+		render : function() {
+			RowClick.__super__.render.apply(this, arguments);
+			this.$el.data('model', this.model);
+			return this;
+		}
+	});
 
 	var JSetup = {
 
+		RowClick : RowClick,
 		Counter : Counter,
 		Combobox : Combobox,
 
