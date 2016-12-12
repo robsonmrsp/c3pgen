@@ -47,9 +47,9 @@ public class Util {
 	}
 
 	public static String currentDir() {
-//		 return currentDir;
+		return currentDir;
 
-		return templateFolder();
+		// return templateFolder();
 	}
 
 	private static String currentDir = Paths.get(".").toAbsolutePath().toString();
@@ -137,7 +137,7 @@ public class Util {
 		try {
 			firstChar = verb.substring(0, 1).toUpperCase() + verb.substring(1);
 		} catch (Exception e) {
-//			e.printStackTrace();
+			// e.printStackTrace();
 		}
 		return firstChar;
 	}
@@ -289,14 +289,14 @@ public class Util {
 	}
 
 	public static String firstLowerCase(String verb) {
-		
-		try{
+
+		try {
 			String string = verb.substring(0, 1).toLowerCase() + verb.substring(1);
 			return string;
-		}catch (Exception e) {
+		} catch (Exception e) {
 
 		}
-		
+
 		return "";
 	}
 
@@ -552,6 +552,16 @@ public class Util {
 			return "";
 		}
 		return len;
+	}
+
+	public static boolean entityContainsAttribute(ApplicationEntity ent, String textField) {
+		List<Attribute> attributes = ent.getAttributes();
+		for (Attribute attribute : attributes) {
+			if (attribute.getName().equals(textField)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 }

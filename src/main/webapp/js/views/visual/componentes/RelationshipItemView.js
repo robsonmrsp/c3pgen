@@ -85,7 +85,7 @@ define(function(require) {
 				type : C3P.notEmptyVal(this.ui.inputType),
 				displayName : C3P.notEmptyVal(this.ui.inputDisplayName),
 				model : C3P.notEmptyVal(this.ui.inputModel),
-//				ownerName : C3P.notEmptyVal(this.ui.inputOwnerName),
+				// ownerName : C3P.notEmptyVal(this.ui.inputOwnerName),
 				uniDirecional : this.ui.inputUniDirecional.is(':checked'),
 				viewApproach : {
 					id : this.ui.inputViewApproachId.val(),
@@ -136,6 +136,16 @@ define(function(require) {
 				this.ui.inputRelationshipName.on('hidden', function() {
 					util.refreshEditable(that.ui.inputDisplayName, util.toFrase(that.ui.inputRelationshipName.text()));
 				});
+
+				this.ui.inputTextField.on('hidden', function(evt) {
+					var modelName = that.ui.inputModel.val();
+					var attributeName = that.ui.inputTextField.text();
+					
+					var existeAttributo = util.attributeExists(modelName, attributeName);
+
+					console.log('Validando a info a exibir no modal ou combo-> ' + existeAttributo);
+				});
+
 				this.ui.inputModel.on('hidden', function() {
 				});
 

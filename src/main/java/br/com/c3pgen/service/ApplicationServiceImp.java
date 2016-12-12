@@ -12,6 +12,9 @@ import org.apache.log4j.Logger;
 import org.joda.time.LocalDateTime;
 import org.springframework.transaction.annotation.Transactional;
 
+import br.com.c3pgen.base.ApplicationValidator;
+import br.com.c3pgen.base.GenService;
+import br.com.c3pgen.base.GenerateFileInfo;
 import br.com.c3pgen.model.Application;
 import br.com.c3pgen.model.ApplicationEntity;
 import br.com.c3pgen.model.ApplicationRelationship;
@@ -41,9 +44,10 @@ public class ApplicationServiceImp implements ApplicationService {
 	RelationshipService relationshipService;
 	@Inject
 	TheEntityService entityService;
-	
+
+	ApplicationValidator appValidator = new ApplicationValidator();
 	@Inject
-	ApplicationRelationshipService  applicationRelationshipService;
+	ApplicationRelationshipService applicationRelationshipService;
 
 	@Override
 	public Application get(Integer id) {
@@ -99,10 +103,12 @@ public class ApplicationServiceImp implements ApplicationService {
 	}
 
 	@Override
-	public Application save(Application application) {
-		
+	public GenerateFileInfo save(Application application) {
+		GenerateFileInfo generateFileInfo = new GenerateFileInfo();
+		GenService genService = new GenService();
+
 		applicationRelationshipService.removeAllByApplication(application);
-		
+
 		List<ApplicationEntity> entities = application.getEntities();
 		for (ApplicationEntity entity : entities) {
 			entityService.save(entity);
@@ -112,7 +118,12 @@ public class ApplicationServiceImp implements ApplicationService {
 			relationshipService.save(applicationRelationship.getSource());
 			relationshipService.save(applicationRelationship.getTarget());
 		}
-		return daoApplication.save(application);
+		Application save = daoApplication.save(application);
+		generateFileInfo.setApplication(save);
+
+		generateFileInfo.setApplicationValidatorMessages(genService.validate(save));
+
+		return generateFileInfo;
 	}
 
 	@Override
@@ -144,9 +155,9 @@ public class ApplicationServiceImp implements ApplicationService {
 		// options.addExclusionColumnNamePatterns("(.*)user_change(.*)");
 		// options.addExclusionColumnNamePatterns("(.*)user_create(.*)");
 		//
-		 options.addExclusionTableNamePatterns("(.*)AUD", "(.*)aud");
-		 options.addExclusionTableNamePatterns("public.RBAC(.*)", "public.Rbac(.*)", "public.rbac(.*)");
-		 options.addExclusionTableNamePatterns("(.*)AUD", "(.*)aud", "(.*)revinfo(.*)");
+		options.addExclusionTableNamePatterns("(.*)AUD", "(.*)aud");
+		options.addExclusionTableNamePatterns("public.RBAC(.*)", "public.Rbac(.*)", "public.rbac(.*)");
+		options.addExclusionTableNamePatterns("(.*)AUD", "(.*)aud", "(.*)revinfo(.*)");
 
 		options.setPrefixToSupress(supressPrefix);
 

@@ -30,12 +30,13 @@ public class GenService {
 
 	}
 
-	public ApplicationValidatorMessages Validate(Application application) throws Exception {
+	public ApplicationValidatorMessages validate(Application application)  {
 		ApplicationValidator appValidator = new ApplicationValidator();
+		Application fixApplication = fixApplication(application);
 		GenerateFileInfo fileInfo = new GenerateFileInfo();
 		LOGGER.info("Validando arquivo de entidades...");
 
-		ApplicationValidatorMessages validateMessages = appValidator.validate(application);
+		ApplicationValidatorMessages validateMessages = appValidator.validate(fixApplication);
 		LOGGER.info("Finalizada a validação....");
 
 		return validateMessages;
@@ -64,7 +65,7 @@ public class GenService {
 		return role;
 	}
 
-	public GenerateFileInfo generate(Modulo modulo, String ... exceptions) throws Exception {
+	public GenerateFileInfo generate(Modulo modulo, String... exceptions) throws Exception {
 
 		Application newApplication = Util.getApplicationFrom(modulo);
 

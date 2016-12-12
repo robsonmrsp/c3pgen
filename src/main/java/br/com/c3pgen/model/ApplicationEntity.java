@@ -31,7 +31,10 @@ public class ApplicationEntity extends AbstractTimestampEntity {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "THEENTITY_SEQUENCE")
 	private Integer id;
 
+	@Column(name = "POS_X")
 	private Integer posX;
+
+	@Column(name = "POS_Y")
 	private Integer posY;
 
 	@Column(name = "NAME")
@@ -251,7 +254,7 @@ public class ApplicationEntity extends AbstractTimestampEntity {
 				return retAttr;
 			}
 		}
-		
+
 		if (retAttr.size() == 0 && getAttributes().size() > 0) {
 			retAttr.add(getAttributes().get(0));
 		}

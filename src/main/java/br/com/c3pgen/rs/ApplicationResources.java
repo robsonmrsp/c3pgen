@@ -214,7 +214,7 @@ public class ApplicationResources {
 
 			Application application = applicationService.get(id);
 
-			ApplicationValidatorMessages validate = genService.Validate(application);
+			ApplicationValidatorMessages validate = genService.validate(application);
 
 			if (validate.isEmpty()) {
 				response = Response.ok(Boolean.TRUE).build();
@@ -294,8 +294,8 @@ public class ApplicationResources {
 
 			Application application = Parser.toEntity(jsonApplication);
 			application.setOwner(context.getCurrentUser().getOwner());
-			application = applicationService.save(application);
-			return Response.ok().entity(Parser.toJson(application)).build();
+			GenerateFileInfo save = applicationService.save(application);
+			return Response.ok().entity(Parser.toJson(save.getApplication())).build();
 		} catch (ValidationException e) {
 			String message = String.format("Não foi possivel salvar  o registro [ %s ] parametros [ %s ]", e.getOrigem().getMessage(), jsonApplication.toString());
 			LOGGER.error(message, e.getOrigem());
@@ -317,9 +317,9 @@ public class ApplicationResources {
 
 			application.setOwner(context.getCurrentUser().getOwner());
 
-			application = applicationService.save(application);
+			GenerateFileInfo generateFileInfo = applicationService.save(application);
 
-			return Response.ok().entity(Parser.toJson(application)).build();
+			return Response.ok().entity(Parser.toJson(generateFileInfo)).build();
 
 		} catch (ValidationException e) {
 			String message = String.format("Não foi possivel salvar  o registro [ %s ] parametros [ %s ]", e.getOrigem().getMessage(), jsonApplication.toString());

@@ -387,7 +387,8 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 		 */
 		breadcrumb : function(itemMenu) {
 			if (itemMenu) {
-				var content = "<ul class='breadcrumb'>" + "	<li>" + "		<i class='fa " + itemMenu.iconClass + " '></i>" + "		<a href='#" + itemMenu.url + " '> &nbsp; " + itemMenu.itemLabel + "</a>" + "	</li>" + "	<li class='active realce-breadcumb'>" + itemMenu.itemSubFolderName + "</li>" + "</ul>";
+				var content = "<ul class='breadcrumb'>" + "	<li>" + "		<i class='fa " + itemMenu.iconClass + " '></i>" + "		<a href='#" + itemMenu.url + " '> &nbsp; " + itemMenu.itemLabel + "</a>" + "	</li>" + "	<li class='active realce-breadcumb'>" + itemMenu.itemSubFolderName
+						+ "</li>" + "</ul>";
 				$('#breadcrumbs').html(content);
 			}
 		},
@@ -397,7 +398,7 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 			container.append(view.render().el);
 			Marionette.triggerMethod.call(view, "show");
 		},
-		
+
 		removeView : function(container, view) {
 			container.remove(view.render().el);
 			Marionette.triggerMethod.call(view, "remove");
@@ -661,6 +662,23 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 
 			return ret;
 		},
+
+		attributeExists : function(nomeEntidade, nomeAtributo) {
+			var retorno = false;
+			var attributes = this.getAtributes(nomeEntidade);
+			_.each(attributes, function(attr) {
+				if (attr.name === nomeAtributo) {
+					retorno = true;
+				}
+			})
+			return retorno;
+		},
+
+		getAtributes : function(/* nome da entidade */name) {
+			var entity = this.getBEntityByName(name);
+			return entity.get('attributes');
+		},
+
 		getBEntityByName : function(/* nome da entidade */name) {
 			var bEnt = null;
 			_.each(this.getBEntities(), function(bEntity) {
@@ -696,7 +714,7 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 			var numberCount = [];
 			var sum = 0
 			for (index = 0; index < len; index++) {
-				sum+=number[index];
+				sum += number[index];
 				var newNumbers = numbers;
 				var countRep = 0;
 				for (index2 = 0; index2 < len; index2++) {
@@ -705,18 +723,18 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 					}
 				}
 				if (countRep > 1) {
-					numberCount.push([number[index], countRep])
+					numberCount.push([ number[index], countRep ])
 				}
 			}
-			
+
 			var minNumber = sum;
 			for (index = 0; index < numberCount.length; index++) {
 				var arNum = numberCount[index];
-				if(arNum[0] < minNumber  ){
+				if (arNum[0] < minNumber) {
 					minNumber = arNum[0];
 				}
 			}
-			
+
 			return minNumber;
 		}
 	};

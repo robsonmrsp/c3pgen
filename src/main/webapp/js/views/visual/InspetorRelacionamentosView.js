@@ -104,9 +104,9 @@ define(function(require) {
 				var modalTextFieldName = objectJson.viewApproach.comboVal;
 
 				if (!modalTextFieldName) {
-					util.showMessage('warning', 'Deve escolher um atributo de ' + objectJson.model + ' para exibir no combobox', 'message-relation-inspector');
+					util.showMessage('error', 'Deve escolher um atributo de ' + objectJson.model + ' para exibir no combobox', 'message-relation-inspector');
 				} else if (!util.BEntityContainsAttribute(objectJson.model, modalTextFieldName)) {
-					util.showMessage('warning', 'Deve escolher um atributo de ' + objectJson.model + ' para exibir no combobox. "' + modalTextFieldName + '" não é atributo de ' + objectJson.model, 'message-relation-inspector');
+					util.showMessage('error', 'Deve escolher um atributo de ' + objectJson.model + ' para exibir no combobox. "' + modalTextFieldName + '" não é atributo de ' + objectJson.model, 'message-relation-inspector');
 				}
 
 			}
@@ -116,9 +116,9 @@ define(function(require) {
 				var modalTextFieldName = objectJson.viewApproach.textField;
 
 				if (!modalTextFieldName) {
-					util.showMessage('warning', 'Deve escolher um atributo de ' + objectJson.model + ' para exibir no modal', 'message-relation-inspector');
+					util.showMessage('error', 'Deve escolher um atributo de ' + objectJson.model + ' para exibir no modal', 'message-relation-inspector');
 				} else if (!util.BEntityContainsAttribute(objectJson.model, modalTextFieldName)) {
-					util.showMessage('warning', 'Deve escolher um atributo de ' + objectJson.model + ' para exibir no modal. "' + modalTextFieldName + '" não é atributo de ' + objectJson.model, 'message-relation-inspector');
+					util.showMessage('error', 'Deve escolher um atributo de ' + objectJson.model + ' para exibir no modal. "' + modalTextFieldName + '" não é atributo de ' + objectJson.model, 'message-relation-inspector');
 				}
 			}
 
@@ -182,7 +182,7 @@ define(function(require) {
 			this.on('show', function() {
 				this.sourceRegion.show(this.sourceView);
 				this.targetRegion.show(this.targetView);
-				this.showHide();
+//				this.showHide();
 			});
 		},
 		showHide : function() {
