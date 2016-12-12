@@ -1,6 +1,5 @@
 /* generated: 30/08/2015 20:23:12 */
 
-
 //ver esse link:
 //	http://jointjs.com/demos/routing
 define(function(require) {
@@ -12,17 +11,16 @@ define(function(require) {
 	var VisualEntity = Joint.shapes.basic.Generic.extend({
 
 		markup : [ '<g class="rotatable">',//
-		           '<g class="scalable">',// 
-		           			'<rect class="uml-class-name-rect"/> ',//
-		           			'<rect class="uml-class-attrs-rect"/>',//
-		           			'<rect class="uml-class-relationships-rect"/>',// 
-		           		'</g>',//
-		           		'<text class="uml-class-name-text"/>',//
-		           		'<text class="uml-class-attrs-text"/>',//
-		           		'<text class="uml-class-relationships-text"/>',// 
-		           	'</g>',
-		           	'<div class="uml-class-point-relation-css"> </div>'//
-		           		].join(''),
+		'<g class="scalable">',// 
+		'<rect class="uml-class-name-rect"/> ',//
+		'<rect class="uml-class-attrs-rect"/>',//
+		'<rect class="uml-class-relationships-rect"/>',// 
+		'</g>',//
+		'<text class="uml-class-name-text"/>',//
+		'<text class="uml-class-attrs-text"/>',//
+		'<text class="uml-class-relationships-text"/>',// 
+		'</g>', '<div class="uml-class-point-relation-css"> </div>'//
+		].join(''),
 
 		defaults : Joint.util.deepSupplement({
 
@@ -33,7 +31,6 @@ define(function(require) {
 					'width' : 200
 				},
 
-				
 				'.uml-class-name-rect' : {
 					fill : '#ff8450',
 					'max-height' : '45px',
@@ -150,9 +147,8 @@ define(function(require) {
 			this.mapRelationships = new Col.Map();
 
 			this.entity.set(opt.entity.attributes);
-			
+
 			this.entity
-			
 
 			this.on('cell:pointerclick', function(a, b, c) {
 
@@ -192,7 +188,7 @@ define(function(require) {
 				text : this.get('attributes')
 			}, {
 				type : 'relationships',
-				text : this.get('relationships') 
+				text : this.get('relationships')
 			} ];
 
 			var offsetY = 0;

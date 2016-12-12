@@ -236,6 +236,10 @@ define(function(require) {
 			});
 		},
 		loadApplication : function(application, clean) {
+
+			globalVisualEntities.clear();
+			globalVisualRelations.clear();
+
 			var that = this;
 			if (clean) {
 				globalVisualEntities.clear();
@@ -383,13 +387,18 @@ define(function(require) {
 			this.application.set('applicationRelationships', applicationRelationshipCollection.toJSON());
 
 			this.application.save({}, {
-				success : function(_application, _resp, _opt) {
+				success : function(generateFileInfo, _resp, _opt) {
+					var messages = generateFileInfo.get('applicationValidatorMessages');
+					var application = generateFileInfo.get('application');
 					that.graph.clear();
 					// TODO quando estivermos desenhando TUDO com canvas iremos
 					// remover essa linha
 					$('.html-element').remove()
-					that.loadApplication(_application, true);
-					that.validateApplication();
+					that.loadApplication(new ApplicationModel(application), true);
+
+					if (messages.messages && messages.messages.length > 0) {
+						that.modalError.showMessage(messages.messages);
+					}
 				},
 				error : function(_coll, _resp, _opt) {
 					console.error('erro ao salvar: ', _coll.toJSON());

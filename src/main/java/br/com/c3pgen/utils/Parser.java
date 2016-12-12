@@ -9,6 +9,7 @@ import org.joda.time.LocalDateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
+import br.com.c3pgen.base.GenerateFileInfo;
 import br.com.c3pgen.json.JsonApplication;
 import br.com.c3pgen.json.JsonApplicationRelationship;
 import br.com.c3pgen.json.JsonAttribute;
@@ -20,6 +21,7 @@ import br.com.c3pgen.json.JsonClient;
 import br.com.c3pgen.json.JsonCliente;
 import br.com.c3pgen.json.JsonEndereco;
 import br.com.c3pgen.json.JsonEstado;
+import br.com.c3pgen.json.JsonGenerateFileInfo;
 import br.com.c3pgen.json.JsonItem;
 import br.com.c3pgen.json.JsonItemModulo;
 import br.com.c3pgen.json.JsonItemType;
@@ -1952,6 +1954,20 @@ public class Parser {
 			jsonModulos.add(toJson(modulo));
 		}
 		return jsonModulos;
+	}
+
+	public static JsonGenerateFileInfo toJson(GenerateFileInfo save) {
+		// TODO Auto-generated method stub
+
+		JsonGenerateFileInfo generateFileInfo = new JsonGenerateFileInfo();
+
+		generateFileInfo.setApplication(toJson(save.getApplication()));
+		generateFileInfo.setApplicationValidatorMessages(save.getApplicationValidatorMessages());
+		generateFileInfo.setGenerateSuccess(save.getGenerateSuccess());
+		generateFileInfo.setRealFilePath(save.getRealFilePath());
+		generateFileInfo.setStaticFilePath(save.getStaticFilePath());
+
+		return generateFileInfo;
 	}
 
 }

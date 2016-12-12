@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.joda.time.LocalDateTime;
 
+import br.com.c3pgen.base.GenerateFileInfo;
 import br.com.c3pgen.model.Application;
 import br.com.c3pgen.model.Client;
 import br.com.c3pgen.persistence.pagination.Pager;
@@ -33,7 +34,7 @@ public interface ApplicationService {
 
 	List<Application> search(String searchText);
 
-	Application save(Application entity);
+	GenerateFileInfo save(Application entity);
 
 	Application update(Application entity);
 

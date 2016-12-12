@@ -1,11 +1,14 @@
 package br.com.c3pgen.base;
 
+import br.com.c3pgen.model.Application;
+
 public class GenerateFileInfo {
 
 	private ApplicationValidatorMessages applicationValidatorMessages;
 	private String realFilePath;
 	private String staticFilePath;
 	private Boolean generateSuccess;
+	private Application application;
 
 	public String getRealFilePath() {
 		return realFilePath;
@@ -38,5 +41,13 @@ public class GenerateFileInfo {
 
 	public Boolean getGenerateSuccess() {
 		return generateSuccess != null ? generateSuccess : Boolean.FALSE;
+	}
+
+	public Application getApplication() {
+		return application;
+	}
+
+	public void setApplication(Application application) {
+		this.application = application;
 	}
 }

@@ -37,3 +37,4 @@ define(function(require) {
 
 	return Componente;
 })
+//ModalError

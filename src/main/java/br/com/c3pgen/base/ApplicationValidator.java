@@ -8,8 +8,10 @@ import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
+import br.com.c3pgen.base.util.Util;
 import br.com.c3pgen.model.Application;
 import br.com.c3pgen.model.Relationship;
+import br.com.c3pgen.model.ViewApproach;
 import br.com.c3pgen.model.ApplicationEntity;
 
 public class ApplicationValidator {
@@ -47,6 +49,40 @@ public class ApplicationValidator {
 			ApplicationEntity entityRel = null;
 			List<ApplicationEntity> listRelations = mapRelationshipsPerTheEntity.get(entity);
 
+			// // validação da escolha do textfield quando escolher o modal
+			// if (objectJson.viewApproach && objectJson.viewApproach.type ==
+			// 'modal') {
+			// var targetModel = util.getBEntityByName(objectJson.model);
+			// var modalTextFieldName = objectJson.viewApproach.textField;
+			//
+			// if (!modalTextFieldName) {
+			// util.showMessage('error', 'Deve escolher um atributo de ' +
+			// objectJson.model + ' para exibir no modal',
+			// 'message-relation-inspector');
+			// } else if (!util.BEntityContainsAttribute(objectJson.model,
+			// modalTextFieldName)) {
+			// util.showMessage('error', 'Deve escolher um atributo de ' +
+			// objectJson.model + ' para exibir no modal. "' +
+			// modalTextFieldName + '" não é atributo de ' + objectJson.model,
+			// 'message-relation-inspector');
+			// }
+			// }
+			//
+
+			for (Relationship main : entity.getRelationships()) {
+				if (main.getViewApproach() != null && main.getViewApproach().getType().equals("modal")) {
+					// var targetModel =
+					// util.getBEntityByName(objectJson.model);
+					ApplicationEntity ent = mapEntities.get(main.getName());
+
+					if (main.getViewApproach().getTextField() == null) {
+						applicationValidatorMessages.addMessage("Na entidade " + ent.getName() + ", no relacionamento " + main.getName() + " voce precisa definir um atributo de " + main.getModel() + " para exibir no campo de texto do modal");
+					} else if (!Util.entityContainsAttribute(entity, main.getViewApproach().getTextField())) {
+						applicationValidatorMessages.addMessage("Na entidade " + entity.getName() + ", no relacionamento " + main.getName() + " voce precisa definir um atributo de " + main.getModel() + " para exibir no campo de texto do modal. "
+								+ main.getViewApproach().getTextField() + " Não é tributo de " + entity.getName());
+					}
+				}
+			}
 			for (Relationship main : entity.getRelationships()) {
 				entityRel = mapEntities.get(main.getModel());
 
@@ -85,7 +121,7 @@ public class ApplicationValidator {
 							}
 						}
 						if (ownerNotFound) {
-							applicationValidatorMessages.addMessage("Erro analizando a entidade " + entityModel + ": Não existe o atributo/relacionamento de nome \"" + main.getOwnerName() + "\" na entidade \"" + entityModel
+							applicationValidatorMessages.addMessage("Erro analizando a entidade " + entityModel + " : Não existe o atributo/relacionamento de nome \"" + main.getOwnerName() + "\" na entidade \"" + entityModel
 									+ "\". Verifique o valor de 'ownerName' no relacionamento de nome  \"" + main.getName() + "\" na entidade  \"" + entity + "\"");
 						}
 					}
