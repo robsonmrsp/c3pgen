@@ -80,6 +80,7 @@ public class ViewApproach extends AbstractTimestampEntity {
 		approach.setType("textarea");
 		return approach;
 	}
+
 	public static ViewApproach check() {
 		ViewApproach approach = new ViewApproach();
 		approach.setType("check");
@@ -168,6 +169,9 @@ public class ViewApproach extends AbstractTimestampEntity {
 	}
 
 	public String getTextField() {
+		if (textField != null) {
+			return textField.trim();
+		}
 		return textField;
 	}
 
@@ -182,7 +186,5 @@ public class ViewApproach extends AbstractTimestampEntity {
 	public void setHiddenField(String hiddenField) {
 		this.hiddenField = hiddenField;
 	}
-
-	
 
 }

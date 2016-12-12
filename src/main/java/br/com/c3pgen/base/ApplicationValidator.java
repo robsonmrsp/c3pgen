@@ -68,18 +68,21 @@ public class ApplicationValidator {
 			// }
 			// }
 			//
+//			System.out.println("Validando a eentidade : " + entity.getName());
 
 			for (Relationship main : entity.getRelationships()) {
 				if (main.getViewApproach() != null && main.getViewApproach().getType().equals("modal")) {
 					// var targetModel =
 					// util.getBEntityByName(objectJson.model);
-					ApplicationEntity ent = mapEntities.get(main.getName());
+					ApplicationEntity ent = mapEntities.get(main.getModel());
 
 					if (main.getViewApproach().getTextField() == null) {
 						applicationValidatorMessages.addMessage("Na entidade " + ent.getName() + ", no relacionamento " + main.getName() + " voce precisa definir um atributo de " + main.getModel() + " para exibir no campo de texto do modal");
-					} else if (!Util.entityContainsAttribute(entity, main.getViewApproach().getTextField())) {
+					} else if (!Util.entityContainsAttribute(ent, main.getViewApproach().getTextField())) {
 						applicationValidatorMessages.addMessage("Na entidade " + entity.getName() + ", no relacionamento " + main.getName() + " voce precisa definir um atributo de " + main.getModel() + " para exibir no campo de texto do modal. "
-								+ main.getViewApproach().getTextField() + " Não é tributo de " + entity.getName());
+								+ main.getViewApproach().getTextField() + " Não é tributo de " + main.getModel());
+//						System.out.println("Na entidade " + entity.getName() + ", no relacionamento " + main.getName() + " voce precisa definir um atributo de " + main.getModel() + " para exibir no campo de texto do modal. " + main.getViewApproach().getTextField()
+//								+ " Não é tributo de " + main.getModel());
 					}
 				}
 			}

@@ -121,7 +121,7 @@ entities:
     viewApproach:   
       type: modal 
       hiddenField: id 
-      textField: nome 
+      textField: logradouro 
 - name: Departamento
   displayName: Departamento
   hasMobile : true
@@ -188,7 +188,7 @@ entities:
     viewApproach:   
       type: modal 
       hiddenField: id 
-      textField: nome 
+      textField: logradouro 
 - name: Filme
   hasOwner: false
   displayName: Filme
@@ -528,7 +528,7 @@ entities:
     viewApproach:   
       type: modal 
       hiddenField: id 
-      textField: nome 
+      textField: titulo 
 - name: Linguagem
   hasOwner: false 
   displayName: Linguagem
@@ -593,7 +593,7 @@ entities:
     viewApproach:   
       type: modal 
       hiddenField: id 
-      textField: nome 
+      textField: titulo 
   - name: cliente             
     type: ManyToOne
     model: Cliente                       
@@ -635,7 +635,7 @@ entities:
     viewApproach:
       type: modal
       hiddenField: id
-      textField: nome
+      textField: titulo
   - name: cliente
     type: ManyToOne
     model: Cliente

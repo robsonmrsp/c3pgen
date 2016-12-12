@@ -280,4 +280,9 @@ public class Attribute extends AbstractTimestampEntity {
 	public void setInputAs(String inputAs) {
 		this.inputAs = inputAs;
 	}
+
+	@Override
+	public String toString() {
+		return getName();
+	}
 }

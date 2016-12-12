@@ -25,7 +25,7 @@ public class Main {
 
 //		generatoToInput("qualidade7", new File("D:\\cyg\\home\\robson\\repos\\c3pgen\\in\\qualidade7"));
 
-		generatoToInput("locadora", new File("D:\\cyg\\home\\robson\\repos\\c3pgen\\in\\locadora"));
+		generatoToInput("locadora", new File("C:\\cyg\\home\\robson\\repos\\c3pgen\\in\\locadora"));
 
 	}
 

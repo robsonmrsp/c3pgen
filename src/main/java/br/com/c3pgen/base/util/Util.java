@@ -43,13 +43,13 @@ public class Util {
 
 	public static String templateFolder() {
 		// return "G:\\cyg\\home\\robso\\repos\\c3pgen\\src\\main\\webapp";
-		return "D:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp";
+		return "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp";
 	}
 
 	public static String currentDir() {
-		return currentDir;
+		// return currentDir;
 
-		// return templateFolder();
+		return templateFolder();
 	}
 
 	private static String currentDir = Paths.get(".").toAbsolutePath().toString();

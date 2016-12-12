@@ -60,4 +60,4 @@
     viewApproach:   
       type: modal 
       hiddenField: id 
-      textField: nome 
+      textField: titulo 
