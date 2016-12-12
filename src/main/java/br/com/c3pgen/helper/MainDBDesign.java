@@ -96,7 +96,7 @@ public class MainDBDesign {
 						fileLines.add("    viewApproach:                        ");
 						fileLines.add("      type: datepicker                  ");
 					}
-					System.out.println("MainDBDesign.main()" + Util.getMaxLen(column.getDatatypeParams()));
+//					System.out.println("MainDBDesign.main()" + Util.getMaxLen(column.getDatatypeParams()));
 				}
 			}
 			fileLines.add("  relationships:                     ");
@@ -125,6 +125,7 @@ public class MainDBDesign {
 				String name = byId.getRelationName();
 				String direction = byId.getRelDirection();
 				String comments = byId.getComments();
+				String model = Util.firstUpperCase(CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, getTableById(tables, sourceTable).getTablename()));
 
 				fileLines.add("  - name: " + Util.firstLowerCase(CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, Util.firstNotNullLower(comments, getTableById(tables, sourceTable).getTablename()))) + "             ");
 				fileLines.add("    type: ManyToOne");
@@ -133,7 +134,7 @@ public class MainDBDesign {
 				fileLines.add("    viewApproach:   ");
 				fileLines.add("      type: modal ");
 				fileLines.add("      hiddenField: id ");
-				fileLines.add("      textField: nome ");
+				fileLines.add("      textField: nome");
 
 			}
 
