@@ -272,6 +272,7 @@ public class Parser {
 		jsonAttribute.setDefaultValue(attribute.getDefaultValue());
 		jsonAttribute.setPlaceholder(attribute.getPlaceholder());
 		jsonAttribute.setRequired(attribute.getRequired());
+		jsonAttribute.setInputAs(attribute.getInputAs());
 		jsonAttribute.setUnique(attribute.getUnique());
 	}
 
@@ -285,6 +286,7 @@ public class Parser {
 		attribute.setDefaultValue(jsonAttribute.getDefaultValue());
 		attribute.setPlaceholder(jsonAttribute.getPlaceholder());
 		attribute.setRequired(jsonAttribute.getRequired());
+		attribute.setInputAs(jsonAttribute.getInputAs());
 		attribute.setUnique(jsonAttribute.getUnique());
 	}
 

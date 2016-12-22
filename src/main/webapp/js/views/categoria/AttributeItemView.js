@@ -45,6 +45,8 @@ define(function(require) {
 			widgetMain : '.widget-main',
 			showhide : '.showhide',
 
+			inputInputAs : '.inputInputAs',
+
 			editableFields : '.editable-click'
 		},
 
@@ -80,7 +82,7 @@ define(function(require) {
 					id : this.ui.inputTypeId.val(),
 					className : C3P.notEmptyVal(this.ui.inputType),
 				},
-
+				inputAs : C3P.notEmptyVal(this.ui.inputInputAs),
 				viewApproach : {
 					id : this.ui.inputViewApproachId.val(),
 					type : C3P.notEmptyVal(this.ui.inputViewApproach),
@@ -144,29 +146,29 @@ define(function(require) {
 					if ((that.ui.inputViewApproach.text() == 'Check') || (that.ui.inputViewApproach.text() == 'Radio')) {
 						that.ui.inputType.text('Boolean')
 					}
-					if ((that.ui.inputViewApproach.text() == 'Textfield')) {
-						that.ui.inputType.text('String')
+					if ( (that.ui.inputViewApproach.text() == 'Textfield') ) {
+						//						that.ui.inputType.text('String')
 						util.refreshEditable(that.ui.inputMask, '');
 						util.refreshEditable(that.ui.inputMaxLen, 255)
 					}
-					if ((that.ui.inputViewApproach.text() == 'Textarea')) {
+					if ( (that.ui.inputViewApproach.text() == 'Textarea') ) {
 						that.ui.inputType.text('String')
 						util.refreshEditable(that.ui.inputMask, '');
 						util.refreshEditable(that.ui.inputMaxLen, 2000)
 					}
 
-					if ((that.ui.inputViewApproach.text() == 'Datepicker')) {
+					if ( (that.ui.inputViewApproach.text() == 'Datepicker') ) {
 						util.refreshEditable(that.ui.inputType, 'Date');
 						util.refreshEditable(that.ui.inputMask, '99/99/9999');
 						util.refreshEditable(that.ui.inputMaxLen, 10)
 
 					}
-					if ((that.ui.inputViewApproach.text() == 'DateTimepicker')) {
+					if ( (that.ui.inputViewApproach.text() == 'DateTimepicker') ) {
 						util.refreshEditable(that.ui.inputType, 'Datetime');
 						util.refreshEditable(that.ui.inputMask, '99/99/9999 99:99');
 						util.refreshEditable(that.ui.inputMaxLen, 16)
 					}
-					// this.trigger('attribute:change', this.model);
+				// this.trigger('attribute:change', this.model);
 				})
 
 				this.ui.inputViewApproach.editable({
@@ -174,23 +176,53 @@ define(function(require) {
 					source : [ {
 						value : 'check',
 						text : 'Check'
-					}, {
-						value : 'radio',
-						text : 'Radio'
-					}, {
-						value : 'textfield',
-						text : 'Textfield'
+					},
+						{
+							value : 'radio',
+							text : 'Radio'
+						},
+						{
+							value : 'upload',
+							text : 'Upload'
+						},
+						{
+							value : 'textfield',
+							text : 'Textfield'
+						}, {
+							value : 'textarea',
+							text : 'Textarea'
+						}, {
+							value : 'tatepicker',
+							text : 'Datepicker'
+						}, {
+							value : 'datetimepicker',
+							text : 'DateTimepicker'
+						} ]
+				});
+				this.ui.inputInputAs.editable({
+					value : '',
+					source : [ {
+						value : 'cpf',
+						text : 'cpf'
+					},
+						{
+							value : 'cnpj',
+							text : 'cnpj'
+						},
 
-					}, {
-						value : 'textarea',
-						text : 'Textarea'
-					}, {
-						value : 'tatepicker',
-						text : 'Datepicker'
-					}, {
-						value : 'datetimepicker',
-						text : 'DateTimepicker'
-					} ]
+						{
+							value : 'telefone',
+							text : 'telefone'
+						},
+						{
+							value : 'monetario',
+							text : 'monetario'
+						},
+						{
+							value : 'percentagem',
+							text : 'percentagem'
+						},
+					]
 				});
 				this.ui.inputType.editable({
 					value : 'String',

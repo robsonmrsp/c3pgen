@@ -65,7 +65,7 @@ public class DBDesignerImporter {
 			String nomeDaClasse = CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, Util.firstUpperCaseOnly(table.getTablename()));
 			String tableName = table.getTablename().toUpperCase();
 
-			ApplicationEntity applicationEntity = new ApplicationEntity(nomeDaClasse, nomeDaClasse);
+			ApplicationEntity applicationEntity = new ApplicationEntity(nomeDaClasse, tableName);
 
 			Collection<Column> colunas = table.getColumns();
 			for (Column column : colunas) {

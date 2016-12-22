@@ -14,7 +14,7 @@ define(function(require) {
 				defaults : {
 					type : 'html.Relation',
 					router : {
-						name : 'manhattan'
+						name : 'metro'
 					},
 					connector : {
 						name : 'rounded'

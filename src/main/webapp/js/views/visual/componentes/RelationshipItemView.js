@@ -129,7 +129,7 @@ define(function(require) {
 				// ou deixar em branco para o
 				// autocomplete ser feito via
 				// lista de já cadastrados.
-				this.ui.inputOwnerName.editable();// candidato a ser uma lista
+				this.ui.inputOwnerName.editable(); // candidato a ser uma lista
 				// populada a partir da
 				// escolha do model
 
@@ -140,30 +140,36 @@ define(function(require) {
 				this.ui.inputTextField.on('hidden', function(evt) {
 					var modelName = that.ui.inputModel.val();
 					var attributeName = that.ui.inputTextField.text();
-					
+
 					var existeAttributo = util.attributeExists(modelName, attributeName);
 
 					console.log('Validando a info a exibir no modal ou combo-> ' + existeAttributo);
 				});
 
-				this.ui.inputModel.on('hidden', function() {
-				});
+				this.ui.inputModel.on('hidden', function() {});
 
 				this.ui.editableFields.on('hidden', function() {
 					that.changeRelationship();
 				})
 				this.ui.inputViewApproach.editable({
 					value : '',
-					source : [ {
-						value : 'modal',
-						text : 'modal'
-					}, {
-						value : 'combo',
-						text : 'combo'
-					}, {
-						value : 'multiselect',
-						text : 'multiselect'
-					}, ]
+					source : [
+						{
+							value : 'none',
+							text : 'none'
+						},
+						{
+							value : 'modal',
+							text : 'modal'
+						},
+						{
+							value : 'combo',
+							text : 'combo'
+						}, {
+							value : 'multiselect',
+							text : 'multiselect'
+						},
+					]
 				});
 
 				this.ui.inputViewApproach.on('hidden', function(e, editable) {

@@ -127,13 +127,11 @@ define(function(require) {
 					// ROBSON para impedir que a cada click sobbre a linha do
 					// relacionamento seja adicionado um vertice novo
 					interactive : function(cellView) {
-
-						// Impede que seja alterado o link
-						// if (cellView.model.isLink()) {
-						// return {
-						// vertexAdd : false
-						// };
-						// }
+						if (cellView.model.isLink()) {
+							return {
+								vertexAdd : false
+							};
+						}
 						return true;
 					},
 				// linkConnectionPoint :
@@ -283,7 +281,6 @@ define(function(require) {
 				position : {
 					x : entity.posX || entity.get('posX') || posX,
 					y : entity.posY || entity.get('posY') || posY,
-
 				},
 				size : {
 					width : 140,
@@ -292,7 +289,6 @@ define(function(require) {
 				onClickRemove : function(visualE) {
 					that.removeVisualEntity(visualE);
 				},
-
 			});
 
 			that.graph.addCell(visualEntity);
@@ -353,7 +349,7 @@ define(function(require) {
 			application.fetch({
 				success : function(_model, _resp, _options) {
 					console.log(_resp)
-					// that.modalError.showMessage(_resp);
+				// that.modalError.showMessage(_resp);
 				},
 				error : function(_model, _resp, _options) {
 					util.showMessage('error', util.getJson(_resp.responseText).legalMessage || '');
@@ -445,12 +441,9 @@ define(function(require) {
 			util.Bootbox.confirm("Tem certeza que deseja remover o	 relacionamento ?", function(yes) {
 				if (yes) {
 					model.destroy({
-
 						success : function() {
 							console.log("Removendo o relacionamento: " + linkView.model.get('id'))
-							var model =
-
-							linkView.remove();
+							var model = linkView.remove();
 
 							window.globalVisualRelations.remove(linkView.model.get('id'));
 
@@ -459,7 +452,6 @@ define(function(require) {
 						error : function() {
 							console.error(' erro')
 						}
-
 					})
 
 				} else {
@@ -516,12 +508,11 @@ define(function(require) {
 						}
 					})
 				} else {
-					console.log(" Leaving  alone link", linkView);
+					console.log(" Leaving  alone link", visualE);
 				}
 			});
 
 		},
-
 	});
 
 	return PageVisual;
