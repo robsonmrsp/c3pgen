@@ -1,34 +1,33 @@
 - name: InformacaoFilme
   hasOwner: false 
-  displayName: Informação do filme/midia
+  displayName: Informacao filme
   tableName: INFORMACAO_FILME
   attributes:                     
   - name: selo
     tableFieldName: SELO
-    required: true
-    showInPages: true
+    required: false
+    showInPages: false
     displayName: Selo
     type: 
       className: String
   - name: valor
     tableFieldName: VALOR
-    required: true
-    showInPages: true
+    required: false
+    showInPages: false
     displayName: Valor
     type: 
       className: Double
-      format : money
   - name: quantidadeEstoque
     tableFieldName: QUANTIDADE_ESTOQUE
-    required: true
-    showInPages: true
+    required: false
+    showInPages: false
     displayName: Quantidade estoque
     type: 
       className: Integer
   - name: dataCompra
     tableFieldName: DATA_COMPRA
     required: false
-    showInPages: true
+    showInPages: false
     displayName: Data compra
     type: 
       className: Date
@@ -46,7 +45,7 @@
   - name: lancamento
     tableFieldName: LANCAMENTO
     required: false
-    showInPages: true
+    showInPages: false
     displayName: Lancamento
     type: 
       className: Boolean
@@ -60,4 +59,4 @@
     viewApproach:   
       type: modal 
       hiddenField: id 
-      textField: titulo 
+      textField: nome

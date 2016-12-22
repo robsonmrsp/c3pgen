@@ -1,20 +1,19 @@
 - name: Cliente
   hasOwner: false 
-  hasMobile: true
   displayName: Cliente
   tableName: CLIENTE
   attributes:                     
   - name: nome
     tableFieldName: NOME
-    required: true
-    showInPages: true
+    required: false
+    showInPages: false
     displayName: Nome
     type: 
       className: String
   - name: cpf
     tableFieldName: CPF
-    required: true
-    showInPages: true
+    required: false
+    showInPages: false
     displayName: Cpf
     type: 
       className: String
@@ -36,4 +35,4 @@
     viewApproach:   
       type: modal 
       hiddenField: id 
-      textField: logradouro 
+      textField: nome

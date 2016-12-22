@@ -1,27 +1,26 @@
 - name: Classificacao
   hasOwner: false 
-  hasMobile: true
   displayName: Classificacao
   tableName: CLASSIFICACAO
   attributes:                     
   - name: nome
     tableFieldName: NOME
-    required: true
-    showInPages: true
+    required: false
+    showInPages: false
     displayName: Nome
     type: 
       className: String
   - name: idadeMinima
     tableFieldName: IDADE_MINIMA
     required: false
-    showInPages: true
+    showInPages: false
     displayName: Idade minima
     type: 
       className: Integer
   - name: descricao
     tableFieldName: DESCRICAO
     required: false
-    showInPages: true
+    showInPages: false
     displayName: Descricao
     type: 
       className: String

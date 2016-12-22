@@ -1,20 +1,19 @@
 - name: Genero
   hasOwner: false 
-  hasMobile: true
   displayName: Genero
   tableName: GENERO
   attributes:                     
   - name: nome
     tableFieldName: NOME
-    required: true
-    showInPages: true
+    required: false
+    showInPages: false
     displayName: Nome
     type: 
       className: String
   - name: descricao
     tableFieldName: DESCRICAO
     required: false
-    showInPages: true
+    showInPages: false
     displayName: Descricao
     type: 
       className: String

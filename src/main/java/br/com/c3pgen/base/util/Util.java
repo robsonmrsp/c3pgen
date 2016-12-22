@@ -47,7 +47,7 @@ public class Util {
 	}
 
 	public static String currentDir() {
-		// return currentDir;
+//		 return currentDir;
 
 		return templateFolder();
 	}

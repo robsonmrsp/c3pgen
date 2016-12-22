@@ -49,31 +49,9 @@ public class ApplicationValidator {
 			ApplicationEntity entityRel = null;
 			List<ApplicationEntity> listRelations = mapRelationshipsPerTheEntity.get(entity);
 
-			// // validação da escolha do textfield quando escolher o modal
-			// if (objectJson.viewApproach && objectJson.viewApproach.type ==
-			// 'modal') {
-			// var targetModel = util.getBEntityByName(objectJson.model);
-			// var modalTextFieldName = objectJson.viewApproach.textField;
-			//
-			// if (!modalTextFieldName) {
-			// util.showMessage('error', 'Deve escolher um atributo de ' +
-			// objectJson.model + ' para exibir no modal',
-			// 'message-relation-inspector');
-			// } else if (!util.BEntityContainsAttribute(objectJson.model,
-			// modalTextFieldName)) {
-			// util.showMessage('error', 'Deve escolher um atributo de ' +
-			// objectJson.model + ' para exibir no modal. "' +
-			// modalTextFieldName + '" não é atributo de ' + objectJson.model,
-			// 'message-relation-inspector');
-			// }
-			// }
-			//
-//			System.out.println("Validando a eentidade : " + entity.getName());
-
 			for (Relationship main : entity.getRelationships()) {
-				if (main.getViewApproach() != null && main.getViewApproach().getType().equals("modal")) {
-					// var targetModel =
-					// util.getBEntityByName(objectJson.model);
+				if (main.equals("somenta para não entrar nesse if") && main.getViewApproach() != null && main.getViewApproach().getType().equals("modal")) {
+
 					ApplicationEntity ent = mapEntities.get(main.getModel());
 
 					if (main.getViewApproach().getTextField() == null) {
@@ -81,8 +59,6 @@ public class ApplicationValidator {
 					} else if (!Util.entityContainsAttribute(ent, main.getViewApproach().getTextField())) {
 						applicationValidatorMessages.addMessage("Na entidade " + entity.getName() + ", no relacionamento " + main.getName() + " voce precisa definir um atributo de " + main.getModel() + " para exibir no campo de texto do modal. "
 								+ main.getViewApproach().getTextField() + " Não é tributo de " + main.getModel());
-//						System.out.println("Na entidade " + entity.getName() + ", no relacionamento " + main.getName() + " voce precisa definir um atributo de " + main.getModel() + " para exibir no campo de texto do modal. " + main.getViewApproach().getTextField()
-//								+ " Não é tributo de " + main.getModel());
 					}
 				}
 			}
@@ -92,15 +68,10 @@ public class ApplicationValidator {
 				Relationship reverse = reverseRelation(entity, entityRel);
 
 				if (reverse != null) {
-					// Verifica se NÃO foram definidos ambas as entidades como
-					// Donas do relacionamento.
-					// /*Eliminando a checagem em situações de auto
-					// relacionamento*/
 					if (StringUtils.isNotEmpty(main.getOwnerName()) && StringUtils.isNotEmpty(reverse.getOwnerName()) && !(entity.equals(entityRel))) {
 						applicationValidatorMessages
 								.addMessage("No Relacionamento (" + entity.getName() + "/" + main.getName() + ") entre: " + entity.getName() + " e " + entityRel.getName() + " Voce deve definir APENAS uma das partes do relacionamento como \"O Dono\" do relacionamento.");
 					}
-					// Verifica se Foi definido o DONO do relacionamento
 					if (!main.getUniDirecional() && StringUtils.isEmpty(main.getOwnerName()) && StringUtils.isEmpty(reverse.getOwnerName())) {
 						applicationValidatorMessages.addMessage("No Relacionamento (" + entity.getName() + "/" + main.getName() + ")  entre: " + entity.getName() + " e " + entityRel.getName() + " Voce deve definir \"O Dono\" do relacionamento. OU definir no relacionamento "
 								+ main.getName() + "uniDirecional: true|Yes");

@@ -1,99 +1,96 @@
 - name: Filme
-  hasOwner: false
+  hasOwner: false 
   displayName: Filme
-  hasMobile: true
   tableName: FILME
-  attributes:
+  attributes:                     
   - name: titulo
     tableFieldName: TITULO
-    required: true
-    showInPages: true
+    required: false
+    showInPages: false
     displayName: Titulo
-    type:
+    type: 
       className: String
   - name: sinopse
     tableFieldName: SINOPSE
-    required: true
+    required: false
     showInPages: false
     displayName: Sinopse
-    type:
+    type: 
       className: String
   - name: dataLancamento
     tableFieldName: DATA_LANCAMENTO
-    required: true
-    showInPages: true
+    required: false
+    showInPages: false
     displayName: Data lancamento
-    type:
+    type: 
       className: Date
-    dateFormat: DD/MM/YYYY
-    mask: 99/99/9999
-    viewApproach:
-      type: datepicker
+    dateFormat: DD/MM/YYYY              
+    mask: 99/99/9999                    
+    viewApproach:                        
+      type: datepicker                  
   - name: duracao
     tableFieldName: DURACAO
     required: false
-    showInPages: true
+    showInPages: false
     displayName: Duracao
-    type:
+    type: 
       className: Integer
   - name: poster
     tableFieldName: POSTER
     required: false
-    showInPages: true
+    showInPages: false
     displayName: Poster
-    type:
+    type: 
       className: String
   - name: tituloOriginal
     tableFieldName: TITULO_ORIGINAL
     required: false
-    showInPages: true
+    showInPages: false
     displayName: Titulo original
-    type:
+    type: 
       className: String
-  relationships:
-  - name: atores
-    type: ManyToMany
-    ownerName: filmes
-    model: Ator
-    displayName: Elenco
-    viewApproach:
-      type: multiselect
+  relationships:                     
+  - name: filmeHasAtors
+    type: OneToMany
+    ownerName: filme
+    model: FilmeHasAtor                       
+    displayName: Filme has ator
   - name: locacaos
     type: OneToMany
     ownerName: filme
-    model: Locacao
+    model: Locacao                       
     displayName: Locacao
   - name: reservas
     type: OneToMany
     ownerName: filme
-    model: Reserva
+    model: Reserva                       
     displayName: Reserva
   - name: informacaoFilmes
     type: OneToMany
     ownerName: filme
-    model: InformacaoFilme
+    model: InformacaoFilme                       
     displayName: Informacao filme
-  - name: classificacao
+  - name: classificacao             
     type: ManyToOne
-    model: Classificacao
+    model: Classificacao                       
     displayName: Classificacao
-    viewApproach:
-      type: modal
-      hiddenField: id
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
       textField: nome
-  - name: genero
+  - name: genero             
     type: ManyToOne
-    model: Genero
+    model: Genero                       
     displayName: Genero
-    viewApproach:
-      type: modal
-      hiddenField: id
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
       textField: nome
-  - name: linguagem
+  - name: linguagem             
     type: ManyToOne
-    model: Linguagem
+    model: Linguagem                       
     displayName: Linguagem
-    viewApproach:
-      type: modal
-      hiddenField: id
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
       textField: nome

@@ -1,13 +1,12 @@
 - name: Locacao
   hasOwner: false 
-  hasMobile: true
   displayName: Locacao
   tableName: LOCACAO
   attributes:                     
   - name: dataHoraRecebimento
     tableFieldName: DATA_HORA_RECEBIMENTO
-    required: true
-    showInPages: true
+    required: false
+    showInPages: false
     displayName: Data hora recebimento
     type: 
       className: Datetime
@@ -17,8 +16,8 @@
       type: datepicker                  
   - name: dataHoraEntrega
     tableFieldName: DATA_HORA_ENTREGA
-    required: true
-    showInPages: true
+    required: false
+    showInPages: false
     displayName: Data hora entrega
     type: 
       className: Datetime
@@ -29,7 +28,7 @@
   - name: observacao
     tableFieldName: OBSERVACAO
     required: false
-    showInPages: true
+    showInPages: false
     maxLen: 500
     viewApproach:                        
       type: textarea                  
@@ -44,7 +43,7 @@
     viewApproach:   
       type: modal 
       hiddenField: id 
-      textField: titulo 
+      textField: nome
   - name: cliente             
     type: ManyToOne
     model: Cliente                       
@@ -52,7 +51,7 @@
     viewApproach:   
       type: modal 
       hiddenField: id 
-      textField: nome 
+      textField: nome
   - name: funcionario             
     type: ManyToOne
     model: Funcionario                       
@@ -60,4 +59,4 @@
     viewApproach:   
       type: modal 
       hiddenField: id 
-      textField: nome 
+      textField: nome

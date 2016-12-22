@@ -86,9 +86,9 @@ public class ${entity.name} extends AbstractTimestampEntity{
 	private ${dataType(att.type.className)} ${att.name};  			
 		<#elseif  dataType(att.type.className) ==  "String" >
 		<#if att.maxLen?? >
-	@Column(name = "${uppercase(att.tableFieldName!att.name)}" /*, length=${att.maxLen}*/) 
+	@Column(name = "${uppercase(att.tableFieldName!att.name)}" , columnDefinition="varchar" /*, length=${att.maxLen}*/) 
 		<#else>
-	@Column(name = "${uppercase(att.tableFieldName!att.name)}")
+	@Column(name = "${uppercase(att.tableFieldName!att.name)}" , columnDefinition="varchar" )
 		</#if>
 	private String ${att.name};		
 		<#else>

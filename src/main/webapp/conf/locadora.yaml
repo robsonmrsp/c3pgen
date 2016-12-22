@@ -6,21 +6,20 @@ corePackage: br.com.locadora.core
 entities:
 - name: Ator
   hasOwner: false 
-  hasMobile: true
   displayName: Ator
   tableName: ATOR
   attributes:                     
   - name: nome
     tableFieldName: NOME
-    required: true
-    showInPages: true
+    required: false
+    showInPages: false
     displayName: Nome
     type: 
       className: String
   - name: dataNascimento
     tableFieldName: DATA_NASCIMENTO
-    required: true
-    showInPages: true
+    required: false
+    showInPages: false
     displayName: Data nascimento
     type: 
       className: Date
@@ -32,7 +31,7 @@ entities:
     tableFieldName: BIOGRAFIA
     required: false
     showInPages: false
-    maxLen: 999
+    maxLen: 1000
     viewApproach:                        
       type: textarea                  
     displayName: Biografia
@@ -46,34 +45,34 @@ entities:
     type: 
       className: String
   relationships:                     
-  - name: filmes
-    type: ManyToMany
-    model: Filme                       
-    displayName: Filmes
+  - name: filmeHasAtors
+    type: OneToMany
+    ownerName: ator
+    model: FilmeHasAtor                       
+    displayName: Filme has ator
 - name: Classificacao
   hasOwner: false 
-  hasMobile: true
   displayName: Classificacao
   tableName: CLASSIFICACAO
   attributes:                     
   - name: nome
     tableFieldName: NOME
-    required: true
-    showInPages: true
+    required: false
+    showInPages: false
     displayName: Nome
     type: 
       className: String
   - name: idadeMinima
     tableFieldName: IDADE_MINIMA
     required: false
-    showInPages: true
+    showInPages: false
     displayName: Idade minima
     type: 
       className: Integer
   - name: descricao
     tableFieldName: DESCRICAO
     required: false
-    showInPages: true
+    showInPages: false
     displayName: Descricao
     type: 
       className: String
@@ -85,21 +84,20 @@ entities:
     displayName: Filme
 - name: Cliente
   hasOwner: false 
-  hasMobile: true
   displayName: Cliente
   tableName: CLIENTE
   attributes:                     
   - name: nome
     tableFieldName: NOME
-    required: true
-    showInPages: true
+    required: false
+    showInPages: false
     displayName: Nome
     type: 
       className: String
   - name: cpf
     tableFieldName: CPF
-    required: true
-    showInPages: true
+    required: false
+    showInPages: false
     displayName: Cpf
     type: 
       className: String
@@ -121,33 +119,7 @@ entities:
     viewApproach:   
       type: modal 
       hiddenField: id 
-      textField: logradouro 
-- name: Departamento
-  displayName: Departamento
-  hasMobile : true
-  tableName: DEPARTAMENTO
-  hasOwner: false
-  attributes:
-  - name: nome
-    tableFieldName: nome
-    required : true
-    unique : true
-    type:
-      className: String
-    displayName: Nome
-  - name: description
-    tableFieldName: description
-    type:
-      className: String
-    displayName: Descrição
-  relationships:    
-  - name: funcionarios
-    type: OneToMany
-    ownerName: departamento
-    model: Funcionario
-    displayName: Funcionarios
-    
-    
+      textField: nome
 - name: Endereco
   hasOwner: false 
   displayName: Endereco
@@ -156,23 +128,16 @@ entities:
   - name: referencia
     tableFieldName: REFERENCIA
     required: false
-    showInPages: true
+    showInPages: false
     displayName: Referencia
     type: 
       className: String
   - name: logradouro
     tableFieldName: LOGRADOURO
-    required: true
-    showInPages: true
+    required: false
+    showInPages: false
     maxLen: 100
     displayName: Logradouro
-    type: 
-      className: String
-  - name: numero
-    tableFieldName: NUMERO
-    required: false
-    showInPages: true
-    displayName: Número
     type: 
       className: String
   relationships:                     
@@ -188,275 +153,260 @@ entities:
     viewApproach:   
       type: modal 
       hiddenField: id 
-      textField: logradouro 
+      textField: nome
 - name: Filme
-  hasOwner: false
+  hasOwner: false 
   displayName: Filme
-  hasMobile: true
   tableName: FILME
-  attributes:
+  attributes:                     
   - name: titulo
     tableFieldName: TITULO
-    required: true
-    showInPages: true
+    required: false
+    showInPages: false
     displayName: Titulo
-    type:
+    type: 
       className: String
   - name: sinopse
     tableFieldName: SINOPSE
-    required: true
+    required: false
     showInPages: false
     displayName: Sinopse
-    type:
+    type: 
       className: String
   - name: dataLancamento
     tableFieldName: DATA_LANCAMENTO
-    required: true
-    showInPages: true
+    required: false
+    showInPages: false
     displayName: Data lancamento
-    type:
+    type: 
       className: Date
-    dateFormat: DD/MM/YYYY
-    mask: 99/99/9999
-    viewApproach:
-      type: datepicker
+    dateFormat: DD/MM/YYYY              
+    mask: 99/99/9999                    
+    viewApproach:                        
+      type: datepicker                  
   - name: duracao
     tableFieldName: DURACAO
     required: false
-    showInPages: true
+    showInPages: false
     displayName: Duracao
-    type:
+    type: 
       className: Integer
   - name: poster
     tableFieldName: POSTER
     required: false
-    showInPages: true
+    showInPages: false
     displayName: Poster
-    type:
+    type: 
       className: String
   - name: tituloOriginal
     tableFieldName: TITULO_ORIGINAL
     required: false
-    showInPages: true
+    showInPages: false
     displayName: Titulo original
-    type:
+    type: 
       className: String
-  relationships:
-  - name: atores
-    type: ManyToMany
-    ownerName: filmes
-    model: Ator
-    displayName: Elenco
-    viewApproach:
-      type: multiselect
+  relationships:                     
+  - name: filmeHasAtors
+    type: OneToMany
+    ownerName: filme
+    model: FilmeHasAtor                       
+    displayName: Filme has ator
   - name: locacaos
     type: OneToMany
     ownerName: filme
-    model: Locacao
+    model: Locacao                       
     displayName: Locacao
   - name: reservas
     type: OneToMany
     ownerName: filme
-    model: Reserva
+    model: Reserva                       
     displayName: Reserva
   - name: informacaoFilmes
     type: OneToMany
     ownerName: filme
-    model: InformacaoFilme
+    model: InformacaoFilme                       
     displayName: Informacao filme
-  - name: classificacao
+  - name: classificacao             
     type: ManyToOne
-    model: Classificacao
+    model: Classificacao                       
     displayName: Classificacao
-    viewApproach:
-      type: modal
-      hiddenField: id
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
       textField: nome
-  - name: genero
+  - name: genero             
     type: ManyToOne
-    model: Genero
+    model: Genero                       
     displayName: Genero
-    viewApproach:
-      type: modal
-      hiddenField: id
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
       textField: nome
-  - name: linguagem
+  - name: linguagem             
     type: ManyToOne
-    model: Linguagem
+    model: Linguagem                       
     displayName: Linguagem
-    viewApproach:
-      type: modal
-      hiddenField: id
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
       textField: nome
-- name: Funcao
-  displayName: Função
-  tableName: FUNCAO
-  hasOwner: false
-  hasMobile : true
-  attributes:
-  - name: nome
-    tableFieldName: nome
-    required : true
-    unique : true
-    type:
-      className: String
-    displayName: Nome
-  - name: description
-    tableFieldName: description
-    type:
-      className: String
-    displayName: Descrição
-  relationships:
-  - name: funcionarios
-    type: OneToMany
-    ownerName: funcao
-    model: Funcionario
-    displayName: Funcionarios
-    
+- name: FilmeHasAtor
+  hasOwner: false 
+  displayName: Filme has ator
+  tableName: FILME_HAS_ATOR
+  attributes:                     
+  relationships:                     
+  - name: filme             
+    type: ManyToOne
+    model: Filme                       
+    displayName: Filme
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome
+  - name: ator             
+    type: ManyToOne
+    model: Ator                       
+    displayName: Ator
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome
 - name: Funcionario
-  hasOwner: false
-  hasMobile : true  
+  hasOwner: false 
   displayName: Funcionario
   tableName: FUNCIONARIO
-  attributes:
+  attributes:                     
   - name: nome
     tableFieldName: NOME
-    required: true
-    showInPages: true
+    required: false
+    showInPages: false
     displayName: Nome
-    type:
+    type: 
       className: String
-  - name: foto
-    tableFieldName: FOTO
-    required: true
-    showInPages: true
-    displayName: Foto
-    type:
+  - name: cpf
+    tableFieldName: CPF
+    required: false
+    showInPages: false
+    displayName: Cpf
+    type: 
       className: String
-    viewApproach:
-      type : upload
-  - name: avaliacao
-    tableFieldName: AVALIACAO
-    required: true
-    showInPages: true
-    displayName: Avaliação
-    maxLen : 999
-    type:
-      className: String
-    viewApproach:
-      type : textarea  
-  - name: ativo
-    tableFieldName: ATIVO
-    required: true
-    showInPages: true
-    displayName: Ativo?
-    type:
-      className: Boolean
-    viewApproach:
-      type : check  
   - name: telefone
     tableFieldName: TELEFONE
-    required: true
-    inputAs : telephone
-    showInPages: true
+    required: false
+    showInPages: false
     displayName: Telefone
-    type:
+    type: 
+      className: String
+  - name: ativo
+    tableFieldName: ATIVO
+    required: false
+    showInPages: false
+    displayName: Ativo
+    type: 
+      className: Boolean
+    viewApproach: 
+      type: check
+  - name: observacao
+    tableFieldName: OBSERVACAO
+    required: false
+    showInPages: false
+    maxLen: 999
+    viewApproach:                        
+      type: textarea                  
+    displayName: Observacao
+    type: 
       className: String
   - name: salario
     tableFieldName: SALARIO
-    inputAs : money    
-    required: true
-    showInPages: true
-    displayName: Salário
-    type:
+    required: false
+    showInPages: false
+    displayName: Salario
+    type: 
       className: Double
-  - name: idade
-    tableFieldName: IDADE
-    inputAs : integer    
-    required: true
-    showInPages: true
-    displayName: Idade
-    type:
-      className: Integer
   - name: percentualComissao
     tableFieldName: PERCENTUAL_COMISSAO
-    required: true
-    inputAs : percent    
-    showInPages: true
-    displayName: Percentual de comissão
-    type:
+    required: false
+    showInPages: false
+    displayName: Percentual comissao
+    type: 
       className: Double
   - name: dataNascimento
     tableFieldName: DATA_NASCIMENTO
-    required: true
-    inputAs : date    
-    showInPages: true
+    required: false
+    showInPages: false
     displayName: Data nascimento
     type: 
       className: Date
     dateFormat: DD/MM/YYYY              
+    mask: 99/99/9999                    
     viewApproach:                        
-      type: datepicker                        
+      type: datepicker                  
   - name: dataHoraContratacao
     tableFieldName: DATA_HORA_CONTRATACAO
-    required: true
-    inputAs : datetime    
-    showInPages: true
-    displayName: Data e Hora da contratação
+    required: false
+    showInPages: false
+    displayName: Data hora contratacao
     type: 
       className: Datetime
-    dateFormat: DD/MM/YYYY HH:MM              
+    dateFormat: DD/MM/YYYY HH:MM             
+    mask: 99/99/9999 99:99                  
     viewApproach:                        
-      type: datepicker                        
-  - name: cpf
-    tableFieldName: CPF
-    required: true
-    showInPages: true
-    displayName: CPF
-    inputAs: cpf
-    type:
+      type: datepicker                  
+  - name: dataHoraDemissao
+    tableFieldName: DATA_HORA_DEMISSAO
+    required: false
+    showInPages: false
+    displayName: Data hora demissao
+    type: 
+      className: Datetime
+    dateFormat: DD/MM/YYYY HH:MM             
+    mask: 99/99/9999 99:99                  
+    viewApproach:                        
+      type: datepicker                  
+  - name: rg
+    tableFieldName: RG
+    required: false
+    showInPages: false
+    displayName: Rg
+    type: 
       className: String
-      format : cpf      
-  relationships:
+  - name: celular
+    tableFieldName: CELULAR
+    required: false
+    showInPages: false
+    displayName: Celular
+    type: 
+      className: String
+  - name: foto
+    tableFieldName: FOTO
+    required: false
+    showInPages: false
+    displayName: Foto
+    type: 
+      className: String
+  relationships:                     
   - name: locacaos
     type: OneToMany
     ownerName: funcionario
-    model: Locacao
+    model: Locacao                       
     displayName: Locacao
-  - name: funcao             
-    type: ManyToOne
-    model: Funcao                       
-    displayName: Função
-    viewApproach:   
-      type: combo 
-      comboId: id 
-      comboVal: nome 
-  - name: departamento             
-    type: ManyToOne
-    model: Departamento                       
-    displayName: Departamento
-    viewApproach:   
-      type: modal 
-      hiddenField: id 
-      textField: nome 
-    
 - name: Genero
   hasOwner: false 
-  hasMobile: true
   displayName: Genero
   tableName: GENERO
   attributes:                     
   - name: nome
     tableFieldName: NOME
-    required: true
-    showInPages: true
+    required: false
+    showInPages: false
     displayName: Nome
     type: 
       className: String
   - name: descricao
     tableFieldName: DESCRICAO
     required: false
-    showInPages: true
+    showInPages: false
     displayName: Descricao
     type: 
       className: String
@@ -468,35 +418,34 @@ entities:
     displayName: Filme
 - name: InformacaoFilme
   hasOwner: false 
-  displayName: Informação do filme/midia
+  displayName: Informacao filme
   tableName: INFORMACAO_FILME
   attributes:                     
   - name: selo
     tableFieldName: SELO
-    required: true
-    showInPages: true
+    required: false
+    showInPages: false
     displayName: Selo
     type: 
       className: String
   - name: valor
     tableFieldName: VALOR
-    required: true
-    showInPages: true
+    required: false
+    showInPages: false
     displayName: Valor
     type: 
       className: Double
-      format : money
   - name: quantidadeEstoque
     tableFieldName: QUANTIDADE_ESTOQUE
-    required: true
-    showInPages: true
+    required: false
+    showInPages: false
     displayName: Quantidade estoque
     type: 
       className: Integer
   - name: dataCompra
     tableFieldName: DATA_COMPRA
     required: false
-    showInPages: true
+    showInPages: false
     displayName: Data compra
     type: 
       className: Date
@@ -514,7 +463,7 @@ entities:
   - name: lancamento
     tableFieldName: LANCAMENTO
     required: false
-    showInPages: true
+    showInPages: false
     displayName: Lancamento
     type: 
       className: Boolean
@@ -528,7 +477,7 @@ entities:
     viewApproach:   
       type: modal 
       hiddenField: id 
-      textField: titulo 
+      textField: nome
 - name: Linguagem
   hasOwner: false 
   displayName: Linguagem
@@ -536,8 +485,8 @@ entities:
   attributes:                     
   - name: nome
     tableFieldName: NOME
-    required: true
-    showInPages: true
+    required: false
+    showInPages: false
     displayName: Nome
     type: 
       className: String
@@ -549,14 +498,13 @@ entities:
     displayName: Filme
 - name: Locacao
   hasOwner: false 
-  hasMobile: true
   displayName: Locacao
   tableName: LOCACAO
   attributes:                     
   - name: dataHoraRecebimento
     tableFieldName: DATA_HORA_RECEBIMENTO
-    required: true
-    showInPages: true
+    required: false
+    showInPages: false
     displayName: Data hora recebimento
     type: 
       className: Datetime
@@ -566,8 +514,8 @@ entities:
       type: datepicker                  
   - name: dataHoraEntrega
     tableFieldName: DATA_HORA_ENTREGA
-    required: true
-    showInPages: true
+    required: false
+    showInPages: false
     displayName: Data hora entrega
     type: 
       className: Datetime
@@ -578,7 +526,7 @@ entities:
   - name: observacao
     tableFieldName: OBSERVACAO
     required: false
-    showInPages: true
+    showInPages: false
     maxLen: 500
     viewApproach:                        
       type: textarea                  
@@ -593,7 +541,7 @@ entities:
     viewApproach:   
       type: modal 
       hiddenField: id 
-      textField: titulo 
+      textField: nome
   - name: cliente             
     type: ManyToOne
     model: Cliente                       
@@ -601,7 +549,7 @@ entities:
     viewApproach:   
       type: modal 
       hiddenField: id 
-      textField: nome 
+      textField: nome
   - name: funcionario             
     type: ManyToOne
     model: Funcionario                       
@@ -609,40 +557,28 @@ entities:
     viewApproach:   
       type: modal 
       hiddenField: id 
-      textField: nome 
+      textField: nome
 - name: Reserva
-  hasMobile: true
-  hasOwner: false
+  hasOwner: false 
   displayName: Reserva
   tableName: RESERVA
-  attributes:
-  - name: dataHora
-    tableFieldName: DATA_HORA
-    required: true
-    showInPages: true
-    displayName: Data hora da reserva
-    type:
-      className: Datetime
-    dateFormat: DD/MM/YYYY HH:MM
-    mask: 99/99/9999 99:99
-    viewApproach:
-      type: datepicker
-  relationships:
-  - name: filme
+  attributes:                     
+  relationships:                     
+  - name: filme             
     type: ManyToOne
-    model: Filme
+    model: Filme                       
     displayName: Filme
-    viewApproach:
-      type: modal
-      hiddenField: id
-      textField: titulo
-  - name: cliente
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome
+  - name: cliente             
     type: ManyToOne
-    model: Cliente
+    model: Cliente                       
     displayName: Cliente
-    viewApproach:
-      type: modal
-      hiddenField: id
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
       textField: nome
 - name: Bairro
   displayName: Bairro

@@ -1,20 +1,19 @@
 - name: Ator
   hasOwner: false 
-  hasMobile: true
   displayName: Ator
   tableName: ATOR
   attributes:                     
   - name: nome
     tableFieldName: NOME
-    required: true
-    showInPages: true
+    required: false
+    showInPages: false
     displayName: Nome
     type: 
       className: String
   - name: dataNascimento
     tableFieldName: DATA_NASCIMENTO
-    required: true
-    showInPages: true
+    required: false
+    showInPages: false
     displayName: Data nascimento
     type: 
       className: Date
@@ -26,7 +25,7 @@
     tableFieldName: BIOGRAFIA
     required: false
     showInPages: false
-    maxLen: 999
+    maxLen: 1000
     viewApproach:                        
       type: textarea                  
     displayName: Biografia
@@ -40,7 +39,8 @@
     type: 
       className: String
   relationships:                     
-  - name: filmes
-    type: ManyToMany
-    model: Filme                       
-    displayName: Filmes
+  - name: filmeHasAtors
+    type: OneToMany
+    ownerName: ator
+    model: FilmeHasAtor                       
+    displayName: Filme has ator
