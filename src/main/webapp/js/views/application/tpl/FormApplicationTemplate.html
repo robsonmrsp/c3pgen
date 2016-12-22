@@ -94,11 +94,11 @@
 					</div>
 					<div id="groupInputRootPackage" class="form-group">
 						<label class="control-label" for="inputRootPackage">Pacote raiz</label>
-						<input type="text" id="inputRootPackage" placeholder="Pacote raiz" value="{{rootPackage}}" class="form-control  validate[required]">
+						<input type="text" id="inputRootPackage" placeholder="Exemplo:. br.com.locadora" value="{{rootPackage || 'br.com.locadora'}}" class="form-control  validate[required]">
 					</div>
 					<div id="groupInputCorePackage" class="form-group">
 						<label class="control-label" for="inputCorePackage">Pacote base</label>
-						<input type="text" id="inputCorePackage" placeholder="Pacote raiz" value="{{corePackage}}" class="form-control  validate[required]">
+						<input type="text" id="inputCorePackage" placeholder="Exemplo:. br.com.locadora.core" value="{{corePackage || 'br.com.locadora.core'}}" class="form-control  validate[required]">
 					</div>
 				</div>
 			</div>

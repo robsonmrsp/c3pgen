@@ -144,7 +144,7 @@ define(function(require) {
 		</#list>
 		</#if>
 		<#list entity.attributes as att>
-					<#if att.showInPages >
+		<#if att.showInPages >
 		  <#if att.inputAs == 'cpf' >
 				this.ui.input${firstUpper(att.name)}.cpf();
 		  </#if>	

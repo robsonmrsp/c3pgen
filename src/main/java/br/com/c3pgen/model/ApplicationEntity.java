@@ -249,14 +249,17 @@ public class ApplicationEntity extends AbstractTimestampEntity {
 		List<Attribute> retAttr = new ArrayList<Attribute>();
 
 		for (Attribute attribute : getAttributes()) {
-			if (attribute.getBasicSearch()) {
+			if (attribute.getBasicSearch() && !attribute.getType().getClassName().equalsIgnoreCase("Boolean") && !attribute.getViewApproach().getType().equalsIgnoreCase("upload")) {
 				retAttr.add(attribute);
 				return retAttr;
 			}
 		}
 
-		if (retAttr.size() == 0 && getAttributes().size() > 0) {
-			retAttr.add(getAttributes().get(0));
+		for (Attribute attribute : getAttributes()) {
+			if (!attribute.getType().getClassName().equalsIgnoreCase("Boolean") && !attribute.getViewApproach().getType().equalsIgnoreCase("upload")) {
+				retAttr.add(attribute);
+				return retAttr;
+			}
 		}
 		return retAttr;
 	}

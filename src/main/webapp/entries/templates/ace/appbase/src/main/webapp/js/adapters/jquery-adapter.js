@@ -1,5 +1,5 @@
 define([ 'jquery', 'bootbox', 'bootstrap', 'jqueryScrollTo', 'jqueryValidatorEngine', 'jqueryValidatorEnginePtBr', 'morris', 'raphael', 'datetimepicker', 'bootbox', 'datetimepicker_lang_pt_BR', 'jqueryUI', 'nprogress', 'aceSettings', 'ace', 'aceSidebar', 'jqueryGritter',
-		'selectize', 'jqueryForm', 'jqueryInputMask' ], function($) {
+	'selectize', 'jqueryForm', 'jqueryInputMask' ], function($) {
 	$.fn.datetimepicker.defaults.icons = {
 		time : "fa fa-clock-o",
 		date : "fa fa-calendar",
@@ -21,7 +21,11 @@ define([ 'jquery', 'bootbox', 'bootstrap', 'jqueryScrollTo', 'jqueryValidatorEng
 	var formatNumber = function(num, places) {
 		num = toStrNumber(num);
 
-		var str = num.toString().replace("$", ""), parts = false, output = [], i = 1, formatted = null;
+		var str = num.toString().replace("$", ""),
+			parts = false,
+			output = [],
+			i = 1,
+			formatted = null;
 		if (str.indexOf(",") > 0) {
 			parts = str.split(",");
 			str = parts[0];
@@ -103,13 +107,16 @@ define([ 'jquery', 'bootbox', 'bootstrap', 'jqueryScrollTo', 'jqueryValidatorEng
 	};
 
 	$.fn.integer = function() {
-		this.inputmask('integer');
+		this.inputmask('integer', {
+			rightAlign : false
+		});
 	}
 
 	$.fn.money = function() {
 		this.inputmask('numeric', {
 			radixPoint : ',',
 			groupSeparator : '.',
+			rightAlign : false,
 			autoGroup : true,
 			digits : 2,
 			digitsOptional : false,
@@ -121,6 +128,7 @@ define([ 'jquery', 'bootbox', 'bootstrap', 'jqueryScrollTo', 'jqueryValidatorEng
 		this.inputmask('numeric', {
 			radixPoint : ',',
 			groupSeparator : '.',
+			rightAlign : false,
 			autoGroup : true,
 			digits : 2,
 			digitsOptional : true,
@@ -130,6 +138,7 @@ define([ 'jquery', 'bootbox', 'bootstrap', 'jqueryScrollTo', 'jqueryValidatorEng
 	$.fn.decimal = function() {
 		this.inputmask('numeric', {
 			radixPoint : ',',
+			rightAlign : false,
 			groupSeparator : '.',
 			autoGroup : true,
 			digits : 2,

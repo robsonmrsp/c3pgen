@@ -59,15 +59,17 @@
 								<div class="widget-body">
 								<!-- inicio dos registros-->							
 								<#list entity.attributes as att>
-								<#if att.showInPages && !att.basicSearch>
+								<#if att.showInPages && !att.basicSearch && att.type.className != 'Boolean' && att.viewApproach.type  == 'upload'>
 								  <#if att.viewApproach?? >
 									<#if att.type.className == 'Boolean' && att.viewApproach.type  == 'check'  >
-									<div id="groupInput${firstUpper(att.name)}" class="form-group col-sm-	col-md-	col-lg-   checkbox">
+									<!--
+									<div id="groupInput${firstUpper(att.name)}" class="form-group col-sm- col-md- col-lg- checkbox">
 										<label class="checkbox ">
 											<input id="input${firstUpper(att.name)}" type="checkbox" >
 											${firstUpper(att.displayName)}
 										</label>
 									</div>
+									-->
 									<#elseif att.viewApproach.type  == 'datepicker'  >
 									<div id="groupInput${firstUpper(att.name)}Container" class="form-group col-sm-	col-md-	col-lg-  ">
 										<label class="control-label" for="input${firstUpper(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}</label>

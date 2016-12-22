@@ -168,11 +168,11 @@ define(function(require) {
 		  <#if att.inputAs == 'fone' || att.inputAs == 'telephone' >
 				this.ui.input${firstUpper(att.name)}.fone();
 		  </#if>
-		  <#if att.inputAs == 'date' || || att.type.className == 'Date'>
+		  <#if att.inputAs == 'date' || att.type.className == 'Date'>
 				this.ui.input${firstUpper(att.name)}.date();
 				this.ui.groupInput${firstUpper(att.name)}.date();
 		  </#if>	
-		  <#if att.inputAs == 'datetime' || || att.type.className == 'Datetime'>
+		  <#if att.inputAs == 'datetime' ||  att.type.className == 'Datetime'>
 				this.ui.input${firstUpper(att.name)}.datetime();
 				this.ui.groupInput${firstUpper(att.name)}.datetime();
 		  </#if>	
