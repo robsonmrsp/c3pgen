@@ -162,27 +162,27 @@ define(function(require) {
 		  <#if att.inputAs == 'cpf' >
 				this.ui.input${firstUpper(att.name)}.cpf();
 		  </#if>	
-		  <#if att.inputAs == 'percent' >
+		  <#if att.inputAs == 'percent' || att.inputAs == 'percentagem'>
 				this.ui.input${firstUpper(att.name)}.decimal();
 		  </#if>
 		  <#if att.inputAs == 'fone' || att.inputAs == 'telephone' >
 				this.ui.input${firstUpper(att.name)}.fone();
 		  </#if>
-		  <#if att.inputAs == 'date' >
+		  <#if att.inputAs == 'date' || || att.type.className == 'Date'>
 				this.ui.input${firstUpper(att.name)}.date();
 				this.ui.groupInput${firstUpper(att.name)}.date();
 		  </#if>	
-		  <#if att.inputAs == 'datetime' >
+		  <#if att.inputAs == 'datetime' || || att.type.className == 'Datetime'>
 				this.ui.input${firstUpper(att.name)}.datetime();
 				this.ui.groupInput${firstUpper(att.name)}.datetime();
 		  </#if>	
-		  <#if att.inputAs == 'decimal' >
+		  <#if att.inputAs == 'decimal' || att.type.className == 'Double'>
 				this.ui.input${firstUpper(att.name)}.decimal();
 		  </#if>	
-		  <#if att.inputAs == 'integer' >
+		  <#if att.inputAs == 'integer' || att.type.className == 'Integer'>
 				this.ui.input${firstUpper(att.name)}.integer();
 		  </#if>	
-		  <#if att.inputAs == 'money' >
+		  <#if att.inputAs == 'money' || att.inputAs == 'monetario'>
 				this.ui.input${firstUpper(att.name)}.money();
 		  </#if>	
 		  <#if att.viewApproach?? >

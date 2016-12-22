@@ -12,24 +12,23 @@ define(function(require) {
 	// #####################################################################################################
 
 	var AttributeModel = BaseModel.extend({
-
 		urlRoot : 'rs/crud/attributes',
 
 		defaults : {
-			id: null,
-	    	displayName : '',    	
-	    	maxLen : '',    	
-	    	tableFieldName : '',    	
-	    	mask : '',    	
-	    	defaultValue : '',    	
-	    	placeholder : '',    	
-	    	required : '',    	
-	    	unique : '',    	
+			id : null,
+			displayName : '',
+			maxLen : '',
+			tableFieldName : '',
+			mask : '',
+			defaultValue : '',
+			placeholder : '',
+			required : '',
+			unique : '',
 			entity : null,
-			name : '',    	
+			name : '',
+			inputAs : '',
 			type : "String",
 			viewApproach : null,
-		
 		}
 	});
 	return AttributeModel;

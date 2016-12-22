@@ -25,6 +25,7 @@ public class JsonAttribute implements Serializable {
 	private String mask;
 	private String defaultValue;
 	private String placeholder;
+	private String inputAs;
 	private Boolean required;
 	private Boolean unique;
 	private JsonTheEntity entity;		
@@ -136,6 +137,14 @@ public class JsonAttribute implements Serializable {
 	
 	public void setSyncOperation (SyncOperation  syncOperation){
 		this.syncOperation = syncOperation;
+	}
+
+	public String getInputAs() {
+		return inputAs;
+	}
+
+	public void setInputAs(String inputAs) {
+		this.inputAs = inputAs;
 	}
 	
 }

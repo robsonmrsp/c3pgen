@@ -45,6 +45,8 @@ define(function(require) {
 			widgetMain : '.widget-main',
 			showhide : '.showhide',
 
+			inputInputAs : '.inputInputAs',
+
 			editableFields : '.editable-click'
 		},
 
@@ -80,7 +82,7 @@ define(function(require) {
 					id : this.ui.inputTypeId.val(),
 					className : C3P.notEmptyVal(this.ui.inputType),
 				},
-
+				inputAs : C3P.notEmptyVal(this.ui.inputInputAs),
 				viewApproach : {
 					id : this.ui.inputViewApproachId.val(),
 					type : C3P.notEmptyVal(this.ui.inputViewApproach),
@@ -145,7 +147,7 @@ define(function(require) {
 						that.ui.inputType.text('Boolean')
 					}
 					if ( (that.ui.inputViewApproach.text() == 'Textfield') ) {
-//						that.ui.inputType.text('String')
+						//						that.ui.inputType.text('String')
 						util.refreshEditable(that.ui.inputMask, '');
 						util.refreshEditable(that.ui.inputMaxLen, 255)
 					}
@@ -196,6 +198,31 @@ define(function(require) {
 							value : 'datetimepicker',
 							text : 'DateTimepicker'
 						} ]
+				});
+				this.ui.inputInputAs.editable({
+					value : '',
+					source : [ {
+						value : 'cpf',
+						text : 'cpf'
+					},
+						{
+							value : 'cnpj',
+							text : 'cnpj'
+						},
+
+						{
+							value : 'telefone',
+							text : 'telefone'
+						},
+						{
+							value : 'monetario',
+							text : 'monetario'
+						},
+						{
+							value : 'percentagem',
+							text : 'percentagem'
+						},
+					]
 				});
 				this.ui.inputType.editable({
 					value : 'String',
