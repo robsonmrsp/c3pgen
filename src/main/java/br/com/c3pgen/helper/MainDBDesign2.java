@@ -51,9 +51,9 @@ public class MainDBDesign2 {
 
 			e.printStackTrace();
 		}
-		
+
 		Collection<Table> tables = example.getMetadata().getTables();
-		
+
 		ArrayList<Relation> relations = new ArrayList<>(example.getMetadata().getRelations());
 
 		for (Table table : tables) {
@@ -112,7 +112,7 @@ public class MainDBDesign2 {
 				String sourceRelModel = CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, tableName);
 				String sourceRelName = Util.firstLowerCase(sourceRelModel);
 
-				Relationship relationshipTarget = new Relationship(relationName, displayName, "OneToMany", ownerName, modelName, false, ViewApproach.multiselectInstance());
+				Relationship relationshipTarget = new Relationship(relationName, displayName, "OneToMany", ownerName, modelName, false, ViewApproach.noneInstance());
 				relationshipTarget.setEntity(applicationEntity);
 
 				// <<------
@@ -141,7 +141,7 @@ public class MainDBDesign2 {
 				relationshipTarget.setEntity(applicationEntity);
 
 				// ---->>
-				Relationship relationshipSource = new Relationship(relName + "s", Util.firstUpperCase(relName + "s"), "OneToMany", Util.firstLowerCase(relName), Util.firstUpperCase(relName), false, ViewApproach.multiselectInstance());
+				Relationship relationshipSource = new Relationship(relName + "s", Util.firstUpperCase(relName + "s"), "OneToMany", Util.firstLowerCase(relName), Util.firstUpperCase(relName), false, ViewApproach.noneInstance());
 				relationshipSource.setEntity(new ApplicationEntity(relName, tableName));
 
 				ApplicationRelationship appRel = new ApplicationRelationship();

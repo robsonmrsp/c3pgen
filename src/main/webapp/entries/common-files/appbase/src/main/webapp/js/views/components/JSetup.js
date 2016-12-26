@@ -11,6 +11,7 @@ define(function(require) {
 	var GridTemplate = require('text!views/components/tpl/GridTemplate.html');
 
 	var Combobox = require('views/components/Combobox');
+	var Multiselect = require('views/components/Multiselect');
 	var InputUpload = require('views/components/InputUpload');
 
 	var Counter = Marionette.ItemView.extend({
@@ -192,8 +193,12 @@ define(function(require) {
 	var JSetup = {
 
 		RowClick : RowClick,
+		
 		Counter : Counter,
+		
 		Combobox : Combobox,
+		
+		Multiselect : Multiselect,
 
 		MoneyCell : NumericCell.extend({
 			type : 'money'

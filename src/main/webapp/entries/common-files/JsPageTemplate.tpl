@@ -151,7 +151,7 @@ define(function(require) {
 		  <#if att.inputAs == 'percent' >
 				this.ui.input${firstUpper(att.name)}.decimal();
 		  </#if>	
-		  <#if att.inputAs == 'fone' >
+		  <#if att.inputAs == 'fone' || att.inputAs == 'telephone' || att.inputAs == 'telefone' >
 				this.ui.input${firstUpper(att.name)}.fone();
 		  </#if>
 		  <#if att.inputAs == 'date' >

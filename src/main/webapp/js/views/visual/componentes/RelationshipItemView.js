@@ -201,13 +201,12 @@ define(function(require) {
 			if (val == 'modal') {
 				this.ui.modalFields.show();
 				this.ui.comboFields.hide();
-			} else if (val == 'combo') {
-				this.ui.comboFields.show();
+			} else if (val == 'combo' || val == 'multiselect') {
 				this.ui.modalFields.hide();
-
-			} else if (val == 'multiselect') {
-//				this.ui.modalFields.hide();
-//				this.ui.comboFields.hide();
+				this.ui.comboFields.show();
+			} else {
+				this.ui.modalFields.hide();
+				this.ui.comboFields.hide();
 			}
 		},
 

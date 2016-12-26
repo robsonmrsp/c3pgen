@@ -25,9 +25,8 @@ define(function(require) {
 	</#if>
 	<#if entity.relationships??>	
 	<#list entity.relationships as rel>
-
 		<#if rel.viewApproach?? >
-			<#if rel.viewApproach.type  == 'combo'  >
+			<#if rel.viewApproach.type  == 'combo'  ||  rel.viewApproach.type  == 'multiselect'>
 	var ${rel.model}Collection = require('collections/${rel.model}Collection');			
 			</#if>
 		</#if>
@@ -45,9 +44,7 @@ define(function(require) {
 			</#list>
 			<#if entity.relationships??>	
 			<#list entity.relationships as rel >
-
-			${firstLower(rel.name)}Region : ".${firstLower(rel.name)}-container",
-			<#elseif rel.viewApproach.type == 'modal'>
+				<#if rel.viewApproach.type == 'modal'>
 			modal${firstUpper(rel.name)}Region : '#${firstLower(rel.name)}Modal',
 				</#if>
 			</#list>
@@ -88,7 +85,7 @@ define(function(require) {
 			<#if rel.type == 'OneToMany'>
 			<#elseif rel.type == 'ManyToOne'>
 				<#if rel.viewApproach?? >
-					<#if rel.viewApproach.type  == 'combo'  >
+					<#if rel.viewApproach.type  == 'combo'  || rel.viewApproach.type  == 'multiselect'>
 			input${firstUpper(rel.name)} : '#input${firstUpper(rel.name)}', 
 					<#elseif rel.viewApproach.type  == 'modal'  >
 					<#if rel.viewApproach.hiddenField??>
@@ -100,6 +97,11 @@ define(function(require) {
 					</#if>
 				</#if>
 			<#elseif rel.type == 'ManyToMany'>
+				<#if rel.viewApproach?? >
+					<#if rel.viewApproach.type  == 'multiselect'>
+			input${firstUpper(rel.name)} : '#input${firstUpper(rel.name)}', 
+					</#if>
+				</#if>
 			<#elseif rel.type == 'OneToOne'>
 			</#if>
 		</#list>
@@ -124,7 +126,6 @@ define(function(require) {
 				
 		<#if entity.relationships??>	
 		<#list entity.relationships as rel >
-
 			<#if rel.viewApproach.type == 'modal'>
 			this.modal${firstUpper(rel.name)} = new Modal${firstUpper(rel.name)}({
 				onSelectModel : function(model) {
@@ -156,7 +157,7 @@ define(function(require) {
 		  <#if att.inputAs == 'percent' || att.inputAs == 'percentagem'>
 				this.ui.input${firstUpper(att.name)}.decimal();
 		  </#if>
-		  <#if att.inputAs == 'fone' || att.inputAs == 'telephone' >
+		  <#if att.inputAs == 'fone' || att.inputAs == 'telephone' || att.inputAs == 'telefone' >
 				this.ui.input${firstUpper(att.name)}.fone();
 		  </#if>
 		  <#if att.inputAs == 'date' || att.type.className == 'Date'>
@@ -195,7 +196,7 @@ define(function(require) {
 		<#if entity.relationships??>
 		<#list entity.relationships as rel>
 			<#if (rel.type == 'OneToMany' || rel.type == 'ManyToMany' ) && rel.viewApproach.type == 'multiselect'>
-				this.multiselect${firstUpper(rel.name)} = new JSetup.MultiselecBox({
+				this.multiselect${firstUpper(rel.name)} = new JSetup.Multiselect({
 					el : this.ui.input${firstUpper(rel.name)},
 				   <#if rel.viewApproach.values??>
 				    values : '${toString(rel.viewApproach.values)}'
@@ -205,7 +206,7 @@ define(function(require) {
 					collectionEntity : ${firstUpper(rel.model)}Collection, 
 					</#if>
 				});
-				this.combo${firstUpper(rel.name)}.setValue(this.model.get('${firstLower(rel.name)}'));
+				this.multiselect${firstUpper(rel.name)}.setValue(this.model.get('${firstLower(rel.name)}'));
 			<#elseif rel.type == 'ManyToOne'>
 				<#if rel.viewApproach?? >
 					<#if rel.viewApproach.type  == 'combo'  >
@@ -267,8 +268,9 @@ define(function(require) {
 				
 				<#if entity.relationships??>	
 				<#list entity.relationships as rel >
-				<#if (rel.type == 'OneToMany' || rel.type == 'ManyToMany' ) && rel.viewApproach.type == 'multiselect'>
+					<#if (rel.type == 'OneToMany' || rel.type == 'ManyToMany' ) && rel.viewApproach.type == 'multiselect'>
 					${firstLower(rel.name)} :  that.multiselect${firstUpper(rel.name)}.getJsonValue(),
+					</#if>			
 					<#if rel.viewApproach.type == 'modal' >
 				${firstLower(rel.name)} : that.modal${firstUpper(rel.name)}.getJsonValue(),
 					</#if>			

@@ -99,9 +99,13 @@ public class ViewApproach extends AbstractTimestampEntity {
 		return approach;
 	}
 
-	public static ViewApproach multiselectInstance() {
+	public static ViewApproach multiselectInstance(String comboId, String comboVal) {
 		ViewApproach approach = new ViewApproach();
 		approach.setType("multiselect");
+		approach.setComboId(comboId);
+		approach.setComboVal(comboVal);
+		approach.setHiddenField(comboId);
+		approach.setTextField(comboVal);
 		return approach;
 	}
 

@@ -127,7 +127,7 @@ public class DBDesignerImporter {
 				String sourceRelName = Util.firstLowerCase(sourceRelModel);
 
 				// atores Atores ator Ator
-				Relationship relationshipOnEntitySource = new Relationship(relationNameOnOrigin, displayNameOnOrigin + "s", "OneToMany", ownerNameOnOrigin, modelNameOnOrigin, false, ViewApproach.multiselectInstance());
+				Relationship relationshipOnEntitySource = new Relationship(relationNameOnOrigin, displayNameOnOrigin + "s", "OneToMany", ownerNameOnOrigin, modelNameOnOrigin, false, ViewApproach.noneInstance());
 				relationshipOnEntitySource.setEntity(new ApplicationEntity(nomeDaClasse, tableName));
 
 				// <<------ filme filme Filme

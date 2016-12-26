@@ -171,7 +171,7 @@ public class DBImporterEntities {
 					fileLines.add("    displayName: " + displayName + "                       ");
 
 					// ---->>
-					Relationship relationshipTarget = new Relationship(name, displayName, "OneToMany", ownerName, model, false, ViewApproach.multiselectInstance());
+					Relationship relationshipTarget = new Relationship(name, displayName, "OneToMany", ownerName, model, false, ViewApproach.noneInstance());
 					relationshipTarget.setEntity(applicationEntity);
 
 					// <<------
@@ -206,7 +206,7 @@ public class DBImporterEntities {
 					relationshipTarget.setEntity(applicationEntity);
 
 					// ---->>
-					Relationship relationshipSource = new Relationship(relName + "s", Util.firstUpperCase(relName + "s"), "OneToMany", Util.firstLowerCase(relName), Util.firstUpperCase(relName), false, ViewApproach.multiselectInstance());
+					Relationship relationshipSource = new Relationship(relName + "s", Util.firstUpperCase(relName + "s"), "OneToMany", Util.firstLowerCase(relName), Util.firstUpperCase(relName), false, ViewApproach.noneInstance());
 					relationshipSource.setEntity(new ApplicationEntity(relName, table.getName()));
 
 					ApplicationRelationship appRel = new ApplicationRelationship();

@@ -263,10 +263,10 @@ public class EntitiesGenerator {
 						htmlPageGenerator.generateEntityFile(application, ent);
 						htmlModalGenerator.generateEntityFile(application, ent);
 
-						JsMultiSelectGenerator.generateEntityFile(application, ent);
-						JsModalMultiSelectGenerator.generateEntityFile(application, ent);
-						htmlModalMultiSelectGenerator.generateEntityFile(application, ent);
-						htmlMultiSelectGenerator.generateEntityFile(application, ent);
+//						JsMultiSelectGenerator.generateEntityFile(application, ent);
+//						JsModalMultiSelectGenerator.generateEntityFile(application, ent);
+//						htmlModalMultiSelectGenerator.generateEntityFile(application, ent);
+//						htmlMultiSelectGenerator.generateEntityFile(application, ent);
 						jsModalGenerator.generateEntityFile(application, ent);
 					}
 

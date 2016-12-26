@@ -30,7 +30,7 @@ public class GenService {
 
 	}
 
-	public ApplicationValidatorMessages validate(Application application)  {
+	public ApplicationValidatorMessages validate(Application application) {
 		ApplicationValidator appValidator = new ApplicationValidator();
 		Application fixApplication = fixApplication(application);
 		GenerateFileInfo fileInfo = new GenerateFileInfo();
@@ -50,7 +50,7 @@ public class GenService {
 		user.addAttributes(new Attribute("password", "password", true, false, false, AttributeType.STRING));
 		user.addAttributes(new Attribute("enable", "enable", false, false, false, AttributeType.BOOLEAN));
 		user.addAttributes(new Attribute("image", "image", false, false, false, AttributeType.STRING));
-		user.addRelationships(new Relationship("roles", "", "ManyToMany", null, "Role", false, ViewApproach.multiselectInstance()));
+		user.addRelationships(new Relationship("roles", "Roles", "ManyToMany", null, "Role", false, ViewApproach.multiselectInstance("id", "authority")));
 
 		return user;
 	}
@@ -60,7 +60,7 @@ public class GenService {
 
 		role.addAttributes(new Attribute("authority", "AUTHORITY", true, true, true, AttributeType.STRING));
 		role.addAttributes(new Attribute("description", "DESCRIPTION", true, true, true, AttributeType.STRING));
-		role.addRelationships(new Relationship("users", "", "ManyToMany", "roles", "User", false, ViewApproach.multiselectInstance()));
+		role.addRelationships(new Relationship("users", "Users", "ManyToMany", "roles", "User", false, ViewApproach.noneInstance()));
 
 		return role;
 	}
