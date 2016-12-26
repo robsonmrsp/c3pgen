@@ -50,7 +50,7 @@ public class ApplicationValidator {
 			List<ApplicationEntity> listRelations = mapRelationshipsPerTheEntity.get(entity);
 
 			for (Relationship main : entity.getRelationships()) {
-				if (main.equals("somenta para não entrar nesse if") && main.getViewApproach() != null && main.getViewApproach().getType().equals("modal")) {
+				if (main.getViewApproach() != null && (main.getViewApproach().getType().equals("modal") || main.getViewApproach().getType().equals("multiselect") || main.getViewApproach().getType().equals("combo"))) {
 
 					ApplicationEntity ent = mapEntities.get(main.getModel());
 

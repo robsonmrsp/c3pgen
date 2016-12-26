@@ -86,7 +86,12 @@
 						<#if entity.relationships??>	
 						<#list entity.relationships as rel>
 							<#if (rel.type == 'OneToMany' || rel.type == 'ManyToMany' ) && rel.viewApproach.type == 'multiselect'>
-							<div class="${firstLower(rel.name)}-container panel"></div>					
+
+							<div id="groupInput${firstUpper(rel.name)}" class="form-group col-sm-	col-md-	col-lg-  ">
+								<label class="control-label" for="input${firstUpper(rel.name)}">${firstUpper(rel.displayName)!firstLower(rel.name)}</label>
+								<select class="form-control" id="input${firstUpper(rel.name)}" multiple data-placeholder="-- Selecione --" ></select>
+							</div>					
+					
 							<#elseif rel.type == 'ManyToOne'>
 								<#if rel.viewApproach?? >
 									<#if rel.viewApproach.type  == 'combo'  >

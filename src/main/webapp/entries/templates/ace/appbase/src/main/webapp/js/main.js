@@ -3,7 +3,7 @@ require.config({
 	paths : {
 		'jquery' : '../vendor/jquery/jquery-1.10.2',
 		'jqueryUI' : '../vendor/jquery.ui/jquery-ui-1.10.4.custom.min',
-		
+
 		'jqueryScrollTo' : '../vendor/jquery.scrollTo/jquery.scrollTo',
 		'jqueryValidatorEngine' : '../vendor/jquery.validationEngine/jquery.validationEngine-2.6.2',
 		'jqueryValidatorEnginePtBr' : '../vendor/jquery.validationEngine/jquery.validationEngine-pt_BR',
@@ -40,6 +40,7 @@ require.config({
 		'jqueryGritter' : '../vendor/jquery.gritter-1.7.4/js/jquery.gritter',
 		'selectize' : '../vendor/selectize/js/standalone/selectize',
 		'jqueryForm' : '../vendor/jquery.form/jquery.form',
+		'jqueryChosen' : '../vendor/chosen_v1.6.2/chosen.jquery',
 		'jqueryInputMask' : '../vendor/Inputmask-3.3.3/dist/jquery.inputmask.bundle',
 	},
 	shim : {
@@ -129,6 +130,7 @@ require.config({
 		'jqueryGritter' : [ 'jquery' ],
 		'selectize' : [ 'jquery' ],
 		'jqueryForm' : [ 'jquery' ],
+		'jqueryChosen' : [ 'jquery' ],
 		'jqueryInputMask' : [ 'jquery' ],
 	},
 	wrapShim : true,

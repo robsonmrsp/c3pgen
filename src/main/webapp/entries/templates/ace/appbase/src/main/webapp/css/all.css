@@ -9,6 +9,9 @@
 @import url("../vendor/selectize/css/selectize.bootstrap3.css");
 @import url("../vendor/theme/ace.css");
 @import url("../vendor/theme/ace-fonts.css");
+@import url("../vendor/chosen_v1.6.2/chosen.css");
+@import
+	url("../vendor/chosen_v1.6.2/bootstrap-chosen.css");
 @import url("custom.css");
 /* included only when we don't want to use fonts from google server */
 @font-face {

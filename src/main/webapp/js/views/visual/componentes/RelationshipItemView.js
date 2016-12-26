@@ -206,8 +206,8 @@ define(function(require) {
 				this.ui.modalFields.hide();
 
 			} else if (val == 'multiselect') {
-				this.ui.modalFields.hide();
-				this.ui.comboFields.hide();
+//				this.ui.modalFields.hide();
+//				this.ui.comboFields.hide();
 			}
 		},
 

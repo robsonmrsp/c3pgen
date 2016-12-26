@@ -25,10 +25,7 @@ define(function(require) {
 	</#if>
 	<#if entity.relationships??>	
 	<#list entity.relationships as rel>
-		<#if (rel.type == 'OneToMany' || rel.type == 'ManyToMany' ) && rel.viewApproach.type == 'multiselect'>
-	var ${firstUpper(rel.model)}Collection = require('collections/${firstUpper(rel.model)}Collection');
-	var MultiSelect${firstUpper(rel.model)} = require('views/${firstLower(rel.model)}/MultiSelect${firstUpper(rel.model)}');			
-		</#if>			
+
 		<#if rel.viewApproach?? >
 			<#if rel.viewApproach.type  == 'combo'  >
 	var ${rel.model}Collection = require('collections/${rel.model}Collection');			
@@ -48,7 +45,7 @@ define(function(require) {
 			</#list>
 			<#if entity.relationships??>	
 			<#list entity.relationships as rel >
-			<#if (rel.type == 'OneToMany' || rel.type == 'ManyToMany' ) && rel.viewApproach.type == 'multiselect'>
+
 			${firstLower(rel.name)}Region : ".${firstLower(rel.name)}-container",
 			<#elseif rel.viewApproach.type == 'modal'>
 			modal${firstUpper(rel.name)}Region : '#${firstLower(rel.name)}Modal',
@@ -127,13 +124,7 @@ define(function(require) {
 				
 		<#if entity.relationships??>	
 		<#list entity.relationships as rel >
-			<#if (rel.type == 'OneToMany' || rel.type == 'ManyToMany' ) && rel.viewApproach.type == 'multiselect'>
-			that.${firstLower(rel.name)} = new ${firstUpper(rel.model)}Collection();
-			that.${firstLower(rel.name)}.add(this.model.get('${firstLower(rel.name)}'));
-			this.multiSelect${firstUpper(rel.model)} = new MultiSelect${firstUpper(rel.model)}({
-				collection : that.${firstLower(rel.name)},
-			});
-			</#if>
+
 			<#if rel.viewApproach.type == 'modal'>
 			this.modal${firstUpper(rel.name)} = new Modal${firstUpper(rel.name)}({
 				onSelectModel : function(model) {
@@ -204,7 +195,17 @@ define(function(require) {
 		<#if entity.relationships??>
 		<#list entity.relationships as rel>
 			<#if (rel.type == 'OneToMany' || rel.type == 'ManyToMany' ) && rel.viewApproach.type == 'multiselect'>
-				this.${firstLower(rel.name)}Region.show(this.multiSelect${firstUpper(rel.model)});
+				this.multiselect${firstUpper(rel.name)} = new JSetup.MultiselecBox({
+					el : this.ui.input${firstUpper(rel.name)},
+				   <#if rel.viewApproach.values??>
+				    values : '${toString(rel.viewApproach.values)}'
+					<#else>
+					comboId : '${(rel.viewApproach.comboId)!'id'}',
+					comboVal : '${(rel.viewApproach.comboVal)!'name'}',
+					collectionEntity : ${firstUpper(rel.model)}Collection, 
+					</#if>
+				});
+				this.combo${firstUpper(rel.name)}.setValue(this.model.get('${firstLower(rel.name)}'));
 			<#elseif rel.type == 'ManyToOne'>
 				<#if rel.viewApproach?? >
 					<#if rel.viewApproach.type  == 'combo'  >
@@ -267,8 +268,7 @@ define(function(require) {
 				<#if entity.relationships??>	
 				<#list entity.relationships as rel >
 				<#if (rel.type == 'OneToMany' || rel.type == 'ManyToMany' ) && rel.viewApproach.type == 'multiselect'>
-					${firstLower(rel.name)} : that.${firstLower(rel.name)}.toJSON(),
-				</#if>			
+					${firstLower(rel.name)} :  that.multiselect${firstUpper(rel.name)}.getJsonValue(),
 					<#if rel.viewApproach.type == 'modal' >
 				${firstLower(rel.name)} : that.modal${firstUpper(rel.name)}.getJsonValue(),
 					</#if>			
