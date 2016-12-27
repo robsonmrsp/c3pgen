@@ -1,6 +1,12 @@
 define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adapters/underscore-adapter', 'adapters/jquery-adapter', 'bootstrap', ], function(NProgress, moment, Spinner, Col, Bootbox, _, $) {
 	Number.prototype.formatMoney = function(c, d, t) {
-		var n = this, c = isNaN(c = Math.abs(c)) ? 2 : c, d = d == undefined ? "." : d, t = t == undefined ? "," : t, s = n < 0 ? "-" : "", i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "", j = (j = i.length) > 3 ? j % 3 : 0;
+		var n = this,
+			c = isNaN(c = Math.abs(c)) ? 2 : c,
+			d = d == undefined ? "." : d,
+			t = t == undefined ? "," : t,
+			s = n < 0 ? "-" : "",
+			i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "",
+			j = (j = i.length) > 3 ? j % 3 : 0;
 		return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
 	};
 
@@ -69,11 +75,11 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 		Bootbox : bootbox,
 		NProgress : NProgress.configure({
 			minimum : 0.2,
-		// template : '<div class="bar" role="bar"><div
-		// class="peg"></div></div><div class="spinner" role="spinner"><div
-		// class="spinner-icon"></div></div>'
-		// template : '<div class="bar" role="bar"><div
-		// class="peg"></div></div><div
+			// template : '<div class="bar" role="bar"><div
+			// class="peg"></div></div><div class="spinner" role="spinner"><div
+			// class="spinner-icon"></div></div>'
+			// template : '<div class="bar" role="bar"><div
+			// class="peg"></div></div><div
 
 		// class="spinner" role="spinner"><div class="spinner-icon_"><i
 		// class="fa
@@ -81,7 +87,7 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 		}),
 
 		displayValidationErrors : function(messages) {
-			for ( var key in messages) {
+			for (var key in messages) {
 				if (messages.hasOwnProperty(key)) {
 					this.addValidationError(key, messages[key]);
 				}
@@ -119,7 +125,7 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 				} else {
 					returnValue = returnValue.replace(/\./g, '').replace(/\,/g, '.')
 				}
-			} 
+			}
 
 			return returnValue;
 		},
@@ -185,7 +191,7 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 			$('.alert').removeClass("alert-error alert-warning alert-success alert-info");
 			$('.alert').addClass(klass);
 			text = '<ul>';
-			for ( var key in messages) {
+			for (var key in messages) {
 				text += '<li>' + messages[key] + '</li>';
 			}
 			text += '</ul>';
@@ -202,9 +208,7 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 			return today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
 		},
 
-		getActualHour : function() {
-
-		},
+		getActualHour : function() {},
 		changeEvent : function(event, model) {
 			// Apply the change to the model
 			var target = event.target;
@@ -338,8 +342,7 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 			if (wait)
 				window.setTimeout(function() {
 					window.location.hash = hash;
-				}, 2000);
-			else {
+				}, 2000);else {
 				window.location.hash = hash;
 			}
 		},
@@ -393,7 +396,9 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 		},
 		clear : function(element) {
 			var inputElemento = $('#' + element);
-			inputElemento.val('');
+
+			//disparar o evento abaixo é necessário para garantir que os campos de input do tipo multiselect com o chosen sejam limpos.
+			inputElemento.val('').trigger('chosen:updated')
 			var type = inputElemento.attr('type');
 			if (type === 'checkbox' || type === 'radio') {
 				inputElemento.prop('checked', false);
@@ -438,8 +443,8 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 		},
 		showSpinner : function(target) {
 			var target = document.getElementById(target);
-			// if (target)
-			// spinner.spin(target);
+		// if (target)
+		// spinner.spin(target);
 		},
 		stopSpinner : function() {
 			// spinner.stop();
@@ -528,7 +533,11 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 
 			num = this.toStrNumber(num);
 
-			var str = num.toString().replace("$", ""), parts = false, output = [], i = 1, formatted = null;
+			var str = num.toString().replace("$", ""),
+				parts = false,
+				output = [],
+				i = 1,
+				formatted = null;
 			if (str.indexOf(",") > 0) {
 				parts = str.split(",");
 				str = parts[0];
@@ -548,7 +557,11 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 
 			num = this.toStrNumber(num);
 
-			var str = num.toString().replace("$", ""), parts = false, output = [], i = 1, formatted = null;
+			var str = num.toString().replace("$", ""),
+				parts = false,
+				output = [],
+				i = 1,
+				formatted = null;
 			if (str.indexOf(",") > 0) {
 				parts = str.split(",");
 				str = parts[0];
@@ -577,7 +590,7 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 			$.gritter.add({
 				title : options.title || 'Aviso !',
 				text : options.text,
-				time : 10000,// 10 segundos
+				time : 10000, // 10 segundos
 				sticky : false,
 				// close_icon : 'fa fa-times',
 				icon : options.icon || 'fa fa-exclamation-circle',
@@ -660,15 +673,13 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 				} else {
 					entry = _resp.getResponseHeader && _resp.getResponseHeader('exception')
 				}
-			} catch (e) {
-			}
+			} catch (e) {}
 			window.addLogEntry(entry);
 
 			console.error("veja no console o erro: [ window.showStoreLog()]");
 		},
 		PHONE_BEHAVIOR : maskPhoneBehavior,
 		PHONE_OPTIONS : optionsMaskPhone,
-
 	};
 
 	return util;

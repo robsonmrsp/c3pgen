@@ -43,6 +43,10 @@ define(function(require) {
 					util.clear(uiItem.attr('id'));
 				});
 			}
+
+			//TODO ver uma forma mais elegente de limpar os campos de upload;
+			var inputImage = $('.jsetup-upload-image');
+			inputImage.attr('src', inputImage.attr('no-image-file'));
 		}
 	});
 

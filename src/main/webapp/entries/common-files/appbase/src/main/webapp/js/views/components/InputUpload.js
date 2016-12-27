@@ -30,6 +30,7 @@ define(function(require) {
 			var that = this
 			this.onSuccess = options.onSuccess;
 			this.onError = options.onError;
+			this.noImage = options.noImage || 'images/no_photo.jpg';
 
 			this.bindElement = options.bindElement;
 
@@ -40,6 +41,9 @@ define(function(require) {
 			this.on('show', function() {
 				if (that._getBindEl() && that._getBindEl().val()) {
 					this.ui.imageView.attr('src', that._getBindEl().val());
+				}
+				if (that.noImage) {
+					this.ui.imageView.attr('no-image-file', that.noImage);
 				}
 			});
 
@@ -110,7 +114,6 @@ define(function(require) {
 			this._getBindEl.val(_resp.dataUrl)
 
 		}
-
 	});
 
 	return InputUpload;

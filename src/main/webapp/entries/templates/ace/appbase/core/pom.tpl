@@ -458,6 +458,9 @@
 								<cssSourceFile>../vendor/selectize/css/selectize.bootstrap3.css</cssSourceFile>
 								<cssSourceFile>../vendor/theme/ace.css</cssSourceFile>
 								<cssSourceFile>../vendor/theme/ace-fonts.css</cssSourceFile>
+								<cssSourceFile>../vendor/chosen_v1.6.2/chosen.css</cssSourceFile>
+								<cssSourceFile>../vendor/chosen_v1.6.2/bootstrap-chosen.css</cssSourceFile>
+								
 								<cssSourceFile>custom.css</cssSourceFile>
 							</cssSourceFiles>
 							<cssFinalFile>main-built.css</cssFinalFile>
