@@ -11,10 +11,10 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
-
 import org.hibernate.sql.JoinType;
 
 import ${application.corePackage}.utils.Util;
+
 public class Paginator<T> {
 
 	private final Criteria searchCriteria;
@@ -45,7 +45,6 @@ public class Paginator<T> {
 
 		return result;
 	}
-
 
 	private Criteria adjusteCriteriaBySearchParams(PaginationParams paginationParams) {
 		searchCriteria.setProjection(null);
@@ -85,6 +84,8 @@ public class Paginator<T> {
 					searchCriteria.addOrder(Order.asc(orderBy));
 				}
 			}
+		} else {
+			searchCriteria.addOrder(Order.desc("id"));
 		}
 		return searchCriteria;
 	}

@@ -315,6 +315,7 @@ define(function(require) {
 			{
 				name : "acoes",
 				label : "Ações(Editar, Deletar)",
+				editable : false,
 				sortable : false,
 				cell : JSetup.ActionCell.extend({
 					buttons : that.getCellButtons(),
@@ -397,7 +398,7 @@ define(function(require) {
 		treatKeypress : function(e) {
 			if (util.enterPressed(e)) {
 				e.preventDefault();
-				this.searchFuncionario();
+				this.search${firstUpper(entity.name)}();
 			}
 		},
 	});
