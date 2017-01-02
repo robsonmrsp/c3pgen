@@ -241,7 +241,7 @@ public class Attribute extends AbstractTimestampEntity {
 				setDateFormat("DD/MM/YYYY");
 			}
 			if (getType().getClassName().equalsIgnoreCase("Datetime")) {
-				setDateFormat("DD/MM/YYYY HH:MM");
+				setDateFormat("DD/MM/YYYY HH:mm");
 			}
 		}
 		return dateFormat;

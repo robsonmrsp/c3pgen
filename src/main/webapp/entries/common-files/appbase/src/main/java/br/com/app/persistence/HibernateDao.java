@@ -67,6 +67,7 @@ public class HibernateDao<Entity> {
 		Entity entity = find(entityId);
 		if (entity != null) {
 			sessionFactory.getCurrentSession().delete(entity);
+			sessionFactory.getCurrentSession().flush();
 		}
 		return Boolean.TRUE;
 	}

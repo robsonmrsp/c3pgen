@@ -306,6 +306,7 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 			if (xhr) {
 				if (this.getJson(xhr.responseText).legalMessage) {
 					_xhrMessage = this.getJson(xhr.responseText).legalMessage;
+					this.showMessage('error', _xhrMessage, containerMessage)
 				} else {
 					this.showMessage('error', message, containerMessage);
 				}

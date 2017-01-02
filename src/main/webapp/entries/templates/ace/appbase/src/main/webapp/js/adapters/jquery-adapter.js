@@ -1,5 +1,4 @@
-define([ 'jquery', 'bootbox', 'bootstrap', 'jqueryScrollTo', 'jqueryValidatorEngine', 'jqueryValidatorEnginePtBr', 'morris', 'raphael', 'datetimepicker', 'bootbox', 'datetimepicker_lang_pt_BR', 'jqueryUI', 'nprogress', 'aceSettings', 'ace', 'aceSidebar', 'jqueryGritter',
-	'selectize', 'jqueryForm','jqueryChosen', 'jqueryInputMask' ], function($) {
+define([ 'jquery', 'bootbox', 'bootstrap', 'jqueryScrollTo', 'jqueryValidatorEngine', 'jqueryValidatorEnginePtBr', 'morris', 'raphael', 'datetimepicker', 'bootbox', 'datetimepicker_lang_pt_BR', 'jqueryUI', 'nprogress', 'aceSettings', 'ace', 'aceSidebar', 'jqueryGritter', 'selectize', 'jqueryForm', 'jqueryChosen', 'jqueryInputMask' ], function($) {
 	$.fn.datetimepicker.defaults.icons = {
 		time : "fa fa-clock-o",
 		date : "fa fa-calendar",
@@ -21,11 +20,7 @@ define([ 'jquery', 'bootbox', 'bootstrap', 'jqueryScrollTo', 'jqueryValidatorEng
 	var formatNumber = function(num, places) {
 		num = toStrNumber(num);
 
-		var str = num.toString().replace("$", ""),
-			parts = false,
-			output = [],
-			i = 1,
-			formatted = null;
+		var str = num.toString().replace("$", ""), parts = false, output = [], i = 1, formatted = null;
 		if (str.indexOf(",") > 0) {
 			parts = str.split(",");
 			str = parts[0];
@@ -106,7 +101,19 @@ define([ 'jquery', 'bootbox', 'bootstrap', 'jqueryScrollTo', 'jqueryValidatorEng
 
 	};
 
-	$.fn.integer = function() {
+	$.fn.integer = function(options) {
+		var opt = options || {}
+		this.attr('maxlength', opt.maxlength || 9);
+
+		this.inputmask('integer', {
+			rightAlign : false
+		});
+	}
+
+	$.fn.long = function(options) {
+		var opt = options || {}
+		this.attr('maxlength', opt.maxlength || 18);
+
 		this.inputmask('integer', {
 			rightAlign : false
 		});

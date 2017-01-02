@@ -197,7 +197,7 @@ public class ${entity.name}Resources {
 		} catch (ValidationException e) {
 			String message = String.format("Não foi possivel remover  o registro [ %s ] parametros [ %s ]", e.getOrigem().getMessage(), id);
 			LOGGER.error(message, e.getOrigem());
-			return Response.serverError().entity(new JsonError(e, message, e.getLegalMessage())).build();
+			return Response.serverError().entity(new JsonError(e, message, id, e.getLegalMessage())).build();
 		} catch (Exception e) {
 			String message = String.format("Não foi possivel remover o registro [ %s ] parametros [ %s ]", e.getMessage(), id);
 			LOGGER.error(message, e);

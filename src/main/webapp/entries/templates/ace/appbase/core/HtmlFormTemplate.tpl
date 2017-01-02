@@ -36,7 +36,7 @@
 							<div id="groupInput${firstUpper(att.name)}Container" class="form-group col-sm-	col-md-	col-lg-  ">
 								<label class="control-label" for="input${firstUpper(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}  ${att.required ? string('*','')}</label>
 								<div id="groupInput${firstUpper(att.name)}" class="input-group date" data-date-format="${att.dateFormat}">
-									<input id="input${firstUpper(att.name)}" placeholder="Escolha ou digite uma data." type="text" class="form-control ${getRequiredClass(att.required)} append-left" value="{{${firstLower(att.name)}}}" />
+									<input id="input${firstUpper(att.name)}" placeholder="Escolha ou digite uma data." type="text" class="form-control ${getRequiredClass(att.required)} append-left" value="{{${firstLower(att.name)}}}"  data-date-format="${att.dateFormat}" />
 									<div class="input-group-addon	append-right">
 										<span class="fa fa-calendar"></span>
 									</div>

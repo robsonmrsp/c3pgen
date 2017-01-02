@@ -35,7 +35,7 @@ define(function(require) {
 				var c = state.totalRecords;
 				if (b > c)
 					b = c;
-				anchor.innerHTML = 'Mostrando ' + a + ' a ' + b + ' de ' + c + ' Registros, 10 registros por pagina';
+				anchor.innerHTML = 'Mostrando ' + a + ' a ' + b + ' de ' + c + ' Registros.';
 			}
 			// TODO fazer a internacionalização
 			this.el.appendChild(anchor);
@@ -193,11 +193,11 @@ define(function(require) {
 	var JSetup = {
 
 		RowClick : RowClick,
-		
+
 		Counter : Counter,
-		
+
 		Combobox : Combobox,
-		
+
 		Multiselect : Multiselect,
 
 		MoneyCell : NumericCell.extend({

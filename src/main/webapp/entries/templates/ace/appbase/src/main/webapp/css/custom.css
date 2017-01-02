@@ -165,3 +165,6 @@
 .page-form {
 	padding-top: 10px;
 }
+.custom-row-click :HOVER {
+	cursor: pointer;
+}

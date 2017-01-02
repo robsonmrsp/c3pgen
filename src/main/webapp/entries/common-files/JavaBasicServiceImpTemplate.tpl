@@ -5,6 +5,7 @@ import org.apache.log4j.Logger;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.ArrayList;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.transaction.annotation.Transactional;
 import org.joda.time.LocalDateTime;
 
@@ -17,6 +18,7 @@ import ${application.rootPackage}.persistence.Dao${entity.name};
 import ${application.rootPackage}.model.filter.Filter${entity.name};
 
 import ${application.corePackage}.persistence.pagination.Pager;
+import ${application.corePackage}.rs.exception.ValidationException;
 import ${application.corePackage}.persistence.pagination.Pagination;
 import ${application.corePackage}.persistence.pagination.PaginationParams;
 import ${application.corePackage}.utils.DateUtil;
@@ -112,8 +114,12 @@ public class ${entity.name}ServiceImp implements ${entity.name}Service {
 
 	@Override
 	public Boolean delete(Integer id) {
-		return dao${entity.name}.delete(id);
+		Boolean del = Boolean.FALSE;
+		try {
+			del = dao${entity.name}.delete(id);
+		} catch (ConstraintViolationException e) {
+			throw new ValidationException(e, "Não é possível remover um registro que já está sendo utilizado por outro.");
+		}
+		return del;			
 	}
-
-
 }

@@ -11,6 +11,7 @@ public class ValidationException extends RuntimeException {
 	}
 
 	public ValidationException(Exception origem, String legalMessage) {
+		super(origem);
 		this.origem = origem;
 		this.legalMessage = legalMessage;
 	}

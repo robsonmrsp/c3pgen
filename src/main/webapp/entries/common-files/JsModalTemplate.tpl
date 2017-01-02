@@ -161,7 +161,7 @@ define(function(require) {
 			<#elseif rel.type == 'ManyToOne'>
 				<#if rel.viewApproach?? >
 					<#if rel.viewApproach.type  == 'combo'  >
-				var combo${firstUpper(rel.model)} = new JSetup.Combobox({
+				var combo${firstUpper(rel.name)} = new JSetup.Combobox({
 					el : this.ui.inputModal${firstUpper(rel.model)},
 				   <#if rel.viewApproach.values??>
 				    values : '${toString(rel.viewApproach.values)}'
@@ -182,6 +182,36 @@ define(function(require) {
 			});
 		},
 
+		search${entity.name} : function() {
+			this.${firstLower(entity.name)}Collection.filterQueryParams = {
+			<#list entity.attributes as att>
+			<#if att.showInPages >
+	    		${firstLower(att.name)} : this.ui.inputModal${firstUpper(att.name)}.escape(),
+			</#if>
+			</#list>
+			
+			<#if entity.relationships??>	
+				<#list entity.relationships as rel>
+					<#if rel.viewApproach?? >
+						<#if rel.viewApproach.type  == 'combo'  >
+					${firstLower(rel.name)} : this.ui.inputModal${firstUpper(rel.name)}.escape(),
+						</#if>
+					</#if>
+				</#list>
+			</#if>				
+			};
+
+			this.${firstLower(entity.name)}Collection.fetch({
+				resetState : true,
+				success : function(_coll, _resp, _opt) {
+					//caso queira algum tratamento de sucesso adicional
+				},
+				error : function(_coll, _resp, _opt) {
+					console.error(_coll, _resp, _opt)
+				}
+			});
+		},
+
 		selectRow : function(e) {
 			var model${entity.name} = util.getWrappedModel(e);
 			if (model${entity.name}){
@@ -189,6 +219,7 @@ define(function(require) {
 				this.onSelectModel(model${entity.name});
 			}
 		},
+		
 		getJsonValue : function() {
 			if (this.modelSelect) {
 				return this.modelSelect.toJSON();
@@ -234,26 +265,6 @@ define(function(require) {
 		  		</#if>	
 			</#list>			];
 			return columns;
-		},
-
-		search${entity.name} : function() {
-			this.${firstLower(entity.name)}Collection.filterQueryParams = {
-			<#list entity.attributes as att>
-			<#if att.showInPages >
-	    		${firstLower(att.name)} : this.ui.inputModal${firstUpper(att.name)}.escape(),
-			</#if>
-			</#list>		
-			};
-
-			this.${firstLower(entity.name)}Collection.fetch({
-				resetState : true,
-				success : function(_coll, _resp, _opt) {
-					//caso queira algum tratamento de sucesso adicional
-				},
-				error : function(_coll, _resp, _opt) {
-					console.error(_coll, _resp, _opt)
-				}
-			});
 		},
 
 		hidePage : function() {
