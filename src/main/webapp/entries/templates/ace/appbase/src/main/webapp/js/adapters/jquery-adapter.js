@@ -1,4 +1,4 @@
-define([ 'jquery', 'bootbox', 'bootstrap', 'jqueryScrollTo', 'jqueryValidatorEngine', 'jqueryValidatorEnginePtBr', 'morris', 'raphael', 'datetimepicker', 'bootbox', 'datetimepicker_lang_pt_BR', 'jqueryUI', 'nprogress', 'aceSettings', 'ace', 'aceSidebar', 'jqueryGritter', 'selectize', 'jqueryForm', 'jqueryChosen', 'jqueryInputMask' ], function($) {
+define([ 'jquery', 'bootbox', 'bootstrap', 'jqueryScrollTo', 'jqueryValidatorEngine', 'jqueryValidatorEnginePtBr', 'morris', 'raphael', 'datetimepicker', 'bootbox', 'datetimepicker_lang_pt_BR', 'jqueryUI', 'nprogress', 'aceSettings', 'ace', 'aceSidebar', 'jqueryGritter', 'selectize', 'jqueryForm', 'jqueryChosen', 'jqueryInputMask', 'typeahead', 'bloodhound' ], function($) {
 	$.fn.datetimepicker.defaults.icons = {
 		time : "fa fa-clock-o",
 		date : "fa fa-calendar",

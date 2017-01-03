@@ -95,9 +95,15 @@ public class Dao${entity.name} extends AccessibleHibernateDao<${entity.name}> {
 		Criteria searchCriteria = criteria();
 	<#if entity.attributes??>	
 	<#list entity.attributes as att>
+      	<#if att.type.className == 'String'>	
+		if (filter${entity.name}.get${firstUpper(att.name)}() != null) {
+			searchCriteria.add(Restrictions.ilike("${att.name}", filter${entity.name}.get${firstUpper(att.name)}(), MatchMode.ANYWHERE));
+		}
+		<#else>
 		if (filter${entity.name}.get${firstUpper(att.name)}() != null) {
 			searchCriteria.add(Restrictions.eq("${att.name}", filter${entity.name}.get${firstUpper(att.name)}()));
-		}
+		}				
+		</#if>	
 	</#list>
 	</#if>	
 	<#if entity.relationships??>	
@@ -110,8 +116,9 @@ public class Dao${entity.name} extends AccessibleHibernateDao<${entity.name}> {
 		</#if>	
 	</#list>
 	</#if>	
-
-		list.addAll(searchCriteria.list());
+		// Independente da quantidade de registros na base de dados, somente
+		// será devolvido no maximo 100.
+		list.addAll(searchCriteria.setMaxResults(100).list());
 		return list;
 	}
 	<#if entity.hasOwner>

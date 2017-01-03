@@ -93,6 +93,7 @@ define(function(require) {
 			var that = this;
 
 			this.onSelectModel = opt.onSelectModel;
+			this.suggestConfig = opt.suggestConfig;
 
 			this.${firstLower(entity.name)}Collection = new ${entity.name}PageCollection();
 			this.${firstLower(entity.name)}Collection.state.pageSize = 5;
@@ -178,7 +179,18 @@ define(function(require) {
 			</#if>
 		</#if>
 		</#list>
-		</#if>			
+		</#if>	
+				// preparando o typeahead completando as informações necessárias
+				// para que funcione a busca de filme por
+				if (that.suggestConfig) {
+					that.suggestConfig.collection = that.${firstLower(entity.name)}Collection;
+					that.suggestConfig.onSelect = function(json) {
+						var model = new JSetup.BaseModel(json)
+						that.modelSelect = model;
+						that.onSelectModel(model);
+					}
+					util.configureSuggest(that.suggestConfig);
+				}		
 			});
 		},
 

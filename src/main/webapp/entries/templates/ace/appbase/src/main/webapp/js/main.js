@@ -42,8 +42,24 @@ require.config({
 		'jqueryForm' : '../vendor/jquery.form/jquery.form',
 		'jqueryChosen' : '../vendor/chosen_v1.6.2/chosen.jquery',
 		'jqueryInputMask' : '../vendor/Inputmask-3.3.3/dist/jquery.inputmask.bundle',
+
+		'typeahead' : '../vendor/typeahead/typeahead.bundle',
+		'bloodhound' : '../vendor/typeahead/bloodhound',
 	},
 	shim : {
+
+		typeahead : {
+			deps : [ 'jquery' ],
+			init : function($) {
+				return require.s.contexts._.registry['typeahead.js'].factory($);
+			}
+		},
+		
+		bloodhound : {
+			deps : [ "jquery" ],
+			exports : "Bloodhound"
+		},
+
 		'underscore' : {
 			exports : '_'
 		},

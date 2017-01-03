@@ -131,6 +131,11 @@ define(function(require) {
 				onSelectModel : function(model) {
 					that.onSelect${firstUpper(rel.name)}(model);
 				},
+				//configuração básica para o funcionamento das sugestões
+				suggestConfig : {
+					showValue : '${firstLower(rel.viewApproach.textField)}',
+					field : that.ui.input${firstUpper(rel.name)}${firstUpper(rel.viewApproach.textField)}
+				}				
 			});
 			this.modal${firstUpper(rel.name)}.setValue(this.model.get('${firstLower(rel.name)}'));
 			</#if>

@@ -16,16 +16,13 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.joda.time.LocalDateTime;
 
-import ${application.corePackage}.persistence.HibernateDao;
-import ${application.corePackage}.persistence.pagination.Pagination;
-import ${application.corePackage}.persistence.pagination.PaginationParams;
-import ${application.corePackage}.persistence.pagination.Paginator;
+import ${application.corePackage}.persistence.HibernateDao;import ${application.corePackage}.persistence.pagination.Pagination;import ${application.corePackage}.persistence.pagination.PaginationParams;import ${application.corePackage}.persistence.pagination.Paginator;
 
 @SuppressWarnings("unchecked")
 public class HibernateDao<Entity> {
 
 	private static final Logger LOGGER = Logger.getLogger(HibernateDao.class);
-	
+
 	private Class<Entity> clazz;
 
 	public HibernateDao(Class<Entity> clazz) {
@@ -40,15 +37,15 @@ public class HibernateDao<Entity> {
 	}
 
 	public Entity find(Serializable key) {
-		if(key == null){
+		if (key == null) {
 			return null;
 		}
 		return (Entity) sessionFactory.getCurrentSession().get(clazz, key);
 	}
 
 	public List<Entity> getAll() {
-		LOGGER.warn("Aparentemente voce está tentando fazer uma consulta FULL SCAN. Por efeitos de performance, estamos limitando essa consulta aos primeiros 200 registos.");
-		List<Entity> entities = sessionFactory.getCurrentSession().createCriteria(clazz).setMaxResults(200).list();
+		LOGGER.warn("Aparentemente voce está tentando fazer uma consulta FULL SCAN. Por efeitos de performance, estamos limitando essa consulta aos primeiros 100 registos.");
+		List<Entity> entities = sessionFactory.getCurrentSession().createCriteria(clazz).setMaxResults(100).list();
 		return entities;
 	}
 
@@ -83,7 +80,7 @@ public class HibernateDao<Entity> {
 	public SQLQuery nativeQuery(String nativeSql) {
 		return getSession().createSQLQuery(nativeSql);
 	}
-	
+
 	public List<Entity> last(LocalDateTime dateTime) {
 		List<Entity> list = new ArrayList<Entity>();
 		Criteria searchCriteria = criteria();

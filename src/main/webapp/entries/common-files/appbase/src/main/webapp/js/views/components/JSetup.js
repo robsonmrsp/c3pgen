@@ -8,11 +8,13 @@ define(function(require) {
 	var Marionette = require('marionette');
 	var Backgrid = require('adapters/backgrid-adapter');
 	var util = require('utilities/utils');
+	var BaseModel = require('models/BaseModel');
 	var GridTemplate = require('text!views/components/tpl/GridTemplate.html');
 
 	var Combobox = require('views/components/Combobox');
 	var Multiselect = require('views/components/Multiselect');
 	var InputUpload = require('views/components/InputUpload');
+	var Suggestbox = require('views/components/Suggestbox');
 
 	var Counter = Marionette.ItemView.extend({
 		initialize : function(options) {
@@ -223,6 +225,9 @@ define(function(require) {
 		DataTable : DataTable,
 
 		InputUpload : InputUpload,
+		Suggestbox : Suggestbox,
+		
+		BaseModel : BaseModel,
 
 	}
 	return JSetup;
