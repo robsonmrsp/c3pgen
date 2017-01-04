@@ -59,7 +59,7 @@
 								<div class="widget-body">
 								<!-- inicio dos registros-->							
 								<#list entity.attributes as att>
-								<#if att.showInPages && !att.basicSearch && att.type.className != 'Boolean' && att.viewApproach.type  == 'upload'>
+								<#if att.showInPages && !att.basicSearch && att.type.className != 'Boolean' && att.viewApproach.type  != 'upload' && att.viewApproach.type  != 'multiselect'>
 								  <#if att.viewApproach?? >
 									<#if att.type.className == 'Boolean' && att.viewApproach.type  == 'check'  >
 									<!--

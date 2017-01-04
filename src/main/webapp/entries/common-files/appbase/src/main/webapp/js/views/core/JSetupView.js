@@ -40,11 +40,13 @@ define(function(require) {
 			}
 			if (this.ui) {
 				_.each(this.ui, function(uiItem) {
-					util.clear(uiItem.attr('id'));
+					//Caso queira que um determinado campo de tela permaneça com valores mesmod epois do clear, marque-o com o attributo persist
+					if (!uiItem.attr('persist'))
+						util.clear(uiItem.attr('id'));
 				});
 			}
 
-			//TODO ver uma forma mais elegente de limpar os campos de upload;
+			// TODO ver uma forma mais elegente de limpar os campos de upload;
 			var inputImage = $('.jsetup-upload-image');
 			inputImage.attr('src', inputImage.attr('no-image-file'));
 		}

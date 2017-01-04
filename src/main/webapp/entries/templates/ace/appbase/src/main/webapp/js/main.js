@@ -43,16 +43,13 @@ require.config({
 		'jqueryChosen' : '../vendor/chosen_v1.6.2/chosen.jquery',
 		'jqueryInputMask' : '../vendor/Inputmask-3.3.3/dist/jquery.inputmask.bundle',
 
-		'typeahead' : '../vendor/typeahead/typeahead.bundle',
+		'typeahead' : '../vendor/typeahead/typeahead.jquery',
 		'bloodhound' : '../vendor/typeahead/bloodhound',
 	},
 	shim : {
 
 		typeahead : {
 			deps : [ 'jquery' ],
-			init : function($) {
-				return require.s.contexts._.registry['typeahead.js'].factory($);
-			}
 		},
 		
 		bloodhound : {

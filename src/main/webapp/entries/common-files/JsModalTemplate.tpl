@@ -42,6 +42,12 @@ define(function(require) {
 	var ${entity.name}Modal = JSetupView.extend({
 		template : _.template(${entity.name}Modal),
 
+		/** The declared form Regions. */
+		regions : {
+			dataTable${firstUpper(entity.name)}Region : '.datatable-${firstLower(entity.name)}',
+		},
+		
+		/** The form events you'd like to listen */
 		events : {
 			'click .btnSearch${entity.name}' : 'search${entity.name}',
 			'click .btnClear${entity.name}' : 'clearModal',
@@ -49,10 +55,7 @@ define(function(require) {
 			'keypress' : 'treatKeypress',
 		},
 
-		regions : {
-			dataTable${firstUpper(entity.name)}Region : '.datatable-${firstLower(entity.name)}',
-		},
-
+		/** All the inportant fields must be here. */		
 		ui : {
 		<#list entity.attributes as att>
     		inputModal${firstUpper(att.name)} : '.inputModal${firstUpper(att.name)}',
@@ -89,6 +92,7 @@ define(function(require) {
 	    	}
 		},
 
+		/** First function called, like a constructor. */
 		initialize : function(opt) {
 			var that = this;
 
@@ -99,99 +103,96 @@ define(function(require) {
 			this.${firstLower(entity.name)}Collection.state.pageSize = 5;
 			this.${firstLower(entity.name)}Collection.on('fetching', this.startFetch, this);
 			this.${firstLower(entity.name)}Collection.on('fetched', this.stopFetch, this);
-
+			
 			this.dataTable${firstUpper(entity.name)} = new JSetup.DataTable({
 				row : JSetup.RowClick,
 				columns : this.getColumns(),
 				collection : this.${firstLower(entity.name)}Collection,
 			});
-			
-
-			this.on('show', function() {
-				
-				that.dataTable${firstUpper(entity.name)}Region.show(this.dataTable${firstUpper(entity.name)});
-		 <#list entity.attributes as att>
-	   	   <#if att.showInPages >
-			  <#if att.inputAs == 'cpf' >
-					this.ui.inputModal${firstUpper(att.name)}.cpf();
-			  </#if>	
-			  <#if att.inputAs == 'percent' >
-					this.ui.input${firstUpper(att.name)}.decimal();
-			  </#if>			  
-			  <#if att.inputAs == 'fone' >
-					this.ui.inputModal${firstUpper(att.name)}.fone();
-			  </#if>
-			  <#if att.inputAs == 'date' >
-					this.ui.inputModal${firstUpper(att.name)}.date();
-					this.ui.groupInputModal${firstUpper(att.name)}.date();
-			  </#if>	
-			  <#if att.inputAs == 'datetime' >
-					this.ui.inputModal${firstUpper(att.name)}.datetime();
-					this.ui.groupInputModal${firstUpper(att.name)}.datetime();
-			  </#if>	
-			  <#if att.inputAs == 'decimal' >
-					this.ui.inputModal${firstUpper(att.name)}.decimal();
-			  </#if>	
-			  <#if att.inputAs == 'integer' >
-					this.ui.inputModal${firstUpper(att.name)}.integer();
-			  </#if>	
-			  <#if att.inputAs == 'money' >
-					this.ui.inputModal${firstUpper(att.name)}.money();
-			  </#if>	
-			  <#if att.viewApproach?? >
-				<#if att.viewApproach.type == 'combo'>		
-					var combo${firstUpper(att.name)} = new JSetup.Combobox({
-						el : this.ui.inputModal${firstUpper(att.name)},
-					   <#if att.viewApproach.values??>
-					    values : ${toListString(att.viewApproach.values)}
-						<#else>
-						comboId : '${(att.viewApproach.comboId)!'id'}',
-						comboVal : '${(att.viewApproach.comboVal)!'name'}',
-						collectionEntity : ${att.type.className}Collection, 
-						</#if>
-					});
-				</#if>
-			  </#if>
-		  </#if>
-		</#list>
+			this.setValue(opt.initialValue);
+		},
 		
-		<#if entity.relationships??>	
-		<#list entity.relationships as rel>
-		<#if rel.showInPages >
-			<#if rel.type == 'OneToMany'>
-			<#elseif rel.type == 'ManyToOne'>
-				<#if rel.viewApproach?? >
-					<#if rel.viewApproach.type  == 'combo'  >
-				var combo${firstUpper(rel.name)} = new JSetup.Combobox({
-					el : this.ui.inputModal${firstUpper(rel.model)},
-				   <#if rel.viewApproach.values??>
-				    values : '${toString(rel.viewApproach.values)}'
-					<#else>
-					comboId : '${(rel.viewApproach.comboId)!'id'}',
-					comboVal : '${(rel.viewApproach.comboVal)!'name'}',
-					collectionEntity : ${firstUpper(rel.model)}Collection, 
-					</#if>
-				});
-					</#if>
+		/** Called after DOM´s ready.*/
+		onRender :  function() {
+			var that = this;
+	 <#list entity.attributes as att>
+   	   <#if att.showInPages >
+		  <#if att.inputAs == 'cpf' >
+			this.ui.inputModal${firstUpper(att.name)}.cpf();
+		  </#if>	
+		  <#if att.inputAs == 'fone' || att.inputAs == 'telephone' || att.inputAs == 'telefone' >
+			this.ui.inputModal${firstUpper(att.name)}.fone();
+		  </#if>
+		  <#if att.inputAs == 'date' || att.type.className == 'Date'>
+			this.ui.inputModal${firstUpper(att.name)}.date();
+			this.ui.groupInputModal${firstUpper(att.name)}.date();
+		  </#if>	
+		  <#if att.inputAs == 'datetime' ||  att.type.className == 'Datetime'>
+			this.ui.inputModal${firstUpper(att.name)}.datetime();
+			this.ui.groupInputModal${firstUpper(att.name)}.datetime();
+		  </#if>	
+		  <#if  att.inputAs == 'percent' || att.inputAs == 'percentagem' || att.inputAs == 'decimal' || att.type.className == 'Double'>
+			this.ui.inputModal${firstUpper(att.name)}.decimal();
+		  </#if>	
+		  <#if att.inputAs == 'integer' || att.type.className == 'Integer'>
+			this.ui.inputModal${firstUpper(att.name)}.integer();
+		  </#if>	
+		  <#if att.inputAs == 'money' || att.inputAs == 'monetario'>
+			this.ui.inputModal${firstUpper(att.name)}.money();
+		  </#if>	
+		  <#if att.viewApproach?? >
+			<#if att.viewApproach.type == 'combo'>		
+			var combo${firstUpper(att.name)} = new JSetup.Combobox({
+				el : this.ui.inputModal${firstUpper(att.name)},
+			   <#if att.viewApproach.values??>
+			    values : ${toListString(att.viewApproach.values)}
+				<#else>
+				comboId : '${(att.viewApproach.comboId)!'id'}',
+				comboVal : '${(att.viewApproach.comboVal)!'name'}',
+				collectionEntity : ${att.type.className}Collection, 
 				</#if>
-			<#elseif rel.type == 'ManyToMany'>
-			<#elseif rel.type == 'OneToOne'>
-			</#if>
-		</#if>
-		</#list>
-		</#if>	
-				// preparando o typeahead completando as informações necessárias
-				// para que funcione a busca de filme por
-				if (that.suggestConfig) {
-					that.suggestConfig.collection = that.${firstLower(entity.name)}Collection;
-					that.suggestConfig.onSelect = function(json) {
-						var model = new JSetup.BaseModel(json)
-						that.modelSelect = model;
-						that.onSelectModel(model);
-					}
-					util.configureSuggest(that.suggestConfig);
-				}		
 			});
+			</#if>
+		  </#if>
+	  </#if>
+	</#list>
+	
+	<#if entity.relationships??>	
+	<#list entity.relationships as rel>
+	<#if rel.showInPages >
+		<#if rel.type == 'OneToMany'>
+		<#elseif rel.type == 'ManyToOne'>
+			<#if rel.viewApproach?? >
+				<#if rel.viewApproach.type  == 'combo'  >
+			var combo${firstUpper(rel.name)} = new JSetup.Combobox({
+				el : this.ui.inputModal${firstUpper(rel.model)},
+			   <#if rel.viewApproach.values??>
+			    values : '${toString(rel.viewApproach.values)}'
+				<#else>
+				comboId : '${(rel.viewApproach.comboId)!'id'}',
+				comboVal : '${(rel.viewApproach.comboVal)!'name'}',
+				collectionEntity : ${firstUpper(rel.model)}Collection, 
+				</#if>
+			});
+				</#if>
+			</#if>
+		<#elseif rel.type == 'ManyToMany'>
+		<#elseif rel.type == 'OneToOne'>
+		</#if>
+	</#if>
+	</#list>
+	</#if>	
+			that.dataTable${firstUpper(entity.name)}Region.show(this.dataTable${firstUpper(entity.name)});
+					
+			if (that.suggestConfig) {
+				that.suggestConfig.collection = that.${firstLower(entity.name)}Collection;
+				that.suggestConfig.onSelect = function(json) {
+					var model = new JSetup.BaseModel(json)
+					that.modelSelect = model;
+					that.onSelectModel(model);
+				}
+				util.configureSuggest(that.suggestConfig);
+			}		
 		},
 
 		search${entity.name} : function() {
@@ -206,7 +207,7 @@ define(function(require) {
 				<#list entity.relationships as rel>
 					<#if rel.viewApproach?? >
 						<#if rel.viewApproach.type  == 'combo'  >
-					${firstLower(rel.name)} : this.ui.inputModal${firstUpper(rel.name)}.escape(),
+				${firstLower(rel.name)} : this.ui.inputModal${firstUpper(rel.name)}.escape(),
 						</#if>
 					</#if>
 				</#list>
@@ -290,11 +291,16 @@ define(function(require) {
 			this.search${entity.name}();
 		},
 
+		clear : function() {
+			this.clearModal();
+		},
 		clearModal : function() {
 			this.clearForm();
+			this.modelSelect = null;
+			this.jsonValue = null;
+			this.${firstLower(entity.name)}Collection.reset();
 			util.scrollUpModal();
 			this.ui.form.get(0).reset();
-			this.${firstLower(entity.name)}Collection.reset();
 		},
 		
 		// Executada depois da consulta concluida.

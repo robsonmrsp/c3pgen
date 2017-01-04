@@ -16,6 +16,9 @@ function(util, _, $, Backbone, Marionette) {
 			this.comboId = options.comboId;
 			this.$el.find('option').remove();
 			this.$el.append('<option value selected>       -- Selecione --      </option>');
+			
+			this.setValue(options.initialValue);
+			
 			if (this.collectionEntity) {
 				this.comboVal = options.comboVal;
 				this.comboId = options.comboId;
@@ -121,6 +124,11 @@ function(util, _, $, Backbone, Marionette) {
 					this.$el.val(model);
 				}
 			}
+		},
+		
+		clear : function() {
+			this.$el && this.$el.val('');	
+			this.modelValue = null;
 		},
 
 		filter : function(data, newUrl) {

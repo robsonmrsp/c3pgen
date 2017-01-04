@@ -665,24 +665,36 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 			});
 
 			var field = $(suggestConfig.field);
-			field.typeahead(null, {
+			field.typeahead({
+				hint : false,
+
+//				minLength : 1,
+				highlight : true,
+				highlighter : function(item) {
+					var regex = new RegExp('(' + this.query + ')', 'gi');
+					return item.replace(regex, "<strong>$1</strong>");
+				},
+			}, {
 				name : 'modal-filme-input-suggest',
 				display : suggestConfig.showValue,
-				hint : true,
-				limit : 15,
-				highlight : true,
 				source : bloodhound,
+				limit : 15,
 				templates : {
-					empty : [ '<div class="empty-message">', 'Sem resultados...', '</div>' ].join('\n'),
-					suggestion : _.template(suggestConfig.template || '<div> {{id}} - {{' + suggestConfig.showValue + '}} </div>')
+					empty : [ '<div class="empty-message"> &nbsp;', ' Sem resultados...', '</div>' ].join('\n'),
+					suggestion : _.template(suggestConfig.template || '<div>{{' + suggestConfig.showValue + '}} </div>')
 				}
 			});
 
-			field.on('typeahead:select', function(evt, model) {
+			field.bind('typeahead:select', function(evt, model) {
 				if (suggestConfig.onSelect) {
 					suggestConfig.onSelect(model);
 				}
 			})
+
+			field.bind('typeahead:change', function(evt, model) {
+//				console.log(evt, model);
+			})
+
 		},
 
 		logError : function(_resp) {

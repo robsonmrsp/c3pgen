@@ -36,6 +36,7 @@ define(function(require) {
 	var Form${entity.name}s = JSetupView.extend({
 		template : _.template(TemplateForm${entity.name}s),
 
+		/** The declared form Regions. */
 		regions : {
 			<#list entity.attributes as att >
 			<#if att.viewApproach.type == 'upload'>
@@ -51,6 +52,7 @@ define(function(require) {
 			</#if>
 		},
 
+		/** The form events you'd like to listen */
 		events : {
 			'click 	.save' : 'save',
 			'click 	.saveAndContinue' : 'saveAndContinue',
@@ -69,7 +71,7 @@ define(function(require) {
 				</#list>		
 			</#if>			
 		},
-		
+		/** All the inportant fields must be here. */
 		ui : {
 			inputId : '#inputId',
 		<#list entity.attributes as att>
@@ -108,8 +110,107 @@ define(function(require) {
 		</#if>			
 			form : '#form${firstUpper(entity.name)}',
 		},
-		initialize : function() {
+		
+		/** First function called, like a constructor. */
+		initialize : function(options) {
 			var that = this;
+			//here the code 
+		},
+		
+		/** Called after DOM´s ready.*/
+		onRender : function() {
+			var that = this;
+   				
+		<#list entity.attributes as att>
+		  <#if att.inputAs == 'cpf' >
+			this.ui.input${firstUpper(att.name)}.cpf();
+		  </#if>	
+		  <#if att.inputAs == 'fone' || att.inputAs == 'telephone' || att.inputAs == 'telefone' >
+			this.ui.input${firstUpper(att.name)}.fone();
+		  </#if>
+		  <#if att.inputAs == 'date' || att.type.className == 'Date'>
+			this.ui.input${firstUpper(att.name)}.date();
+			this.ui.groupInput${firstUpper(att.name)}.date();
+		  </#if>	
+		  <#if att.inputAs == 'datetime' ||  att.type.className == 'Datetime'>
+			this.ui.input${firstUpper(att.name)}.datetime();
+			this.ui.groupInput${firstUpper(att.name)}.datetime();
+		  </#if>	
+		  <#if att.inputAs == 'percent' || att.inputAs == 'percentagem' || att.inputAs == 'decimal' || att.type.className == 'Double'>
+			this.ui.input${firstUpper(att.name)}.decimal();
+		  </#if>	
+		  <#if att.inputAs == 'integer' || att.type.className == 'Integer'>
+			this.ui.input${firstUpper(att.name)}.integer();
+		  </#if>	
+		  <#if att.inputAs == 'money' || att.inputAs == 'monetario'>
+			this.ui.input${firstUpper(att.name)}.money();
+		  </#if>	
+		  <#if att.viewApproach?? >
+			<#if att.viewApproach.type == 'combo'>		
+			this.combo${firstUpper(att.name)} = new JSetup.Combobox({
+				el : this.ui.input${firstUpper(att.name)},
+			   <#if att.viewApproach.values??>
+			    values : ${toListString(att.viewApproach.values)}
+				<#else>
+				comboId : '${(att.viewApproach.comboId)!'id'}',
+				comboVal : '${(att.viewApproach.comboVal)!'name'}',
+				collectionEntity : ${att.type.className}Collection, 
+				</#if>
+				initialValue : that.model.get('${firstLower(att.name)}'),
+			});
+			</#if>
+		  </#if>
+		</#list>			
+		
+		<#if entity.relationships??>
+		<#list entity.relationships as rel>
+			<#if (rel.type == 'OneToMany' || rel.type == 'ManyToMany' ) && rel.viewApproach.type == 'multiselect'>
+			this.multiselect${firstUpper(rel.name)} = new JSetup.Multiselect({
+				el : this.ui.input${firstUpper(rel.name)},
+			   <#if rel.viewApproach.values??>
+			    values : '${toString(rel.viewApproach.values)}'
+				<#else>
+				comboId : '${(rel.viewApproach.comboId)!'id'}',
+				comboVal : '${(rel.viewApproach.comboVal)!'name'}',
+				collectionEntity : ${firstUpper(rel.model)}Collection, 
+				</#if>
+			    initialValue : that.model.get('${firstLower(rel.name)}'),
+			});
+			<#elseif rel.type == 'ManyToOne'>
+				<#if rel.viewApproach?? >
+					<#if rel.viewApproach.type  == 'combo'  >
+			this.combo${firstUpper(rel.name)} = new JSetup.Combobox({
+				el : this.ui.input${firstUpper(rel.name)},
+			   <#if rel.viewApproach.values??>
+			    values : '${toString(rel.viewApproach.values)}'
+				<#else>
+				comboId : '${(rel.viewApproach.comboId)!'id'}',
+				comboVal : '${(rel.viewApproach.comboVal)!'name'}',
+				collectionEntity : ${firstUpper(rel.model)}Collection, 
+				</#if>
+				initialValue : that.model.get('${firstLower(rel.name)}'),					
+			});
+					</#if>
+				</#if>
+			</#if>
+		</#list>
+		</#if>			
+		<#if entity.relationships??>	
+		<#list entity.relationships as rel >
+			<#if rel.viewApproach.type == 'modal'>
+			this.modal${firstUpper(rel.name)} = new Modal${firstUpper(rel.name)}({
+				onSelectModel : function(model) {
+					that.onSelect${firstUpper(rel.name)}(model);
+				},
+				suggestConfig : {
+					showValue : '${firstLower(rel.viewApproach.textField)}',
+					field : that.ui.input${firstUpper(rel.name)}${firstUpper(rel.viewApproach.textField)}
+				},
+				initialValue : that.model.get('${firstLower(rel.name)}'),		
+			});
+			</#if>
+		</#list>
+		</#if>
 		<#list entity.attributes as att >
 			<#if att.viewApproach.type == 'upload'>
 			this.uploadView${firstUpper(att.name)} = new JSetup.InputUpload({
@@ -123,117 +224,21 @@ define(function(require) {
 			});
 			</#if>
 		</#list >
-				
+		
 		<#if entity.relationships??>	
 		<#list entity.relationships as rel >
 			<#if rel.viewApproach.type == 'modal'>
-			this.modal${firstUpper(rel.name)} = new Modal${firstUpper(rel.name)}({
-				onSelectModel : function(model) {
-					that.onSelect${firstUpper(rel.name)}(model);
-				},
-				//configuração básica para o funcionamento das sugestões
-				suggestConfig : {
-					showValue : '${firstLower(rel.viewApproach.textField)}',
-					field : that.ui.input${firstUpper(rel.name)}${firstUpper(rel.viewApproach.textField)}
-				}				
-			});
-			this.modal${firstUpper(rel.name)}.setValue(this.model.get('${firstLower(rel.name)}'));
-			</#if>
-		</#list>
-		</#if>
-			this.on('show', function() {
-		<#if entity.relationships??>	
-		<#list entity.relationships as rel >
-			<#if rel.viewApproach.type == 'modal'>
-				this.modal${firstUpper(rel.name)}Region.show(this.modal${firstUpper(rel.name)});		
+			this.modal${firstUpper(rel.name)}Region.show(this.modal${firstUpper(rel.name)});		
 			</#if>
 		</#list>
 		</#if>
 		<#list entity.attributes as att >
 			<#if att.viewApproach.type == 'upload'>
-				this.upload${firstUpper(att.name)}Region.show(this.uploadView${firstUpper(att.name)});		
+			this.upload${firstUpper(att.name)}Region.show(this.uploadView${firstUpper(att.name)});		
 			</#if>
 		</#list>
-                //Formating inputs as		
-		<#list entity.attributes as att>
-		  <#if att.inputAs == 'cpf' >
-				this.ui.input${firstUpper(att.name)}.cpf();
-		  </#if>	
-		  <#if att.inputAs == 'percent' || att.inputAs == 'percentagem'>
-				this.ui.input${firstUpper(att.name)}.decimal();
-		  </#if>
-		  <#if att.inputAs == 'fone' || att.inputAs == 'telephone' || att.inputAs == 'telefone' >
-				this.ui.input${firstUpper(att.name)}.fone();
-		  </#if>
-		  <#if att.inputAs == 'date' || att.type.className == 'Date'>
-				this.ui.input${firstUpper(att.name)}.date();
-				this.ui.groupInput${firstUpper(att.name)}.date();
-		  </#if>	
-		  <#if att.inputAs == 'datetime' ||  att.type.className == 'Datetime'>
-				this.ui.input${firstUpper(att.name)}.datetime();
-				this.ui.groupInput${firstUpper(att.name)}.datetime();
-		  </#if>	
-		  <#if att.inputAs == 'decimal' || att.type.className == 'Double'>
-				this.ui.input${firstUpper(att.name)}.decimal();
-		  </#if>	
-		  <#if att.inputAs == 'integer' || att.type.className == 'Integer'>
-				this.ui.input${firstUpper(att.name)}.integer();
-		  </#if>	
-		  <#if att.inputAs == 'money' || att.inputAs == 'monetario'>
-				this.ui.input${firstUpper(att.name)}.money();
-		  </#if>	
-		  <#if att.viewApproach?? >
-			<#if att.viewApproach.type == 'combo'>		
-				this.combo${firstUpper(att.name)} = new JSetup.Combobox({
-					el : this.ui.input${firstUpper(att.name)},
-				   <#if att.viewApproach.values??>
-				    values : ${toListString(att.viewApproach.values)}
-					<#else>
-					comboId : '${(att.viewApproach.comboId)!'id'}',
-					comboVal : '${(att.viewApproach.comboVal)!'name'}',
-					collectionEntity : ${att.type.className}Collection, 
-					</#if>
-				});
-				this.combo${firstUpper(att.name)}.setValue(this.model.get('${firstLower(att.name)}'));//getJsonValue
-			</#if>
-		  </#if>
-		</#list>
-		<#if entity.relationships??>
-		<#list entity.relationships as rel>
-			<#if (rel.type == 'OneToMany' || rel.type == 'ManyToMany' ) && rel.viewApproach.type == 'multiselect'>
-				this.multiselect${firstUpper(rel.name)} = new JSetup.Multiselect({
-					el : this.ui.input${firstUpper(rel.name)},
-				   <#if rel.viewApproach.values??>
-				    values : '${toString(rel.viewApproach.values)}'
-					<#else>
-					comboId : '${(rel.viewApproach.comboId)!'id'}',
-					comboVal : '${(rel.viewApproach.comboVal)!'name'}',
-					collectionEntity : ${firstUpper(rel.model)}Collection, 
-					</#if>
-				});
-				this.multiselect${firstUpper(rel.name)}.setValue(this.model.get('${firstLower(rel.name)}'));
-			<#elseif rel.type == 'ManyToOne'>
-				<#if rel.viewApproach?? >
-					<#if rel.viewApproach.type  == 'combo'  >
-				this.combo${firstUpper(rel.name)} = new JSetup.Combobox({
-					el : this.ui.input${firstUpper(rel.name)},
-				   <#if rel.viewApproach.values??>
-				    values : '${toString(rel.viewApproach.values)}'
-					<#else>
-					comboId : '${(rel.viewApproach.comboId)!'id'}',
-					comboVal : '${(rel.viewApproach.comboVal)!'name'}',
-					collectionEntity : ${firstUpper(rel.model)}Collection, 
-					</#if>
-				});
-				this.combo${firstUpper(rel.name)}.setValue(this.model.get('${firstLower(rel.name)}'));					
-					</#if>
-				</#if>
-			</#if>
-		</#list>
-		</#if>
-			});
 		},
-
+		
 		saveAndContinue : function() {
 			this.save(true)
 		},
@@ -274,7 +279,7 @@ define(function(require) {
 				<#if entity.relationships??>	
 				<#list entity.relationships as rel >
 					<#if (rel.type == 'OneToMany' || rel.type == 'ManyToMany' ) && rel.viewApproach.type == 'multiselect'>
-					${firstLower(rel.name)} :  that.multiselect${firstUpper(rel.name)}.getJsonValue(),
+				${firstLower(rel.name)} :  that.multiselect${firstUpper(rel.name)}.getJsonValue(),
 					</#if>			
 					<#if rel.viewApproach.type == 'modal' >
 				${firstLower(rel.name)} : that.modal${firstUpper(rel.name)}.getJsonValue(),
@@ -287,7 +292,27 @@ define(function(require) {
 			});
 			return ${firstLower(entity.name)};
 		},
-
+		
+		customClearForm : function(){
+		<#list entity.attributes as att>
+		<#if att.viewApproach.type == 'upload'>
+			this.uploadView${firstUpper(att.name)}.clear();		
+		</#if>
+		</#list>
+		<#list entity.relationships as rel >
+			<#if rel.viewApproach?? >
+				<#if rel.viewApproach.type == 'modal' >
+		    this.modal${firstUpper(rel.name)}.clear(); 
+				</#if> 
+				<#if  rel.viewApproach.type == 'combo'>
+		    this.combo${firstUpper(rel.model)}.clear(); 
+				</#if>
+				<#if  rel.viewApproach.type == 'multiselect'>
+		    this.multiselect${firstUpper(rel.name)}.clear(); 
+				</#if>
+			</#if>
+		</#list>	
+		},
 		<#if entity.relationships??>	
 		<#list entity.relationships as rel >
 			<#if rel.viewApproach.type == 'modal'>

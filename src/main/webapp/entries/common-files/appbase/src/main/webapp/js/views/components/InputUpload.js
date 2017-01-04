@@ -20,6 +20,7 @@ define(function(require) {
 		ui : {
 			imageView : '.input-image',
 			inputUploadFile : '.input-upload-file',
+			uploadImage : '.jsetup-upload-image',
 		},
 
 		forceClickInputUploadFile : function(evt) {
@@ -99,7 +100,11 @@ define(function(require) {
 				data : dataFile,
 			});
 		},
-
+		
+		clear : function() {
+			this.ui.uploadImage.attr('src', this.ui.uploadImage.attr('no-image-file'));
+		}, 
+		
 		_getBindEl : function() {
 			if (this.bindElement) {
 				if (!(this.bindElement instanceof jQuery)) {

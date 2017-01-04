@@ -42,9 +42,9 @@ define(function(require) {
 	var Page${entity.name} = JSetupView.extend({
 		template : _.template(Page${entity.name}Template),
 
+		/** The declared form Regions. */
 		regions : {
 			dataTable${firstUpper(entity.name)}Region : '.datatable-${firstLower(entity.name)}',
-
 			<#if entity.relationships??>	
 			<#list entity.relationships as rel >
 				<#if rel.viewApproach.type == 'modal'>
@@ -54,6 +54,7 @@ define(function(require) {
 			</#if>			
 		},
 		
+		/** The form events you'd like to listen */
 		events : {
 			'click 	.reset-button' : 'reset${firstUpper(entity.name)}',			
 			<#if entity.relationships??>	
@@ -69,7 +70,7 @@ define(function(require) {
 			'click  .show-advanced-search-button' : 'toggleAdvancedForm',
 		},
 		
-		
+		/** All the inportant fields must be here. */		
 		ui : {
 		<#list entity.attributes as att>
 			<#if att.showInPages >
@@ -81,7 +82,6 @@ define(function(require) {
 				</#if>
 			</#if>
 		</#list>
-		
 		<#if entity.relationships??>	
 		<#list entity.relationships as rel>
 			<#if rel.showInPages >
@@ -109,6 +109,7 @@ define(function(require) {
 			advancedSearchForm : '.advanced-search-form',
 		},
 		
+		/** First function called, like a constructor. */		
 		initialize : function() {
 			var that = this;
 
@@ -132,57 +133,51 @@ define(function(require) {
 			</#if>
 		</#list>
 		</#if>
-			this.on('show', function() {
-			   that.dataTable${firstUpper(entity.name)}Region.show(that.dataTable${firstUpper(entity.name)});
-		<#if entity.relationships??>	
-		<#list entity.relationships as rel >
-			<#if rel.showInPages >		
-			<#if rel.viewApproach.type == 'modal'>
-				this.modal${firstUpper(rel.name)}Region.show(this.modal${firstUpper(rel.name)});		
-			</#if>
-			</#if>
-		</#list>
-		</#if>
+		},
+
+		/** Called after DOM´s ready.*/		
+		onRender : function() {
+			var that = this;
 		<#list entity.attributes as att>
 		<#if att.showInPages >
 		  <#if att.inputAs == 'cpf' >
-				this.ui.input${firstUpper(att.name)}.cpf();
+			this.ui.input${firstUpper(att.name)}.cpf();
 		  </#if>	
 		  <#if att.inputAs == 'percent' >
-				this.ui.input${firstUpper(att.name)}.decimal();
+			this.ui.input${firstUpper(att.name)}.decimal();
 		  </#if>	
 		  <#if att.inputAs == 'fone' || att.inputAs == 'telephone' || att.inputAs == 'telefone' >
-				this.ui.input${firstUpper(att.name)}.fone();
+			this.ui.input${firstUpper(att.name)}.fone();
 		  </#if>
 		  <#if att.inputAs == 'date' >
-				this.ui.input${firstUpper(att.name)}.date();
-				this.ui.groupInput${firstUpper(att.name)}.date();
+			this.ui.input${firstUpper(att.name)}.date();
+			this.ui.groupInput${firstUpper(att.name)}.date();
 		  </#if>	
 		  <#if att.inputAs == 'datetime' >
-				this.ui.input${firstUpper(att.name)}.datetime();
-				this.ui.groupInput${firstUpper(att.name)}.datetime();
+			this.ui.input${firstUpper(att.name)}.datetime();
+			this.ui.groupInput${firstUpper(att.name)}.datetime();
 		  </#if>	
 		  <#if att.inputAs == 'decimal' >
-				this.ui.input${firstUpper(att.name)}.decimal();
+			this.ui.input${firstUpper(att.name)}.decimal();
 		  </#if>	
 		  <#if att.inputAs == 'integer' >
-				this.ui.input${firstUpper(att.name)}.integer();
+			this.ui.input${firstUpper(att.name)}.integer();
 		  </#if>	
 		  <#if att.inputAs == 'money' >
-				this.ui.input${firstUpper(att.name)}.money();
+			this.ui.input${firstUpper(att.name)}.money();
 		  </#if>	
 		  <#if att.viewApproach?? >
 			<#if att.viewApproach.type == 'combo'>		
-				this.combo${firstUpper(att.name)} = new JSetup.Combobox({
-					el : this.ui.input${firstUpper(att.name)},
-				   <#if att.viewApproach.values??>
-				    values : ${toListString(att.viewApproach.values)}
-					<#else>
-					comboId : '${(att.viewApproach.comboId)!'id'}',
-					comboVal : '${(att.viewApproach.comboVal)!'name'}',
-					collectionEntity : ${att.type.className}Collection, 
-					</#if>
-				});
+			this.combo${firstUpper(att.name)} = new JSetup.Combobox({
+				el : this.ui.input${firstUpper(att.name)},
+			   <#if att.viewApproach.values??>
+			    values : ${toListString(att.viewApproach.values)}
+				<#else>
+				comboId : '${(att.viewApproach.comboId)!'id'}',
+				comboVal : '${(att.viewApproach.comboVal)!'name'}',
+				collectionEntity : ${att.type.className}Collection, 
+				</#if>
+			});
 			</#if>
 		  </#if>
 		  <#if att.mask??>
@@ -191,24 +186,24 @@ define(function(require) {
 		  </#if>
 		  </#if>
 		</#list>
-		<#if entity.relationships??>	
 		
+		<#if entity.relationships??>	
 		<#list entity.relationships as rel>
 			<#if rel.showInPages >		
 			<#if rel.type == 'OneToMany'>
 			<#elseif rel.type == 'ManyToOne'>
 				<#if rel.viewApproach?? >
 					<#if rel.viewApproach.type  == 'combo'  >
-				this.combo${firstUpper(rel.model)} = new JSetup.Combobox({
-					el : this.ui.input${firstUpper(rel.name)},
-				   <#if rel.viewApproach.values??>
-				    values : '${toString(rel.viewApproach.values)}'
-					<#else>
-					comboId : '${(rel.viewApproach.comboId)!'id'}',
-					comboVal : '${(rel.viewApproach.comboVal)!'name'}',
-					collectionEntity : ${firstUpper(rel.model)}Collection,
-					</#if>
-				});
+			this.combo${firstUpper(rel.model)} = new JSetup.Combobox({
+				el : this.ui.input${firstUpper(rel.name)},
+			   <#if rel.viewApproach.values??>
+			    values : '${toString(rel.viewApproach.values)}'
+				<#else>
+				comboId : '${(rel.viewApproach.comboId)!'id'}',
+				comboVal : '${(rel.viewApproach.comboVal)!'name'}',
+				collectionEntity : ${firstUpper(rel.model)}Collection,
+				</#if>
+			});
 					</#if>
 				</#if>
 			<#elseif rel.type == 'ManyToMany'>
@@ -217,8 +212,18 @@ define(function(require) {
 			</#if>
 		</#list>
 		</#if>
-				this.search${firstUpper(entity.name)}();
-			});
+		
+			that.dataTable${firstUpper(entity.name)}Region.show(that.dataTable${firstUpper(entity.name)});
+		<#if entity.relationships??>	
+		<#list entity.relationships as rel >
+			<#if rel.showInPages >		
+			<#if rel.viewApproach.type == 'modal'>
+			this.modal${firstUpper(rel.name)}Region.show(this.modal${firstUpper(rel.name)});		
+			</#if>
+			</#if>
+		</#list>
+		</#if>		
+			this.search${firstUpper(entity.name)}();
 		},
 		 
 		search${firstUpper(entity.name)} : function(){
@@ -257,9 +262,12 @@ define(function(require) {
 			this.${firstLower(entity.name)}s.reset();
 		<#list entity.relationships as rel >
 			<#if rel.viewApproach?? >
-				<#if rel.viewApproach.hiddenField??>
-			util.clear('input${firstUpper(rel.name)}${firstUpper(rel.viewApproach.hiddenField)}');
-				</#if>					
+				<#if rel.viewApproach.type == 'modal' >
+			 this.modal${firstUpper(rel.name)}.clear(); 
+				</#if> 
+				<#if  rel.viewApproach.type == 'combo'>
+			 this.combo${firstUpper(rel.model)}.clear(); 
+				</#if>
 			</#if>
 		</#list>
 		},
