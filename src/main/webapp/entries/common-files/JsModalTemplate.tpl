@@ -185,11 +185,14 @@ define(function(require) {
 			that.dataTable${firstUpper(entity.name)}Region.show(this.dataTable${firstUpper(entity.name)});
 					
 			if (that.suggestConfig) {
-				that.suggestConfig.collection = that.${firstLower(entity.name)}Collection;
+				that.suggestConfig.collection = that.clienteCollection;
 				that.suggestConfig.onSelect = function(json) {
 					var model = new JSetup.BaseModel(json)
-					that.modelSelect = model;
 					that.onSelectModel(model);
+					if (json) {
+						that.modelSelect = model
+					} else
+						that.modelSelect = null;
 				}
 				util.configureSuggest(that.suggestConfig);
 			}		
@@ -234,6 +237,9 @@ define(function(require) {
 		},
 		
 		getJsonValue : function() {
+			if (_.isEmpty(this.modelSelect) && _.isEmpty(this.jsonValue)) {
+				return null;
+			}
 			if (this.modelSelect) {
 				return this.modelSelect.toJSON();
 			} else {

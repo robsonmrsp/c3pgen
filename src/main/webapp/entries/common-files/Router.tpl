@@ -4,6 +4,8 @@ define(function(require) {
 	var _ = require('adapters/underscore-adapter');
 	var Backbone = require('adapters/backbone-adapter');
 	var Marionette = require('marionette');
+	var AppScripts = require('AppScripts');
+	
 	var util = require('utilities/utils');
 	<#list application.entities as entity>
 	
@@ -26,10 +28,10 @@ define(function(require) {
 			this.$el.fadeIn(300);
 			view.listenTo(view, 'show', function() {
 				setTimeout(function() {
-					// ver tambem backbone-adapter
+					
 					util.NProgress.done(false, true);
-					// uma pequena espera para garantir que o componente foi
-					// renderizado antes de mandar remove-lo.
+					AppScripts.prepare();
+					
 				}, 100);
 			});
 		},

@@ -35,7 +35,7 @@
 								<div class="col-sm-6">
 									<#list entity.basicSearches as basicAttr>
 									<div class="input-group">
-										<input id="input${firstUpper(basicAttr.name)}" type="text" class="form-control search-query" placeholder="Pesquisar ${entity.displayName} por ${firstUpper(basicAttr.displayName)}">
+										<input id="input${firstUpper(basicAttr.name)}" type="text" class="clearable form-control search-query" placeholder="Pesquisar ${entity.displayName} por ${firstUpper(basicAttr.displayName)}">
 										<span id="query" class="input-group-btn ">
 											<button type="button" class="btn btn-inverse btn-white search-button">
 												<span class="ace-icon fa fa-search icon-on-right bigger-110 "></span>
