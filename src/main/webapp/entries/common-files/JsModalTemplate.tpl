@@ -185,7 +185,7 @@ define(function(require) {
 			that.dataTable${firstUpper(entity.name)}Region.show(this.dataTable${firstUpper(entity.name)});
 					
 			if (that.suggestConfig) {
-				that.suggestConfig.collection = that.clienteCollection;
+				that.suggestConfig.collection = that.${firstLower(entity.name)}Collection;
 				that.suggestConfig.onSelect = function(json) {
 					var model = new JSetup.BaseModel(json)
 					that.onSelectModel(model);
