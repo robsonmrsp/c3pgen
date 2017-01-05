@@ -1,10 +1,10 @@
-/* generated: 22/09/2014 11:14:50 */
 define(function(require) {
-	// Start "Import´s" Definition"
 	var _ = require('adapters/underscore-adapter');
 	var $ = require('adapters/jquery-adapter');
+	var Backgrid = require('adapters/Backgrid-adapter');
 	var Backbone = require('adapters/backbone-adapter');
 	var Marionette = require('marionette');
+	var Utils = require('utilities/utils');
 
 	var GeneralCell = Backgrid.Cell.extend({
 		editor : Backgrid.CellEditor,

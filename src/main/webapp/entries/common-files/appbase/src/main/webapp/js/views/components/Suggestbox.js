@@ -1,10 +1,10 @@
 define(function(require) {
-	// Start "ImportÂ´s" Definition"
 	var _ = require('adapters/underscore-adapter');
 	var $ = require('adapters/jquery-adapter');
-	var Col = require('adapters/col-adapter');
+	var Backgrid = require('adapters/Backgrid-adapter');
 	var Backbone = require('adapters/backbone-adapter');
-	var util = require('utilities/utils');
+	var Marionette = require('marionette');
+	var Utils = require('utilities/utils');
 
 	var Suggestbox = Backbone.View.extend({
 		getValue : function() {

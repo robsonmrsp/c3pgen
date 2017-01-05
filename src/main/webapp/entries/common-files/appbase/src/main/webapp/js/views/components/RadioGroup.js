@@ -1,5 +1,11 @@
-define([ 'utilities/utils', 'adapters/underscore-adapter', 'adapters/jquery-adapter', 'adapters/backbone-adapter', 'marionette' ],//
-function(util, _, $, Backbone, Marionette) {
+define(function(require) {
+	var _ = require('adapters/underscore-adapter');
+	var $ = require('adapters/jquery-adapter');
+	var Backgrid = require('adapters/Backgrid-adapter');
+	var Backbone = require('adapters/backbone-adapter');
+	var Marionette = require('marionette');
+	var Utils = require('utilities/utils');
+
 	var RadioGroup = Backbone.View.extend({
 		initialize : function(options) {
 			this.container = options.container;

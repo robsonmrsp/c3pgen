@@ -1,4 +1,10 @@
-define([ 'adapters/jquery-adapter' ], function($) {
+define(function(require) {
+	var _ = require('adapters/underscore-adapter');
+	var $ = require('adapters/jquery-adapter');
+	var Backgrid = require('adapters/Backgrid-adapter');
+	var Backbone = require('adapters/backbone-adapter');
+	var Marionette = require('marionette');
+	var Utils = require('utilities/utils');
 
 	var initCorsSuportWithCredentials = function(_, Backbone) {
 		// Overriding Backbone.js Sync to Allow Cross Origin Resource Sharing

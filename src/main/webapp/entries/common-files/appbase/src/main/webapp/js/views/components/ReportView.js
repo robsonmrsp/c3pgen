@@ -1,7 +1,10 @@
 define(function(require) {
+	var _ = require('adapters/underscore-adapter');
+	var $ = require('adapters/jquery-adapter');
+	var Backgrid = require('adapters/Backgrid-adapter');
 	var Backbone = require('adapters/backbone-adapter');
 	var Marionette = require('marionette');
-	var util = require('utilities/utils');
+	var Utils = require('utilities/utils');
 
 	var ReportViewTemplate = require('text!views/components/tpl/ReportViewTemplate.html');
 

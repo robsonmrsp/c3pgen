@@ -1,5 +1,11 @@
-define([ 'utilities/utils', 'adapters/underscore-adapter', 'adapters/jquery-adapter', 'adapters/backbone-adapter', 'marionette' ], //
-function(util, _, $, Backbone, Marionette) {
+define(function(require) {
+	var _ = require('adapters/underscore-adapter');
+	var $ = require('adapters/jquery-adapter');
+	var Backgrid = require('adapters/Backgrid-adapter');
+	var Backbone = require('adapters/backbone-adapter');
+	var Marionette = require('marionette');
+	var Utils = require('utilities/utils');
+
 	var MediaItem = Backbone.Marionette.ItemView.extend({
 	// "<option value='saab'>Saab</option>"
 	});
@@ -14,9 +20,9 @@ function(util, _, $, Backbone, Marionette) {
 			this.comboVal = options.comboVal;
 			this.comboId = options.comboId;
 			this.$el.find('option').remove();
-			
+
 			this.setValue(options.initialValue);
-			
+
 			if (this.collectionEntity) {
 				this.comboVal = options.comboVal;
 				this.comboId = options.comboId;
@@ -106,7 +112,7 @@ function(util, _, $, Backbone, Marionette) {
 			this.$el.val('').trigger("chosen:updated");
 			this.modelValues = null;
 		},
-		
+
 		filter : function(data, newUrl) {
 			if (!this.collectionLoaded) {
 				return;

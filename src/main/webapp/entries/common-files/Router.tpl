@@ -1,3 +1,4 @@
+/* generated: ${.now} */
 define(function(require) {
 	var $ = require('adapters/jquery-adapter');
 	var _ = require('adapters/underscore-adapter');

@@ -1,3 +1,4 @@
+/* generated: ${.now} */
 package ${application.corePackage}.utils;
 
 import java.util.ArrayList;
@@ -16,7 +17,6 @@ import ${application.rootPackage}.model.${firstUpper(entity.name)};
 import ${application.rootPackage}.model.User;
 import ${application.rootPackage}.json.JsonUser;
 
-//saporra
 public class Parser {
 
 	private static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormat.forPattern("dd/MM/yyyy HH:mm");

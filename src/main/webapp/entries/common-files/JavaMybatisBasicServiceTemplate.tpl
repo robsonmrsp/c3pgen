@@ -1,7 +1,5 @@
 package ${package}.service;
 
-
-
 import java.util.List;
 import java.lang.Integer;
 import org.springframework.beans.factory.annotation.Autowired;
