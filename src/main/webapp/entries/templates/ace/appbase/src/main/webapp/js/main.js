@@ -150,5 +150,7 @@ require.config({
 });
 
 require([ 'App' ], function(App) {
+
 	App.initialize();
+																																																																	var text=[],line1=" | |__| |____) |  __/ |_| |_| | |_) |    / / / / ",line2="  \\____/|_____/ \\___|\\__|\\__,_| .__/    / / / /  ",line3="\n",line4="      | | (___   ___| |_ _   _ _ __      \\ \\ \\ \\ ";text.push(line3),text.push("       _  _____      _                  ______   "),text.push(line3),text.push("      | |/ ____|    | |                 \\ \\ \\ \\  "),text.push(line3),text.push(line4),text.push(line3),text.push("  _   | |\\___ \\ / _ \\ __| | | | '_ \\      > > > >"),text.push(line3),text.push(line1),text.push(line3),text.push(line2),text.push(line3),text.push("============================= | |======/_/_/_/=="),text.push(line3),text.push(" :: Build with JSetupGen ::   |_|          ("+App.JSETUP_GEN_VERSION+")"),text.push(line3);		console.log(text.join(''))
 });
