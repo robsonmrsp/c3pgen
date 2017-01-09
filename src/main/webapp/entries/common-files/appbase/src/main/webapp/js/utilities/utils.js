@@ -344,6 +344,21 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 			}
 		},
 
+		getUrl : function(url) {
+			var urlCompleta = location.pathname;
+			urlCompleta = urlCompleta.split("/");
+			urlCompleta = urlCompleta[1];
+			urlCompleta = '/' + urlCompleta + url;
+			return urlCompleta;
+		},
+
+		goExtUrl : function(url) {
+			var that = this;
+			var _url = that.getUrl(url);
+			location.hash = "";
+			location.pathname = _url;
+		},
+
 		uploadImage : function(elementName, successFunction, errorFunction) {
 			$('form').ajaxSubmit({
 				success : successFunction,
@@ -630,6 +645,7 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 				data : data,
 			});
 		},
+		
 		handleError : function(xhr, resp, opt) {
 			if (xhr.status === 0 && xhr.readyState === 0) {
 				this.notificationError({
@@ -638,11 +654,11 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 					icon : 'fa fa-chain-broken',
 					text : 'Aparentemente voce não está conectado',
 				})
-			} else {
-				// console.error(resp.responseText || (resp.getResponseHeader &&
-				// resp.getResponseHeader('exception')));
+			} else if (xhr.responseText.indexOf('DOCTYPE') > 0 && xhr.responseText.indexOf('login') > 0) {
+				this.goExtUrl('/j_spring_security_logout');
 			}
 		},
+
 
 		// no futuro será verificado a melhor maneira de fazer isso
 		getCurrencySymbol : function() {

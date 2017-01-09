@@ -84,7 +84,7 @@ public class ApplicationValidator {
 				ApplicationEntity entityModel = mapEntities.get(main.getModel());
 				try {
 					if (entityModel == null) {
-						applicationValidatorMessages.addMessage("Erro analizando o relacionamento " + main.getName() + "na entidade " + entity.getName() + ". Não existe a entidade " + main.getModel());
+						applicationValidatorMessages.addMessage("Erro analizando o relacionamento " + main.getName() + " na entidade " + entity.getName() + ". Não existe a entidade " + main.getModel());
 					}
 					if (StringUtils.isNotEmpty(ownerName)) {
 						Boolean ownerNotFound = true;

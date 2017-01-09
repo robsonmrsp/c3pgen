@@ -61,8 +61,34 @@ public class GenService {
 		role.addAttributes(new Attribute("authority", "AUTHORITY", true, true, true, AttributeType.STRING));
 		role.addAttributes(new Attribute("description", "DESCRIPTION", true, true, true, AttributeType.STRING));
 		role.addRelationships(new Relationship("users", "Users", "ManyToMany", "roles", "User", false, ViewApproach.noneInstance()));
+		role.addRelationships(new Relationship("permissions", "Permissões", "ManyToMany", null, "Permission", false, ViewApproach.multiselectInstance("id", "name")));
 
 		return role;
+	}
+
+	private ApplicationEntity permission() {
+		ApplicationEntity permission = new ApplicationEntity("Permission", "PERSMISSION");
+
+		permission.addAttributes(new Attribute("operation", "OPERATION", true, true, true, AttributeType.STRING));
+		permission.addAttributes(new Attribute("name", "NAME", true, true, true, AttributeType.STRING));
+		permission.addAttributes(new Attribute("description", "DESCRIPTION", true, true, true, AttributeType.STRING));
+		permission.addRelationships(new Relationship("roles", "Papeis", "ManyToMany", "permissions", "Role", false, ViewApproach.noneInstance()));
+		permission.addRelationships(new Relationship("items", "Itens", "ManyToMany", null, "Item", false, ViewApproach.multiselectInstance("id", "name")));
+
+		return permission;
+	}
+
+	private ApplicationEntity item() {
+		ApplicationEntity item = new ApplicationEntity("Item", "ITEM");
+
+		item.addAttributes(new Attribute("itemType", "TYPE", true, true, true, AttributeType.STRING));
+		item.addAttributes(new Attribute("name", "NAME", true, true, true, AttributeType.STRING));
+		item.addAttributes(new Attribute("identifier", "IDENTIFIER", true, true, true, AttributeType.STRING));
+		item.addAttributes(new Attribute("description", "DESCRIPTION", true, true, true, AttributeType.STRING));
+
+		item.addRelationships(new Relationship("permissions", "Permissões", "ManyToMany", "items", "Permission", false, ViewApproach.noneInstance()));
+
+		return item;
 	}
 
 	public GenerateFileInfo generate(Modulo modulo, String... exceptions) throws Exception {
@@ -221,6 +247,8 @@ public class GenService {
 	public Boolean fixModules(Application application) {
 		application.addEntities(user());
 		application.addEntities(role());
+		application.addEntities(permission());
+		application.addEntities(item());
 
 		return Boolean.TRUE;
 	}

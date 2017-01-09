@@ -18,8 +18,15 @@
 
 		<!-- <intercept-url pattern="/rs/crud/**" access="hasRole('ROLE_USER')" /> -->
 
-		<form-login login-page="/login.html" default-target-url="/" authentication-failure-url="/login.html?login_error=1" />
+		<form-login login-page="/login.html" default-target-url="/"
+			authentication-failure-url="/login.html?login_error=1" />
 		<logout logout-success-url="/login.html" />
+
+		<session-management invalid-session-url="/login.html"
+			session-fixation-protection="newSession">
+			<concurrency-control expired-url="/login.html?erro=expirado"
+				max-sessions="1" error-if-maximum-exceeded="false" />
+		</session-management>
 
 	</http>
 
