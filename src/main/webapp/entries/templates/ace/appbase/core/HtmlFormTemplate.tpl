@@ -1,4 +1,4 @@
-<!-- ${entity.name}´s form -->
+<!-- ${entity.name}´s form generated: ${.now}  -->
 <div class="breadcrumbs" id="breadcrumbs">
 	<ul class="breadcrumb">
 		<li>
@@ -109,7 +109,7 @@
 									<#if rel.viewApproach.textField??>							
 									<input id="input${firstUpper(rel.name)}${firstUpper(rel.viewApproach.textField)}" placeholder="Escolha um ${firstUpper(rel.displayName)}"  type="text" class="form-control append-left" value="{{${firstLower(rel.name)} && ${firstLower(rel.name)}.${firstLower(rel.viewApproach.textField)}}}" />
 									</#if>
-									<div class="input-group-addon append-right" id="search${firstUpper(rel.name)}Modal" data-toggle="modal">
+									<div class="input-group-addon append-right search-${firstLower(rel.name)}-modal"  data-toggle="modal">
 										<span class="fa fa-search"></span>
 									</div>
 								</div>
@@ -124,12 +124,12 @@
 			</div>
 			<div class="">
 				<div class="clearfix form-actions">
-					<a href="javascript:void(0)" id="save"  class="save btn btn-primary">
+					<a href="javascript:void(0)" id="save"  class="save btn btn-primary auth[save-${firstLower(entity.name)}, disable]">
 						<i class="ace-icon save fa fa-check bigger-110"></i>
 						Salvar
 					</a>
 					&nbsp; &nbsp; &nbsp;
-					<a href="javascript:void(0)" class=" saveAndContinue  btn btn-info" style="display: {{ id ? 'none' : 'inline-block' }} ">
+					<a href="javascript:void(0)" class="save-continue btn btn-info auth[save-continue-${firstLower(entity.name)}, disable]" style="display: {{ id ? 'none' : 'inline-block' }} ">
 						<i class="ace-icon fa fa-check bigger-110"></i>
 						Salvar e Continuar
 					</a>

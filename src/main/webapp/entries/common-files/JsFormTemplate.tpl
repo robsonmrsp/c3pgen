@@ -55,11 +55,11 @@ define(function(require) {
 		/** The form events you'd like to listen */
 		events : {
 			'click 	.save' : 'save',
-			'click 	.saveAndContinue' : 'saveAndContinue',
+			'click 	.save-continue' : 'saveAndContinue',
 			<#if entity.relationships??>	
 			<#list entity.relationships as rel >
 				<#if rel.viewApproach.type == 'modal'>
-			'click #search${firstUpper(rel.name)}Modal' : 'showModal${firstUpper(rel.name)}',
+			'click .search-${firstLower(rel.name)}-modal' : 'showModal${firstUpper(rel.name)}',
 				</#if>
 			</#list>
 			</#if>

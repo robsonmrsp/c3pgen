@@ -25,7 +25,7 @@ import org.hibernate.envers.Audited;
 public class ApplicationEntity extends AbstractTimestampEntity {
 	private static final long serialVersionUID = 1L;
 
-	private static String CORE_ENTITIES = "BairroCepCidadeEstadoPaisClientItemItemTypeOperationPermissionSession";
+	private static String CORE_ENTITIES = "BairroCepCidadeEstadoPaisClientOperationSession";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "THEENTITY_SEQUENCE")

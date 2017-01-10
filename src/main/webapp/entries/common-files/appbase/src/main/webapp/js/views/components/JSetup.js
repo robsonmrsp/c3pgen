@@ -140,7 +140,7 @@ define(function(require) {
 			_.each(this.buttons, function(button) {
 				var vetor = [];
 				button.type = button.type || 'default';
-				vetor.push("<a id='" + button.id + "' href='javascript:void(-1)' class='btn btn-xs button_cell btn-" + button.type + "'  data-toggle='tooltip' data-placement='top' title='' data-original-title='" + button.hint + "' >");
+				vetor.push("<a id='" + button.id + "' href='javascript:void(-1)' class='btn btn-xs button_cell btn-" + button.type + " " + button.customClass + "'  data-toggle='tooltip' data-placement='top' title='' data-original-title='" + button.hint + "' >");
 				vetor.push("	<i class='fa " + button.icon + " fa-lg'></i>");
 				vetor.push("</a>");
 

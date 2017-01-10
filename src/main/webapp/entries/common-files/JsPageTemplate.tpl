@@ -337,13 +337,15 @@ define(function(require) {
 			buttons.push({
 				id : 'edita_ficha_button',
 				type : 'primary',
-				icon : 'icon-pencil fa-pencil',
+				icon : 'fa-pencil',
+				customClass : 'auth[edit-${firstLower(entity.name)},disable]',
 				hint : 'Editar ${firstUpper(entity.displayName)!firstUpper(entity.name)}',
 				onClick : that.editModel,
 			}, {
 				id : 'delete_button',
 				type : 'danger',
-				icon : 'icon-trash fa-trash',
+				customClass : 'auth[delete-${firstLower(entity.name)}, disable]',
+				icon : 'fa-trash',
 				hint : 'Remover ${firstUpper(entity.displayName)!firstUpper(entity.name)}',
 				onClick : that.deleteModel,
 			});

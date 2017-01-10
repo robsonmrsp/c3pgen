@@ -1,5 +1,4 @@
-<!-- generated: ${.now} -->
-<!-- ${entity.name}´s page -->
+<!-- ${entity.name}´s page generated: ${.now}  -->
 <div class="breadcrumbs" id="breadcrumbs">
 	<ul class="breadcrumb">
 		<li>

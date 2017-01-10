@@ -73,7 +73,7 @@ public class GenService {
 		permission.addAttributes(new Attribute("name", "NAME", true, true, true, AttributeType.STRING));
 		permission.addAttributes(new Attribute("description", "DESCRIPTION", true, true, true, AttributeType.STRING));
 		permission.addRelationships(new Relationship("roles", "Papeis", "ManyToMany", "permissions", "Role", false, ViewApproach.noneInstance()));
-		permission.addRelationships(new Relationship("items", "Itens", "ManyToMany", null, "Item", false, ViewApproach.multiselectInstance("id", "name")));
+		permission.addRelationships(new Relationship("item", "Item", "ManyToOne", null, "Item", false, ViewApproach.modalInstance("id", "name")));
 
 		return permission;
 	}
@@ -86,7 +86,7 @@ public class GenService {
 		item.addAttributes(new Attribute("identifier", "IDENTIFIER", true, true, true, AttributeType.STRING));
 		item.addAttributes(new Attribute("description", "DESCRIPTION", true, true, true, AttributeType.STRING));
 
-		item.addRelationships(new Relationship("permissions", "Permissões", "ManyToMany", "items", "Permission", false, ViewApproach.noneInstance()));
+		item.addRelationships(new Relationship("permissions", "Permissões", "OneToMany", "item", "Permission", false, ViewApproach.noneInstance()));
 
 		return item;
 	}
