@@ -125,6 +125,9 @@ define(function(require) {
 		  <#if att.inputAs == 'cpf' >
 			this.ui.input${firstUpper(att.name)}.cpf();
 		  </#if>	
+		  <#if att.inputAs == 'cnpj' >
+			this.ui.input${firstUpper(att.name)}.cnpj();
+		  </#if>	
 		  <#if att.inputAs == 'fone' || att.inputAs == 'telephone' || att.inputAs == 'telefone' >
 			this.ui.input${firstUpper(att.name)}.fone();
 		  </#if>

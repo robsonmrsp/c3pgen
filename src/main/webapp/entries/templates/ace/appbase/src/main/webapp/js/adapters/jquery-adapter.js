@@ -160,6 +160,14 @@ define([ 'jquery', 'bootbox', 'bootstrap', 'jqueryScrollTo', 'jqueryValidatorEng
 			"clearIncomplete" : true
 		});
 	}
+	
+	$.fn.cnpj = function(places) {
+		
+		this.inputmask('99.999.999/9999-99', {
+			"clearIncomplete" : true
+		});
+	}
+	
 	$.fn.fone = function(places) {
 
 		this.inputmask({

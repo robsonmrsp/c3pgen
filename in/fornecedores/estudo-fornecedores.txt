@@ -27,3 +27,7 @@
 - Cadstros de "tipos de fornecedores"    
 - Cadstros de "tipos de documentos"
 - Cadastros de Endereços 
+
+
+vendo esse sisteminha
+ - http://teste.qualyteam.com.br/buy/FrmFornecedores.aspx
