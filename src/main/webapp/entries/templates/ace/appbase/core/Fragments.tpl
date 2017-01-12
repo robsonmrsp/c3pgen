@@ -173,5 +173,33 @@
 	}
 </#list>
 
+	############################################################################
+						Seed permissions
+	############################################################################
+<#list entities as entity>
+-- registros de autorização para ${firstUpper(entity.displayName)}	
+	-- campos de tela
+	INSERT INTO item(id,     description, identifier, type, name) VALUES	((select max(id) + 1 from item), 'Item de menu principal para tela de pesquisa de ${firstUpper(entity.displayName)}', 			'item-list-${firstUpper(entity.name)}',	'COMPONENT', 'Menu ${firstUpper(entity.displayName)}s'					);
+	INSERT INTO persmission((select max(id) + 1 from persmission),  name, description,  operation, tags) VALUES ('Permissão de acesso ao menu de ${firstUpper(entity.displayName)}', 'Usuário Poderá ver e acessar o item de menu de ${firstUpper(entity.displayName)} ', 'LEITURA', 'CRUD ${firstUpper(entity.displayName)} , item Menu ');
+	INSERT INTO permission_item(permission_id, item_id)VALUES ((select max(id)  from persmission), (select max(id) from item));	
+
 	
+	INSERT INTO item(id,     description, identifier, type, name) VALUES	((select max(id) + 1 from item), 'Botôes de salvar e salvar e continuar no formulario de ${firstUpper(entity.displayName)}', 	'save-${firstUpper(entity.name)}', 		'COMPONENT', 'Botão Salva ${firstUpper(entity.displayName)}'			);
+	INSERT INTO item(id,     description, identifier, type, name) VALUES	((select max(id) + 1 from item), 'Botão de novo na listagem de ${firstUpper(entity.displayName)}', 								'new-${firstUpper(entity.name)}', 		'COMPONENT', 'Botão Novo ${firstUpper(entity.displayName)}'				);
+	INSERT INTO item(id,     description, identifier, type, name) VALUES	((select max(id) + 1 from item), 'Botão de Edição de ${firstUpper(entity.displayName)} no grid de ${firstUpper(entity.displayName)} na Listagem', 			'edit-${firstUpper(entity.name)}', 		'COMPONENT', 'Botão Editar ${firstUpper(entity.displayName)} no Grid de ${firstUpper(entity.displayName)}');
+	INSERT INTO item(id,     description, identifier, type, name) VALUES	((select max(id) + 1 from item), 'Botão de deletar ${firstUpper(entity.displayName)} no grid de ${firstUpper(entity.displayName)} na Listagem', 			'remove-${firstUpper(entity.name)}', 	'COMPONENT', 'Botão deletar ${firstUpper(entity.displayName)} no Grid de ${firstUpper(entity.displayName)}');
+
+    --telas
+	INSERT INTO item(id,     description, identifier, type, name) VALUES	((select max(id) + 1 from item), 'Tela de listagem de ${firstUpper(entity.displayName)}', 										'app/${firstLower(entity.name)}s', 		'SCREEN', 'Pesquisa de  ${firstUpper(entity.displayName)}s');
+	INSERT INTO item(id,     description, identifier, type, name) VALUES	((select max(id) + 1 from item), 'Tela de Cadastro de ${firstUpper(entity.displayName)}', 										'app/new${firstUpper(entity.name)}', 	'SCREEN', 'Cadastro  de ${firstUpper(entity.displayName)}s');
+	INSERT INTO item(id,     description, identifier, type, name) VALUES	((select max(id) + 1 from item), 'Tela de edição de ${firstUpper(entity.displayName)}', 										'app/edit${firstUpper(entity.name)}', 	'SCREEN', 'Edição de  ${firstUpper(entity.displayName)}s');
+	
+	-- servicos
+	INSERT INTO item(id,     description, identifier, type, name) VALUES	((select max(id) + 1 from item), 'Url de acesso aos ${firstUpper(entity.displayName)}s', 										'crud/${firstLowe(entity.name)}s', 		'SERVICE', 			'Servico de ${firstUpper(entity.displayName)}s');  -- ler e escrever
+	INSERT INTO item(id,     description, identifier, type, name) VALUES	((select max(id) + 1 from item), 'Url de acesso TODOS os ${firstUpper(entity.displayName)}s', 									'crud/${firstLowe(entity.name)}s/all', 		'SERVICE', 			'Servico de TODOS os ${firstUpper(entity.displayName)}s');
+	INSERT INTO item(id,     description, identifier, type, name) VALUES	((select max(id) + 1 from item), 'Url de acesso aos ${firstUpper(entity.displayName)}s por filtro', 							'crud/${firstLowe(entity.name)}s/filter', 		'SERVICE', 			'Servico de ${firstUpper(entity.displayName)}s sob filtro');
+	INSERT INTO item(id,     description, identifier, type, name) VALUES	((select max(id) + 1 from item), 'Url de acesso a um ${firstUpper(entity.displayName)} específico', 							'crud/${firstLowe(entity.name)}s/[0-9]', 		'SERVICE', 			'Servico para acesso a ${firstUpper(entity.displayName)} especifico'); --GET, PUT e DELETE 
+
+	
+</#list>			
 	

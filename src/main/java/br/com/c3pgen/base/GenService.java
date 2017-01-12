@@ -69,9 +69,10 @@ public class GenService {
 	private ApplicationEntity permission() {
 		ApplicationEntity permission = new ApplicationEntity("Permission", "PERSMISSION");
 
-		permission.addAttributes(new Attribute("operation", "OPERATION", true, true, true, AttributeType.STRING));
-		permission.addAttributes(new Attribute("name", "NAME", true, true, true, AttributeType.STRING));
-		permission.addAttributes(new Attribute("description", "DESCRIPTION", true, true, true, AttributeType.STRING));
+		permission.addAttributes(new Attribute("operation", "OPERATION",		 	true, false, true, AttributeType.STRING));
+		permission.addAttributes(new Attribute("name", "NAME", 						true, false, true, AttributeType.STRING));
+		permission.addAttributes(new Attribute("description", "DESCRIPTION", 		true, false, true, AttributeType.STRING));
+		permission.addAttributes(new Attribute("tags", "TAGS", 						true, false, true, AttributeType.STRING));
 		permission.addRelationships(new Relationship("roles", "Papeis", "ManyToMany", "permissions", "Role", false, ViewApproach.noneInstance()));
 		permission.addRelationships(new Relationship("item", "Item", "ManyToOne", null, "Item", false, ViewApproach.modalInstance("id", "name")));
 
@@ -81,10 +82,10 @@ public class GenService {
 	private ApplicationEntity item() {
 		ApplicationEntity item = new ApplicationEntity("Item", "ITEM");
 
-		item.addAttributes(new Attribute("itemType", "TYPE", true, true, true, AttributeType.STRING));
-		item.addAttributes(new Attribute("name", "NAME", true, true, true, AttributeType.STRING));
-		item.addAttributes(new Attribute("identifier", "IDENTIFIER", true, true, true, AttributeType.STRING));
-		item.addAttributes(new Attribute("description", "DESCRIPTION", true, true, true, AttributeType.STRING));
+		item.addAttributes(new Attribute("itemType", "TYPE", 				true, false, true, AttributeType.STRING));
+		item.addAttributes(new Attribute("name", "NAME", 					true, false, true, AttributeType.STRING));
+		item.addAttributes(new Attribute("identifier", "IDENTIFIER", 		true, false, true, AttributeType.STRING));
+		item.addAttributes(new Attribute("description", "DESCRIPTION", 		true, false, true, AttributeType.STRING));
 
 		item.addRelationships(new Relationship("permissions", "Permissões", "OneToMany", "item", "Permission", false, ViewApproach.noneInstance()));
 
