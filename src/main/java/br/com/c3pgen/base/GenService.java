@@ -70,22 +70,22 @@ public class GenService {
 		ApplicationEntity permission = new ApplicationEntity("Permission", "PERSMISSION");
 
 		permission.addAttributes(new Attribute("operation", "OPERATION",		 	true, false, true, AttributeType.STRING));
-		permission.addAttributes(new Attribute("name", "NAME", 						true, false, true, AttributeType.STRING));
+		permission.addAttributes(new Attribute("name", "NAME", 						true, true, true, AttributeType.STRING));
 		permission.addAttributes(new Attribute("description", "DESCRIPTION", 		true, false, true, AttributeType.STRING));
-		permission.addAttributes(new Attribute("tags", "TAGS", 						true, false, true, AttributeType.STRING));
+		permission.addAttributes(new Attribute("tagReminder", "TAG_REMINDER", 		true, false, true, AttributeType.STRING));
 		permission.addRelationships(new Relationship("roles", "Papeis", "ManyToMany", "permissions", "Role", false, ViewApproach.noneInstance()));
-		permission.addRelationships(new Relationship("groups", "Groups", "ManyToMany", null, "Group", false, ViewApproach.noneInstance()));
+		permission.addRelationships(new Relationship("groups", "Groups", "ManyToMany", "permissions", "Group", false, ViewApproach.noneInstance()));
 		permission.addRelationships(new Relationship("item", "Item", "ManyToOne", null, "Item", false, ViewApproach.modalInstance("id", "name")));
 
 		return permission;
 	}
 	
 	private ApplicationEntity groupPermission() {
-		ApplicationEntity permission = new ApplicationEntity("Group", "GROUP");
+		ApplicationEntity permission = new ApplicationEntity("Group", "ACCESS_GROUP");
 		
 		permission.addAttributes(new Attribute("name", "NAME", 						true, false, true, AttributeType.STRING));
 		permission.addAttributes(new Attribute("description", "DESCRIPTION", 		true, false, true, AttributeType.STRING));
-		permission.addRelationships(new Relationship("permissions", "Permissões", "ManyToMany", "groups", "Permission", false, ViewApproach.multiselectInstance("id", "name")));
+		permission.addRelationships(new Relationship("permissions", "Permissões", "ManyToMany", null, "Permission", false, ViewApproach.multiselectInstance("id", "name")));
 		
 		return permission;
 	}

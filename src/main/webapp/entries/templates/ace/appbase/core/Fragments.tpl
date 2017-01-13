@@ -180,26 +180,60 @@
 -- registros de autorização para ${firstUpper(entity.displayName)}	
 	-- campos de tela
 	INSERT INTO item(id,     description, identifier, type, name) VALUES	((select max(id) + 1 from item), 'Item de menu principal para tela de pesquisa de ${firstUpper(entity.displayName)}', 			'item-list-${firstUpper(entity.name)}',	'COMPONENT', 'Menu ${firstUpper(entity.displayName)}s'					);
-	INSERT INTO persmission((select max(id) + 1 from persmission),  name, description,  operation, tags) VALUES ('Permissão de acesso ao menu de ${firstUpper(entity.displayName)}', 'Usuário Poderá ver e acessar o item de menu de ${firstUpper(entity.displayName)} ', 'LEITURA', 'CRUD ${firstUpper(entity.displayName)} , item Menu ');
+	INSERT INTO persmission((select max(id) + 1 from persmission),  name, description,  operation, tags) VALUES ('Cadastro de ${firstUpper(entity.displayName)}. Permissão de acesso ao menu de ${firstUpper(entity.displayName)}', 'Usuário Poderá ver e acessar o item de menu de ${firstUpper(entity.displayName)} ', 'LEITURA', 'CRUD ${firstUpper(entity.displayName)} , item Menu ');
 	INSERT INTO permission_item(permission_id, item_id)VALUES ((select max(id)  from persmission), (select max(id) from item));	
-
 	
 	INSERT INTO item(id,     description, identifier, type, name) VALUES	((select max(id) + 1 from item), 'Botôes de salvar e salvar e continuar no formulario de ${firstUpper(entity.displayName)}', 	'save-${firstUpper(entity.name)}', 		'COMPONENT', 'Botão Salva ${firstUpper(entity.displayName)}'			);
+	INSERT INTO persmission((select max(id) + 1 from persmission),  name, description,  operation, tags) VALUES ('Cadastro de ${firstUpper(entity.displayName)}. Permissão de acesso ao botão de salvar e salvar e continuar no formulario de ${firstUpper(entity.displayName)}', 'Usuário Poderá ver e acessar o botão de de salvar e salvar e continuar no formulario de ${firstUpper(entity.displayName)} ', 'LEITURA', 'CRUD ${firstUpper(entity.displayName)} , botão salvar ');
+	INSERT INTO permission_item(permission_id, item_id)VALUES ((select max(id)  from persmission), (select max(id) from item));	
+
 	INSERT INTO item(id,     description, identifier, type, name) VALUES	((select max(id) + 1 from item), 'Botão de novo na listagem de ${firstUpper(entity.displayName)}', 								'new-${firstUpper(entity.name)}', 		'COMPONENT', 'Botão Novo ${firstUpper(entity.displayName)}'				);
+	INSERT INTO persmission((select max(id) + 1 from persmission),  name, description,  operation, tags) VALUES ('Cadastro de ${firstUpper(entity.displayName)}. Permissão de acesso ao botão de novo no formulario de ${firstUpper(entity.displayName)}', 'Usuário Poderá ver e acessar ao botão de novo no formulario de ${firstUpper(entity.displayName)} ', 'LEITURA', 'CRUD ${firstUpper(entity.displayName)} , botão novo ');
+	INSERT INTO permission_item(permission_id, item_id)VALUES ((select max(id)  from persmission), (select max(id) from item));	
+
 	INSERT INTO item(id,     description, identifier, type, name) VALUES	((select max(id) + 1 from item), 'Botão de Edição de ${firstUpper(entity.displayName)} no grid de ${firstUpper(entity.displayName)} na Listagem', 			'edit-${firstUpper(entity.name)}', 		'COMPONENT', 'Botão Editar ${firstUpper(entity.displayName)} no Grid de ${firstUpper(entity.displayName)}');
+	INSERT INTO persmission((select max(id) + 1 from persmission),  name, description,  operation, tags) VALUES ('Cadastro de ${firstUpper(entity.displayName)}. Permissão de acesso ao botão de edição no grid de ${firstUpper(entity.displayName)}', 'Usuário Poderá ver e acessar ao botão de edicao no grid de ${firstUpper(entity.displayName)} ', 'LEITURA', 'CRUD ${firstUpper(entity.displayName)} , botão edicao ');
+	INSERT INTO permission_item(permission_id, item_id)VALUES ((select max(id)  from persmission), (select max(id) from item));	
+
 	INSERT INTO item(id,     description, identifier, type, name) VALUES	((select max(id) + 1 from item), 'Botão de deletar ${firstUpper(entity.displayName)} no grid de ${firstUpper(entity.displayName)} na Listagem', 			'remove-${firstUpper(entity.name)}', 	'COMPONENT', 'Botão deletar ${firstUpper(entity.displayName)} no Grid de ${firstUpper(entity.displayName)}');
+	INSERT INTO persmission((select max(id) + 1 from persmission),  name, description,  operation, tags) VALUES ('Cadastro de ${firstUpper(entity.displayName)}. Permissão de acesso ao botão de delete no grid de ${firstUpper(entity.displayName)}', 'Usuário Poderá ver e acessar ao botão de delete no grid de ${firstUpper(entity.displayName)} ', 'LEITURA', 'CRUD ${firstUpper(entity.displayName)} , botão delete ');
+	INSERT INTO permission_item(permission_id, item_id)VALUES ((select max(id)  from persmission), (select max(id) from item));	
 
     --telas
 	INSERT INTO item(id,     description, identifier, type, name) VALUES	((select max(id) + 1 from item), 'Tela de listagem de ${firstUpper(entity.displayName)}', 										'app/${firstLower(entity.name)}s', 		'SCREEN', 'Pesquisa de  ${firstUpper(entity.displayName)}s');
+	INSERT INTO persmission((select max(id) + 1 from persmission),  name, description,  operation, tags) VALUES ('Cadastro de ${firstUpper(entity.displayName)}. Permissão de acesso a tela de listagem de  ${firstUpper(entity.displayName)}', 'Usuário Poderá ver e acessar a tela de listagem de  ${firstUpper(entity.displayName)} ', 'LEITURA', 'CRUD ${firstUpper(entity.displayName)} , tela listagem  ');
+	INSERT INTO permission_item(permission_id, item_id)VALUES ((select max(id)  from persmission), (select max(id) from item));	
+
 	INSERT INTO item(id,     description, identifier, type, name) VALUES	((select max(id) + 1 from item), 'Tela de Cadastro de ${firstUpper(entity.displayName)}', 										'app/new${firstUpper(entity.name)}', 	'SCREEN', 'Cadastro  de ${firstUpper(entity.displayName)}s');
+	INSERT INTO persmission((select max(id) + 1 from persmission),  name, description,  operation, tags) VALUES ('Cadastro de ${firstUpper(entity.displayName)}. Permissão de acesso a tela de cadastro de  ${firstUpper(entity.displayName)}', 'Usuário Poderá ver e acessar a tela de cadastro de  ${firstUpper(entity.displayName)} ', 'LEITURA', 'CRUD ${firstUpper(entity.displayName)} , tela de cadastro  ');
+	INSERT INTO permission_item(permission_id, item_id)VALUES ((select max(id)  from persmission), (select max(id) from item));	
+
 	INSERT INTO item(id,     description, identifier, type, name) VALUES	((select max(id) + 1 from item), 'Tela de edição de ${firstUpper(entity.displayName)}', 										'app/edit${firstUpper(entity.name)}', 	'SCREEN', 'Edição de  ${firstUpper(entity.displayName)}s');
+	INSERT INTO persmission((select max(id) + 1 from persmission),  name, description,  operation, tags) VALUES ('Cadastro de ${firstUpper(entity.displayName)}. Permissão de acesso a tela de edição de  ${firstUpper(entity.displayName)}', 'Usuário Poderá ver e acessar a tela de edição de  ${firstUpper(entity.displayName)} ', 'LEITURA', 'CRUD ${firstUpper(entity.displayName)} , tela de edicao ');
+	INSERT INTO permission_item(permission_id, item_id)VALUES ((select max(id)  from persmission), (select max(id) from item));	
 	
 	-- servicos
 	INSERT INTO item(id,     description, identifier, type, name) VALUES	((select max(id) + 1 from item), 'Url de acesso aos ${firstUpper(entity.displayName)}s', 										'crud/${firstLowe(entity.name)}s', 		'SERVICE', 			'Servico de ${firstUpper(entity.displayName)}s');  -- ler e escrever
-	INSERT INTO item(id,     description, identifier, type, name) VALUES	((select max(id) + 1 from item), 'Url de acesso TODOS os ${firstUpper(entity.displayName)}s', 									'crud/${firstLowe(entity.name)}s/all', 		'SERVICE', 			'Servico de TODOS os ${firstUpper(entity.displayName)}s');
-	INSERT INTO item(id,     description, identifier, type, name) VALUES	((select max(id) + 1 from item), 'Url de acesso aos ${firstUpper(entity.displayName)}s por filtro', 							'crud/${firstLowe(entity.name)}s/filter', 		'SERVICE', 			'Servico de ${firstUpper(entity.displayName)}s sob filtro');
-	INSERT INTO item(id,     description, identifier, type, name) VALUES	((select max(id) + 1 from item), 'Url de acesso a um ${firstUpper(entity.displayName)} específico', 							'crud/${firstLowe(entity.name)}s/[0-9]', 		'SERVICE', 			'Servico para acesso a ${firstUpper(entity.displayName)} especifico'); --GET, PUT e DELETE 
+	INSERT INTO persmission((select max(id) + 1 from persmission),  name, description,  operation, tags) VALUES ('Cadastro de ${firstUpper(entity.displayName)}. Permissão de acesso ao serviço de listagem de  ${firstUpper(entity.displayName)}', 'Usuário Poderá acessar ao serviço de listagem de  ${firstUpper(entity.displayName)} ', 'LEITURA', 'CRUD ${firstUpper(entity.displayName)} , servico listar varios ');
+	INSERT INTO permission_item(permission_id, item_id)VALUES ((select max(id)  from persmission), (select max(id) from item));	
+	INSERT INTO persmission((select max(id) + 1 from persmission),  name, description,  operation, tags) VALUES ('Cadastro de ${firstUpper(entity.displayName)}. Permissão de acesso ao serviço para salvar um novo ${firstUpper(entity.displayName)}', 'Usuário Poderá acessar ao serviço para salvar um novo ${firstUpper(entity.displayName)} ', 'ESCRITA', 'CRUD ${firstUpper(entity.displayName)} , servico salvar ');
+	INSERT INTO permission_item(permission_id, item_id)VALUES ((select max(id)  from persmission), (select max(id) from item));	
 
-	
+	INSERT INTO item(id,     description, identifier, type, name) VALUES	((select max(id) + 1 from item), 'Url de acesso TODOS os ${firstUpper(entity.displayName)}s', 									'crud/${firstLowe(entity.name)}s/all', 		'SERVICE', 			'Servico de TODOS os ${firstUpper(entity.displayName)}s');
+	INSERT INTO persmission((select max(id) + 1 from persmission),  name, description,  operation, tags) VALUES ('Cadastro de ${firstUpper(entity.displayName)}. Permissão de acesso ao serviço para listar todos  os ${firstUpper(entity.displayName)}', 'Usuário Poderá acessar ao serviço para salvar um novo ${firstUpper(entity.displayName)} ', 'LEITURA', 'CRUD ${firstUpper(entity.displayName)} , servico listar todos ');
+	INSERT INTO permission_item(permission_id, item_id)VALUES ((select max(id)  from persmission), (select max(id) from item));	
+
+	INSERT INTO item(id,     description, identifier, type, name) VALUES	((select max(id) + 1 from item), 'Url de acesso aos ${firstUpper(entity.displayName)}s por filtro', 							'crud/${firstLowe(entity.name)}s/filter', 		'SERVICE', 			'Servico de ${firstUpper(entity.displayName)}s sob filtro');
+	INSERT INTO persmission((select max(id) + 1 from persmission),  name, description,  operation, tags) VALUES ('Cadastro de ${firstUpper(entity.displayName)}. Permissão de acesso ao serviço para listagem por filtro de ${firstUpper(entity.displayName)}', 'Usuário Poderá acessar ao serviço para listagem por filtro de ${firstUpper(entity.displayName)} ', 'LEITURA', 'CRUD ${firstUpper(entity.displayName)} , servico listar por filtro ');
+	INSERT INTO permission_item(permission_id, item_id)VALUES ((select max(id)  from persmission), (select max(id) from item));	
+
+	INSERT INTO item(id,     description, identifier, type, name) VALUES	((select max(id) + 1 from item), 'Url de acesso a um ${firstUpper(entity.displayName)} específico', 							'crud/${firstLowe(entity.name)}s/[0-9]', 		'SERVICE', 			'Servico para acesso a ${firstUpper(entity.displayName)} especifico'); --GET, PUT e DELETE 
+	INSERT INTO persmission((select max(id) + 1 from persmission),  name, description,  operation, tags) VALUES ('Cadastro de ${firstUpper(entity.displayName)}. Permissão de acesso ao serviço para listagem de um unico ${firstUpper(entity.displayName)}', 'Usuário Poderá acessar ao serviço para listagem de um unico ${firstUpper(entity.displayName)} ', 'LEITURA', 'CRUD ${firstUpper(entity.displayName)} , servico listar um unico ');
+	INSERT INTO permission_item(permission_id, item_id)VALUES ((select max(id)  from persmission), (select max(id) from item));	
+	INSERT INTO persmission((select max(id) + 1 from persmission),  name, description,  operation, tags) VALUES ('Cadastro de ${firstUpper(entity.displayName)}. Permissão de acesso ao serviço para atualizacao de um unico ${firstUpper(entity.displayName)}', 'Usuário Poderá acessar ao serviço para atualizacao de um unico ${firstUpper(entity.displayName)} ', 'ATUALIZACAO', 'CRUD ${firstUpper(entity.displayName)} , servico atualização ');
+	INSERT INTO permission_item(permission_id, item_id)VALUES ((select max(id)  from persmission), (select max(id) from item));	
+	INSERT INTO persmission((select max(id) + 1 from persmission),  name, description,  operation, tags) VALUES ('Cadastro de ${firstUpper(entity.displayName)}. Permissão de acesso ao serviço para deleção/remoção de um unico ${firstUpper(entity.displayName)}', 'Usuário Poderá acessar ao serviço para deleção/remoção de um unico ${firstUpper(entity.displayName)} ', 'DELECAO', 'CRUD ${firstUpper(entity.displayName)} , servico remoção deleção');
+	INSERT INTO permission_item(permission_id, item_id)VALUES ((select max(id)  from persmission), (select max(id) from item));	
+
 </#list>			
 	
