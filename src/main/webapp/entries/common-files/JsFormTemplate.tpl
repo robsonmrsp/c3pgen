@@ -74,6 +74,7 @@ define(function(require) {
 		/** All the inportant fields must be here. */
 		ui : {
 			inputId : '#inputId',
+			saveButton : '.button-saving',
 		<#list entity.attributes as att>
 			input${firstUpper(att.name)} : '#input${firstUpper(att.name)}',
 			<#if att.viewApproach?? >
@@ -251,6 +252,7 @@ define(function(require) {
 			var ${firstLower(entity.name)} = that.getModel();
 
 			if (this.isValid()) {
+			this.ui.saveButton.button('loading');
 				${firstLower(entity.name)}.save({}, {
 					success : function(_model, _resp, _options) {
 						util.showSuccessMessage('${firstUpper(entity.displayName)!firstUpper(entity.name)} salvo com sucesso!');
@@ -262,6 +264,7 @@ define(function(require) {
 					},
 
 					error : function(_model, _resp, _options) {
+						that.ui.saveButton.button('reset');
 						util.showErrorMessage('Problema ao salvar registro',_resp);
 					}
 				});
@@ -297,6 +300,7 @@ define(function(require) {
 		},
 		
 		customClearForm : function(){
+			this.ui.saveButton.button('reset');
 		<#list entity.attributes as att>
 		<#if att.viewApproach.type == 'upload'>
 			this.uploadView${firstUpper(att.name)}.clear();		

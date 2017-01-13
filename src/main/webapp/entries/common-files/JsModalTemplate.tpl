@@ -57,6 +57,7 @@ define(function(require) {
 
 		/** All the inportant fields must be here. */		
 		ui : {
+			loadButton : '.button-loading',
 		<#list entity.attributes as att>
     		inputModal${firstUpper(att.name)} : '.inputModal${firstUpper(att.name)}',
     		<#if att.viewApproach?? >
@@ -202,6 +203,8 @@ define(function(require) {
 		},
 
 		search${entity.name} : function() {
+			var that = this;
+			this.ui.loadButton.button('loading');
 			this.${firstLower(entity.name)}Collection.filterQueryParams = {
 			<#list entity.attributes as att>
 			<#if att.showInPages >
@@ -227,6 +230,8 @@ define(function(require) {
 				},
 				error : function(_coll, _resp, _opt) {
 					console.error(_coll, _resp, _opt)
+				},complete : function(){
+					that.ui.loadButton.button('reset');
 				}
 			});
 		},

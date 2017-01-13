@@ -84,14 +84,14 @@
 						</#list>
 						</#if>
 					<div class="form-actions spinner" id="spin${firstUpper(entity.name)}">
-						<a href="javascript:void(0)" id="btnSearch${firstUpper(entity.name)}" class="btnSearch${firstUpper(entity.name)} btn btn-primary btn-large" >
+						<button type="button" id="btnSearch${firstUpper(entity.name)}" class="btnSearch${firstUpper(entity.name)} btn btn-primary btn-large button-loading" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Pesquisando...">
 							<i class="fa fa-search"></i>
 							Pesquisar
-						</a>
-						<a href="javascript:void(0)" id="btnClear${firstUpper(entity.name)}" class="btnClear${firstUpper(entity.name)} btn btn-info btn-large">
+						</button>
+						<button type="button" id="btnClear${firstUpper(entity.name)}" class="btnClear${firstUpper(entity.name)} btn btn-info btn-large" >
 							<i class="fa fa-trash"></i>
 							Nova Pesquisa
-						</a>
+						</button>
 					</div>
 					
 				<div class="row">

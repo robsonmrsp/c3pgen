@@ -72,6 +72,7 @@ define(function(require) {
 		
 		/** All the inportant fields must be here. */		
 		ui : {
+		loadButton : '.loading-button',
 		<#list entity.attributes as att>
 			<#if att.showInPages >
 			input${firstUpper(att.name)} : '#input${firstUpper(att.name)}',
@@ -228,7 +229,7 @@ define(function(require) {
 		 
 		search${firstUpper(entity.name)} : function(){
 			var that = this;
-
+			this.ui.loadButton.button('loading');
 			this.${firstLower(entity.name)}s.filterQueryParams = {
 			<#list entity.attributes as att>
 				<#if att.showInPages >
@@ -255,6 +256,9 @@ define(function(require) {
 				error : function(_coll, _resp, _opt) {
 					console.error(_resp.responseText || (_resp.getResponseHeader && _resp.getResponseHeader('exception')));
 				},
+				complete : function(){
+					that.ui.loadButton.button('reset');
+				}
 			})		
 		},
 		reset${firstUpper(entity.name)} : function(){

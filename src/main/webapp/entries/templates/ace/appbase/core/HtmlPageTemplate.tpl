@@ -36,7 +36,7 @@
 									<div class="input-group">
 										<input id="input${firstUpper(basicAttr.name)}" type="text" class="clearable form-control search-query" placeholder="Pesquisar ${entity.displayName} por ${firstUpper(basicAttr.displayName)}">
 										<span id="query" class="input-group-btn ">
-											<button type="button" class="btn btn-inverse btn-white search-button">
+											<button type="button" class="btn btn-inverse btn-white search-button loading-button"  data-loading-text="<i class='fa fa-spinner fa-spin '></i> Pesquisando...">
 												<span class="ace-icon fa fa-search icon-on-right bigger-110 "></span>
 												Pesquisar
 											</button>
@@ -146,7 +146,7 @@
 								</#list>
 								</#if>
 								<div class=" ">
-									<button type="button" class="btn btn-info btn-sm search-button">
+									<button type="button" class="btn btn-info btn-sm search-button loading-button" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Pesquisando...">
 										<i class="ace-icon fa fa-search bigger-110"></i>
 										Pesquisar
 									</button>

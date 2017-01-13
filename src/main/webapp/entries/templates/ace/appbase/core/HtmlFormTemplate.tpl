@@ -124,17 +124,17 @@
 			</div>
 			<div class="">
 				<div class="clearfix form-actions">
-					<a href="javascript:void(0)" id="save"  class="save btn btn-primary auth[save-${firstLower(entity.name)}, disable]">
+					<button type="button" id="save"  class="save btn btn-primary auth[save-${firstLower(entity.name)}, disable] button-saving" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Salvando...">
 						<i class="ace-icon save fa fa-check bigger-110"></i>
 						Salvar
-					</a>
+					</button>
 					&nbsp; &nbsp; &nbsp;
-					<a href="javascript:void(0)" class="save-continue btn btn-info auth[save-continue-${firstLower(entity.name)}, disable]" style="display: {{ id ? 'none' : 'inline-block' }} ">
+					<button type="button" class="save-continue btn btn-info auth[save-continue-${firstLower(entity.name)}, disable] button-saving" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Salvando..."  style="display: {{ id ? 'none' : 'inline-block' }} ">
 						<i class="ace-icon fa fa-check bigger-110"></i>
 						Salvar e Continuar
-					</a>
+					</button>
 					&nbsp; &nbsp; &nbsp;
-					<a class="go-back-link btn btn-light" href="#app/${firstLower(entity.name)}s">
+					<a  class="go-back-link btn btn-light" href="#app/${firstLower(entity.name)}s">
 						<i class="ace-icon fa fa-undo bigger-110"></i>
 						Voltar para a listagem
 					</a>
