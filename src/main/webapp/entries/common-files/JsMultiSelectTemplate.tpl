@@ -1,69 +1,312 @@
 /* generated: ${.now} */
 define(function(require) {
-	// Start "Import´s" Definition"
-	var _ = require('adapters/underscore-adapter');
-	var $ = require('adapters/jquery-adapter');
-	var Col = require('adapters/col-adapter');
-	var Backbone = require('adapters/backbone-adapter');
-	var Backgrid = require('adapters/backgrid-adapter');
-	var Marionette = require('marionette');
+
 	var util = require('utilities/utils');
-	var BaseModel = require('models/BaseModel');
-	var CustomNumberCell = require('views/components/CustomNumberCell');
 
-	var ModalMultiSelect${entity.name} = require('views/${firstLower(entity.name)}/ModalMultiSelect${firstUpper(entity.name)}');
-	var MultiSelect${firstUpper(entity.name)}Template = require('text!views/${firstLower(entity.name)}/tpl/MultiSelect${firstUpper(entity.name)}Template.html');
+	var JSetup = require('views/components/JSetup');
+	var JSetupView = require('views/core/JSetupView');
 
-	var MultiSelect${firstUpper(entity.name)} = Marionette.LayoutView.extend({
-		template : _.template(MultiSelect${firstUpper(entity.name)}Template),
+	var ${entity.name}Modal = require('text!views/modalComponents/tpl/${entity.name}ModalTemplate.html');
+	var ${entity.name}PageCollection = require('collections/${entity.name}PageCollection');
+	<#list entity.attributes as att>
+	<#if att.showInPages >
+		<#if att.viewApproach?? >
+			<#if att.viewApproach.type == 'combo'>		
+	var ${att.type.className}Collection = require('collections/${att.type.className}Collection');
+			</#if>
+		</#if>
+		</#if>
+	</#list>
+	<#if entity.relationships??>	
+	<#list entity.relationships as rel>
+	<#if rel.showInPages >
+		<#if rel.viewApproach?? && rel.viewApproach.type??>
+			<#if rel.viewApproach.type  == 'combo'  >
+	var ${rel.model}Collection = require('collections/${rel.model}Collection');			
+			</#if>
+		</#if>
+	</#if>
+	</#list>
+	</#if>			
 
+	<#list entity.attributes as att>
+	<#if att.showInPages >
+		<#if att.viewApproach?? >
+			<#if att.viewApproach.type == 'combo'>		
+	var ${att.type.className}Collection = require('collections/${att.type.className}Collection');
+			</#if>
+		</#if>
+		</#if>
+	</#list>
+
+	var ${entity.name}Modal = JSetupView.extend({
+		template : _.template(${entity.name}Modal),
+
+		/** The declared form Regions. */
 		regions : {
-			modalMultiSelect${firstUpper(entity.name)}Region : '#modalMultiSelect${firstUpper(entity.name)}s',
-			grid${firstUpper(entity.name)}sModalRegion : '#gridMultiselect${firstUpper(entity.name)}s',
-		},
-
-		initialize : function() {
-			var that = this;
-
-			this.${firstLower(entity.name)}s = this.collection;
-
-			this.grid${firstUpper(entity.name)}s = new Backgrid.Grid({
-				className : 'table backgrid table-striped table-bordered table-hover dataTable no-footer  ',
-				columns : this._getColumns(),
-				emptyText : "Sem registros adicionados",
-				collection : this.${firstLower(entity.name)}s,
-			});
-
-			this.modalMultiSelect${firstUpper(entity.name)} = new ModalMultiSelect${firstUpper(entity.name)}({
-				collection : this.collection
-			});
-
-			this.on('show', function() {
-				that.modalMultiSelect${firstUpper(entity.name)}Region.show(that.modalMultiSelect${firstUpper(entity.name)});
-				that.grid${firstUpper(entity.name)}sModalRegion.show(that.grid${firstUpper(entity.name)}s);
-			});
-		},
-		clear : function(){
-			this.modalMultiSelect${firstUpper(entity.name)}.clear();
+			dataTablePrincipalRegion : '.datatable-principal',
+			dataTableModalRegion : '.datatable-modal',
 		},
 		
-		_getColumns : function() {
-			var columns = [
+		/** The form events you'd like to listen */
+		events : {
+			'click .btnSearch' : 'search',
+			'click .btnClear' : 'clearModal',
+			'keypress' : 'treatKeypress',
+		},
+		
+		/** All the inportant fields must be here. */		
+		ui : {
+			loadButton : '.button-loading',
+		<#list entity.attributes as att>
+    		inputModal${firstUpper(att.name)} : '.inputModal${firstUpper(att.name)}',
+    		<#if att.viewApproach?? >
+				<#if att.viewApproach.type == 'datepicker'>			
+			groupInputModal${firstUpper(att.name)} : '.groupInputModal${firstUpper(att.name)}',
+				</#if>
+			</#if>
+		</#list>
+		<#if entity.relationships??>	
+		<#list entity.relationships as rel>
+		<#if rel.showInPages >
+			<#if rel.type == 'OneToMany'>
+			<#elseif rel.type == 'ManyToOne'>
+				<#if rel.viewApproach?? >
+					<#if rel.viewApproach.type  == 'combo'  >
+			inputModal${firstUpper(rel.model)} : '.inputModal${firstUpper(rel.model)}', 
+					</#if>
+				</#if>
+			<#elseif rel.type == 'ManyToMany'>
+			<#elseif rel.type == 'OneToOne'>
+			</#if>
+		</#if>
+		</#list>
+		</#if>
+		
+			form : '#formSearch${entity.name}',
+			modalScreen : '.modal',
+		},
+		treatKeypress : function (e){
+		    if (util.enterPressed(e)) {
+	    		e.preventDefault();
+	    		this.search();
+	    	}
+		},		
+		
+		/** First function called, like a constructor. */
+		initialize : function(opt) {
+			var that = this;
+			this.principalCollection = this.collection;
+
+			this.modalCollection = new ${entity.name}PageCollection();
+			this.modalCollection.on('fetching', this.startFetch, this);
+			this.modalCollection.on('fetched', this.stopFetch, this);
+			
+			this.dataTablePrincipal = new JSetup.DataTable({
+				columns : this.getPrincipalColumns(),
+				collection : this.${firstLower(entity.name)}Collection,
+			});
+			
+			this.dataTableModal = new JSetup.DataTable({
+				columns : this.getModalColumns(),
+				collection : this.modalCollection
+			});
+			
+			this.setValue(opt.initialValue);
+		},
+
+		
+		/** Called after DOM´s ready.*/
+		onRender :  function() {
+			var that = this;
+	 <#list entity.attributes as att>
+   	   <#if att.showInPages >
+		  <#if att.inputAs == 'cpf' >
+			this.ui.inputModal${firstUpper(att.name)}.cpf();
+		  </#if>	
+		  <#if att.inputAs == 'cnpj' >
+			this.ui.inputModal${firstUpper(att.name)}.cnpj();
+		  </#if>	
+		  <#if att.inputAs == 'fone' || att.inputAs == 'telephone' || att.inputAs == 'telefone' >
+			this.ui.inputModal${firstUpper(att.name)}.fone();
+		  </#if>
+		  <#if att.inputAs == 'date' || att.type.className == 'Date'>
+			this.ui.inputModal${firstUpper(att.name)}.date();
+			this.ui.groupInputModal${firstUpper(att.name)}.date();
+		  </#if>	
+		  <#if att.inputAs == 'datetime' ||  att.type.className == 'Datetime'>
+			this.ui.inputModal${firstUpper(att.name)}.datetime();
+			this.ui.groupInputModal${firstUpper(att.name)}.datetime();
+		  </#if>	
+		  <#if  att.inputAs == 'percent' || att.inputAs == 'percentagem' || att.inputAs == 'decimal' || att.type.className == 'Double'>
+			this.ui.inputModal${firstUpper(att.name)}.decimal();
+		  </#if>	
+		  <#if att.inputAs == 'integer' || att.type.className == 'Integer'>
+			this.ui.inputModal${firstUpper(att.name)}.integer();
+		  </#if>	
+		  <#if att.inputAs == 'money' || att.inputAs == 'monetario'>
+			this.ui.inputModal${firstUpper(att.name)}.money();
+		  </#if>	
+		  <#if att.viewApproach?? >
+			<#if att.viewApproach.type == 'combo'>		
+			var combo${firstUpper(att.name)} = new JSetup.Combobox({
+				el : this.ui.inputModal${firstUpper(att.name)},
+			   <#if att.viewApproach.values??>
+			    values : ${toListString(att.viewApproach.values)}
+				<#else>
+				comboId : '${(att.viewApproach.comboId)!'id'}',
+				comboVal : '${(att.viewApproach.comboVal)!'name'}',
+				collectionEntity : ${att.type.className}Collection, 
+				</#if>
+			});
+			</#if>
+		  </#if>
+	  </#if>
+	</#list>
+	
+	<#if entity.relationships??>	
+	<#list entity.relationships as rel>
+	<#if rel.showInPages >
+		<#if rel.type == 'OneToMany'>
+		<#elseif rel.type == 'ManyToOne'>
+			<#if rel.viewApproach?? >
+				<#if rel.viewApproach.type  == 'combo'  >
+			var combo${firstUpper(rel.name)} = new JSetup.Combobox({
+				el : this.ui.inputModal${firstUpper(rel.model)},
+			   <#if rel.viewApproach.values??>
+			    values : '${toString(rel.viewApproach.values)}'
+				<#else>
+				comboId : '${(rel.viewApproach.comboId)!'id'}',
+				comboVal : '${(rel.viewApproach.comboVal)!'name'}',
+				collectionEntity : ${firstUpper(rel.model)}Collection, 
+				</#if>
+			});
+				</#if>
+			</#if>
+		<#elseif rel.type == 'ManyToMany'>
+		<#elseif rel.type == 'OneToOne'>
+		</#if>
+	</#if>
+	</#list>
+	</#if>	
+ 		    that.principalGridRegion.show(that.principalGrid);
+				that.modalGridRegion.show(that.modalGrid);
+				this.ui.modal.on('show.bs.modal', function() {
+					that.search();
+			})
+		},
+		search : function() {
+			var that = this;
+			this.ui.loadButton.button('loading');
+			this.${firstLower(entity.name)}Collection.filterQueryParams = {
+			<#list entity.attributes as att>
+			<#if att.showInPages >
+	    		${firstLower(att.name)} : this.ui.inputModal${firstUpper(att.name)}.escape(),
+			</#if>
+			</#list>
+			
+			<#if entity.relationships??>	
+				<#list entity.relationships as rel>
+					<#if rel.viewApproach?? >
+						<#if rel.viewApproach.type  == 'combo'  >
+				${firstLower(rel.name)} : this.ui.inputModal${firstUpper(rel.name)}.escape(),
+						</#if>
+					</#if>
+				</#list>
+			</#if>				
+			};
+
+			this.${firstLower(entity.name)}Collection.fetch({
+				resetState : true,
+				success : function(_coll, _resp, _opt) {
+					//caso queira algum tratamento de sucesso adicional
+				},
+				error : function(_coll, _resp, _opt) {
+					console.error(_coll, _resp, _opt)
+				},complete : function(){
+					that.ui.loadButton.button('reset');
+				}
+			});
+		},
+
+		getJsonValue : function() {
+			if (_.isEmpty(this.modelSelect) && _.isEmpty(this.jsonValue)) {
+				return null;
+			}
+			if (this.modelSelect) {
+				return this.modelSelect.toJSON();
+			} else {
+				return this.jsonValue;
+			}
+			return null;
+		},
+		
+		getRawValue : function() {
+			var json = this.getJsonValue();
+			if(json )
+				return json.id
+			return null;
+		},
+		
+		getValue : function() {
+			return this.modelSelect;
+		},
+
+		setValue : function(value) {
+			this.jsonValue = value;
+		},
+
+	
+		clear : function(){
+			this.modalGrid.$el.find('input[type=checkbox]').prop('checked', false);
+		},
+		
+		getPrincipalColumns : function() {
+			var columns = [	
 
 			<#list entity.attributes as att>
+				<#if att.showInPages >			
 			{
 				name : "${att.name}",
+				sortable : true,
 				editable : false,
-				sortable : false,
 				label 	 : "${firstUpper(att.displayName)!firstUpper(att.name)}",
-				<#if isNumeric(att.type.className)>
-				cell : CustomNumberCell.extend({}),
-		  		<#else>	
+				<#if att.inputAs == 'percent'>
+				cell : JSetup.PercentCell,
+		  		<#elseif att.inputAs == 'money'>
+		  		cell : JSetup.MoneyCell,	
+		  		<#else>
 				cell 	 : "string",
 		  		</#if>	
 			}, 
-			</#list>
-			];
+		  		</#if>	
+			</#list>			];
+			return columns;
+		},
+		getModalColumns : function() {
+			var columns = [	
+			{
+				name : "",
+				cell : "select-row",
+				headerCell : "select-all"
+			}, 
+			<#list entity.attributes as att>
+				<#if att.showInPages >			
+			{
+				name : "${att.name}",
+				sortable : true,
+				editable : false,
+				label 	 : "${firstUpper(att.displayName)!firstUpper(att.name)}",
+				<#if att.inputAs == 'percent'>
+				cell : JSetup.PercentCell,
+		  		<#elseif att.inputAs == 'money'>
+		  		cell : JSetup.MoneyCell,	
+		  		<#else>
+				cell 	 : "string",
+		  		</#if>	
+			}, 
+		  		</#if>	
+			</#list>			];
 			return columns;
 		},
 	});

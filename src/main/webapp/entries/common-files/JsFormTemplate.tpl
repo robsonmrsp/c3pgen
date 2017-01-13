@@ -19,7 +19,7 @@ define(function(require) {
 	<#if entity.relationships??>	
 	<#list entity.relationships as rel >
 		<#if rel.viewApproach.type == 'modal'>
-	var Modal${firstUpper(rel.name)} = require('views/modalComponents/${firstUpper(rel.model)}Modal');
+	var Modal${firstUpper(rel.name)} = require('views/modalComponents/Modal${firstUpper(rel.model)}');
 		</#if>
 	</#list>
 	</#if>

@@ -3,15 +3,14 @@ define(function(require) {
 	// Start "Import´s" Definition"
 	var _ = require('adapters/underscore-adapter');
 	var $ = require('adapters/jquery-adapter');
-	var Backbone = require('adapters/backbone-adapter');
-	var BaseModel = require('models/BaseModel');
+	var JSetup = require('views/components/JSetup');	
 	// End of "Import´s definition"
 
 	// #####################################################################################################
 	// ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨ MAIN BODY  ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
 	// #####################################################################################################
 
-	var ${entity.name}Model = BaseModel.extend({
+	var ${entity.name}Model = JSetup.BaseModel.extend({
 
 		<#if application.persistenceFramework == 'hibernate'>	
 		urlRoot : 'rs/crud/${firstLower(entity.name)}s',

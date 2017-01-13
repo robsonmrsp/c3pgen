@@ -7,6 +7,7 @@ define(function(require) {
 	var Backgrid = require('adapters/backgrid-adapter');
 	var util = require('utilities/utils');
 	var BaseModel = require('models/BaseModel');
+	var BaseCollection = require('collections/BaseCollection');
 	var GridTemplate = require('text!views/components/tpl/GridTemplate.html');
 
 	var Combobox = require('views/components/Combobox');
@@ -226,6 +227,7 @@ define(function(require) {
 		Suggestbox : Suggestbox,
 		
 		BaseModel : BaseModel,
+		BaseCollection : BaseCollection,
 
 	}
 	return JSetup;

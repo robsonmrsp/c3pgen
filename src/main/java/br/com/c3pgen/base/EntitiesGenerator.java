@@ -37,9 +37,9 @@ public class EntitiesGenerator {
 	private static MarkerGenerator flterGenerator;
 	private static MarkerGenerator htmlModalGenerator;
 	private static MarkerGenerator JsMultiSelectGenerator;
+	private static MarkerGenerator htmlMultiSelectGenerator;
 	private static MarkerGenerator JsModalMultiSelectGenerator;
 	private static MarkerGenerator htmlModalMultiSelectGenerator;
-	private static MarkerGenerator htmlMultiSelectGenerator;
 
 	private static MarkerGenerator javaModelGenerator;
 	private static MarkerGenerator javaMybatisModelTemplate;
@@ -130,15 +130,19 @@ public class EntitiesGenerator {
 
 		jsPageGenerator = new MarkerGenerator(freeMarkerConfig, application, "JsPageTemplate.tpl", jsRootFolder + "/views/${entity.name}/", TemplateFileName.PAGE_JS, FileType.JAVASCRIPT);
 
-		JsMultiSelectGenerator = new MarkerGenerator(freeMarkerConfig, application, "JsMultiSelectTemplate.tpl", jsRootFolder + "/views/${entity.name}/", TemplateFileName.MULTI_SELECT_JS, FileType.JAVASCRIPT);
-		JsModalMultiSelectGenerator = new MarkerGenerator(freeMarkerConfig, application, "JsModalMultiSelectTemplate.tpl", jsRootFolder + "/views/${entity.name}/", TemplateFileName.MODAL_MULTI_SELECT_JS, FileType.JAVASCRIPT);
+		JsMultiSelectGenerator = new MarkerGenerator(freeMarkerConfig, application, "JsMultiSelectTemplate.tpl", jsRootFolder + "/views/modalComponents/" , TemplateFileName.MULTI_SELECT_JS, FileType.JAVASCRIPT);
+		htmlMultiSelectGenerator = new MarkerGenerator(freeMarkerConfig, application, "HtmlMultiSelectTemplate.tpl", jsRootFolder + "/views/modalComponents/", TemplateFileName.MULTI_SELECT_HTML, FileType.HTML);
 
-		htmlMultiSelectGenerator = new MarkerGenerator(freeMarkerConfig, application, "HtmlMultiSelectTemplate.tpl", jsRootFolder + "/views/${entity.name}/tpl/", TemplateFileName.MULTI_SELECT_HTML, FileType.HTML);
-		htmlModalMultiSelectGenerator = new MarkerGenerator(freeMarkerConfig, application, "HtmlModalMultiSelectTemplate.tpl", jsRootFolder + "/views/${entity.name}/tpl/", TemplateFileName.MODAL_MULTI_SELECT_HTML, FileType.HTML);
+//		JsModalMultiSelectGenerator = new MarkerGenerator(freeMarkerConfig, application, "JsModalMultiSelectTemplate.tpl", jsRootFolder + "/views/${entity.name}/", TemplateFileName.MODAL_MULTI_SELECT_JS, FileType.JAVASCRIPT);
+
+//		htmlModalMultiSelectGenerator = new MarkerGenerator(freeMarkerConfig, application, "HtmlModalMultiSelectTemplate.tpl", jsRootFolder + "/views/${entity.name}/tpl/", TemplateFileName.MODAL_MULTI_SELECT_HTML, FileType.HTML);
 
 		htmlFormGenerator = new MarkerGenerator(freeMarkerConfig, application, "HtmlFormTemplate.tpl", jsRootFolder + "/views/${entity.name}/tpl/", TemplateFileName.FORM_TEMPLATE_HTML, FileType.HTML);
 		htmlPageGenerator = new MarkerGenerator(freeMarkerConfig, application, "HtmlPageTemplate.tpl", jsRootFolder + "/views/${entity.name}/tpl/", TemplateFileName.PAGE_TEMPLATE_HTML, FileType.HTML);
+
+		jsModalGenerator = new MarkerGenerator(freeMarkerConfig, application, "JsModalTemplate.tpl", jsRootFolder + "/views/modalComponents/", TemplateFileName.MODAL_TEMPLATE_JS, FileType.JAVASCRIPT);
 		htmlModalGenerator = new MarkerGenerator(freeMarkerConfig, application, "HtmlModalTemplate.tpl", jsRootFolder + "/views/modalComponents/tpl/", TemplateFileName.MODAL_TEMPLATE_HTML, FileType.HTML);
+		
 		mapperMybatisGenerator = new MarkerGenerator(freeMarkerConfig, application, "JavaMapperTemplate.tpl", javaRootFolder + "/persistence/", TemplateFileName.MYBATIS_MAPPER_JAVA, FileType.JAVA);
 
 		// htmlBootstrap2FormGenerator = new MarkerGenerator(freeMarkerConfig,
@@ -155,7 +159,6 @@ public class EntitiesGenerator {
 		// FileType.HTML);
 
 		fragmentsGenerator = new MarkerGenerator(freeMarkerConfig, application, "Fragments.tpl", jsRootFolder + "/fragments", TemplateFileName.FRAGMENT_TEMPLATE_HTML, FileType.FRAGMENT);
-		jsModalGenerator = new MarkerGenerator(freeMarkerConfig, application, "JsModalTemplate.tpl", jsRootFolder + "/views/modalComponents/", TemplateFileName.MODAL_TEMPLATE_JS, FileType.JAVASCRIPT);
 
 		jsRouterGenerator = new MarkerGenerator(freeMarkerConfig, application, "Router.tpl", jsRootFolder, TemplateFileName.ROUTER_JS, FileType.JAVASCRIPT);
 
@@ -263,7 +266,7 @@ public class EntitiesGenerator {
 						htmlPageGenerator.generateEntityFile(application, ent);
 						htmlModalGenerator.generateEntityFile(application, ent);
 
-//						JsMultiSelectGenerator.generateEntityFile(application, ent);
+						JsMultiSelectGenerator.generateEntityFile(application, ent);
 //						JsModalMultiSelectGenerator.generateEntityFile(application, ent);
 //						htmlModalMultiSelectGenerator.generateEntityFile(application, ent);
 //						htmlMultiSelectGenerator.generateEntityFile(application, ent);

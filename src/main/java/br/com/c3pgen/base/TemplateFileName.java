@@ -13,11 +13,11 @@ public interface TemplateFileName {
 	final String BASIC_FORM_JS = "Form${entity.name}";
 	final String PAGE_JS = "Page${entity.name}";
 
-	final String MULTI_SELECT_JS = "MultiSelect${entity.name}";
-	final String MULTI_SELECT_HTML = "MultiSelect${entity.name}Template";
+	final String MULTI_SELECT_JS = "MultiselectModal${entity.name}";
+	final String MULTI_SELECT_HTML = "MultiselectModal${entity.name}Template";
 
-	final String MODAL_MULTI_SELECT_JS = "ModalMultiSelect${entity.name}";
-	final String MODAL_MULTI_SELECT_HTML = "ModalMultiSelect${entity.name}Template";
+//	final String MODAL_MULTI_SELECT_JS = "ModalMultiSelect${entity.name}";
+//	final String MODAL_MULTI_SELECT_HTML = "ModalMultiSelect${entity.name}Template";
 
 	final String PAGE_COLLECTION_JS = "${entity.name}PageCollection";
 	final String COLLECTION_JS = "${entity.name}Collection";
@@ -26,8 +26,8 @@ public interface TemplateFileName {
 	final String PAGE_TEMPLATE_HTML = "Page${entity.name}Template";
 	final String FRAGMENT_TEMPLATE_HTML = "${entity.name}Template";
 
-	final String MODAL_TEMPLATE_HTML = "${entity.name}ModalTemplate";
-	final String MODAL_TEMPLATE_JS = "${entity.name}Modal";
+	final String MODAL_TEMPLATE_HTML = "Modal${entity.name}Template";
+	final String MODAL_TEMPLATE_JS = "Modal${entity.name}";
 
 	final String BEANS_XML = "beans";
 	final String ROUTER_SPEC_JS = "RouterSpec";
