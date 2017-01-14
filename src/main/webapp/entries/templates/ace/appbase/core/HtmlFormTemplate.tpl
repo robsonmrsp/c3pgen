@@ -85,6 +85,9 @@
 						</#list>		
 						<#if entity.relationships??>	
 						<#list entity.relationships as rel>
+							<#if (rel.type == 'OneToMany' || rel.type == 'ManyToMany' ) && rel.viewApproach.type == 'multiselectmodal'>
+							<div id="${firstLower(rel.name)}MultiselectModal" class="${firstLower(rel.name)}-container panel"> </div>
+							</#if>					
 							<#if (rel.type == 'OneToMany' || rel.type == 'ManyToMany' ) && rel.viewApproach.type == 'multiselect'>
 
 							<div id="groupInput${firstUpper(rel.name)}" class="form-group col-sm-	col-md-	col-lg-  ">

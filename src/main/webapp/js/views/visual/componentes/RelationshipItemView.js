@@ -165,9 +165,14 @@ define(function(require) {
 						{
 							value : 'combo',
 							text : 'combo'
-						}, {
+						}, 
+						{
 							value : 'multiselect',
 							text : 'multiselect'
+						},
+						{
+							value : 'multiselectmodal',
+							text : 'multiselectmodal'
 						},
 					]
 				});

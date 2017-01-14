@@ -131,7 +131,7 @@ public class EntitiesGenerator {
 		jsPageGenerator = new MarkerGenerator(freeMarkerConfig, application, "JsPageTemplate.tpl", jsRootFolder + "/views/${entity.name}/", TemplateFileName.PAGE_JS, FileType.JAVASCRIPT);
 
 		JsMultiSelectGenerator = new MarkerGenerator(freeMarkerConfig, application, "JsMultiSelectTemplate.tpl", jsRootFolder + "/views/modalComponents/" , TemplateFileName.MULTI_SELECT_JS, FileType.JAVASCRIPT);
-		htmlMultiSelectGenerator = new MarkerGenerator(freeMarkerConfig, application, "HtmlMultiSelectTemplate.tpl", jsRootFolder + "/views/modalComponents/", TemplateFileName.MULTI_SELECT_HTML, FileType.HTML);
+		htmlMultiSelectGenerator = new MarkerGenerator(freeMarkerConfig, application, "HtmlMultiSelectTemplate.tpl", jsRootFolder + "/views/modalComponents/tpl", TemplateFileName.MULTI_SELECT_HTML, FileType.HTML);
 
 //		JsModalMultiSelectGenerator = new MarkerGenerator(freeMarkerConfig, application, "JsModalMultiSelectTemplate.tpl", jsRootFolder + "/views/${entity.name}/", TemplateFileName.MODAL_MULTI_SELECT_JS, FileType.JAVASCRIPT);
 
@@ -267,9 +267,10 @@ public class EntitiesGenerator {
 						htmlModalGenerator.generateEntityFile(application, ent);
 
 						JsMultiSelectGenerator.generateEntityFile(application, ent);
+						htmlMultiSelectGenerator.generateEntityFile(application, ent);
+						
 //						JsModalMultiSelectGenerator.generateEntityFile(application, ent);
 //						htmlModalMultiSelectGenerator.generateEntityFile(application, ent);
-//						htmlMultiSelectGenerator.generateEntityFile(application, ent);
 						jsModalGenerator.generateEntityFile(application, ent);
 					}
 

@@ -6,8 +6,15 @@ define(function(require) {
 	var JSetup = require('views/components/JSetup');
 	var JSetupView = require('views/core/JSetupView');
 
-	var ${entity.name}Modal = require('text!views/modalComponents/tpl/${entity.name}ModalTemplate.html');
+	var MultiselectModal${entity.name}Template = require('text!views/modalComponents/tpl/MultiselectModal${entity.name}Template.html');
 	var ${entity.name}PageCollection = require('collections/${entity.name}PageCollection');
+	var ${entity.name}PageClientCollection = ${entity.name}PageCollection.extend({
+		mode : 'client',
+		state : {
+			pageSize : 10,
+		},
+	})
+	
 	<#list entity.attributes as att>
 	<#if att.showInPages >
 		<#if att.viewApproach?? >
@@ -39,19 +46,19 @@ define(function(require) {
 		</#if>
 	</#list>
 
-	var ${entity.name}Modal = JSetupView.extend({
-		template : _.template(${entity.name}Modal),
+	var MultiselectModal${entity.name} = JSetupView.extend({
+		template : _.template(MultiselectModal${entity.name}Template),
 
 		/** The declared form Regions. */
 		regions : {
-			dataTablePrincipalRegion : '.datatable-principal',
-			dataTableModalRegion : '.datatable-modal',
+			dataTablePrincipalRegion : 	'.datatable-principal',
+			dataTableModalRegion : 		'.datatable-modal',
 		},
 		
 		/** The form events you'd like to listen */
 		events : {
-			'click .btnSearch' : 'search',
-			'click .btnClear' : 'clearModal',
+			'click .btn-search' : 'search',
+			'click .btn-reset' : 'clearModal',
 			'keypress' : 'treatKeypress',
 		},
 		
@@ -96,23 +103,22 @@ define(function(require) {
 		/** First function called, like a constructor. */
 		initialize : function(opt) {
 			var that = this;
-			this.principalCollection = this.collection;
+			this.principalCollection = new  ${entity.name}PageClientCollection(opt.initialValues) ;
 
 			this.modalCollection = new ${entity.name}PageCollection();
 			this.modalCollection.on('fetching', this.startFetch, this);
 			this.modalCollection.on('fetched', this.stopFetch, this);
+			this.modalCollection.on('backgrid:selected', this.selectModel, this);
 			
 			this.dataTablePrincipal = new JSetup.DataTable({
 				columns : this.getPrincipalColumns(),
-				collection : this.${firstLower(entity.name)}Collection,
+				collection : this.principalCollection
 			});
 			
 			this.dataTableModal = new JSetup.DataTable({
 				columns : this.getModalColumns(),
 				collection : this.modalCollection
 			});
-			
-			this.setValue(opt.initialValue);
 		},
 
 		
@@ -189,22 +195,21 @@ define(function(require) {
 	</#if>
 	</#list>
 	</#if>	
- 		    that.principalGridRegion.show(that.principalGrid);
-				that.modalGridRegion.show(that.modalGrid);
-				this.ui.modal.on('show.bs.modal', function() {
-					that.search();
-			})
+ 		    that.dataTablePrincipalRegion.show(that.dataTablePrincipal);
+			that.dataTableModalRegion.show(that.dataTableModal);
+			that.ui.modalScreen.on('show.bs.modal', function() {
+				that.search();
+			});
 		},
+		
 		search : function() {
 			var that = this;
-			this.ui.loadButton.button('loading');
-			this.${firstLower(entity.name)}Collection.filterQueryParams = {
+			this.modalCollection.filterQueryParams = {
 			<#list entity.attributes as att>
 			<#if att.showInPages >
 	    		${firstLower(att.name)} : this.ui.inputModal${firstUpper(att.name)}.escape(),
 			</#if>
 			</#list>
-			
 			<#if entity.relationships??>	
 				<#list entity.relationships as rel>
 					<#if rel.viewApproach?? >
@@ -216,49 +221,54 @@ define(function(require) {
 			</#if>				
 			};
 
-			this.${firstLower(entity.name)}Collection.fetch({
+			this.modalCollection.fetch({
 				resetState : true,
 				success : function(_coll, _resp, _opt) {
 					//caso queira algum tratamento de sucesso adicional
 				},
 				error : function(_coll, _resp, _opt) {
 					console.error(_coll, _resp, _opt)
-				},complete : function(){
-					that.ui.loadButton.button('reset');
-				}
+				},
 			});
 		},
 
 		getJsonValue : function() {
-			if (_.isEmpty(this.modelSelect) && _.isEmpty(this.jsonValue)) {
-				return null;
-			}
-			if (this.modelSelect) {
-				return this.modelSelect.toJSON();
-			} else {
-				return this.jsonValue;
-			}
-			return null;
+			return this.principalCollection.toJSON();
 		},
-		
-		getRawValue : function() {
-			var json = this.getJsonValue();
-			if(json )
-				return json.id
-			return null;
-		},
-		
+				
 		getValue : function() {
-			return this.modelSelect;
+			return this.principalCollection
 		},
 
-		setValue : function(value) {
-			this.jsonValue = value;
+		setValue : function(collection) {
+			this.principalCollection = collection; 
 		},
 
-	
-		clear : function(){
+		clear : function() {
 			this.modalGrid.$el.find('input[type=checkbox]').prop('checked', false);
+			this.principalCollection.reset();
+		},
+
+		selectModel : function(model, checked) {
+			if (checked)
+				this.principalCollection.add(model)
+			else
+				this.principalCollection.remove(model)
+		},
+
+		endFetch : function(_collection) {
+
+			var that = this;
+
+			this.ui.searchButton.button('reset');
+
+			this.modalCollection.each(function(model) {
+				if (that.principalCollection.findWhere({
+					id : model.get('id')
+				})) {
+					model.trigger("backgrid:select", model, true);
+				}
+			});
 		},
 		
 		getPrincipalColumns : function() {
@@ -283,6 +293,7 @@ define(function(require) {
 			</#list>			];
 			return columns;
 		},
+		
 		getModalColumns : function() {
 			var columns = [	
 			{
@@ -309,7 +320,25 @@ define(function(require) {
 			</#list>			];
 			return columns;
 		},
+
+		startFetch : function() {
+			this.ui.loadButton.button('loading')
+		},
+		
+		stopFetch : function() {
+			var that = this;
+			this.ui.loadButton.button('reset')
+
+			this.modalCollection.each(function(model) {
+				if (that.principalCollection.findWhere({
+					id : model.get('id')
+				})) {
+					model.trigger("backgrid:select", model, true);
+				}
+			});
+			util.scrollDownModal();
+		},		
 	});
 
-	return MultiSelect${firstUpper(entity.name)}
+	return MultiselectModal${entity.name}
 });

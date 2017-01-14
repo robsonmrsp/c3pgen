@@ -21,12 +21,15 @@ define(function(require) {
 		<#if rel.viewApproach.type == 'modal'>
 	var Modal${firstUpper(rel.name)} = require('views/modalComponents/Modal${firstUpper(rel.model)}');
 		</#if>
+		<#if rel.viewApproach.type == 'multiselectmodal'>
+	var MultiselectModal${firstUpper(rel.name)} = require('views/modalComponents/MultiselectModal${firstUpper(rel.model)}');
+		</#if>		
 	</#list>
 	</#if>
 	<#if entity.relationships??>	
 	<#list entity.relationships as rel>
 		<#if rel.viewApproach?? >
-			<#if rel.viewApproach.type  == 'combo'  ||  rel.viewApproach.type  == 'multiselect'>
+			<#if rel.viewApproach.type  == 'combo'  ||  rel.viewApproach.type  == 'multiselect' ||  rel.viewApproach.type  == 'multiselectmodal'>
 	var ${rel.model}Collection = require('collections/${rel.model}Collection');			
 			</#if>
 		</#if>
@@ -47,6 +50,9 @@ define(function(require) {
 			<#list entity.relationships as rel >
 				<#if rel.viewApproach.type == 'modal'>
 			modal${firstUpper(rel.name)}Region : '#${firstLower(rel.name)}Modal',
+				</#if>
+				<#if rel.viewApproach.type == 'multiselectmodal'>
+			multiselectModal${firstUpper(rel.name)}Region : '#${firstLower(rel.name)}MultiselectModal',
 				</#if>
 			</#list>
 			</#if>
@@ -168,6 +174,11 @@ define(function(require) {
 		
 		<#if entity.relationships??>
 		<#list entity.relationships as rel>
+			<#if (rel.type == 'OneToMany' || rel.type == 'ManyToMany' ) && rel.viewApproach.type == 'multiselectmodal'>
+			this.multiselectModal${firstUpper(rel.name)} = new MultiselectModal${firstUpper(rel.name)}({
+				initialValues : that.model.get('${firstLower(rel.name)}'),
+			});
+			</#if>
 			<#if (rel.type == 'OneToMany' || rel.type == 'ManyToMany' ) && rel.viewApproach.type == 'multiselect'>
 			this.multiselect${firstUpper(rel.name)} = new JSetup.Multiselect({
 				el : this.ui.input${firstUpper(rel.name)},
@@ -234,6 +245,9 @@ define(function(require) {
 			<#if rel.viewApproach.type == 'modal'>
 			this.modal${firstUpper(rel.name)}Region.show(this.modal${firstUpper(rel.name)});		
 			</#if>
+			<#if rel.viewApproach.type == 'multiselectmodal'>
+			this.multiselectModal${firstUpper(rel.name)}Region.show(this.multiselectModal${firstUpper(rel.name)});		
+			</#if>
 		</#list>
 		</#if>
 		<#list entity.attributes as att >
@@ -259,7 +273,7 @@ define(function(require) {
 						that.clearForm();
 
 						if (continua != true) {
-							util.goPage('app/${firstLower(entity.name)}s');
+							util.goPage('app/${firstLower(entity.name)}s', true);
 						}
 					},
 
@@ -290,6 +304,9 @@ define(function(require) {
 					<#if rel.viewApproach.type == 'modal' >
 				${firstLower(rel.name)} : that.modal${firstUpper(rel.name)}.getJsonValue(),
 					</#if>			
+					<#if rel.viewApproach.type == 'multiselectmodal' >
+				${firstLower(rel.name)} : that.multiselectModal${firstUpper(rel.name)}.getJsonValue(),
+					</#if>			
 					<#if rel.viewApproach.type == 'combo'>
 				${firstLower(rel.name)} :  that.combo${firstUpper(rel.name)}.getJsonValue(),
 					</#if>
@@ -310,6 +327,9 @@ define(function(require) {
 			<#if rel.viewApproach?? >
 				<#if rel.viewApproach.type == 'modal' >
 		    this.modal${firstUpper(rel.name)}.clear(); 
+				</#if> 
+				<#if rel.viewApproach.type == 'modal' >
+		    this.multiselectModal${firstUpper(rel.name)}.clear(); 
 				</#if> 
 				<#if  rel.viewApproach.type == 'combo'>
 		    this.combo${firstUpper(rel.model)}.clear(); 

@@ -109,6 +109,12 @@ public class ViewApproach extends AbstractTimestampEntity {
 		return approach;
 	}
 
+	public static ViewApproach multiselectModalInstance() {
+		ViewApproach approach = new ViewApproach();
+		approach.setType("multiselectmodal");
+		return approach;
+	}
+
 	public static ViewApproach modalInstance(String hiddenField, String textField) {
 		ViewApproach approach = new ViewApproach();
 		approach.setType("modal");

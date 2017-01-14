@@ -72,7 +72,7 @@ define(function(require) {
 		
 		/** All the inportant fields must be here. */		
 		ui : {
-		loadButton : '.loading-button',
+			loadButton : '.loading-button',
 		<#list entity.attributes as att>
 			<#if att.showInPages >
 			input${firstUpper(att.name)} : '#input${firstUpper(att.name)}',
@@ -113,14 +113,14 @@ define(function(require) {
 		/** First function called, like a constructor. */		
 		initialize : function() {
 			var that = this;
-
 			this.${firstLower(entity.name)}s = new ${entity.name}PageCollection();
-
+			this.${firstLower(entity.name)}s.on('fetching', this.startFetch, this);
+			this.${firstLower(entity.name)}s.on('fetched', this.stopFetch, this);
+			
 			this.dataTable${firstUpper(entity.name)} = new JSetup.DataTable({
 				columns : this.getColumns(),
 				collection : this.${firstLower(entity.name)}s
 			});
-
 		<#if entity.relationships??>	
 		<#list entity.relationships as rel >
 			<#if rel.showInPages >
@@ -187,7 +187,6 @@ define(function(require) {
 		  </#if>
 		  </#if>
 		</#list>
-		
 		<#if entity.relationships??>	
 		<#list entity.relationships as rel>
 			<#if rel.showInPages >		
@@ -213,7 +212,6 @@ define(function(require) {
 			</#if>
 		</#list>
 		</#if>
-		
 			that.dataTable${firstUpper(entity.name)}Region.show(that.dataTable${firstUpper(entity.name)});
 		<#if entity.relationships??>	
 		<#list entity.relationships as rel >
@@ -415,6 +413,13 @@ define(function(require) {
 				this.search${firstUpper(entity.name)}();
 			}
 		},
+		startFetch : function() {
+			this.ui.loadButton.button('loading')
+		},
+
+		stopFetch : function() {
+			this.ui.loadButton.button('reset')
+		}
 	});
 
 	return Page${entity.name};
