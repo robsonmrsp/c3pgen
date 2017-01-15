@@ -122,10 +122,10 @@ public class ${entity.name} extends AbstractTimestampEntity{
     @Cascade(value = CascadeType.ALL)
 			</#if>
 				<#if dataBasePrefix??>
-    @JoinTable(name="${dataBasePrefix}_${uppercase(entity.name)}_${uppercase(rel.model)}", joinColumns = @JoinColumn(name = "${uppercase(entity.name)}_ID", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "${uppercase(rel.model)}_ID", referencedColumnName = "ID") )
+    @JoinTable(name="${dataBasePrefix}_${uppercase(entity.name)}_${uppercase(rel.model)}", joinColumns = @JoinColumn(name = "ID_${uppercase(entity.name)}", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "ID_${uppercase(rel.model)}", referencedColumnName = "ID") )
     private List<${firstUpper(rel.model)}> ${(rel.name)};
     			<#else>
-    @JoinTable(name="${uppercase(entity.name)}_${uppercase(rel.model)}", joinColumns = @JoinColumn(name = "${uppercase(entity.name)}_ID", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "${uppercase(rel.model)}_ID", referencedColumnName = "ID") )
+    @JoinTable(name="${uppercase(entity.name)}_${uppercase(rel.model)}", joinColumns = @JoinColumn(name = "ID_${uppercase(entity.name)}", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "ID_${uppercase(rel.model)}", referencedColumnName = "ID") )
     private List<${firstUpper(rel.model)}> ${(rel.name)};
 				</#if>		
 			</#if>		

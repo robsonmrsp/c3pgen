@@ -43,62 +43,62 @@ public class GenService {
 	}
 
 	private ApplicationEntity user() {
-		ApplicationEntity user = new ApplicationEntity("User", "APP_USER");
+		ApplicationEntity user = new ApplicationEntity("User", "Usuário", "APP_USER");
 
-		user.addAttributes(new Attribute("name", "NAME", true, true, true, AttributeType.STRING));
-		user.addAttributes(new Attribute("username", "username", true, true, true, AttributeType.STRING));
-		user.addAttributes(new Attribute("password", "password", true, false, false, AttributeType.STRING));
-		user.addAttributes(new Attribute("enable", "enable", false, false, false, AttributeType.BOOLEAN));
-		user.addAttributes(new Attribute("image", "image", false, false, false, AttributeType.STRING));
+		user.addAttributes(new Attribute("name", "Nome", "NAME", true, true, true, AttributeType.STRING, ViewApproach.noneInstance()));
+		user.addAttributes(new Attribute("username", "Username", "username", true, true, true, AttributeType.STRING, ViewApproach.noneInstance()));
+		user.addAttributes(new Attribute("password", "Senha", "password", true, false, false, AttributeType.STRING, ViewApproach.noneInstance()));
+		user.addAttributes(new Attribute("enable", "Ativo?", "enable", false, false, false, AttributeType.BOOLEAN, ViewApproach.check()));
+		user.addAttributes(new Attribute("image", "Foto", "image", false, false, false, AttributeType.STRING, ViewApproach.uploadInstance()));
 		user.addRelationships(new Relationship("roles", "Roles", "ManyToMany", null, "Role", false, ViewApproach.multiselectModalInstance()));
 
 		return user;
 	}
 
 	private ApplicationEntity role() {
-		ApplicationEntity role = new ApplicationEntity("Role", "ROLE");
+		ApplicationEntity role = new ApplicationEntity("Role", "Papel", "ROLE");
 
-		role.addAttributes(new Attribute("authority", "AUTHORITY", true, true, true, AttributeType.STRING));
-		role.addAttributes(new Attribute("description", "DESCRIPTION", true, true, true, AttributeType.STRING));
+		role.addAttributes(new Attribute("authority", "Autoridade", "AUTHORITY", true, true, true, AttributeType.STRING, ViewApproach.noneInstance()));
+		role.addAttributes(new Attribute("description", "Descrição", "DESCRIPTION", true, true, true, AttributeType.STRING, ViewApproach.noneInstance()));
 		role.addRelationships(new Relationship("users", "Users", "ManyToMany", "roles", "User", false, ViewApproach.noneInstance()));
-		role.addRelationships(new Relationship("permissions", "Permissões", "ManyToMany", null, "Permission", false, ViewApproach.multiselectInstance("id", "name")));
-		role.addRelationships(new Relationship("groups",      "Groups",     "ManyToMany", "roles", "Group", false, ViewApproach.multiselectModalInstance()));
+		role.addRelationships(new Relationship("permissions", "Permissões", "ManyToMany", null, "Permission", false, ViewApproach.noneInstance()));
+		role.addRelationships(new Relationship("groups", "Groups", "ManyToMany", null, "Group", false, ViewApproach.multiselectModalInstance()));
 
 		return role;
 	}
 
 	private ApplicationEntity permission() {
-		ApplicationEntity permission = new ApplicationEntity("Permission", "PERSMISSION");
+		ApplicationEntity permission = new ApplicationEntity("Permission","Permmissão",  "PERMISSION");
 
-		permission.addAttributes(new Attribute("operation", "OPERATION",		 	true, false, true, AttributeType.STRING));
-		permission.addAttributes(new Attribute("name", "NAME", 						true, true, true, AttributeType.STRING));
-		permission.addAttributes(new Attribute("description", "DESCRIPTION", 		true, false, true, AttributeType.STRING));
-		permission.addAttributes(new Attribute("tagReminder", "TAG_REMINDER", 		true, false, true, AttributeType.STRING));
+		permission.addAttributes(new Attribute("name", "Nome", "NAME", true, true, true, AttributeType.STRING, ViewApproach.noneInstance()));
+		permission.addAttributes(new Attribute("description", "Descrição", "DESCRIPTION", true, false, true, AttributeType.STRING, ViewApproach.noneInstance()));
+		permission.addAttributes(new Attribute("operation", "Opeação", "OPERATION", true, false, true, AttributeType.STRING, ViewApproach.noneInstance()));
+		permission.addAttributes(new Attribute("tagReminder", "Marcadores", "TAG_REMINDER", true, false, true, AttributeType.STRING, ViewApproach.noneInstance()));
 		permission.addRelationships(new Relationship("roles", "Papeis", "ManyToMany", "permissions", "Role", false, ViewApproach.noneInstance()));
 		permission.addRelationships(new Relationship("groups", "Groups", "ManyToMany", "permissions", "Group", false, ViewApproach.noneInstance()));
 		permission.addRelationships(new Relationship("item", "Item", "ManyToOne", null, "Item", false, ViewApproach.modalInstance("id", "name")));
 
 		return permission;
 	}
-	
+
 	private ApplicationEntity groupPermission() {
-		ApplicationEntity permission = new ApplicationEntity("Group", "ACCESS_GROUP");
-		
-		permission.addAttributes(new Attribute("name", "NAME", 						true, false, true, AttributeType.STRING));
-		permission.addAttributes(new Attribute("description", "DESCRIPTION", 		true, false, true, AttributeType.STRING));
-		permission.addRelationships(new Relationship("roles", "Papeis", "ManyToMany", null, "Role", false, ViewApproach.noneInstance()));
+		ApplicationEntity permission = new ApplicationEntity("Group","Grupo de Permissões",  "ACCESS_GROUP");
+
+		permission.addAttributes(new Attribute("name", "Nome", "NAME", true, true, true, AttributeType.STRING));
+		permission.addAttributes(new Attribute("description", "Descrição", "DESCRIPTION", true, false, true, AttributeType.STRING));
+		permission.addRelationships(new Relationship("roles", "Papeis", "ManyToMany", "groups", "Role", false, ViewApproach.noneInstance()));
 		permission.addRelationships(new Relationship("permissions", "Permissões", "ManyToMany", null, "Permission", false, ViewApproach.multiselectModalInstance()));
-		
+
 		return permission;
 	}
 
 	private ApplicationEntity item() {
-		ApplicationEntity item = new ApplicationEntity("Item", "ITEM");
+		ApplicationEntity item = new ApplicationEntity("Item", "Item","ITEM");
 
-		item.addAttributes(new Attribute("itemType", "TYPE", 				true, false, true, AttributeType.STRING));
-		item.addAttributes(new Attribute("name", "NAME", 					true, false, true, AttributeType.STRING));
-		item.addAttributes(new Attribute("identifier", "IDENTIFIER", 		true, false, true, AttributeType.STRING));
-		item.addAttributes(new Attribute("description", "DESCRIPTION", 		true, false, true, AttributeType.STRING));
+		item.addAttributes(new Attribute("name", "Nome", "NAME", true, false, true, AttributeType.STRING));
+		item.addAttributes(new Attribute("itemType", "Tipo", "TYPE", true, false, true, AttributeType.STRING));
+		item.addAttributes(new Attribute("identifier", "Identificador", "IDENTIFIER", true, false, true, AttributeType.STRING));
+		item.addAttributes(new Attribute("description", "Descrição", "DESCRIPTION", true, false, true, AttributeType.STRING));
 
 		item.addRelationships(new Relationship("permissions", "Permissões", "OneToMany", "item", "Permission", false, ViewApproach.noneInstance()));
 

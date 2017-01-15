@@ -142,7 +142,7 @@ public class DBImporterEntities {
 						fileLines.add("    type: ");
 						fileLines.add("      className: " + className);
 
-						applicationEntity.addAttributes(new Attribute(name, tableFieldName, required, unique, true, AttributeType.byName(className)));
+						applicationEntity.addAttributes(new Attribute(name, name, tableFieldName, required, unique, true, AttributeType.byName(className)));
 
 					}
 					if (column.isPartOfForeignKey()) {

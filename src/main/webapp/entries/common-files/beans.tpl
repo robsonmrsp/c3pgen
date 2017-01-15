@@ -40,6 +40,7 @@
 
 	<jdbc:initialize-database ignore-failures="ALL">
 		<jdbc:script location="classpath:db/seed.sql" />
+		<jdbc:script location="classpath:db/rbac.sql" />
 	</jdbc:initialize-database>
 
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"

@@ -328,14 +328,14 @@ define(function(require) {
 				<#if rel.viewApproach.type == 'modal' >
 		    this.modal${firstUpper(rel.name)}.clear(); 
 				</#if> 
-				<#if rel.viewApproach.type == 'modal' >
-		    this.multiselectModal${firstUpper(rel.name)}.clear(); 
-				</#if> 
 				<#if  rel.viewApproach.type == 'combo'>
 		    this.combo${firstUpper(rel.model)}.clear(); 
 				</#if>
 				<#if  rel.viewApproach.type == 'multiselect'>
 		    this.multiselect${firstUpper(rel.name)}.clear(); 
+				</#if>
+				<#if  rel.viewApproach.type == 'multiselectmodal'>
+		    this.multiselectModal${firstUpper(rel.name)}.clear(); 
 				</#if>
 			</#if>
 		</#list>	

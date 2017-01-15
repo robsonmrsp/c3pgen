@@ -1,7 +1,7 @@
 package br.com.c3pgen.base;
 
 public enum FileType {
-	JAVA("java"), JAVASCRIPT("js"), HTML("html"), FRAGMENT("fra"), XML("xml"), PROPERTIES("properties"), JSP("jsp");
+	JAVA("java"), JAVASCRIPT("js"), HTML("html"), FRAGMENT("fra"), XML("xml"), PROPERTIES("properties"), JSP("jsp"), SQL("sql");
 	private final String sufix;
 
 	private FileType(String sufix) {

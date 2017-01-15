@@ -151,7 +151,7 @@ public class Parser {
 		List<${firstUpper(rel.model)}> list${firstUpper(rel.name)!firstLower(rel.model)} = ${firstLower(entity.name)}.get${firstUpper(rel.name)!firstLower(rel.model)}();
 		if (list${firstUpper(rel.name)!firstLower(rel.model)} != null) {
 			for (${firstUpper(rel.model)} loop${firstUpper(rel.model)} : list${firstUpper(rel.name)!firstLower(rel.model)}) {
-				json${entity.name}.get${firstUpper(rel.name)!firstLower(rel.model)}().add(toBasicJson(loop${firstUpper(rel.model)}));
+				json${entity.name}.get${firstUpper(rel.name)!firstLower(rel.model)}().add(toJson(loop${firstUpper(rel.model)}));
 			}
 		}
 			<#else>

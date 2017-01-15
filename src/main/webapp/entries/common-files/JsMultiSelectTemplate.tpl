@@ -233,11 +233,11 @@ define(function(require) {
 		},
 
 		getJsonValue : function() {
-			return this.principalCollection.toJSON();
+			return this.principalCollection && this.principalCollection.fullCollection && this.principalCollection.fullCollection.toJSON();
 		},
 				
 		getValue : function() {
-			return this.principalCollection
+			return (this.principalCollection && this.principalCollection.fullCollection )
 		},
 
 		setValue : function(collection) {
@@ -245,15 +245,18 @@ define(function(require) {
 		},
 
 		clear : function() {
-			this.modalGrid.$el.find('input[type=checkbox]').prop('checked', false);
+			this.$el.find('input[type=checkbox]').prop('checked', false);
 			this.principalCollection.reset();
 		},
-
+		
 		selectModel : function(model, checked) {
-			if (checked)
-				this.principalCollection.add(model)
-			else
-				this.principalCollection.remove(model)
+			if (checked) {
+				if (model.get && model.get('id')) {
+					this.principalCollection.add(model)
+				}
+			} else {
+				this.principalCollection.remove(model);
+			}
 		},
 
 		endFetch : function(_collection) {

@@ -71,7 +71,7 @@ public class MainDBDesign2 {
 					String required = getRequired(column);
 					String dataTypeClassName = column.getDataType().getDescricao();
 
-					Attribute attribute = new Attribute(attributeName, dataBaseFieldName, new Boolean(required), false, true, new AttributeType(dataTypeClassName));
+					Attribute attribute = new Attribute(attributeName,attributeName, dataBaseFieldName, new Boolean(required), false, true, new AttributeType(dataTypeClassName));
 
 					if (StringUtils.isNotEmpty(maxLen)) {
 						attribute.setMaxLen(Integer.valueOf(maxLen));

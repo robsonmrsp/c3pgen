@@ -85,12 +85,16 @@ public class ApplicationEntity extends AbstractTimestampEntity {
 		this.owner = owner;
 	}
 
+	public ApplicationEntity(String name, String displayName, String tableName) {
+		this(name, tableName);
+		this.displayName = displayName;
+	}
+
 	public ApplicationEntity(String name, String tableName) {
 		super();
 		this.name = name;
 		this.tableName = tableName;
 		this.hasMobile = Boolean.FALSE;
-		this.displayName = name;
 	}
 
 	public ApplicationEntity() {

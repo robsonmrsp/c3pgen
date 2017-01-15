@@ -38,6 +38,7 @@ public interface TemplateFileName {
 	final String BUILD_PROPERTIES = "build";
 	final String BUILD_XML = "build";
 
+	final String RBAC_SEED = "rbac";
 	final String INDEX_JSP = "index";
 	final String INDEX_HTML = "index";
 	final String LEFT_PANEL = "LeftPanelViewTemplate";

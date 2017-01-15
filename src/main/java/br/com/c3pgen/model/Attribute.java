@@ -96,13 +96,24 @@ public class Attribute extends AbstractTimestampEntity {
 
 	}
 
-	public Attribute(String attributeName, String dataBaseFieldName, Boolean required, boolean unique, boolean showInPages, AttributeType type) {
+	public Attribute(String attributeName, String displayName, String dataBaseFieldName, Boolean required, boolean unique, boolean showInPages, AttributeType type) {
+		this(attributeName, displayName, dataBaseFieldName, required, unique, showInPages, type, ViewApproach.noneInstance());
+	}
+
+	public Attribute(String attributeName, String displayName, String dataBaseFieldName, Boolean required, boolean unique, boolean showInPages, AttributeType type, ViewApproach viewApproach, String inputAs) {
+		this(attributeName, displayName, dataBaseFieldName, required, unique, showInPages, type, viewApproach);
+		this.inputAs = inputAs;
+	}
+
+	public Attribute(String attributeName, String displayName, String dataBaseFieldName, Boolean required, boolean unique, boolean showInPages, AttributeType type, ViewApproach viewApproach) {
 		this.name = attributeName;
+		this.displayName = displayName;
 		this.tableFieldName = dataBaseFieldName;
 		this.required = required;
 		this.unique = unique;
 		this.showInPages = showInPages;
 		this.type = type;
+		this.viewApproach = viewApproach;
 	}
 
 	public Integer getId() {
