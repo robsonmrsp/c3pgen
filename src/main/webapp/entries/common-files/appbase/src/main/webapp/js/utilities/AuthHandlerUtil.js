@@ -29,22 +29,22 @@ define(function(require) {
 
 		canSeeScreen : function(screen, options) {
 			this.url = this.urlRoot + '/view'
-			var data = [];
-			data.push({
+			var data = {
 				type : 'screen',
-				screen : screen
-			});
+				identifier : screen,
+			};
+
 			options.data = data;
 			this.fetch(options);
 		},
 
 		canSeeComponent : function(component, options) {
 			this.url = this.urlRoot + '/view'
-			var data = [];
-			data.push({
+			var data = {
 				type : 'component',
-				component : component
-			});
+				identifier : component,
+			};
+
 			options.data = data;
 			this.fetch(options);
 		},
@@ -73,17 +73,42 @@ define(function(require) {
 
 	};
 	var PageAcessoNegado = Marionette.LayoutView.extend({
-		template : '<h1>Acesso Negado</h1>                                                                                                                                         ' + //
-		'<div class="row-fluid">                                                                                                                                                   ' + //
-		'	<div class="alert alert-error">                                                                                                                                        ' + //
-		'		<i class="icon-warning-sign"></i>                                                                                                                                  ' + //
-		'		A página solicitada não foi encontrada ou você năo possui permissão de acesso. Utilize o botão voltar abaixo ou o menu ao lado para continuidade no sistema.       ' + //
-		'	</div>                                                                                                                                                                 ' + //
-		'	<a href="javascript: history.go(-1)" class="btn btn-inverse btn-large">                                                                                                ' + //
-		'		<span class="icon-chevron-left icon-white"></span>                                                                                                                 ' + //
-		'		Voltar                                                                                                                                                             ' + //
-		'	</a>                                                                                                                                                                   ' + //
-		'</div>  ',
+		template : '<div class="col-xs-12">                                                                                 ' + //
+		'	<div class="error-container">                                                                        ' + //
+		'		<div class="well">                                                                               ' + //
+		'			<h1 class="grey lighter smaller">                                                            ' + //
+		'				<span class="blue bigger-125">                                                           ' + //
+		'					<i class="ace-icon fa fa-random"></i>                                                ' + //
+		'					403                                                                                  ' + //
+		'				</span>                                                                                  ' + //
+		'				Acesso Negado!                                                                           ' + //
+		'			</h1>                                                                                        ' + //
+		'			<hr>                                                                                         ' + //
+		'			<div class="space"></div>                                                                    ' + //
+		'			<div>                                                                                        ' + //
+		'				<h4 class="lighter smaller">Você não pode acessar esse conteudo</h4>                     ' + //
+		'				<ul class="list-unstyled spaced inline bigger-110 margin-15">                            ' + //
+		'					<li>                                                                                 ' + //
+		'						<i class="ace-icon fa fa-hand-o-right blue"></i>                                 ' + //
+		'						Tente fazer login com um outro usuário.                                          ' + //
+		'					</li>                                                                                ' + //
+		'					<li>                                                                                 ' + //
+		'						<i class="ace-icon fa fa-hand-o-right blue"></i>                                 ' + //
+		'						Verifique com o administrador se você tem permissão para ver esse conteúdo.      ' + //
+		'					</li>                                                                                ' + //
+		'				</ul>                                                                                    ' + //
+		'			</div>                                                                                       ' + //
+		'			<hr>                                                                                         ' + //
+		'			<div class="space"></div>                                                                    ' + //
+		'			<div class="center">                                                                         ' + //
+		'				<a href="javascript:history.back()" class="btn btn-grey">                                ' + //
+		'					<i class="ace-icon fa fa-arrow-left"></i>                                            ' + //
+		'					Go Back                                                                              ' + //
+		'				</a>                                                                                     ' + //
+		'			</div>                                                                                       ' + //
+		'		</div>                                                                                           ' + //
+		'	</div>                                                                                               ' + //
+		'</div>',
 	});
 
 	var AuthHandlerUtil = {
