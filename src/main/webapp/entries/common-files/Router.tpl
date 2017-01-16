@@ -30,6 +30,7 @@ define(function(require) {
 				setTimeout(function() {
 					util.NProgress.done(false, true);
 					AppScripts.prepare();
+					AuthHandlerUtil.handlePermissions(view);
 				}, 100);
 			});
 		},
@@ -46,7 +47,7 @@ define(function(require) {
 			</#list>			
 		},
 		initialize : function() {
-		    this.authHandler = new AuthHandlerUtil();
+		    this.authHandler = new AuthHandlerUtil.Model();
 			this.App = new Marionette.Application();
 			this.App.addRegions({
 				mainRegion : CustomRegion
@@ -69,8 +70,8 @@ define(function(require) {
 				var args = router._extractParameters(route, fragment);
 
 				router.authHandler.canSeeScreen(fragment, {
-					success : function(model, resp) {
-						if (model.get('canSee')) {
+					success : function(model, autorized) {
+						if (autorized) {
 							router.execute(callback, args);
 							router.trigger.apply(router, [ 'route:' + name ].concat(args));
 							router.trigger('route', name, args);

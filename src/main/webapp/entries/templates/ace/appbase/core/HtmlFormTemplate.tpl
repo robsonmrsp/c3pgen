@@ -132,7 +132,7 @@
 						Salvar
 					</button>
 					&nbsp; &nbsp; &nbsp;
-					<button type="button" class="save-continue btn btn-info auth[save-continue-${firstLower(entity.name)}, disable] button-saving" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Salvando..."  style="display: {{ id ? 'none' : 'inline-block' }} ">
+					<button type="button" class="save-continue btn btn-info auth[save-${firstLower(entity.name)}, disable] button-saving" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Salvando..."  style="display: {{ id ? 'none' : 'inline-block' }} ">
 						<i class="ace-icon fa fa-check bigger-110"></i>
 						Salvar e Continuar
 					</button>

@@ -340,7 +340,7 @@ define(function(require) {
 			var buttons = [];
 
 			buttons.push({
-				id : 'edita_ficha_button',
+				id : 'edit_button',
 				type : 'primary',
 				icon : 'fa-pencil',
 				customClass : 'auth[edit-${firstLower(entity.name)},disable]',

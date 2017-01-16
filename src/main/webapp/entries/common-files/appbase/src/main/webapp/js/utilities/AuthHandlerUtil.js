@@ -12,7 +12,7 @@ define(function(require) {
 	// ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
 	// #####################################################################################################
 
-	var AuthHandlerUtil = BaseModel.extend({
+	var Model = BaseModel.extend({
 
 		urlRoot : 'rs/auth',
 
@@ -49,7 +49,29 @@ define(function(require) {
 			this.fetch(options);
 		},
 	});
+	var handlePermissions = function(view) {
 
+		var elements = view.$el.find('[class^=auth]');
+		_.each(elements, function(elem) {
+			var identifier = '';
+			var action = '';
+			var classes = $(elem).attr('class');
+			var authConfig = /auth\[(.*)\]/.exec(classes);
+
+			if (authConfig[1]) {
+				identifier = authConfig[1];
+			}
+			if (authConfig[2]) {
+				action = authConfig[2];
+			}
+
+			console.log("authConfig: " + authConfig);
+			console.log("identifier: " + identifier);
+			console.log("action: " + action);
+
+		});
+
+	};
 	var PageAcessoNegado = Marionette.LayoutView.extend({
 		template : '<h1>Acesso Negado</h1>                                                                                                                                         ' + //
 		'<div class="row-fluid">                                                                                                                                                   ' + //
@@ -64,7 +86,11 @@ define(function(require) {
 		'</div>  ',
 	});
 
-	AuthHandlerUtil.PageAcessoNegado = PageAcessoNegado;
+	var AuthHandlerUtil = {
+		Model : Model,
+		PageAcessoNegado : PageAcessoNegado,
+		handlePermissions : handlePermissions
+	}
 
 	return AuthHandlerUtil;
 });
