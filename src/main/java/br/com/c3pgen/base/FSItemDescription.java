@@ -146,6 +146,7 @@ public class FSItemDescription {
 		list.add(new FSItemDescription("UserAuthorityUtils", rootFolder + File.separator + "security" + File.separator, "UserAuthorityUtils", FileType.JAVA));
 		list.add(new FSItemDescription("AuthorizationInterceptor", rootFolder + File.separator + "security" + File.separator, "AuthorizationInterceptor", FileType.JAVA));
 		list.add(new FSItemDescription("AuthorizationService", rootFolder + File.separator + "security" + File.separator, "AuthorizationService", FileType.JAVA));
+		list.add(new FSItemDescription("AuthorizationResources", rootFolder + File.separator + "security" + File.separator, "AuthorizationResources", FileType.JAVA));
 		list.add(new FSItemDescription("UserContext", rootFolder + File.separator + "security" + File.separator, "UserContext", FileType.JAVA));
 		list.add(new FSItemDescription("UserDetailsServiceImp", rootFolder + File.separator + "security" + File.separator, "UserDetailsServiceImp", FileType.JAVA));
 		return list;
