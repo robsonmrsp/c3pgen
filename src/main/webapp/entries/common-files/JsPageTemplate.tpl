@@ -249,10 +249,10 @@ define(function(require) {
 			}
 			this.${firstLower(entity.name)}s.fetch({
 				success : function(_coll, _resp, _opt) {
-					console.info('Consulta para o grid ${firstLower(entity.name)}');
+					//console.info('Consulta para o grid ${firstLower(entity.name)}');
 				},
 				error : function(_coll, _resp, _opt) {
-					console.error(_resp.responseText || (_resp.getResponseHeader && _resp.getResponseHeader('exception')));
+					//console.error(_resp.responseText || (_resp.getResponseHeader && _resp.getResponseHeader('exception')));
 				},
 				complete : function(){
 					that.ui.loadButton.button('reset');

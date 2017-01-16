@@ -7,6 +7,9 @@ define(function(require) {
 	var AppScripts = require('AppScripts');
 	
 	var util = require('utilities/utils');
+	
+	var AuthHandlerUtil = require('utilities/AuthHandlerUtil');
+	
 	<#list application.entities as entity>
 	
 	var Page${entity.name} = require('views/${firstLower(entity.name)}/Page${entity.name}');
@@ -18,20 +21,15 @@ define(function(require) {
 	
 	var CustomRegion = Marionette.Region.extend({
 		el : ".main-content",
-
 		attachHtml : function(view) {
 			this.$el.hide();
 			this.$el.html(view.el);
-			//this.$el.slideDown(300);
-			//this.$el.show("slide", { direction: "up" }, 300);
 			util.scrollTop();
 			this.$el.fadeIn(300);
 			view.listenTo(view, 'show', function() {
 				setTimeout(function() {
-					
 					util.NProgress.done(false, true);
 					AppScripts.prepare();
-					
 				}, 100);
 			});
 		},
@@ -48,6 +46,7 @@ define(function(require) {
 			</#list>			
 		},
 		initialize : function() {
+		    this.authHandler = new AuthHandlerUtil();
 			this.App = new Marionette.Application();
 			this.App.addRegions({
 				mainRegion : CustomRegion
@@ -55,6 +54,37 @@ define(function(require) {
 			this.on('route', function(abc) {
 				util.NProgress.start(true);
 			});
+		},
+		route : function(route, name, callback) {
+			var router = this;
+			if (!_.isRegExp(route))
+				route = this._routeToRegExp(route);
+			if (_.isFunction(name)) {
+				callback = name;
+				name = '';
+			}
+			if (!callback)
+				callback = this[name];
+			Backbone.history.route(route, function(fragment) {
+				var args = router._extractParameters(route, fragment);
+
+				router.authHandler.canSeeScreen(fragment, {
+					success : function(model, resp) {
+						if (model.get('canSee')) {
+							router.execute(callback, args);
+							router.trigger.apply(router, [ 'route:' + name ].concat(args));
+							router.trigger('route', name, args);
+							Backbone.history.trigger('route', router, name, args);
+						} else {
+							router.App.mainRegion.show(new AuthHandlerUtil.PageAcessoNegado());
+						}
+					},
+					error : function(model, resp, xhr) {
+						console.error(model, resp, xhr);
+					},
+				})
+			});
+			return this;
 		},
 
 		index : function(path) {
@@ -95,34 +125,26 @@ define(function(require) {
 		edit${entity.name}: function(id${entity.name}) {
 			var that = this;
 			util.markActiveItem('${firstLower(entity.name)}s');
-			var form${entity.name} = null;
-			if (this.page${entity.name}) {
-				form${entity.name} = new Form${entity.name}({
-					model : this.page${entity.name}.${firstLower(entity.name)}s.get(id${entity.name}),
-				});
-				that.App.mainRegion.show(form${entity.name});
-			} else {
-				var model = new ${entity.name}Model({
-					id : id${entity.name},
-				})
-				model.fetch({
-					success : function(model) {
-						form${entity.name} = new Form${entity.name}({
-							model : model,
-						});
-						that.App.mainRegion.show(form${entity.name});
-					},
-					error : function(x, y, z) {
-						console.error(x, y, z);
-					}
-				})
-				util.breadcrumb({
-					iconClass : 'fa-calendar',
-					itemLabel : '${entity.name}s',
-					itemSubFolderName : 'Formulário de atualização de ${entity.displayName}',
-					url : 'app/${firstLower(entity.name)}s'
-				});
-			}
+			var model = new ${entity.name}Model({
+				id : id${entity.name},
+			})
+			model.fetch({
+				success : function(model) {
+					form${entity.name} = new Form${entity.name}({
+						model : model,
+					});
+					that.App.mainRegion.show(form${entity.name});
+				},
+				error : function(x, y, z) {
+					console.error(x, y, z);
+				}
+			})
+			util.breadcrumb({
+				iconClass : 'fa-calendar',
+				itemLabel : '${entity.name}s',
+				itemSubFolderName : 'Formulário de atualização de ${entity.displayName}',
+				url : 'app/${firstLower(entity.name)}s'
+			});
 		},
 		
 	</#list>

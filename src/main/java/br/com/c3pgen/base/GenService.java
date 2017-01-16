@@ -95,9 +95,9 @@ public class GenService {
 	private ApplicationEntity item() {
 		ApplicationEntity item = new ApplicationEntity("Item", "Item","ITEM");
 
-		item.addAttributes(new Attribute("name", "Nome", "NAME", true, false, true, AttributeType.STRING));
+		item.addAttributes(new Attribute("name", "Nome", "NAME", true, true, true, AttributeType.STRING));
 		item.addAttributes(new Attribute("itemType", "Tipo", "TYPE", true, false, true, AttributeType.STRING));
-		item.addAttributes(new Attribute("identifier", "Identificador", "IDENTIFIER", true, false, true, AttributeType.STRING));
+		item.addAttributes(new Attribute("identifier", "Identificador", "IDENTIFIER", true, true, true, AttributeType.STRING));
 		item.addAttributes(new Attribute("description", "Descrição", "DESCRIPTION", true, false, true, AttributeType.STRING));
 
 		item.addRelationships(new Relationship("permissions", "Permissões", "OneToMany", "item", "Permission", false, ViewApproach.noneInstance()));
