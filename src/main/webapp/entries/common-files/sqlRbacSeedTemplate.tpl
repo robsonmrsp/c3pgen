@@ -1,12 +1,15 @@
 --
-ALTER TABLE group_permission ADD PRIMARY KEY (id_group, id_permission);
+ALTER TABLE group_permission 	ADD PRIMARY KEY (id_group, id_permission);
+ALTER TABLE role_group 			ADD PRIMARY KEY (id_role, id_group);
 
 <#list entities as entity>
  	
 -- registros de autorização para ${firstUpper(entity.displayName)}	
 	-- campos de tela
 	INSERT INTO access_group(id, name, description) VALUES ((select  coalesce(MAX(id), 0)  + 1 from access_group), 'Cadastro e Manutenção de  ${firstUpper(entity.displayName)}','Agrupamento de Permissões para TODAS os acessos necessários para Criar e dar Manutenção em registros de ${firstUpper(entity.displayName)}');
-	
+	INSERT INTO role_group(id_role, id_group) VALUES (1, (select  coalesce(MAX(id), 0)  from access_group));	
+	INSERT INTO role_group(id_role, id_group) VALUES (2, (select  coalesce(MAX(id), 0)  from access_group));
+		
 	INSERT INTO item(id,     description, identifier, type, name) VALUES	((select  coalesce(MAX(id), 0)  + 1 from item), 'Item de menu principal para tela de pesquisa de ${firstUpper(entity.displayName)}', 			'item-list-${firstLower(entity.name)}',	'COMPONENT', 'Menu ${firstUpper(entity.displayName)}s'					);
 	INSERT INTO permission(id , id_item,  name, description,  operation, tag_reminder) VALUES ((select  coalesce(MAX(id), 0)  + 1  from permission), (select  coalesce(MAX(id), 0)  from item),  'Cadastro de ${firstUpper(entity.displayName)}. Permissão de acesso ao menu de ${firstUpper(entity.displayName)}', 'Usuário Poderá ver e acessar o item de menu de ${firstUpper(entity.displayName)} ', 'LEITURA', 'CRUD ${firstUpper(entity.displayName)} , item Menu ');
 	INSERT INTO group_permission(id_group, id_permission)VALUES ((select  coalesce(MAX(id), 0) from access_group), (select  coalesce(MAX(id), 0)   from permission));

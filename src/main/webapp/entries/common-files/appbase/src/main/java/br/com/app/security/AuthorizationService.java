@@ -1,5 +1,6 @@
 package ${application.corePackage}.security;
 
+import java.util.List;
 
 import ${application.rootPackage}.model.Group;
 import ${application.rootPackage}.model.Item;
