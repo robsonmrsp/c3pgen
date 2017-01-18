@@ -17,6 +17,8 @@ define(function(require) {
 					validationEventTrigger : "change"
 				});
 			}
+			//
+			this.onRenderView && this.onRenderView();
 		},
 
 		isValid : function() {

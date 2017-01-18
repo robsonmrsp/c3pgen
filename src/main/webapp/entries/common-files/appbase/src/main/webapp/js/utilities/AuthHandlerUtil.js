@@ -51,7 +51,7 @@ define(function(require) {
 	});
 	var handlePermissions = function(view) {
 
-		var elements = view.$el.find('[class^=auth]');
+		var elements = view.$.find('[class*=auth]');
 		_.each(elements, function(elem) {
 			var identifier = '';
 			var action = '';
