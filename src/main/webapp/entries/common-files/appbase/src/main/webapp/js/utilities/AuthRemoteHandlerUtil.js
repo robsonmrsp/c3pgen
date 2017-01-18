@@ -22,9 +22,8 @@ define(function(require) {
 		error : function() {
 			console.error('Erro ao checar permissoes...');
 		},
-		async : false
+		async : true
 	});
-
 	var Model = BaseModel.extend({
 
 		urlRoot : 'rs/auth',
@@ -44,48 +43,25 @@ define(function(require) {
 		},
 
 		canSeeScreen : function(screen, options) {
+			this.url = this.urlRoot + '/view'
+			var data = {
+				type : 'SCREEN',
+				identifier : screen,
+			};
 
-			var col = PERMISSIONS.filter(function(permission) {
-				var item = permission.get('item');
-				return item.itemType === "SCREEN" && screen.match(new RegExp(item.identifier, 'gi'))
-			})
-
-			return (col.length > 0)
-
-			// this.url = this.urlRoot + '/view'
-			// var data = {
-			// type : 'SCREEN',
-			// identifier : screen,
-			// };
-			//
-			// options.data = data;
-			// this.fetch(options);
+			options.data = data;
+			this.fetch(options);
 		},
 
 		canSeeComponent : function(component, options) {
+			this.url = this.urlRoot + '/view'
+			var data = {
+				type : 'COMPONENT',
+				identifier : component,
+			};
 
-			var col = PERMISSIONS.filter(function(permission) {
-				var item = permission.get('item');
-				console.log('item.identifier: |' + item.identifier + '|');
-				console.log('component: |' + component + '|');
-
-				if (item.identifier === 'save-genero') {
-					console.log(' 	')
-				}
-
-				return item.itemType === "COMPONENT" && item.identifier.toUpperCase() === component.toUpperCase()
-			})
-
-			return (col.length > 0)
-
-			// this.url = this.urlRoot + '/view'
-			// var data = {
-			// type : 'COMPONENT',
-			// identifier : component,
-			// };
-			//
-			// options.data = data;
-			// this.fetch(options);
+			options.data = data;
+			this.fetch(options);
 		},
 	});
 	var handlePermissions = function(view) {
@@ -120,8 +96,6 @@ define(function(require) {
 					action = arrayAuthConfig[1];
 				}
 
-				console.log('identifier: |' + identifier + '|');
-				console.log('action: |' + action + '|');
 				_checkPermition(elem, identifier, action);
 				// A partir desse ponto deverá ser
 
@@ -135,19 +109,16 @@ define(function(require) {
 	var _authModel = new Model();
 
 	var _checkPermition = function(elem, identifier, action) {
-		if (!_authModel.canSeeComponent(identifier)) {
-			_appyRestriction(elem, action);
-		}
-		// _authModel.canSeeComponent(identifier, {
-		// success : function(model, resp, xhr) {
-		// if (!resp) {
-		// _appyRestriction(elem, action);
-		// }
-		// },
-		// error : function(model, resp, xhr) {
-		//
-		// }
-		// });
+		_authModel.canSeeComponent(identifier, {
+			success : function(model, resp, xhr) {
+				if (!resp) {
+					_appyRestriction(elem, action);
+				}
+			},
+			error : function(model, resp, xhr) {
+
+			}
+		});
 	}
 
 	var _appyRestriction = function(elem, action) {

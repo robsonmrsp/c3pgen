@@ -16,9 +16,14 @@ import javax.inject.Inject;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import ${application.corePackage}.json.JsonError;import ${application.corePackage}.utils.Parser;import ${application.rootPackage}.model.Permission;
 
-import ${application.rootPackage}.model.User;import ${application.corePackage}.security.AuthorizationService;
+import ${application.corePackage}.json.JsonError;
+import ${application.corePackage}.utils.Parser;
+import ${application.rootPackage}.model.Permission;
+
+import ${application.rootPackage}.model.User;
+import ${application.corePackage}.security.AuthorizationService;
+
 
 @Path("/auth")
 public class AuthorizationResources {
@@ -52,7 +57,7 @@ public class AuthorizationResources {
 		Response response = null;
 		try {
 
-			Boolean retorno = authorizationService.authorizedAccess(type, identifier);
+			Boolean retorno = authorizationService.authorizeWebComponentsAccess(type, identifier);
 
 			response = Response.ok(retorno).build();
 		} catch (Exception e) {

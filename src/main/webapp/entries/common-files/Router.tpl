@@ -69,22 +69,16 @@ define(function(require) {
 			Backbone.history.route(route, function(fragment) {
 				var args = router._extractParameters(route, fragment);
 
-				router.authHandler.canSeeScreen(fragment, {
-					success : function(model, autorized) {
-						if (autorized) {
-							router.execute(callback, args);
-							router.trigger.apply(router, [ 'route:' + name ].concat(args));
-							router.trigger('route', name, args);
-							Backbone.history.trigger('route', router, name, args);
-						} else {
-							router.App.mainRegion.show(new AuthHandlerUtil.PageAcessoNegado());
-						}
-					},
-					error : function(model, resp, xhr) {
-						console.error(model, resp, xhr);
-					},
-				})
+				if (router.authHandler.canSeeScreen(fragment)) {
+					router.execute(callback, args);
+					router.trigger.apply(router, [ 'route:' + name ].concat(args));
+					router.trigger('route', name, args);
+					Backbone.history.trigger('route', router, name, args);
+				} else {
+					router.App.mainRegion.show(new AuthHandlerUtil.PageAcessoNegado());
+				}
 			});
+			
 			return this;
 		},
 

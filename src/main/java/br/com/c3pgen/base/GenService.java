@@ -72,8 +72,8 @@ public class GenService {
 
 		permission.addAttributes(new Attribute("name", "Nome", "NAME", true, true, true, AttributeType.STRING, ViewApproach.noneInstance()));
 		permission.addAttributes(new Attribute("description", "Descrição", "DESCRIPTION", true, false, true, AttributeType.STRING, ViewApproach.noneInstance()));
-		permission.addAttributes(new Attribute("operation", "Opeação", "OPERATION", true, false, true, AttributeType.STRING, ViewApproach.noneInstance()));
-		permission.addAttributes(new Attribute("tagReminder", "Marcadores", "TAG_REMINDER", true, false, true, AttributeType.STRING, ViewApproach.noneInstance()));
+		permission.addAttributes(new Attribute("operation", "Operação", "OPERATION", true, false, true, AttributeType.STRING, ViewApproach.noneInstance()));
+		permission.addAttributes(new Attribute("tagReminder", "Marcadores", "TAG_REMINDER", true, false, false, AttributeType.STRING, ViewApproach.noneInstance()));
 		permission.addRelationships(new Relationship("roles", "Papeis", "ManyToMany", "permissions", "Role", false, ViewApproach.noneInstance()));
 		permission.addRelationships(new Relationship("groups", "Groups", "ManyToMany", "permissions", "Group", false, ViewApproach.noneInstance()));
 		permission.addRelationships(new Relationship("item", "Item", "ManyToOne", null, "Item", false, ViewApproach.modalInstance("id", "name")));

@@ -18,6 +18,8 @@ import ${application.rootPackage}.model.Permission;
 import ${application.rootPackage}.model.Role;
 import ${application.rootPackage}.model.User;
 
+
+
 @Named
 @Transactional
 public class AuthorizationServiceImp implements AuthorizationService {
@@ -25,20 +27,20 @@ public class AuthorizationServiceImp implements AuthorizationService {
 	@Inject
 	UserContext context;
 
-	public Boolean authorizedAccess(String requestURI) {
-		User currentUser = context.getCurrentUser();
+	public Boolean authorizeRestServiceAccess(String method, String requestURI) {
+		// por enquanto...
+		if (requestURI.contains("rs/auth")) {
+			return Boolean.TRUE;
+		}
 
-		List<Role> roles = currentUser.getRoles();
-		for (Role role : roles) {
-			List<Permission> permissions = role.getPermissions();
+		String operation = getType(method);
+		String identifier = getIdentifier(requestURI);
 
-			for (Permission permission : permissions) {
-				Item item = permission.getItem();
+		for (Permission permission : getAllPermissions()) {
+			Item item = permission.getItem();
 
-				item.getItemType();
-				if (item.getIdentifier().matches(requestURI)) {
-					return Boolean.TRUE;
-				}
+			if (permission.getOperation().equals(operation) && (identifier.matches(item.getIdentifier()) || identifier.equals(item.getIdentifier()))) {
+				return Boolean.TRUE;
 			}
 		}
 
@@ -58,30 +60,56 @@ public class AuthorizationServiceImp implements AuthorizationService {
 		return permitions;
 	}
 
-	public Boolean authorizedAccess(final String type, final String identifier) {
+	public Boolean authorizeWebComponentsAccess(final String type, final String identifier) {
+
 		Boolean authorize = Boolean.FALSE;
+
 		List<Permission> allPermissions = getAllPermissions();
 
 		Predicate<Permission> predicate = new Predicate<Permission>() {
 			@Override
 			public boolean apply(Permission permission) {
-				if (permission.getItem() != null && permission.getItem().getItemType() != null)
-					return permission.getItem().getItemType().equals(type);
-				else
+				if (permission.getItem() != null && permission.getItem().getItemType() != null) {
+					// System.out.println(permission.getItem().getName());
+					return permission.getItem().getItemType().equalsIgnoreCase(type);
+				} else
 					return false;
 			}
 		};
 		Collection<Permission> collectionPermissions = Collections2.filter(allPermissions, predicate);
 
-		if (type.equals("SCREEN")) {
-			for (Permission permission : collectionPermissions) {
-				Item item = permission.getItem();
-				if (item != null && identifier.matches(item.getIdentifier())) {
-					return Boolean.TRUE;
-				}
+		// if (type.equals("SCREEN")) {
+		for (Permission permission : collectionPermissions) {
+			Item item = permission.getItem();
+			System.out.println(identifier + ' ' + item.getIdentifier());
+			if (item != null && (identifier.equalsIgnoreCase(item.getIdentifier()) || identifier.matches(item.getIdentifier()))) {
+				return Boolean.TRUE;
 			}
 		}
+		// }
 
 		return authorize;
+	}
+
+	private String getType(String requestMethod) {
+		if (requestMethod.equals("GET"))
+			return "LEITURA";
+		if (requestMethod.equals("PUT"))
+			return "ATUALIZACAO";
+		if (requestMethod.equals("POST"))
+			return "ESCRITA";
+		if (requestMethod.equals("DELETE"))
+			return "DELECAO";
+		return "";
+	}
+
+	private String getIdentifier(String requestURI) {
+		String identifier = "";
+		try {
+			identifier = requestURI.substring(requestURI.indexOf("rs/") + 3);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return identifier;
 	}
 }

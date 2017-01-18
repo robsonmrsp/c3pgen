@@ -15,7 +15,7 @@ ALTER TABLE role_group 			ADD PRIMARY KEY (id_role, id_group);
 	INSERT INTO group_permission(id_group, id_permission)VALUES ((select  coalesce(MAX(id), 0) from access_group), (select  coalesce(MAX(id), 0)   from permission));
 	
 	
-	INSERT INTO item(id,     description, identifier, type, name) VALUES	((select  coalesce(MAX(id), 0)  + 1 from item), 'Botôes de salvar e salvar e continuar no formulario de ${firstUpper(entity.displayName)}', 	'save-${firstUpper(entity.name)}', 		'COMPONENT', 'Botão Salva ${firstUpper(entity.displayName)}'			);
+	INSERT INTO item(id,     description, identifier, type, name) VALUES	((select  coalesce(MAX(id), 0)  + 1 from item), 'Botôes de salvar e salvar e continuar no formulario de ${firstUpper(entity.displayName)}', 	'save-${firstLower(entity.name)}', 		'COMPONENT', 'Botão Salva ${firstUpper(entity.displayName)}'			);
 	INSERT INTO permission(id , id_item,  name, description,  operation, tag_reminder) VALUES ((select  coalesce(MAX(id), 0)  + 1  from permission), (select  coalesce(MAX(id), 0)  from item),  'Cadastro de ${firstUpper(entity.displayName)}. Permissão de acesso ao botão de salvar e salvar e continuar no formulario de ${firstUpper(entity.displayName)}', 'Usuário Poderá ver e acessar o botão de de salvar e salvar e continuar no formulario de ${firstUpper(entity.displayName)} ', 'LEITURA', 'CRUD ${firstUpper(entity.displayName)} , botão salvar ');
 	INSERT INTO group_permission(id_group, id_permission)VALUES ((select  coalesce(MAX(id), 0) from access_group), (select  coalesce(MAX(id), 0)   from permission));
 
