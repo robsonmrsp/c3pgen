@@ -1,6 +1,5 @@
 package ${application.corePackage}.security;
 
-
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +26,8 @@ public class AuthorizationInterceptor extends AbstractPhaseInterceptor<Message> 
 	@Autowired
 	AuthorizationService authorizationService;
 
+	public static final Logger LOGGER = Logger.getLogger(AuthorizationInterceptor.class);
+
 	// UserContext context;
 	// @Autowired
 
@@ -36,58 +37,17 @@ public class AuthorizationInterceptor extends AbstractPhaseInterceptor<Message> 
 
 	public void handleMessage(Message message) throws Fault {
 		printMessage(message);
-		String requestURI = (String) message.get(Message.REQUEST_URL);
-		// Map<String, List> headers = (Map<String, List>)
-		// message.get(Message.PROTOCOL_HEADERS);
-		Boolean authorizedAccess = authorizationService.authorizedAccess(requestURI);
-		try {
-			// System.out.println(headers);
-			// System.out.println("BasicInterceptor.handleMessage() " +
-			// headers.get("Authorization"));
+		String requestUri = (String) message.get(Message.REQUEST_URI);
+		String requestMethod = (String) message.get(Message.HTTP_REQUEST_METHOD);
 
-			// String userName =
-			// getUserNameFromToken(headers.get("Authorization"));
-			// String userPass =
-			// getPassNameFromToken(headers.get("Authorization"));
+		Boolean authorizedAccess = authorizationService.authorizeRestServiceAccess(requestMethod, requestUri);
 
-			// org.springframework.security.core.userdetails.User principal =
-			// (org.springframework.security.core.userdetails.User)
-			// SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-			// System.out.println("AccountNonExpired: " +
-			// principal.isAccountNonExpired());
-			// System.out.println("CredentialsNonExpired: " +
-			// principal.isCredentialsNonExpired());
-			// System.out.println("Authorities: " + principal.getAuthorities());
-			// // basic authentication
-			// UserDetails loadUserByUsername =
-			// userServiceDetailsService.loadUserByUsername(principal.getUsername());
-			// System.out.println("AuthInterceptor.handleMessage()" +
-			// loadUserByUsername);
-
-			// if (userName != null) {
-
-			// UserDetails userDetails =
-			// userServiceDetailsService.loadUserByUsername(userName);
-
-			// UsernamePasswordAuthenticationToken authentication = new
-			// UsernamePasswordAuthenticationToken(userDetails, null,
-			// userDetails.getAuthorities());
-			// SecurityContextHolder.getContext().setAuthentication(authentication);
-
-			// } else {
-			// User currentUser = context.getCurrentUser();
-			// if (currentUser != null) {
-			// System.out.println("AuthInterceptor.handleMessage()" +
-			// currentUser);
-			// return;
-			// }
-			// }
-
-		} catch (Exception ce) {
-			throw new Fault(ce);
+		if (!authorizedAccess) {
+			LOGGER.warn("unauthorized user attempting to access service [ " + requestMethod + " ]" + "[ " + requestUri + " ]");
+			Response response = Response.status(Response.Status.FORBIDDEN).entity("Forbidden").build();
+			message.getExchange().put(Response.class, response);
+			// throw new AccessDeniedException("Unauthorized");
 		}
-		if (authorizedAccess)
-			throw new AccessDeniedException("Unauthorized");
 	}
 
 	private void printMessage(Message message) {
@@ -172,5 +132,4 @@ public class AuthorizationInterceptor extends AbstractPhaseInterceptor<Message> 
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 }

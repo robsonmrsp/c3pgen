@@ -54,7 +54,7 @@ define(function(require) {
 
 			// this.url = this.urlRoot + '/view'
 			// var data = {
-			// type : 'SCREEN',
+			// type : 'SCREEN',4
 			// identifier : screen,
 			// };
 			//
