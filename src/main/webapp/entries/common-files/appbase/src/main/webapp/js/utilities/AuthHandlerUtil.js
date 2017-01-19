@@ -88,9 +88,9 @@ define(function(require) {
 			// this.fetch(options);
 		},
 	});
-	var handlePermissions = function(view) {
+	var handlePermissions = function() {
 
-		var elements = view.$el.find('[class*=auth]');
+		var elements = $('body').find('[class*=auth]');
 
 		// var model = new Model(); muito pesada
 		// model.getAllPermissions({
@@ -155,11 +155,15 @@ define(function(require) {
 			$(elem).remove();
 		} else {
 			$(elem).prop('disabled', true);
+			$(elem).bind('click', function(evt) {
+				evt.preventDefault();
+				return false;
+			})
 		}
 	}
 
 	var PageAcessoNegado = Marionette.LayoutView.extend({
-		template : '<div class="col-xs-12">                                                                                 ' + //
+		template : '<div class="col-xs-12">                                                                      ' + //
 		'	<div class="error-container">                                                                        ' + //
 		'		<div class="well">                                                                               ' + //
 		'			<h1 class="grey lighter smaller">                                                            ' + //
