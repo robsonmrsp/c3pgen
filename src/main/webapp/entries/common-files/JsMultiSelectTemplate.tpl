@@ -275,6 +275,7 @@ define(function(require) {
 		},
 		
 		getPrincipalColumns : function() {
+			var that = this;
 			var columns = [	
 
 			<#list entity.attributes as att>
@@ -293,8 +294,45 @@ define(function(require) {
 		  		</#if>	
 			}, 
 		  		</#if>	
-			</#list>			];
+			</#list>
+			{
+				name : "acoes",
+				label : "Deletar",
+				editable : false,
+				sortable : false,
+				cell : JSetup.ActionCell.extend({
+					buttons : that.getCellPrincipalButtons(),
+					context : that,
+				})
+			}];
 			return columns;
+		},
+		
+		getCellPrincipalButtons : function() {
+			var that = this;
+			var buttons = [];
+
+			buttons.push({
+				id : 'delete_button',
+				type : 'danger',
+				customClass : 'auth[delete-${firstLower(entity.name)}, disable]',
+				icon : 'fa-trash',
+				hint : 'Remover ${firstUpper(entity.displayName)!firstUpper(entity.name)}',
+				onClick : that.deleteModel,
+			});
+
+			return buttons;
+		},
+
+		deleteModel : function(model) {
+			var that = this;
+			
+			util.Bootbox.confirm("Tem certeza que deseja remover o registro [ " + model.get('id') + " ] ?", function(yes) {
+				if (yes) {
+					that.principalCollection.remove(model);
+				}
+			});
+			
 		},
 		
 		getModalColumns : function() {
@@ -320,7 +358,8 @@ define(function(require) {
 		  		</#if>	
 			}, 
 		  		</#if>	
-			</#list>			];
+			</#list>
+			];
 			return columns;
 		},
 
