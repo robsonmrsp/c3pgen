@@ -73,22 +73,6 @@ define(function(require) {
 				</#if>
 			</#if>
 		</#list>
-		<#if entity.relationships??>	
-		<#list entity.relationships as rel>
-		<#if rel.showInPages >
-			<#if rel.type == 'OneToMany'>
-			<#elseif rel.type == 'ManyToOne'>
-				<#if rel.viewApproach?? >
-					<#if rel.viewApproach.type  == 'combo'  >
-			inputModal${firstUpper(rel.model)} : '.inputModal${firstUpper(rel.model)}', 
-					</#if>
-				</#if>
-			<#elseif rel.type == 'ManyToMany'>
-			<#elseif rel.type == 'OneToOne'>
-			</#if>
-		</#if>
-		</#list>
-		</#if>
 		
 			form : '#formSearch${entity.name}',
 			modalScreen : '.modal',
@@ -244,8 +228,11 @@ define(function(require) {
 			this.principalCollection = collection; 
 		},
 
-		clear : function() {
+		clearModal : function() {
 			this.$el.find('input[type=checkbox]').prop('checked', false);
+		<#list entity.attributes as att>
+    		this.ui.inputModal${firstUpper(att.name)}.val(''),
+		</#list>
 			this.principalCollection.reset();
 		},
 		

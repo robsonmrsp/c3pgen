@@ -3,7 +3,8 @@ package ${application.corePackage}.security;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Map;
-
+import javax.ws.rs.core.Response;
+import org.apache.log4j.Logger;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.cxf.interceptor.Fault;
 import org.apache.cxf.interceptor.security.AccessDeniedException;

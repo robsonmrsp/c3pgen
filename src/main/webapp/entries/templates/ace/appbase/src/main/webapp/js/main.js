@@ -1,5 +1,5 @@
 require.config({
-	urlArgs : "bust=" + new Date().getTime(),
+	//urlArgs : "bust=" + new Date().getTime(),
 	paths : {
 		'jquery' : '../vendor/jquery/jquery-1.10.2',
 		'jqueryUI' : '../vendor/jquery.ui/jquery-ui-1.10.4.custom.min',
@@ -16,6 +16,7 @@ require.config({
 		'backgrid' : '../vendor/backgrid/backgrid-0.3.5',
 		'backboneLocalstorage' : '../vendor/backbone.localStorage/backbone.localStorage',
 		'backgridMomentCell' : '../vendor/backgrid/extensions/backgrid-moment-cell',
+		'backgridColumnManager' : '../vendor/Backgrid.ColumnManager/lib/Backgrid.ColumnManager',
 		'backboneSelectAll' : '../vendor/backgrid/extensions/backgrid-select-all',
 
 		'backboneWebSocket' : '../vendor/backbone.websocket/backbone.websocket',
@@ -51,7 +52,7 @@ require.config({
 		typeahead : {
 			deps : [ 'jquery' ],
 		},
-		
+
 		bloodhound : {
 			deps : [ "jquery" ],
 			exports : "Bloodhound"
@@ -112,10 +113,15 @@ require.config({
 		},
 		'jqueryUI' : [ 'jquery' ],
 		'datetimepicker' : [ 'jquery' ],
+
 		'datetimepicker_lang_pt_BR' : {
 			deps : [ 'jquery', 'moment' ],
 			exports : 'datetimepicker_lang_pt_BR'
 		},
+
+//		'backgridColumnManager' : {
+//			deps : [ 'jquery', 'backbone', 'backgrid' ],
+//		},
 
 		'multiselect' : [ 'jquery' ],
 		'list' : {
@@ -152,5 +158,8 @@ require.config({
 require([ 'App' ], function(App) {
 
 	App.initialize();
-																																																																	var text=[],line1=" | |__| |____) |  __/ |_| |_| | |_) |    / / / / ",line2="  \\____/|_____/ \\___|\\__|\\__,_| .__/    / / / /  ",line3="\n",line4="      | | (___   ___| |_ _   _ _ __      \\ \\ \\ \\ ";text.push(line3),text.push("       _  _____      _                  ______   "),text.push(line3),text.push("      | |/ ____|    | |                 \\ \\ \\ \\  "),text.push(line3),text.push(line4),text.push(line3),text.push("  _   | |\\___ \\ / _ \\ __| | | | '_ \\      > > > >"),text.push(line3),text.push(line1),text.push(line3),text.push(line2),text.push(line3),text.push("============================= | |======/_/_/_/=="),text.push(line3),text.push(" :: Build with JSetupGen ::   |_|          ("+App.JSETUP_GEN_VERSION+")"),text.push(line3);		console.log(text.join(''))
+	var text = [], line1 = " | |__| |____) |  __/ |_| |_| | |_) |    / / / / ", line2 = "  \\____/|_____/ \\___|\\__|\\__,_| .__/    / / / /  ", line3 = "\n", line4 = "      | | (___   ___| |_ _   _ _ __      \\ \\ \\ \\ ";
+	text.push(line3), text.push("       _  _____      _                  ______   "), text.push(line3), text.push("      | |/ ____|    | |                 \\ \\ \\ \\  "), text.push(line3), text.push(line4), text.push(line3), text.push("  _   | |\\___ \\ / _ \\ __| | | | '_ \\      > > > >"), text.push(line3), text.push(line1), text.push(line3), text.push(line2), text
+			.push(line3), text.push("============================= | |======/_/_/_/=="), text.push(line3), text.push(" :: Build with JSetupGen ::   |_|          (" + App.JSETUP_GEN_VERSION + ")"), text.push(line3);
+	console.log(text.join(''))
 });

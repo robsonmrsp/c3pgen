@@ -57,7 +57,6 @@ define(function(require) {
 
 		initialize : function(options) {
 			var that = this;
-
 			if (!options.columns) {
 				throw new TypeError("Deve definir as colunas do grid");
 			}
@@ -65,11 +64,35 @@ define(function(require) {
 			if (!options.collection) {
 				throw new TypeError("Deve definir a coleção do grid");
 			}
+			
+			var colSizes = options.columns.length
+			if (colSizes > 0 && options.columns[colSizes - 1].name === 'acoes') {
+				options.columns[colSizes - 1].alwaysVisible = true;
+			}
+
+			options.columns.push({
+				label : "ColumnManager_visibility_tool",
+				cell : "string",
+				alwaysVisible : true,
+				headerCell : Backgrid.Extension.ColumnManager.ColumnVisibilityHeaderCell
+			});
+			
+			var bbColumns = new Backgrid.Columns(options.columns);
+
+			var colManager = new Backgrid.Extension.ColumnManager(bbColumns, {
+				initialColumnsVisible : 4,
+				saveState : true,
+				loadStateOnInit : true
+			});
+
+			var colVisibilityControl = new Backgrid.Extension.ColumnManagerVisibilityControl({
+				columnManager : colManager
+			});
 
 			this.grid = new Backgrid.Grid({
 				row : options.row,
 				className : options.gridClass || 'table backgrid table-striped table-bordered table-hover dataTable no-footer  ',
-				columns : options.columns || [],
+				columns : bbColumns,
 
 				emptyText : options.emptyText || "Sem registros",
 				collection : options.collection
@@ -80,7 +103,7 @@ define(function(require) {
 			});
 
 			this.paginator = new Backgrid.Extension.Paginator({
-				columns : options.columns || [],
+				columns : bbColumns,
 				collection : options.collection,
 				className : ' paging_simple_numbers',
 				uiClassName : 'pagination',
@@ -225,7 +248,7 @@ define(function(require) {
 
 		InputUpload : InputUpload,
 		Suggestbox : Suggestbox,
-		
+
 		BaseModel : BaseModel,
 		BaseCollection : BaseCollection,
 

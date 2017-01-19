@@ -10,6 +10,7 @@
 @import url("../vendor/theme/ace.css");
 @import url("../vendor/theme/ace-fonts.css");
 @import url("../vendor/chosen_v1.6.2/chosen.css");
+@import url("../vendor/Backgrid.ColumnManager/lib/Backgrid.ColumnManager.css");
 @import
 	url("../vendor/chosen_v1.6.2/bootstrap-chosen.css");
 @import url("custom.css");

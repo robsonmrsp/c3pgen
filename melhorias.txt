@@ -32,3 +32,16 @@ Alteração no jquery-adapter para adicionar os novos plugins
 ####################################################################################################################################################################################################################################################
 
 Pensar em sobrecargas de métodos para diminuir o código gerado na visualidzação do programador 
+
+
+
+implentar isso:
+
+http://wridder.github.io/Backgrid.ColumnManager/
+
+
+Melhorar a nomenclatura dos objetos/modulos require.js.
+
+Exemplo, backbone para Backbone, jquery para jQuery, etc.
+
+
