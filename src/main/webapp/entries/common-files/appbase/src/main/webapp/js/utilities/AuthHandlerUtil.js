@@ -66,12 +66,10 @@ define(function(require) {
 
 			var col = PERMISSIONS.filter(function(permission) {
 				var item = permission.get('item');
-				console.log('item.identifier: |' + item.identifier + '|');
-				console.log('component: |' + component + '|');
+//				console.log('item.identifier: |' + item.identifier + '|');
+//				console.log('component: |' + component + '|');
 
-				if (item.identifier === 'save-genero') {
-					console.log(' 	')
-				}
+				
 
 				return item.itemType === "COMPONENT" && item.identifier.toUpperCase() === component.toUpperCase()
 			})
@@ -120,8 +118,8 @@ define(function(require) {
 					action = arrayAuthConfig[1];
 				}
 
-				console.log('identifier: |' + identifier + '|');
-				console.log('action: |' + action + '|');
+//				console.log('identifier: |' + identifier + '|');
+//				console.log('action: |' + action + '|');
 				_checkPermition(elem, identifier, action);
 				// A partir desse ponto deverá ser
 

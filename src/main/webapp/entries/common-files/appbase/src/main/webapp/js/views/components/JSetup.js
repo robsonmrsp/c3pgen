@@ -9,6 +9,7 @@ define(function(require) {
 	var BaseModel = require('models/BaseModel');
 	var BaseCollection = require('collections/BaseCollection');
 	var GridTemplate = require('text!views/components/tpl/GridTemplate.html');
+	var CounterTemplate = require('text!views/components/tpl/CounterTemplate.html');
 
 	var Combobox = require('views/components/Combobox');
 	var Multiselect = require('views/components/Multiselect');
@@ -16,33 +17,68 @@ define(function(require) {
 	var Suggestbox = require('views/components/Suggestbox');
 
 	var Counter = Marionette.ItemView.extend({
-		initialize : function(options) {
-			var collection = this.collection;
-			this.listenTo(collection, "add", this.render);
-			this.listenTo(collection, "remove", this.render);
-			this.listenTo(collection, "reset", this.render);
+
+		template : _.template(CounterTemplate),
+		events : {
+			'change  .combo-page-size' : 'changePageSize',
+		},
+		ui : {
+
+			outputInitialPage : '.initial-page',
+
+			noElementsSpan : '.has-no-elements',
+			elementsSpan : '.has-elements',
+
+			outputFinalPage : '.final-page',
+
+			outputTotalRecords : '.total-records',
+
+			inputComboPageSize : '.combo-page-size'
+		},
+		changePageSize : function() {
+			var newPageSize = parseInt(this.ui.inputComboPageSize.val() || 10);
+			this.collection.state.pageSize = newPageSize;
+			this.collection.getFirstPage();
 		},
 
-		render : function() {
-			this.$el.empty();
-			var anchor = document.createElement("span");
+		initialize : function(options) {
+			this.listenTo(this.collection, "add", this.atualiza);
+			this.listenTo(this.collection, "remove", this.atualiza);
+			this.listenTo(this.collection, "reset", this.atualiza);
+			this.on('show', function() {
+				this.ui.inputComboPageSize.val();
+				this.ui.outputInitialPage.text();
+				this.ui.outputFinalPage.text();
+				this.ui.outputTotalRecords.text();
+			});
+		},
+
+		atualiza : function() {
+			this.ui.elementsSpan.hide();
 			var state = this.collection.state;
 			if (this.collection.size() == 0) {
-				anchor.innerHTML = 'Nenhum registro.';
+				this.ui.noElementsSpan.show();
+				this.ui.elementsSpan.hide();
+
+				this.ui.outputInitialPage.text(0);
+				this.ui.outputFinalPage.text(0);
+				this.ui.outputTotalRecords.text(0);
 			} else if (this.collection && this.collection instanceof Backbone.PageableCollection) {
+				this.ui.noElementsSpan.hide();
+				this.ui.elementsSpan.show();
 				// this.el.html("testando");
 				var a = ((state.currentPage - 1) * state.pageSize) + 1;
 				var b = state.currentPage * state.pageSize;
 				var c = state.totalRecords;
 				if (b > c)
 					b = c;
-				anchor.innerHTML = 'Mostrando ' + a + ' a ' + b + ' de ' + c + ' Registros.';
+				// anchor.innerHTML = 'Mostrando ' + a + ' a ' + b + ' de ' + c
+				// + ' Registros.';
+				this.ui.outputInitialPage.text(a);
+				this.ui.outputFinalPage.text(b);
+				this.ui.outputTotalRecords.text(c);
 			}
-			// TODO fazer a internacionalização
-			this.el.appendChild(anchor);
-			this.delegateEvents();
-
-			return this;
+			// return this;
 		},
 	});
 
@@ -64,7 +100,7 @@ define(function(require) {
 			if (!options.collection) {
 				throw new TypeError("Deve definir a coleção do grid");
 			}
-			
+
 			var colSizes = options.columns.length
 			if (colSizes > 0 && options.columns[colSizes - 1].name === 'acoes') {
 				options.columns[colSizes - 1].alwaysVisible = true;
@@ -76,7 +112,7 @@ define(function(require) {
 				alwaysVisible : true,
 				headerCell : Backgrid.Extension.ColumnManager.ColumnVisibilityHeaderCell
 			});
-			
+
 			var bbColumns = new Backgrid.Columns(options.columns);
 
 			var colManager = new Backgrid.Extension.ColumnManager(bbColumns, {

@@ -228,12 +228,18 @@ define(function(require) {
 			this.principalCollection = collection; 
 		},
 
+
+		clear : function() {
+			this.$el.find('input[type=checkbox]').prop('checked', false);
+			this.principalCollection.reset();
+		},
+
 		clearModal : function() {
 			this.$el.find('input[type=checkbox]').prop('checked', false);
 		<#list entity.attributes as att>
     		this.ui.inputModal${firstUpper(att.name)}.val(''),
 		</#list>
-			this.principalCollection.reset();
+			this.modalCollection.reset();
 		},
 		
 		selectModel : function(model, checked) {
