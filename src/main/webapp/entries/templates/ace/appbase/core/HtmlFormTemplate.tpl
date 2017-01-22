@@ -36,7 +36,7 @@
 							<div id="groupInput${firstUpper(att.name)}Container" class="form-group col-sm-	col-md-	col-lg-  ">
 								<label class="control-label" for="input${firstUpper(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}  ${att.required ? string('*','')}</label>
 								<div id="groupInput${firstUpper(att.name)}" class="input-group date" data-date-format="${att.dateFormat}">
-									<input id="input${firstUpper(att.name)}" placeholder="Escolha ou digite uma data." type="text" class="form-control ${getRequiredClass(att.required)} append-left" value="{{${firstLower(att.name)}}}"  data-date-format="${att.dateFormat}" />
+									<input id="input${firstUpper(att.name)}" placeholder="Escolha ou digite uma data." type="text" ${getRequiredClass(att.required)} class="form-control append-left" value="{{${firstLower(att.name)}}}"  data-date-format="${att.dateFormat}" />
 									<div class="input-group-addon	append-right">
 										<span class="fa fa-calendar"></span>
 									</div>
@@ -62,24 +62,24 @@
 							<#elseif att.viewApproach.type  == 'textarea'  >
 							<div id="groupInput${firstUpper(att.name)}" class="form-group col-sm-	col-md-	col-lg-  ">
 								<label class="control-label" for="input${firstUpper(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}  ${att.required ? string('*','')}</label>
-								<textarea rows="3" id="input${firstUpper(att.name)}" placeholder="${firstUpper(att.displayName)!firstLower(att.name)}" value="{{${att.name}}}"  class="form-control ${getRequiredClass(att.required)}" ${getMaxLen(att.maxLen)}>{{${att.name}}} </textarea>
+								<textarea rows="3" id="input${firstUpper(att.name)}" placeholder="${firstUpper(att.displayName)!firstLower(att.name)}" ${getRequiredClass(att.required)} value="{{${att.name}}}"  class="form-control " ${getMaxLen(att.maxLen)}>{{${att.name}}} </textarea>
 							</div>					
 							<#elseif att.viewApproach.type  == 'upload'  >
 							<div id="groupInput${firstUpper(att.name)}" class="form-group col-sm-	col-md-	col-lg-  ">
 								<label class="control-label" for="input${firstUpper(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}  </label>
 								<span class="${att.name}-container"> </span>
-								<input type="text"  id="input${firstUpper(att.name)}" placeholder="${(att.placeholder)!''}" value="{{${firstLower(att.name)}}}" class="form-control ${getRequiredClass(att.required)} " ${getMaxLen(att.maxLen)} style="display : none">
+								<input type="text"  id="input${firstUpper(att.name)}" placeholder="${(att.placeholder)!''}" value="{{${firstLower(att.name)}}}" ${getRequiredClass(att.required)} class="form-control " ${getMaxLen(att.maxLen)} style="display : none">
 							</div>
 							<#else>
 							<div id="groupInput${firstUpper(att.name)}" class="form-group col-sm-	col-md-	col-lg-  ">
 								<label class="control-label" for="input${firstUpper(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}  ${att.required ? string('*','')}</label>
-								<input type="text"  id="input${firstUpper(att.name)}" placeholder="${(att.placeholder)!''}" value="{{${firstLower(att.name)}}}" class="form-control ${getRequiredClass(att.required)} " ${getMaxLen(att.maxLen)}>
+								<input type="text"  id="input${firstUpper(att.name)}" placeholder="${(att.placeholder)!''}" ${getRequiredClass(att.required)} value="{{${firstLower(att.name)}}}" class="form-control  " ${getMaxLen(att.maxLen)}>
 							</div>	
 							</#if>
 		  				  <#else>
 							<div id="groupInput${firstUpper(att.name)}" class="form-group col-sm-	col-md-	col-lg-  ">
 								<label class="control-label" for="input${firstUpper(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}  ${att.required ? string('*','')}</label>
-								<input type="text" id="input${firstUpper(att.name)}" placeholder="${(att.placeholder)!''}" value="{{${firstLower(att.name)}}}" class="form-control ${getRequiredClass(att.required)} "  ${getMaxLen(att.maxLen)}>
+								<input type="text" id="input${firstUpper(att.name)}" placeholder="${(att.placeholder)!''}" value="{{${firstLower(att.name)}}}" ${getRequiredClass(att.required)} class="form-control  "  ${getMaxLen(att.maxLen)}>
 							</div>
 						  </#if>
 						</#list>		

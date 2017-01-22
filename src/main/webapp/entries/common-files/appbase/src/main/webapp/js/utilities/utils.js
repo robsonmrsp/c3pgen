@@ -626,7 +626,7 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 			if (options.uppercase)
 				fieldValue = options.element.val().toUpperCase();
 			data[options.fieldName] = fieldValue;
-			localCol.filter({
+			localCol.filterEqual({
 				success : function() {
 					localCol.each(function(obj) {
 						if (obj.get('id') != validateField.val()) {
@@ -675,7 +675,7 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 				queryTokenizer : Bloodhound.tokenizers.whitespace,
 				prefetch : false,
 				remote : {
-					url : suggestConfig.collection.url + '/filter?' + suggestConfig.showValue + '=%QUERY',
+					url : suggestConfig.collection.url + '/filterAlike?' + suggestConfig.showValue + '=%QUERY',
 					wildcard : '%QUERY'
 				}
 			});

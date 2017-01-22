@@ -54,7 +54,7 @@ public class ${entity.name}Resources {
 	public static final Logger LOGGER = Logger.getLogger(${entity.name}Resources.class);
 
 	@GET
-	@Path("filter")
+	@Path("filterEqual")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response filter(@Context UriInfo uriInfo) {
@@ -62,7 +62,26 @@ public class ${entity.name}Resources {
 		try {
 			PaginationParams<Filter${entity.name}> paginationParams = new PaginationParams<Filter${entity.name}>(uriInfo, Filter${entity.name}.class);
 
-			List<Json${entity.name}> json${entity.name}s = Parser.toListJson${entity.name}s(${firstLower(entity.name)}Service.filter(paginationParams));
+			List<Json${entity.name}> json${entity.name}s = Parser.toListJson${entity.name}s(${firstLower(entity.name)}Service.filter(paginationParams, Boolean.TRUE));
+			response = Response.ok(json${entity.name}s).build();
+		} catch (Exception e) {
+			String message = String.format("Não foi possivel carregar todos os registros[%s]", e.getMessage());
+			LOGGER.error(message, e);
+			response = Response.serverError().entity(new JsonError(e,message, null)).build();
+		}
+		return response;
+	}
+
+	@GET
+	@Path("filterAlike")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response filter(@Context UriInfo uriInfo) {
+		Response response = null;
+		try {
+			PaginationParams<Filter${entity.name}> paginationParams = new PaginationParams<Filter${entity.name}>(uriInfo, Filter${entity.name}.class);
+
+			List<Json${entity.name}> json${entity.name}s = Parser.toListJson${entity.name}s(${firstLower(entity.name)}Service.filter(paginationParams, Boolean.FALSE));
 			response = Response.ok(json${entity.name}s).build();
 		} catch (Exception e) {
 			String message = String.format("Não foi possivel carregar todos os registros[%s]", e.getMessage());

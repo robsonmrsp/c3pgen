@@ -84,13 +84,42 @@ public class Dao${entity.name} extends AccessibleHibernateDao<${entity.name}> {
 		return new Paginator<${entity.name}>(searchCriteria, countCriteria).paginate(paginationParams);
 	}
 	
-	public List<${entity.name}> filter(PaginationParams paginationParams) {
+	public List<${entity.name}> filter(PaginationParams paginationParams, Boolean equals) {
 		List<${entity.name}> list = new ArrayList<${entity.name}>();
 		Filter${entity.name} filter${entity.name} = (Filter${entity.name}) paginationParams.getFilter();
-		return filter(filter${entity.name} );
+		
+		if (equals) {
+			return filterEqual(filter${entity.name});
+		} else {
+			return filterAlike(filter${entity.name});
+		}
 	}
 	
-	public List<${entity.name}> filter(Filter${entity.name} filter${entity.name}) {
+	public List<${entity.name}> filterEqual(Filter${entity.name} filter${entity.name}) {
+		List<${entity.name}> list = new ArrayList<${entity.name}>();
+		Criteria searchCriteria = criteria();
+	<#if entity.attributes??>	
+	<#list entity.attributes as att>	
+		if (filter${entity.name}.get${firstUpper(att.name)}() != null) {
+			searchCriteria.add(Restrictions.eq("${att.name}", filter${entity.name}.get${firstUpper(att.name)}()));
+		}				
+	</#list>
+	</#if>	
+	<#if entity.relationships??>	
+	<#list entity.relationships as rel>
+		<#if rel.type == 'ManyToOne'>
+		if (filter${entity.name}.get${firstUpper(rel.name)!firstLower(rel.model)}() != null) {
+			searchCriteria.createAlias("${firstLower(rel.name)!firstLower(rel.model)}", "${firstLower(rel.name)!firstLower(rel.model)}_");
+			searchCriteria.add(Restrictions.eq("${firstLower(rel.name)!firstLower(rel.model)}_.id", filter${entity.name}.get${firstUpper(rel.name)!firstLower(rel.model)}()));
+		}
+		</#if>	
+	</#list>
+	</#if>	
+		// max 100 rows
+		list.addAll(searchCriteria.setMaxResults(100).list());
+		return list;
+	}
+	public List<${entity.name}> filterAlike(Filter${entity.name} filter${entity.name}) {
 		List<${entity.name}> list = new ArrayList<${entity.name}>();
 		Criteria searchCriteria = criteria();
 	<#if entity.attributes??>	
@@ -116,11 +145,13 @@ public class Dao${entity.name} extends AccessibleHibernateDao<${entity.name}> {
 		</#if>	
 	</#list>
 	</#if>	
-		// Independente da quantidade de registros na base de dados, somente
-		// será devolvido no maximo 100.
+		// max 100 rows
 		list.addAll(searchCriteria.setMaxResults(100).list());
 		return list;
 	}
+	
+	
+	
 	<#if entity.hasOwner>
 	@Override
 	public Pagination<${entity.name}> getAll(PaginationParams paginationParams, Client owner) {

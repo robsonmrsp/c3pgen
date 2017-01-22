@@ -32,7 +32,7 @@ public interface ${entity.name}Service {
 	</#if>
 	List<${entity.name}> filter(Filter${entity.name} filter${entity.name});
 	
-	List<${entity.name}> filter(PaginationParams paginationParams);
+	List<${entity.name}> filter(PaginationParams paginationParams, Boolean equals);
 	
 	List<${entity.name}> search(String searchText);
 

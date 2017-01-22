@@ -13,7 +13,7 @@ define(function(require) {
 
 	var BaseCollection = Backbone.Collection.extend({
 
-		filter : function(options) {
+		filterEqual : function(options) {
 			var that = this;
 			var oldUrl = this.url;
 			var _success = options.success
@@ -31,7 +31,29 @@ define(function(require) {
 				that.url = oldUrl;
 			}
 
-			this.url = oldUrl.replace('all', 'filter');
+			this.url = oldUrl.replace('all', 'filterEqual');
+
+			this.fetch(options);
+		},
+		filterAlike : function(options) {
+			var that = this;
+			var oldUrl = this.url;
+			var _success = options.success
+			var _error = options.error
+
+			options.success = function(model, data, options) {
+				if (_success)
+					_success(model, data, options);
+			}
+			options.error = function(model, data, options) {
+				if (_error)
+					_error(model, data, options);
+			}
+			options.complete = function(model, data, options) {
+				that.url = oldUrl;
+			}
+
+			this.url = oldUrl.replace('all', 'filterAlike');
 
 			this.fetch(options);
 		}

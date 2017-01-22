@@ -25,7 +25,7 @@ public class IsRequiredMethod implements TemplateMethodModelEx {
 			}
 		}
 		if (required) {
-			return new SimpleScalar(" validate[required]");
+			return new SimpleScalar(" data-validation=\"required\" ");
 		}
 		return new SimpleScalar(" ");
 	}

@@ -125,7 +125,7 @@ define(function(require) {
 		},
 		
 		/** Called after DOM´s ready.*/
-		onRenderView : function() {
+		onShowView : function() {
 			var that = this;
    				
 		<#list entity.attributes as att>
