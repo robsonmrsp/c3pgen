@@ -21,7 +21,7 @@ define(function(require) {
 
 		isValid : function() {
 			// checar se realmente é necessário
-			return this.$el.isValid({
+			return this.$el.isValid(null, {
 				modules : 'location, date, security, brazil',
 				validateOnEvent : true,
 				inputParentClassOnSuccess : '',

@@ -25,12 +25,12 @@ define(function(require) {
 			this.$el.hide();
 			this.$el.html(view.el);
 			util.scrollTop();
-			this.$el.fadeIn(300);
+			this.$el.fadeIn(600);
 			view.listenTo(view, 'show', function() {
+				AppScripts.prepare();
+				AuthHandlerUtil.handlePermissions(view);
 				setTimeout(function() {
 					util.NProgress.done(false, true);
-					AppScripts.prepare();
-					AuthHandlerUtil.handlePermissions(view);
 				}, 100);
 			});
 		},

@@ -32,6 +32,9 @@
 			<bean class="com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider" />
 			<bean class="${application.corePackage}.rs.exception.ExceptionHandler" />
 		</jaxrs:providers>
+		<jaxrs:inInterceptors>
+			<bean class="${application.corePackage}.security.AuthorizationInterceptor" />
+		</jaxrs:inInterceptors>
 	</jaxrs:server>
 
 	

@@ -30,7 +30,7 @@ public interface ${entity.name}Service {
 	
 	Pager<${entity.name}> all(PaginationParams paginationParams, Client owner);
 	</#if>
-	List<${entity.name}> filter(Filter${entity.name} filter${entity.name});
+	List<${entity.name}> filter(Filter${entity.name} filter${entity.name}, Boolean equals);
 	
 	List<${entity.name}> filter(PaginationParams paginationParams, Boolean equals);
 	
