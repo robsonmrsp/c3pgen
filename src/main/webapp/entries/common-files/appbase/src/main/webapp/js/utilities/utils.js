@@ -645,7 +645,7 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 				data : data,
 			});
 		},
-		
+
 		handleError : function(xhr, resp, opt) {
 			if (xhr.status === 0 && xhr.readyState === 0) {
 				this.notificationError({
@@ -656,9 +656,16 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 				})
 			} else if (xhr.responseText.indexOf('DOCTYPE') > 0 && xhr.responseText.indexOf('login') > 0) {
 				this.goExtUrl('/j_spring_security_logout');
+			} else if (opt === "Forbidden") {
+				this.notificationError({
+					title : 'Acesso Negado',
+					className : 'error-notice',
+					icon : 'fa fa-chain-broken',
+					text : 'Aparentemente voce não está conectado',
+				})
 			}
-		},
 
+		},
 
 		// no futuro será verificado a melhor maneira de fazer isso
 		getCurrencySymbol : function() {
@@ -684,7 +691,7 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 			field.typeahead({
 				hint : false,
 
-//				minLength : 1,
+				// minLength : 1,
 				highlight : true,
 				highlighter : function(item) {
 					var regex = new RegExp('(' + this.query + ')', 'gi');
@@ -708,7 +715,7 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 			})
 
 			field.bind('typeahead:change', function(evt, model) {
-//				console.log(evt, model);
+				// console.log(evt, model);
 			})
 
 		},

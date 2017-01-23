@@ -17,7 +17,7 @@ import ${application.rootPackage}.service.*;
 
 import ${application.corePackage}.persistence.DaoSyncInfo;
 import ${application.corePackage}.json.DtoDataBase;
-import ${application.corePackage}.utils.Parser;
+import ${application.rootPackage}.utils.Parser;
 
 @Named
 @Transactional

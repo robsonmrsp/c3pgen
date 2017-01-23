@@ -25,6 +25,8 @@ public interface TemplateFileName {
 
 	final String PAGE_TEMPLATE_HTML = "Page${entity.name}Template";
 	final String FRAGMENT_TEMPLATE_HTML = "${entity.name}Template";
+	
+	final String PARSER = "Parser";
 
 	final String MODAL_TEMPLATE_HTML = "Modal${entity.name}Template";
 	final String MODAL_TEMPLATE_JS = "Modal${entity.name}";

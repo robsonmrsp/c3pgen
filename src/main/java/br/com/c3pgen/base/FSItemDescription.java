@@ -97,7 +97,7 @@ public class FSItemDescription {
 		// list.add(new FSItemDescription("Operation", rootFolder + File.separator + "model" + File.separator + "rbac" + File.separator, "Operation", FileType.JAVA));
 		// list.add(new FSItemDescription("Permission", rootFolder + File.separator + "model" + File.separator + "rbac" + File.separator, "Permission", FileType.JAVA));
 		// list.add(new FSItemDescription("Role", rootFolder + File.separator + "model" + File.separator + "rbac" + File.separator, "Role", FileType.JAVA));
-		// list.add(new FSItemDescription("Session", rootFolder + File.separator + "model" + File.separator + "rbac" + File.separator, "Session", FileType.JAVA));
+		list.add(new FSItemDescription("User", rootFolder + File.separator + "model" +  File.separator, "User", FileType.JAVA));
 		return list;
 	}
 
@@ -183,7 +183,7 @@ public class FSItemDescription {
 		list.add(new FSItemDescription("DateUtil", rootFolder + File.separator + "utils" + File.separator, "DateUtil", FileType.JAVA));
 		list.add(new FSItemDescription("ImageUtils", rootFolder + File.separator + "utils" + File.separator, "ImageUtils", FileType.JAVA));
 		list.add(new FSItemDescription("MD5ChecksumUtil", rootFolder + File.separator + "utils" + File.separator, "MD5ChecksumUtil", FileType.JAVA));
-		list.add(new FSItemDescription("JavaParserTemplate.tpl", rootFolder + File.separator + "utils" + File.separator, "Parser", FileType.JAVA));
+//		list.add(new FSItemDescription("JavaParserTemplate.tpl", rootFolder + File.separator + "utils" + File.separator, "Parser", FileType.JAVA));
 		list.add(new FSItemDescription("Util", rootFolder + File.separator + "utils" + File.separator, "Util", FileType.JAVA));
 		return list;
 	}

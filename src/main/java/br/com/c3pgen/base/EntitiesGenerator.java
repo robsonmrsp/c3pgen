@@ -42,6 +42,7 @@ public class EntitiesGenerator {
 	private static MarkerGenerator htmlModalMultiSelectGenerator;
 
 	private static MarkerGenerator javaModelGenerator;
+	private static MarkerGenerator parserGenerator;
 	private static MarkerGenerator javaMybatisModelTemplate;
 	private static MarkerGenerator javaMybatisModelGenerator;
 	private static MarkerGenerator resourcesGenerator;
@@ -101,6 +102,11 @@ public class EntitiesGenerator {
 		String javaRootFolder = appRootFolder + "/src/main/java/" + application.getRootPackage().replace(".", File.separator);
 
 		javaModelGenerator = new MarkerGenerator(freeMarkerConfig, application, "JavaModelTemplate.tpl", javaRootFolder + "/model/", TemplateFileName.MODEL_JAVA, FileType.JAVA);
+		
+		javaModelGenerator = new MarkerGenerator(freeMarkerConfig, application, "JavaModelTemplate.tpl", javaRootFolder + "/model/", TemplateFileName.MODEL_JAVA, FileType.JAVA);
+		
+		parserGenerator = new MarkerGenerator (freeMarkerConfig, application, "JavaParserTemplate.tpl", javaRootFolder  + "/utils/", TemplateFileName.PARSER, FileType.JAVA);
+		
 		javaMybatisModelTemplate = new MarkerGenerator(freeMarkerConfig, application, "JavaMybatisModelTemplate.tpl", javaRootFolder + "/model/", TemplateFileName.MODEL_JAVA, FileType.JAVA);
 		javaMybatisModelGenerator = new MarkerGenerator(freeMarkerConfig, application, "JavaModelTemplate.tpl", javaRootFolder + "/model/", TemplateFileName.MODEL_JAVA, FileType.JAVA);
 
@@ -163,9 +169,11 @@ public class EntitiesGenerator {
 		// htmlBootstrap2ModalGenerator = new MarkerGenerator(freeMarkerConfig,
 		// application, "HtmlBootstrap2ModalTemplate.tpl", jsRootFolder +
 		// "/views/modalComponents/tpl/", TemplateFileName.MODAL_TEMPLATE_HTML,
-		// FileType.HTML);
+		// FileType.HTML);JavaParserTemplate
 
 		fragmentsGenerator = new MarkerGenerator(freeMarkerConfig, application, "Fragments.tpl", jsRootFolder + "/fragments", TemplateFileName.FRAGMENT_TEMPLATE_HTML, FileType.FRAGMENT);
+		
+		
 
 		jsRouterGenerator = new MarkerGenerator(freeMarkerConfig, application, "Router.tpl", jsRootFolder, TemplateFileName.ROUTER_JS, FileType.JAVASCRIPT);
 
@@ -251,7 +259,15 @@ public class EntitiesGenerator {
 						javaJsonGenerator.generateEntityFile(application, ent);
 
 						if (application.getPersistenceFramework().equals("hibernate")) {
-							javaModelGenerator.generateEntityFile(application, ent);
+
+							// TODO melhorar isso, mas por enquanto somente não
+							// gerar o User.java já resolve. Certificar que o
+							// user.java é o mesmo SEMPRE.
+							if (!ent.getName().equalsIgnoreCase("User")) {
+								System.out.println(" Gerando o model " + ent.getName());
+								javaModelGenerator.generateEntityFile(application, ent);
+							}
+
 							basicServiceGenerator.generateEntityFile(application, ent);
 							basicServiceImpGenerator.generateEntityFile(application, ent);
 							daoGenerator.generateEntityFile(application, ent);
@@ -304,6 +320,7 @@ public class EntitiesGenerator {
 				desenvIndexGenerator.generate(application);
 				produLoginGenerator.generate(application);
 				desenvLoginGenerator.generate(application);
+				parserGenerator.generate(application);
 			}
 		} catch (TemplateException e) {
 			LOGGER.error(e);

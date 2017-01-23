@@ -11,30 +11,32 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-import ${application.rootPackage}.model.User;import ${application.rootPackage}.persistence.DaoUser;
-
+import ${application.rootPackage}.model.User;
+/**
+*  generated: ${.now}
+**/
 @Named
 public class SpringSecurityUserContext implements UserContext {
 	private Collection<? extends GrantedAuthority> credentials;
 
-	@Inject
-	DaoUser daoUser;
-
 	@Override
 	public String getCurrentUserName() {
+		User currentUser = getCurrentUser();
+		if (currentUser != null) {
+			return currentUser.getUsername();
+		}
+		return "USER_NOT_IN_SESSION";
+	}
+
+	public User getCurrentUser() {
 		SecurityContext context = SecurityContextHolder.getContext();
 		Authentication authentication = context.getAuthentication();
 		if (authentication == null) {
 			return null;
 		}
-		org.springframework.security.core.userdetails.User user = (org.springframework.security.core.userdetails.User) authentication.getPrincipal();
-		if (user != null)
-			return user.getUsername();
-		return "USER_NOT_IN_SESSION";
-	}
+		User user = (User) authentication.getPrincipal();
 
-	public User getCurrentUser() {
-		return daoUser.findByUsername(getCurrentUserName());
+		return user;
 	}
 
 	@Override

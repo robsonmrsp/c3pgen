@@ -19,6 +19,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 
 import br.com.locadora.model.User;
 
+/**
+*  generated: ${.now}
+**/
 public class AuthorizationInterceptor extends AbstractPhaseInterceptor<Message> {
 
 	@Autowired
@@ -29,8 +32,6 @@ public class AuthorizationInterceptor extends AbstractPhaseInterceptor<Message> 
 
 	public static final Logger LOGGER = Logger.getLogger(AuthorizationInterceptor.class);
 
-	// UserContext context;
-	// @Autowired
 
 	public AuthorizationInterceptor() {
 		super(Phase.POST_PROTOCOL);

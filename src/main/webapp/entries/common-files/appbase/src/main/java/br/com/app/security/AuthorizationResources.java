@@ -18,12 +18,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 
 import ${application.corePackage}.json.JsonError;
-import ${application.corePackage}.utils.Parser;
+import ${application.rootPackage}.utils.Parser;
 import ${application.rootPackage}.model.Permission;
 
 import ${application.rootPackage}.model.User;
 import ${application.corePackage}.security.AuthorizationService;
 
+/**
+*  generated: ${.now}
+**/
 
 @Path("/auth")
 public class AuthorizationResources {

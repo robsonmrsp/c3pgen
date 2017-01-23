@@ -28,7 +28,7 @@ define(function(require) {
 			this.$el.fadeIn(600);
 			view.listenTo(view, 'show', function() {
 				AppScripts.prepare();
-				AuthHandlerUtil.handlePermissions(view);
+				AuthHandlerUtil.handlePermissions();
 				setTimeout(function() {
 					util.NProgress.done(false, true);
 				}, 100);
@@ -84,6 +84,7 @@ define(function(require) {
 
 		index : function(path) {
 			util.markActiveItem('dashboard');
+			AuthHandlerUtil.handlePermissions();
 			setTimeout(function() {
 				util.NProgress.done(false, true);
 			}, 500);

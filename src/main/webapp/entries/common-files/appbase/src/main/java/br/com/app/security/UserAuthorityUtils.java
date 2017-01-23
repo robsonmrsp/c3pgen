@@ -11,7 +11,10 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import ${application.rootPackage}.model.User;
 import ${application.rootPackage}.model.Role;
 
-//deverá mudar quando tivermos que implementar autorização.
+/**
+*  generated: ${.now}
+**/
+
 public final class UserAuthorityUtils {
 
 	public static final List<GrantedAuthority> AUTHORITIES = new ArrayList<GrantedAuthority>();

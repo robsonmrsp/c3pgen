@@ -33,9 +33,10 @@ import ${package}.model.filter.Filter${entity.name};
 import ${corepackage}.persistence.pagination.Pager;
 import ${corepackage}.persistence.pagination.PaginationParams;
 import ${package}.service.UserService;
-import ${corepackage}.utils.Parser;
 import ${corepackage}.rs.exception.ValidationException;
 import ${corepackage}.security.SpringSecurityUserContext;
+
+import ${package}.utils.Parser;
 /**
 *  generated: ${.now}
 **/

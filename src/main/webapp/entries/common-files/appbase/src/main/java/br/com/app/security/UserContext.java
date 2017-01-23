@@ -1,6 +1,9 @@
 package ${application.corePackage}.security;
 
 import ${application.rootPackage}.model.User;
+/**
+*  generated: ${.now}
+**/
 
 public interface UserContext {
 

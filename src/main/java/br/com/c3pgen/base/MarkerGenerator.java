@@ -138,7 +138,11 @@ public class MarkerGenerator {
 		String model = Util.currentDir() + File.separator + "out" + File.separator + ApplicationConfiguration.MAIN_PACKAGE.replace(".", File.separator) + File.separator + "model";
 		String filter = Util.currentDir() + File.separator + "out" + File.separator + ApplicationConfiguration.MAIN_PACKAGE.replace(".", File.separator) + File.separator + "model" + File.separator + "filter";
 		String json = Util.currentDir() + File.separator + "out" + File.separator + ApplicationConfiguration.MAIN_PACKAGE.replace(".", File.separator) + File.separator + "json";
+		
 		String rs = Util.currentDir() + File.separator + "out" + File.separator + ApplicationConfiguration.MAIN_PACKAGE.replace(".", File.separator) + File.separator + "rs";
+		
+		String utils = Util.currentDir() + File.separator + "out" + File.separator + ApplicationConfiguration.MAIN_PACKAGE.replace(".", File.separator) + File.separator + "utils";
+		
 		String baseJs = Util.currentDir() + File.separator + "out" + File.separator + "js" + File.separator;
 		String baseJSViews = Util.currentDir() + File.separator + "out" + File.separator + "js" + File.separator + "views";
 		String baseJSCollections = Util.currentDir() + File.separator + "out" + File.separator + "js" + File.separator + "collections";
@@ -159,6 +163,7 @@ public class MarkerGenerator {
 		new File(filter).mkdirs();
 		new File(json).mkdirs();
 		new File(rs).mkdirs();
+		new File(utils).mkdirs();
 
 		// ESTRUTURA DE PACOTES JAVASCRIPT
 		new File(baseJs).mkdirs();

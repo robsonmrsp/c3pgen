@@ -1,5 +1,5 @@
 /* generated: ${.now} */
-package ${application.corePackage}.utils;
+package ${application.rootPackage}.utils;
 
 import java.util.ArrayList;
 
@@ -9,6 +9,7 @@ import org.joda.time.DateTime;
 import org.joda.time.LocalDateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
+import ${application.corePackage}.utils.DateUtil;
 
 <#list application.entities as entity>		
 import ${application.rootPackage}.json.Json${firstUpper(entity.name)};

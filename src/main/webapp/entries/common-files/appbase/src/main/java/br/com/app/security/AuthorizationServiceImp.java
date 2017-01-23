@@ -18,7 +18,9 @@ import ${application.rootPackage}.model.Permission;
 import ${application.rootPackage}.model.Role;
 import ${application.rootPackage}.model.User;
 
-
+/**
+*  generated: ${.now}
+**/
 
 @Named
 @Transactional

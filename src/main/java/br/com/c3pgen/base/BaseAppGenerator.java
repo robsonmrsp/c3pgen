@@ -24,25 +24,26 @@ public class BaseAppGenerator {
 
 		GenericGenerator genericGenerator = new GenericGenerator(freeMarkerConfig, application);
 
-		String javaRootFolder = Util.currentDir() + File.separator + "out/" + application.getAppName() + "/src/main/java/" + application.getCorePackage().replace(".", File.separator) + File.separator;
+		String javaCoreFolder = Util.currentDir() + File.separator + "out/" + application.getAppName() + "/src/main/java/" + application.getCorePackage().replace(".", File.separator) + File.separator;
+		String javaRootFolder = Util.currentDir() + File.separator + "out/" + application.getAppName() + "/src/main/java/" + application.getRootPackage().replace(".", File.separator) + File.separator;
 
-		String serviceFolder = javaRootFolder;
+		String serviceFolder = javaCoreFolder;
 		new File(serviceFolder).mkdirs();
 
-		genericGenerator.generate(FSItemDescription.persistences(javaRootFolder));
-		genericGenerator.generate(FSItemDescription.audit(javaRootFolder));
-		genericGenerator.generate(FSItemDescription.json(javaRootFolder));
+		genericGenerator.generate(FSItemDescription.persistences(javaCoreFolder));
+		genericGenerator.generate(FSItemDescription.audit(javaCoreFolder));
+		genericGenerator.generate(FSItemDescription.json(javaCoreFolder));
 		// genericGenerator.generate(FSItemDescription.cep(javaRootFolder));
-		genericGenerator.generate(FSItemDescription.rs(javaRootFolder));
-		genericGenerator.generate(FSItemDescription.report(javaRootFolder));
-//		 genericGenerator.generate(FSItemDescription.rbac(javaRootFolder));
-		genericGenerator.generate(FSItemDescription.model(javaRootFolder));
-		genericGenerator.generate(FSItemDescription.rsException(javaRootFolder));
-		genericGenerator.generate(FSItemDescription.security(javaRootFolder));
-		genericGenerator.generate(FSItemDescription.serialization(javaRootFolder));
-		genericGenerator.generate(FSItemDescription.service(javaRootFolder));
+		genericGenerator.generate(FSItemDescription.rs(javaCoreFolder));
+		genericGenerator.generate(FSItemDescription.report(javaCoreFolder));
+		 genericGenerator.generate(FSItemDescription.rbac(javaRootFolder));
+		genericGenerator.generate(FSItemDescription.model(javaCoreFolder));
+		genericGenerator.generate(FSItemDescription.rsException(javaCoreFolder));
+		genericGenerator.generate(FSItemDescription.security(javaCoreFolder));
+		genericGenerator.generate(FSItemDescription.serialization(javaCoreFolder));
+		genericGenerator.generate(FSItemDescription.service(javaCoreFolder));
 
-		genericGenerator.generate(FSItemDescription.utils(javaRootFolder));
+		genericGenerator.generate(FSItemDescription.utils(javaCoreFolder));
 
 	}
 
