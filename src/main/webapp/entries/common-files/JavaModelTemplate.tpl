@@ -119,7 +119,7 @@ public class ${entity.name} extends AbstractTimestampEntity{
 			<#else>
     @ManyToMany
         	<#if rel.viewApproach?? >
-    @Cascade(value = CascadeType.ALL)
+    @Cascade(value = CascadeType.SAVE_UPDATE)
 			</#if>
 				<#if dataBasePrefix??>
     @JoinTable(name="${dataBasePrefix}_${uppercase(entity.name)}_${uppercase(rel.model)}", joinColumns = @JoinColumn(name = "ID_${uppercase(entity.name)}", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "ID_${uppercase(rel.model)}", referencedColumnName = "ID") )
