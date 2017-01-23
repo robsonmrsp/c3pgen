@@ -50,6 +50,7 @@ define(function(require) {
 				this.ui.outputInitialPage.text();
 				this.ui.outputFinalPage.text();
 				this.ui.outputTotalRecords.text();
+				this.atualiza();
 			});
 		},
 
