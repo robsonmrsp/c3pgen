@@ -7,16 +7,7 @@
 					http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd
  					http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
 	<http auto-config="true" use-expressions="true">
-
-		<!-- <intercept-url pattern="/login.html" access="permitAll" /> -->
-		<intercept-url pattern="/index.jsp" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')" />
-		<!-- <intercept-url pattern="/rs/cfg/**" access="hasRole('ROLE_USER')" /> -->
-
-		<!-- <intercept-url pattern="/rs/cfg/*" access="hasRole('ROLE_USER')" /> -->
-
-		<!-- <intercept-url pattern="/rs/crud/**" access="hasRole('ROLE_USER')" /> -->
-
-		<!-- <intercept-url pattern="/rs/crud/**" access="hasRole('ROLE_USER')" /> -->
+		<intercept-url pattern="/index.jsp" access="isFullyAuthenticated()" />
 
 		<form-login login-page="/login.html" default-target-url="/"
 			authentication-failure-url="/login.html?login_error=1" />

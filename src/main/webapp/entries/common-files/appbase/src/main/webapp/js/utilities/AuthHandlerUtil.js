@@ -17,10 +17,9 @@ define(function(require) {
 	PERMISSIONS.url = 'rs/auth/all'
 	PERMISSIONS.fetch({
 		success : function() {
-			console.log('checagem de permissoes concluida...');
 		},
-		error : function() {
-			console.error('Erro ao checar permissoes...');
+		error : function(model, resp, xhr) {
+			console.error('Erro ao checar permissoes...', model, resp, xhr);
 		},
 		async : false
 	});
@@ -50,7 +49,7 @@ define(function(require) {
 				return item.itemType === "SCREEN" && screen.match(new RegExp(item.identifier, 'gi'))
 			})
 
-			return (col.length > 0)
+			return (!screen || screen.length == 0) || (col.length > 0)
 
 			// this.url = this.urlRoot + '/view'
 			// var data = {
@@ -66,10 +65,8 @@ define(function(require) {
 
 			var col = PERMISSIONS.filter(function(permission) {
 				var item = permission.get('item');
-//				console.log('item.identifier: |' + item.identifier + '|');
-//				console.log('component: |' + component + '|');
-
-				
+				// console.log('item.identifier: |' + item.identifier + '|');
+				// console.log('component: |' + component + '|');
 
 				return item.itemType === "COMPONENT" && item.identifier.toUpperCase() === component.toUpperCase()
 			})
@@ -118,8 +115,8 @@ define(function(require) {
 					action = arrayAuthConfig[1];
 				}
 
-//				console.log('identifier: |' + identifier + '|');
-//				console.log('action: |' + action + '|');
+				// console.log('identifier: |' + identifier + '|');
+				// console.log('action: |' + action + '|');
 				_checkPermition(elem, identifier, action);
 				// A partir desse ponto deverá ser
 

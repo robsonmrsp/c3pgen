@@ -76,7 +76,7 @@ public class ${entity.name}Resources {
 	@Path("filterAlike")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response filter(@Context UriInfo uriInfo) {
+	public Response filterAlike(@Context UriInfo uriInfo) {
 		Response response = null;
 		try {
 			PaginationParams<Filter${entity.name}> paginationParams = new PaginationParams<Filter${entity.name}>(uriInfo, Filter${entity.name}.class);

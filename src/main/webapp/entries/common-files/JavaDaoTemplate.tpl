@@ -88,6 +88,10 @@ public class Dao${entity.name} extends AccessibleHibernateDao<${entity.name}> {
 		List<${entity.name}> list = new ArrayList<${entity.name}>();
 		Filter${entity.name} filter${entity.name} = (Filter${entity.name}) paginationParams.getFilter();
 		
+		return filter(filter${entity.name}, equals);
+	}
+	
+	public List<${entity.name}> filter(Filter${entity.name} filter${entity.name},  Boolean equals) {
 		if (equals) {
 			return filterEqual(filter${entity.name});
 		} else {

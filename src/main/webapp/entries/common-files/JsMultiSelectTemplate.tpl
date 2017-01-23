@@ -308,7 +308,6 @@ define(function(require) {
 			buttons.push({
 				id : 'delete_button',
 				type : 'danger',
-				customClass : 'auth[delete-${firstLower(entity.name)}, disable]',
 				icon : 'fa-trash',
 				hint : 'Remover ${firstUpper(entity.displayName)!firstUpper(entity.name)}',
 				onClick : that.deleteModel,

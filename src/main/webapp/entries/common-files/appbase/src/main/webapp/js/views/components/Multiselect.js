@@ -40,7 +40,7 @@ define(function(require) {
 
 						that.$el.on('change', function(evt) {
 							var $this = $(evt.target);
-							console.log($this)
+//							console.log($this)
 						});
 
 					},
@@ -121,7 +121,7 @@ define(function(require) {
 			var oldUrl = this.collection.url;
 			this._reset();
 
-			this.collection.url = newUrl || oldUrl.replace('all', 'filter');
+			this.collection.url = newUrl || oldUrl.replace('all', 'filterEqual');
 			this.collection.fetch({
 				success : function() {
 					that.collection.each(function(model) {

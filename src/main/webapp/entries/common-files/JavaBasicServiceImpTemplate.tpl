@@ -73,7 +73,7 @@ public class ${entity.name}ServiceImp implements ${entity.name}Service {
 	public Pager<${entity.name}> all(PaginationParams paginationParams) {
 		Pagination<${entity.name}> pagination = dao${entity.name}.getAll(paginationParams);
 		return new Pager<${entity.name}>(pagination.getResults(), 0, pagination.getTotalRecords());
-	}, 
+	} 
 	
 	
 	@Override
@@ -83,8 +83,8 @@ public class ${entity.name}ServiceImp implements ${entity.name}Service {
 	}
 	
 	@Override
-	public List<${entity.name}> filter(Filter${entity.name} filter${entity.name}) {
-		List<${entity.name}> list = dao${entity.name}.filter(filter${entity.name});
+	public List<${entity.name}> filter(Filter${entity.name} filter${entity.name} ,  Boolean equals) {
+		List<${entity.name}> list = dao${entity.name}.filter(filter${entity.name}, equals);
 		return list;
 	}
 	

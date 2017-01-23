@@ -1,4 +1,5 @@
-define([ 'jquery', 'bootbox', 'bootstrap', 'jqueryScrollTo', 'jqueryValidatorEngine', 'jqueryValidatorEnginePtBr', 'morris', 'raphael', 'datetimepicker', 'bootbox', 'datetimepicker_lang_pt_BR', 'jqueryUI', 'nprogress', 'aceSettings', 'ace', 'aceSidebar', 'jqueryGritter', 'selectize', 'jqueryForm', 'jqueryChosen', 'jqueryInputMask', 'typeahead', 'bloodhound' ], function($) {
+define([ 'jquery', 'bootbox', 'bootstrap', 'jqueryScrollTo', 'datetimepicker', 'bootbox', 'datetimepicker_lang_pt_BR', 'jqueryUI', 'nprogress', 'aceSettings', 'ace', 'aceSidebar', 'jqueryGritter', 'selectize', 'jqueryForm', 'jqueryChosen', 'jqueryInputMask', 'typeahead',
+		'bloodhound', 'jqueryFormValidator' ], function($) {
 	$.fn.datetimepicker.defaults.icons = {
 		time : "fa fa-clock-o",
 		date : "fa fa-calendar",
@@ -160,14 +161,14 @@ define([ 'jquery', 'bootbox', 'bootstrap', 'jqueryScrollTo', 'jqueryValidatorEng
 			"clearIncomplete" : true
 		});
 	}
-	
+
 	$.fn.cnpj = function(places) {
-		
+
 		this.inputmask('99.999.999/9999-99', {
 			"clearIncomplete" : true
 		});
 	}
-	
+
 	$.fn.fone = function(places) {
 
 		this.inputmask({
