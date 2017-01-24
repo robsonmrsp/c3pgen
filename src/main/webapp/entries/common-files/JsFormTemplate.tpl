@@ -77,7 +77,7 @@ define(function(require) {
 				</#list>		
 			</#if>			
 		},
-		/** All the inportant fields must be here. */
+		/** All the important fields must be here. */
 		ui : {
 			inputId : '#inputId',
 			saveButton : '.button-saving',

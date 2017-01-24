@@ -70,7 +70,7 @@ define(function(require) {
 			'click  .show-advanced-search-button' : 'toggleAdvancedForm',
 		},
 		
-		/** All the inportant fields must be here. */		
+		/** All the important fields must be here. */		
 		ui : {
 			loadButton : '.loading-button',
 		<#list entity.attributes as att>

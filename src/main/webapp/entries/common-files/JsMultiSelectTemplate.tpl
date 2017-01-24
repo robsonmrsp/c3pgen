@@ -62,7 +62,7 @@ define(function(require) {
 			'keypress' : 'treatKeypress',
 		},
 		
-		/** All the inportant fields must be here. */		
+		/** All the important fields must be here. */		
 		ui : {
 			loadButton : '.button-loading',
 		<#list entity.attributes as att>

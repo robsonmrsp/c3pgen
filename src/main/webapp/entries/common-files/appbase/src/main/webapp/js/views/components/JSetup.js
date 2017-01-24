@@ -117,7 +117,7 @@ define(function(require) {
 			var bbColumns = new Backgrid.Columns(options.columns);
 
 			var colManager = new Backgrid.Extension.ColumnManager(bbColumns, {
-				initialColumnsVisible : 4,
+				initialColumnsVisible : 6,
 				saveState : true,
 				loadStateOnInit : true
 			});

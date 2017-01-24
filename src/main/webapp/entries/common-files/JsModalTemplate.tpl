@@ -55,7 +55,7 @@ define(function(require) {
 			'keypress' : 'treatKeypress',
 		},
 
-		/** All the inportant fields must be here. */		
+		/** All the important fields must be here. */		
 		ui : {
 			loadButton : '.button-loading',
 		<#list entity.attributes as att>
@@ -250,7 +250,6 @@ define(function(require) {
 			} else {
 				return this.jsonValue;
 			}
-			return null;
 		},
 		
 		getRawValue : function() {
@@ -274,14 +273,14 @@ define(function(require) {
 			<#list entity.attributes as att>
 				<#if att.showInPages >			
 			{
-				name : "${att.name}",
+				name     : "${att.name}",
 				sortable : true,
 				editable : false,
 				label 	 : "${firstUpper(att.displayName)!firstUpper(att.name)}",
 				<#if att.inputAs == 'percent'>
-				cell : JSetup.PercentCell,
+				cell     : JSetup.PercentCell,
 		  		<#elseif att.inputAs == 'money'>
-		  		cell : JSetup.MoneyCell,	
+		  		cell     : JSetup.MoneyCell,	
 		  		<#else>
 				cell 	 : "string",
 		  		</#if>	
