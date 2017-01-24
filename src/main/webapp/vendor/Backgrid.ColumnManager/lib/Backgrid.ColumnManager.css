@@ -45,7 +45,7 @@ div.columnmanager-visibilitycontrol > button.dropdown-button:active {
 div.columnmanager-dropdown-container {
     cursor: default;
     position: absolute;
-    z-index: 10;
+    z-index: 1052;
     top: 0;
     left: 0;
     background: #fff;
