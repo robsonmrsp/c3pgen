@@ -204,7 +204,6 @@ define(function(require) {
 
 		search${entity.name} : function() {
 			var that = this;
-			this.ui.loadButton.button('loading');
 			this.${firstLower(entity.name)}Collection.filterQueryParams = {
 			<#list entity.attributes as att>
 			<#if att.showInPages >
@@ -230,8 +229,6 @@ define(function(require) {
 				},
 				error : function(_coll, _resp, _opt) {
 					console.error(_coll, _resp, _opt)
-				},complete : function(){
-					that.ui.loadButton.button('reset');
 				}
 			});
 		},
@@ -319,12 +316,14 @@ define(function(require) {
 		
 		// Executada depois da consulta concluida.
 		stopFetch : function() {
+			this.ui.loadButton.button('reset');
 			util.stopSpinner();
 			util.scrollDownModal();
 		},
 		
 		// Executada Antes da realização da consulta.
 		startFetch : function() {
+			this.ui.loadButton.button('loading');
 			util.showSpinner('spin${entity.name}');
 		},
 	});
