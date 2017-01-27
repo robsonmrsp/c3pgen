@@ -37,7 +37,6 @@
 		</jaxrs:inInterceptors>
 	</jaxrs:server>
 
-	
 	<context:annotation-config />
 	<context:component-scan base-package="${application.rootPackage}" />
 
@@ -96,40 +95,4 @@
 			</list>
 		</property>
 	</bean>
-	
-	
-	<!-- ###############  CONFIGURAÇÃO DO JMS PARA ENVIAR MENSAGENS   ######################### -->
-	<!-- a pooling based JMS provider -->
-	<!-- 	<bean id="jmsFactory" class="org.apache.activemq.pool.PooledConnectionFactory" -->
-	<!-- 		destroy-method="stop"> -->
-	<!-- 		<property name="connectionFactory"> -->
-	<!-- 			<bean class="org.apache.activemq.ActiveMQConnectionFactory"> -->
-	<!-- 				<property name="brokerURL"> -->
-	<!-- 					<value>tcp://192.168.0.25:61616</value> -->
-	<!-- 				</property> -->
-	<!-- 			</bean> -->
-	<!-- 		</property> -->
-	<!-- 	</bean> -->
-	<!-- 	<bean id="myJmsTemplate" class="org.springframework.jms.core.JmsTemplate"> -->
-	<!-- 		<property name="connectionFactory" ref="jmsFactory" /> -->
-	<!-- 		<property name="pubSubDomain" value="true" /> -->
-	<!-- 	</bean> -->
-	<!-- #####################..Configuração do JMS para RECEBER MENSAGENS-->
-	<!-- ######################################################################################## -->
-	<!-- <bean id="amqConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory"> -->
-	<!-- <constructor-arg index="0" value="jms.broker.url" /> -->
-	<!-- </bean> -->
-	<!-- <bean id="connectionFactory" class="org.springframework.jms.connection.CachingConnectionFactory"> -->
-	<!-- <constructor-arg ref="amqConnectionFactory" /> -->
-	<!-- </bean> -->
-	<!-- 	CLASSE QUE implements MessageListener -->
-	<!-- <bean id="atendimentoReceiver" class="COM.BR.XYZ.Receiver"> -->     
-	<!-- </bean> -->
-	<!-- <bean id="atendimentoReceiverListener" class="org.springframework.jms.listener.DefaultMessageListenerContainer"> -->
-	<!-- <property name="connectionFactory" ref="connectionFactory" /> -->
-	<!-- <property name="destinationName" value="jms.atendimento.topico" /> -->
-	<!-- <property name="pubSubDomain" value="true" /> -->
-	<!-- <property name="messageListener" ref="atendimentoReceiver" /> -->
-	<!-- </bean> -->
-
 </beans>

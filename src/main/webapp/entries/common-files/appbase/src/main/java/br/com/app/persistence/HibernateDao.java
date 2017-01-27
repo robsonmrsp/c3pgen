@@ -55,10 +55,10 @@ public class HibernateDao<Entity> {
 
 	public Entity save(Entity entity) {
 		Session currentSession = sessionFactory.getCurrentSession();
-		currentSession.saveOrUpdate(entity);
-		currentSession.flush();
+		currentSession.merge(entity);
 		return entity;
 	}
+
 
 	public Boolean delete(Serializable entityId) {
 		Entity entity = find(entityId);
