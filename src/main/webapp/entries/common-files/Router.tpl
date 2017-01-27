@@ -68,7 +68,7 @@ define(function(require) {
 				callback = this[name];
 			Backbone.history.route(route, function(fragment) {
 				var args = router._extractParameters(route, fragment);
-
+				router.App.mainRegion.reset();
 				if (router.authHandler.canSeeScreen(fragment)) {
 					router.execute(callback, args);
 					router.trigger.apply(router, [ 'route:' + name ].concat(args));
