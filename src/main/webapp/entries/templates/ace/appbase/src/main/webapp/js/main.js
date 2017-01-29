@@ -25,7 +25,6 @@ require.config({
 		'marionette' : '../vendor/backbone.marionette/backbone.marionette-2.2.0',
 		'multiselect' : '../vendor/bootstrap.multiselect/bootstrap-multiselect',
 		'bootstrap' : '../vendor/bootstrap/js/bootstrap',
-		'bootbox' : '../vendor/bootbox/bootbox',
 
 		'datetimepicker' : '../vendor/bootstrap.datetimepicker/bootstrap-datetimepicker',
 		'datetimepicker_lang_pt_BR' : '../vendor/bootstrap.datetimepicker/bootstrap-datetimepicker.pt-BR',
@@ -48,6 +47,7 @@ require.config({
 
 		'typeahead' : '../vendor/typeahead/typeahead.jquery',
 		'bloodhound' : '../vendor/typeahead/bloodhound',
+		'sweetAlert' : '../vendor/sweetalert-1.1.3/dist/sweetalert-dev',
 	},
 	shim : {
 
@@ -96,7 +96,6 @@ require.config({
 			deps : [ 'backbone', 'backgrid', 'backbonePageable' ],
 		},
 		'bootstrap' : [ 'jquery' ],
-		'bootbox' : [ 'jquery' ],
 		'jqueryMaskInput' : [ 'jquery' ],
 		'jqueryScrollTo' : [ 'jquery' ],
 		'nprogres' : {
@@ -144,6 +143,7 @@ require.config({
 		'jqueryChosen' : [ 'jquery' ],
 		'jqueryInputMask' : [ 'jquery' ],
 		'jqueryFormValidator' : [ 'jquery' ],
+		'sweetAlert' : [ 'jquery' ],
 	},
 	wrapShim : true,
 });

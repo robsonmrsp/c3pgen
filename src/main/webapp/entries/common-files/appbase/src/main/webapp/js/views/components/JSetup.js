@@ -16,6 +16,44 @@ define(function(require) {
 	var InputUpload = require('views/components/InputUpload');
 	var Suggestbox = require('views/components/Suggestbox');
 
+	var View = Marionette.LayoutView.extend({
+		onShow : function() {
+			$.validate({
+				modules : 'location, date, security, brazil',
+				validateOnEvent : true,
+				inputParentClassOnSuccess : '',
+				addValidClassOnAll : true,
+			});
+
+			this.onShowView && this.onShowView();
+		},
+
+		isValid : function() {
+			// checar se realmente é necessário
+			return this.$el.isValid(null, {
+				modules : 'location, date, security, brazil',
+				validateOnEvent : true,
+				inputParentClassOnSuccess : '',
+				addValidClassOnAll : true,
+			});
+		},
+
+		clearForm : function() {
+			if (this.customClearForm) {
+				this.customClearForm();
+			}
+			if (this.ui) {
+				_.each(this.ui, function(uiItem) {
+					if (!uiItem.attr('persist'))
+						util.clear(uiItem.attr('id'));
+				});
+			}
+			// TODO ver uma forma mais elegente de limpar os campos de upload;
+			var inputImage = $('.jsetup-upload-image');
+			inputImage.attr('src', inputImage.attr('no-image-file'));
+		}
+	});
+
 	var Counter = Marionette.ItemView.extend({
 
 		template : _.template(CounterTemplate),
@@ -288,6 +326,7 @@ define(function(require) {
 
 		BaseModel : BaseModel,
 		BaseCollection : BaseCollection,
+		View : View,
 
 	}
 	return JSetup;

@@ -4,7 +4,6 @@ define(function(require) {
 	var util = require('utilities/utils');
 
 	var JSetup = require('views/components/JSetup');
-	var JSetupView = require('views/core/JSetupView');
 
 	var ${entity.name}Modal = require('text!views/modalComponents/tpl/${entity.name}ModalTemplate.html');
 	var ${entity.name}PageCollection = require('collections/${entity.name}PageCollection');
@@ -39,7 +38,7 @@ define(function(require) {
 		</#if>
 	</#list>
 
-	var ${entity.name}Modal = JSetupView.extend({
+	var ${entity.name}Modal = JSetup.View.extend({
 		template : _.template(${entity.name}Modal),
 
 		/** The declared form Regions. */

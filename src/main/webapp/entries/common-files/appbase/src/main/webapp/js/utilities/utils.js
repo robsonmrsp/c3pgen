@@ -1,4 +1,4 @@
-define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adapters/underscore-adapter', 'adapters/jquery-adapter', 'bootstrap', ], function(NProgress, moment, Spinner, Col, Bootbox, _, $) {
+define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'adapters/underscore-adapter', 'adapters/jquery-adapter', 'bootstrap', ], function(NProgress, moment, Spinner, Col, _, $) {
 	Number.prototype.formatMoney = function(c, d, t) {
 		var n = this, c = isNaN(c = Math.abs(c)) ? 2 : c, d = d == undefined ? "." : d, t = t == undefined ? "," : t, s = n < 0 ? "-" : "", i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "", j = (j = i.length) > 3 ? j % 3 : 0;
 		return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
@@ -31,17 +31,6 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 		})
 	};
 
-	// //para a mascara de telefone que pode assumir vários formatos
-	var maskPhoneBehavior = function(val) {
-		return val.replace(/\D/g, '').length === 11 ? '(99) 99999-9999' : '(99) 9999-99990';
-	};
-
-	var optionsMaskPhone = {
-		onKeyPress : function(val, e, field, options) {
-			field.mask(maskPhoneBehavior.apply({}, arguments), options);
-		}
-	};
-
 	var spinnerOpts = {
 		lines : 11, // The number of lines to draw
 		length : 7, // The length of each line
@@ -64,30 +53,10 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 	var spinner = new Spinner(spinnerOpts);
 
 	return {
-		// Uma forma de chamar o moment js sem precisar importar em cada arquivo
 		moment : moment,
-		Bootbox : bootbox,
 		NProgress : NProgress.configure({
 			minimum : 0.2,
-		// template : '<div class="bar" role="bar"><div
-		// class="peg"></div></div><div class="spinner" role="spinner"><div
-		// class="spinner-icon"></div></div>'
-		// template : '<div class="bar" role="bar"><div
-		// class="peg"></div></div><div
-
-		// class="spinner" role="spinner"><div class="spinner-icon_"><i
-		// class="fa
-		// fa-spinner fa-2x progress-spin"></i></div></div>'
 		}),
-
-		displayValidationErrors : function(messages) {
-			for ( var key in messages) {
-				if (messages.hasOwnProperty(key)) {
-					this.addValidationError(key, messages[key]);
-				}
-			}
-			this.showAlert('Erro!', 'Fix validation errors and try again', 'alert-error');
-		},
 
 		escapeById : function(id, numeric) {
 
@@ -152,96 +121,6 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 			return _.escape($('#' + id + ' option:selected').text());
 		},
 
-		showErrorMessage : function(idContainer, message) {
-			var divAlert = $('#' + idContainer);
-			divAlert.css('display', 'visible');
-
-			divAlert.removeClass('alert-info');
-			divAlert.addClass('alert-error');
-			divAlert.append(message);
-		},
-
-		showInfoMessage : function(idContainer, message) {
-			var divAlert = $('#' + idContainer);
-			divAlert.css('display', 'block');
-			divAlert.removeClass('alert-error');
-			divAlert.addClass('alert-info');
-			divAlert.append(message);
-		},
-		addValidationError : function(field, message) {
-			var controlGroup = $('#' + field).parent().parent();
-			controlGroup.addClass('error');
-			$('.help-inline', controlGroup).html(message);
-		},
-
-		removeValidationError : function(field) {
-			var controlGroup = $('#' + field).parent().parent();
-			controlGroup.removeClass('error');
-			$('.help-inline', controlGroup).html('');
-		},
-
-		showAlert : function(title, messages, klass) {
-			var text = '';
-			$('.alert').removeClass("alert-error alert-warning alert-success alert-info");
-			$('.alert').addClass(klass);
-			text = '<ul>';
-			for ( var key in messages) {
-				text += '<li>' + messages[key] + '</li>';
-			}
-			text += '</ul>';
-			$('.alert').html('<strong>' + title + '</strong> ' + text);
-			$('.alert').show();
-		},
-
-		hideAlert : function() {
-			// $('.alert').hide();
-		},
-
-		getTodayDate : function() {
-			var today = new Date();
-			return today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear();
-		},
-
-		getActualHour : function() {
-		},
-		changeEvent : function(event, model) {
-			// Apply the change to the model
-			var target = event.target;
-			var change = {};
-			if (target.name === '')
-				return;
-			change[target.name] = target.value;
-			model.set(change);
-
-			// Run validation rule (if any) on changed item
-			var check = model.validateItem(target.id);
-			if (check.isValid === false) {
-				utils.showAlert('Erro!', check.messages, 'alert-error');
-			} else {
-				utils.removeValidationError(target.id);
-				$('.alert').hide();
-			}
-		},
-
-		getParameterByName : function(name) {
-			name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
-			var regexS = "[\\?&]" + name + "=([^&#]*)";
-			var regex = new RegExp(regexS);
-			var results = regex.exec(window.location.href);
-			if (results == null)
-				return "";
-			else
-				return decodeURIComponent(results[1].replace(/\+/g, " "));
-		},
-
-		backListEvents : function() {
-			var that = this;
-			console.log("voltando para a lista de midias");
-			window.setTimeout(function() {
-				that.navigate('sintsview/showMedias');
-			}, 1500);
-		},
-
 		resfresh : function(time, functionRefresh) {
 			if (this.intervalName) {
 				clearInterval(this.intervalName);
@@ -253,7 +132,7 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 			}, time * 1000 || 30000);
 		},
 
-		markActiveItem : function(itemId) {
+markActiveItem : function(itemId) {
 			try {
 				var itens = $('.nav .sub li a');
 				itens.parent().parent().removeClass('show')
@@ -273,25 +152,8 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 			}
 		},
 
-		adjustMapSize : function() {
-			$(function() {
-				$('#map').height($(window).height() - 122);
-				$('#map').width($(window).width());
-				$('#over_map').height($(window).height() - 122);
-				$('#_GMapContainer').height($(window).height() - 122);
-			});
-			$(window).bind('resize load', function(e) {
-				$('#map').height($(window).height() - 122);
-				$('#_GMapContainer').height($(window).height() - 122);
-				$('#map').width($(window).width());
-				$('#_GMapContainer').width($(window).width());
-				$('#over_map').height($(window).height() - 122);
-			})
-		},
-
 		// Para uso dessa função é necessário a existencia de um div com
 		// id="messages"
-
 		showSuccessMessage : function(message, containerMessage) {
 			this.showMessage('success', message, containerMessage);
 		},
@@ -365,47 +227,6 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 				error : errorFunction
 			});
 		},
-
-		showChooseFile : function(inputFileName, formId, successFunction, errorFunction) {
-			$("#" + inputFileName).trigger('click');
-			$("#" + inputFileName).change(function() {
-				var form = $('#' + formId);
-				if (form) {
-					form.ajaxSubmit({
-						success : successFunction,
-						error : errorFunction
-					});
-				}
-			});
-		},
-
-		validateInput : function(grupo, elemento) {
-			var divGrupo = $('#' + grupo);
-			var inputElemento = $('#' + elemento);
-			if (inputElemento.val() == null || inputElemento.val() == '') {
-				divGrupo.addClass('has-error');
-				inputElemento.change(function(evt) {
-					var input = $(evt.target);
-					if (input.val().length > 0) {
-						divGrupo.removeClass('has-error');
-					}
-				});
-				return true;
-			}
-			return false;
-		},
-
-		// camba da porra!
-		hasInvalidFields : function(map) {
-			var keys = map.keys();
-			var validations = new Col.Set();
-			for (var index = 0; index < keys.length; index++) {
-				var key = keys[index];
-				var value = map.get(key)
-				validations.add(this.validateInput(key, value));
-			}
-			return validations.contains(true);
-		},
 		clear : function(element) {
 			var inputElemento = $('#' + element);
 
@@ -419,24 +240,6 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 			}
 
 		},
-		loadCombo : function(combo, collection, view, fieldName) {
-			var that = this;
-			collection.fetch({
-				success : function(_collection, _resp, _options) {
-					collection.each(function(type) {
-						combo.append('<option value=' + type.get('id') + '>' + type.get('name') + '</option>');
-					});
-					if (view.model) {
-						combo.val(view.model.get(fieldName));
-					} else {
-						combo.val('');
-					}
-				},
-				error : function(model, xhr, options) {
-					that.showMessage('error', 'Problemas ao carregar o combobox!');
-				}
-			});
-		},
 
 		/*
 		 * Usage: breadcrumb({iconClass:'',itemLabel:'',
@@ -444,10 +247,12 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 		 */
 		breadcrumb : function(itemMenu) {
 			if (itemMenu) {
-				var content = "<ul class='breadcrumb'>" + "	<li>" + "		<i class='fa " + itemMenu.iconClass + " '></i>" + "		<a href='#" + itemMenu.url + " '> &nbsp; " + itemMenu.itemLabel + "</a>" + "	</li>" + "	<li class='active realce-breadcumb'>" + itemMenu.itemSubFolderName + "</li>" + "</ul>";
+				var content = "<ul class='breadcrumb'>" + "	<li>" + "		<i class='fa " + itemMenu.iconClass + " '></i>" + "		<a href='#" + itemMenu.url + " '> &nbsp; " + itemMenu.itemLabel + "</a>" + "	</li>" + "	<li class='active realce-breadcumb'>" + itemMenu.itemSubFolderName
+						+ "</li>" + "</ul>";
 				$('#breadcrumbs').html(content);
 			}
 		},
+
 		// Para poder adicionar uma view dinamicamente como é feita no Layout,
 		// só que usando um CompositeView
 		appendView : function(container, view) {
@@ -735,9 +540,25 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 
 			console.error("veja no console o erro: [ window.showStoreLog()]");
 		},
-		PHONE_BEHAVIOR : maskPhoneBehavior,
-		PHONE_OPTIONS : optionsMaskPhone,
-	};
 
-	return util;
+		alert : function(options) {
+			swal(options.title || "Ok", options.text || "Alert!!", options.type || "success");
+		},
+
+		confirm : function(options) {
+			swal({
+				title : options.title || "IMPORTANTE!",
+				text : options.text || "Are You Sure?",
+				type : options.type || "error",
+				showCancelButton : true,
+				closeOnConfirm : false,
+				showLoaderOnConfirm : true,
+			}, function() {
+				if (options.onConfirm) {
+					options.onConfirm();
+				}
+			});
+		}
+
+	};
 });

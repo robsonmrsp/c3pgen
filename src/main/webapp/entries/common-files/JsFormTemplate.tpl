@@ -3,7 +3,6 @@ define(function(require) {
 	var _ = require('adapters/underscore-adapter');
 	var $ = require('adapters/jquery-adapter');
 	var util = require('utilities/utils');
-	var JSetupView = require('views/core/JSetupView');
 	var JSetup = require('views/components/JSetup');
 
 	var TemplateForm${entity.name}s = require('text!views/${firstLower(entity.name)}/tpl/Form${entity.name}Template.html');
@@ -36,7 +35,7 @@ define(function(require) {
 	</#list>
 	</#if>			
 	
-	var Form${entity.name}s = JSetupView.extend({
+	var Form${entity.name}s = JSetup.View.extend({
 		template : _.template(TemplateForm${entity.name}s),
 
 		/** The declared form Regions. */

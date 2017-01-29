@@ -4,7 +4,6 @@ define(function(require) {
 	var util = require('utilities/utils');
 
 	var JSetup = require('views/components/JSetup');
-	var JSetupView = require('views/core/JSetupView');
 
 	var MultiselectModal${entity.name}Template = require('text!views/modalComponents/tpl/MultiselectModal${entity.name}Template.html');
 	var ${entity.name}PageCollection = require('collections/${entity.name}PageCollection');
@@ -46,7 +45,7 @@ define(function(require) {
 		</#if>
 	</#list>
 
-	var MultiselectModal${entity.name} = JSetupView.extend({
+	var MultiselectModal${entity.name} = JSetup.View.extend({
 		template : _.template(MultiselectModal${entity.name}Template),
 
 		/** The declared form Regions. */
@@ -319,12 +318,14 @@ define(function(require) {
 		deleteModel : function(model) {
 			var that = this;
 			
-			util.Bootbox.confirm("Tem certeza que deseja remover o registro [ " + model.get('id') + " ] ?", function(yes) {
-				if (yes) {
+			util.confirm({
+				title : "Importante",
+				text : "Tem certeza que deseja remover o registro [ " + model.get('id') + " ] ?",
+				onConfirm : function() {
 					that.principalCollection.remove(model);
+					util.alert({title : "Concluido", text : "Registro removido com sucesso!"});
 				}
-			});
-			
+			});			
 		},
 		
 		getModalColumns : function() {

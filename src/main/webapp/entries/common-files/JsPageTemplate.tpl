@@ -2,8 +2,6 @@
 define(function(require) {
 	var util = require('utilities/utils');
 	var JSetup = require('views/components/JSetup');
-
-	var JSetupView = require('views/core/JSetupView');
 	
 	var ${entity.name}Model = require('models/${entity.name}Model');
 	var ${entity.name}PageCollection = require('collections/${entity.name}PageCollection');
@@ -39,7 +37,7 @@ define(function(require) {
 	</#list>
 	</#if>			
 
-	var Page${entity.name} = JSetupView.extend({
+	var Page${entity.name} = JSetup.View.extend({
 		template : _.template(Page${entity.name}Template),
 
 		/** The declared form Regions. */
@@ -361,20 +359,17 @@ define(function(require) {
 		deleteModel : function(model) {
 			var that = this;
 			
-			var modelTipo = new ${entity.name}Model({
-				id : model.id,
-			});
+			var modelTipo = new ${entity.name}Model({id : model.id});
 			
-			util.Bootbox.confirm("Tem certeza que deseja remover o registro [ " + model.get('id') + " ] ?", function(yes) {
-				if (yes) {
+			util.confirm({
+				title : "Importante",
+				text : "Tem certeza que deseja remover o registro [ " + model.get('id') + " ] ?",
+				onConfirm : function() {
 					modelTipo.destroy({
 						success : function() {
 							that.${firstLower(entity.name)}s.remove(model);
-							util.showSuccessMessage('${firstUpper(entity.displayName)!firstUpper(entity.name)} removido com sucesso!');
+							util.alert({title : "Concluido", text : "Registro removido com sucesso!"});
 						},
-						error : function(_model, _resp) {
-							util.showErrorMessage('Problema ao remover o registro',_resp);
-						}
 					});
 				}
 			});
