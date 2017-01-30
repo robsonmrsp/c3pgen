@@ -461,7 +461,8 @@
 								<cssSourceFile>../vendor/chosen_v1.6.2/chosen.css</cssSourceFile>
 								<cssSourceFile>../vendor/chosen_v1.6.2/bootstrap-chosen.css</cssSourceFile>
 								<cssSourceFile>../vendor/Backgrid.ColumnManager/lib/Backgrid.ColumnManager.css</cssSourceFile>
-								
+								<cssSourceFile>../vendor/sweetalert-1.1.3/dist/sweetalert.css</cssSourceFile>
+
 								<cssSourceFile>custom.css</cssSourceFile>
 							</cssSourceFiles>
 							<cssFinalFile>main-built.css</cssFinalFile>
