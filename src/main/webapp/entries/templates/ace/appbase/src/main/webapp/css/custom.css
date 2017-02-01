@@ -85,8 +85,14 @@
 	padding: 8px !important;
 }
 
+
+	
 .expand-col {
-	width: 80px !important;
+	width: 30px !important;
+	text-align: center !important;
+}
+.colExpand {
+	width: 30px !important;
 	text-align: center !important;
 }
 
