@@ -80,7 +80,7 @@
 		 *           Underscore template function that takes a mandatory `label`
 		 *           parameter.
 		 */
-		title : _.template('Page <%- label %>'),
+		title : _.template('Página {{ label }}'),
 
 		/**
 		 * @property {boolean} isRewind Whether this handle represents a rewind
@@ -300,7 +300,7 @@
 			// robson
 			if (this.collection.size() == 0) {
 				state.currentPage = 1
-				state.lastPage = 0	;
+				state.lastPage = 0;
 				state.totalPages = null
 				state.totalRecords = null
 			}
