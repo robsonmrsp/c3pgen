@@ -1,0 +1,30 @@
+- name: EvolucaoProcedimento
+  hasOwner: false 
+  displayName: Evolucao procedimento
+  tableName: GSH_EVOLUCAO_PROCEDIMENTO
+  attributes:                     
+  relationships:                     
+  - name: evolucao             
+    type: ManyToOne
+    model: Evolucao                       
+    displayName: Evolucao
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome
+  - name: procedimento             
+    type: ManyToOne
+    model: Procedimento                       
+    displayName: Procedimento
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome
+  - name: problemaDente             
+    type: ManyToOne
+    model: ProblemaDente                       
+    displayName: Problema dente
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome

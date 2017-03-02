@@ -1,0 +1,11 @@
+- name: Cid
+  hasOwner: false 
+  displayName: Cid
+  tableName: GSH_CID
+  attributes:                     
+  relationships:                     
+  - name: atendimentoOdontologicos
+    type: OneToMany
+    ownerName: cid
+    model: AtendimentoOdontologico                       
+    displayName: Atendimento odontologico

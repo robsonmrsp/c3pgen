@@ -1,0 +1,27 @@
+- name: InfoDente
+  hasOwner: false 
+  displayName: Info dente
+  tableName: GSH_INFO_DENTE
+  attributes:                     
+  relationships:                     
+  - name: problemaDentes
+    type: OneToMany
+    ownerName: infoDente
+    model: ProblemaDente                       
+    displayName: Problema dente
+  - name: tratamento             
+    type: ManyToOne
+    model: Tratamento                       
+    displayName: Tratamento
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome
+  - name: localProblema             
+    type: ManyToOne
+    model: LocalProblema                       
+    displayName: Local problema
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome

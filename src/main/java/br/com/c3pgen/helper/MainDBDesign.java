@@ -33,8 +33,8 @@ public class MainDBDesign {
 		// File("C:\\cyg\\home\\robso\\repos\\mercadodelivery\\src\\main\\resources\\c3p-files\\mercado-delivery.xml");
 //		String string = "C:\\cyg\\home\\robson\\repos\\c3pgen\\in\\qualidade\\.xml";
 
-		String string = "C:\\cyg\\home\\robson\\repos\\c3pgen\\in\\locadora\\Locadora.xml";
-		// "G:\\cyg\\home\\robso\\repos\\c3pgen\\in\\handoverTaxi\\qualidade.xml";
+		String string = "C:\\cyg\\home\\robson\\repos\\c3pgen\\in\\aghos\\tratamento_odontologico.xml";
+
 		File source = new File(string);
 		DBModel example = null;
 		try {
@@ -51,7 +51,7 @@ public class MainDBDesign {
 			fileLines.add("- name: " + nomeDaClasse);
 			fileLines.add("  hasOwner: false ");
 			fileLines.add("  displayName: " + Util.firstUpperCaseOnly(table.getTablename()).replaceAll("_", " "));
-			fileLines.add("  tableName: " + table.getTablename().toUpperCase());
+			fileLines.add("  tableName: GSH_" + table.getTablename().toUpperCase());
 			fileLines.add("  attributes:                     ");
 
 			ApplicationEntity applicationEntity = new ApplicationEntity(nomeDaClasse, nomeDaClasse);

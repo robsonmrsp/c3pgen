@@ -1,0 +1,60 @@
+- name: AtendimentoOdontologico
+  hasOwner: false 
+  displayName: Atendimento odontologico
+  tableName: GSH_ATENDIMENTO_ODONTOLOGICO
+  attributes:                     
+  - name: primeiroAtendimento
+    tableFieldName: PRIMEIRO_ATENDIMENTO
+    required: false
+    showInPages: false
+    displayName: Primeiro atendimento
+    type: 
+      className: Boolean
+  relationships:                     
+  - name: evolucaos
+    type: OneToMany
+    ownerName: atendimentoOdontologico
+    model: Evolucao                       
+    displayName: Evolucao
+  - name: atendimentoOdontologicoHasVigilancias
+    type: OneToMany
+    ownerName: atendimentoOdontologico
+    model: AtendimentoOdontologicoHasVigilancia                       
+    displayName: Atendimento odontologico has vigilancia
+  - name: condutaHasAtendimentoOdontologicos
+    type: OneToMany
+    ownerName: atendimentoOdontologico
+    model: CondutaHasAtendimentoOdontologico                       
+    displayName: Conduta has atendimento odontologico
+  - name: tratamento             
+    type: ManyToOne
+    model: Tratamento                       
+    displayName: Tratamento
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome
+  - name: atendimento             
+    type: ManyToOne
+    model: Atendimento                       
+    displayName: Atendimento
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome
+  - name: cid             
+    type: ManyToOne
+    model: Cid                       
+    displayName: Cid
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome
+  - name: ciap             
+    type: ManyToOne
+    model: Ciap                       
+    displayName: Ciap
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome

@@ -1,0 +1,25 @@
+- name: TipoProblemaDente
+  hasOwner: false 
+  displayName: Tipo problema dente
+  tableName: GSH_TIPO_PROBLEMA_DENTE
+  attributes:                     
+  - name: descricao
+    tableFieldName: DESCRICAO
+    required: false
+    showInPages: false
+    displayName: Descricao
+    type: 
+      className: String
+  - name: parteDente
+    tableFieldName: PARTE_DENTE
+    required: false
+    showInPages: false
+    displayName: Parte dente
+    type: 
+      className: String
+  relationships:                     
+  - name: problemaDentes
+    type: OneToMany
+    ownerName: tipoProblemaDente
+    model: ProblemaDente                       
+    displayName: Problema dente

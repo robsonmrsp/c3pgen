@@ -1,0 +1,32 @@
+- name: LocalProblema
+  hasOwner: false 
+  displayName: Local problema
+  tableName: GSH_LOCAL_PROBLEMA
+  attributes:                     
+  - name: parteDente
+    tableFieldName: PARTE_DENTE
+    required: false
+    showInPages: false
+    displayName: Parte dente
+    type: 
+      className: String
+  - name: codigo
+    tableFieldName: CODIGO
+    required: false
+    showInPages: false
+    displayName: Codigo
+    type: 
+      className: Integer
+  - name: descricao
+    tableFieldName: DESCRICAO
+    required: false
+    showInPages: false
+    displayName: Descricao
+    type: 
+      className: String
+  relationships:                     
+  - name: infoDentes
+    type: OneToMany
+    ownerName: localProblema
+    model: InfoDente                       
+    displayName: Info dente

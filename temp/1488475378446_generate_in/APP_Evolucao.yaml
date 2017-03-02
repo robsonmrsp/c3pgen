@@ -1,0 +1,33 @@
+- name: Evolucao
+  hasOwner: false 
+  displayName: Evolucao
+  tableName: GSH_EVOLUCAO
+  attributes:                     
+  - name: descricao
+    tableFieldName: DESCRICAO
+    required: false
+    showInPages: false
+    displayName: Descricao
+    type: 
+      className: String
+  - name: outroLocal
+    tableFieldName: OUTRO_LOCAL
+    required: false
+    showInPages: false
+    displayName: Outro local
+    type: 
+      className: String
+  relationships:                     
+  - name: evolucaoProcedimentos
+    type: OneToMany
+    ownerName: evolucao
+    model: EvolucaoProcedimento                       
+    displayName: Evolucao procedimento
+  - name: atendimentoOdontologico             
+    type: ManyToOne
+    model: AtendimentoOdontologico                       
+    displayName: Atendimento odontologico
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome

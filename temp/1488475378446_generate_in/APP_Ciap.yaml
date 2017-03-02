@@ -1,0 +1,11 @@
+- name: Ciap
+  hasOwner: false 
+  displayName: Ciap
+  tableName: GSH_CIAP
+  attributes:                     
+  relationships:                     
+  - name: atendimentoOdontologicos
+    type: OneToMany
+    ownerName: ciap
+    model: AtendimentoOdontologico                       
+    displayName: Atendimento odontologico

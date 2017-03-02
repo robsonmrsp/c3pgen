@@ -1,0 +1,11 @@
+- name: Atendimento
+  hasOwner: false 
+  displayName: Atendimento
+  tableName: GSH_ATENDIMENTO
+  attributes:                     
+  relationships:                     
+  - name: atendimentoOdontologicos
+    type: OneToMany
+    ownerName: atendimento
+    model: AtendimentoOdontologico                       
+    displayName: Atendimento odontologico

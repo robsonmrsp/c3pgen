@@ -1,0 +1,18 @@
+- name: Vigilancia
+  hasOwner: false 
+  displayName: Vigilancia
+  tableName: GSH_VIGILANCIA
+  attributes:                     
+  - name: descricao
+    tableFieldName: DESCRICAO
+    required: false
+    showInPages: false
+    displayName: Descricao
+    type: 
+      className: String
+  relationships:                     
+  - name: atendimentoOdontologicoHasVigilancias
+    type: OneToMany
+    ownerName: vigilancia
+    model: AtendimentoOdontologicoHasVigilancia                       
+    displayName: Atendimento odontologico has vigilancia

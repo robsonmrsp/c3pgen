@@ -1,0 +1,41 @@
+- name: ProblemaDente
+  hasOwner: false 
+  displayName: Problema dente
+  tableName: GSH_PROBLEMA_DENTE
+  attributes:                     
+  - name: situacao
+    tableFieldName: SITUACAO
+    required: false
+    showInPages: false
+    displayName: Situacao
+    type: 
+      className: Integer
+  - name: regiao
+    tableFieldName: REGIAO
+    required: false
+    showInPages: false
+    displayName: Regiao
+    type: 
+      className: String
+  relationships:                     
+  - name: evolucaoProcedimentos
+    type: OneToMany
+    ownerName: problemaDente
+    model: EvolucaoProcedimento                       
+    displayName: Evolucao procedimento
+  - name: tipoProblemaDente             
+    type: ManyToOne
+    model: TipoProblemaDente                       
+    displayName: Tipo problema dente
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome
+  - name: infoDente             
+    type: ManyToOne
+    model: InfoDente                       
+    displayName: Info dente
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome

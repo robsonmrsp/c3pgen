@@ -1,0 +1,22 @@
+- name: AtendimentoOdontologicoHasVigilancia
+  hasOwner: false 
+  displayName: Atendimento odontologico has vigilancia
+  tableName: GSH_ATENDIMENTO_ODONTOLOGICO_HAS_VIGILANCIA
+  attributes:                     
+  relationships:                     
+  - name: atendimentoOdontologico             
+    type: ManyToOne
+    model: AtendimentoOdontologico                       
+    displayName: Atendimento odontologico
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome
+  - name: vigilancia             
+    type: ManyToOne
+    model: Vigilancia                       
+    displayName: Vigilancia
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome

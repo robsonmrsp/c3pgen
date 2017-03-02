@@ -1,0 +1,73 @@
+- name: Tratamento
+  hasOwner: false 
+  displayName: Tratamento
+  tableName: GSH_TRATAMENTO
+  attributes:                     
+  - name: dataInicio
+    tableFieldName: DATA_INICIO
+    required: false
+    showInPages: false
+    displayName: Data inicio
+    type: 
+      className: Date
+    dateFormat: DD/MM/YYYY              
+    mask: 99/99/9999                    
+    viewApproach:                        
+      type: datepicker                  
+  - name: dataFim
+    tableFieldName: DATA_FIM
+    required: false
+    showInPages: false
+    displayName: Data fim
+    type: 
+      className: Date
+    dateFormat: DD/MM/YYYY              
+    mask: 99/99/9999                    
+    viewApproach:                        
+      type: datepicker                  
+  - name: estimativaQuantidadeConsultas
+    tableFieldName: ESTIMATIVA_QUANTIDADE_CONSULTAS
+    required: false
+    showInPages: false
+    displayName: Estimativa quantidade consultas
+    type: 
+      className: Integer
+  - name: avaliacaoDescricao
+    tableFieldName: AVALIACAO_DESCRICAO
+    required: false
+    showInPages: false
+    displayName: Avaliacao descricao
+    type: 
+      className: String
+  - name: notas
+    tableFieldName: NOTAS
+    required: false
+    showInPages: false
+    displayName: Notas
+    type: 
+      className: String
+  - name: ativo
+    tableFieldName: ATIVO
+    required: false
+    showInPages: false
+    displayName: Ativo
+    type: 
+      className: Boolean
+  - name: protese
+    tableFieldName: PROTESE
+    required: false
+    showInPages: false
+    displayName: Protese
+    type: 
+      className: String
+  relationships:                     
+  - name: atendimentoOdontologicos
+    type: OneToMany
+    ownerName: tratamento
+    model: AtendimentoOdontologico                       
+    displayName: Atendimento odontologico
+  - name: infoDentes
+    type: OneToMany
+    ownerName: tratamento
+    model: InfoDente                       
+    displayName: Info dente

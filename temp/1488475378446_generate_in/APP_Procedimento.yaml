@@ -1,0 +1,11 @@
+- name: Procedimento
+  hasOwner: false 
+  displayName: Procedimento
+  tableName: GSH_PROCEDIMENTO
+  attributes:                     
+  relationships:                     
+  - name: evolucaoProcedimentos
+    type: OneToMany
+    ownerName: procedimento
+    model: EvolucaoProcedimento                       
+    displayName: Evolucao procedimento

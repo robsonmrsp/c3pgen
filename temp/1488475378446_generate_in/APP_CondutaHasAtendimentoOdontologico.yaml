@@ -1,0 +1,22 @@
+- name: CondutaHasAtendimentoOdontologico
+  hasOwner: false 
+  displayName: Conduta has atendimento odontologico
+  tableName: GSH_CONDUTA_HAS_ATENDIMENTO_ODONTOLOGICO
+  attributes:                     
+  relationships:                     
+  - name: conduta             
+    type: ManyToOne
+    model: Conduta                       
+    displayName: Conduta
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome
+  - name: atendimentoOdontologico             
+    type: ManyToOne
+    model: AtendimentoOdontologico                       
+    displayName: Atendimento odontologico
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome
