@@ -1,0 +1,62 @@
+- name: InformacaoFilme
+  hasOwner: false 
+  displayName: Informacao filme
+  tableName: INFORMACAO_FILME
+  attributes:                     
+  - name: selo
+    tableFieldName: SELO
+    required: false
+    showInPages: false
+    displayName: Selo
+    type: 
+      className: String
+  - name: valor
+    tableFieldName: VALOR
+    required: false
+    showInPages: false
+    displayName: Valor
+    type: 
+      className: Double
+  - name: quantidadeEstoque
+    tableFieldName: QUANTIDADE_ESTOQUE
+    required: false
+    showInPages: false
+    displayName: Quantidade estoque
+    type: 
+      className: Integer
+  - name: dataCompra
+    tableFieldName: DATA_COMPRA
+    required: false
+    showInPages: false
+    displayName: Data compra
+    type: 
+      className: Date
+    dateFormat: DD/MM/YYYY              
+    mask: 99/99/9999                    
+    viewApproach:                        
+      type: datepicker                  
+  - name: percentualDesconto
+    tableFieldName: PERCENTUAL_DESCONTO
+    required: false
+    showInPages: false
+    displayName: Percentual desconto
+    type: 
+      className: Double
+  - name: lancamento
+    tableFieldName: LANCAMENTO
+    required: false
+    showInPages: false
+    displayName: Lancamento
+    type: 
+      className: Boolean
+    viewApproach: 
+      type: check
+  relationships:                     
+  - name: filme             
+    type: ManyToOne
+    model: Filme                       
+    displayName: Filme
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome

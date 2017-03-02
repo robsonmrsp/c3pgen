@@ -13,15 +13,11 @@
     <buildCommand>
       <name>org.eclipse.wst.validation.validationbuilder</name>
     </buildCommand>
-    <buildCommand>
-      <name>org.eclipse.babel.editor.rbeBuilder</name>
-    </buildCommand>
   </buildSpec>
   <natures>
     <nature>org.eclipse.wst.common.project.facet.core.nature</nature>
     <nature>org.eclipse.jdt.core.javanature</nature>
     <nature>org.eclipse.wst.common.modulecore.ModuleCoreNature</nature>
     <nature>org.eclipse.jem.workbench.JavaEMFNature</nature>
-    <nature>com.jaspersoft.studio.babel.editor.rbeNature</nature>
   </natures>
 </projectDescription>

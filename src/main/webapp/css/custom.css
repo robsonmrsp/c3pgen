@@ -495,3 +495,6 @@ ul.editor-list li:hover a {
 	margin-right: 2px !important;
 	border-radius: 3px !important;
 }
+.name-item :HOVER {
+	background-color: #e4e5e7 
+}

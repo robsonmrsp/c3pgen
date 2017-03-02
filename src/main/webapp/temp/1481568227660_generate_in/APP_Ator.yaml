@@ -1,0 +1,46 @@
+- name: Ator
+  hasOwner: false 
+  displayName: Ator
+  tableName: ATOR
+  attributes:                     
+  - name: nome
+    tableFieldName: NOME
+    required: false
+    showInPages: false
+    displayName: Nome
+    type: 
+      className: String
+  - name: dataNascimento
+    tableFieldName: DATA_NASCIMENTO
+    required: false
+    showInPages: false
+    displayName: Data nascimento
+    type: 
+      className: Date
+    dateFormat: DD/MM/YYYY              
+    mask: 99/99/9999                    
+    viewApproach:                        
+      type: datepicker                  
+  - name: biografia
+    tableFieldName: BIOGRAFIA
+    required: false
+    showInPages: false
+    maxLen: 1000
+    viewApproach:                        
+      type: textarea                  
+    displayName: Biografia
+    type: 
+      className: String
+  - name: foto
+    tableFieldName: FOTO
+    required: false
+    showInPages: false
+    displayName: Foto
+    type: 
+      className: String
+  relationships:                     
+  - name: filmeHasAtors
+    type: OneToMany
+    ownerName: ator
+    model: FilmeHasAtor                       
+    displayName: Filme has ator

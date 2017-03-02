@@ -26,7 +26,7 @@ define(function(require) {
 		},
 
 		checkbox : function(evt) {
-			this.model.set('checked', this.ui.checkbox.is('checked'));
+			this.model.set('checked', this.ui.checkbox.is(':checked'));
 		},
 		
 		removeItem : function() {

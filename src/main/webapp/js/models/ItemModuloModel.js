@@ -19,7 +19,7 @@ define(function(require) {
 		defaults : {
 			id : null,
 			name : '',
-			checked : true,
+			checked : false,
 
 			yamlContent : '',
 			modulo : null,

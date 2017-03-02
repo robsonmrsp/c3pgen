@@ -15,6 +15,8 @@ import javax.persistence.Table;
 
 import org.hibernate.envers.Audited;
 
+import br.com.c3pgen.base.util.Util;
+
 /**
  * generated: 03/09/2015 14:51:48 Entity [name=AttributeType, displayName=Tipo
  * do atributo, hasOwner=true, attributes=[Attribute [name=className,
@@ -75,7 +77,8 @@ public class AttributeType extends AbstractTimestampEntity {
 	}
 
 	public AttributeType(String className) {
-		this.className = className;
+
+		this.className = Util.firstUpperCase(className);
 	}
 
 	public Integer getId() {
@@ -87,11 +90,11 @@ public class AttributeType extends AbstractTimestampEntity {
 	}
 
 	public String getClassName() {
-		return className;
+		return Util.firstUpperCase(className);
 	}
 
 	public void setClassName(String className) {
-		this.className = className;
+		this.className = Util.firstUpperCase(className);
 	}
 
 	public String getFormat() {

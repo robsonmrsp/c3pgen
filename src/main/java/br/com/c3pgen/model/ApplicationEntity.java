@@ -111,6 +111,9 @@ public class ApplicationEntity extends AbstractTimestampEntity {
 	}
 
 	public String getDisplayName() {
+		if (displayName == null) {
+			setDisplayName(this.name);
+		}
 		return displayName;
 	}
 
@@ -251,7 +254,7 @@ public class ApplicationEntity extends AbstractTimestampEntity {
 				return retAttr;
 			}
 		}
-		
+
 		if (retAttr.size() == 0 && getAttributes().size() > 0) {
 			retAttr.add(getAttributes().get(0));
 		}

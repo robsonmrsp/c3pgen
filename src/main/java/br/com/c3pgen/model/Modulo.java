@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -40,6 +41,7 @@ public class Modulo extends AbstractTimestampEntity {
 
 	@OneToMany(mappedBy = "modulo")
 	@Cascade(CascadeType.ALL)
+	@OrderBy("name ASC")
 	private List<ItemModulo> items;
 	@ManyToOne
 	@JoinColumn(name = "id_client")

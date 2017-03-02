@@ -15,13 +15,13 @@
 					</label>
 				</div>
 					<#elseif att.viewApproach.type  == 'datepicker'  >
-				<div id="groupInput${firstUpper(att.name)}Container" class="form-group">
-					<label class="control-label" for="input${firstUpper(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}</label>
+				<div id="groupInput${firstUpper(att.name)}Container" class="form-group input-append">
+					<label class="control-label" for="input${firstUpper(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}  </label>
 					<div id="groupInput${firstUpper(att.name)}" class="input-group date" data-date-format="${att.dateFormat}">
-						<input id="input${firstUpper(att.name)}" placeholder="Pesquise pela ${firstUpper(att.displayName)}" type="text" class="form-control append-left" />
-						<div class="input-group-addon	append-right">
-							<span class="fa fa-calendar"></span>
-						</div>
+						<input id="input${firstUpper(att.name)}" placeholder="Escolha ou digite uma data." type="text" class="form-control append-left"  />
+						<span class="input-group-calendar	 add-on">
+							<span class="icon-white icon-calendar"></span>
+						</span>
 					</div>
 				</div>
 					<#elseif att.viewApproach.type  == 'radiogroup'>
@@ -77,7 +77,7 @@
 						<#if rel.viewApproach.textField??>							
 						<input id="input${firstUpper(rel.name)}${firstUpper(rel.viewApproach.textField)}" placeholder="Pesquise pelo ${firstUpper(rel.displayName)}"  type="text" class="form-control append-left" />
 						</#if>
-						<span class="add-on " id="search${firstUpper(rel.name)}Modal" data-toggle="modal">
+						<span class="input-group-search	 add-on " id="search${firstUpper(rel.name)}Modal" data-toggle="modal">
 							<span class="icon-white icon-search"></span>
 						</span>
 					</div>

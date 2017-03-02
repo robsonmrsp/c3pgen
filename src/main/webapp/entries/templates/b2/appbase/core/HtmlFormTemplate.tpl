@@ -80,7 +80,7 @@
 						<#if rel.viewApproach.textField??>							
 						<input id="input${firstUpper(rel.name)}${firstUpper(rel.viewApproach.textField)}" placeholder="Escolha um ${firstUpper(rel.displayName)}"  type="text" class="form-control append-left" value="{{${firstLower(rel.name)} && ${firstLower(rel.name)}.${firstLower(rel.viewApproach.textField)}}}" />
 						</#if>
-						<span class="add-on" id="search${firstUpper(rel.name)}Modal" data-toggle="modal">
+						<span class="input-group-search	 add-on" id="search${firstUpper(rel.name)}Modal" data-toggle="modal">
 							<span class="icon-white icon-search"></span>
 						</span>
 					</div>

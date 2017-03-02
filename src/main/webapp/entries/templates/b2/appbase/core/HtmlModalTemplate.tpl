@@ -20,15 +20,16 @@
 								</label>
 							</div>
 							<#elseif att.viewApproach.type  == 'datepicker'  >
-							<div id="groupInputModal${firstUpper(att.name)}Container" class="form-group">
-								<label class="control-label" for="inputModal${firstUpper(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}</label>
+							<div id="groupInputModal${firstUpper(att.name)}Container" class="form-group input-append">
+								<label class="control-label" for="inputModal${firstUpper(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}  </label>
 								<div id="groupInputModal${firstUpper(att.name)}" class="input-group date" data-date-format="${att.dateFormat}">
-									<input id="inputModal${firstUpper(att.name)}" type="text" class="form-control append-left"  />
-									<div class="input-group-addon	append-right">
-										<span class="fa fa-calendar"></span>
-									</div>
+									<input id="inputModal${firstUpper(att.name)}" type="text" class="form-control append-left" " />
+									<span class="input-group-calendar	 add-on">
+										<span class="icon-white icon-calendar"></span>
+									</span>
 								</div>
-							</div>
+							</div>							
+						
 							<#elseif att.viewApproach.type  == 'radiogroup'>
 							<div id="groupInputModal${firstUpper(att.name)}" class="form-group">
 								<label class="control-label" for="inputModal${firstUpper(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}</label>

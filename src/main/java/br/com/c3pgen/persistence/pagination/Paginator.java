@@ -86,6 +86,9 @@ public class Paginator<T> {
 				}
 			}
 		}
+		else {
+			searchCriteria.addOrder(Order.desc("id"));
+		}
 		return searchCriteria;
 	}
 

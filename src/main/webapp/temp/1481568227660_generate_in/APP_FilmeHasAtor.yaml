@@ -1,0 +1,22 @@
+- name: FilmeHasAtor
+  hasOwner: false 
+  displayName: Filme has ator
+  tableName: FILME_HAS_ATOR
+  attributes:                     
+  relationships:                     
+  - name: filme             
+    type: ManyToOne
+    model: Filme                       
+    displayName: Filme
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome
+  - name: ator             
+    type: ManyToOne
+    model: Ator                       
+    displayName: Ator
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome

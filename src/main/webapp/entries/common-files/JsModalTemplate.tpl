@@ -224,7 +224,7 @@ define(function(require) {
 			{
 				name : "${att.name}",
 				editable : false,
-				sortable : true,
+				sortable : false,
 				label 	 : "${firstUpper(att.displayName)!firstUpper(att.name)}",
 				<#if isNumeric(att.type.className)>
 				cell : CustomNumberCell.extend({}),

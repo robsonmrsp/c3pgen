@@ -1,0 +1,119 @@
+- name: Funcionario
+  hasOwner: false 
+  displayName: Funcionario
+  tableName: FUNCIONARIO
+  attributes:                     
+  - name: nome
+    tableFieldName: NOME
+    required: false
+    showInPages: false
+    displayName: Nome
+    type: 
+      className: String
+  - name: cpf
+    tableFieldName: CPF
+    required: false
+    showInPages: false
+    displayName: Cpf
+    type: 
+      className: String
+  - name: telefone
+    tableFieldName: TELEFONE
+    required: false
+    showInPages: false
+    displayName: Telefone
+    type: 
+      className: String
+  - name: ativo
+    tableFieldName: ATIVO
+    required: false
+    showInPages: false
+    displayName: Ativo
+    type: 
+      className: Boolean
+    viewApproach: 
+      type: check
+  - name: observacao
+    tableFieldName: OBSERVACAO
+    required: false
+    showInPages: false
+    maxLen: 999
+    viewApproach:                        
+      type: textarea                  
+    displayName: Observacao
+    type: 
+      className: String
+  - name: salario
+    tableFieldName: SALARIO
+    required: false
+    showInPages: false
+    displayName: Salario
+    type: 
+      className: Double
+  - name: percentualComissao
+    tableFieldName: PERCENTUAL_COMISSAO
+    required: false
+    showInPages: false
+    displayName: Percentual comissao
+    type: 
+      className: Double
+  - name: dataNascimento
+    tableFieldName: DATA_NASCIMENTO
+    required: false
+    showInPages: false
+    displayName: Data nascimento
+    type: 
+      className: Date
+    dateFormat: DD/MM/YYYY              
+    mask: 99/99/9999                    
+    viewApproach:                        
+      type: datepicker                  
+  - name: dataHoraContratacao
+    tableFieldName: DATA_HORA_CONTRATACAO
+    required: false
+    showInPages: false
+    displayName: Data hora contratacao
+    type: 
+      className: Datetime
+    dateFormat: DD/MM/YYYY HH:MM             
+    mask: 99/99/9999 99:99                  
+    viewApproach:                        
+      type: datepicker                  
+  - name: dataHoraDemissao
+    tableFieldName: DATA_HORA_DEMISSAO
+    required: false
+    showInPages: false
+    displayName: Data hora demissao
+    type: 
+      className: Datetime
+    dateFormat: DD/MM/YYYY HH:MM             
+    mask: 99/99/9999 99:99                  
+    viewApproach:                        
+      type: datepicker                  
+  - name: rg
+    tableFieldName: RG
+    required: false
+    showInPages: false
+    displayName: Rg
+    type: 
+      className: String
+  - name: celular
+    tableFieldName: CELULAR
+    required: false
+    showInPages: false
+    displayName: Celular
+    type: 
+      className: String
+  - name: foto
+    tableFieldName: FOTO
+    required: false
+    showInPages: false
+    displayName: Foto
+    type: 
+      className: String
+  relationships:                     
+  - name: locacaos
+    type: OneToMany
+    ownerName: funcionario
+    model: Locacao                       
+    displayName: Locacao

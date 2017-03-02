@@ -352,7 +352,7 @@ define(function(require) {
 			{
 				name : "${firstLower(rel.name)}.${rel.viewApproach.comboVal}",
 				editable : false,
-				sortable : true,  
+				sortable : false,  
 				label : "${rel.displayName}",
 				cell : CustomStringCell.extend({
 					fieldName : '${firstLower(rel.name)}.${rel.viewApproach.comboVal}',

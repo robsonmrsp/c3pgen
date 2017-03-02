@@ -81,9 +81,11 @@
 					
 					<#if entity.relationships??>	
 					<#list entity.relationships as rel>
+						<#if rel.fk?? &&  (rel.type == 'ManyToOne' ||  rel.type == 'OneToOne')>	
 						<if test=" ${firstLower(entity.name)}.${firstLower(rel.name)!firstLower(rel.model)} != null ">
 					    	AND ${uppercase(rel.fk)} = ${r"#{"}  ${ firstLower(entity.name)}.${firstLower(rel.name)!firstLower(rel.model)} ${r"}"}
-					    </if> 
+					    </if>
+					    </#if>				 
 					</#list>
 					</#if>												 
 		                 ) INDICE
@@ -109,9 +111,11 @@
 	</#if>		
 	<#if entity.relationships??>	
 	<#list entity.relationships as rel>
+		<#if rel.fk?? &&  (rel.type == 'ManyToOne' ||  rel.type == 'OneToOne')>
 		<if test=" ${firstLower(entity.name)}.${firstLower(rel.name)!firstLower(rel.model)} != null ">
 	    	AND ${uppercase(rel.fk)} = ${r"#{"}  ${ firstLower(entity.name)}.${firstLower(rel.name)!firstLower(rel.model)} ${r"}" }
 	    </if> 
+		</#if>												 
 	</#list>
 	</#if>												 
 								 
@@ -141,10 +145,18 @@
             (   
 		<#if entity.attributes??>
 				  ${entity.pk} 
-		<#list entity.attributes as att>
+			<#list entity.attributes as att>
 	    		, ${uppercase(att.tableFieldName!att.name)}  
-		</#list>
+			</#list>
 		</#if>
+		<#if entity.relationships??>		
+			<#list entity.relationships as rel>
+				<#if rel.fk?? &&  (rel.type == 'ManyToOne' ||  rel.type == 'OneToOne')>
+				, ${uppercase(rel.fk)}
+				</#if>												 
+			</#list>
+		</#if>
+		
             )
             VALUES
             (
@@ -153,7 +165,14 @@
         <#list entity.attributes as att>
 				, ${r"#{"} ${att.name}  , jdbcType = ${getMybatisJdbcType(att.type.className)}  ${r"}"}
 		</#list>
-		</#if>	
+		</#if>
+		<#if entity.relationships??>				
+			<#list entity.relationships as rel>
+				<#if rel.fk?? &&  (rel.type == 'ManyToOne' ||  rel.type == 'OneToOne')>
+				, ${r"#{"} ${rel.name}.id  , jdbcType = NUMERIC  ${r"}"}
+				</#if>												 
+			</#list>		
+		</#if>												 
             )
 	 </insert>   
 
@@ -169,6 +188,16 @@
 			</if>	
 		</#list>
 		</#if>	
+		<#if entity.relationships??>				
+			<#list entity.relationships as rel>
+				<#if rel.fk?? &&  (rel.type == 'ManyToOne' ||  rel.type == 'OneToOne')>
+			<if test=" ${rel.name} != null ">				
+			, ${uppercase(rel.fk)} = ${r"#{"} ${rel.name}.id ,  jdbcType = NUMERIC ${r"}" }
+			</if>			
+				</#if>
+			</#list>		
+		</#if>												 
+		
  		WHERE 
             ${entity.pk} = ${r"#{"} id ${r"}"}
     </update>

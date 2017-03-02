@@ -1,0 +1,11 @@
+- name: Cep
+  hasOwner: false 
+  displayName: Cep
+  tableName: CEP
+  attributes:                     
+  relationships:                     
+  - name: enderecos
+    type: OneToMany
+    ownerName: cep
+    model: Endereco                       
+    displayName: Endereco

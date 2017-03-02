@@ -1,0 +1,25 @@
+- name: Genero
+  hasOwner: false 
+  displayName: Genero
+  tableName: GENERO
+  attributes:                     
+  - name: nome
+    tableFieldName: NOME
+    required: false
+    showInPages: false
+    displayName: Nome
+    type: 
+      className: String
+  - name: descricao
+    tableFieldName: DESCRICAO
+    required: false
+    showInPages: false
+    displayName: Descricao
+    type: 
+      className: String
+  relationships:                     
+  - name: filmes
+    type: OneToMany
+    ownerName: genero
+    model: Filme                       
+    displayName: Filme
