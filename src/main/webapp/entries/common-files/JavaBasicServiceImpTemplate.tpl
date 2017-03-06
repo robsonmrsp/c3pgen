@@ -58,7 +58,7 @@ public class ${entity.name}ServiceImp implements ${entity.name}Service {
 	@Override
 	public Pager<${entity.name}> all(PaginationParams paginationParams, Client owner) {
 		Pagination<${entity.name}> pagination = dao${entity.name}.getAll(paginationParams, owner);
-		return new Pager<${entity.name}>(pagination.getResults(), 0, pagination.getTotalRecords());
+		return new Pager<${entity.name}>(pagination.getResults(), paginationParams.getPage(), pagination.getTotalRecords());
 	}
 	
 		@Override
