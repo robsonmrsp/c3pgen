@@ -1,0 +1,7 @@
+Changelog do GERADO
+
+v0.92:
+- Removido o bootbox e substituido por switAlert.
+- etc
+
+v0.91:
