@@ -33,7 +33,7 @@ public class MainDBDesign {
 		// File("C:\\cyg\\home\\robso\\repos\\mercadodelivery\\src\\main\\resources\\c3p-files\\mercado-delivery.xml");
 //		String string = "C:\\cyg\\home\\robson\\repos\\c3pgen\\in\\qualidade\\.xml";
 
-		String string = "C:\\cyg\\home\\robson\\repos\\c3pgen\\in\\aghos\\tratamento_odontologico.xml";
+		String string = "C:\\cyg\\home\\robson\\repos\\c3pgen\\in\\qualidade\\classificacao.xml";
 
 		File source = new File(string);
 		DBModel example = null;

@@ -1,0 +1,11 @@
+- name: Variedade
+  hasOwner: false 
+  displayName: Variedade
+  tableName: GSH_VARIEDADE
+  attributes:                     
+  relationships:                     
+  - name: classificacaos
+    type: OneToMany
+    ownerName: variedade
+    model: Classificacao                       
+    displayName: Classificacao
