@@ -1,6 +1,12 @@
 Changelog do GERADO
 
-v0.92:
+v0.93: em andamento
+- Melhoria no tratamento do campo visivel nos modais, combo e multiselect
+- Correção do nome do template no modal.
+- Copiado o Backgrid.ColumnManager para o vendor do commons-files
+- Geração do AuthorizationServiceImp.
+
+v0.92 (06/03/2017 14:29:39)
 - Removido o bootbox e substituido por switAlert.
 - etc
 
