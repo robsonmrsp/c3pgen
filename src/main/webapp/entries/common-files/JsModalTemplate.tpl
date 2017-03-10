@@ -5,7 +5,7 @@ define(function(require) {
 
 	var JSetup = require('views/components/JSetup');
 
-	var ${entity.name}Modal = require('text!views/modalComponents/tpl/${entity.name}ModalTemplate.html');
+	var Modal${entity.name}Template = require('text!views/modalComponents/tpl/Modal${entity.name}Template.html');
 	var ${entity.name}PageCollection = require('collections/${entity.name}PageCollection');
 	<#list entity.attributes as att>
 	<#if att.showInPages >
@@ -39,7 +39,7 @@ define(function(require) {
 	</#list>
 
 	var ${entity.name}Modal = JSetup.View.extend({
-		template : _.template(${entity.name}Modal),
+		template : _.template(Modal${entity.name}Template),
 
 		/** The declared form Regions. */
 		regions : {

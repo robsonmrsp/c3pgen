@@ -1,4 +1,4 @@
-package br.com.locadora.core.security;
+package ${application.corePackage}.security;
 
 import java.util.ArrayList;
 import java.util.Collection;

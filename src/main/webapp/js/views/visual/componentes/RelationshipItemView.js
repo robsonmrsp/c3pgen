@@ -93,7 +93,8 @@ define(function(require) {
 					hiddenField : 'id',
 					type : C3P.notEmptyVal(this.ui.inputViewApproach),
 					comboVal : C3P.notEmptyVal(this.ui.inputComboVal),
-					textField : C3P.notEmptyVal(this.ui.inputTextField)
+					comboName : C3P.notEmptyVal(this.ui.inputComboVal),
+					textField : C3P.notEmptyVal(this.ui.inputTextField) || C3P.notEmptyVal(this.ui.inputComboVal)
 				},
 			};
 		},

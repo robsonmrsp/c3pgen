@@ -53,12 +53,12 @@ public class ApplicationValidator {
 				if (main.getViewApproach() != null && (main.getViewApproach().getType().equals("modal") || main.getViewApproach().getType().equals("multiselect") || main.getViewApproach().getType().equals("combo"))) {
 
 					ApplicationEntity ent = mapEntities.get(main.getModel());
-
-					if (main.getViewApproach().getTextField() == null) {
+					String showedField = main.getViewApproach().getTextField() == null ? main.getViewApproach().getComboName() : main.getViewApproach().getTextField();  
+					if (showedField == null) {
 						applicationValidatorMessages.addMessage("Na entidade " + entity.getName() + ", no relacionamento " + main.getName() + " voce precisa definir um atributo de " + main.getModel() + " para exibir no campo de texto do modal");
-					} else if (!Util.entityContainsAttribute(ent, main.getViewApproach().getTextField())) {
+					} else if (!Util.entityContainsAttribute(ent, showedField)) {
 						applicationValidatorMessages.addMessage("Na entidade " + entity.getName() + ", no relacionamento " + main.getName() + " voce precisa definir um atributo de " + main.getModel() + " para exibir no campo de texto do modal. "
-								+ main.getViewApproach().getTextField() + " Não é tributo de " + main.getModel());
+								+ showedField + " Não é tributo de " + main.getModel());
 					}
 				}
 			}

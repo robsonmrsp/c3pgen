@@ -47,8 +47,8 @@ public class Util {
 	}
 
 	public static String currentDir() {
-//		return currentDir;
-		 return templateFolder();
+		return currentDir;
+//		 return templateFolder();
 	}
 
 	private static String currentDir = Paths.get(".").toAbsolutePath().toString();

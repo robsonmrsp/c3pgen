@@ -1,4 +1,4 @@
-package br.com.locadora.model;
+package ${application.rootPackage}.model;
 
 import java.util.ArrayList;
 import java.util.Collection;
