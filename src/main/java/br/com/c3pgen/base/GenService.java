@@ -68,7 +68,7 @@ public class GenService {
 	}
 
 	private ApplicationEntity permission() {
-		ApplicationEntity permission = new ApplicationEntity("Permission","Permmissão",  "PERMISSION");
+		ApplicationEntity permission = new ApplicationEntity("Permission","Permissão",  "PERMISSION");
 
 		permission.addAttributes(new Attribute("name", "Nome", "NAME", true, true, true, AttributeType.STRING, ViewApproach.noneInstance()));
 		permission.addAttributes(new Attribute("description", "Descrição", "DESCRIPTION", true, false, true, AttributeType.STRING, ViewApproach.noneInstance()));
