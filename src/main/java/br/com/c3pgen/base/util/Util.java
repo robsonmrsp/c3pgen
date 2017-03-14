@@ -58,6 +58,22 @@ public class Util {
 		return ret;
 	}
 
+	public static String toUpperSpaceCase(String camelCaseString) {
+		String returnString = camelCaseString;
+
+		for (int index = 0; index < camelCaseString.length(); index++) {
+			char charAt = camelCaseString.charAt(index);
+			if (Character.isUpperCase(charAt)) {
+				String charStr = "" + camelCaseString.charAt(index);
+				returnString = returnString.replace(charStr, " " + charStr);
+			}
+		}
+		if (returnString.startsWith("_")) {
+			returnString = returnString.substring(1);
+		}
+		return returnString;
+	}
+
 	public static Map<String, Object> getSimpleObject(KeyValue... keyValue) {
 		Map<String, Object> map = new HashMap<String, Object>();
 
@@ -283,7 +299,7 @@ public class Util {
 
 	public static String currentDir() {
 		return currentDir;
-//		return templateFolder();
+		// return templateFolder();
 	}
 
 	public static String firstLowerCase(String verb) {
