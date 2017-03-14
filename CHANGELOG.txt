@@ -1,6 +1,11 @@
 Changelog do GERADO
 
 v0.93: em andamento
+
+Tue Mar 14 14:41:26 2017 -0300
+- Corrigido bug ao tentar criar relacionamento no Visual.
+- Corrigido o nome de Permissão que estava escrito Permmissão
+- Removendo as colunas que referenciam atributos para imagens
 - Melhoria no tratamento do campo visivel nos modais, combo e multiselect
 - Correção do nome do template no modal.
 - Copiado o Backgrid.ColumnManager para o vendor do commons-files
