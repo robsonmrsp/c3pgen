@@ -162,11 +162,6 @@ define(function(require) {
 				window.paper.on('cell:pointerup', function(_cellView, evt, x, y) {
 					if (_cellView.model.get('type') == 'html.Element') {
 						that.inspetorView.setVisualEntity(_cellView.model);
-					}
-				});
-
-				window.paper.on('cell:pointerclick', function(_cellView, evt, x, y) {
-					if (_cellView.model.get('type') == 'html.Element') {
 						if (that.activeAddRelation == true) {
 							if (that.sourceTempRelation == null) {
 								that.sourceTempRelation = _cellView;
@@ -197,6 +192,12 @@ define(function(require) {
 								window.globalVisualRelations.put(relation.id, relation);
 							}
 						}
+					}
+				});
+
+				window.paper.on('cell:pointerclick', function(_cellView, evt, x, y) {
+					if (_cellView.model.get('type') == 'html.Element') {
+						console.log("cell:pointerclick");
 					}
 				})
 				window.paper.on('blank:pointerclick', function(_cellView, evt, x, y) {
@@ -349,7 +350,7 @@ define(function(require) {
 			application.fetch({
 				success : function(_model, _resp, _options) {
 					console.log(_resp)
-				// that.modalError.showMessage(_resp);
+					// that.modalError.showMessage(_resp);
 				},
 				error : function(_model, _resp, _options) {
 					util.showMessage('error', util.getJson(_resp.responseText).legalMessage || '');

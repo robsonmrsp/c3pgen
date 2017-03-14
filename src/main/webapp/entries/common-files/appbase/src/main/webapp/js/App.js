@@ -5,17 +5,13 @@ define(function(require) {
 	var Router = require('Router');
 	var AppScripts = require('AppScripts');
 	var CorsApp = require('CorsApp');
-	var AuthUtil = require('utilities/AuthUtil');
 
 	var initialize = function() {
 		var router = new Router();
 		CorsApp.initCorsSuportWithCredentials(_, Backbone);
 		AppScripts.initialize();
-
-		AuthUtil.load(function() {
-			console.log('inicializando Router...');
-			router.start();
-		})
+		console.log('inicializando Router...');
+		router.start();
 	};
 
 	return {
