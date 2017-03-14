@@ -276,7 +276,8 @@ define(function(require) {
 			var that = this;
 			var columns = [
 			<#list entity.attributes as att>
-				<#if att.showInPages >			
+				<#if att.showInPages && att.viewApproach.type  != 'upload' >			
+	
 			{
 				name : "${att.name}",
 				sortable : true,

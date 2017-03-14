@@ -95,6 +95,7 @@ define(function(require) {
 			}, 
 			 
 			<#list entity.attributes as att>
+			<#if att.showInPages && att.viewApproach.type  != 'upload' >
 			{
 				name : "${att.name}",
 				editable : false,
@@ -106,6 +107,7 @@ define(function(require) {
 				cell 	 : "string",
 		  		</#if>	
 			}, 
+			</#if>	
 			</#list>
 			];
 			return columns;

@@ -271,7 +271,7 @@ define(function(require) {
 			var columns = [	
 
 			<#list entity.attributes as att>
-				<#if att.showInPages >			
+				<#if att.showInPages && att.viewApproach.type  != 'upload' >				
 			{
 				name : "${att.name}",
 				sortable : true,
@@ -336,7 +336,7 @@ define(function(require) {
 				headerCell : "select-all"
 			}, 
 			<#list entity.attributes as att>
-				<#if att.showInPages >			
+				<#if att.showInPages && att.viewApproach.type  != 'upload' >	
 			{
 				name : "${att.name}",
 				sortable : true,

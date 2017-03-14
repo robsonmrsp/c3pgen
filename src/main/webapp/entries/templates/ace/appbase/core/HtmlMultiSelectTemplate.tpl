@@ -36,7 +36,7 @@
 				<div class="modal-body">
 				<form id="formSearch${firstUpper(entity.name)}">
 						<#list entity.attributes as att>
-						<#if att.showInPages >
+						<#if att.showInPages && !att.basicSearch && att.type.className != 'Boolean' && att.viewApproach.type  != 'upload' && att.viewApproach.type  != 'multiselect'>
 						  <#if att.viewApproach?? >
 							<#if att.type.className == 'Boolean' && att.viewApproach.type  == 'check'  >
 							<div id="groupInputModal${firstUpper(att.name)}" class=" groupInputModal${firstUpper(att.name)} form-group col-sm-	col-md-	col-lg-   checkbox">
