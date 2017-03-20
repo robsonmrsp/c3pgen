@@ -1,0 +1,77 @@
+- name: Classificacao
+  hasOwner: false 
+  displayName: Classificação
+  tableName: GSH_CLASSIFICACAO
+  attributes:                     
+  - name: descricao
+    tableFieldName: DESCRICAO
+    required: false
+    showInPages: false
+    displayName: Descrição
+    type: 
+      className: String
+  - name: diametroMinimo
+    tableFieldName: DIAMETRO_MINIMO
+    required: false
+    showInPages: false
+    displayName: Diametro mínimo
+    type: 
+      className: Double
+  - name: diametroMaximo
+    tableFieldName: DIAMETRO_MAXIMO
+    required: false
+    showInPages: false
+    displayName: Diametro máximo
+    type: 
+      className: Double
+  - name: pesoCacho
+    tableFieldName: PESO_CACHO
+    required: false
+    showInPages: false
+    displayName: Peso cacho
+    type: 
+      className: Integer
+  - name: coloracao
+    tableFieldName: COLORACAO
+    required: false
+    showInPages: false
+    displayName: Coloração
+    type: 
+      className: Double
+  - name: brix
+    tableFieldName: BRIX
+    required: false
+    showInPages: false
+    displayName: Brix
+    type: 
+      className: String
+  - name: manchas
+    tableFieldName: MANCHAS
+    required: false
+    showInPages: false
+    displayName: Manchas
+    type: 
+      className: Double
+  - name: variacaoDiametro
+    tableFieldName: VARIACAO_DIAMETRO
+    required: false
+    showInPages: false
+    displayName: Variacao diâmetro
+    type: 
+      className: Double
+  - name: faixaAcidez
+    tableFieldName: FAIXA_ACIDEZ
+    required: false
+    showInPages: false
+    displayName: Faixa acidez
+    type: 
+      className: String
+  relationships:                     
+  - name: variedade             
+    type: ManyToOne
+    model: Variedade                       
+    displayName: Variedade
+    viewApproach:   
+      type: combo 
+      comboId: id 
+      comboVal: nome
