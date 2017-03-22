@@ -424,6 +424,9 @@ entities:
     type:
       className: String
     displayName: Nome
+    
+    
+    
 - name: Client
   hasOwner: false
   displayName: Empresa
@@ -791,7 +794,7 @@ entities:
   - name: dataHoraColheita
     tableFieldName: DATA_HORA_COLHEITA
     required: false
-    showInPages: true
+    showInPages: false
     displayName: Data hora colheita
     type: 
       className: Datetime
@@ -802,8 +805,8 @@ entities:
   - name: dataHoraAvaliacao
     tableFieldName: DATA_HORA_AVALIACAO
     required: false
-    showInPages: true
-    displayName: Data hora avaliação
+    showInPages: false
+    displayName: Data hora avaliacao
     type: 
       className: Datetime
     dateFormat: DD/MM/YYYY HH:MM             
@@ -813,36 +816,36 @@ entities:
   - name: lote
     tableFieldName: LOTE
     required: false
-    showInPages: true
+    showInPages: false
     displayName: Lote
     type: 
       className: String
-  - name: quantidadeCaixasEmbaladas
-    tableFieldName: QUANTIDADE_CAIXAS_EMBALADAS
+  - name: qtCaixasEmbaladas
+    tableFieldName: QT_CAIXAS_EMBALADAS
     required: false
     showInPages: false
-    displayName: Quantidade de caixas embaladas
+    displayName: Qt caixas embaladas
     type: 
       className: Integer
   - name: numeroLaudo
     tableFieldName: NUMERO_LAUDO
     required: false
-    showInPages: true
-    displayName: Número laudo
+    showInPages: false
+    displayName: Numero laudo
     type: 
       className: String
   - name: diametroMedio
     tableFieldName: DIAMETRO_MEDIO
     required: false
     showInPages: false
-    displayName: Diâmetro médio
+    displayName: Diametro medio
     type: 
       className: Double
   - name: brixMedio
     tableFieldName: BRIX_MEDIO
     required: false
     showInPages: false
-    displayName: Brix médio
+    displayName: Brix medio
     type: 
       className: Double
   - name: acidez
@@ -856,56 +859,56 @@ entities:
     tableFieldName: APARENCIA_ENGACO
     required: false
     showInPages: false
-    displayName: Aparencia engaço
+    displayName: Aparencia engaco
     type: 
       className: Integer
   - name: pesoMedioSacola
     tableFieldName: PESO_MEDIO_SACOLA
     required: false
     showInPages: false
-    displayName: Peso médio sacola
+    displayName: Peso medio sacola
     type: 
       className: Double
   - name: pesoMedioCumbuca
     tableFieldName: PESO_MEDIO_CUMBUCA
     required: false
     showInPages: false
-    displayName: Peso médio cumbuca
+    displayName: Peso medio cumbuca
     type: 
       className: Double
   - name: pesoMedioCaixa
     tableFieldName: PESO_MEDIO_CAIXA
     required: false
     showInPages: false
-    displayName: Peso médio caixa
+    displayName: Peso medio caixa
     type: 
       className: Double
-  - name: quantidadeCaixaAvaliada1
-    tableFieldName: QUANTIDADE_CAIXA_AVALIADA_1
+  - name: qtCaixaAvaliada1
+    tableFieldName: QT_CAIXA_AVALIADA_1
     required: false
     showInPages: false
-    displayName: Quantidade caixa avaliada 1
+    displayName: Qt caixa avaliada 1
     type: 
       className: Integer
-  - name: quantidadeCaixaAvaliada2
-    tableFieldName: QUANTIDADE_CAIXA_AVALIADA_2
+  - name: qtCaixaAvaliada2
+    tableFieldName: QT_CAIXA_AVALIADA_2
     required: false
     showInPages: false
-    displayName: Quantidade caixa avaliada 2
+    displayName: Qt caixa avaliada 2
     type: 
       className: Integer
   - name: temperaturaCamara
     tableFieldName: TEMPERATURA_CAMARA
     required: false
     showInPages: false
-    displayName: Temperatura câmara
+    displayName: Temperatura camara
     type: 
       className: Double
   - name: temperaturaTunel
     tableFieldName: TEMPERATURA_TUNEL
     required: false
     showInPages: false
-    displayName: Temperatura túnel
+    displayName: Temperatura tunel
     type: 
       className: Double
   - name: temperaturaPolpa
@@ -933,7 +936,7 @@ entities:
     tableFieldName: APARENCIA_EXTERNA
     required: false
     showInPages: false
-    displayName: Aparência externa
+    displayName: Aparencia externa
     type: 
       className: Integer
   - name: umidade
@@ -982,7 +985,7 @@ entities:
     tableFieldName: TOTAL_DANO_MECANICO_PROC
     required: false
     showInPages: false
-    displayName: Total dano mecânico proc
+    displayName: Total dano mecanico proc
     type: 
       className: Double
   - name: totalDesgranaProc
@@ -1154,10 +1157,6 @@ entities:
       type: modal 
       hiddenField: id 
       textField: nome 
-  - name: usuario             
-    type: ManyToOne
-    model: User
-    displayName: Usuario
   - name: cor             
     type: ManyToOne
     model: Cor                       
@@ -1205,6 +1204,106 @@ entities:
     ownerName: packing
     model: Cabine                       
     displayName: Cabine
+- name: ParametroQualidade
+  hasOwner: false 
+  displayName: Classificação
+  tableName: GSH_CLASSIFICACAO
+  attributes:                     
+  - name: descricao
+    tableFieldName: DESCRICAO
+    required: false
+    showInPages: false
+    displayName: Descrição
+    type: 
+      className: String
+  - name: diametroMinimo
+    tableFieldName: DIAMETRO_MINIMO
+    required: false
+    showInPages: false
+    displayName: Diametro mínimo
+    type: 
+      className: Double
+  - name: diametroMaximo
+    tableFieldName: DIAMETRO_MAXIMO
+    required: false
+    showInPages: false
+    displayName: Diametro máximo
+    type: 
+      className: Double
+  - name: pesoMinimoCacho
+    tableFieldName: PESO_MINIMO_CACHO
+    required: false
+    showInPages: false
+    displayName: Peso minimo cacho
+    type: 
+      className: Integer
+  - name: pesoMaximoCacho
+    tableFieldName: PESO_MAXIMO_CACHO
+    required: false
+    showInPages: false
+    displayName: Peso maximo cacho
+    type: 
+      className: Integer
+  - name: coloracao
+    tableFieldName: COLORACAO
+    required: false
+    showInPages: false
+    displayName: Coloração
+    type: 
+      className: Double
+  - name: brix
+    tableFieldName: BRIX
+    required: false
+    showInPages: false
+    displayName: Brix
+    type: 
+      className: String
+  - name: manchas
+    tableFieldName: MANCHAS
+    required: false
+    showInPages: false
+    displayName: Manchas
+    type: 
+      className: Double
+  - name: variacaoDiametro
+    tableFieldName: VARIACAO_DIAMETRO
+    required: false
+    showInPages: false
+    displayName: Variacao diâmetro
+    type: 
+      className: Double
+  - name: acidezMinima
+    tableFieldName: ACIDEZ_MINIMA
+    required: false
+    showInPages: false
+    displayName: Acidez Mínima
+    type: 
+      className: double
+  - name: acidezMaxima
+    tableFieldName: ACIDEZ_MAXIMA
+    required: false
+    showInPages: false
+    displayName: Acidez Maxima
+    type: 
+      className: double
+  relationships:                     
+  - name: variedade             
+    type: ManyToOne
+    model: Variedade                       
+    displayName: Variedade
+    viewApproach:   
+      type: combo 
+      comboId: id 
+      comboVal: nome
+  - name: client             
+    type: ManyToOne
+    model: Client                       
+    displayName: Client
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+      
 - name: Sacola
   hasOwner: false 
   displayName: Sacola

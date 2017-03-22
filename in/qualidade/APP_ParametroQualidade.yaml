@@ -1,4 +1,4 @@
-- name: Classificacao
+- name: ParametroQualidade
   hasOwner: false 
   displayName: Classificação
   tableName: GSH_CLASSIFICACAO
@@ -24,11 +24,18 @@
     displayName: Diametro máximo
     type: 
       className: Double
-  - name: pesoCacho
-    tableFieldName: PESO_CACHO
+  - name: pesoMinimoCacho
+    tableFieldName: PESO_MINIMO_CACHO
     required: false
     showInPages: false
-    displayName: Peso cacho
+    displayName: Peso minimo cacho
+    type: 
+      className: Integer
+  - name: pesoMaximoCacho
+    tableFieldName: PESO_MAXIMO_CACHO
+    required: false
+    showInPages: false
+    displayName: Peso maximo cacho
     type: 
       className: Integer
   - name: coloracao
@@ -59,13 +66,20 @@
     displayName: Variacao diâmetro
     type: 
       className: Double
-  - name: faixaAcidez
-    tableFieldName: FAIXA_ACIDEZ
+  - name: acidezMinima
+    tableFieldName: ACIDEZ_MINIMA
     required: false
     showInPages: false
-    displayName: Faixa acidez
+    displayName: Acidez Mínima
     type: 
-      className: String
+      className: double
+  - name: acidezMaxima
+    tableFieldName: ACIDEZ_MAXIMA
+    required: false
+    showInPages: false
+    displayName: Acidez Maxima
+    type: 
+      className: double
   relationships:                     
   - name: variedade             
     type: ManyToOne
@@ -75,3 +89,12 @@
       type: combo 
       comboId: id 
       comboVal: nome
+  - name: client             
+    type: ManyToOne
+    model: Client                       
+    displayName: Client
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+      

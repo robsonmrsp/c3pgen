@@ -343,7 +343,6 @@
   relationships:                     
   - name: anexos
     type: OneToMany
-    ownerName: laudoQualidade
     model: Anexo                       
     displayName: Anexo
   - name: client             
