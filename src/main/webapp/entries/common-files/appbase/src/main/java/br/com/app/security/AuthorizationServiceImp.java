@@ -35,6 +35,10 @@ public class AuthorizationServiceImp implements AuthorizationService {
 			return Boolean.TRUE;
 		}
 
+		if (requestURI.contains("rs/crud/uploads")) {
+			return Boolean.TRUE;
+		}
+
 		String operation = getType(method);
 		String identifier = getIdentifier(requestURI);
 
