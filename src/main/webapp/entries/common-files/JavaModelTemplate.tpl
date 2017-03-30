@@ -102,7 +102,7 @@ public class ${entity.name} extends AbstractTimestampEntity{
 	<#list entity.relationships as rel>
 	
 		<#if rel.type == 'OneToMany'>
-			<#if rel.ownerName??>
+			<#if rel.ownerName?has_content>
 	@OneToMany(mappedBy="${rel.ownerName}")
 			<#else>
 	@OneToMany()
@@ -113,14 +113,14 @@ public class ${entity.name} extends AbstractTimestampEntity{
 	@JoinColumn(name = "ID_${uppercase(rel.name)}")
 	private ${firstUpper(rel.model)} ${firstLower(rel.name)};		
 		<#elseif rel.type == 'ManyToMany'>
-			<#if rel.ownerName??> 
+			<#if rel.ownerName?has_content > 
     @ManyToMany(mappedBy="${rel.ownerName}")
+        		<#if rel.viewApproach?? >
+    @Cascade(value = CascadeType.SAVE_UPDATE)
+				</#if>
     private List<${firstUpper(rel.model)}> ${(rel.name)!firstLower(rel.model)};
 			<#else>
     @ManyToMany
-        	<#if rel.viewApproach?? >
-    @Cascade(value = CascadeType.SAVE_UPDATE)
-			</#if>
 				<#if dataBasePrefix??>
     @JoinTable(name="${dataBasePrefix}_${uppercase(entity.name)}_${uppercase(rel.model)}", joinColumns = @JoinColumn(name = "ID_${uppercase(entity.name)}", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "ID_${uppercase(rel.model)}", referencedColumnName = "ID") )
     private List<${firstUpper(rel.model)}> ${(rel.name)};
@@ -130,7 +130,7 @@ public class ${entity.name} extends AbstractTimestampEntity{
 				</#if>		
 			</#if>		
 		<#elseif rel.type == 'OneToOne'>
-			<#if rel.ownerName??>
+			<#if rel.ownerName?has_content>
 	@OneToOne(optional=false, mappedBy="${rel.ownerName}")
 	@JoinColumn(name = "ID_${uppercase(rel.name)}")
 	private ${firstUpper(rel.model)} ${firstLower(rel.name)!firstLower(rel.model)};
@@ -194,7 +194,7 @@ public class ${entity.name} extends AbstractTimestampEntity{
 		
 	public boolean add${firstUpper(rel.name)}(${firstUpper(rel.model)} ${firstLower(rel.model)}){
 		<#if rel.uniDirecional == false>
-		<#if rel.ownerName??>
+		<#if rel.ownerName?has_content>
 		${firstLower(rel.model)}.set${firstUpper(rel.ownerName)}(this);
 		</#if>
 		</#if>
@@ -203,7 +203,7 @@ public class ${entity.name} extends AbstractTimestampEntity{
 	
 	public boolean remove${firstUpper(rel.name)}(${firstUpper(rel.model)} ${firstLower(rel.model)}){
 		<#if rel.uniDirecional == false >
-		<#if rel.ownerName??>
+		<#if rel.ownerName?has_content>
 		${firstLower(rel.model)}.set${firstUpper(rel.ownerName)}(null);
 		</#if>
 		</#if>

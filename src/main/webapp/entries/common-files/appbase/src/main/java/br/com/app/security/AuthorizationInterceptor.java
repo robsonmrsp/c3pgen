@@ -36,7 +36,7 @@ public class AuthorizationInterceptor extends AbstractPhaseInterceptor<Message> 
 	}
 
 	public void handleMessage(Message message) throws Fault {
-		printMessage(message);
+		//printMessage(message);
 		String requestUri = (String) message.get(Message.REQUEST_URI);
 		String requestMethod = (String) message.get(Message.HTTP_REQUEST_METHOD);
 
