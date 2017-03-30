@@ -116,7 +116,7 @@ public class ${entity.name} extends AbstractTimestampEntity{
 			<#if rel.ownerName?has_content > 
     @ManyToMany(mappedBy="${rel.ownerName}")
         		<#if rel.viewApproach?? >
-    @Cascade(value = CascadeType.SAVE_UPDATE)
+    @Cascade(value = CascadeType.ALL)
 				</#if>
     private List<${firstUpper(rel.model)}> ${(rel.name)!firstLower(rel.model)};
 			<#else>
