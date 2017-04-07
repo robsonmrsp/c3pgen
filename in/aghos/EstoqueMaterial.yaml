@@ -1,0 +1,22 @@
+- name: EstoqueMaterial
+  hasOwner: false 
+  displayName: Estoque Material 
+  tableName: GSH_MATERIAL_ESTOQUE
+  attributes:                     
+  - name: descricao
+    tableFieldName: ESTOQUE
+    required: false
+    showInPages: false
+    maxLen: 60
+    displayName: Descrição
+    type: 
+      className: String
+  relationships:                     
+  - name: entidade             
+    type: ManyToOne
+    model: Entidade                       
+    displayName: Entidade
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome

@@ -1,0 +1,19 @@
+- name: Material
+  hasOwner: false 
+  displayName: Material
+  tableName: GSH_MATERIAL
+  attributes:                     
+  - name: descricao
+    tableFieldName: DESCR_MATERIAL
+    required: false
+    showInPages: true
+    maxLen: 150
+    displayName: Descrição
+    type: 
+      className: String
+  relationships:                     
+  - name: itemMovimentacaoEstoques
+    type: OneToMany
+    ownerName: material
+    model: ItemMovimentacaoEstoque                       
+    displayName: Item Movimentação Estoque

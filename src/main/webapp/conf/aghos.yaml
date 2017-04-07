@@ -1,0 +1,339 @@
+appName: AghosWeb
+skin: b2
+view: backbone
+rootPackage: br.com.gsh.aghos.material
+corePackage: br.com.gsh.aghos.core
+persistenceFramework : mybatis
+
+entities:
+- name: Entidade
+  hasOwner: false
+  displayName: Entidade
+  tableName: GSH_ENTIDADE
+  attributes:
+  - name: nomeFantasia
+    tableFieldName: NOME_FANTASIA
+    required: false
+    showInPages: false
+    maxLen: 60
+    displayName: Nome fantasia
+    type:
+      className: String
+- name: Pesoas
+  hasOwner: false 
+  displayName: Pesoas
+  tableName: GSH_PESOAS
+  attributes:                     
+  - name: nome
+    tableFieldName: NOME
+    required: false
+    showInPages: false
+    maxLen: 60
+    displayName: Nome
+    type: 
+      className: String
+- name: Setor
+  hasOwner: false 
+  displayName: Setor
+  tableName: GSH_SETOR
+  attributes:                     
+  - name: descricao
+    tableFieldName: DESCR
+    required: false
+    showInPages: false
+    maxLen: 60
+    displayName: Descr
+    type: 
+      className: String
+- name: Usuario
+  hasOwner: false 
+  displayName: Usuario
+  tableName: GSH_USUARIO
+  attributes:                     
+  - name: usuario
+    tableFieldName: USUARIO
+    required: false
+    showInPages: false
+    maxLen: 15
+    displayName: Usuario
+    type: 
+      className: String
+- name: EstoqueMaterial
+  hasOwner: false 
+  displayName: Estoque Material 
+  tableName: GSH_MATERIAL_ESTOQUE
+  attributes:                     
+  - name: descricao
+    tableFieldName: ESTOQUE
+    required: false
+    showInPages: false
+    maxLen: 60
+    displayName: Descrição
+    type: 
+      className: String
+  relationships:                     
+  - name: entidade             
+    type: ManyToOne
+    model: Entidade                       
+    displayName: Entidade
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome
+- name: HistoricoItemMovimentacaoEstoque
+  hasOwner: false 
+  displayName: Historico Item Movimentacção Estoque
+  tableName: GSH_ESTOQUE_MOVI_ITENS_HIST
+  attributes:                     
+  - name: quantidade
+    tableFieldName: QUANTIDADE_MOVIMENTACAO
+    required: false
+    showInPages: true
+    displayName: Quantidade Movimentação
+    type: 
+      className: Double
+  - name: dataHora
+    tableFieldName: DATA_ESTOQUE_MOVI_ITENS_HIST
+    required: false
+    showInPages: true
+    displayName: Data estoque movi itens hist
+    type: 
+      className: Datetime
+    dateFormat: DD/MM/YYYY HH:MM              
+    mask: 99/99/9999 99:99                   
+    viewApproach:                        
+      type: datepicker                  
+  relationships:                     
+  - name: itemMovimentacaoEstoque             
+    type: ManyToOne
+    model: ItemMovimentacaoEstoque                       
+    displayName: Item Movimentação Estoque
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome
+- name: HistoricoMovimentacaoEstoque
+  hasOwner: false 
+  displayName: Historico de Movimentação Estoque
+  tableName: GSH_ESTOQUE_MOVIMENTACAO_HIST
+  attributes:                     
+  - name: ordem
+    tableFieldName: ORDEM
+    required: false
+    showInPages: true
+    displayName: Ordem
+    type: 
+      className: Integer
+  - name: quantidade
+    tableFieldName: QUANTIDADE_MOVIMENTACAO
+    required: false
+    showInPages: true
+    displayName: Quantidade movimentacao
+    type: 
+      className: Double
+  - name: dataHora
+    tableFieldName: DATA_ESTOQUE_MOVIMENTACAO_HIST
+    required: false
+    showInPages: true
+    displayName: Data estoque movimentacao hist
+    type: 
+      className: Datetime
+    dateFormat: DD/MM/YYYY HH:MM              
+    mask: 99/99/9999 99:99                   
+    viewApproach:                        
+      type: datepicker                  
+  - name: observacao
+    tableFieldName: OBSERVACAO
+    required: false
+    showInPages: false
+    maxLen: 2000
+    viewApproach:                        
+      type: textarea                  
+    displayName: Observacao
+    type: 
+      className: String
+  relationships:                     
+  - name: movimentacaoEstoque
+    type: ManyToOne
+    model: MovimentacaoEstoque                       
+    displayName: Movimentação Estoque
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome
+  - name: usuario             
+    type: ManyToOne
+    model: Usuario                       
+    displayName: Usuario
+- name: ItemMovimentacaoEstoque
+  hasOwner: false 
+  displayName: Item Movimentação Estoque 
+  tableName: GSH_ESTOQUE_MOVIMENTACAO_ITENS
+  attributes:                     
+  - name: flagDelete
+    tableFieldName: FLAG_DELETE
+    required: false
+    showInPages: true
+    displayName: Flag delete
+    type: 
+      className: Boolean
+  - name: quantidade
+    tableFieldName: QUANTIDADE_MOVIMENTACAO
+    required: false
+    showInPages: true
+    displayName: Quantidade movimentacao
+    type: 
+      className: Double
+  - name: dataHora
+    tableFieldName: DATA_MOVIMENTACAO
+    required: false
+    showInPages: true
+    displayName: Data movimentacao
+    type: 
+      className: Datetime
+    dateFormat: DD/MM/YYYY HH:MM              
+    mask: 99/99/9999 99:99                   
+    viewApproach:                        
+      type: datepicker                  
+  relationships:                     
+  - name: historicoItemMovimentacaoEstoques
+    type: OneToMany
+    ownerName: itemMovimentacaoEstoque
+    model: HistoricoItemMovimentacaoEstoque                       
+    displayName: Historico Item Movimentação Estoque
+  - name: movimentacaoEstoque             
+    type: ManyToOne
+    model: MovimentacaoEstoque                       
+    displayName: Movimentação de estoque
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome
+  - name: material             
+    type: ManyToOne
+    model: Material                       
+    displayName: Material
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome
+- name: Material
+  hasOwner: false 
+  displayName: Material
+  tableName: GSH_MATERIAL
+  attributes:                     
+  - name: descricao
+    tableFieldName: DESCR_MATERIAL
+    required: false
+    showInPages: true
+    maxLen: 150
+    displayName: Descrição
+    type: 
+      className: String
+  relationships:                     
+  - name: itemMovimentacaoEstoques
+    type: OneToMany
+    ownerName: material
+    model: ItemMovimentacaoEstoque                       
+    displayName: Item Movimentação Estoque
+- name: MovimentacaoEstoque
+  hasOwner: false 
+  displayName: Movimentação Estoque
+  tableName: GSH_ESTOQUE_MOVIMENTACAO
+  attributes:                     
+  - name: editado
+    tableFieldName: FLAG_EDITADO
+    required: false
+    showInPages: true
+    displayName: Flag editado
+    type: 
+      className: Boolean
+  - name: recebido
+    tableFieldName: FLAG_RECEBIDO
+    required: false
+    showInPages: true
+    displayName: Flag recebido
+    type: 
+      className: Boolean
+  - name: autorizacao
+    tableFieldName: FLAG_AUTORIZACAO
+    required: false
+    showInPages: true
+    displayName: Flag autorizacao
+    type: 
+      className: Boolean
+  - name: dataHoraSolicitacao
+    tableFieldName: DATA_SOLICITACAO
+    required: false
+    showInPages: true
+    displayName: Data solicitacao
+    type: 
+      className: Datetime
+    dateFormat: DD/MM/YYYY DD:MM              
+    mask: 99/99/9999 99:99                   
+    viewApproach:                        
+      type: datepicker                  
+  - name: dataEntrada
+    tableFieldName: DATA_ENTRADA
+    required: false
+    showInPages: true
+    displayName: Data entrada
+    type: 
+      className: Datetime
+    dateFormat: DD/MM/YYYY DD:MM              
+    mask: 99/99/9999 99:99                   
+    viewApproach:                        
+      type: datepicker                  
+  relationships:                     
+  - name: historicoMovimentacaoEstoques
+    type: OneToMany
+    ownerName: movimentacaoEstoque
+    model: HistoricoMovimentacaoEstoque                       
+    displayName: historico Movimentação Estoque
+
+  - name: itemMovimentacaoEstoques
+    type: OneToMany
+    ownerName: movimentacaoEstoque
+    model: ItemMovimentacaoEstoque  
+    displayName: Item movimentacao estoque
+    
+  - name: estoqueMaterialSolicitante             
+    type: ManyToOne
+    model: EstoqueMaterial
+    displayName: Estoque Material solicitante
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome
+  - name: estoqueMaterialExecutante             
+    type: ManyToOne
+    model: EstoqueMaterial 
+    displayName: Estoque Material  executante
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome
+  - name: setorSolicitante             
+    type: ManyToOne
+    model: Setor                       
+    displayName: Setor Solicitante
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: descricao
+  - name: setorExecutante             
+    type: ManyToOne
+    model: Setor                       
+    displayName: Setor Executante
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: descricao
+  - name: usuarioSolicitante             
+    type: ManyToOne
+    model: Usuario                       
+    displayName: Usuário Solicitante
+  - name: usuarioAutorizador             
+    type: ManyToOne
+    model: Usuario                       
+    displayName: Usuário Autorizador

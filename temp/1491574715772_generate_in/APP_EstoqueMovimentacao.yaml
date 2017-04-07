@@ -1,0 +1,107 @@
+- name: EstoqueMovimentacao
+  hasOwner: false 
+  displayName: Estoque movimentacao
+  tableName: GSH_ESTOQUE_MOVIMENTACAO
+  attributes:                     
+  - name: flagEditado
+    tableFieldName: FLAG_EDITADO
+    required: false
+    showInPages: false
+    displayName: Flag editado
+    type: 
+      className: Boolean
+  - name: flagRecebido
+    tableFieldName: FLAG_RECEBIDO
+    required: false
+    showInPages: false
+    displayName: Flag recebido
+    type: 
+      className: Boolean
+  - name: flagAutorizacao
+    tableFieldName: FLAG_AUTORIZACAO
+    required: false
+    showInPages: false
+    displayName: Flag autorizacao
+    type: 
+      className: Boolean
+  - name: dataSolicitacao
+    tableFieldName: DATA_SOLICITACAO
+    required: false
+    showInPages: false
+    displayName: Data solicitacao
+    type: 
+      className: Date
+    dateFormat: DD/MM/YYYY              
+    mask: 99/99/9999                    
+    viewApproach:                        
+      type: datepicker                  
+  - name: dataEntrada
+    tableFieldName: DATA_ENTRADA
+    required: false
+    showInPages: false
+    displayName: Data entrada
+    type: 
+      className: Date
+    dateFormat: DD/MM/YYYY              
+    mask: 99/99/9999                    
+    viewApproach:                        
+      type: datepicker                  
+  relationships:                     
+  - name: estoqueMovimentacaoHists
+    type: OneToMany
+    ownerName: estoqueMovimentacao
+    model: EstoqueMovimentacaoHist                       
+    displayName: Estoque movimentacao hist
+  - name: estoqueMovimentacaoItenss
+    type: OneToMany
+    ownerName: estoqueMovimentacao
+    model: EstoqueMovimentacaoItens                       
+    displayName: Estoque movimentacao itens
+  - name: materialEstoque             
+    type: ManyToOne
+    model: MaterialEstoque                       
+    displayName: Material estoque
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome
+  - name: materialEstoque             
+    type: ManyToOne
+    model: MaterialEstoque                       
+    displayName: Material estoque
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome
+  - name: setor             
+    type: ManyToOne
+    model: Setor                       
+    displayName: Setor
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome
+  - name: setor             
+    type: ManyToOne
+    model: Setor                       
+    displayName: Setor
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome
+  - name: usuario             
+    type: ManyToOne
+    model: Usuario                       
+    displayName: Usuario
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome
+  - name: usuario             
+    type: ManyToOne
+    model: Usuario                       
+    displayName: Usuario
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome

@@ -1,0 +1,24 @@
+- name: Setor
+  hasOwner: false 
+  displayName: Setor
+  tableName: GSH_SETOR
+  attributes:                     
+  - name: descr
+    tableFieldName: DESCR
+    required: false
+    showInPages: false
+    maxLen: 60
+    displayName: Descr
+    type: 
+      className: String
+  relationships:                     
+  - name: estoqueMovimentacaos
+    type: OneToMany
+    ownerName: setor
+    model: EstoqueMovimentacao                       
+    displayName: Estoque movimentacao
+  - name: estoqueMovimentacaos
+    type: OneToMany
+    ownerName: setor
+    model: EstoqueMovimentacao                       
+    displayName: Estoque movimentacao

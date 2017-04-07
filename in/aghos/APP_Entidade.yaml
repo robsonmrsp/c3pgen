@@ -1,0 +1,13 @@
+- name: Entidade
+  hasOwner: false
+  displayName: Entidade
+  tableName: GSH_ENTIDADE
+  attributes:
+  - name: nomeFantasia
+    tableFieldName: NOME_FANTASIA
+    required: false
+    showInPages: false
+    maxLen: 60
+    displayName: Nome fantasia
+    type:
+      className: String

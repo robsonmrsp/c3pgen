@@ -8188,3 +8188,867 @@ DEBUG 24/09/2016 11:56:51[cache-main]->Compiling FreeMarker template "HtmlMobile
 DEBUG 24/09/2016 11:56:51[cache-main]->Could not find template in cache, creating new one; id=["HtmlLeftPanelViewTemplate.tpl"["pt_BR",UTF-8,parsed] ]
 DEBUG 24/09/2016 11:56:51[cache-main]->Compiling FreeMarker template "HtmlLeftPanelViewTemplate.tpl"["pt_BR",UTF-8,parsed]  from "G:\\cyg\\home\\robso\\repos\\c3pgen\\src\\main\\webapp\\entries\\mobile-templates\\nativedroid\\appbase\\core\\HtmlLeftPanelViewTemplate.tpl"
 INFO  24/09/2016 11:56:51[Main-main]->Concluida a geração da aplicação
+INFO  07/04/2017 15:34:02[Main-main]->Validando arquivo de entidades...
+WARN  07/04/2017 15:34:02[ApplicationValidator-main]->Encontrados os seguintes problemas...
+WARN  07/04/2017 15:34:02[ApplicationValidator-main]->Erro analizando o relacionamento materialEstoquesna entidade Entidade. Não existe a entidade MaterialEstoque
+WARN  07/04/2017 15:34:02[ApplicationValidator-main]->Erro analizando a entidade null(modelName=MaterialEstoque): Não existe o atributo/relacionamento de nome "entidade" na entidade "null". Verifique o valor de 'ownerName' no relacionamento de nome  "materialEstoques" na entidade  "Entidade"
+WARN  07/04/2017 15:34:02[ApplicationValidator-main]->Erro analizando o relacionamento estoqueMovimentacaosna entidade Setor. Não existe a entidade EstoqueMovimentacao
+WARN  07/04/2017 15:34:02[ApplicationValidator-main]->Erro analizando a entidade null(modelName=EstoqueMovimentacao): Não existe o atributo/relacionamento de nome "setor" na entidade "null". Verifique o valor de 'ownerName' no relacionamento de nome  "estoqueMovimentacaos" na entidade  "Setor"
+WARN  07/04/2017 15:34:02[ApplicationValidator-main]->Erro analizando o relacionamento estoqueMovimentacaosna entidade Setor. Não existe a entidade EstoqueMovimentacao
+WARN  07/04/2017 15:34:02[ApplicationValidator-main]->Erro analizando a entidade null(modelName=EstoqueMovimentacao): Não existe o atributo/relacionamento de nome "setor" na entidade "null". Verifique o valor de 'ownerName' no relacionamento de nome  "estoqueMovimentacaos" na entidade  "Setor"
+WARN  07/04/2017 15:34:02[ApplicationValidator-main]->Erro analizando o relacionamento estoqueMovimentacaosna entidade Usuario. Não existe a entidade EstoqueMovimentacao
+WARN  07/04/2017 15:34:02[ApplicationValidator-main]->Erro analizando a entidade null(modelName=EstoqueMovimentacao): Não existe o atributo/relacionamento de nome "usuario" na entidade "null". Verifique o valor de 'ownerName' no relacionamento de nome  "estoqueMovimentacaos" na entidade  "Usuario"
+WARN  07/04/2017 15:34:02[ApplicationValidator-main]->Erro analizando o relacionamento estoqueMovimentacaosna entidade Usuario. Não existe a entidade EstoqueMovimentacao
+WARN  07/04/2017 15:34:02[ApplicationValidator-main]->Erro analizando a entidade null(modelName=EstoqueMovimentacao): Não existe o atributo/relacionamento de nome "usuario" na entidade "null". Verifique o valor de 'ownerName' no relacionamento de nome  "estoqueMovimentacaos" na entidade  "Usuario"
+WARN  07/04/2017 15:34:02[ApplicationValidator-main]->Erro analizando o relacionamento estoqueMovimentacaoHistsna entidade Usuario. Não existe a entidade EstoqueMovimentacaoHist
+WARN  07/04/2017 15:34:02[ApplicationValidator-main]->Erro analizando a entidade null(modelName=EstoqueMovimentacaoHist): Não existe o atributo/relacionamento de nome "usuario" na entidade "null". Verifique o valor de 'ownerName' no relacionamento de nome  "estoqueMovimentacaoHists" na entidade  "Usuario"
+WARN  07/04/2017 15:34:02[ApplicationValidator-main]->Erro analizando a entidade MovimentacaoEstoque: Não existe o atributo/relacionamento de nome "estoqueMaterial" na entidade "MovimentacaoEstoque". Verifique o valor de 'ownerName' no relacionamento de nome  "movimentacaoEstoques" na entidade  "EstoqueMaterial"
+WARN  07/04/2017 15:34:02[ApplicationValidator-main]->Erro analizando a entidade HistoricoItemMovimentacaoEstoque: Não existe o atributo/relacionamento de nome "movimentacaoEstoque" na entidade "HistoricoItemMovimentacaoEstoque". Verifique o valor de 'ownerName' no relacionamento de nome  "historicoItemMovimentacaoEstoques" na entidade  "MovimentacaoEstoque"
+WARN  07/04/2017 15:34:02[ApplicationValidator-main]->Erro analizando o relacionamento materialEstoqueExecutantena entidade MovimentacaoEstoque. Não existe a entidade MaterialEstoque
+WARN  07/04/2017 15:34:02[ApplicationValidator-main]->A aplicação não será gerada...
+INFO  07/04/2017 15:34:02[Main-main]->Finalizada a validação....
+INFO  07/04/2017 15:47:30[Main-main]->Validando arquivo de entidades...
+WARN  07/04/2017 15:47:30[ApplicationValidator-main]->Encontrados os seguintes problemas...
+WARN  07/04/2017 15:47:30[ApplicationValidator-main]->Erro analizando o relacionamento materialEstoquesna entidade Entidade. Não existe a entidade MaterialEstoque
+WARN  07/04/2017 15:47:30[ApplicationValidator-main]->Erro analizando a entidade null(modelName=MaterialEstoque): Não existe o atributo/relacionamento de nome "entidade" na entidade "null". Verifique o valor de 'ownerName' no relacionamento de nome  "materialEstoques" na entidade  "Entidade"
+WARN  07/04/2017 15:47:30[ApplicationValidator-main]->Erro analizando o relacionamento estoqueMovimentacaosna entidade Setor. Não existe a entidade EstoqueMovimentacao
+WARN  07/04/2017 15:47:30[ApplicationValidator-main]->Erro analizando a entidade null(modelName=EstoqueMovimentacao): Não existe o atributo/relacionamento de nome "setor" na entidade "null". Verifique o valor de 'ownerName' no relacionamento de nome  "estoqueMovimentacaos" na entidade  "Setor"
+WARN  07/04/2017 15:47:30[ApplicationValidator-main]->Erro analizando o relacionamento estoqueMovimentacaosna entidade Setor. Não existe a entidade EstoqueMovimentacao
+WARN  07/04/2017 15:47:30[ApplicationValidator-main]->Erro analizando a entidade null(modelName=EstoqueMovimentacao): Não existe o atributo/relacionamento de nome "setor" na entidade "null". Verifique o valor de 'ownerName' no relacionamento de nome  "estoqueMovimentacaos" na entidade  "Setor"
+WARN  07/04/2017 15:47:30[ApplicationValidator-main]->Erro analizando o relacionamento estoqueMovimentacaosna entidade Usuario. Não existe a entidade EstoqueMovimentacao
+WARN  07/04/2017 15:47:30[ApplicationValidator-main]->Erro analizando a entidade null(modelName=EstoqueMovimentacao): Não existe o atributo/relacionamento de nome "usuario" na entidade "null". Verifique o valor de 'ownerName' no relacionamento de nome  "estoqueMovimentacaos" na entidade  "Usuario"
+WARN  07/04/2017 15:47:30[ApplicationValidator-main]->Erro analizando o relacionamento estoqueMovimentacaosna entidade Usuario. Não existe a entidade EstoqueMovimentacao
+WARN  07/04/2017 15:47:30[ApplicationValidator-main]->Erro analizando a entidade null(modelName=EstoqueMovimentacao): Não existe o atributo/relacionamento de nome "usuario" na entidade "null". Verifique o valor de 'ownerName' no relacionamento de nome  "estoqueMovimentacaos" na entidade  "Usuario"
+WARN  07/04/2017 15:47:30[ApplicationValidator-main]->Erro analizando o relacionamento estoqueMovimentacaoHistsna entidade Usuario. Não existe a entidade EstoqueMovimentacaoHist
+WARN  07/04/2017 15:47:30[ApplicationValidator-main]->Erro analizando a entidade null(modelName=EstoqueMovimentacaoHist): Não existe o atributo/relacionamento de nome "usuario" na entidade "null". Verifique o valor de 'ownerName' no relacionamento de nome  "estoqueMovimentacaoHists" na entidade  "Usuario"
+WARN  07/04/2017 15:47:30[ApplicationValidator-main]->Erro analizando a entidade MovimentacaoEstoque: Não existe o atributo/relacionamento de nome "estoqueMaterial" na entidade "MovimentacaoEstoque". Verifique o valor de 'ownerName' no relacionamento de nome  "movimentacaoEstoques" na entidade  "EstoqueMaterial"
+WARN  07/04/2017 15:47:30[ApplicationValidator-main]->Erro analizando a entidade HistoricoItemMovimentacaoEstoque: Não existe o atributo/relacionamento de nome "movimentacaoEstoque" na entidade "HistoricoItemMovimentacaoEstoque". Verifique o valor de 'ownerName' no relacionamento de nome  "historicoItemMovimentacaoEstoques" na entidade  "MovimentacaoEstoque"
+WARN  07/04/2017 15:47:30[ApplicationValidator-main]->Erro analizando o relacionamento materialEstoqueExecutantena entidade MovimentacaoEstoque. Não existe a entidade MaterialEstoque
+WARN  07/04/2017 15:47:30[ApplicationValidator-main]->A aplicação não será gerada...
+INFO  07/04/2017 15:47:30[Main-main]->Finalizada a validação....
+INFO  07/04/2017 15:48:48[Main-main]->Validando arquivo de entidades...
+WARN  07/04/2017 15:48:48[ApplicationValidator-main]->Encontrados os seguintes problemas...
+WARN  07/04/2017 15:48:48[ApplicationValidator-main]->Erro analizando o relacionamento estoqueMovimentacaosna entidade Setor. Não existe a entidade EstoqueMovimentacao
+WARN  07/04/2017 15:48:48[ApplicationValidator-main]->Erro analizando a entidade null(modelName=EstoqueMovimentacao): Não existe o atributo/relacionamento de nome "setor" na entidade "null". Verifique o valor de 'ownerName' no relacionamento de nome  "estoqueMovimentacaos" na entidade  "Setor"
+WARN  07/04/2017 15:48:48[ApplicationValidator-main]->Erro analizando o relacionamento estoqueMovimentacaosna entidade Setor. Não existe a entidade EstoqueMovimentacao
+WARN  07/04/2017 15:48:48[ApplicationValidator-main]->Erro analizando a entidade null(modelName=EstoqueMovimentacao): Não existe o atributo/relacionamento de nome "setor" na entidade "null". Verifique o valor de 'ownerName' no relacionamento de nome  "estoqueMovimentacaos" na entidade  "Setor"
+WARN  07/04/2017 15:48:48[ApplicationValidator-main]->Erro analizando o relacionamento estoqueMovimentacaosna entidade Usuario. Não existe a entidade EstoqueMovimentacao
+WARN  07/04/2017 15:48:48[ApplicationValidator-main]->Erro analizando a entidade null(modelName=EstoqueMovimentacao): Não existe o atributo/relacionamento de nome "usuario" na entidade "null". Verifique o valor de 'ownerName' no relacionamento de nome  "estoqueMovimentacaos" na entidade  "Usuario"
+WARN  07/04/2017 15:48:48[ApplicationValidator-main]->Erro analizando o relacionamento estoqueMovimentacaosna entidade Usuario. Não existe a entidade EstoqueMovimentacao
+WARN  07/04/2017 15:48:48[ApplicationValidator-main]->Erro analizando a entidade null(modelName=EstoqueMovimentacao): Não existe o atributo/relacionamento de nome "usuario" na entidade "null". Verifique o valor de 'ownerName' no relacionamento de nome  "estoqueMovimentacaos" na entidade  "Usuario"
+WARN  07/04/2017 15:48:48[ApplicationValidator-main]->Erro analizando o relacionamento estoqueMovimentacaoHistsna entidade Usuario. Não existe a entidade EstoqueMovimentacaoHist
+WARN  07/04/2017 15:48:48[ApplicationValidator-main]->Erro analizando a entidade null(modelName=EstoqueMovimentacaoHist): Não existe o atributo/relacionamento de nome "usuario" na entidade "null". Verifique o valor de 'ownerName' no relacionamento de nome  "estoqueMovimentacaoHists" na entidade  "Usuario"
+WARN  07/04/2017 15:48:48[ApplicationValidator-main]->Erro analizando a entidade MovimentacaoEstoque: Não existe o atributo/relacionamento de nome "estoqueMaterial" na entidade "MovimentacaoEstoque". Verifique o valor de 'ownerName' no relacionamento de nome  "movimentacaoEstoques" na entidade  "EstoqueMaterial"
+WARN  07/04/2017 15:48:48[ApplicationValidator-main]->Erro analizando a entidade HistoricoItemMovimentacaoEstoque: Não existe o atributo/relacionamento de nome "movimentacaoEstoque" na entidade "HistoricoItemMovimentacaoEstoque". Verifique o valor de 'ownerName' no relacionamento de nome  "historicoItemMovimentacaoEstoques" na entidade  "MovimentacaoEstoque"
+WARN  07/04/2017 15:48:48[ApplicationValidator-main]->Erro analizando o relacionamento materialEstoqueExecutantena entidade MovimentacaoEstoque. Não existe a entidade MaterialEstoque
+WARN  07/04/2017 15:48:48[ApplicationValidator-main]->A aplicação não será gerada...
+INFO  07/04/2017 15:48:48[Main-main]->Finalizada a validação....
+INFO  07/04/2017 15:49:07[Main-main]->Validando arquivo de entidades...
+WARN  07/04/2017 15:49:07[ApplicationValidator-main]->Encontrados os seguintes problemas...
+WARN  07/04/2017 15:49:07[ApplicationValidator-main]->Erro analizando o relacionamento estoqueMovimentacaosna entidade Usuario. Não existe a entidade EstoqueMovimentacao
+WARN  07/04/2017 15:49:07[ApplicationValidator-main]->Erro analizando a entidade null(modelName=EstoqueMovimentacao): Não existe o atributo/relacionamento de nome "usuario" na entidade "null". Verifique o valor de 'ownerName' no relacionamento de nome  "estoqueMovimentacaos" na entidade  "Usuario"
+WARN  07/04/2017 15:49:07[ApplicationValidator-main]->Erro analizando o relacionamento estoqueMovimentacaosna entidade Usuario. Não existe a entidade EstoqueMovimentacao
+WARN  07/04/2017 15:49:07[ApplicationValidator-main]->Erro analizando a entidade null(modelName=EstoqueMovimentacao): Não existe o atributo/relacionamento de nome "usuario" na entidade "null". Verifique o valor de 'ownerName' no relacionamento de nome  "estoqueMovimentacaos" na entidade  "Usuario"
+WARN  07/04/2017 15:49:07[ApplicationValidator-main]->Erro analizando o relacionamento estoqueMovimentacaoHistsna entidade Usuario. Não existe a entidade EstoqueMovimentacaoHist
+WARN  07/04/2017 15:49:07[ApplicationValidator-main]->Erro analizando a entidade null(modelName=EstoqueMovimentacaoHist): Não existe o atributo/relacionamento de nome "usuario" na entidade "null". Verifique o valor de 'ownerName' no relacionamento de nome  "estoqueMovimentacaoHists" na entidade  "Usuario"
+WARN  07/04/2017 15:49:07[ApplicationValidator-main]->Erro analizando a entidade MovimentacaoEstoque: Não existe o atributo/relacionamento de nome "estoqueMaterial" na entidade "MovimentacaoEstoque". Verifique o valor de 'ownerName' no relacionamento de nome  "movimentacaoEstoques" na entidade  "EstoqueMaterial"
+WARN  07/04/2017 15:49:07[ApplicationValidator-main]->Erro analizando a entidade HistoricoItemMovimentacaoEstoque: Não existe o atributo/relacionamento de nome "movimentacaoEstoque" na entidade "HistoricoItemMovimentacaoEstoque". Verifique o valor de 'ownerName' no relacionamento de nome  "historicoItemMovimentacaoEstoques" na entidade  "MovimentacaoEstoque"
+WARN  07/04/2017 15:49:07[ApplicationValidator-main]->Erro analizando o relacionamento materialEstoqueExecutantena entidade MovimentacaoEstoque. Não existe a entidade MaterialEstoque
+WARN  07/04/2017 15:49:07[ApplicationValidator-main]->A aplicação não será gerada...
+INFO  07/04/2017 15:49:07[Main-main]->Finalizada a validação....
+INFO  07/04/2017 15:49:23[Main-main]->Validando arquivo de entidades...
+WARN  07/04/2017 15:49:23[ApplicationValidator-main]->Encontrados os seguintes problemas...
+WARN  07/04/2017 15:49:23[ApplicationValidator-main]->Erro analizando a entidade Usuario: Não existe o atributo/relacionamento de nome "pesoas" na entidade "Usuario". Verifique o valor de 'ownerName' no relacionamento de nome  "usuarios" na entidade  "Pesoas"
+WARN  07/04/2017 15:49:23[ApplicationValidator-main]->Erro analizando a entidade MovimentacaoEstoque: Não existe o atributo/relacionamento de nome "estoqueMaterial" na entidade "MovimentacaoEstoque". Verifique o valor de 'ownerName' no relacionamento de nome  "movimentacaoEstoques" na entidade  "EstoqueMaterial"
+WARN  07/04/2017 15:49:23[ApplicationValidator-main]->Erro analizando a entidade HistoricoItemMovimentacaoEstoque: Não existe o atributo/relacionamento de nome "movimentacaoEstoque" na entidade "HistoricoItemMovimentacaoEstoque". Verifique o valor de 'ownerName' no relacionamento de nome  "historicoItemMovimentacaoEstoques" na entidade  "MovimentacaoEstoque"
+WARN  07/04/2017 15:49:23[ApplicationValidator-main]->Erro analizando o relacionamento materialEstoqueExecutantena entidade MovimentacaoEstoque. Não existe a entidade MaterialEstoque
+WARN  07/04/2017 15:49:23[ApplicationValidator-main]->A aplicação não será gerada...
+INFO  07/04/2017 15:49:23[Main-main]->Finalizada a validação....
+INFO  07/04/2017 15:49:41[Main-main]->Validando arquivo de entidades...
+WARN  07/04/2017 15:49:41[ApplicationValidator-main]->Encontrados os seguintes problemas...
+WARN  07/04/2017 15:49:41[ApplicationValidator-main]->Erro analizando a entidade MovimentacaoEstoque: Não existe o atributo/relacionamento de nome "estoqueMaterial" na entidade "MovimentacaoEstoque". Verifique o valor de 'ownerName' no relacionamento de nome  "movimentacaoEstoques" na entidade  "EstoqueMaterial"
+WARN  07/04/2017 15:49:41[ApplicationValidator-main]->Erro analizando a entidade HistoricoItemMovimentacaoEstoque: Não existe o atributo/relacionamento de nome "movimentacaoEstoque" na entidade "HistoricoItemMovimentacaoEstoque". Verifique o valor de 'ownerName' no relacionamento de nome  "historicoItemMovimentacaoEstoques" na entidade  "MovimentacaoEstoque"
+WARN  07/04/2017 15:49:41[ApplicationValidator-main]->Erro analizando o relacionamento materialEstoqueExecutantena entidade MovimentacaoEstoque. Não existe a entidade MaterialEstoque
+WARN  07/04/2017 15:49:41[ApplicationValidator-main]->A aplicação não será gerada...
+INFO  07/04/2017 15:49:41[Main-main]->Finalizada a validação....
+INFO  07/04/2017 15:51:52[Main-main]->Validando arquivo de entidades...
+WARN  07/04/2017 15:51:52[ApplicationValidator-main]->Encontrados os seguintes problemas...
+WARN  07/04/2017 15:51:52[ApplicationValidator-main]->Erro analizando a entidade HistoricoItemMovimentacaoEstoque: Não existe o atributo/relacionamento de nome "movimentacaoEstoque" na entidade "HistoricoItemMovimentacaoEstoque". Verifique o valor de 'ownerName' no relacionamento de nome  "historicoItemMovimentacaoEstoques" na entidade  "MovimentacaoEstoque"
+WARN  07/04/2017 15:51:52[ApplicationValidator-main]->Erro analizando o relacionamento materialEstoqueExecutantena entidade MovimentacaoEstoque. Não existe a entidade MaterialEstoque
+WARN  07/04/2017 15:51:52[ApplicationValidator-main]->A aplicação não será gerada...
+INFO  07/04/2017 15:51:52[Main-main]->Finalizada a validação....
+INFO  07/04/2017 16:05:33[Main-main]->Validando arquivo de entidades...
+WARN  07/04/2017 16:05:33[ApplicationValidator-main]->Encontrados os seguintes problemas...
+WARN  07/04/2017 16:05:33[ApplicationValidator-main]->Erro analizando o relacionamento materialEstoqueExecutantena entidade MovimentacaoEstoque. Não existe a entidade MaterialEstoque
+WARN  07/04/2017 16:05:33[ApplicationValidator-main]->A aplicação não será gerada...
+INFO  07/04/2017 16:05:33[Main-main]->Finalizada a validação....
+INFO  07/04/2017 16:06:29[Main-main]->Validando arquivo de entidades...
+INFO  07/04/2017 16:06:29[Main-main]->Finalizada a validação....
+INFO  07/04/2017 16:06:29[Main-main]->Gerando a base da aplicação. Isso pode levar alguns segundos...
+DEBUG 07/04/2017 16:06:34[cache-main]->Could not find template in cache, creating new one; id=["HibernateDao.java"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:34[cache-main]->Compiling FreeMarker template "HibernateDao.java"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\appbase\\src\\main\\java\\br\\com\\app\\persistence\\HibernateDao.java"
+INFO  07/04/2017 16:06:34[GenericGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\core\persistence\HibernateDao.java]
+DEBUG 07/04/2017 16:06:34[cache-main]->Could not find template in cache, creating new one; id=["CatchThrowConstraintViolationException.java"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:34[cache-main]->Compiling FreeMarker template "CatchThrowConstraintViolationException.java"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\appbase\\src\\main\\java\\br\\com\\app\\persistence\\CatchThrowConstraintViolationException.java"
+INFO  07/04/2017 16:06:34[GenericGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\core\persistence\CatchThrowConstraintViolationException.java]
+DEBUG 07/04/2017 16:06:34[cache-main]->Could not find template in cache, creating new one; id=["AccessibleHibernateDao.java"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:34[cache-main]->Compiling FreeMarker template "AccessibleHibernateDao.java"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\appbase\\src\\main\\java\\br\\com\\app\\persistence\\AccessibleHibernateDao.java"
+INFO  07/04/2017 16:06:34[GenericGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\core\persistence\AccessibleHibernateDao.java]
+DEBUG 07/04/2017 16:06:34[cache-main]->Could not find template in cache, creating new one; id=["Pagination.java"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:34[cache-main]->Compiling FreeMarker template "Pagination.java"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\appbase\\src\\main\\java\\br\\com\\app\\persistence\\pagination\\Pagination.java"
+INFO  07/04/2017 16:06:34[GenericGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\core\persistence\pagination\Pagination.java]
+DEBUG 07/04/2017 16:06:34[cache-main]->Could not find template in cache, creating new one; id=["PaginationParams.java"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:34[cache-main]->Compiling FreeMarker template "PaginationParams.java"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\appbase\\src\\main\\java\\br\\com\\app\\persistence\\pagination\\PaginationParams.java"
+INFO  07/04/2017 16:06:34[GenericGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\core\persistence\pagination\PaginationParams.java]
+DEBUG 07/04/2017 16:06:34[cache-main]->Could not find template in cache, creating new one; id=["Paginator.java"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:34[cache-main]->Compiling FreeMarker template "Paginator.java"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\appbase\\src\\main\\java\\br\\com\\app\\persistence\\pagination\\Paginator.java"
+INFO  07/04/2017 16:06:34[GenericGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\core\persistence\pagination\Paginator.java]
+DEBUG 07/04/2017 16:06:34[cache-main]->Could not find template in cache, creating new one; id=["Pager.java"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:34[cache-main]->Compiling FreeMarker template "Pager.java"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\appbase\\src\\main\\java\\br\\com\\app\\persistence\\pagination\\Pager.java"
+INFO  07/04/2017 16:06:34[GenericGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\core\persistence\pagination\Pager.java]
+DEBUG 07/04/2017 16:06:34[cache-main]->Could not find template in cache, creating new one; id=["HibernateEventWiring.java"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:34[cache-main]->Compiling FreeMarker template "HibernateEventWiring.java"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\appbase\\src\\main\\java\\br\\com\\app\\persistence\\HibernateEventWiring.java"
+INFO  07/04/2017 16:06:34[GenericGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\core\persistence\HibernateEventWiring.java]
+DEBUG 07/04/2017 16:06:34[cache-main]->Could not find template in cache, creating new one; id=["DaoSyncInfo.java"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:34[cache-main]->Compiling FreeMarker template "DaoSyncInfo.java"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\appbase\\src\\main\\java\\br\\com\\app\\persistence\\DaoSyncInfo.java"
+INFO  07/04/2017 16:06:34[GenericGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\core\persistence\DaoSyncInfo.java]
+DEBUG 07/04/2017 16:06:34[cache-main]->Could not find template in cache, creating new one; id=["CustomEnversListener.java"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:34[cache-main]->Compiling FreeMarker template "CustomEnversListener.java"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\appbase\\src\\main\\java\\br\\com\\app\\audit\\CustomEnversListener.java"
+INFO  07/04/2017 16:06:34[GenericGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\core\\audit\CustomEnversListener.java]
+DEBUG 07/04/2017 16:06:34[cache-main]->Could not find template in cache, creating new one; id=["JsonError.java"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:34[cache-main]->Compiling FreeMarker template "JsonError.java"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\appbase\\src\\main\\java\\br\\com\\app\\json\\JsonError.java"
+INFO  07/04/2017 16:06:34[GenericGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\core\\json\JsonError.java]
+DEBUG 07/04/2017 16:06:34[cache-main]->Could not find template in cache, creating new one; id=["JsonOk.java"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:34[cache-main]->Compiling FreeMarker template "JsonOk.java"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\appbase\\src\\main\\java\\br\\com\\app\\json\\JsonOk.java"
+INFO  07/04/2017 16:06:34[GenericGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\core\\json\JsonOk.java]
+DEBUG 07/04/2017 16:06:34[cache-main]->Could not find template in cache, creating new one; id=["JsonPaginator.java"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:34[cache-main]->Compiling FreeMarker template "JsonPaginator.java"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\appbase\\src\\main\\java\\br\\com\\app\\json\\JsonPaginator.java"
+INFO  07/04/2017 16:06:34[GenericGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\core\\json\JsonPaginator.java]
+DEBUG 07/04/2017 16:06:34[cache-main]->Could not find template in cache, creating new one; id=["JsonResponse.java"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:34[cache-main]->Compiling FreeMarker template "JsonResponse.java"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\appbase\\src\\main\\java\\br\\com\\app\\json\\JsonResponse.java"
+INFO  07/04/2017 16:06:34[GenericGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\core\\json\JsonResponse.java]
+DEBUG 07/04/2017 16:06:34[cache-main]->Could not find template in cache, creating new one; id=["JsonWebSocket.java"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:34[cache-main]->Compiling FreeMarker template "JsonWebSocket.java"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\appbase\\src\\main\\java\\br\\com\\app\\json\\JsonWebSocket.java"
+INFO  07/04/2017 16:06:34[GenericGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\core\\json\JsonWebSocket.java]
+DEBUG 07/04/2017 16:06:34[cache-main]->Could not find template in cache, creating new one; id=["DtoDataBase.java"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:34[cache-main]->Compiling FreeMarker template "DtoDataBase.java"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\appbase\\src\\main\\java\\br\\com\\app\\json\\DtoDataBase.java"
+INFO  07/04/2017 16:06:34[GenericGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\core\\json\DtoDataBase.java]
+DEBUG 07/04/2017 16:06:34[cache-main]->Could not find template in cache, creating new one; id=["Conflict.java"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:34[cache-main]->Compiling FreeMarker template "Conflict.java"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\appbase\\src\\main\\java\\br\\com\\app\\json\\Conflict.java"
+INFO  07/04/2017 16:06:34[GenericGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\core\\json\Conflict.java]
+DEBUG 07/04/2017 16:06:34[cache-main]->Could not find template in cache, creating new one; id=["SyncOperation.java"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:34[cache-main]->Compiling FreeMarker template "SyncOperation.java"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\appbase\\src\\main\\java\\br\\com\\app\\json\\SyncOperation.java"
+INFO  07/04/2017 16:06:34[GenericGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\core\\json\SyncOperation.java]
+DEBUG 07/04/2017 16:06:34[cache-main]->Could not find template in cache, creating new one; id=["DataUpload.java"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:34[cache-main]->Compiling FreeMarker template "DataUpload.java"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\appbase\\src\\main\\java\\br\\com\\app\\rs\\DataUpload.java"
+INFO  07/04/2017 16:06:34[GenericGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\core\\rs\DataUpload.java]
+DEBUG 07/04/2017 16:06:34[cache-main]->Could not find template in cache, creating new one; id=["UploadResources.java"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:34[cache-main]->Compiling FreeMarker template "UploadResources.java"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\appbase\\src\\main\\java\\br\\com\\app\\rs\\UploadResources.java"
+INFO  07/04/2017 16:06:34[GenericGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\core\\rs\UploadResources.java]
+DEBUG 07/04/2017 16:06:34[cache-main]->Could not find template in cache, creating new one; id=["SyncResources.java"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:34[cache-main]->Compiling FreeMarker template "SyncResources.java"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\appbase\\src\\main\\java\\br\\com\\app\\rs\\SyncResources.java"
+INFO  07/04/2017 16:06:34[GenericGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\core\\rs\SyncResources.java]
+DEBUG 07/04/2017 16:06:34[cache-main]->Could not find template in cache, creating new one; id=["JasperBuilder.java"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:34[cache-main]->Compiling FreeMarker template "JasperBuilder.java"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\appbase\\src\\main\\java\\br\\com\\app\\reports\\JasperBuilder.java"
+INFO  07/04/2017 16:06:34[GenericGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\core\\reports\JasperBuilder.java]
+DEBUG 07/04/2017 16:06:34[cache-main]->Could not find template in cache, creating new one; id=["JasperMaker.java"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:34[cache-main]->Compiling FreeMarker template "JasperMaker.java"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\appbase\\src\\main\\java\\br\\com\\app\\reports\\JasperMaker.java"
+INFO  07/04/2017 16:06:34[GenericGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\core\\reports\JasperMaker.java]
+DEBUG 07/04/2017 16:06:34[cache-main]->Could not find template in cache, creating new one; id=["ColumnDefinitions.java"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:34[cache-main]->Compiling FreeMarker template "ColumnDefinitions.java"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\appbase\\src\\main\\java\\br\\com\\app\\model\\ColumnDefinitions.java"
+INFO  07/04/2017 16:06:34[GenericGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\core\\model\ColumnDefinitions.java]
+DEBUG 07/04/2017 16:06:34[cache-main]->Could not find template in cache, creating new one; id=["CustomRevisionEntity.java"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:34[cache-main]->Compiling FreeMarker template "CustomRevisionEntity.java"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\appbase\\src\\main\\java\\br\\com\\app\\model\\CustomRevisionEntity.java"
+INFO  07/04/2017 16:06:34[GenericGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\core\\model\CustomRevisionEntity.java]
+DEBUG 07/04/2017 16:06:34[cache-main]->Could not find template in cache, creating new one; id=["AbstractTimestampEntity.java"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:34[cache-main]->Compiling FreeMarker template "AbstractTimestampEntity.java"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\appbase\\src\\main\\java\\br\\com\\app\\model\\AbstractTimestampEntity.java"
+INFO  07/04/2017 16:06:34[GenericGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\core\\model\AbstractTimestampEntity.java]
+DEBUG 07/04/2017 16:06:34[cache-main]->Could not find template in cache, creating new one; id=["SyncInfo.java"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:34[cache-main]->Compiling FreeMarker template "SyncInfo.java"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\appbase\\src\\main\\java\\br\\com\\app\\model\\SyncInfo.java"
+INFO  07/04/2017 16:06:34[GenericGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\core\\model\SyncInfo.java]
+DEBUG 07/04/2017 16:06:34[cache-main]->Could not find template in cache, creating new one; id=["ExceptionHandler.java"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:34[cache-main]->Compiling FreeMarker template "ExceptionHandler.java"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\appbase\\src\\main\\java\\br\\com\\app\\rs\\exception\\ExceptionHandler.java"
+INFO  07/04/2017 16:06:34[GenericGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\core\\rs\exception\ExceptionHandler.java]
+DEBUG 07/04/2017 16:06:34[cache-main]->Could not find template in cache, creating new one; id=["ValidationException.java"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:34[cache-main]->Compiling FreeMarker template "ValidationException.java"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\appbase\\src\\main\\java\\br\\com\\app\\rs\\exception\\ValidationException.java"
+INFO  07/04/2017 16:06:34[GenericGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\core\\rs\exception\ValidationException.java]
+DEBUG 07/04/2017 16:06:34[cache-main]->Could not find template in cache, creating new one; id=["SpringSecurityUserContext.java"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:34[cache-main]->Compiling FreeMarker template "SpringSecurityUserContext.java"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\appbase\\src\\main\\java\\br\\com\\app\\security\\SpringSecurityUserContext.java"
+INFO  07/04/2017 16:06:34[GenericGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\core\\security\SpringSecurityUserContext.java]
+DEBUG 07/04/2017 16:06:34[cache-main]->Could not find template in cache, creating new one; id=["UserAuthorityUtils.java"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:34[cache-main]->Compiling FreeMarker template "UserAuthorityUtils.java"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\appbase\\src\\main\\java\\br\\com\\app\\security\\UserAuthorityUtils.java"
+INFO  07/04/2017 16:06:34[GenericGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\core\\security\UserAuthorityUtils.java]
+DEBUG 07/04/2017 16:06:34[cache-main]->Could not find template in cache, creating new one; id=["UserContext.java"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:34[cache-main]->Compiling FreeMarker template "UserContext.java"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\appbase\\src\\main\\java\\br\\com\\app\\security\\UserContext.java"
+INFO  07/04/2017 16:06:34[GenericGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\core\\security\UserContext.java]
+DEBUG 07/04/2017 16:06:34[cache-main]->Could not find template in cache, creating new one; id=["UserDetailsServiceImp.java"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:34[cache-main]->Compiling FreeMarker template "UserDetailsServiceImp.java"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\appbase\\src\\main\\java\\br\\com\\app\\security\\UserDetailsServiceImp.java"
+INFO  07/04/2017 16:06:34[GenericGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\core\\security\UserDetailsServiceImp.java]
+DEBUG 07/04/2017 16:06:34[cache-main]->Could not find template in cache, creating new one; id=["CustomDateSerializer.java"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:34[cache-main]->Compiling FreeMarker template "CustomDateSerializer.java"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\appbase\\src\\main\\java\\br\\com\\app\\serialization\\CustomDateSerializer.java"
+INFO  07/04/2017 16:06:34[GenericGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\core\\serialization\CustomDateSerializer.java]
+DEBUG 07/04/2017 16:06:34[cache-main]->Could not find template in cache, creating new one; id=["CustomLocalDateDeserializer.java"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:34[cache-main]->Compiling FreeMarker template "CustomLocalDateDeserializer.java"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\appbase\\src\\main\\java\\br\\com\\app\\serialization\\CustomLocalDateDeserializer.java"
+INFO  07/04/2017 16:06:34[GenericGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\core\\serialization\CustomLocalDateDeserializer.java]
+DEBUG 07/04/2017 16:06:34[cache-main]->Could not find template in cache, creating new one; id=["CustomLocalDateSerializer.java"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:34[cache-main]->Compiling FreeMarker template "CustomLocalDateSerializer.java"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\appbase\\src\\main\\java\\br\\com\\app\\serialization\\CustomLocalDateSerializer.java"
+INFO  07/04/2017 16:06:34[GenericGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\core\\serialization\CustomLocalDateSerializer.java]
+DEBUG 07/04/2017 16:06:34[cache-main]->Could not find template in cache, creating new one; id=["CustomLocalDateTimeDeserializer.java"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:34[cache-main]->Compiling FreeMarker template "CustomLocalDateTimeDeserializer.java"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\appbase\\src\\main\\java\\br\\com\\app\\serialization\\CustomLocalDateTimeDeserializer.java"
+INFO  07/04/2017 16:06:34[GenericGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\core\\serialization\CustomLocalDateTimeDeserializer.java]
+DEBUG 07/04/2017 16:06:34[cache-main]->Could not find template in cache, creating new one; id=["CustomLocalDateTimeSerializer.java"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:34[cache-main]->Compiling FreeMarker template "CustomLocalDateTimeSerializer.java"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\appbase\\src\\main\\java\\br\\com\\app\\serialization\\CustomLocalDateTimeSerializer.java"
+INFO  07/04/2017 16:06:34[GenericGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\core\\serialization\CustomLocalDateTimeSerializer.java]
+DEBUG 07/04/2017 16:06:34[cache-main]->Could not find template in cache, creating new one; id=["CustomDoubleDeserializer.java"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:34[cache-main]->Compiling FreeMarker template "CustomDoubleDeserializer.java"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\appbase\\src\\main\\java\\br\\com\\app\\serialization\\CustomDoubleDeserializer.java"
+INFO  07/04/2017 16:06:34[GenericGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\core\\serialization\CustomDoubleDeserializer.java]
+DEBUG 07/04/2017 16:06:34[cache-main]->Could not find template in cache, creating new one; id=["CustomSyncObjectIdDeserializer.java"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:34[cache-main]->Compiling FreeMarker template "CustomSyncObjectIdDeserializer.java"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\appbase\\src\\main\\java\\br\\com\\app\\serialization\\CustomSyncObjectIdDeserializer.java"
+INFO  07/04/2017 16:06:34[GenericGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\core\\serialization\CustomSyncObjectIdDeserializer.java]
+DEBUG 07/04/2017 16:06:34[cache-main]->Could not find template in cache, creating new one; id=["SyncService.java"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:34[cache-main]->Compiling FreeMarker template "SyncService.java"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\appbase\\src\\main\\java\\br\\com\\app\\service\\SyncService.java"
+INFO  07/04/2017 16:06:34[GenericGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\core\\service\SyncService.java]
+DEBUG 07/04/2017 16:06:34[cache-main]->Could not find template in cache, creating new one; id=["SyncServiceImp.java"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:34[cache-main]->Compiling FreeMarker template "SyncServiceImp.java"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\appbase\\src\\main\\java\\br\\com\\app\\service\\SyncServiceImp.java"
+INFO  07/04/2017 16:06:34[GenericGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\core\\service\SyncServiceImp.java]
+DEBUG 07/04/2017 16:06:34[cache-main]->Could not find template in cache, creating new one; id=["ApplicationConfig.java"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:34[cache-main]->Compiling FreeMarker template "ApplicationConfig.java"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\appbase\\src\\main\\java\\br\\com\\app\\utils\\ApplicationConfig.java"
+INFO  07/04/2017 16:06:34[GenericGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\core\\utils\ApplicationConfig.java]
+DEBUG 07/04/2017 16:06:34[cache-main]->Could not find template in cache, creating new one; id=["DataSeed.java"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:34[cache-main]->Compiling FreeMarker template "DataSeed.java"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\appbase\\src\\main\\java\\br\\com\\app\\utils\\DataSeed.java"
+INFO  07/04/2017 16:06:34[GenericGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\core\\utils\DataSeed.java]
+DEBUG 07/04/2017 16:06:34[cache-main]->Could not find template in cache, creating new one; id=["DateUtil.java"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:34[cache-main]->Compiling FreeMarker template "DateUtil.java"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\appbase\\src\\main\\java\\br\\com\\app\\utils\\DateUtil.java"
+INFO  07/04/2017 16:06:35[GenericGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\core\\utils\DateUtil.java]
+DEBUG 07/04/2017 16:06:35[cache-main]->Could not find template in cache, creating new one; id=["ImageUtils.java"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:35[cache-main]->Compiling FreeMarker template "ImageUtils.java"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\appbase\\src\\main\\java\\br\\com\\app\\utils\\ImageUtils.java"
+INFO  07/04/2017 16:06:35[GenericGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\core\\utils\ImageUtils.java]
+DEBUG 07/04/2017 16:06:35[cache-main]->Could not find template in cache, creating new one; id=["MD5ChecksumUtil.java"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:35[cache-main]->Compiling FreeMarker template "MD5ChecksumUtil.java"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\appbase\\src\\main\\java\\br\\com\\app\\utils\\MD5ChecksumUtil.java"
+INFO  07/04/2017 16:06:35[GenericGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\core\\utils\MD5ChecksumUtil.java]
+DEBUG 07/04/2017 16:06:35[cache-main]->Could not find template in cache, creating new one; id=["JavaParserTemplate.tpl"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:35[cache-main]->Compiling FreeMarker template "JavaParserTemplate.tpl"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\JavaParserTemplate.tpl"
+INFO  07/04/2017 16:06:35[GenericGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\core\\utils\Parser.java]
+DEBUG 07/04/2017 16:06:35[cache-main]->Could not find template in cache, creating new one; id=["Util.java"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:35[cache-main]->Compiling FreeMarker template "Util.java"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\appbase\\src\\main\\java\\br\\com\\app\\utils\\Util.java"
+INFO  07/04/2017 16:06:35[GenericGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\core\\utils\Util.java]
+INFO  07/04/2017 16:06:35[Main-main]->Finalizada a geração básica....
+INFO  07/04/2017 16:06:35[EntitiesGenerator-main]->-------------------------------Processando entidade Entidade-------------------------------
+DEBUG 07/04/2017 16:06:35[cache-main]->Could not find template in cache, creating new one; id=["JavaJsonTemplate.tpl"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:35[cache-main]->Compiling FreeMarker template "JavaJsonTemplate.tpl"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\JavaJsonTemplate.tpl"
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/json/\JsonEntidade.java]
+DEBUG 07/04/2017 16:06:35[cache-main]->Could not find template in cache, creating new one; id=["JavaModelTemplate.tpl"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:35[cache-main]->Compiling FreeMarker template "JavaModelTemplate.tpl"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\JavaModelTemplate.tpl"
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/model/\Entidade.java]
+DEBUG 07/04/2017 16:06:35[cache-main]->Could not find template in cache, creating new one; id=["JavaMybatisBasicServiceTemplate.tpl"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:35[cache-main]->Compiling FreeMarker template "JavaMybatisBasicServiceTemplate.tpl"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\JavaMybatisBasicServiceTemplate.tpl"
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/service/\EntidadeService.java]
+DEBUG 07/04/2017 16:06:35[cache-main]->Could not find template in cache, creating new one; id=["JavaMapperTemplate.tpl"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:35[cache-main]->Compiling FreeMarker template "JavaMapperTemplate.tpl"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\JavaMapperTemplate.tpl"
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/persistence/\EntidadeMapper.java]
+DEBUG 07/04/2017 16:06:35[cache-main]->Could not find template in cache, creating new one; id=["MybatisXmlTemplate.tpl"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:35[cache-main]->Compiling FreeMarker template "MybatisXmlTemplate.tpl"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\MybatisXmlTemplate.tpl"
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/persistence/\Entidade.xml]
+DEBUG 07/04/2017 16:06:35[cache-main]->Could not find template in cache, creating new one; id=["JavaMybatisResourcesTemplate.tpl"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:35[cache-main]->Compiling FreeMarker template "JavaMybatisResourcesTemplate.tpl"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\JavaMybatisResourcesTemplate.tpl"
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/rs/\EntidadeResources.java]
+DEBUG 07/04/2017 16:06:35[cache-main]->Could not find template in cache, creating new one; id=["JavaMybatisModelTemplate.tpl"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:35[cache-main]->Compiling FreeMarker template "JavaMybatisModelTemplate.tpl"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\JavaMybatisModelTemplate.tpl"
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/model/\Entidade.java]
+DEBUG 07/04/2017 16:06:35[cache-main]->Could not find template in cache, creating new one; id=["JavaFilterTemplate.tpl"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:35[cache-main]->Compiling FreeMarker template "JavaFilterTemplate.tpl"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\JavaFilterTemplate.tpl"
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/model/filter/\FilterEntidade.java]
+DEBUG 07/04/2017 16:06:35[cache-main]->Could not find template in cache, creating new one; id=["JsFormTemplate.tpl"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:35[cache-main]->Compiling FreeMarker template "JsFormTemplate.tpl"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\JsFormTemplate.tpl"
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/entidade/\FormEntidade.js]
+DEBUG 07/04/2017 16:06:35[cache-main]->Could not find template in cache, creating new one; id=["JsCollectionTemplate.tpl"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:35[cache-main]->Compiling FreeMarker template "JsCollectionTemplate.tpl"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\JsCollectionTemplate.tpl"
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//collections/\EntidadeCollection.js]
+DEBUG 07/04/2017 16:06:35[cache-main]->Could not find template in cache, creating new one; id=["JsModelTemplate.tpl"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:35[cache-main]->Compiling FreeMarker template "JsModelTemplate.tpl"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\JsModelTemplate.tpl"
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//models/\EntidadeModel.js]
+DEBUG 07/04/2017 16:06:35[cache-main]->Could not find template in cache, creating new one; id=["JsPageTemplate.tpl"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:35[cache-main]->Compiling FreeMarker template "JsPageTemplate.tpl"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\JsPageTemplate.tpl"
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/entidade/\PageEntidade.js]
+DEBUG 07/04/2017 16:06:35[cache-main]->Could not find template in cache, creating new one; id=["JsPageCollectionTemplate.tpl"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:35[cache-main]->Compiling FreeMarker template "JsPageCollectionTemplate.tpl"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\JsPageCollectionTemplate.tpl"
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//collections/\EntidadePageCollection.js]
+DEBUG 07/04/2017 16:06:35[cache-main]->Could not find template in cache, creating new one; id=["HtmlFormTemplate.tpl"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:35[cache-main]->Compiling FreeMarker template "HtmlFormTemplate.tpl"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\templates\\b2\\appbase\\core\\HtmlFormTemplate.tpl"
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/entidade/tpl/\FormEntidadeTemplate.html]
+DEBUG 07/04/2017 16:06:35[cache-main]->Could not find template in cache, creating new one; id=["HtmlPageTemplate.tpl"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:35[cache-main]->Compiling FreeMarker template "HtmlPageTemplate.tpl"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\templates\\b2\\appbase\\core\\HtmlPageTemplate.tpl"
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/entidade/tpl/\PageEntidadeTemplate.html]
+DEBUG 07/04/2017 16:06:35[cache-main]->Could not find template in cache, creating new one; id=["HtmlModalTemplate.tpl"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:35[cache-main]->Compiling FreeMarker template "HtmlModalTemplate.tpl"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\templates\\b2\\appbase\\core\\HtmlModalTemplate.tpl"
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/modalComponents/tpl/\EntidadeModalTemplate.html]
+DEBUG 07/04/2017 16:06:35[cache-main]->Could not find template in cache, creating new one; id=["JsMultiSelectTemplate.tpl"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:35[cache-main]->Compiling FreeMarker template "JsMultiSelectTemplate.tpl"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\JsMultiSelectTemplate.tpl"
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/entidade/\MultiSelectEntidade.js]
+DEBUG 07/04/2017 16:06:35[cache-main]->Could not find template in cache, creating new one; id=["JsModalMultiSelectTemplate.tpl"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:35[cache-main]->Compiling FreeMarker template "JsModalMultiSelectTemplate.tpl"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\JsModalMultiSelectTemplate.tpl"
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/entidade/\ModalMultiSelectEntidade.js]
+DEBUG 07/04/2017 16:06:35[cache-main]->Could not find template in cache, creating new one; id=["HtmlModalMultiSelectTemplate.tpl"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:35[cache-main]->Compiling FreeMarker template "HtmlModalMultiSelectTemplate.tpl"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\templates\\b2\\appbase\\core\\HtmlModalMultiSelectTemplate.tpl"
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/entidade/tpl/\ModalMultiSelectEntidadeTemplate.html]
+DEBUG 07/04/2017 16:06:35[cache-main]->Could not find template in cache, creating new one; id=["HtmlMultiSelectTemplate.tpl"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:35[cache-main]->Compiling FreeMarker template "HtmlMultiSelectTemplate.tpl"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\templates\\b2\\appbase\\core\\HtmlMultiSelectTemplate.tpl"
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/entidade/tpl/\MultiSelectEntidadeTemplate.html]
+DEBUG 07/04/2017 16:06:35[cache-main]->Could not find template in cache, creating new one; id=["JsModalTemplate.tpl"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:35[cache-main]->Compiling FreeMarker template "JsModalTemplate.tpl"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\JsModalTemplate.tpl"
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/modalComponents/\EntidadeModal.js]
+INFO  07/04/2017 16:06:35[EntitiesGenerator-main]->-------------------------------Processando entidade Pesoas-------------------------------
+DEBUG 07/04/2017 16:06:35[cache-main]->"JavaJsonTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/json/\JsonPesoas.java]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JavaModelTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/model/\Pesoas.java]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JavaMybatisBasicServiceTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/service/\PesoasService.java]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JavaMapperTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/persistence/\PesoasMapper.java]
+DEBUG 07/04/2017 16:06:35[cache-main]->"MybatisXmlTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/persistence/\Pesoas.xml]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JavaMybatisResourcesTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/rs/\PesoasResources.java]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JavaMybatisModelTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/model/\Pesoas.java]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JavaFilterTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/model/filter/\FilterPesoas.java]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JsFormTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/pesoas/\FormPesoas.js]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JsCollectionTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//collections/\PesoasCollection.js]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JsModelTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//models/\PesoasModel.js]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JsPageTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/pesoas/\PagePesoas.js]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JsPageCollectionTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//collections/\PesoasPageCollection.js]
+DEBUG 07/04/2017 16:06:35[cache-main]->"HtmlFormTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/pesoas/tpl/\FormPesoasTemplate.html]
+DEBUG 07/04/2017 16:06:35[cache-main]->"HtmlPageTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/pesoas/tpl/\PagePesoasTemplate.html]
+DEBUG 07/04/2017 16:06:35[cache-main]->"HtmlModalTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/modalComponents/tpl/\PesoasModalTemplate.html]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JsMultiSelectTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/pesoas/\MultiSelectPesoas.js]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JsModalMultiSelectTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/pesoas/\ModalMultiSelectPesoas.js]
+DEBUG 07/04/2017 16:06:35[cache-main]->"HtmlModalMultiSelectTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/pesoas/tpl/\ModalMultiSelectPesoasTemplate.html]
+DEBUG 07/04/2017 16:06:35[cache-main]->"HtmlMultiSelectTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/pesoas/tpl/\MultiSelectPesoasTemplate.html]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JsModalTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/modalComponents/\PesoasModal.js]
+INFO  07/04/2017 16:06:35[EntitiesGenerator-main]->-------------------------------Processando entidade Setor-------------------------------
+DEBUG 07/04/2017 16:06:35[cache-main]->"JavaJsonTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/json/\JsonSetor.java]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JavaModelTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/model/\Setor.java]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JavaMybatisBasicServiceTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/service/\SetorService.java]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JavaMapperTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/persistence/\SetorMapper.java]
+DEBUG 07/04/2017 16:06:35[cache-main]->"MybatisXmlTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/persistence/\Setor.xml]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JavaMybatisResourcesTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/rs/\SetorResources.java]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JavaMybatisModelTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/model/\Setor.java]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JavaFilterTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/model/filter/\FilterSetor.java]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JsFormTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/setor/\FormSetor.js]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JsCollectionTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//collections/\SetorCollection.js]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JsModelTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//models/\SetorModel.js]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JsPageTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/setor/\PageSetor.js]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JsPageCollectionTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//collections/\SetorPageCollection.js]
+DEBUG 07/04/2017 16:06:35[cache-main]->"HtmlFormTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/setor/tpl/\FormSetorTemplate.html]
+DEBUG 07/04/2017 16:06:35[cache-main]->"HtmlPageTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/setor/tpl/\PageSetorTemplate.html]
+DEBUG 07/04/2017 16:06:35[cache-main]->"HtmlModalTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/modalComponents/tpl/\SetorModalTemplate.html]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JsMultiSelectTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/setor/\MultiSelectSetor.js]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JsModalMultiSelectTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/setor/\ModalMultiSelectSetor.js]
+DEBUG 07/04/2017 16:06:35[cache-main]->"HtmlModalMultiSelectTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/setor/tpl/\ModalMultiSelectSetorTemplate.html]
+DEBUG 07/04/2017 16:06:35[cache-main]->"HtmlMultiSelectTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/setor/tpl/\MultiSelectSetorTemplate.html]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JsModalTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/modalComponents/\SetorModal.js]
+INFO  07/04/2017 16:06:35[EntitiesGenerator-main]->-------------------------------Processando entidade Usuario-------------------------------
+DEBUG 07/04/2017 16:06:35[cache-main]->"JavaJsonTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/json/\JsonUsuario.java]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JavaModelTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/model/\Usuario.java]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JavaMybatisBasicServiceTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/service/\UsuarioService.java]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JavaMapperTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/persistence/\UsuarioMapper.java]
+DEBUG 07/04/2017 16:06:35[cache-main]->"MybatisXmlTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/persistence/\Usuario.xml]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JavaMybatisResourcesTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/rs/\UsuarioResources.java]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JavaMybatisModelTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/model/\Usuario.java]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JavaFilterTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/model/filter/\FilterUsuario.java]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JsFormTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/usuario/\FormUsuario.js]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JsCollectionTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//collections/\UsuarioCollection.js]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JsModelTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//models/\UsuarioModel.js]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JsPageTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/usuario/\PageUsuario.js]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JsPageCollectionTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//collections/\UsuarioPageCollection.js]
+DEBUG 07/04/2017 16:06:35[cache-main]->"HtmlFormTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/usuario/tpl/\FormUsuarioTemplate.html]
+DEBUG 07/04/2017 16:06:35[cache-main]->"HtmlPageTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/usuario/tpl/\PageUsuarioTemplate.html]
+DEBUG 07/04/2017 16:06:35[cache-main]->"HtmlModalTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/modalComponents/tpl/\UsuarioModalTemplate.html]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JsMultiSelectTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/usuario/\MultiSelectUsuario.js]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JsModalMultiSelectTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/usuario/\ModalMultiSelectUsuario.js]
+DEBUG 07/04/2017 16:06:35[cache-main]->"HtmlModalMultiSelectTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/usuario/tpl/\ModalMultiSelectUsuarioTemplate.html]
+DEBUG 07/04/2017 16:06:35[cache-main]->"HtmlMultiSelectTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/usuario/tpl/\MultiSelectUsuarioTemplate.html]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JsModalTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/modalComponents/\UsuarioModal.js]
+INFO  07/04/2017 16:06:35[EntitiesGenerator-main]->-------------------------------Processando entidade EstoqueMaterial-------------------------------
+DEBUG 07/04/2017 16:06:35[cache-main]->"JavaJsonTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/json/\JsonEstoqueMaterial.java]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JavaModelTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/model/\EstoqueMaterial.java]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JavaMybatisBasicServiceTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/service/\EstoqueMaterialService.java]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JavaMapperTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/persistence/\EstoqueMaterialMapper.java]
+DEBUG 07/04/2017 16:06:35[cache-main]->"MybatisXmlTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+ERROR 07/04/2017 16:06:35[MarkerGenerator-main]->Erro gerando entidade EstoqueMaterial Arquivo: EstoqueMaterial.xml
+java.lang.NullPointerException
+	at br.com.c3pgen.base.methods.ToUpperCaseMethod.exec(ToUpperCaseMethod.java:16)
+	at br.com.c3pgen.base.methods.ToUpperCaseMethod.exec(ToUpperCaseMethod.java:1)
+	at freemarker.core.MethodCall._eval(MethodCall.java:98)
+	at freemarker.core.Expression.eval(Expression.java:111)
+	at freemarker.core.Expression.evalAndCoerceToString(Expression.java:115)
+	at freemarker.core.DollarVariable.accept(DollarVariable.java:76)
+	at freemarker.core.Environment.visit(Environment.java:265)
+	at freemarker.core.MixedContent.accept(MixedContent.java:93)
+	at freemarker.core.Environment.visitByHiddingParent(Environment.java:286)
+	at freemarker.core.ConditionalBlock.accept(ConditionalBlock.java:86)
+	at freemarker.core.Environment.visit(Environment.java:265)
+	at freemarker.core.MixedContent.accept(MixedContent.java:93)
+	at freemarker.core.Environment.visitByHiddingParent(Environment.java:286)
+	at freemarker.core.IteratorBlock$Context.runLoop(IteratorBlock.java:193)
+	at freemarker.core.Environment.visitIteratorBlock(Environment.java:509)
+	at freemarker.core.IteratorBlock.accept(IteratorBlock.java:103)
+	at freemarker.core.Environment.visitByHiddingParent(Environment.java:286)
+	at freemarker.core.ConditionalBlock.accept(ConditionalBlock.java:86)
+	at freemarker.core.Environment.visit(Environment.java:265)
+	at freemarker.core.MixedContent.accept(MixedContent.java:93)
+	at freemarker.core.Environment.visit(Environment.java:265)
+	at freemarker.core.Environment.process(Environment.java:243)
+	at freemarker.template.Template.process(Template.java:277)
+	at br.com.c3pgen.base.MarkerGenerator.generateEntityFile(MarkerGenerator.java:85)
+	at br.com.c3pgen.base.EntitiesGenerator.generate(EntitiesGenerator.java:248)
+	at br.com.c3pgen.base.Main.generatoToInput(Main.java:70)
+	at br.com.c3pgen.base.Main.main(Main.java:39)
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/persistence/\EstoqueMaterial.xml]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JavaMybatisResourcesTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/rs/\EstoqueMaterialResources.java]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JavaMybatisModelTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/model/\EstoqueMaterial.java]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JavaFilterTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/model/filter/\FilterEstoqueMaterial.java]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JsFormTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/estoqueMaterial/\FormEstoqueMaterial.js]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JsCollectionTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//collections/\EstoqueMaterialCollection.js]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JsModelTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//models/\EstoqueMaterialModel.js]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JsPageTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/estoqueMaterial/\PageEstoqueMaterial.js]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JsPageCollectionTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//collections/\EstoqueMaterialPageCollection.js]
+DEBUG 07/04/2017 16:06:35[cache-main]->"HtmlFormTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/estoqueMaterial/tpl/\FormEstoqueMaterialTemplate.html]
+DEBUG 07/04/2017 16:06:35[cache-main]->"HtmlPageTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/estoqueMaterial/tpl/\PageEstoqueMaterialTemplate.html]
+DEBUG 07/04/2017 16:06:35[cache-main]->"HtmlModalTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/modalComponents/tpl/\EstoqueMaterialModalTemplate.html]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JsMultiSelectTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/estoqueMaterial/\MultiSelectEstoqueMaterial.js]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JsModalMultiSelectTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/estoqueMaterial/\ModalMultiSelectEstoqueMaterial.js]
+DEBUG 07/04/2017 16:06:35[cache-main]->"HtmlModalMultiSelectTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/estoqueMaterial/tpl/\ModalMultiSelectEstoqueMaterialTemplate.html]
+DEBUG 07/04/2017 16:06:35[cache-main]->"HtmlMultiSelectTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/estoqueMaterial/tpl/\MultiSelectEstoqueMaterialTemplate.html]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JsModalTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/modalComponents/\EstoqueMaterialModal.js]
+INFO  07/04/2017 16:06:35[EntitiesGenerator-main]->-------------------------------Processando entidade HistoricoItemMovimentacaoEstoque-------------------------------
+DEBUG 07/04/2017 16:06:35[cache-main]->"JavaJsonTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/json/\JsonHistoricoItemMovimentacaoEstoque.java]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JavaModelTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/model/\HistoricoItemMovimentacaoEstoque.java]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JavaMybatisBasicServiceTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/service/\HistoricoItemMovimentacaoEstoqueService.java]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JavaMapperTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/persistence/\HistoricoItemMovimentacaoEstoqueMapper.java]
+DEBUG 07/04/2017 16:06:35[cache-main]->"MybatisXmlTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+ERROR 07/04/2017 16:06:35[MarkerGenerator-main]->Erro gerando entidade HistoricoItemMovimentacaoEstoque Arquivo: HistoricoItemMovimentacaoEstoque.xml
+java.lang.NullPointerException
+	at br.com.c3pgen.base.methods.ToUpperCaseMethod.exec(ToUpperCaseMethod.java:16)
+	at br.com.c3pgen.base.methods.ToUpperCaseMethod.exec(ToUpperCaseMethod.java:1)
+	at freemarker.core.MethodCall._eval(MethodCall.java:98)
+	at freemarker.core.Expression.eval(Expression.java:111)
+	at freemarker.core.Expression.evalAndCoerceToString(Expression.java:115)
+	at freemarker.core.DollarVariable.accept(DollarVariable.java:76)
+	at freemarker.core.Environment.visit(Environment.java:265)
+	at freemarker.core.MixedContent.accept(MixedContent.java:93)
+	at freemarker.core.Environment.visitByHiddingParent(Environment.java:286)
+	at freemarker.core.ConditionalBlock.accept(ConditionalBlock.java:86)
+	at freemarker.core.Environment.visit(Environment.java:265)
+	at freemarker.core.MixedContent.accept(MixedContent.java:93)
+	at freemarker.core.Environment.visitByHiddingParent(Environment.java:286)
+	at freemarker.core.IteratorBlock$Context.runLoop(IteratorBlock.java:193)
+	at freemarker.core.Environment.visitIteratorBlock(Environment.java:509)
+	at freemarker.core.IteratorBlock.accept(IteratorBlock.java:103)
+	at freemarker.core.Environment.visitByHiddingParent(Environment.java:286)
+	at freemarker.core.ConditionalBlock.accept(ConditionalBlock.java:86)
+	at freemarker.core.Environment.visit(Environment.java:265)
+	at freemarker.core.MixedContent.accept(MixedContent.java:93)
+	at freemarker.core.Environment.visit(Environment.java:265)
+	at freemarker.core.Environment.process(Environment.java:243)
+	at freemarker.template.Template.process(Template.java:277)
+	at br.com.c3pgen.base.MarkerGenerator.generateEntityFile(MarkerGenerator.java:85)
+	at br.com.c3pgen.base.EntitiesGenerator.generate(EntitiesGenerator.java:248)
+	at br.com.c3pgen.base.Main.generatoToInput(Main.java:70)
+	at br.com.c3pgen.base.Main.main(Main.java:39)
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/persistence/\HistoricoItemMovimentacaoEstoque.xml]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JavaMybatisResourcesTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/rs/\HistoricoItemMovimentacaoEstoqueResources.java]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JavaMybatisModelTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/model/\HistoricoItemMovimentacaoEstoque.java]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JavaFilterTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/model/filter/\FilterHistoricoItemMovimentacaoEstoque.java]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JsFormTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/historicoItemMovimentacaoEstoque/\FormHistoricoItemMovimentacaoEstoque.js]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JsCollectionTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//collections/\HistoricoItemMovimentacaoEstoqueCollection.js]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JsModelTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//models/\HistoricoItemMovimentacaoEstoqueModel.js]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JsPageTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/historicoItemMovimentacaoEstoque/\PageHistoricoItemMovimentacaoEstoque.js]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JsPageCollectionTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//collections/\HistoricoItemMovimentacaoEstoquePageCollection.js]
+DEBUG 07/04/2017 16:06:35[cache-main]->"HtmlFormTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/historicoItemMovimentacaoEstoque/tpl/\FormHistoricoItemMovimentacaoEstoqueTemplate.html]
+DEBUG 07/04/2017 16:06:35[cache-main]->"HtmlPageTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/historicoItemMovimentacaoEstoque/tpl/\PageHistoricoItemMovimentacaoEstoqueTemplate.html]
+DEBUG 07/04/2017 16:06:35[cache-main]->"HtmlModalTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/modalComponents/tpl/\HistoricoItemMovimentacaoEstoqueModalTemplate.html]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JsMultiSelectTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/historicoItemMovimentacaoEstoque/\MultiSelectHistoricoItemMovimentacaoEstoque.js]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JsModalMultiSelectTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/historicoItemMovimentacaoEstoque/\ModalMultiSelectHistoricoItemMovimentacaoEstoque.js]
+DEBUG 07/04/2017 16:06:35[cache-main]->"HtmlModalMultiSelectTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/historicoItemMovimentacaoEstoque/tpl/\ModalMultiSelectHistoricoItemMovimentacaoEstoqueTemplate.html]
+DEBUG 07/04/2017 16:06:35[cache-main]->"HtmlMultiSelectTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/historicoItemMovimentacaoEstoque/tpl/\MultiSelectHistoricoItemMovimentacaoEstoqueTemplate.html]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JsModalTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/modalComponents/\HistoricoItemMovimentacaoEstoqueModal.js]
+INFO  07/04/2017 16:06:35[EntitiesGenerator-main]->-------------------------------Processando entidade HistoricoMovimentacaoEstoque-------------------------------
+DEBUG 07/04/2017 16:06:35[cache-main]->"JavaJsonTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/json/\JsonHistoricoMovimentacaoEstoque.java]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JavaModelTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/model/\HistoricoMovimentacaoEstoque.java]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JavaMybatisBasicServiceTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/service/\HistoricoMovimentacaoEstoqueService.java]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JavaMapperTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/persistence/\HistoricoMovimentacaoEstoqueMapper.java]
+DEBUG 07/04/2017 16:06:35[cache-main]->"MybatisXmlTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+ERROR 07/04/2017 16:06:35[MarkerGenerator-main]->Erro gerando entidade HistoricoMovimentacaoEstoque Arquivo: HistoricoMovimentacaoEstoque.xml
+java.lang.NullPointerException
+	at br.com.c3pgen.base.methods.ToUpperCaseMethod.exec(ToUpperCaseMethod.java:16)
+	at br.com.c3pgen.base.methods.ToUpperCaseMethod.exec(ToUpperCaseMethod.java:1)
+	at freemarker.core.MethodCall._eval(MethodCall.java:98)
+	at freemarker.core.Expression.eval(Expression.java:111)
+	at freemarker.core.Expression.evalAndCoerceToString(Expression.java:115)
+	at freemarker.core.DollarVariable.accept(DollarVariable.java:76)
+	at freemarker.core.Environment.visit(Environment.java:265)
+	at freemarker.core.MixedContent.accept(MixedContent.java:93)
+	at freemarker.core.Environment.visitByHiddingParent(Environment.java:286)
+	at freemarker.core.ConditionalBlock.accept(ConditionalBlock.java:86)
+	at freemarker.core.Environment.visit(Environment.java:265)
+	at freemarker.core.MixedContent.accept(MixedContent.java:93)
+	at freemarker.core.Environment.visitByHiddingParent(Environment.java:286)
+	at freemarker.core.IteratorBlock$Context.runLoop(IteratorBlock.java:193)
+	at freemarker.core.Environment.visitIteratorBlock(Environment.java:509)
+	at freemarker.core.IteratorBlock.accept(IteratorBlock.java:103)
+	at freemarker.core.Environment.visitByHiddingParent(Environment.java:286)
+	at freemarker.core.ConditionalBlock.accept(ConditionalBlock.java:86)
+	at freemarker.core.Environment.visit(Environment.java:265)
+	at freemarker.core.MixedContent.accept(MixedContent.java:93)
+	at freemarker.core.Environment.visit(Environment.java:265)
+	at freemarker.core.Environment.process(Environment.java:243)
+	at freemarker.template.Template.process(Template.java:277)
+	at br.com.c3pgen.base.MarkerGenerator.generateEntityFile(MarkerGenerator.java:85)
+	at br.com.c3pgen.base.EntitiesGenerator.generate(EntitiesGenerator.java:248)
+	at br.com.c3pgen.base.Main.generatoToInput(Main.java:70)
+	at br.com.c3pgen.base.Main.main(Main.java:39)
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/persistence/\HistoricoMovimentacaoEstoque.xml]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JavaMybatisResourcesTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/rs/\HistoricoMovimentacaoEstoqueResources.java]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JavaMybatisModelTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/model/\HistoricoMovimentacaoEstoque.java]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JavaFilterTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/model/filter/\FilterHistoricoMovimentacaoEstoque.java]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JsFormTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/historicoMovimentacaoEstoque/\FormHistoricoMovimentacaoEstoque.js]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JsCollectionTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//collections/\HistoricoMovimentacaoEstoqueCollection.js]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JsModelTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//models/\HistoricoMovimentacaoEstoqueModel.js]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JsPageTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/historicoMovimentacaoEstoque/\PageHistoricoMovimentacaoEstoque.js]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JsPageCollectionTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//collections/\HistoricoMovimentacaoEstoquePageCollection.js]
+DEBUG 07/04/2017 16:06:35[cache-main]->"HtmlFormTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/historicoMovimentacaoEstoque/tpl/\FormHistoricoMovimentacaoEstoqueTemplate.html]
+DEBUG 07/04/2017 16:06:35[cache-main]->"HtmlPageTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/historicoMovimentacaoEstoque/tpl/\PageHistoricoMovimentacaoEstoqueTemplate.html]
+DEBUG 07/04/2017 16:06:35[cache-main]->"HtmlModalTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/modalComponents/tpl/\HistoricoMovimentacaoEstoqueModalTemplate.html]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JsMultiSelectTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/historicoMovimentacaoEstoque/\MultiSelectHistoricoMovimentacaoEstoque.js]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JsModalMultiSelectTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/historicoMovimentacaoEstoque/\ModalMultiSelectHistoricoMovimentacaoEstoque.js]
+DEBUG 07/04/2017 16:06:35[cache-main]->"HtmlModalMultiSelectTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/historicoMovimentacaoEstoque/tpl/\ModalMultiSelectHistoricoMovimentacaoEstoqueTemplate.html]
+DEBUG 07/04/2017 16:06:35[cache-main]->"HtmlMultiSelectTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/historicoMovimentacaoEstoque/tpl/\MultiSelectHistoricoMovimentacaoEstoqueTemplate.html]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JsModalTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/modalComponents/\HistoricoMovimentacaoEstoqueModal.js]
+INFO  07/04/2017 16:06:35[EntitiesGenerator-main]->-------------------------------Processando entidade ItemMovimentacaoEstoque-------------------------------
+DEBUG 07/04/2017 16:06:35[cache-main]->"JavaJsonTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/json/\JsonItemMovimentacaoEstoque.java]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JavaModelTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/model/\ItemMovimentacaoEstoque.java]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JavaMybatisBasicServiceTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/service/\ItemMovimentacaoEstoqueService.java]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JavaMapperTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/persistence/\ItemMovimentacaoEstoqueMapper.java]
+DEBUG 07/04/2017 16:06:35[cache-main]->"MybatisXmlTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+ERROR 07/04/2017 16:06:35[MarkerGenerator-main]->Erro gerando entidade ItemMovimentacaoEstoque Arquivo: ItemMovimentacaoEstoque.xml
+java.lang.NullPointerException
+	at br.com.c3pgen.base.methods.ToUpperCaseMethod.exec(ToUpperCaseMethod.java:16)
+	at br.com.c3pgen.base.methods.ToUpperCaseMethod.exec(ToUpperCaseMethod.java:1)
+	at freemarker.core.MethodCall._eval(MethodCall.java:98)
+	at freemarker.core.Expression.eval(Expression.java:111)
+	at freemarker.core.Expression.evalAndCoerceToString(Expression.java:115)
+	at freemarker.core.DollarVariable.accept(DollarVariable.java:76)
+	at freemarker.core.Environment.visit(Environment.java:265)
+	at freemarker.core.MixedContent.accept(MixedContent.java:93)
+	at freemarker.core.Environment.visitByHiddingParent(Environment.java:286)
+	at freemarker.core.ConditionalBlock.accept(ConditionalBlock.java:86)
+	at freemarker.core.Environment.visit(Environment.java:265)
+	at freemarker.core.MixedContent.accept(MixedContent.java:93)
+	at freemarker.core.Environment.visitByHiddingParent(Environment.java:286)
+	at freemarker.core.IteratorBlock$Context.runLoop(IteratorBlock.java:193)
+	at freemarker.core.Environment.visitIteratorBlock(Environment.java:509)
+	at freemarker.core.IteratorBlock.accept(IteratorBlock.java:103)
+	at freemarker.core.Environment.visitByHiddingParent(Environment.java:286)
+	at freemarker.core.ConditionalBlock.accept(ConditionalBlock.java:86)
+	at freemarker.core.Environment.visit(Environment.java:265)
+	at freemarker.core.MixedContent.accept(MixedContent.java:93)
+	at freemarker.core.Environment.visit(Environment.java:265)
+	at freemarker.core.Environment.process(Environment.java:243)
+	at freemarker.template.Template.process(Template.java:277)
+	at br.com.c3pgen.base.MarkerGenerator.generateEntityFile(MarkerGenerator.java:85)
+	at br.com.c3pgen.base.EntitiesGenerator.generate(EntitiesGenerator.java:248)
+	at br.com.c3pgen.base.Main.generatoToInput(Main.java:70)
+	at br.com.c3pgen.base.Main.main(Main.java:39)
+INFO  07/04/2017 16:06:35[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/persistence/\ItemMovimentacaoEstoque.xml]
+DEBUG 07/04/2017 16:06:35[cache-main]->"JavaMybatisResourcesTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/rs/\ItemMovimentacaoEstoqueResources.java]
+DEBUG 07/04/2017 16:06:36[cache-main]->"JavaMybatisModelTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/model/\ItemMovimentacaoEstoque.java]
+DEBUG 07/04/2017 16:06:36[cache-main]->"JavaFilterTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/model/filter/\FilterItemMovimentacaoEstoque.java]
+DEBUG 07/04/2017 16:06:36[cache-main]->"JsFormTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/itemMovimentacaoEstoque/\FormItemMovimentacaoEstoque.js]
+DEBUG 07/04/2017 16:06:36[cache-main]->"JsCollectionTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//collections/\ItemMovimentacaoEstoqueCollection.js]
+DEBUG 07/04/2017 16:06:36[cache-main]->"JsModelTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//models/\ItemMovimentacaoEstoqueModel.js]
+DEBUG 07/04/2017 16:06:36[cache-main]->"JsPageTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/itemMovimentacaoEstoque/\PageItemMovimentacaoEstoque.js]
+DEBUG 07/04/2017 16:06:36[cache-main]->"JsPageCollectionTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//collections/\ItemMovimentacaoEstoquePageCollection.js]
+DEBUG 07/04/2017 16:06:36[cache-main]->"HtmlFormTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/itemMovimentacaoEstoque/tpl/\FormItemMovimentacaoEstoqueTemplate.html]
+DEBUG 07/04/2017 16:06:36[cache-main]->"HtmlPageTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/itemMovimentacaoEstoque/tpl/\PageItemMovimentacaoEstoqueTemplate.html]
+DEBUG 07/04/2017 16:06:36[cache-main]->"HtmlModalTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/modalComponents/tpl/\ItemMovimentacaoEstoqueModalTemplate.html]
+DEBUG 07/04/2017 16:06:36[cache-main]->"JsMultiSelectTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/itemMovimentacaoEstoque/\MultiSelectItemMovimentacaoEstoque.js]
+DEBUG 07/04/2017 16:06:36[cache-main]->"JsModalMultiSelectTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/itemMovimentacaoEstoque/\ModalMultiSelectItemMovimentacaoEstoque.js]
+DEBUG 07/04/2017 16:06:36[cache-main]->"HtmlModalMultiSelectTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/itemMovimentacaoEstoque/tpl/\ModalMultiSelectItemMovimentacaoEstoqueTemplate.html]
+DEBUG 07/04/2017 16:06:36[cache-main]->"HtmlMultiSelectTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/itemMovimentacaoEstoque/tpl/\MultiSelectItemMovimentacaoEstoqueTemplate.html]
+DEBUG 07/04/2017 16:06:36[cache-main]->"JsModalTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/modalComponents/\ItemMovimentacaoEstoqueModal.js]
+INFO  07/04/2017 16:06:36[EntitiesGenerator-main]->-------------------------------Processando entidade Material-------------------------------
+DEBUG 07/04/2017 16:06:36[cache-main]->"JavaJsonTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/json/\JsonMaterial.java]
+DEBUG 07/04/2017 16:06:36[cache-main]->"JavaModelTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/model/\Material.java]
+DEBUG 07/04/2017 16:06:36[cache-main]->"JavaMybatisBasicServiceTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/service/\MaterialService.java]
+DEBUG 07/04/2017 16:06:36[cache-main]->"JavaMapperTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/persistence/\MaterialMapper.java]
+DEBUG 07/04/2017 16:06:36[cache-main]->"MybatisXmlTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/persistence/\Material.xml]
+DEBUG 07/04/2017 16:06:36[cache-main]->"JavaMybatisResourcesTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/rs/\MaterialResources.java]
+DEBUG 07/04/2017 16:06:36[cache-main]->"JavaMybatisModelTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/model/\Material.java]
+DEBUG 07/04/2017 16:06:36[cache-main]->"JavaFilterTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/model/filter/\FilterMaterial.java]
+DEBUG 07/04/2017 16:06:36[cache-main]->"JsFormTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/material/\FormMaterial.js]
+DEBUG 07/04/2017 16:06:36[cache-main]->"JsCollectionTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//collections/\MaterialCollection.js]
+DEBUG 07/04/2017 16:06:36[cache-main]->"JsModelTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//models/\MaterialModel.js]
+DEBUG 07/04/2017 16:06:36[cache-main]->"JsPageTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/material/\PageMaterial.js]
+DEBUG 07/04/2017 16:06:36[cache-main]->"JsPageCollectionTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//collections/\MaterialPageCollection.js]
+DEBUG 07/04/2017 16:06:36[cache-main]->"HtmlFormTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/material/tpl/\FormMaterialTemplate.html]
+DEBUG 07/04/2017 16:06:36[cache-main]->"HtmlPageTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/material/tpl/\PageMaterialTemplate.html]
+DEBUG 07/04/2017 16:06:36[cache-main]->"HtmlModalTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/modalComponents/tpl/\MaterialModalTemplate.html]
+DEBUG 07/04/2017 16:06:36[cache-main]->"JsMultiSelectTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/material/\MultiSelectMaterial.js]
+DEBUG 07/04/2017 16:06:36[cache-main]->"JsModalMultiSelectTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/material/\ModalMultiSelectMaterial.js]
+DEBUG 07/04/2017 16:06:36[cache-main]->"HtmlModalMultiSelectTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/material/tpl/\ModalMultiSelectMaterialTemplate.html]
+DEBUG 07/04/2017 16:06:36[cache-main]->"HtmlMultiSelectTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/material/tpl/\MultiSelectMaterialTemplate.html]
+DEBUG 07/04/2017 16:06:36[cache-main]->"JsModalTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/modalComponents/\MaterialModal.js]
+INFO  07/04/2017 16:06:36[EntitiesGenerator-main]->-------------------------------Processando entidade MovimentacaoEstoque-------------------------------
+DEBUG 07/04/2017 16:06:36[cache-main]->"JavaJsonTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/json/\JsonMovimentacaoEstoque.java]
+DEBUG 07/04/2017 16:06:36[cache-main]->"JavaModelTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/model/\MovimentacaoEstoque.java]
+DEBUG 07/04/2017 16:06:36[cache-main]->"JavaMybatisBasicServiceTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/service/\MovimentacaoEstoqueService.java]
+DEBUG 07/04/2017 16:06:36[cache-main]->"JavaMapperTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/persistence/\MovimentacaoEstoqueMapper.java]
+DEBUG 07/04/2017 16:06:36[cache-main]->"MybatisXmlTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+ERROR 07/04/2017 16:06:36[MarkerGenerator-main]->Erro gerando entidade MovimentacaoEstoque Arquivo: MovimentacaoEstoque.xml
+java.lang.NullPointerException
+	at br.com.c3pgen.base.methods.ToUpperCaseMethod.exec(ToUpperCaseMethod.java:16)
+	at br.com.c3pgen.base.methods.ToUpperCaseMethod.exec(ToUpperCaseMethod.java:1)
+	at freemarker.core.MethodCall._eval(MethodCall.java:98)
+	at freemarker.core.Expression.eval(Expression.java:111)
+	at freemarker.core.Expression.evalAndCoerceToString(Expression.java:115)
+	at freemarker.core.DollarVariable.accept(DollarVariable.java:76)
+	at freemarker.core.Environment.visit(Environment.java:265)
+	at freemarker.core.MixedContent.accept(MixedContent.java:93)
+	at freemarker.core.Environment.visitByHiddingParent(Environment.java:286)
+	at freemarker.core.ConditionalBlock.accept(ConditionalBlock.java:86)
+	at freemarker.core.Environment.visit(Environment.java:265)
+	at freemarker.core.MixedContent.accept(MixedContent.java:93)
+	at freemarker.core.Environment.visitByHiddingParent(Environment.java:286)
+	at freemarker.core.IteratorBlock$Context.runLoop(IteratorBlock.java:193)
+	at freemarker.core.Environment.visitIteratorBlock(Environment.java:509)
+	at freemarker.core.IteratorBlock.accept(IteratorBlock.java:103)
+	at freemarker.core.Environment.visitByHiddingParent(Environment.java:286)
+	at freemarker.core.ConditionalBlock.accept(ConditionalBlock.java:86)
+	at freemarker.core.Environment.visit(Environment.java:265)
+	at freemarker.core.MixedContent.accept(MixedContent.java:93)
+	at freemarker.core.Environment.visit(Environment.java:265)
+	at freemarker.core.Environment.process(Environment.java:243)
+	at freemarker.template.Template.process(Template.java:277)
+	at br.com.c3pgen.base.MarkerGenerator.generateEntityFile(MarkerGenerator.java:85)
+	at br.com.c3pgen.base.EntitiesGenerator.generate(EntitiesGenerator.java:248)
+	at br.com.c3pgen.base.Main.generatoToInput(Main.java:70)
+	at br.com.c3pgen.base.Main.main(Main.java:39)
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/persistence/\MovimentacaoEstoque.xml]
+DEBUG 07/04/2017 16:06:36[cache-main]->"JavaMybatisResourcesTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/rs/\MovimentacaoEstoqueResources.java]
+DEBUG 07/04/2017 16:06:36[cache-main]->"JavaMybatisModelTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/model/\MovimentacaoEstoque.java]
+DEBUG 07/04/2017 16:06:36[cache-main]->"JavaFilterTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/java/br\com\gsh\aghos\material/model/filter/\FilterMovimentacaoEstoque.java]
+DEBUG 07/04/2017 16:06:36[cache-main]->"JsFormTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/movimentacaoEstoque/\FormMovimentacaoEstoque.js]
+DEBUG 07/04/2017 16:06:36[cache-main]->"JsCollectionTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//collections/\MovimentacaoEstoqueCollection.js]
+DEBUG 07/04/2017 16:06:36[cache-main]->"JsModelTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//models/\MovimentacaoEstoqueModel.js]
+DEBUG 07/04/2017 16:06:36[cache-main]->"JsPageTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/movimentacaoEstoque/\PageMovimentacaoEstoque.js]
+DEBUG 07/04/2017 16:06:36[cache-main]->"JsPageCollectionTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//collections/\MovimentacaoEstoquePageCollection.js]
+DEBUG 07/04/2017 16:06:36[cache-main]->"HtmlFormTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/movimentacaoEstoque/tpl/\FormMovimentacaoEstoqueTemplate.html]
+DEBUG 07/04/2017 16:06:36[cache-main]->"HtmlPageTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/movimentacaoEstoque/tpl/\PageMovimentacaoEstoqueTemplate.html]
+DEBUG 07/04/2017 16:06:36[cache-main]->"HtmlModalTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/modalComponents/tpl/\MovimentacaoEstoqueModalTemplate.html]
+DEBUG 07/04/2017 16:06:36[cache-main]->"JsMultiSelectTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/movimentacaoEstoque/\MultiSelectMovimentacaoEstoque.js]
+DEBUG 07/04/2017 16:06:36[cache-main]->"JsModalMultiSelectTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/movimentacaoEstoque/\ModalMultiSelectMovimentacaoEstoque.js]
+DEBUG 07/04/2017 16:06:36[cache-main]->"HtmlModalMultiSelectTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/movimentacaoEstoque/tpl/\ModalMultiSelectMovimentacaoEstoqueTemplate.html]
+DEBUG 07/04/2017 16:06:36[cache-main]->"HtmlMultiSelectTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/movimentacaoEstoque/tpl/\MultiSelectMovimentacaoEstoqueTemplate.html]
+DEBUG 07/04/2017 16:06:36[cache-main]->"JsModalTemplate.tpl"["pt_BR",UTF-8,parsed]  cached copy not yet stale; using cached.
+INFO  07/04/2017 16:06:36[MarkerGenerator-main]->Gerado o arquivo: [C:\cyg\home\robson\repos\c3pgen\src\main\webapp\out/AghosWeb/src/main/webapp/js//views/modalComponents/\MovimentacaoEstoqueModal.js]
+DEBUG 07/04/2017 16:06:36[cache-main]->Could not find template in cache, creating new one; id=["Fragments.tpl"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:36[cache-main]->Compiling FreeMarker template "Fragments.tpl"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\Fragments.tpl"
+DEBUG 07/04/2017 16:06:36[cache-main]->Could not find template in cache, creating new one; id=["Router.tpl"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:36[cache-main]->Compiling FreeMarker template "Router.tpl"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\Router.tpl"
+DEBUG 07/04/2017 16:06:36[cache-main]->Could not find template in cache, creating new one; id=["JSRouterSpecTemplate.js"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:36[cache-main]->Compiling FreeMarker template "JSRouterSpecTemplate.js"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\tests\\JSRouterSpecTemplate.js"
+DEBUG 07/04/2017 16:06:36[cache-main]->Could not find template in cache, creating new one; id=["beans.tpl"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:36[cache-main]->Compiling FreeMarker template "beans.tpl"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\beans.tpl"
+DEBUG 07/04/2017 16:06:36[cache-main]->Could not find template in cache, creating new one; id=["pom.tpl"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:36[cache-main]->Compiling FreeMarker template "pom.tpl"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\templates\\b2\\appbase\\core\\pom.tpl"
+DEBUG 07/04/2017 16:06:36[cache-main]->Could not find template in cache, creating new one; id=["buildProperties.tpl"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:36[cache-main]->Compiling FreeMarker template "buildProperties.tpl"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\buildProperties.tpl"
+DEBUG 07/04/2017 16:06:36[cache-main]->Could not find template in cache, creating new one; id=["buildXml.tpl"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:36[cache-main]->Compiling FreeMarker template "buildXml.tpl"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\common-files\\buildXml.tpl"
+DEBUG 07/04/2017 16:06:36[cache-main]->Could not find template in cache, creating new one; id=["produ_index.tpl"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:36[cache-main]->Compiling FreeMarker template "produ_index.tpl"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\templates\\b2\\appbase\\core\\produ_index.tpl"
+DEBUG 07/04/2017 16:06:36[cache-main]->Could not find template in cache, creating new one; id=["desenv_index.tpl"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:36[cache-main]->Compiling FreeMarker template "desenv_index.tpl"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\templates\\b2\\appbase\\core\\desenv_index.tpl"
+DEBUG 07/04/2017 16:06:36[cache-main]->Could not find template in cache, creating new one; id=["produ_login.tpl"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:36[cache-main]->Compiling FreeMarker template "produ_login.tpl"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\templates\\b2\\appbase\\core\\produ_login.tpl"
+DEBUG 07/04/2017 16:06:36[cache-main]->Could not find template in cache, creating new one; id=["desenv_login.tpl"["pt_BR",UTF-8,parsed] ]
+DEBUG 07/04/2017 16:06:36[cache-main]->Compiling FreeMarker template "desenv_login.tpl"["pt_BR",UTF-8,parsed]  from "C:\\cyg\\home\\robson\\repos\\c3pgen\\src\\main\\webapp\\entries\\templates\\b2\\appbase\\core\\desenv_login.tpl"
+INFO  07/04/2017 16:06:36[Main-main]->Concluida a geração da aplicação

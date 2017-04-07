@@ -1,0 +1,6 @@
+appName: AghosWeb
+skin: b2
+view: backbone
+rootPackage: br.com.gsh.aghos.material
+corePackage: br.com.gsh.aghos.core
+persistenceFramework : mybatis

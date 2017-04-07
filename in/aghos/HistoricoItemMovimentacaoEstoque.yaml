@@ -1,0 +1,32 @@
+- name: HistoricoItemMovimentacaoEstoque
+  hasOwner: false 
+  displayName: Historico Item Movimentacção Estoque
+  tableName: GSH_ESTOQUE_MOVI_ITENS_HIST
+  attributes:                     
+  - name: quantidade
+    tableFieldName: QUANTIDADE_MOVIMENTACAO
+    required: false
+    showInPages: true
+    displayName: Quantidade Movimentação
+    type: 
+      className: Double
+  - name: dataHora
+    tableFieldName: DATA_ESTOQUE_MOVI_ITENS_HIST
+    required: false
+    showInPages: true
+    displayName: Data estoque movi itens hist
+    type: 
+      className: Datetime
+    dateFormat: DD/MM/YYYY HH:MM              
+    mask: 99/99/9999 99:99                   
+    viewApproach:                        
+      type: datepicker                  
+  relationships:                     
+  - name: itemMovimentacaoEstoque             
+    type: ManyToOne
+    model: ItemMovimentacaoEstoque                       
+    displayName: Item Movimentação Estoque
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome

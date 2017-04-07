@@ -1,0 +1,52 @@
+- name: EstoqueMovimentacaoItens
+  hasOwner: false 
+  displayName: Estoque movimentacao itens
+  tableName: GSH_ESTOQUE_MOVIMENTACAO_ITENS
+  attributes:                     
+  - name: flagDelete
+    tableFieldName: FLAG_DELETE
+    required: false
+    showInPages: false
+    displayName: Flag delete
+    type: 
+      className: Boolean
+  - name: quantidadeMovimentacao
+    tableFieldName: QUANTIDADE_MOVIMENTACAO
+    required: false
+    showInPages: false
+    displayName: Quantidade movimentacao
+    type: 
+      className: Double
+  - name: dataMovimentacao
+    tableFieldName: DATA_MOVIMENTACAO
+    required: false
+    showInPages: false
+    displayName: Data movimentacao
+    type: 
+      className: Date
+    dateFormat: DD/MM/YYYY              
+    mask: 99/99/9999                    
+    viewApproach:                        
+      type: datepicker                  
+  relationships:                     
+  - name: estoqueMoviItensHists
+    type: OneToMany
+    ownerName: estoqueMovimentacaoItens
+    model: EstoqueMoviItensHist                       
+    displayName: Estoque movi itens hist
+  - name: estoqueMovimentacao             
+    type: ManyToOne
+    model: EstoqueMovimentacao                       
+    displayName: Estoque movimentacao
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome
+  - name: material             
+    type: ManyToOne
+    model: Material                       
+    displayName: Material
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome

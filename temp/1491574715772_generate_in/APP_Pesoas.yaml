@@ -1,0 +1,19 @@
+- name: Pesoas
+  hasOwner: false 
+  displayName: Pesoas
+  tableName: GSH_PESOAS
+  attributes:                     
+  - name: nome
+    tableFieldName: NOME
+    required: false
+    showInPages: false
+    maxLen: 60
+    displayName: Nome
+    type: 
+      className: String
+  relationships:                     
+  - name: usuarios
+    type: OneToMany
+    ownerName: pesoas
+    model: Usuario                       
+    displayName: Usuario

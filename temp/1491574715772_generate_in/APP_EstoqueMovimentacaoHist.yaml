@@ -1,0 +1,57 @@
+- name: EstoqueMovimentacaoHist
+  hasOwner: false 
+  displayName: Estoque movimentacao hist
+  tableName: GSH_ESTOQUE_MOVIMENTACAO_HIST
+  attributes:                     
+  - name: ordem
+    tableFieldName: ORDEM
+    required: false
+    showInPages: false
+    displayName: Ordem
+    type: 
+      className: Integer
+  - name: quantidadeMovimentacao
+    tableFieldName: QUANTIDADE_MOVIMENTACAO
+    required: false
+    showInPages: false
+    displayName: Quantidade movimentacao
+    type: 
+      className: Double
+  - name: dataEstoqueMovimentacaoHist
+    tableFieldName: DATA_ESTOQUE_MOVIMENTACAO_HIST
+    required: false
+    showInPages: false
+    displayName: Data estoque movimentacao hist
+    type: 
+      className: Date
+    dateFormat: DD/MM/YYYY              
+    mask: 99/99/9999                    
+    viewApproach:                        
+      type: datepicker                  
+  - name: observacao
+    tableFieldName: OBSERVACAO
+    required: false
+    showInPages: false
+    maxLen: 2000
+    viewApproach:                        
+      type: textarea                  
+    displayName: Observacao
+    type: 
+      className: String
+  relationships:                     
+  - name: estoqueMovimentacao             
+    type: ManyToOne
+    model: EstoqueMovimentacao                       
+    displayName: Estoque movimentacao
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome
+  - name: usuario             
+    type: ManyToOne
+    model: Usuario                       
+    displayName: Usuario
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome

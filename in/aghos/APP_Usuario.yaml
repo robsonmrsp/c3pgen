@@ -1,0 +1,13 @@
+- name: Usuario
+  hasOwner: false 
+  displayName: Usuario
+  tableName: GSH_USUARIO
+  attributes:                     
+  - name: usuario
+    tableFieldName: USUARIO
+    required: false
+    showInPages: false
+    maxLen: 15
+    displayName: Usuario
+    type: 
+      className: String
