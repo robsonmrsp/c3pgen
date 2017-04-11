@@ -64,7 +64,7 @@ public class GenService {
 		return role;
 	}
 
-	public GenerateFileInfo generate(Modulo modulo, String ... exceptions) throws Exception {
+	public GenerateFileInfo generate(Modulo modulo, String... exceptions) throws Exception {
 
 		Application newApplication = Util.getApplicationFrom(modulo);
 
@@ -93,7 +93,7 @@ public class GenService {
 			fileInfo.setRealFilePath(zip);
 			fileInfo.setStaticFilePath(webPath);
 			fileInfo.setGenerateSuccess(true);
-
+			//
 			new java.util.Timer().schedule(new java.util.TimerTask() {
 				@Override
 				public void run() {
@@ -163,8 +163,6 @@ public class GenService {
 			fileInfo.setRealFilePath(zip);
 			fileInfo.setStaticFilePath(webPath);
 			fileInfo.setGenerateSuccess(true);
-
-			//
 			new java.util.Timer().schedule(new java.util.TimerTask() {
 				@Override
 				public void run() {

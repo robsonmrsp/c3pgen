@@ -1,0 +1,13 @@
+- name: UnidadeDeSaude
+  hasOwner: false 
+  displayName: Setor
+  tableName: GSH_SETOR
+  attributes:                     
+  - name: descricao
+    tableFieldName: DESCR
+    required: false
+    showInPages: false
+    maxLen: 60
+    displayName: Descr
+    type: 
+      className: String

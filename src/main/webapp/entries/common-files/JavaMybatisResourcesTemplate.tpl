@@ -21,7 +21,6 @@ import org.apache.log4j.Logger;
 
 import ${corepackage}.json.JsonError;
 import ${corepackage}.json.JsonPaginator;
-import ${package}.json.Json${entity.name};
 
 import ${package}.model.${entity.name};
 

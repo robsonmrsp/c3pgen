@@ -233,9 +233,9 @@ public class EntitiesGenerator {
 
 					if (notInException(ent.getName(), exceptions)) {
 						LOGGER.info("-------------------------------Processando entidade " + ent.getName() + "-------------------------------");
-						javaJsonGenerator.generateEntityFile(application, ent);
 
 						if (application.getPersistenceFramework().equals("hibernate")) {
+							javaJsonGenerator.generateEntityFile(application, ent);
 							javaModelGenerator.generateEntityFile(application, ent);
 							basicServiceGenerator.generateEntityFile(application, ent);
 							basicServiceImpGenerator.generateEntityFile(application, ent);
@@ -272,15 +272,15 @@ public class EntitiesGenerator {
 
 				}
 				fragmentsGenerator.generateAppFragmentFile(application.getEntities());
-				
+
 				jsRouterGenerator.generate(application);
 				jsRouterSpecGenerator.generate(application);
 				beansGenerator.generate(application);
 				pomGenerator.generate(application);
-				
+
 				buildPropertiesGenerator.generate(application);
 				buildXmlGenerator.generate(application);
-				
+
 				produIndexGenerator.generate(application);
 				desenvIndexGenerator.generate(application);
 				produLoginGenerator.generate(application);

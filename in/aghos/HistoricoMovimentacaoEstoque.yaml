@@ -2,6 +2,8 @@
   hasOwner: false 
   displayName: Historico de Movimentação Estoque
   tableName: GSH_ESTOQUE_MOVIMENTACAO_HIST
+  pk: ID_ESTOQUE_MOVIMENTACAO_HIST
+  sequence : GSH_SEQ_ID_EST_MOV_HIST
   attributes:                     
   - name: ordem
     tableFieldName: ORDEM
@@ -40,6 +42,7 @@
       className: String
   relationships:                     
   - name: movimentacaoEstoque
+    fk : ID_ESTOQUE_MOVIMENTACAO
     type: ManyToOne
     model: MovimentacaoEstoque                       
     displayName: Movimentação Estoque
@@ -47,7 +50,8 @@
       type: modal 
       hiddenField: id 
       textField: nome
-  - name: usuario             
+  - name: usuario
+    fk : usuario_id              
     type: ManyToOne
     model: Usuario                       
     displayName: Usuario

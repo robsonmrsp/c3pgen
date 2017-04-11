@@ -2,6 +2,7 @@
   hasOwner: false 
   displayName: Estoque Material 
   tableName: GSH_MATERIAL_ESTOQUE
+  pk : ID_MATERIAL_ESTOQUE
   attributes:                     
   - name: descricao
     tableFieldName: ESTOQUE
@@ -14,6 +15,7 @@
   relationships:                     
   - name: entidade             
     type: ManyToOne
+    fk: ID_ENTIDADE
     model: Entidade                       
     displayName: Entidade
     viewApproach:   

@@ -13,6 +13,13 @@ public class ToUpperCaseMethod implements TemplateMethodModelEx {
 		if (args.size() != 1) {
 			throw new TemplateModelException("Wrong arguments");
 		}
-		return new SimpleScalar(args.get(0).toString().toUpperCase());
+		
+		String upperCase = "NULL_POINTER_EXCEPTION" ;
+		try{
+			upperCase = args.get(0).toString().toUpperCase();
+		}catch (Exception e) {
+
+		}
+		return new SimpleScalar(upperCase);
 	}
 }

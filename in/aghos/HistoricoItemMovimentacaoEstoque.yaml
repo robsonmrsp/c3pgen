@@ -2,6 +2,8 @@
   hasOwner: false 
   displayName: Historico Item Movimentacção Estoque
   tableName: GSH_ESTOQUE_MOVI_ITENS_HIST
+  pk: ESTOQUE_MOVI_ITENS_HIST
+  sequence : gsh_seq_esto_movi_itens_hist
   attributes:                     
   - name: quantidade
     tableFieldName: QUANTIDADE_MOVIMENTACAO
@@ -24,6 +26,7 @@
   relationships:                     
   - name: itemMovimentacaoEstoque             
     type: ManyToOne
+    fk : ID_ESTOQUE_MOVIMENTACAO_ITENS 
     model: ItemMovimentacaoEstoque                       
     displayName: Item Movimentação Estoque
     viewApproach:   

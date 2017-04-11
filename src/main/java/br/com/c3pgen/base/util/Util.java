@@ -92,7 +92,7 @@ public class Util {
 	}
 
 	public static String toUpperSnakeCase(String camelCaseString) {
-		String returnString = camelCaseString;
+		String returnString = camelCaseString.replaceAll("\\s+", " ");
 
 		for (int index = 0; index < camelCaseString.length(); index++) {
 			char charAt = camelCaseString.charAt(index);
@@ -298,8 +298,8 @@ public class Util {
 	}
 
 	public static String currentDir() {
-//		return currentDir;
-		 return templateFolder();
+		return currentDir;
+		// return templateFolder();
 	}
 
 	public static String firstLowerCase(String verb) {

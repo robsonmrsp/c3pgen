@@ -1,4 +1,4 @@
-- name: Pesoas
+- name: Pessoas
   hasOwner: false 
   displayName: Pesoas
   tableName: GSH_PESOAS

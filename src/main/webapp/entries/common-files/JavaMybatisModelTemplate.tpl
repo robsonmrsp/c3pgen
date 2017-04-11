@@ -7,6 +7,10 @@ import org.joda.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import ${corepackage}.serialization.CustomDoubleDeserializer;
 import ${corepackage}.serialization.CustomLocalDateSerializer;
 import ${corepackage}.serialization.CustomLocalDateDeserializer;
 import ${corepackage}.serialization.CustomLocalDateTimeSerializer;

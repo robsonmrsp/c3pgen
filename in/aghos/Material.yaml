@@ -11,9 +11,3 @@
     displayName: Descrição
     type: 
       className: String
-  relationships:                     
-  - name: itemMovimentacaoEstoques
-    type: OneToMany
-    ownerName: material
-    model: ItemMovimentacaoEstoque                       
-    displayName: Item Movimentação Estoque

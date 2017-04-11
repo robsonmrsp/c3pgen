@@ -177,14 +177,13 @@
 	############################################################################
 //paginas
 <#list entities as entity>
-	${upperSnakeCase(entity.displayName)}("Cadastro de ${entity.displayName}", //
+	${upperSnakeCase(entity.name)}("Cadastro de ${entity.displayName}", //
 			Rota.CRUD_${upperSnakeCase(entity.name)}_LISTA, //
 			Rota.CRUD_${upperSnakeCase(entity.name)}_NOVO, //
 			Rota.CRUD_${upperSnakeCase(entity.name)}_EDITA, //
-			Rota.SERVICOS_${upperSnakeCase(entity.name)}, //
-			Rota.SPA, //
-			Rota.CRUD_${upperSnakeCase(entity.name)}_REGISTRA
-	);
+			Rota.SERVICOS_REST_${upperSnakeCase(entity.name)}, //
+			Rota.SPA //
+	),
 	
 </#list>
 //rotas
@@ -193,6 +192,7 @@
 	CRUD_${upperSnakeCase(entity.name)}_NOVO("app/new${firstUpper(entity.name)}"), //
 	CRUD_${upperSnakeCase(entity.name)}_EDITA("app/edit${firstUpper(entity.name)}/" + PaginaRegex.NUMEROS), //
 	SERVICOS_REST_${upperSnakeCase(entity.name)}("/rs/crud/${firstLower(entity.name)}s" + PaginaRegex.QUALQUER_CARACTER),
+	
 </#list>
 	
 	

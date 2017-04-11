@@ -16,7 +16,7 @@
 		<association column="${uppercase(rel.fk)}" property="${rel.name}" select="${application.rootPackage}.persistence.${rel.model}Mapper.carrega" />
 		</#if>
 		<#if rel.type == 'OneToMany'>
-		<collection  column="${uppercase(rel.tableFieldName!rel.name)}" property="${rel.name}" javaType="ArrayList" ofType="${rel.model}" select="${application.rootPackage}.persistence.${rel.model}Mapper.carregaPor${entity.name}"/>
+		<collection  column="${entity.pk}" property="${rel.name}" javaType="ArrayList" ofType="${rel.model}" select="${application.rootPackage}.persistence.${rel.model}Mapper.carregaPor${entity.name}"/>
 		</#if>
 	</#list>
 	</#if>
@@ -70,7 +70,7 @@
 					<#if entity.attributes??>	
 					<#list entity.attributes as att>
 						<if test=" ${firstLower(entity.name)}.${att.name} != null ">
-							<#if att.type.className == 'string'>
+							<#if att.type.className == 'string' || att.type.className == 'String'>
 					    	AND UPPER(${uppercase(att.tableFieldName!att.name)})  LIKE UPPER('%${r"${"} ${firstLower(entity.name)}.${att.name} ${r"}"}%')
 					    	<#else>
 					    	AND ${uppercase(att.tableFieldName!att.name)} = ${r"#{"} ${firstLower(entity.name)}.${att.name} ${r"}"}

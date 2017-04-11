@@ -1,52 +1,56 @@
 - name: ItemMovimentacaoEstoque
-  hasOwner: false 
-  displayName: Item Movimentação Estoque 
+  hasOwner: false
+  displayName: Item Movimentação Estoque
   tableName: GSH_ESTOQUE_MOVIMENTACAO_ITENS
-  attributes:                     
+  pk: ID_ESTOQUE_MOVIMENTACAO_ITENS
+  sequence: SEQ_ESTOQUE_MOVIMENTACAO_ITENS
+  attributes:
   - name: flagDelete
     tableFieldName: FLAG_DELETE
     required: false
     showInPages: true
     displayName: Flag delete
-    type: 
+    type:
       className: Boolean
   - name: quantidade
     tableFieldName: QUANTIDADE_MOVIMENTACAO
     required: false
     showInPages: true
     displayName: Quantidade movimentacao
-    type: 
+    type:
       className: Double
   - name: dataHora
     tableFieldName: DATA_MOVIMENTACAO
     required: false
     showInPages: true
     displayName: Data movimentacao
-    type: 
+    type:
       className: Datetime
-    dateFormat: DD/MM/YYYY HH:MM              
-    mask: 99/99/9999 99:99                   
-    viewApproach:                        
-      type: datepicker                  
-  relationships:                     
+    dateFormat: DD/MM/YYYY HH:MM
+    mask: 99/99/9999 99:99
+    viewApproach:
+      type: datepicker
+  relationships:
   - name: historicoItemMovimentacaoEstoques
+    fk: ID_ESTOQUE_MOVIMENTACAO
     type: OneToMany
     ownerName: itemMovimentacaoEstoque
-    model: HistoricoItemMovimentacaoEstoque                       
+    model: HistoricoItemMovimentacaoEstoque
     displayName: Historico Item Movimentação Estoque
-  - name: movimentacaoEstoque             
+  - name: movimentacaoEstoque
     type: ManyToOne
-    model: MovimentacaoEstoque                       
+    model: MovimentacaoEstoque
     displayName: Movimentação de estoque
-    viewApproach:   
-      type: modal 
-      hiddenField: id 
+    viewApproach:
+      type: modal
+      hiddenField: id
       textField: nome
-  - name: material             
+  - name: material
+    fk: ID_MATERIAL
     type: ManyToOne
-    model: Material                       
+    model: Material
     displayName: Material
-    viewApproach:   
-      type: modal 
-      hiddenField: id 
+    viewApproach:
+      type: modal
+      hiddenField: id
       textField: nome

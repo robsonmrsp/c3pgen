@@ -255,6 +255,9 @@ public class Relationship extends AbstractTimestampEntity {
 	}
 
 	public String getFk() {
+		if(fk == null){
+			setFk(fk);
+		}
 		return fk;
 	}
 
