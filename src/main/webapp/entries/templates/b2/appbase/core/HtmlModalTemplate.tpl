@@ -82,7 +82,7 @@
 							</#if>
 						</#list>
 						</#if>
-					<div class="form-actions spinner" id="spin${firstUpper(entity.name)}">
+					<div class="form-actions modal-spinner" >
 						<a href="javascript:void(0)" id="btnSearch${firstUpper(entity.name)}" class="btn btn-primary btn-large" >
 							<i class="fa fa-search"></i>
 							Pesquisar

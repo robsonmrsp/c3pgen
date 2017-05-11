@@ -7,7 +7,7 @@
   - name: descricao
     tableFieldName: ESTOQUE
     required: false
-    showInPages: false
+    showInPages: true
     maxLen: 60
     displayName: Descrição
     type: 

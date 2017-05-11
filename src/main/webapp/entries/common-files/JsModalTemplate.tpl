@@ -92,7 +92,7 @@ define(function(require) {
 		</#if>
 		</#list>
 		</#if>
-		
+			modalSpinner : '.modal-spinner',
 			form : '#formSearch${entity.name}',
 			modalScreen : '.modal',
 		},
@@ -311,7 +311,7 @@ define(function(require) {
 		
 		// Executada Antes da realização da consulta.
 		startFetch : function() {
-			util.showSpinner('spin${entity.name}');
+			util.showSpinner(this.ui.modalSpinner);
 		},
 	});
 

@@ -105,7 +105,11 @@
 	<#if entity.attributes??>	
 	<#list entity.attributes as att>
 		<if test=" ${firstLower(entity.name)}.${att.name} != null ">
+			<#if att.type.className == 'string' || att.type.className == 'String'>
+	    	AND UPPER(${uppercase(att.tableFieldName!att.name)})  LIKE UPPER('%${r"${"} ${firstLower(entity.name)}.${att.name} ${r"}"}%')
+	    	<#else>
 	    	AND ${uppercase(att.tableFieldName!att.name)} = ${r"#{"} ${firstLower(entity.name)}.${att.name} ${r"}"}
+	    	</#if>
 	    </if> 
 	</#list>
 	</#if>		
