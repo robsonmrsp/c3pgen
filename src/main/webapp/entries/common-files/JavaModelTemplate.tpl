@@ -104,6 +104,7 @@ public class ${entity.name} extends AbstractTimestampEntity{
 		<#if rel.type == 'OneToMany'>
 			<#if rel.ownerName?has_content>
 	@OneToMany(mappedBy="${rel.ownerName}")
+	@Cascade(value = CascadeType.ALL)
 			<#else>
 	@OneToMany()
 			</#if>

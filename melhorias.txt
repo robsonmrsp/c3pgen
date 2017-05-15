@@ -1,3 +1,8 @@
+15-05-2017
+ - O campo OneToMany deve ser considerado o dono do relacionamento
+ - E trocar o cascata por um termo melhor, não tá muito explicativo a expressão salvar esse em cascata.
+
+
 ########################################################################################                                 25/11/2016                                 ################################################################################
 !- Melhoria nos campos de input com a criação de plugins jquery:
 		initialize : function() {
