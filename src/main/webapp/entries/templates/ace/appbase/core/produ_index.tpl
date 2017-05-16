@@ -98,7 +98,7 @@
 <#list application.entities as entity>
 <#if entity.isAppEntity == true >
 
-			<li id="${firstLower(entity.name)}s" class="auth[menu-list-${firstLower(entity.name)},remove]">
+			<li id="${firstLower(entity.name)}s" >
 				<a href="#app/${firstLower(entity.name)}s">
 					<i class="menu-icon fa fa-caret-right"></i>
 					${entity.displayName}

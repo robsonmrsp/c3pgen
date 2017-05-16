@@ -1,7 +1,8 @@
 15-05-2017
  - O campo OneToMany deve ser considerado o dono do relacionamento
  - E trocar o cascata por um termo melhor, não tá muito explicativo a expressão salvar esse em cascata.
-
+ 
+ - Talvez seja melhor que os itens de menu não estejam com o class que impede o click. É mais util mostrar que o item não pode ser acessado.
 
 ########################################################################################                                 25/11/2016                                 ################################################################################
 !- Melhoria nos campos de input com a criação de plugins jquery:
