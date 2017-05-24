@@ -23,7 +23,7 @@ public class HelperDBDesign {
 
 		new File(folderOutput).mkdirs();
 
-		File source = new File("C:\\cyg\\home\\robson\\repos\\c3pgen\\in\\locadora\\locadora.xml");
+		File source = new File("C:\\cyg\\home\\robson\\repos\\c3pgen\\in\\vs\\vs_gestor.xml");
 		DBModel example = null;
 		try {
 			example = serializer.read(DBModel.class, source);
@@ -31,6 +31,7 @@ public class HelperDBDesign {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		Collection<Table> tables = example.getMetadata().getTables();
 
 		for (Table table : tables) {
