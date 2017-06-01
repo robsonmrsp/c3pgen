@@ -1,7 +1,47 @@
+01-06-2017
+	Fazer como definido em Como definido em http://techqa.info/programming/question/35367366/can-you-set-jackon%27s-include.non_null-globally-in-jax-rs
+	para deixar os jsons mais limpos.
+	
+	Foi feito como teste no Qualidade
+	
+	Just in case it helps somebody else, configuring ObjectMapper in beans.xml worked with NON_NULL however my JAXB annotations stopped
+	working. 
+	To get both of them working at the same time I resorted to creating my own ObjectMapper provider:
+
+@Provider
+public class CustomJacksonObjectMapperProvider implements ContextResolver<ObjectMapper> {
+
+    final ObjectMapper defaultObjectMapper;
+
+    public CustomJacksonObjectMapperProvider() {
+        defaultObjectMapper = createDefaultMapper();
+    }
+
+    @Override
+    public ObjectMapper getContext(Class<?> type) {
+        return (defaultObjectMapper);
+    }
+
+    private static ObjectMapper createDefaultMapper() {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setSerializationInclusion(Include.NON_NULL);
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        mapper.setAnnotationIntrospector(
+            AnnotationIntrospector.pair(
+                new JacksonAnnotationIntrospector(),
+                new JaxbAnnotationIntrospector(mapper.getTypeFactory())
+        ));
+        return (mapper);
+    }
+}
+and registering it in beans.xml (under jaxrs:providers) as follows:
+
+<bean id="customJacksonObjectMapperProvider" class="CustomJacksonObjectMapperProvider"/>
+	
+	
 15-05-2017
  - O campo OneToMany deve ser considerado o dono do relacionamento
  - E trocar o cascata por um termo melhor, não tá muito explicativo a expressão salvar esse em cascata.
- 
  - Talvez seja melhor que os itens de menu não estejam com o class que impede o click. É mais util mostrar que o item não pode ser acessado.
 
 ########################################################################################                                 25/11/2016                                 ################################################################################
