@@ -1,0 +1,30 @@
+- name: ConfiguracaoGestor
+  displayName: Configuracao gestor
+  tableName: CONFIGURACAO_GESTOR
+  pk: ID_CONFIGURACAO_GESTOR
+  sequence: GSH_SEQ_CONFIGURACAO_GESTOR
+  attributes:                     
+  - name: nomeSecretario
+    tableFieldName: NOME_SECRETARIO
+    required: false
+    displayName: NOME SECRETARIO
+    type: 
+      className: String
+  - name: nomeFiscal
+    tableFieldName: NOME_FISCAL
+    required: false
+    displayName: NOME FISCAL
+    type: 
+      className: String
+  - name: descricaoJustificativa
+    tableFieldName: DESCRICAO_JUSTIFICATIVA
+    required: false
+    displayName: DESCRICAO JUSTIFICATIVA
+    type: 
+      className: String
+  relationships:                     
+  - name: historicoConfiguracaoGestors
+    type: OneToMany
+    ownerName: configuracaoGestor
+    model: HistoricoConfiguracaoGestor                       
+    displayName: HISTORICO CONFIGURACAO GESTOR

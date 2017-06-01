@@ -24,7 +24,7 @@ public class MainDBDesign {
 		new File(folderOutput).mkdirs();
 		// File source = new
 		// File("C:\\cyg\\home\\robso\\repos\\mercadodelivery\\src\\main\\resources\\c3p-files\\mercado-delivery.xml");
-		File source = new File("C:\\cyg\\home\\robson\\repos\\c3pgen\\in\\qualidade\\qualidade.xml");
+		File source = new File("C:\\cyg\\home\\robson\\repos\\c3pgen\\in\\vs\\vs_gestor.xml");
 		DBModel example = null;
 		try {
 			example = serializer.read(DBModel.class, source);
@@ -38,9 +38,11 @@ public class MainDBDesign {
 		for (Table table : tables) {
 			String nomeDaClasse = CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, Util.firstUpperCaseOnly(table.getTablename()));
 			fileLines.add("- name: " + nomeDaClasse);
-			fileLines.add("  hasOwner: false ");
 			fileLines.add("  displayName: " + Util.firstUpperCaseOnly(table.getTablename()).replaceAll("_", " "));
 			fileLines.add("  tableName: " + table.getTablename().toUpperCase());
+			fileLines.add("  pk: ID_" + table.getTablename().toUpperCase());
+			fileLines.add("  sequence: GSH_SEQ_" + table.getTablename().toUpperCase());
+			
 			fileLines.add("  attributes:                     ");
 			Collection<Column> colunas = table.getColumns();
 			for (Column column : colunas) {
@@ -86,10 +88,11 @@ public class MainDBDesign {
 				fileLines.add("    type: ManyToOne");
 				fileLines.add("    model: " + Util.firstUpperCase(CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, getTableById(tables, sourceTable).getTablename())) + "                       ");
 				fileLines.add("    displayName: " + Util.firstUpperCase(getTableById(tables, sourceTable).getTablename()).replaceAll("_", " "));
+				fileLines.add("    fk:   ID_" +  getTableById(tables, sourceTable).getTablename());
 				fileLines.add("    viewApproach:   ");
 				fileLines.add("      type: modal ");
 				fileLines.add("      hiddenField: id ");
-				fileLines.add("      textField: nome ");
+				fileLines.add("      textField: descricao ");
 
 			}
 

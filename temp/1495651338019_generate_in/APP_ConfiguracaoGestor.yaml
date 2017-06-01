@@ -1,0 +1,150 @@
+- name: ConfiguracaoGestor
+  displayName: Configuracao gestor
+  tableName: CONFIGURACAO_GESTOR
+  pk: ID_CONFIGURACAO_GESTOR
+  sequence: GSH_SEQ_CONFIGURACAO_GESTOR
+  attributes:                     
+  - name: nomeSecretario
+    tableFieldName: NOME_SECRETARIO
+    required: false
+    displayName: NOME SECRETARIO
+    type: 
+      className: String
+  - name: nomeFiscal
+    tableFieldName: NOME_FISCAL
+    required: false
+    displayName: NOME FISCAL
+    type: 
+      className: String
+  - name: descricaoJustificativa
+    tableFieldName: DESCRICAO_JUSTIFICATIVA
+    required: false
+    displayName: DESCRICAO JUSTIFICATIVA
+    type: 
+      className: String
+  - name: siglaGestor
+    tableFieldName: SIGLA_GESTOR
+    required: false
+    displayName: Sigla gestor
+    type: 
+      className: String
+  - name: nomeGestor
+    tableFieldName: NOME_GESTOR
+    required: false
+    displayName: Nome gestor
+    type: 
+      className: String
+  - name: nomeDiretor
+    tableFieldName: NOME_DIRETOR
+    required: false
+    displayName: Nome diretor
+    type: 
+      className: String
+  - name: municipioGestor
+    tableFieldName: MUNICIPIO_GESTOR
+    required: false
+    displayName: Municipio gestor
+    type: 
+      className: String
+  - name: enderecoGestor
+    tableFieldName: ENDERECO_GESTOR
+    required: false
+    displayName: Endereco gestor
+    type: 
+      className: String
+  - name: ufGestor
+    tableFieldName: UF_GESTOR
+    required: false
+    displayName: Uf gestor
+    type: 
+      className: String
+  - name: siglaEmpresa
+    tableFieldName: SIGLA_EMPRESA
+    required: false
+    displayName: Sigla empresa
+    type: 
+      className: String
+  - name: nomeEmpresa
+    tableFieldName: NOME_EMPRESA
+    required: false
+    displayName: Nome empresa
+    type: 
+      className: String
+  - name: diretorEmresa
+    tableFieldName: DIRETOR_EMRESA
+    required: false
+    displayName: Diretor emresa
+    type: 
+      className: String
+  - name: confirmaParametro
+    tableFieldName: CONFIRMA_PARAMETRO
+    required: false
+    displayName: Confirma parametro
+    type: 
+      className: String
+  - name: brancoParametro
+    tableFieldName: BRANCO_PARAMETRO
+    required: false
+    displayName: Branco parametro
+    type: 
+      className: String
+  - name: atalhoAtivo
+    tableFieldName: ATALHO_ATIVO
+    required: false
+    displayName: Atalho ativo
+    type: 
+      className: String
+  - name: configuracaoCidApac
+    tableFieldName: CONFIGURACAO_CID_APAC
+    required: false
+    displayName: Configuracao cid apac
+    type: 
+      className: String
+  - name: impressaoApacMargemEsquerda
+    tableFieldName: IMPRESSAO_APAC_MARGEM_ESQUERDA
+    required: false
+    displayName: Impressao apac margem esquerda
+    type: 
+      className: String
+  - name: impressaoApacMargemSuperior
+    tableFieldName: IMPRESSAO_APAC_MARGEM_SUPERIOR
+    required: false
+    displayName: Impressao apac margem superior
+    type: 
+      className: String
+  - name: configuracaoAtiva
+    tableFieldName: CONFIGURACAO_ATIVA
+    required: false
+    displayName: Configuracao ativa
+    type: 
+      className: String
+  - name: cepGestor
+    tableFieldName: CEP_GESTOR
+    required: false
+    displayName: Cep gestor
+    type: 
+      className: String
+  - name: nomeGestorWeb
+    tableFieldName: NOME_GESTOR_WEB
+    required: false
+    displayName: Nome gestor web
+    type: 
+      className: String
+  - name: logoGestorWeb
+    tableFieldName: LOGO_GESTOR_WEB
+    required: false
+    displayName: Logo gestor web
+    type: 
+      className: String
+  - name: logoCupomWeb
+    tableFieldName: LOGO_CUPOM_WEB
+    required: false
+    displayName: Logo cupom web
+    type: 
+      className: String
+  relationships:                     
+  - name: historicoConfiguracaoGestors
+    type: OneToMany
+    ownerName: configuracaoGestor
+    model: HistoricoConfiguracaoGestor                       
+    displayName: HISTORICO CONFIGURACAO GESTOR

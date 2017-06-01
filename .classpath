@@ -202,7 +202,7 @@
       <attribute value="/WEB-INF/lib" name="org.eclipse.jst.component.dependency"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/org/simpleframework/simple-xml/2.7.1/simple-xml-2.7.1.jar">
+  <classpathentry kind="var" path="M2_REPO/org/simpleframework/simple-xml/2.7.1/simple-xml-2.7.1.jar" sourcepath="M2_REPO/org/simpleframework/simple-xml/2.7.1/simple-xml-2.7.1-sources.jar">
     <attributes>
       <attribute value="/WEB-INF/lib" name="org.eclipse.jst.component.dependency"/>
     </attributes>
@@ -212,7 +212,7 @@
       <attribute value="/WEB-INF/lib" name="org.eclipse.jst.component.dependency"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/stax/stax/1.2.0/stax-1.2.0.jar">
+  <classpathentry kind="var" path="M2_REPO/stax/stax/1.2.0/stax-1.2.0.jar" sourcepath="M2_REPO/stax/stax/1.2.0/stax-1.2.0-sources.jar">
     <attributes>
       <attribute value="/WEB-INF/lib" name="org.eclipse.jst.component.dependency"/>
     </attributes>

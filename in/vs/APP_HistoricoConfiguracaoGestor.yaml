@@ -1,0 +1,37 @@
+- name: HistoricoConfiguracaoGestor
+  displayName: Historico configuracao gestor
+  tableName: HISTORICO_CONFIGURACAO_GESTOR
+  pk: ID_HISTORICO_CONFIGURACAO_GESTOR
+  sequence: GSH_SEQ_HISTORICO_CONFIGURACAO_GESTOR
+  attributes:                     
+  - name: dataHora
+    tableFieldName: DATA_HORA
+    required: false
+    displayName: Data e Hora
+    type: 
+      className: Datetime
+  - name: usuario
+    tableFieldName: USUARIO
+    required: false
+    displayName: Usuário
+    type: 
+      className: String
+  relationships:                     
+  - name: configuracaoGestor             
+    type: ManyToOne
+    model: ConfiguracaoGestor                       
+    displayName: Configuração Gestor
+    fk:   ID_CONFIGURACAO_GESTOR
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: descricao 
+  - name: acaoRealizada             
+    type: ManyToOne
+    model: AcaoRealizada                       
+    displayName: Ação Realizada
+    fk:   ID_ACAO_REALIZADA
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: descricao 
