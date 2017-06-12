@@ -8,24 +8,49 @@
 	<name>${application.appName}</name>
 
 	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<jackson.version>2.4.4</jackson.version>
-		<cxf.version>3.0.1</cxf.version>
-		<joda.time.version>2.4</joda.time.version>
-		<spring.version>4.0.6.RELEASE</spring.version>
-		<spring.security.version>3.2.4.RELEASE</spring.security.version>
-		<hibernate.version>4.3.6.Final</hibernate.version>
-		<jasperreports.version>3.5.3</jasperreports.version>
-		<jandira.usertype.version>3.2.0.GA</jandira.usertype.version>
+			<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+			<jackson.version>2.8.8</jackson.version>
+			<cxf.version>3.1.11</cxf.version>
+			<joda.time.version>2.4</joda.time.version>
+			<spring.version>4.3.8.RELEASE</spring.version>
+			<spring.security.version>4.2.2.RELEASE</spring.security.version>
+			<hibernate.version>5.2.10.Final</hibernate.version>
+			<jasperreports.version>6.3.0</jasperreports.version>
+			<jandira.usertype.version>6.0.0.GA</jandira.usertype.version>
 	</properties>
-		
+	
 	<dependencies>
 		<dependency>
-			<groupId>com.restfuse</groupId>
-			<artifactId>com.eclipsesource.restfuse</artifactId>
-			<version>1.2.0</version>
+			<groupId>org.webjars</groupId>
+			<artifactId>swagger-ui</artifactId>
+			<version>2.2.10-1</version>
 		</dependency>
-
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-rs-service-description-swagger</artifactId>
+			<version>${r"${cxf.version}"}</version>
+		</dependency>
+	
+		<dependency>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports</artifactId>
+			<version>${r"${jasperreports.version}"}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.fasterxml.jackson.core</groupId>
+					<artifactId>jackson-core</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.fasterxml.jackson.core</groupId>
+					<artifactId>jackson-databind</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.fasterxml.jackson.core</groupId>
+					<artifactId>jackson-annotations</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
 		<dependency>
 			<groupId>com.thetransactioncompany</groupId>
 			<artifactId>cors-filter</artifactId>
@@ -33,14 +58,9 @@
 		</dependency>
 				
 		<dependency>
-			<groupId>jasperreports</groupId>
-			<artifactId>jasperreports</artifactId>
-			<version>${r"${jasperreports.version}"}</version>
-		</dependency>
-		<dependency>
 			<groupId>org.reflections</groupId>
 			<artifactId>reflections</artifactId>
-			<version>0.9.9-RC1</version>
+			<version>0.9.10</version>
 		</dependency>
 		
 		<dependency>
@@ -231,7 +251,7 @@
 		<dependency>
 			<groupId>commons-codec</groupId>
 			<artifactId>commons-codec</artifactId>
-			<version>1.2</version>
+			<version>1.10</version>
 		</dependency>
 
 
@@ -248,26 +268,6 @@
 			<version>4.11</version>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>javax.validation</groupId>
-			<artifactId>validation-api</artifactId>
-			<version>1.0.0.GA</version>
-			<scope>provided</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>javax.validation</groupId>
-			<artifactId>validation-api</artifactId>
-			<version>1.0.0.GA</version>
-			<classifier>sources</classifier>
-			<scope>provided</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>com.microsoft.sqlserver</groupId>
-			<artifactId>sqljdbc4</artifactId>
-			<version>4.0</version>
-		</dependency>
 
 		<dependency>
 			<groupId>postgresql</groupId>
@@ -281,20 +281,13 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
-			<version>4.3.1.Final</version>
+			<version>5.4.1.Final</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-aop</artifactId>
 			<version>${r"${spring.version}"}</version>
 		</dependency>
-
-		<dependency>
-			<groupId>net.sf.dozer</groupId>
-			<artifactId>dozer</artifactId>
-			<version>5.4.0</version>
-		</dependency>
-
 	</dependencies>
 
 	<build>
@@ -477,6 +470,11 @@
 		</plugins>
 	</build>
 	<repositories>
+		
+		<repository>
+			<id>Jasper</id>
+			<url>https://jaspersoft.artifactoryonline.com/jaspersoft/jr-ce-releases</url>
+		</repository>
 		
 		<repository>
 			<id>OSGEO GeoTools repo</id>

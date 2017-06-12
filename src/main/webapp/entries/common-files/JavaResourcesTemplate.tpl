@@ -37,10 +37,18 @@ import ${corepackage}.rs.exception.ValidationException;
 import ${corepackage}.security.SpringSecurityUserContext;
 
 import ${package}.utils.Parser;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+
 /**
 *  generated: ${.now}
 **/
 
+
+@Api("${firstUpper(entity.name)}'s CRUD API")
 @Path("/crud/${firstLower(entity.name)}s")
 public class ${entity.name}Resources {
 
@@ -58,6 +66,23 @@ public class ${entity.name}Resources {
 	@Path("filterEqual")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
+	@ApiOperation(value = "${entity.name}'s List by comparation [EXACTLY EQUAL] of query parameters.", response = Json${entity.name}.class, responseContainer = "List")
+	@ApiImplicitParams({ 
+	<#if entity.attributes??>	
+	<#list entity.attributes as att>
+		<#if att.name != 'id'>
+		@ApiImplicitParam(name = "${att.name}", value = "${att.displayName}", paramType = "query", dataType="string"),  			
+		</#if>
+	</#list>
+	</#if>
+	<#if entity.relationships??>	
+	<#list entity.relationships as rel>
+		<#if rel.type == 'ManyToOne'>
+		@ApiImplicitParam(name = "${rel.name}", value = "${rel.displayName}", paramType = "query", dataType="integer"),		
+		</#if>
+	</#list>
+	</#if>
+	})
 	public Response filter(@Context UriInfo uriInfo) {
 		Response response = null;
 		try {
@@ -77,6 +102,23 @@ public class ${entity.name}Resources {
 	@Path("filterAlike")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
+	@ApiOperation(value = "${entity.name}'s List by comparation [LIKE] of query parameters.", response = Json${entity.name}.class, responseContainer = "List")
+	@ApiImplicitParams({ 
+	<#if entity.attributes??>	
+	<#list entity.attributes as att>
+		<#if att.name != 'id'>
+		@ApiImplicitParam(name = "${att.name}", value = "${att.displayName}", paramType = "query", dataType="string"),  			
+		</#if>
+	</#list>
+	</#if>
+	<#if entity.relationships??>	
+	<#list entity.relationships as rel>
+		<#if rel.type == 'ManyToOne'>
+		@ApiImplicitParam(name = "${rel.name}", value = "${rel.displayName}", paramType = "query", dataType="integer"),		
+		</#if>
+	</#list>
+	</#if>
+	})
 	public Response filterAlike(@Context UriInfo uriInfo) {
 		Response response = null;
 		try {
@@ -96,6 +138,7 @@ public class ${entity.name}Resources {
 	@Path("all")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
+	@ApiOperation(value = "All the ${entity.name}s.", response = Json${entity.name}.class, responseContainer = "List")
 	public Response all() {
 		Response response = null;
 		try {
@@ -116,6 +159,26 @@ public class ${entity.name}Resources {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
+	@ApiOperation(value = "${entity.name}'s Page by comparation [LIKE] of query parameters and pagination parameters", response = Pager.class)
+	@ApiImplicitParams({ 
+		@ApiImplicitParam(name = "page", value = "With page", paramType = "query", dataType="string"),  			
+		@ApiImplicitParam(name = "orderBy", value = "the sort field", paramType = "query", dataType="string"),  			
+		@ApiImplicitParam(name = "order", value = "sort ASC or sort DESC", paramType = "query", dataType="string", allowableValues="asc,desc"),  			
+	<#if entity.attributes??>	
+	<#list entity.attributes as att>
+		<#if att.name != 'id'>
+		@ApiImplicitParam(name = "${att.name}", value = "${att.displayName}", paramType = "query", dataType="string"),  			
+		</#if>
+	</#list>
+	</#if>
+	<#if entity.relationships??>	
+	<#list entity.relationships as rel>
+		<#if rel.type == 'ManyToOne'>
+		@ApiImplicitParam(name = "${rel.name}", value = "${rel.displayName}", paramType = "query", dataType="integer"),		
+		</#if>
+	</#list>
+	</#if>
+	})	
 	public Response all(@Context UriInfo uriInfo) {
 		Response response = null;
 		Pager<${entity.name}> ${firstLower(entity.name)}s = null;
@@ -164,6 +227,7 @@ public class ${entity.name}Resources {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
+	@ApiOperation(value = "Save a  ${entity.name}.", response = Json${entity.name}.class)
 	public Response save(Json${entity.name} json${entity.name}) {
 		try {
 
@@ -188,6 +252,7 @@ public class ${entity.name}Resources {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("{id}")
+	@ApiOperation(value = "Update a ${entity.name}. with the 'id' ", response = Json${entity.name}.class)
 	public Response update(@PathParam("id") Integer id, Json${entity.name} json${entity.name}) {
 		try {
 			${entity.name} ${firstLower(entity.name)} = Parser.toEntity(json${entity.name});
@@ -211,6 +276,7 @@ public class ${entity.name}Resources {
 	@DELETE
 	@Path("{id}")
 	@Produces(MediaType.APPLICATION_JSON)
+	@ApiOperation(value = "Remove the ${entity.name} with the 'id' .", response = Json${entity.name}.class)
 	public Response delete(@PathParam("id") Integer id) {
 		try {
 			return Response.ok().entity(${firstLower(entity.name)}Service.delete(id)).build();

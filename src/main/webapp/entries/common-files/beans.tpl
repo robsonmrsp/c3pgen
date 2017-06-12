@@ -1,32 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:jaxrs="http://cxf.apache.org/jaxrs" xmlns:context="http://www.springframework.org/schema/context"
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jaxrs="http://cxf.apache.org/jaxrs" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
 
 	xsi:schemaLocation="
 					http://www.springframework.org/schema/beans 
-					http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
-					http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+					http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+					http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 					http://cxf.apache.org/jaxrs
 					http://cxf.apache.org/schemas/jaxrs.xsd
 					http://www.springframework.org/schema/tx 
-					http://www.springframework.org/schema/tx/spring-tx-4.0.xsd 
+					http://www.springframework.org/schema/tx/spring-tx-4.3.xsd 
 					http://www.springframework.org/schema/aop 
-					http://www.springframework.org/schema/aop/spring-aop-4.0.xsd 
+					http://www.springframework.org/schema/aop/spring-aop-4.3.xsd 
 					http://www.springframework.org/schema/context  
-					http://www.springframework.org/schema/context/spring-context-4.0.xsd
+					http://www.springframework.org/schema/context/spring-context-4.3.xsd
 					http://www.springframework.org/schema/jdbc 
-					http://www.springframework.org/schema/jdbc/spring-jdbc-4.0.xsd 
+					http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd 
 					">
 	<import resource="classpath:META-INF/cxf/cxf.xml" />
 	<tx:annotation-driven />
 	<context:property-placeholder />
 	<context:annotation-config />
-	<bean
-		class="org.springframework.web.context.support.ServletContextPropertyPlaceholderConfigurer" />
-	<bean
-		class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer" />
+	
+	
+	<!-- CXF Swagger2Feature -->
+	<bean id="swagger2Feature" class="org.apache.cxf.jaxrs.swagger.Swagger2Feature"> </bean>
+
 	<jaxrs:server address="/" basePackages="${application.rootPackage}.rs,${application.corePackage}.rs, ${application.corePackage}.security">
 		<jaxrs:providers>
 			<bean class="com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider" />
@@ -35,6 +34,9 @@
 		<jaxrs:inInterceptors>
 			<bean class="${application.corePackage}.security.AuthorizationInterceptor" />
 		</jaxrs:inInterceptors>
+		<jaxrs:features>
+			<ref bean="swagger2Feature" />
+		</jaxrs:features>
 	</jaxrs:server>
 
 	<context:annotation-config />
@@ -60,12 +62,12 @@
 
 
 	<bean id="transactionManager"
-		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
 	<bean id="sessionFactory"
-		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean"
 		scope="singleton">
 		<property name="dataSource" ref="dataSource" />
 		<property name="packagesToScan" value="${application.rootPackage}.model, ${application.corePackage}.model" />

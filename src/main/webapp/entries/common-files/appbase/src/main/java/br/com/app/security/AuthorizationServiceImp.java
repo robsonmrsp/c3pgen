@@ -12,15 +12,11 @@ import org.springframework.transaction.annotation.Transactional;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Collections2;
 
-import ${application.rootPackage}.model.Group;
-import ${application.rootPackage}.model.Item;
-import ${application.rootPackage}.model.Permission;
-import ${application.rootPackage}.model.Role;
-import ${application.rootPackage}.model.User;
+import ${application.rootPackage}.model.Group;import ${application.rootPackage}.model.Item;import ${application.rootPackage}.model.Permission;import ${application.rootPackage}.model.Role;import ${application.rootPackage}.model.User;
 
 /**
-*  generated: ${.now}
-**/
+ * generated: ${.now}
+ **/
 
 @Named
 @Transactional
@@ -32,6 +28,10 @@ public class AuthorizationServiceImp implements AuthorizationService {
 	public Boolean authorizeRestServiceAccess(String method, String requestURI) {
 		// por enquanto...
 		if (requestURI.contains("rs/auth")) {
+			return Boolean.TRUE;
+		}
+
+		if (requestURI.contains("swagger")) {
 			return Boolean.TRUE;
 		}
 
