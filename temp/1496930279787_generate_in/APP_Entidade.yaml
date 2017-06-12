@@ -1,0 +1,18 @@
+- name: Entidade
+  displayName: Entidade
+  tableName: ENTIDADE
+  pk: ID_ENTIDADE
+  sequence: GSH_SEQ_ENTIDADE
+  attributes:                     
+  - name: razaoSocial
+    tableFieldName: RAZAO_SOCIAL
+    required: false
+    displayName: RAZAO SOCIAL
+    type: 
+      className: String
+  relationships:                     
+  - name: agendas
+    type: OneToMany
+    ownerName: entidade
+    model: Agenda                       
+    displayName: AGENDA

@@ -1,0 +1,23 @@
+- name: Profissional
+  displayName: Profissional
+  tableName: PROFISSIONAL
+  pk: ID_PROFISSIONAL
+  sequence: GSH_SEQ_PROFISSIONAL
+  attributes:                     
+  - name: nome
+    tableFieldName: NOME
+    required: false
+    displayName: Nome
+    type: 
+      className: String
+  relationships:                     
+  - name: equipeProfissionals
+    type: OneToMany
+    ownerName: profissional
+    model: EquipeProfissional                       
+    displayName: EQUIPE PROFISSIONAL
+  - name: agendaProfissionals
+    type: OneToMany
+    ownerName: profissional
+    model: AgendaProfissional                       
+    displayName: AGENDA PROFISSIONAL

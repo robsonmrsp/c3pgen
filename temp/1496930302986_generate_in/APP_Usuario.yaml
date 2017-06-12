@@ -1,0 +1,26 @@
+- name: Usuario
+  displayName: Usuario
+  tableName: USUARIO
+  pk: ID_USUARIO
+  sequence: GSH_SEQ_USUARIO
+  attributes:                     
+  relationships:                     
+  - name: agendas
+    type: OneToMany
+    ownerName: usuario
+    model: Agenda                       
+    displayName: AGENDA
+  - name: equipeProfissionals
+    type: OneToMany
+    ownerName: usuario
+    model: EquipeProfissional                       
+    displayName: EQUIPE PROFISSIONAL
+  - name: pessoa             
+    type: ManyToOne
+    model: Pessoa                       
+    displayName: PESSOA
+    fk:   ID_PESSOA
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: descricao 

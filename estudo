@@ -1,2 +1,5 @@
 Linha para gerar os arquivos de acesso ao WS-SOAP para o CXF, essa linha foi executada pelo soapui 5.2.1
 wsdl2java.bat, -p, br.com.teste, -d, C:\tools\soapui, -client, -server, -impl, -all, -exsh, false, -dns, true, -dex, true, -verbose, C:\Users\robson\AppData\Local\Temp\tempdir947763975262644081.tmp\country_1.wsdl]
+
+
+

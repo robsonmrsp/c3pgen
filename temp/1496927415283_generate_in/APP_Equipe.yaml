@@ -1,0 +1,23 @@
+- name: Equipe
+  displayName: Equipe
+  tableName: EQUIPE
+  pk: ID_EQUIPE
+  sequence: GSH_SEQ_EQUIPE
+  attributes:                     
+  - name: descricao
+    tableFieldName: DESCRICAO
+    required: false
+    displayName: DESCRICAO
+    type: 
+      className: String
+  relationships:                     
+  - name: agendas
+    type: OneToMany
+    ownerName: equipe
+    model: Agenda                       
+    displayName: AGENDA
+  - name: equipeProfissionals
+    type: OneToMany
+    ownerName: equipe
+    model: EquipeProfissional                       
+    displayName: EQUIPE PROFISSIONAL

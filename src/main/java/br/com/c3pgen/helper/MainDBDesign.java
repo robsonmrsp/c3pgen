@@ -24,7 +24,7 @@ public class MainDBDesign {
 		new File(folderOutput).mkdirs();
 		// File source = new
 		// File("C:\\cyg\\home\\robso\\repos\\mercadodelivery\\src\\main\\resources\\c3p-files\\mercado-delivery.xml");
-		File source = new File("C:\\cyg\\home\\robson\\repos\\c3pgen\\in\\vs\\vs_gestor.xml");
+		File source = new File("C:\\cyg\\home\\robson\\repos\\c3pgen\\in\\vs\\VS_AGENDA.xml");
 		DBModel example = null;
 		try {
 			example = serializer.read(DBModel.class, source);

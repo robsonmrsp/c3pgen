@@ -1,0 +1,54 @@
+- name: Estabelecimento
+  displayName: Estabelecimento
+  tableName: ESTABELECIMENTO
+  pk: ID_ESTABELECIMENTO
+  sequence: GSH_SEQ_ESTABELECIMENTO
+  attributes:                     
+  - name: razaoSocial
+    tableFieldName: RAZAO_SOCIAL
+    required: false
+    displayName: RAZAO SOCIAL
+    type: 
+      className: String
+  - name: cpf
+    tableFieldName: CPF
+    required: false
+    displayName: Cpf
+    type: 
+      className: String
+  - name: cnpj
+    tableFieldName: CNPJ
+    required: false
+    displayName: Cnpj
+    type: 
+      className: String
+  - name: cnes
+    tableFieldName: CNES
+    required: false
+    displayName: Cnes
+    type: 
+      className: String
+  - name: nomeFantasia
+    tableFieldName: NOME_FANTASIA
+    required: false
+    displayName: Nome fantasia
+    type: 
+      className: String
+  - name: representanteLegal
+    tableFieldName: REPRESENTANTE_LEGAL
+    required: false
+    displayName: Representante legal
+    type: 
+      className: String
+  - name: email
+    tableFieldName: EMAIL
+    required: false
+    displayName: Email
+    type: 
+      className: String
+  relationships:                     
+  - name: agendas
+    type: OneToMany
+    ownerName: estabelecimento
+    model: Agenda                       
+    displayName: AGENDA

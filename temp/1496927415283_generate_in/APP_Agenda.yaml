@@ -1,0 +1,57 @@
+- name: Agenda
+  displayName: Agenda
+  tableName: AGENDA
+  pk: ID_AGENDA
+  sequence: GSH_SEQ_AGENDA
+  attributes:                     
+  - name: dataAtendimento
+    tableFieldName: DATA_ATENDIMENTO
+    required: true
+    displayName: DATA ATENDIMENTO
+    type: 
+      className: Date
+  - name: situacao
+    tableFieldName: SITUACAO
+    required: true
+    displayName: SITUACAO
+    type: 
+      className: String
+  - name: tempo
+    tableFieldName: TEMPO
+    required: true
+    displayName: TEMPO
+    type: 
+      className: Integer
+  relationships:                     
+  - name: agendaProfissionals
+    type: OneToMany
+    ownerName: agenda
+    model: AgendaProfissional                       
+    displayName: AGENDA PROFISSIONAL
+  - name: entidade             
+    type: ManyToOne
+    model: Entidade                       
+    displayName: ENTIDADE
+    fk:   ID_ENTIDADE
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: descricao 
+  - name: equipe             
+    type: ManyToOne
+    model: Equipe                       
+    displayName: EQUIPE
+    fk:   ID_EQUIPE
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: descricao 
+  - name: usuario             
+    type: ManyToOne
+    model: Usuario                       
+    displayName: USUARIO
+    fk:   ID_USUARIO
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: descricao 

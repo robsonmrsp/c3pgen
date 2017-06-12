@@ -1,0 +1,25 @@
+- name: AgendaProfissional
+  displayName: Agenda profissional
+  tableName: AGENDA_PROFISSIONAL
+  pk: ID_AGENDA_PROFISSIONAL
+  sequence: GSH_SEQ_AGENDA_PROFISSIONAL
+  attributes:                     
+  relationships:                     
+  - name: agenda             
+    type: ManyToOne
+    model: Agenda                       
+    displayName: AGENDA
+    fk:   ID_AGENDA
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: descricao 
+  - name: profissional             
+    type: ManyToOne
+    model: Profissional                       
+    displayName: PROFISSIONAL
+    fk:   ID_PROFISSIONAL
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: descricao 
