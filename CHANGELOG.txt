@@ -2,6 +2,10 @@ Changelog do GERADO
 
 v0.93: em andamento
 
+Mon Jun 12 14:55:26 2017 -0300
+- Atualização das libs spring, hibernate, cxf, e outras.
+- Implantação da geração do código compativel com swagger 
+
 Tue Mar 14 14:41:26 2017 -0300
 - Corrigido bug ao tentar criar relacionamento no Visual.
 - Corrigido o nome de Permissão que estava escrito Permmissão
