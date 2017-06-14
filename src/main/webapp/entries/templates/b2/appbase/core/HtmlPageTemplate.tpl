@@ -67,21 +67,13 @@
 					<label class="control-label" for="input${firstUpper(rel.name)}">${firstUpper(rel.displayName)!firstLower(rel.name)}</label>
 					<select class="form-control" id="input${firstUpper(rel.name)}"></select>
 				</div>					
-							<#elseif rel.viewApproach.type  == 'modal'  >					
-				<div id="groupInput${firstUpper(rel.name)}Container" class="form-group input-append">
-					<label class="control-label" for="input${firstUpper(rel.name)}">${firstUpper(rel.displayName)!firstUpper(rel.name)}</label>
-					<div id="groupInput${firstUpper(rel.name)}" class="input-group">
-						<#if rel.viewApproach.hiddenField??>							
-						<input id="input${firstUpper(rel.name)}${firstUpper(rel.viewApproach.hiddenField)}" type="hidden" class="form-control append-left"  />
-						</#if>
-						<#if rel.viewApproach.textField??>							
-						<input id="input${firstUpper(rel.name)}${firstUpper(rel.viewApproach.textField)}" placeholder="Pesquise pelo ${firstUpper(rel.displayName)}"  type="text" class="form-control append-left" />
-						</#if>
-						<span class="input-group-search	 add-on " id="search${firstUpper(rel.name)}Modal" data-toggle="modal">
-							<span class="icon-white icon-search"></span>
-						</span>
-					</div>
-				</div>		
+							<#elseif rel.viewApproach.type  == 'modal'  >
+			<div class="row-fluid">
+				<div class="span4">
+					<label class="control-label" for="${firstLower(rel.name)}Modal">${firstUpper(rel.displayName)!firstUpper(rel.name)}</label>
+					<div id="${firstLower(rel.name)}Modal" ></div>
+				</div>
+			</div>							
 							</#if>
 						</#if>
 					<#elseif rel.type == 'ManyToMany'>
@@ -90,7 +82,6 @@
 					</#if>
 				</#list>
 				</#if>
-
 		</form>
 	</fieldset>
 				
@@ -120,7 +111,6 @@
 <#if entity.relationships??>	
 <#list entity.relationships as rel >
 	<#if rel.viewApproach.type == 'modal'>
-<div id='${firstLower(rel.name)}Modal'></div>
 	</#if>
 </#list>
 </#if>

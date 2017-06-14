@@ -67,6 +67,9 @@
 							${uppercase(entity.tableName!entity.name)} X_TABLE
 						WHERE
 						 	1 = 1
+						<if test=" ${firstLower(entity.name)}.id != null ">
+					    	AND ${entity.pk} = ${r"#{"} ${firstLower(entity.name)}.id ${r"}"}
+					    </if> 
 					<#if entity.attributes??>	
 					<#list entity.attributes as att>
 						<if test=" ${firstLower(entity.name)}.${att.name} != null ">
@@ -102,6 +105,9 @@
         	count(*) FROM ${uppercase(entity.tableName!entity.name)} X_TABLE 
         WHERE 
         	1 = 1
+	<if test=" ${firstLower(entity.name)}.id != null ">
+    	AND ${entity.pk} = ${r"#{"} ${firstLower(entity.name)}.id ${r"}"}
+    </if>        	
 	<#if entity.attributes??>	
 	<#list entity.attributes as att>
 		<if test=" ${firstLower(entity.name)}.${att.name} != null ">
@@ -131,13 +137,21 @@
         	${uppercase(entity.tableName!entity.name)} X_TABLE 
         WHERE 
         	1 = 1
+			<if test=" ${firstLower(entity.name)}.id != null ">
+		    	AND ${entity.pk} = ${r"#{"} ${firstLower(entity.name)}.id ${r"}"}
+		    </if>        	
 		<#if entity.attributes??>	
-			<#list entity.attributes as att>
-			<if test=" ${att.name} != null ">
-	    	AND ${uppercase(att.tableFieldName!att.name)} = ${r"#{"} ${att.name} ${r"}"}
+		<#list entity.attributes as att>
+			<if test=" ${firstLower(entity.name)}.${att.name} != null ">
+				<#if att.type.className == 'string' || att.type.className == 'String'>
+		    	AND UPPER(${uppercase(att.tableFieldName!att.name)})  LIKE UPPER('%${r"${"} ${firstLower(entity.name)}.${att.name} ${r"}"}%')
+		    	<#else>
+		    	AND ${uppercase(att.tableFieldName!att.name)} = ${r"#{"} ${firstLower(entity.name)}.${att.name} ${r"}"}
+		    	</#if>
 		    </if> 
-			</#list>
-		</#if>									 
+		</#list>
+		</#if>
+							 
     </select>
     
     <insert id="salva" parameterType="${entity.name}">

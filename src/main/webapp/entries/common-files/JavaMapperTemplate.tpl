@@ -34,6 +34,6 @@ public interface ${entity.name}Mapper {
 	
 	public void deleta(Integer id);
 	
-	public List<${entity.name}> filtra(Filter${entity.name} filter);
+	public List<${entity.name}> filtra(@Param("${firstLower(entity.name)}") Filter${entity.name}  ${firstLower(entity.name)});
 
 }

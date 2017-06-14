@@ -114,6 +114,9 @@ public class ${entity.name}Resources {
 		try {
 			${entity.name} ${firstLower(entity.name)} = ${firstLower(entity.name)}Service.carrega(id);
 			
+			if (${firstLower(entity.name)} == null) {
+				return Response.ok().entity(Boolean.FALSE).build();
+			}
 			return Response.ok().entity(${firstLower(entity.name)}).build();
 		} catch (Exception e) {
 			String message = String.format("Não foi possivel carregar o registro. [ %s ] parametros [ %d ]", e.getMessage(), id);

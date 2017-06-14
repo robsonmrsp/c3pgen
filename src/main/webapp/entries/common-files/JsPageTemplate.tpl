@@ -36,7 +36,7 @@ define(function(require) {
 	<#list entity.relationships as rel >
 	<#if rel.showInPages >
 		<#if rel.viewApproach.type == 'modal'>
-	var Search${firstUpper(rel.name)}Modal = require('views/modalComponents/${firstUpper(rel.model)}Modal');
+	var ${firstUpper(rel.name)}Modal = require('views/modalComponents/${firstUpper(rel.model)}Modal');
 		</#if>
 		</#if>
 	</#list>
@@ -65,7 +65,7 @@ define(function(require) {
 			<#if entity.relationships??>	
 			<#list entity.relationships as rel >
 				<#if rel.viewApproach.type == 'modal'>
-			search${firstUpper(rel.name)}ModalRegion : '#${firstLower(rel.name)}Modal',
+			${firstLower(rel.name)}ModalRegion : '#${firstLower(rel.name)}Modal',
 				</#if>
 			</#list>
 			</#if>			
@@ -76,7 +76,7 @@ define(function(require) {
 			<#if entity.relationships??>	
 			<#list entity.relationships as rel >
 				<#if rel.viewApproach.type == 'modal'>
-			'click #search${firstUpper(rel.name)}Modal' : 'showSearch${firstUpper(rel.name)}Modal',
+			//'click #search${firstUpper(rel.name)}Modal' : 'showSearch${firstUpper(rel.name)}Modal',
 				</#if>
 			</#list>
 			</#if>
@@ -123,13 +123,8 @@ define(function(require) {
 		</#list>
 		</#if>			
 			form : '#form${firstUpper(entity.name)}Filter',
-			advancedSearchForm : '.advanced-search-form',
-		},
-		
-		toggleAdvancedForm : function() {
-			this.ui.advancedSearchForm.slideToggle("slow");
-		},
 
+		},
 		
 		treatKeypress : function (e){
 		    if (util.enterPressed(e)) {
@@ -173,7 +168,7 @@ define(function(require) {
 		<#list entity.relationships as rel >
 			<#if rel.showInPages >
 			<#if rel.viewApproach.type == 'modal'>
-			this.search${firstUpper(rel.name)}Modal = new Search${firstUpper(rel.name)}Modal({
+			this.${firstLower(rel.name)}Modal = new ${firstUpper(rel.name)}Modal({
 				onSelectModel : function(model) {
 					that.select${firstUpper(rel.name)}(model);
 				},
@@ -190,7 +185,7 @@ define(function(require) {
 		<#list entity.relationships as rel >
 			<#if rel.showInPages >		
 			<#if rel.viewApproach.type == 'modal'>
-				this.search${firstUpper(rel.name)}ModalRegion.show(this.search${firstUpper(rel.name)}Modal);		
+				this.${firstLower(rel.name)}ModalRegion.show(this.${firstLower(rel.name)}Modal);		
 			</#if>
 			</#if>
 		</#list>
@@ -283,10 +278,10 @@ define(function(require) {
 			<#list entity.relationships as rel >
 				<#if rel.showInPages >			
 				<#if rel.viewApproach.type == 'modal' >
-			    ${firstLower(rel.name)} : util.escapeById('input${firstUpper(rel.name)}${firstUpper(rel.viewApproach.hiddenField)}'), 
+			    ${firstLower(rel.name)} : that.${firstLower(rel.name)}Modal.getRawValue(), 
 				</#if> 
 				<#if  rel.viewApproach.type == 'combo'>
-			    ${firstLower(rel.name)} : util.escapeById('input${firstUpper(rel.name)}'), 
+			    ${firstLower(rel.name)} : that.${firstLower(rel.name)}Modal.getRawValue(), 
 				</#if>
 				</#if>
 			</#list>
@@ -307,11 +302,15 @@ define(function(require) {
 		reset${firstUpper(entity.name)} : function(){
 			this.ui.form.get(0).reset();
 			this.${firstLower(entity.name)}s.reset();
+
 		<#list entity.relationships as rel >
 			<#if rel.viewApproach?? >
-				<#if rel.viewApproach.hiddenField??>
-			util.clear('input${firstUpper(rel.name)}${firstUpper(rel.viewApproach.hiddenField)}');
-				</#if>					
+				<#if rel.viewApproach.type == 'modal' >
+			this.${firstLower(rel.name)}Modal.clear(); 
+				</#if> 
+				<#if  rel.viewApproach.type == 'combo'>
+			this.combo${firstUpper(rel.name)}.clear(); 
+				</#if>								
 			</#if>
 		</#list>
 		},
@@ -324,7 +323,7 @@ define(function(require) {
 			{
 				name : "${att.name}",
 				editable : false,
-				sortable : true,
+				sortable : false,
 				label 	 : "${firstUpper(att.displayName)!firstUpper(att.name)}",
 				<#if isNumeric(att.type.className)>
 				cell : CustomNumberCell.extend({}),
@@ -341,7 +340,7 @@ define(function(require) {
 			{
 				name : "${firstLower(rel.name)}.${rel.viewApproach.textField}",
 				editable : false,
-				sortable : true,  
+				sortable : false,  
 				label : "${rel.displayName}",
 				cell : CustomStringCell.extend({
 					fieldName : '${firstLower(rel.name)}.${rel.viewApproach.textField}',
@@ -424,15 +423,10 @@ define(function(require) {
 		<#if entity.relationships??>	
 		<#list entity.relationships as rel >
 				<#if rel.showInPages >		
-			<#if rel.viewApproach.type == 'modal'>
-		showSearch${firstUpper(rel.name)}Modal : function() {
-			this.search${firstUpper(rel.name)}Modal.showPage();
-		},
-			
+		<#if rel.viewApproach.type == 'modal'>
+
 		select${firstUpper(rel.name)} : function(${firstLower(rel.name)}) {
-			this.search${firstUpper(rel.name)}Modal.hidePage();	
-			this.ui.input${firstUpper(rel.name)}${firstUpper(rel.viewApproach.hiddenField)}.val(${firstLower(rel.name)}.get('${firstLower(rel.viewApproach.hiddenField)}'));
-			this.ui.input${firstUpper(rel.name)}${firstUpper(rel.viewApproach.textField)}.val(${firstLower(rel.name)}.get('${firstLower(rel.viewApproach.textField)}'));		
+			this.${firstLower(rel.name)}Modal.hidePage();	
 		},
 			</#if>
 			</#if>

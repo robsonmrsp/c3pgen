@@ -13,7 +13,8 @@ define(function(require) {
 	var RowClick = require('views/components/CustomClickedRow');
 	var Combobox = require('views/components/Combobox');
 	var CustomNumberCell = require('views/components/CustomNumberCell');
-
+	
+	var ${entity.name}Model = require('models/${entity.name}Model');
 	var ${entity.name}Modal = require('text!views/modalComponents/tpl/${entity.name}ModalTemplate.html');
 	var ${entity.name}PageCollection = require('collections/${entity.name}PageCollection');
 	<#list entity.attributes as att>
@@ -59,6 +60,10 @@ define(function(require) {
 			'click #btnClear${entity.name}' : 'clearModal',
 			'click tr' : 'selectRow',
 			'keypress' : 'treatKeypress',
+			
+			'click .show-modal-button' : 'showPage',
+			
+			'change .inputCod' : 'searchOne${entity.name}',
 		},
 
 		regions : {
@@ -68,6 +73,10 @@ define(function(require) {
 		},
 
 		ui : {
+			inputCod : '.inputCod',
+			inputDesc : '.inputDesc',
+			searchIcon : '.search-icon-button',
+			
 		<#list entity.attributes as att>
     		inputModal${firstUpper(att.name)} : '#inputModal${firstUpper(att.name)}',
     		<#if att.viewApproach?? >
@@ -196,7 +205,7 @@ define(function(require) {
 					<#else>
 					comboId : '${(rel.viewApproach.comboId)!'id'}',
 					comboVal : '${(rel.viewApproach.comboVal)!'name'}',
-					collectionEntity : ${firstUpper(rel.model)}Collection, //provavelmente vá ocorrer um erro pois ${rel.model}Collection não foi declarado
+					collectionEntity : ${firstUpper(rel.model)}Collection, 
 					</#if>
 				});
 					</#if>
@@ -206,16 +215,62 @@ define(function(require) {
 			</#if>
 		</#if>
 		</#list>
-		</#if>			
+		</#if>	
+				that.ui.inputDesc.clearField({
+					onClear : function() {
+						that.clear();
+					}
+				});		
 			});
 		},
 
 		selectRow : function(e) {
-			var model${entity.name} = util.getWrappedModel(e);
-			if (model${entity.name})
-				this.onSelectModel(model${entity.name});
+			var model = util.getWrappedModel(e);
+			if (model) {
+				this.modelSelect = model;
+				this.setValue(model.toJSON())
+				this.onSelectModel(model);
+			}
 		},
-		
+
+		getRawValue : function() {
+			var json = this.getJsonValue();
+			if (json)
+				return json.id
+			return null;
+		},
+
+		getJsonValue : function() {
+			if (_.isEmpty(this.modelSelect) && _.isEmpty(this.jsonValue)) {
+				return null;
+			}
+			if (this.modelSelect) {
+				return this.modelSelect.toJSON();
+			} else {
+				return this.jsonValue;
+			}
+		},
+
+		getValue : function() {
+			return this.modelSelect;
+		},
+
+		clear : function() {
+			this.modelSelect = null;
+			this.setValue(null);
+		},
+
+		setValue : function(value) {
+			this.jsonValue = value;
+			if (value) {
+				this.ui.inputCod.val(value.id);
+				this.ui.inputDesc.val(value.descricao);
+			} else {
+				this.ui.inputCod.val('');
+				this.ui.inputDesc.val('');
+			}
+		},
+
 		getColumns : function() {
 			var columns = [	
 
@@ -259,6 +314,36 @@ define(function(require) {
 			util.scrollUpModal();
 		},
 
+
+		searchOne${entity.name} : function() {
+			var that = this;
+			if (!that.ui.inputCod.val()) {
+				return false;
+			}
+			
+			var model = new ${firstUpper(entity.name)}Model();
+			model.set('id', that.ui.inputCod.val());
+			
+			that.ui.searchIcon.addClass('icon-spinner icon-spin')
+			that.ui.searchIcon.removeClass('icon-search')
+			that.ui.inputDesc.val('');
+			model.fetch({
+				success : function(_model, rsp, xh) {
+					that.clear();
+					if (rsp) {
+						that.setValue(_model.toJSON());
+						that.onSelectModel(_model);
+					}
+					that.ui.searchIcon.removeClass('icon-spinner icon-spin')
+					that.ui.searchIcon.addClass('icon-search')
+				},
+				error : function(mod, rsp, xh) {
+					that.ui.searchIcon.removeClass('icon-spinner icon-spin')
+					that.ui.searchIcon.addClass('icon-search')
+				},
+			})
+		},
+
 		search${entity.name} : function() {
 			this.${firstLower(entity.name)}Collection.filterQueryParams = {
 			<#list entity.attributes as att>
@@ -285,16 +370,8 @@ define(function(require) {
 
 		showPage : function() {
 			this.clearModal();
-
 			this.ui.modalScreen.modal('show');
-			this.${firstLower(entity.name)}Collection.getFirstPage({
-				success : function(_col, _resp, _opts) {
-					//caso queira algum tratamento de sucesso adicional
-				},
-				error : function(_col, _resp, _opts) {
-					console.error(_resp.responseText || (_resp.getResponseHeader && _resp.getResponseHeader('exception')));
-				}
-			});
+			this.search${entity.name}();
 		},
 
 		clearModal : function() {

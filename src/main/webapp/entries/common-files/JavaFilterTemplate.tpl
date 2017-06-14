@@ -19,6 +19,9 @@ import ${corepackage}.serialization.CustomLocalDateTimeDeserializer;
 **/
 public class Filter${entity.name} implements Serializable {
 	private static final long serialVersionUID = 1L;
+	
+	private  Integer id;
+	
 	<#if entity.attributes??>	
 	<#list entity.attributes as att>
 	
@@ -53,7 +56,14 @@ public class Filter${entity.name} implements Serializable {
 		
 	}
 	
+	public Integer getId() {
+		return id;
+	}
 
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	
 	<#list entity.attributes as att>
 		<#if att.name != 'id'>
 	public ${dataType(att.type.className)} get${firstUpper(att.name)}() {

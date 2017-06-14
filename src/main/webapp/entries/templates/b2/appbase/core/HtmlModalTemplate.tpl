@@ -1,3 +1,14 @@
+<div class="form-group input-append ">
+	<div>
+		<input type="text" class="  inputCod span3" placeholder="código">
+		<input type="text" readonly="readonly" class="inputDesc span9" />
+		<span class="input-group-search-prep add-on show-modal-button" data-toggle="modal">
+			<span class="icon-white icon-search search-icon-button "></span>
+		</span>
+	</div>
+</div>
+
+
 <!-- generated: ${.now} -->
 <!-- Modal ${entity.name}´s form -->
 <div class="modal container-modal fade" id="dialog${firstUpper(entity.name)}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
