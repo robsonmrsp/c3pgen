@@ -7,4 +7,5 @@ target/
 bin/
 src/main/webapp/out
 src/main/webapp/out/*
+src/main/webapp/javascript
 
