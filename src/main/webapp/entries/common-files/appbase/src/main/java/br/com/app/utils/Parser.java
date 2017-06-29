@@ -92,10 +92,11 @@ public class Parser {
 	<#list application.entities as entity>		
 	//converte de entidade para json
 	
-	
-	
 	public static Json${entity.name} toJson(${entity.name} ${firstLower(entity.name)}) {
 		Json${entity.name} json${entity.name} = new Json${entity.name}();
+		if (${firstLower(entity.name)} == null) {
+			return null;
+		}
 		
 		json${entity.name}.setId(${firstLower(entity.name)}.getId());
 	<#if entity.attributes ??>		

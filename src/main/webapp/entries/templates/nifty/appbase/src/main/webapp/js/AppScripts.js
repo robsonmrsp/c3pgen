@@ -1,5 +1,6 @@
-define([ 'adapters/jquery-adapter' ], function($) {
-
+define(function(require) {
+	var $ = require('adapters/jquery-adapter');
+	
 	var initialize = function() {
 
 		setTimeout(function() {

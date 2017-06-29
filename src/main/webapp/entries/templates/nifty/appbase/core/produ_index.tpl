@@ -9,7 +9,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
-<meta name="author" content="ThemeBucket">
+<meta name="author" content="JSetup">
 <link rel="icon" href="images/ico/favicon.png" type="image/png">
 <title>${application.appName}</title>
 <link href="css/main-built.min.css" rel="stylesheet">
@@ -48,7 +48,7 @@
 					<a href="" class="navbar-brand">
 						<img src="images/logo.png" alt="Nifty Logo" class="brand-icon">
 						<div class="brand-title">
-							<span class="brand-text">Webapp</span>
+							<span class="brand-text">${application.appName}</span>
 						</div>
 					</a>
 				</div>

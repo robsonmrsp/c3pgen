@@ -134,8 +134,12 @@ public class Parser {
 	}	
 	
 	public static Json${entity.name} toJson(${entity.name} ${firstLower(entity.name)}) {
+		if(${firstLower(entity.name)} == null){
+			return null;
+		}
+		
 		Json${entity.name} json${entity.name} = new Json${entity.name}();
-
+		
 		applyBasicJsonValues(json${firstUpper(entity.name)}, ${firstLower(entity.name)});
 
 	<#if entity.relationships??>	

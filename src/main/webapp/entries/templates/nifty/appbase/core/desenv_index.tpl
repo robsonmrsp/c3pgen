@@ -48,7 +48,7 @@
 					<a href="" class="navbar-brand">
 						<img src="images/logo.png" alt="Nifty Logo" class="brand-icon">
 						<div class="brand-title">
-							<span class="brand-text">Webapp</span>
+							<span class="brand-text">${application.appName}</span>
 						</div>
 					</a>
 				</div>

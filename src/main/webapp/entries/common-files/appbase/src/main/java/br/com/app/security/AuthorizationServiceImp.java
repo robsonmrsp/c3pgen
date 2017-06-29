@@ -31,7 +31,14 @@ public class AuthorizationServiceImp implements AuthorizationService {
 			return Boolean.TRUE;
 		}
 
+		if (requestURI.endsWith(".css") || requestURI.endsWith(".js") || requestURI.endsWith(".png") || requestURI.endsWith(".gif")) {
+			return Boolean.TRUE;
+		}
+
 		if (requestURI.contains("swagger")) {
+			return Boolean.TRUE;
+		}
+		if (requestURI.contains("api-docs")) {
 			return Boolean.TRUE;
 		}
 

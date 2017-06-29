@@ -1,4 +1,5 @@
-define([ 'adapters/jquery-adapter' ], function($) {
+define(function(require) {
+	var $ = require('adapters/jquery-adapter');
 
 	var initialize = function() {
 
@@ -39,7 +40,7 @@ define([ 'adapters/jquery-adapter' ], function($) {
 
 	};
 	var prepare = function() {
-		
+
 		function tog(v) {
 			return v ? 'addClass' : 'removeClass';
 		}

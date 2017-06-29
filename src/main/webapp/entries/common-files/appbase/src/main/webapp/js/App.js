@@ -8,14 +8,13 @@ define(function(require) {
 
 	var initialize = function() {
 		var router = new Router();
-		CorsApp.initCorsSuportWithCredentials(_, Backbone);
+		CorsApp.initCorsSuportWithCredentials();
 		AppScripts.initialize();
-		console.log('inicializando Router...');
 		router.start();
 	};
 
 	return {
 		initialize : initialize,
-		JSETUP_GEN_VERSION : 'v0.93',
+		JSETUP_GEN_VERSION : 'v0.94',
 	};
 })

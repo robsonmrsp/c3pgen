@@ -70,7 +70,7 @@ public class ${entity.name}Resources {
 	@ApiImplicitParams({ 
 	<#if entity.attributes??>	
 	<#list entity.attributes as att>
-		<#if att.name != 'id'>
+		<#if att.name != 'id' && att.viewApproach.type  != 'upload'>
 		@ApiImplicitParam(name = "${att.name}", value = "${att.displayName}", paramType = "query", dataType="string"),  			
 		</#if>
 	</#list>
@@ -106,7 +106,7 @@ public class ${entity.name}Resources {
 	@ApiImplicitParams({ 
 	<#if entity.attributes??>	
 	<#list entity.attributes as att>
-		<#if att.name != 'id'>
+		<#if att.name != 'id' && att.viewApproach.type  != 'upload'>
 		@ApiImplicitParam(name = "${att.name}", value = "${att.displayName}", paramType = "query", dataType="string"),  			
 		</#if>
 	</#list>
@@ -166,7 +166,7 @@ public class ${entity.name}Resources {
 		@ApiImplicitParam(name = "order", value = "sort ASC or sort DESC", paramType = "query", dataType="string", allowableValues="asc,desc"),  			
 	<#if entity.attributes??>	
 	<#list entity.attributes as att>
-		<#if att.name != 'id'>
+		<#if att.name != 'id' && att.viewApproach.type  != 'upload'>
 		@ApiImplicitParam(name = "${att.name}", value = "${att.displayName}", paramType = "query", dataType="string"),  			
 		</#if>
 	</#list>
@@ -205,6 +205,7 @@ public class ${entity.name}Resources {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
+	@ApiOperation(value = "Retrieve  a ${entity.name} by id ", response = Json${entity.name}.class)
 	@Path("{id}")
 	public Response get(@PathParam("id") Integer id) {
 		try {
