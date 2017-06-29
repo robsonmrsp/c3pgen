@@ -40,6 +40,9 @@ public class User extends AbstractTimestampEntity implements UserDetails {
 	@Column(name = "NAME", columnDefinition = "varchar")
 	private String name;
 
+	@Column(name = "EMAIL", columnDefinition = "varchar")
+	private String email;
+
 	@Column(name = "USERNAME", columnDefinition = "varchar")
 	private String username;
 
@@ -157,5 +160,13 @@ public class User extends AbstractTimestampEntity implements UserDetails {
 	@Override
 	public boolean isEnabled() {
 		return enable;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 }

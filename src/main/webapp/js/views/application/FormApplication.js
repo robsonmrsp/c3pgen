@@ -74,7 +74,7 @@ define(function(require) {
 			var application = that._getModel();
 
 			if (this._isValid()) {
-				application.save({}, {
+				application.updateOnlyApplication({}, {
 					success : function(_model, _resp, _options) {
 						util.showMessage('success', 'Application salvo com sucesso!');
 						that.clearForm();
@@ -127,7 +127,7 @@ define(function(require) {
 				description : util.escapeById('inputDescription'),
 				rootPackage : util.escapeById('inputRootPackage'),
 				corePackage : util.escapeById('inputCorePackage'),
-				entities : that.entities.toJSON(),
+//				entities : that.entities.toJSON(),
 			});
 			return application;
 		},

@@ -21,7 +21,7 @@ public class CSVMaker<T> {
 	public CSVMaker(CSVLayout<T> layout) {
 		this.layout = layout;
 	}
-
+	
 	public void print(String fileName, List<T> items) {
 
 		FileWriter fileWriter = null;

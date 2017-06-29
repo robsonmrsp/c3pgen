@@ -117,7 +117,9 @@ public class FSItemDescription {
 
 	public static List<FSItemDescription> report(String rootFolder) {
 		List<FSItemDescription> list = new ArrayList<FSItemDescription>();
-		list.add(new FSItemDescription("JasperBuilder", rootFolder + File.separator + "reports" + File.separator, "JasperBuilder", FileType.JAVA));
+		list.add(new FSItemDescription("CSVColumn", rootFolder + File.separator + "reports" + File.separator, "CSVColumn", FileType.JAVA));
+		list.add(new FSItemDescription("CSVLayout", rootFolder + File.separator + "reports" + File.separator, "CSVLayout", FileType.JAVA));
+		list.add(new FSItemDescription("CSVMaker", rootFolder + File.separator + "reports" + File.separator, "CSVMaker", FileType.JAVA));
 		list.add(new FSItemDescription("JasperMaker", rootFolder + File.separator + "reports" + File.separator, "JasperMaker", FileType.JAVA));
 		return list;
 	}

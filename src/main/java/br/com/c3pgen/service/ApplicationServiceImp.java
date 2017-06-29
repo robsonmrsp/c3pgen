@@ -128,7 +128,6 @@ public class ApplicationServiceImp implements ApplicationService {
 
 	@Override
 	public Application update(Application entity) {
-
 		return daoApplication.save(entity);
 	}
 
@@ -198,5 +197,11 @@ public class ApplicationServiceImp implements ApplicationService {
 	public Boolean ping(String url, String username, String password, String databaseType) throws Exception {
 		DBImporterEntities dbImporterEntities = new DBImporterEntities(url, username, password, databaseType);
 		return dbImporterEntities.ping();
+	}
+
+	@Override
+	public Application saveOnlyApplication(Application application) {
+
+		return daoApplication.saveOnlyApplication(application);
 	}
 }

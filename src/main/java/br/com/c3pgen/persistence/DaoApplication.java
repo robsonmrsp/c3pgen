@@ -7,6 +7,7 @@ import javax.inject.Named;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
+import org.hibernate.Session;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
@@ -16,9 +17,10 @@ import br.com.c3pgen.model.filter.FilterApplication;
 import br.com.c3pgen.persistence.pagination.Pagination;
 import br.com.c3pgen.persistence.pagination.PaginationParams;
 import br.com.c3pgen.persistence.pagination.Paginator;
+
 /**
-*  generated: 03/09/2015 14:51:47
-**/
+ * generated: 03/09/2015 14:51:47
+ **/
 
 @Named
 @SuppressWarnings("rawtypes")
@@ -28,6 +30,7 @@ public class DaoApplication extends AccessibleHibernateDao<Application> {
 	public DaoApplication() {
 		super(Application.class);
 	}
+
 	public Application findBySkin(String skin) {
 		Application application = null;
 		try {
@@ -37,6 +40,7 @@ public class DaoApplication extends AccessibleHibernateDao<Application> {
 		}
 		return application;
 	}
+
 	public Application findByRootPackage(String rootPackage) {
 		Application application = null;
 		try {
@@ -71,7 +75,7 @@ public class DaoApplication extends AccessibleHibernateDao<Application> {
 
 		return new Paginator<Application>(searchCriteria, countCriteria).paginate(paginationParams);
 	}
-	
+
 	public List<Application> filter(PaginationParams paginationParams) {
 		List<Application> list = new ArrayList<Application>();
 		FilterApplication filterApplication = (FilterApplication) paginationParams.getFilter();
@@ -92,6 +96,7 @@ public class DaoApplication extends AccessibleHibernateDao<Application> {
 		list.addAll(searchCriteria.list());
 		return list;
 	}
+
 	@Override
 	public Pagination<Application> getAll(PaginationParams paginationParams, Client owner) {
 		FilterApplication filterApplication = (FilterApplication) paginationParams.getFilter();
@@ -99,7 +104,7 @@ public class DaoApplication extends AccessibleHibernateDao<Application> {
 		Criteria countCriteria = criteria();
 		searchCriteria.add(Restrictions.eq("owner", owner));
 		countCriteria.add(Restrictions.eq("owner", owner));
-		
+
 		if (filterApplication.getName() != null) {
 			searchCriteria.add(Restrictions.ilike("name", filterApplication.getName(), MatchMode.ANYWHERE));
 			countCriteria.add(Restrictions.ilike("name", filterApplication.getName(), MatchMode.ANYWHERE));
@@ -116,9 +121,8 @@ public class DaoApplication extends AccessibleHibernateDao<Application> {
 			searchCriteria.add(Restrictions.ilike("rootPackage", filterApplication.getRootPackage(), MatchMode.ANYWHERE));
 			countCriteria.add(Restrictions.ilike("rootPackage", filterApplication.getRootPackage(), MatchMode.ANYWHERE));
 		}
-	return new Paginator<Application>(searchCriteria, countCriteria).paginate(paginationParams);
+		return new Paginator<Application>(searchCriteria, countCriteria).paginate(paginationParams);
 	}
-	
 
 	public List<Application> filter(PaginationParams paginationParams, Client owner) {
 		List<Application> list = new ArrayList<Application>();
@@ -141,5 +145,26 @@ public class DaoApplication extends AccessibleHibernateDao<Application> {
 		list.addAll(searchCriteria.list());
 		return list;
 	}
-	
+
+	public Application saveOnlyApplication(Application application) {
+		String hqlUpdate = "update Application c 		"//
+				+ "	set  c.appName = :appName ,				"//
+				+ "      c.skin = :skin, 				"//
+				+ "      c.description = :description, 	"//
+				+ "      c.rootPackage = :rootPackage , 	"//
+				+ "      c.corePackage = :corePackage	"//
+				+ " where c.id= :id";//
+		Session session = getSession();
+
+		int updatedEntities = session.createQuery(hqlUpdate)//
+				.setString("appName", application.getAppName())//
+				.setString("description", application.getDescription())//
+				.setString("skin", application.getSkin())//
+				.setString("rootPackage", application.getRootPackage())//
+				.setString("corePackage", application.getCorePackage())//
+				.setInteger("id", application.getId())//
+				.executeUpdate();
+		return application;
+	}
+
 }

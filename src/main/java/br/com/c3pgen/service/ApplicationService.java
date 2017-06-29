@@ -49,4 +49,6 @@ public interface ApplicationService {
 
 	DBImportResult generateYamlFromDataBase(String url, String username, String password, String databaseType, String supressPrefix, String tableRegex, String columnRegex) throws Exception;
 
+	Application saveOnlyApplication(Application application);
+
 }

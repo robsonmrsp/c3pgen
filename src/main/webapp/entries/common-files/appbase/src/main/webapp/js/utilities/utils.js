@@ -132,7 +132,7 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'adapters/unders
 			}, time * 1000 || 30000);
 		},
 
-markActiveItem : function(itemId) {
+		markActiveItem : function(itemId) {
 			try {
 				var itens = $('.nav .sub li a');
 				itens.parent().parent().removeClass('show')
@@ -144,6 +144,8 @@ markActiveItem : function(itemId) {
 				if (parent) {
 					$('#nav-accordion').find('li').removeClass('active')
 					parent.parent().addClass('active').addClass('open');
+					parent.find('li').removeClass('active');
+					parent.addClass('collapse in');
 					$('#' + itemId).addClass('active');
 				}
 				itens.parent().parent().addClass('show')
@@ -559,6 +561,5 @@ markActiveItem : function(itemId) {
 				}
 			});
 		}
-
 	};
 });

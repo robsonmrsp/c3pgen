@@ -47,6 +47,7 @@ public class GenService {
 
 		user.addAttributes(new Attribute("name", "Nome", "NAME", true, true, true, AttributeType.STRING, ViewApproach.noneInstance()));
 		user.addAttributes(new Attribute("username", "Username", "username", true, true, true, AttributeType.STRING, ViewApproach.noneInstance()));
+		user.addAttributes(new Attribute("email", "E-mail", "email", true, true, true, AttributeType.STRING, ViewApproach.noneInstance()));
 		user.addAttributes(new Attribute("password", "Senha", "password", true, false, false, AttributeType.STRING, ViewApproach.noneInstance()));
 		user.addAttributes(new Attribute("enable", "Ativo?", "enable", false, false, false, AttributeType.BOOLEAN, ViewApproach.check()));
 		user.addAttributes(new Attribute("image", "Foto", "image", false, false, false, AttributeType.STRING, ViewApproach.uploadInstance()));
@@ -68,7 +69,7 @@ public class GenService {
 	}
 
 	private ApplicationEntity permission() {
-		ApplicationEntity permission = new ApplicationEntity("Permission","Permissão",  "PERMISSION");
+		ApplicationEntity permission = new ApplicationEntity("Permission", "Permissão", "PERMISSION");
 
 		permission.addAttributes(new Attribute("name", "Nome", "NAME", true, true, true, AttributeType.STRING, ViewApproach.noneInstance()));
 		permission.addAttributes(new Attribute("description", "Descrição", "DESCRIPTION", true, false, true, AttributeType.STRING, ViewApproach.noneInstance()));
@@ -82,7 +83,7 @@ public class GenService {
 	}
 
 	private ApplicationEntity groupPermission() {
-		ApplicationEntity permission = new ApplicationEntity("Group","Grupo de Permissões",  "ACCESS_GROUP");
+		ApplicationEntity permission = new ApplicationEntity("Group", "Grupo de Permissões", "ACCESS_GROUP");
 
 		permission.addAttributes(new Attribute("name", "Nome", "NAME", true, true, true, AttributeType.STRING));
 		permission.addAttributes(new Attribute("description", "Descrição", "DESCRIPTION", true, false, true, AttributeType.STRING));
@@ -93,7 +94,7 @@ public class GenService {
 	}
 
 	private ApplicationEntity item() {
-		ApplicationEntity item = new ApplicationEntity("Item", "Item","ITEM");
+		ApplicationEntity item = new ApplicationEntity("Item", "Item", "ITEM");
 
 		item.addAttributes(new Attribute("name", "Nome", "NAME", true, true, true, AttributeType.STRING));
 		item.addAttributes(new Attribute("itemType", "Tipo", "TYPE", true, false, true, AttributeType.STRING));
@@ -140,8 +141,8 @@ public class GenService {
 				public void run() {
 					try {
 						LOGGER.info("Removendo arquivos temporarios em " + a);
-						FileUtils.deleteDirectory(new File(a));
-					} catch (IOException e) {
+						// FileUtils.deleteDirectory(new File(a));
+					} catch (Exception e) {
 						LOGGER.warn("Não foi possivel remover arquivos temporarios " + a, e);
 					}
 				}
@@ -211,8 +212,8 @@ public class GenService {
 				public void run() {
 					try {
 						LOGGER.info("Removendo arquivos temporarios em " + a);
-						FileUtils.deleteDirectory(new File(a));
-					} catch (IOException e) {
+						// FileUtils.deleteDirectory(new File(a));
+					} catch (Exception e) {
 						LOGGER.warn("Não foi possivel remover arquivos temporarios " + a, e);
 					}
 				}

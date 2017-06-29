@@ -25,6 +25,10 @@ define(function(require) {
 			corePackage : '',
 			entities : null,
 		},
+		updateOnlyApplication : function(obj, options) {
+			this.url = this.urlRoot + '/onlyApplication/' + this.get('id');
+			this.save(obj, options);
+		}
 	});
 	return ApplicationModel;
 });

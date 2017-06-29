@@ -332,6 +332,31 @@ public class ApplicationResources {
 		}
 	}
 
+	@PUT
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Path("onlyApplication/{id}")
+	public Response updateOnlyApplication(@PathParam("id") Integer id, JsonApplication jsonApplication) {
+		try {
+			Application application = Parser.toEntity(jsonApplication);
+
+			application.setOwner(context.getCurrentUser().getOwner());
+
+			application = applicationService.saveOnlyApplication(application);
+
+			return Response.ok().entity(Parser.toJson(application)).build();
+
+		} catch (ValidationException e) {
+			String message = String.format("Não foi possivel salvar  o registro [ %s ] parametros [ %s ]", e.getOrigem().getMessage(), jsonApplication.toString());
+			LOGGER.error(message, e.getOrigem());
+			return Response.serverError().entity(new JsonError(message, jsonApplication, e.getLegalMessage())).build();
+		} catch (Exception e) {
+			String message = String.format("Não foi possivel salvar o registro [ %s ] parametros [ %s ]", e.getMessage(), jsonApplication.toString());
+			LOGGER.error(message, e);
+			return Response.serverError().entity(new JsonError(message, jsonApplication)).build();
+		}
+	}
+
 	@DELETE
 	@Path("{id}")
 	@Produces(MediaType.APPLICATION_JSON)
