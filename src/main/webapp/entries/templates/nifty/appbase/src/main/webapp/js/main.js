@@ -42,7 +42,7 @@ require.config({
 		'jqueryChosen' : '../vendor/chosen_v1.6.2/chosen.jquery',
 		'jqueryInputMask' : '../vendor/Inputmask-3.3.3/dist/jquery.inputmask.bundle',
 
-		'nifty' : '../vendor/theme/nifty',
+		'nifty' : '../vendor/theme/demo/js/nifty',
 		'metisMenu' : '../vendor/metisMenu/dist/metisMenu',
 
 		'typeahead' : '../vendor/typeahead/typeahead.jquery',

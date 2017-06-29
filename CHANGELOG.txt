@@ -6,6 +6,7 @@ v0.94:
 - Devolvendo null ao fazer um parser toJson de null. Situação foi verificada ao executar testes no 
   swagger-ui procurando por um registro de id inexistente
 - Removendo a exibição de campos upload dos parametros de teste do swagger.
+- correções nos caminhos dos arquivos do template para atender ao arquivo gerado para produção 
 
 v0.93: Thu Jun 29 00:03:17 2017 -0300 
 - Melhoria na geração de PDF a partir de arquivos jrxml e não de arquivos compilados , jasper.

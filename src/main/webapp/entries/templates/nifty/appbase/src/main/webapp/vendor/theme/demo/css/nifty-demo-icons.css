@@ -1,10 +1,10 @@
 @font-face {
     font-family: 'nifty-demo-icons';
-    src:    url('fonts/nifty-demo-icons.eot?bbef6n');
-    src:    url('fonts/nifty-demo-icons.svg?bbef6n#nifty-demo-icons') format('svg'),
-        url('fonts/nifty-demo-icons.eot?bbef6n#iefix') format('embedded-opentype'),
-        url('fonts/nifty-demo-icons.ttf?bbef6n') format('truetype'),
-        url('fonts/nifty-demo-icons.woff?bbef6n') format('woff');
+    src:    url('../fonts/nifty-demo-icons.eot?bbef6n');
+    src:    url('../fonts/nifty-demo-icons.svg?bbef6n#nifty-demo-icons') format('svg'),
+        url('../fonts/nifty-demo-icons.eot?bbef6n#iefix') format('embedded-opentype'),
+        url('../fonts/nifty-demo-icons.ttf?bbef6n') format('truetype'),
+        url('../fonts/nifty-demo-icons.woff?bbef6n') format('woff');
     font-weight: normal;
     font-style: normal;
 }

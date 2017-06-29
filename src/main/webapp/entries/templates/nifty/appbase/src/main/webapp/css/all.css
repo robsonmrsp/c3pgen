@@ -13,9 +13,9 @@
 @import url("../vendor/sweetalert-1.1.3/dist/sweetalert.css");
 
 
-@import url("../vendor/theme/nifty.css");
-@import url("../vendor/theme/demo/nifty-demo-icons.css");
-@import url("../vendor/theme/theme-ocean.css");
+@import url("../vendor/theme/demo/css/nifty.css");
+@import url("../vendor/theme/demo/css/nifty-demo-icons.css");
+@import url("../vendor/theme/demo/css/theme-ocean.css");
 
 
 @import url("custom.css");

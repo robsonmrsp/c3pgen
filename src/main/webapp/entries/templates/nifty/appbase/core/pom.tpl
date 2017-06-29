@@ -453,9 +453,9 @@
 								<cssSourceFile>../vendor/Backgrid.ColumnManager/lib/Backgrid.ColumnManager.css</cssSourceFile>
 								<cssSourceFile>../vendor/chosen_v1.6.2/bootstrap-chosen.css</cssSourceFile>
 								<cssSourceFile>../vendor/sweetalert-1.1.3/dist/sweetalert.css</cssSourceFile>
-								<cssSourceFile>../vendor/theme/nifty.css</cssSourceFile>
-								<cssSourceFile>../vendor/theme/demo/nifty-demo-icons.css</cssSourceFile>
-								<cssSourceFile>../vendor/theme/theme-ocean.css</cssSourceFile>								
+								<cssSourceFile>../vendor/theme/demo/css/nifty.css</cssSourceFile>
+								<cssSourceFile>../vendor/theme/demo/css/nifty-demo-icons.css</cssSourceFile>
+								<cssSourceFile>../vendor/theme/demo/css/theme-ocean.css</cssSourceFile>								
 								<cssSourceFile>custom.css</cssSourceFile>
 								</cssSourceFiles>
 							<cssFinalFile>main-built.css</cssFinalFile>
