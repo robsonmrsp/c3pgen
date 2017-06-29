@@ -1,8 +1,9 @@
 Changelog do GERADO
 
+v0.94: 
+- Implementação da geração do template nifty
 
-v0.93: em andamento
-
+v0.93: Thu Jun 29 00:03:17 2017 -0300 
 - Melhoria na geração de PDF a partir de arquivos jrxml e não de arquivos compilados , jasper.
 - Trazendo a infra para geração de arquivos CSV.
 
