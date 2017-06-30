@@ -5,7 +5,7 @@ define(function(require) {
 	var $ = require('adapters/jquery-adapter');
 	var Backbone = require('adapters/backbone-adapter');
 	var BaseModel = require('models/BaseModel');
-	var BaseCollection = require('collections/BaseCollection');
+	var BaseCollection = require('models/BaseCollection');
 	// End of "Import´s definition"
 
 	// #####################################################################################################

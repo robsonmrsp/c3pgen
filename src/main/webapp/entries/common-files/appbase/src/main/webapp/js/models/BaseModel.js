@@ -1,17 +1,21 @@
-define([ 'adapters/jquery-adapter', 'adapters/underscore-adapter', 'adapters/backbone-adapter' ], function($, _, BB) {
+define(function(require) {
+	var _ = require('adapters/underscore-adapter');
+	var $ = require('adapters/jquery-adapter');
+	var Backbone = require('adapters/backbone-adapter');
 
-	var BaseModel = BB.Model.extend({
+	var BaseModel = Backbone.Model.extend({
 		initialize : function() {
 
 		},
 
 		get : function(attr) {
-			var value = BB.Model.prototype.get.call(this, attr);
+			var value = Backbone.Model.prototype.get.call(this, attr);
 			return _.isFunction(value) ? value.call(this) : value;
 		},
+		
 		toJSON : function() {
 			var data = {};
-			var json = BB.Model.prototype.toJSON.call(this);
+			var json = Backbone.Model.prototype.toJSON.call(this);
 			_.each(json, function(value, key) {
 				data[key] = this.get(key);
 			}, this);

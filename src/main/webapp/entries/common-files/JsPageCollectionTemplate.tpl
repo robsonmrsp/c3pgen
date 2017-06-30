@@ -1,17 +1,12 @@
 /* generated: ${.now} */
 define(function(require) {
-	// Start "Import´s" Definition"
 	var _ = require('adapters/underscore-adapter');
 	var $ = require('adapters/jquery-adapter');
 	var Backbone = require('adapters/backbone-adapter');
 	var ${entity.name}Model = require('models/${entity.name}Model');
-	// End of "Import´s definition"
 	
 	var ${entity.name}sCollection = Backbone.PageableCollection.extend({
-
 		model : ${entity.name}Model,
-
-		
 		<#if application.persistenceFramework == 'hibernate'>	
 		url : 'rs/crud/${firstLower(entity.name)}s',
 		<#else>

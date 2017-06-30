@@ -6,8 +6,6 @@ define(function(require) {
 	var JSetup = require('views/components/JSetup');
 
 	var TemplateForm${entity.name}s = require('text!views/${firstLower(entity.name)}/tpl/Form${entity.name}Template.html');
-	var ${entity.name}Model = require('models/${entity.name}Model');
-	var ${entity.name}Collection = require('collections/${entity.name}Collection');
 	<#list entity.attributes as att>
 		<#if att.viewApproach?? && att.viewApproach.type??>
 			<#if att.viewApproach.type == 'combo'>		
@@ -25,11 +23,13 @@ define(function(require) {
 		</#if>		
 	</#list>
 	</#if>
+	
+	var ${entity.name} = require('models/${entity.name}');
 	<#if entity.relationships??>	
 	<#list entity.relationships as rel>
 		<#if rel.viewApproach?? >
 			<#if rel.viewApproach.type  == 'combo'  ||  rel.viewApproach.type  == 'multiselect' ||  rel.viewApproach.type  == 'multiselectmodal'>
-	var ${rel.model}Collection = require('collections/${rel.model}Collection');			
+	var ${rel.model} = require('models/${rel.model}');			
 			</#if>
 		</#if>
 	</#list>
@@ -186,7 +186,7 @@ define(function(require) {
 				<#else>
 				comboId : '${(rel.viewApproach.comboId)!'id'}',
 				comboVal : '${(rel.viewApproach.comboVal)!'name'}',
-				collectionEntity : ${firstUpper(rel.model)}Collection, 
+				collectionEntity : ${firstUpper(rel.model)}.Collection, 
 				</#if>
 			    initialValue : that.model.get('${firstLower(rel.name)}'),
 			});
@@ -200,7 +200,7 @@ define(function(require) {
 				<#else>
 				comboId : '${(rel.viewApproach.comboId)!'id'}',
 				comboVal : '${(rel.viewApproach.comboVal)!'name'}',
-				collectionEntity : ${firstUpper(rel.model)}Collection, 
+				collectionEntity : ${firstUpper(rel.model)}.Collection, 
 				</#if>
 				initialValue : that.model.get('${firstLower(rel.name)}'),					
 			});
@@ -368,7 +368,7 @@ define(function(require) {
 				fieldDisplayName : '${att.displayName}',
 				//onlyNumber : true,     
 				view : that,
-				collection : ${entity.name}Collection,
+				collection : ${entity.name}.Collection,
 			})
 		},				
 			</#if>

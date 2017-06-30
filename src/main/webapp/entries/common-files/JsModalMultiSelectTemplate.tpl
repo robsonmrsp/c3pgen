@@ -1,6 +1,5 @@
 /* generated: ${.now} */
 define(function(require) {
-	// Start "Import´s Definition"
 	var _ = require('adapters/underscore-adapter');
 	var $ = require('adapters/jquery-adapter');
 	var Col = require('adapters/col-adapter');

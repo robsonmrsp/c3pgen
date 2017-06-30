@@ -7,7 +7,7 @@ define(function(require) {
 	var Backgrid = require('adapters/backgrid-adapter');
 	var util = require('utilities/utils');
 	var BaseModel = require('models/BaseModel');
-	var BaseCollection = require('collections/BaseCollection');
+	var BaseCollection = require('models/BaseCollection');
 	var GridTemplate = require('text!views/components/tpl/GridTemplate.html');
 	var CounterTemplate = require('text!views/components/tpl/CounterTemplate.html');
 

@@ -1,10 +1,7 @@
 /* generated: ${.now} */
 define(function(require) {
 	var util = require('utilities/utils');
-	var JSetup = require('views/components/JSetup');
-	
-	var ${entity.name}Model = require('models/${entity.name}Model');
-	var ${entity.name}PageCollection = require('collections/${entity.name}PageCollection');
+	var JSetup = require('views/components/JSetup');	
 	var Page${entity.name}Template = require('text!views/${firstLower(entity.name)}/tpl/Page${entity.name}Template.html');
 
 	<#list entity.attributes as att>
@@ -25,12 +22,13 @@ define(function(require) {
 		</#if>
 	</#list>
 	</#if>
+	var ${entity.name} = require('models/${entity.name}');
 	<#if entity.relationships??>	
 	<#list entity.relationships as rel>
 		<#if rel.showInPages >
 		<#if rel.viewApproach?? >
 			<#if rel.viewApproach.type  == 'combo'  >
-	var ${rel.model}Collection = require('collections/${rel.model}Collection');			
+	var ${rel.model} = require('models/${rel.model}');			
 			</#if>
 		</#if>
 		</#if>
@@ -111,7 +109,7 @@ define(function(require) {
 		/** First function called, like a constructor. */		
 		initialize : function() {
 			var that = this;
-			this.${firstLower(entity.name)}s = new ${entity.name}PageCollection();
+			this.${firstLower(entity.name)}s = new ${entity.name}.PageCollection();
 			this.${firstLower(entity.name)}s.on('fetching', this.startFetch, this);
 			this.${firstLower(entity.name)}s.on('fetched', this.stopFetch, this);
 			
@@ -199,7 +197,7 @@ define(function(require) {
 				<#else>
 				comboId : '${(rel.viewApproach.comboId)!'id'}',
 				comboVal : '${(rel.viewApproach.comboVal)!'name'}',
-				collectionEntity : ${firstUpper(rel.model)}Collection,
+				collectionEntity : ${firstUpper(rel.model)}.Collection,
 				</#if>
 			});
 					</#if>
@@ -360,7 +358,7 @@ define(function(require) {
 		deleteModel : function(model) {
 			var that = this;
 			
-			var modelTipo = new ${entity.name}Model({id : model.id});
+			var modelTipo = new ${entity.name}.Model({id : model.id});
 			
 			util.confirm({
 				title : "Importante",

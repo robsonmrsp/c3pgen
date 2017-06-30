@@ -1,3 +1,6 @@
+29-06-2017
+Unificar os arquivos de Model, Collection e PageCollection para diminuir o volume de arquivos gerados. 
+
 01-06-2017
 	Fazer como definido em Como definido em http://techqa.info/programming/question/35367366/can-you-set-jackon%27s-include.non_null-globally-in-jax-rs
 	para deixar os jsons mais limpos.

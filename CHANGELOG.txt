@@ -1,16 +1,21 @@
 Changelog do GERADO
 
 v0.94: 
-- Implementação da geração do template nifty
-- Melhoria temporaria no AuthorizationServiceImp para que possamos carregar os arquivos estaticos do swagger-ui
+
+- Unificação dos arquivos de model no cliente. Agora Model, Collection, PageCollection e PageClientCollection estão 
+  dentro do arquivo "entidade".js  
+- correções nos caminhos dos arquivos do template para atender ao arquivo gerado para produção
+- Removendo a exibição de campos upload dos parametros de teste do swagger.
 - Devolvendo null ao fazer um parser toJson de null. Situação foi verificada ao executar testes no 
   swagger-ui procurando por um registro de id inexistente
-- Removendo a exibição de campos upload dos parametros de teste do swagger.
-- correções nos caminhos dos arquivos do template para atender ao arquivo gerado para produção 
+- Melhoria temporaria no AuthorizationServiceImp para que possamos carregar os arquivos estaticos do swagger-ui
+- Implementação da geração do template nifty
+    
 
 v0.93: Thu Jun 29 00:03:17 2017 -0300 
 - Melhoria na geração de PDF a partir de arquivos jrxml e não de arquivos compilados , jasper.
 - Trazendo a infra para geração de arquivos CSV.
+
 Mon Jun 12 14:55:26 2017 -0300
 - Atualização das libs spring, hibernate, cxf, e outras.
 - Implantação da geração do código compativel com swagger 

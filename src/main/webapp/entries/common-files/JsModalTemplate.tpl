@@ -1,17 +1,15 @@
 /* generated: ${.now} */
 define(function(require) {
-
 	var util = require('utilities/utils');
-
 	var JSetup = require('views/components/JSetup');
-
+	var ${entity.name} = require('models/${entity.name}');
+	
 	var Modal${entity.name}Template = require('text!views/modalComponents/tpl/Modal${entity.name}Template.html');
-	var ${entity.name}PageCollection = require('collections/${entity.name}PageCollection');
 	<#list entity.attributes as att>
 	<#if att.showInPages >
 		<#if att.viewApproach?? >
 			<#if att.viewApproach.type == 'combo'>		
-	var ${att.type.className}Collection = require('collections/${att.type.className}Collection');
+	var ${att.type.className} = require('models/${att.type.className}');
 			</#if>
 		</#if>
 		</#if>
@@ -21,7 +19,7 @@ define(function(require) {
 	<#if rel.showInPages >
 		<#if rel.viewApproach?? && rel.viewApproach.type??>
 			<#if rel.viewApproach.type  == 'combo'  >
-	var ${rel.model}Collection = require('collections/${rel.model}Collection');			
+	var ${rel.model} = require('models/${rel.model}');			
 			</#if>
 		</#if>
 	</#if>
@@ -32,7 +30,7 @@ define(function(require) {
 	<#if att.showInPages >
 		<#if att.viewApproach?? >
 			<#if att.viewApproach.type == 'combo'>		
-	var ${att.type.className}Collection = require('collections/${att.type.className}Collection');
+	var ${att.type.className} = require('models/${att.type.className}');
 			</#if>
 		</#if>
 		</#if>
@@ -99,7 +97,7 @@ define(function(require) {
 			this.onSelectModel = opt.onSelectModel;
 			this.suggestConfig = opt.suggestConfig;
 
-			this.${firstLower(entity.name)}Collection = new ${entity.name}PageCollection();
+			this.${firstLower(entity.name)}Collection = new ${entity.name}.PageCollection();
 			this.${firstLower(entity.name)}Collection.state.pageSize = 5;
 			this.${firstLower(entity.name)}Collection.on('fetching', this.startFetch, this);
 			this.${firstLower(entity.name)}Collection.on('fetched', this.stopFetch, this);
@@ -152,7 +150,7 @@ define(function(require) {
 				<#else>
 				comboId : '${(att.viewApproach.comboId)!'id'}',
 				comboVal : '${(att.viewApproach.comboVal)!'name'}',
-				collectionEntity : ${att.type.className}Collection, 
+				collectionEntity : ${att.type.className}.Collection, 
 				</#if>
 			});
 			</#if>
@@ -174,7 +172,7 @@ define(function(require) {
 				<#else>
 				comboId : '${(rel.viewApproach.comboId)!'id'}',
 				comboVal : '${(rel.viewApproach.comboVal)!'name'}',
-				collectionEntity : ${firstUpper(rel.model)}Collection, 
+				collectionEntity : ${firstUpper(rel.model)}.Collection, 
 				</#if>
 			});
 				</#if>

@@ -1,18 +1,9 @@
 /* generated: ${.now} */
 define(function(require) {
-
 	var util = require('utilities/utils');
-
 	var JSetup = require('views/components/JSetup');
-
 	var MultiselectModal${entity.name}Template = require('text!views/modalComponents/tpl/MultiselectModal${entity.name}Template.html');
-	var ${entity.name}PageCollection = require('collections/${entity.name}PageCollection');
-	var ${entity.name}PageClientCollection = ${entity.name}PageCollection.extend({
-		mode : 'client',
-		state : {
-			pageSize : 10,
-		},
-	})
+	var ${entity.name} = require('models/${entity.name}');
 	
 	<#list entity.attributes as att>
 	<#if att.showInPages >
@@ -28,7 +19,7 @@ define(function(require) {
 	<#if rel.showInPages >
 		<#if rel.viewApproach?? && rel.viewApproach.type??>
 			<#if rel.viewApproach.type  == 'combo'  >
-	var ${rel.model}Collection = require('collections/${rel.model}Collection');			
+	var ${rel.model} = require('models/${rel.model}');			
 			</#if>
 		</#if>
 	</#if>
@@ -86,9 +77,9 @@ define(function(require) {
 		/** First function called, like a constructor. */
 		initialize : function(opt) {
 			var that = this;
-			this.principalCollection = new  ${entity.name}PageClientCollection(opt.initialValues) ;
+			this.principalCollection = new  ${entity.name}.PageClientCollection(opt.initialValues) ;
 
-			this.modalCollection = new ${entity.name}PageCollection();
+			this.modalCollection = new ${entity.name}.PageCollection();
 			this.modalCollection.on('fetching', this.startFetch, this);
 			this.modalCollection.on('fetched', this.stopFetch, this);
 			this.modalCollection.on('backgrid:selected', this.selectModel, this);
@@ -167,7 +158,7 @@ define(function(require) {
 				<#else>
 				comboId : '${(rel.viewApproach.comboId)!'id'}',
 				comboVal : '${(rel.viewApproach.comboVal)!'name'}',
-				collectionEntity : ${firstUpper(rel.model)}Collection, 
+				collectionEntity : ${firstUpper(rel.model)}.Collection, 
 				</#if>
 			});
 				</#if>
@@ -226,7 +217,6 @@ define(function(require) {
 		setValue : function(collection) {
 			this.principalCollection = collection; 
 		},
-
 
 		clear : function() {
 			this.$el.find('input[type=checkbox]').prop('checked', false);
