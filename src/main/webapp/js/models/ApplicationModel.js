@@ -26,7 +26,9 @@ define(function(require) {
 			entities : null,
 		},
 		updateOnlyApplication : function(obj, options) {
-			this.url = this.urlRoot + '/onlyApplication/' + this.get('id');
+			if (this.get('id')) {
+				this.url = this.urlRoot + '/onlyApplication/' + this.get('id');
+			}
 			this.save(obj, options);
 		}
 	});
