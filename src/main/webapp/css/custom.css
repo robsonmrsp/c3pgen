@@ -270,7 +270,7 @@ body {
 }
 /* paineis e toolbars  */
 .inspetor {
-/* 	position: fixed; */
+	/* 	position: fixed; */
 	top: 62px;
 	right: 10px;
 	/* 	width: 450px; */
@@ -278,7 +278,7 @@ body {
 }
 
 .inspetor-relacionamentos {
-/* 	position: fixed; */
+	/* 	position: fixed; */
 	bottom: 362px;
 	right: 10px;
 	/* 	width: 800px; */
@@ -302,7 +302,7 @@ body {
 .html-element {
 	position: absolute;
 	background: #ff8450;
-	width: 150px !important;
+	width: 200px !important;
 	/* Make sure events are propagated to the JointJS element so, e.g. dragging works.*/
 	pointer-events: none;
 	-webkit-user-select: none;
@@ -369,7 +369,7 @@ body {
 	/* 	right: 9px; */
 	/* 	color: white; */
 	/* 	font-size: 10px; */
-	/* } */                        
+	/* } */                           
 
 .uml-class-name-rect {
 	background: #ff8450 !important;
@@ -490,8 +490,14 @@ ul.editor-list li:hover a {
 	color: red !important;
 	cursor: pointer;
 }
+
 .button_cell {
 	margin-left: 2px !important;
 	margin-right: 2px !important;
 	border-radius: 3px !important;
+}
+
+.card-application {
+	max-height: 280px !important;
+	height: 280px !important;
 }

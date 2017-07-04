@@ -20,7 +20,7 @@ define(function(require) {
 
 	var CardItem = Marionette.ItemView.extend({
 		template : _.template(CardApplicationItemTemplate),
-		className : "col-lg-4 animated-panel zoomIn",
+		className : "col-lg-4 card-application",
 		events : {
 			'click .bt-gerar' : 'geraAplicacao'
 		},
@@ -65,6 +65,7 @@ define(function(require) {
 		template : _.template(EmptyCollectionTemplate),
 	});
 	var CardCollection = Marionette.CollectionView.extend({
+		className : 'row-fluid',
 		childView : CardItem,
 		emptyView : NoChildsView,
 		// passa aos filhos essa configuração

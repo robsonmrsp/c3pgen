@@ -62,7 +62,7 @@ define(function(require) {
 			this.model.on('destroy', this.removeBox, this);
 
 			this.model.set('size', {
-				width : 150,
+				width : 200,
 				height : 160,
 			});
 

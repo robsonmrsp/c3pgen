@@ -44,13 +44,19 @@ define(function(require) {
 			this.onClickRemove = opt.onClickRemove;
 
 			this.attributesCollection = new AttributeCollection(this.model.get('attributes'));
+			this.relationshipsCollection = new AttributeCollection(this.model.get('relationships'));
 			this.attributesCollectionView = new DiagramAttributesCollectionView({
 				collection : this.attributesCollection,
 			});
 
+			this.relationshipsCollectionView = new DiagramRelationshipsCollectionView({
+				collection : this.relationshipsCollection,
+			});
+
 			this.on('show', function() {
 				this.attributesRegion.show(this.attributesCollectionView);
-				// this.relationshipsRegion.show(this.relationshipsCollectionView);
+				this.relationshipsRegion.show(this.relationshipsCollectionView);
+				
 				window.setTimeout(function() {
 					that.container.resizeView({
 						width : that.$el.width(),

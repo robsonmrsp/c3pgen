@@ -1,7 +1,9 @@
 <div>
 	<span>
 		<span class="simbolo"> </span>
-		{{name}}: List < {{model}}>
+		<span style="display: {{ type === 'OneToMany' ? 'inline-block' : 'none' }} "> {{name}}: List < {{model}}> </span>
+		<span style="display: {{ type === 'ManyToOne' ? 'inline-block' : 'none' }} "> {{name}}: {{model}} </span>
+		<span style="display: {{ type === 'ManyToMany' ? 'inline-block' : 'none' }} "> {{name}}: {{model}} </span>
 	</span>
 	<br>
 </div>

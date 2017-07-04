@@ -108,6 +108,7 @@ define(function(require) {
 			this.mapAtributes.clear();
 			this.mapRelationships.clear();
 			this.updateViewWithEntity(modelEntity);
+			console.log(modelEntity)
 
 			this.updateRectangles();
 			this.trigger('uml-update');
