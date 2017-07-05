@@ -271,6 +271,17 @@ public class ApplicationEntity extends AbstractTimestampEntity {
 		return retAttr;
 	}
 
+	public List<Attribute> getAdvancedSearches() {
+		List<Attribute> retAttr = new ArrayList<Attribute>();
+
+		for (Attribute attribute : getAttributes()) {
+			if (!getBasicSearches().contains(attribute)) {
+				retAttr.add(attribute);
+			}
+		}
+		return retAttr;
+	}
+
 	public List<Attribute> getCompleteSearches() {
 		List<Attribute> retAttr = new ArrayList<Attribute>();
 

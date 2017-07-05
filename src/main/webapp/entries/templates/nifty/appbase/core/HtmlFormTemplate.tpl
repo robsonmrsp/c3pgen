@@ -8,6 +8,7 @@
 	<div class="panel-body">
 		<div class="panel">
 			<div class="panel-body">
+				<div id="messages_div"></div>
 				<form role="form" id="form${firstUpper(entity.name)}">
 					<input type="hidden" id="inputId" value="{{id}}">
 				<#list entity.attributes as att>

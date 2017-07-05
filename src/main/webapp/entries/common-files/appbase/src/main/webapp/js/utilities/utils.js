@@ -490,7 +490,8 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'adapters/unders
 				prefetch : false,
 				remote : {
 					url : suggestConfig.collection.url + '/filterAlike?' + suggestConfig.showValue + '=%QUERY',
-					wildcard : '%QUERY'
+					wildcard : '%QUERY',
+					cache : false
 				}
 			});
 
@@ -505,7 +506,7 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'adapters/unders
 					return item.replace(regex, "<strong>$1</strong>");
 				},
 			}, {
-				name : 'modal-filme-input-suggest',
+				name : 'modal-jsetup-input-suggest',
 				display : suggestConfig.showValue,
 				source : bloodhound,
 				limit : 15,
@@ -521,6 +522,13 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'adapters/unders
 				}
 			})
 
+			field.bind('change', function(evt) {
+				if(!field.val()){
+					if (suggestConfig.onSelect) {
+						suggestConfig.onSelect(null);
+					}
+				}
+			})
 			field.bind('typeahead:change', function(evt, model) {
 				// console.log(evt, model);
 			})

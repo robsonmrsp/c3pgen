@@ -4,10 +4,12 @@
 		no-repeat right -10px center;
 	border: 1px solid #999;
 	padding: 3px 18px 3px 4px; /* Use the same right padding (18) in jQ! */
-	border-radius: 3px;
+	border-radius: 1px;
 	transition: background 0.4s;
 }
-
+.input-group-addon :HOVER{
+	cursor: pointer;
+}
 .clearable.x {
 	background-position: right 5px center;
 }
@@ -84,6 +86,11 @@
 .backgrid tr td {
 	padding: 8px !important;
 }
+
+.grid > .table {
+	margin-bottom: 3px !important;
+}
+
 
 .expand-col {
 	width: 80px !important;

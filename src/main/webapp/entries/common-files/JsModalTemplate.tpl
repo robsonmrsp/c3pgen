@@ -56,7 +56,9 @@ define(function(require) {
 		ui : {
 			loadButton : '.button-loading',
 		<#list entity.attributes as att>
+    		<#if att.viewApproach?? && att.viewApproach.type  != 'upload'>
     		inputModal${firstUpper(att.name)} : '.inputModal${firstUpper(att.name)}',
+			</#if>
     		<#if att.viewApproach?? >
 				<#if att.viewApproach.type == 'datepicker'>			
 			groupInputModal${firstUpper(att.name)} : '.groupInputModal${firstUpper(att.name)}',
@@ -196,6 +198,11 @@ define(function(require) {
 						that.modelSelect = null;
 				}
 				util.configureSuggest(that.suggestConfig);
+				that.suggestConfig.field.change(function(e) {
+					if(!that.suggestConfig.field.val()){
+						that.clear();
+					}
+				})
 			}		
 		},
 
@@ -203,7 +210,7 @@ define(function(require) {
 			var that = this;
 			this.${firstLower(entity.name)}Collection.filterQueryParams = {
 			<#list entity.attributes as att>
-			<#if att.showInPages >
+			<#if att.showInPages && att.viewApproach.type  != 'upload'>
 	    		${firstLower(att.name)} : this.ui.inputModal${firstUpper(att.name)}.escape(),
 			</#if>
 			</#list>
@@ -268,7 +275,7 @@ define(function(require) {
 			var columns = [	
 
 			<#list entity.attributes as att>
-				<#if att.showInPages >			
+				<#if att.showInPages && att.viewApproach.type  != 'upload'>			
 			{
 				name     : "${att.name}",
 				sortable : true,
@@ -292,7 +299,7 @@ define(function(require) {
 		},
 
 		showPage : function() {
-			this.clearForm();
+			this.clearModal();
 			this.ui.modalScreen.modal('show');
 			
 			this.search${entity.name}();
@@ -302,7 +309,6 @@ define(function(require) {
 			this.clearModal();
 		},
 		clearModal : function() {
-			this.clearForm();
 			this.modelSelect = null;
 			this.jsonValue = null;
 			this.${firstLower(entity.name)}Collection.reset();

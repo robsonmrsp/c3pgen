@@ -12,7 +12,7 @@
 			<div class="widget-main  ">
 				<div class="row">
 					<div class="col-xs-6">
-						<a href="#app/new${firstUpper(entity.name)}" class="btn btn-success">
+						<a href="#app/new${firstUpper(entity.name)}" class="btn btn-info">
 							<i class="fa fa-plus-circle"></i>
 							Novo Registro
 						</a>
@@ -45,7 +45,7 @@
 					</div>
 					<div class="panel-body">
 						<!-- inicio dos registros-->							
-						<#list entity.attributes as att>
+						<#list entity.advancedSearches as att>
 						<#if att.showInPages && !att.basicSearch && att.type.className != 'Boolean' && att.viewApproach.type  != 'upload' && att.viewApproach.type  != 'multiselect'>
 						  <#if att.viewApproach?? >
 							<#if att.type.className == 'Boolean' && att.viewApproach.type  == 'check'  >
