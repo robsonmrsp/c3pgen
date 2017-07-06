@@ -124,7 +124,7 @@ define(function(require) {
 							name : '_' + _targetEntity.get('name'),
 							type : 'OneToMany',
 							displayName : _targetEntity.get('name') + 's',
-							ownerName : '',
+							ownerName : '_' + _sourceEntity.get('name'),
 							model : _targetEntity.get('name'),
 							entity : _sourceEntity,
 							uniDirecional : '',

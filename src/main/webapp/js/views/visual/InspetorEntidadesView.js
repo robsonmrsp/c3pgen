@@ -74,7 +74,9 @@ define(function(require) {
 			});
 
 			this.attributesCollection = new AttributeCollection(this.model.get('attributes'));
+			this.relationshipsCollection = new AttributeCollection(this.model.get('relationships'));
 			this.attributesCollection.on('change', this.updateViewEntity, this);
+//			this.relationshipsCollection.on('change', this.updateViewEntity, this);
 			this.attributesCollection.on('destroy', this.updateViewEntity, this);
 
 			this.attributesCollectionView = new AttributesCollectionView({
@@ -124,6 +126,7 @@ define(function(require) {
 
 			this.entity.set(this.getModel())
 			this.entity.set('attributes', this.attributesCollection.toJSON());
+//			this.entity.set('relationships', this.attributesCollection.toJSON());
 //			this.visualEntity.updateHtmlEntity(this.entity);
 		},
 

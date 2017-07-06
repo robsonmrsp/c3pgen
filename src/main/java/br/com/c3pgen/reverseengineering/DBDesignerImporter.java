@@ -3,12 +3,14 @@ package br.com.c3pgen.reverseengineering;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
+import java.util.regex.Matcher;
 
-import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
@@ -20,7 +22,6 @@ import br.com.c3pgen.helper.Column;
 import br.com.c3pgen.helper.DBModel;
 import br.com.c3pgen.helper.DataType;
 import br.com.c3pgen.helper.Relation;
-import br.com.c3pgen.helper.RelationEnd;
 import br.com.c3pgen.helper.RelationStart;
 import br.com.c3pgen.helper.Table;
 import br.com.c3pgen.model.Application;
@@ -74,12 +75,13 @@ public class DBDesignerImporter {
 			for (Column column : colunas) {
 				if (column.isNotKey()) {
 					String attributeName = Util.firstLowerCase(CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, column.getColName()));
+					String attributeDisplayName = decode(column.getComments(), attributeName);
 					String dataBaseFieldName = column.getColName().toUpperCase();
 					String maxLen = Util.getMaxLen(column.getDatatypeParams());
 					String required = getRequired(column);
 					String dataTypeClassName = column.getDataType().getDescricao();
 
-					Attribute attribute = new Attribute(attributeName, attributeName, dataBaseFieldName, new Boolean(required), false, true, new AttributeType(dataTypeClassName));
+					Attribute attribute = new Attribute(attributeName, attributeDisplayName, dataBaseFieldName, new Boolean(required), false, true, new AttributeType(dataTypeClassName));
 
 					if (StringUtils.isNotEmpty(maxLen)) {
 						attribute.setMaxLen(Integer.valueOf(maxLen));
@@ -193,6 +195,46 @@ public class DBDesignerImporter {
 		return application;
 	}
 
+	private static String decode(String upperCase, String name) throws UnsupportedEncodingException {
+		// á - Á - ã - Ã - â - Â - à - À - é - É - ê - Ê - í - Í - ó - Ó - õ - Õ
+		// - ô - Ô - ú - Ú - ç - Ç
+
+		// \225 - \193 - \227 - \195 - \226 - \194 - \224 - \192 - \233 - \201 -
+		// \234 - \202 - \237 - \205 - \243 - \211 - \245 - \213 - \244 - \212 -
+		// \250 - \218 - \231 - \199
+		if (upperCase == null || upperCase.isEmpty()) {
+			return name;
+		}
+
+		String retorno = 
+				upperCase.replaceAll("\\\\225", "á").//
+				replaceAll("\\\\193", "Á").//
+				replaceAll("\\\\227", "ã").//
+				replaceAll("\\\\195", "Ã").//
+				replaceAll("\\\\226", "â").//
+				replaceAll("\\\\194", "Â").//
+				replaceAll("\\\\224", "à").//
+				replaceAll("\\\\192", "À").//
+				replaceAll("\\\\233", "é").//
+				replaceAll("\\\\201", "É").//
+				replaceAll("\\\\202", "Ê").//
+				replaceAll("\\\\234", "ê").//
+				replaceAll("\\\\237", "í").//
+				replaceAll("\\\\205", "Í").//
+				replaceAll("\\\\243", "ó").//
+				replaceAll("\\\\211", "Ó").//
+				replaceAll("\\\\245", "õ").//
+				replaceAll("\\\\213", "Õ").//
+				replaceAll("\\\\244", "ô").//
+				replaceAll("\\\\212", "Ô").//
+				replaceAll("\\\\250", "ú").//
+				replaceAll("\\\\218", "Ú").//
+				replaceAll("\\\\231", "ç").//
+				replaceAll("\\\\231", "ç").//
+				replaceAll("\\\\199", "Ç");//
+		return retorno;
+	}
+
 	private static String getRequired(Column column) {
 		return column.getNotNull().equals("1") ? "true" : "false";
 	}
@@ -215,4 +257,9 @@ public class DBDesignerImporter {
 
 	}
 
+	public static void main(String[] args) throws UnsupportedEncodingException {
+		String a = "\225 - \193 ";
+
+		System.out.println("DBDesignerImporter.main()" + new DBDesignerImporter().decode(a, "teste"));
+	}
 }
