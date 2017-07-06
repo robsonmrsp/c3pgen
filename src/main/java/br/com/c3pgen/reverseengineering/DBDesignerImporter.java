@@ -136,7 +136,7 @@ public class DBDesignerImporter {
 				relationshipOnEntitySource.setEntity(new ApplicationEntity(nomeDaClasse, tableName));
 
 				// <<------ filme filme Filme
-				Relationship relationshipOnEntityTarget = new Relationship(Util.firstLowerCase(nomeDaClasse), Util.firstUpperCase(sourceRelName), "ManyToOne", null, sourceRelModel, false, ViewApproach.modalInstance("id", "nome"));
+				Relationship relationshipOnEntityTarget = new Relationship(Util.firstLowerCase(nomeDaClasse), Util.firstUpperCase(sourceRelName), "ManyToOne", null, sourceRelModel, false, ViewApproach.modalInstance("id", nomeDaClasse + "'s attribute"));
 
 				relationshipOnEntityTarget.setEntity(new ApplicationEntity(modelNameOnOrigin, modelNameOnOrigin.toUpperCase()));
 
@@ -194,7 +194,8 @@ public class DBDesignerImporter {
 		}
 		return application;
 	}
-
+	
+	
 	private static String decode(String upperCase, String name) throws UnsupportedEncodingException {
 		// á - Á - ã - Ã - â - Â - à - À - é - É - ê - Ê - í - Í - ó - Ó - õ - Õ
 		// - ô - Ô - ú - Ú - ç - Ç
