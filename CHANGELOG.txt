@@ -1,6 +1,8 @@
 Changelog do GERADO
 
 v0.94: 
+- Removendo separador de Milhar do plugin de inputNumerico
+- NÃO serializando mais os Doubles.
 - Enxugando a geração do mecanismo de serialização. Concentramos os dates e doubles serializer e deserializer num ponto só, configurado no beans.xml 
 - Geração de versão, data e hora da geração na maioria dos arquivos gerados.
  
