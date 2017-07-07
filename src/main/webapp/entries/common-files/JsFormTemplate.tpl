@@ -145,15 +145,13 @@ define(function(require) {
 			this.ui.input${firstUpper(att.name)}.datetime();
 			this.ui.groupInput${firstUpper(att.name)}.datetime();
 		  </#if>	
-		  <#if att.inputAs == 'percent' || att.inputAs == 'percentagem' || att.inputAs == 'decimal' || att.type.className == 'Double'>
+		  <#if att.inputAs == 'percent' || att.inputAs == 'percentagem' || att.inputAs == 'decimal' || att.type.className == 'Double' || att.inputAs == 'monetario'>
 			this.ui.input${firstUpper(att.name)}.decimal();
 		  </#if>	
 		  <#if att.inputAs == 'integer' || att.type.className == 'Integer'>
 			this.ui.input${firstUpper(att.name)}.integer();
 		  </#if>	
-		  <#if att.inputAs == 'money' || att.inputAs == 'monetario'>
-			this.ui.input${firstUpper(att.name)}.money();
-		  </#if>	
+	
 		  <#if att.viewApproach?? >
 			<#if att.viewApproach.type == 'combo'>		
 			this.combo${firstUpper(att.name)} = new JSetup.Combobox({
@@ -290,7 +288,11 @@ define(function(require) {
 			${firstLower(entity.name)}.set({
 				id: this.ui.inputId.escape(),
 				<#list entity.attributes as att>
+				<#if isNumeric(att.type.className)>
+		    	${firstLower(att.name)} : this.ui.input${firstUpper(att.name)}.escape(true),
+		    	<#else> 
 		    	${firstLower(att.name)} : this.ui.input${firstUpper(att.name)}.escape(), 
+		    	</#if>
 				</#list>
 				
 				<#if entity.relationships??>	

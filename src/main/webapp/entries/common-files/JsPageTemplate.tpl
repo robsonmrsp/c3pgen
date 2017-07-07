@@ -275,16 +275,17 @@ define(function(require) {
 			var columns = [
 			<#list entity.attributes as att>
 				<#if att.showInPages && att.viewApproach.type  != 'upload' >			
-	
 			{
 				name : "${att.name}",
 				sortable : true,
 				editable : false,
 				label 	 : "${firstUpper(att.displayName)!firstUpper(att.name)}",
-				<#if att.inputAs == 'percent'>
+				<#if att.inputAs == 'percent' || att.inputAs == 'percentagem'>
 				cell : JSetup.PercentCell,
-		  		<#elseif att.inputAs == 'money'>
+		  		<#elseif att.inputAs == 'money' || att.inputAs == 'monetario' >
 		  		cell : JSetup.MoneyCell,	
+		  		<#elseif att.inputAs == 'decimal' || att.type.className == 'Double'>
+		  		cell : JSetup.DecimalCell,	
 		  		<#else>
 				cell 	 : "string",
 		  		</#if>	
