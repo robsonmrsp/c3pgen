@@ -1,7 +1,9 @@
 Changelog do GERADO
 
 v0.94: 
-
+- Enxugando a geração do mecanismo de serialização. Concentramos os dates e doubles serializer e deserializer num ponto só, configurado no beans.xml 
+- Geração de versão, data e hora da geração na maioria dos arquivos gerados.
+ 
 - Unificação dos arquivos de model no cliente. Agora Model, Collection, PageCollection e PageClientCollection estão 
   dentro do arquivo "entidade".js  
 - correções nos caminhos dos arquivos do template para atender ao arquivo gerado para produção
