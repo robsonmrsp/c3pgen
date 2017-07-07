@@ -40,7 +40,7 @@
 
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
 		<property name="driverClass" value="org.postgresql.Driver" />
-		<property name="jdbcUrl" value="jdbc:postgresql://localhost:5432/db_c3pgen" />
+		<property name="jdbcUrl" value="jdbc:postgresql://localhost:5432/db_c3pgen_mercado" />
 		<property name="user" value="postgres" />
 		<property name="password" value="sints" />
 
@@ -62,8 +62,8 @@
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQL82Dialect	</prop>
-				<prop key="hibernate.format_sql">true</prop>
-				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">false</prop>
+				<prop key="hibernate.show_sql">false</prop>
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
 				<prop key="hibernate.transaction.flush_before_completion">true</prop>
 			</props>

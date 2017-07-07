@@ -40,6 +40,7 @@ public class Util {
 	private static SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
 	private static final DateTimeFormatter DATE_FORMAT = DateTimeFormat.forPattern("dd/MM/yyyy");
 	private static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormat.forPattern("dd/MM/yyyy HH:mm");
+	public static final String JSETUP_VERSION = "v0.94";
 
 	public static String templateFolder() {
 		// return "G:\\cyg\\home\\robso\\repos\\c3pgen\\src\\main\\webapp";

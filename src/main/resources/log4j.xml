@@ -23,13 +23,13 @@
 			<param name="ConversionPattern" value="%-5p %d{dd/MM/yyyy} %d{HH:mm:ss}[%c{1}-%t]->%m%n" />
 		</layout>
 		<filter class="org.apache.log4j.varia.LevelRangeFilter">
-			<param name="LevelMin" value="TRACE" />
+			<param name="LevelMin" value="INFO" />
 			<param name="LevelMax" value="ERROR" />
 		</filter>
 	</appender>
 
 	<logger name="schemacrawler">
-		<level value="TRACE" />
+		<level value="ERROR" />
 	</logger>
 	
 	<logger name="org.hibernate">
@@ -37,7 +37,7 @@
 	</logger>
 	
 	<logger name="org.hibernate.type">
-		<level value="trace" />
+		<level value="error" />
 	</logger>
 
 

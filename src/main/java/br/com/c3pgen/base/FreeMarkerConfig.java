@@ -116,6 +116,7 @@ public class FreeMarkerConfig {
 		data.put("toListString", new ToStringMethod());
 		data.put("application", application);
 		data.put("package", application.getRootPackage());
+		data.put("JSetupVersion", Util.JSETUP_VERSION);
 		return data;
 	}
 

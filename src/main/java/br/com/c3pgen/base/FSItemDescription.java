@@ -163,8 +163,10 @@ public class FSItemDescription {
 		list.add(new FSItemDescription("CustomLocalDateSerializer", rootFolder + File.separator + "serialization" + File.separator, "CustomLocalDateSerializer", FileType.JAVA));
 		list.add(new FSItemDescription("CustomLocalDateTimeDeserializer", rootFolder + File.separator + "serialization" + File.separator, "CustomLocalDateTimeDeserializer", FileType.JAVA));
 		list.add(new FSItemDescription("CustomLocalDateTimeSerializer", rootFolder + File.separator + "serialization" + File.separator, "CustomLocalDateTimeSerializer", FileType.JAVA));
+		list.add(new FSItemDescription("CustomDoubleSerializer", rootFolder + File.separator + "serialization" + File.separator, "CustomDoubleSerializer", FileType.JAVA));
 		list.add(new FSItemDescription("CustomDoubleDeserializer", rootFolder + File.separator + "serialization" + File.separator, "CustomDoubleDeserializer", FileType.JAVA));
 		list.add(new FSItemDescription("CustomSyncObjectIdDeserializer", rootFolder + File.separator + "serialization" + File.separator, "CustomSyncObjectIdDeserializer", FileType.JAVA));
+		list.add(new FSItemDescription("CustomJacksonObjectMapperProvider", rootFolder + File.separator + "serialization" + File.separator, "CustomJacksonObjectMapperProvider", FileType.JAVA));
 		return list;
 	}
 

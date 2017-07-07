@@ -302,7 +302,7 @@ body {
 .html-element {
 	position: absolute;
 	background: #ff8450;
-	width: 200px !important;
+	width: 230px !important;
 	/* Make sure events are propagated to the JointJS element so, e.g. dragging works.*/
 	pointer-events: none;
 	-webkit-user-select: none;

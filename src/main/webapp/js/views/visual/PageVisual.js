@@ -120,8 +120,8 @@ define(function(require) {
 
 				window.paper = new Joint.dia.Paper({
 					el : $('#paper'),
-					height : 3 * window.innerHeight,
-					width : 2.5 * window.innerWidth,
+					height : 5 * window.innerHeight,
+					width : 4.5 * window.innerWidth,
 					gridSize : 1,
 					model : that.graph,
 					// ROBSON para impedir que a cada click sobbre a linha do

@@ -108,6 +108,7 @@ public class MarkerGenerator {
 		data.put("entity", object);
 		data.put("application", application);
 		data.put("dataBasePrefix", application.getDataBasePrefix());
+		data.put("JSetupVersion", Util.JSETUP_VERSION);
 		return data;
 	}
 
@@ -127,6 +128,7 @@ public class MarkerGenerator {
 		data.put("package", ApplicationConfiguration.MAIN_PACKAGE);
 		data.put("entities", object);
 		data.put("dataBasePrefix", application.getDataBasePrefix());
+		data.put("JSetupVersion", Util.JSETUP_VERSION);
 		return data;
 	}
 
