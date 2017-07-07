@@ -147,7 +147,7 @@ define([ 'jquery', 'bootstrap', 'jqueryScrollTo', 'datetimepicker', 'datetimepic
 		this.inputmask('numeric', {
 			radixPoint : ',',
 			rightAlign : false,
-			groupSeparator : '.',
+			groupSeparator : '',
 			autoGroup : true,
 			digits : 2,
 			digitsOptional : true,

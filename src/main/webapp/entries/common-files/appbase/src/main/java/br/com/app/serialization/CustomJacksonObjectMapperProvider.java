@@ -36,7 +36,7 @@ public class CustomJacksonObjectMapperProvider implements ContextResolver<Object
 
 		SimpleModule testModule = new SimpleModule("${application.appName}", new Version(1, 0, 0, null));
 		
-		testModule.addSerializer(Double.class, new CustomDoubleSerializer());
+		//testModule.addSerializer(Double.class, new CustomDoubleSerializer());
 		testModule.addDeserializer(Double.class, new CustomDoubleDeserializer());
 		
 		testModule.addSerializer(LocalDate.class, new CustomLocalDateSerializer());

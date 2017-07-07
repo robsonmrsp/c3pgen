@@ -123,7 +123,7 @@ define([ 'jquery', 'bootstrap', 'jqueryScrollTo', 'datetimepicker', 'datetimepic
 	$.fn.money = function() {
 		this.inputmask('numeric', {
 			radixPoint : ',',
-			groupSeparator : '.',
+			groupSeparator : '',
 			rightAlign : false,
 			autoGroup : true,
 			digits : 2,
@@ -135,7 +135,7 @@ define([ 'jquery', 'bootstrap', 'jqueryScrollTo', 'datetimepicker', 'datetimepic
 	$.fn.percent = function() {
 		this.inputmask('numeric', {
 			radixPoint : ',',
-			groupSeparator : '.',
+			groupSeparator : '',
 			rightAlign : false,
 			autoGroup : true,
 			digits : 2,
@@ -147,7 +147,7 @@ define([ 'jquery', 'bootstrap', 'jqueryScrollTo', 'datetimepicker', 'datetimepic
 		this.inputmask('numeric', {
 			radixPoint : ',',
 			rightAlign : false,
-			groupSeparator : '.',
+			groupSeparator : '',
 			autoGroup : true,
 			digits : 2,
 			digitsOptional : true,
