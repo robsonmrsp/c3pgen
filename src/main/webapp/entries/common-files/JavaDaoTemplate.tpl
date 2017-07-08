@@ -89,6 +89,7 @@ public class Dao${entity.name} extends AccessibleHibernateDao<${entity.name}> {
 		return filter(filter${entity.name}, equals);
 	}
 	
+	
 	public List<${entity.name}> filter(Filter${entity.name} filter${entity.name},  Boolean equals) {
 		if (equals) {
 			return filterEqual(filter${entity.name});
@@ -96,6 +97,7 @@ public class Dao${entity.name} extends AccessibleHibernateDao<${entity.name}> {
 			return filterAlike(filter${entity.name});
 		}
 	}
+	
 	
 	public List<${entity.name}> filterEqual(Filter${entity.name} filter${entity.name}) {
 		List<${entity.name}> list = new ArrayList<${entity.name}>();
@@ -121,6 +123,7 @@ public class Dao${entity.name} extends AccessibleHibernateDao<${entity.name}> {
 		list.addAll(searchCriteria.setMaxResults(100).list());
 		return list;
 	}
+	
 	public List<${entity.name}> filterAlike(Filter${entity.name} filter${entity.name}) {
 		List<${entity.name}> list = new ArrayList<${entity.name}>();
 		Criteria searchCriteria = criteria();
@@ -150,9 +153,7 @@ public class Dao${entity.name} extends AccessibleHibernateDao<${entity.name}> {
 		// max 100 rows
 		list.addAll(searchCriteria.setMaxResults(100).list());
 		return list;
-	}
-	
-	
+	}	
 	
 	<#if entity.hasOwner>
 	@Override
@@ -220,6 +221,81 @@ public class Dao${entity.name} extends AccessibleHibernateDao<${entity.name}> {
 		list.addAll(searchCriteria.list());
 		return list;
 	}
+	
+		public List<${entity.name}> filter(PaginationParams paginationParams, Client owner , Boolean equals) {
+		List<${entity.name}> list = new ArrayList<${entity.name}>();
+		Filter${entity.name} filter${entity.name} = (Filter${entity.name}) paginationParams.getFilter();
+		
+		return filter(filter${entity.name},owner,  equals);
+	}
+	
+	public List<${entity.name}> filter(Filter${entity.name} filter${entity.name},  Client owner, Boolean equals) {
+		if (equals) {
+			return filterEqual(filter${entity.name}, owner);
+		} else {
+			return filterAlike(filter${entity.name}, owner);
+		}
+	}
+
+		public List<${entity.name}> filterEqual(Filter${entity.name} filter${entity.name}, Client owner) {
+		List<${entity.name}> list = new ArrayList<${entity.name}>();
+		Criteria searchCriteria = criteria();
+		searchCriteria.add(Restrictions.eq("owner", owner));
+		
+	<#if entity.attributes??>	
+	<#list entity.attributes as att>	
+		if (filter${entity.name}.get${firstUpper(att.name)}() != null) {
+			searchCriteria.add(Restrictions.eq("${att.name}", filter${entity.name}.get${firstUpper(att.name)}()));
+		}				
+	</#list>
+	</#if>	
+	<#if entity.relationships??>	
+	<#list entity.relationships as rel>
+		<#if rel.type == 'ManyToOne'>
+		if (filter${entity.name}.get${firstUpper(rel.name)!firstLower(rel.model)}() != null) {
+			searchCriteria.createAlias("${firstLower(rel.name)!firstLower(rel.model)}", "${firstLower(rel.name)!firstLower(rel.model)}_");
+			searchCriteria.add(Restrictions.eq("${firstLower(rel.name)!firstLower(rel.model)}_.id", filter${entity.name}.get${firstUpper(rel.name)!firstLower(rel.model)}()));
+		}
+		</#if>	
+	</#list>
+	</#if>	
+		// max 100 rows
+		list.addAll(searchCriteria.setMaxResults(100).list());
+		return list;
+	}
+
+	public List<${entity.name}> filterAlike(Filter${entity.name} filter${entity.name}, Client owner) {
+		List<${entity.name}> list = new ArrayList<${entity.name}>();
+		Criteria searchCriteria = criteria();
+		searchCriteria.add(Restrictions.eq("owner", owner));
+	<#if entity.attributes??>	
+	<#list entity.attributes as att>
+      	<#if att.type.className == 'String'>	
+		if (filter${entity.name}.get${firstUpper(att.name)}() != null) {
+			searchCriteria.add(Restrictions.ilike("${att.name}", filter${entity.name}.get${firstUpper(att.name)}(), MatchMode.ANYWHERE));
+		}
+		<#else>
+		if (filter${entity.name}.get${firstUpper(att.name)}() != null) {
+			searchCriteria.add(Restrictions.eq("${att.name}", filter${entity.name}.get${firstUpper(att.name)}()));
+		}				
+		</#if>	
+	</#list>
+	</#if>	
+	<#if entity.relationships??>	
+	<#list entity.relationships as rel>
+		<#if rel.type == 'ManyToOne'>
+		if (filter${entity.name}.get${firstUpper(rel.name)!firstLower(rel.model)}() != null) {
+			searchCriteria.createAlias("${firstLower(rel.name)!firstLower(rel.model)}", "${firstLower(rel.name)!firstLower(rel.model)}_");
+			searchCriteria.add(Restrictions.eq("${firstLower(rel.name)!firstLower(rel.model)}_.id", filter${entity.name}.get${firstUpper(rel.name)!firstLower(rel.model)}()));
+		}
+		</#if>	
+	</#list>
+	</#if>	
+		// max 100 rows
+		list.addAll(searchCriteria.setMaxResults(100).list());
+		return list;
+	}
+	
 	
 	</#if>	
 }

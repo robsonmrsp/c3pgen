@@ -79,8 +79,12 @@ public class ${entity.name}Resources {
 		Response response = null;
 		try {
 			PaginationParams<Filter${entity.name}> paginationParams = new PaginationParams<Filter${entity.name}>(uriInfo, Filter${entity.name}.class);
-
+			<#if entity.hasOwner == true>
+			List<Json${entity.name}> json${entity.name}s = Parser.toListJson${entity.name}s(${firstLower(entity.name)}Service.filter(paginationParams, context.getCurrentUser().getOwner(), Boolean.TRUE));
+			<#else>
 			List<Json${entity.name}> json${entity.name}s = Parser.toListJson${entity.name}s(${firstLower(entity.name)}Service.filter(paginationParams, Boolean.TRUE));
+			</#if>
+
 			response = Response.ok(json${entity.name}s).build();
 		} catch (Exception e) {
 			String message = String.format("Não foi possivel carregar todos os registros[%s]", e.getMessage());
@@ -116,7 +120,12 @@ public class ${entity.name}Resources {
 		try {
 			PaginationParams<Filter${entity.name}> paginationParams = new PaginationParams<Filter${entity.name}>(uriInfo, Filter${entity.name}.class);
 
+			<#if entity.hasOwner == true>
+			List<Json${entity.name}> json${entity.name}s = Parser.toListJson${entity.name}s(${firstLower(entity.name)}Service.filter(paginationParams, context.getCurrentUser().getOwner(), Boolean.FALSE));
+			<#else>
 			List<Json${entity.name}> json${entity.name}s = Parser.toListJson${entity.name}s(${firstLower(entity.name)}Service.filter(paginationParams, Boolean.FALSE));
+			</#if>
+
 			response = Response.ok(json${entity.name}s).build();
 		} catch (Exception e) {
 			String message = String.format("Não foi possivel carregar todos os registros[%s]", e.getMessage());
