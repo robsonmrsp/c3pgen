@@ -3,7 +3,7 @@ package ${package}.service;
 import java.util.List;
 import org.joda.time.LocalDateTime;
 <#if entity.hasOwner?? && entity.hasOwner>
-import ${application.rootPackage}.model.Client;
+import ${application.corePackage}.model.Client;
 </#if>
 import ${application.rootPackage}.model.${entity.name};
 import ${application.rootPackage}.model.filter.Filter${entity.name};

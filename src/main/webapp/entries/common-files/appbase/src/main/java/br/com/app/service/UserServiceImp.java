@@ -7,7 +7,7 @@ import javax.inject.Named;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import ${application.rootPackage}.model.Client;
+import ${application.corePackage}.model.Client;
 import ${application.rootPackage}.model.User;
 import ${application.rootPackage}.persistence.DaoUser;
 import ${application.rootPackage}.persistence.pagination.Pager;

@@ -1,4 +1,4 @@
-package br.com.mercadodelivery.core.serialization;
+package ${application.corePackage}.serialization;
 
 import java.io.IOException;
 import java.math.BigDecimal;

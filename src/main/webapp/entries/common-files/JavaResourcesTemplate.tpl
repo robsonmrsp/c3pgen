@@ -25,8 +25,8 @@ import ${package}.json.Json${entity.name};
 
 import ${package}.model.${entity.name};
 
-<#if entity.hasOwner == true>
-import ${package}.model.Client;
+<#if entity.hasOwner>
+import ${application.corePackage}.model.Client;
 </#if>
 import ${package}.service.${entity.name}Service;
 import ${package}.model.filter.Filter${entity.name};

@@ -11,7 +11,7 @@ import org.hibernate.criterion.Restrictions;
 import org.joda.time.LocalDateTime;
 
 <#if application.hasClient()>
-import ${application.rootPackage}.model.Client;
+import ${application.corePackage}.model.Client;
 </#if>
 import ${application.corePackage}.persistence.pagination.Pagination;
 import ${application.corePackage}.persistence.pagination.PaginationParams;

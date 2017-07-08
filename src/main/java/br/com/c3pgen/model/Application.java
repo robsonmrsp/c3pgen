@@ -56,6 +56,9 @@ public class Application extends AbstractTimestampEntity {
 	@Column(name = "VIEW")
 	private String view;
 
+	@Column(name = "USE_AUDIT")
+	private Boolean useAudit;
+
 	@Column(name = "DATA_BASE_PREFIX")
 	private String dataBasePrefix;
 
@@ -171,6 +174,13 @@ public class Application extends AbstractTimestampEntity {
 		return Boolean.FALSE;
 	}
 
+	public Boolean hasAudit() {
+		if (useAudit == null) {
+			return Boolean.FALSE;
+		}
+		return useAudit;
+	}
+
 	public Boolean hasClient() {
 		if (entities != null) {
 			for (ApplicationEntity e : entities) {
@@ -241,6 +251,14 @@ public class Application extends AbstractTimestampEntity {
 
 	public void setPersistenceFramework(String persistenceFramework) {
 		this.persistenceFramework = persistenceFramework;
+	}
+
+	public Boolean getUseAudit() {
+		return useAudit;
+	}
+
+	public void setUseAudit(Boolean useAudit) {
+		this.useAudit = useAudit;
 	}
 
 }
