@@ -118,15 +118,13 @@ define(function(require) {
 			this.ui.inputModal${firstUpper(att.name)}.datetime();
 			this.ui.groupInputModal${firstUpper(att.name)}.datetime();
 		  </#if>	
-		  <#if  att.inputAs == 'percent' || att.inputAs == 'percentagem' || att.inputAs == 'decimal' || att.type.className == 'Double'>
+  		  <#if att.inputAs == 'percent' || att.inputAs == 'percentagem' || att.inputAs == 'decimal' || att.type.className == 'Double' || att.inputAs == 'monetario'>
 			this.ui.inputModal${firstUpper(att.name)}.decimal();
 		  </#if>	
 		  <#if att.inputAs == 'integer' || att.type.className == 'Integer'>
 			this.ui.inputModal${firstUpper(att.name)}.integer();
 		  </#if>	
-		  <#if att.inputAs == 'money' || att.inputAs == 'monetario'>
-			this.ui.inputModal${firstUpper(att.name)}.money();
-		  </#if>	
+	
 		  <#if att.viewApproach?? >
 			<#if att.viewApproach.type == 'combo'>		
 			var combo${firstUpper(att.name)} = new JSetup.Combobox({

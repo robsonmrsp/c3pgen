@@ -1,6 +1,8 @@
 Changelog do GERADO
 
-v0.94: 
+v0.94:
+- Gerando com owner
+- gerando com e sem audit do envers 
 - Removendo separador de Milhar do plugin de inputNumerico
 - NÃO serializando mais os Doubles.
 - Enxugando a geração do mecanismo de serialização. Concentramos os dates e doubles serializer e deserializer num ponto só, configurado no beans.xml 

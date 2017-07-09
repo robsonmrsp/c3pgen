@@ -134,15 +134,13 @@ define(function(require) {
 			this.ui.inputModal${firstUpper(att.name)}.datetime();
 			this.ui.groupInputModal${firstUpper(att.name)}.datetime();
 		  </#if>	
-		  <#if  att.inputAs == 'percent' || att.inputAs == 'percentagem' || att.inputAs == 'decimal' || att.type.className == 'Double'>
+		  <#if att.inputAs == 'percent' || att.inputAs == 'percentagem' || att.inputAs == 'decimal' || att.type.className == 'Double' || att.inputAs == 'monetario'>
 			this.ui.inputModal${firstUpper(att.name)}.decimal();
 		  </#if>	
 		  <#if att.inputAs == 'integer' || att.type.className == 'Integer'>
 			this.ui.inputModal${firstUpper(att.name)}.integer();
 		  </#if>	
-		  <#if att.inputAs == 'money' || att.inputAs == 'monetario'>
-			this.ui.inputModal${firstUpper(att.name)}.money();
-		  </#if>	
+		  	
 		  <#if att.viewApproach?? >
 			<#if att.viewApproach.type == 'combo'>		
 			var combo${firstUpper(att.name)} = new JSetup.Combobox({
@@ -211,10 +209,13 @@ define(function(require) {
 			this.${firstLower(entity.name)}Collection.filterQueryParams = {
 			<#list entity.attributes as att>
 			<#if att.showInPages && att.viewApproach.type  != 'upload'>
-	    		${firstLower(att.name)} : this.ui.inputModal${firstUpper(att.name)}.escape(),
+	    		<#if isNumeric(att.type.className)>
+		    	${firstLower(att.name)} : this.ui.input${firstUpper(att.name)}.escape(true),
+		    	<#else> 
+	    		${firstLower(att.name)} : this.ui.input${firstUpper(att.name)}.escape(), 
+		    	</#if>
 			</#if>
-			</#list>
-			
+			</#list>			
 			<#if entity.relationships??>	
 				<#list entity.relationships as rel>
 					<#if rel.viewApproach?? >

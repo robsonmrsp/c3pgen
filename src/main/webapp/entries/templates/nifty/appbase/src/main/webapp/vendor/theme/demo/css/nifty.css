@@ -3968,7 +3968,7 @@ hr {
 /* GRID-GUTTER */
 /*======================================*/
 .row {
-  margin: 0 -7.5px;
+/*   comment by jsetup margin: 0 -7.5px; */
 }
 [class^="col-"]:not(.pad-no) {
   padding-left: 7.5px;

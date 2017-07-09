@@ -58,6 +58,9 @@ public class Application extends AbstractTimestampEntity {
 
 	@Column(name = "USE_AUDIT")
 	private Boolean useAudit;
+	
+	@Column(name = "USE_DOC_REST_API")
+	private Boolean useDocRestApi;
 
 	@Column(name = "DATA_BASE_PREFIX")
 	private String dataBasePrefix;
@@ -179,6 +182,13 @@ public class Application extends AbstractTimestampEntity {
 			return Boolean.FALSE;
 		}
 		return useAudit;
+	}
+	
+	public Boolean hasDocRestApi() {
+		if (useDocRestApi == null) {
+			return Boolean.FALSE;
+		}
+		return useDocRestApi;
 	}
 
 	public Boolean hasClient() {

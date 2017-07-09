@@ -126,7 +126,6 @@ define(function(require) {
 		/** Called after DOM´s ready.*/
 		onShowView : function() {
 			var that = this;
-   				
 		<#list entity.attributes as att>
 		  <#if att.inputAs == 'cpf' >
 			this.ui.input${firstUpper(att.name)}.cpf();
@@ -151,7 +150,6 @@ define(function(require) {
 		  <#if att.inputAs == 'integer' || att.type.className == 'Integer'>
 			this.ui.input${firstUpper(att.name)}.integer();
 		  </#if>	
-	
 		  <#if att.viewApproach?? >
 			<#if att.viewApproach.type == 'combo'>		
 			this.combo${firstUpper(att.name)} = new JSetup.Combobox({
@@ -168,7 +166,7 @@ define(function(require) {
 			</#if>
 		  </#if>
 		</#list>			
-		
+
 		<#if entity.relationships??>
 		<#list entity.relationships as rel>
 			<#if (rel.type == 'OneToMany' || rel.type == 'ManyToMany' ) && rel.viewApproach.type == 'multiselectmodal'>

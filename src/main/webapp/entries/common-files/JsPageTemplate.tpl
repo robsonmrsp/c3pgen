@@ -154,15 +154,12 @@ define(function(require) {
 			this.ui.input${firstUpper(att.name)}.datetime();
 			this.ui.groupInput${firstUpper(att.name)}.datetime();
 		  </#if>	
-		  <#if att.inputAs == 'percent' || att.inputAs == 'percentagem' || att.inputAs == 'decimal' || att.type.className == 'Double'>
+		  <#if att.inputAs == 'percent' || att.inputAs == 'percentagem' || att.inputAs == 'decimal' || att.type.className == 'Double' || att.inputAs == 'monetario'>
 			this.ui.input${firstUpper(att.name)}.decimal();
 		  </#if>	
 		  <#if att.inputAs == 'integer' || att.type.className == 'Integer'>
 			this.ui.input${firstUpper(att.name)}.integer();
-		  </#if>	
-		  <#if att.inputAs == 'money' || att.inputAs == 'monetario'>
-			this.ui.input${firstUpper(att.name)}.money();
-		  </#if>	
+		  </#if>		
 		  <#if att.viewApproach?? >
 			<#if att.viewApproach.type == 'combo'>		
 			this.combo${firstUpper(att.name)} = new JSetup.Combobox({
@@ -208,7 +205,7 @@ define(function(require) {
 			</#if>
 		</#list>
 		</#if>
-			that.dataTable${firstUpper(entity.name)}Region.show(that.dataTable${firstUpper(entity.name)});
+			this.dataTable${firstUpper(entity.name)}Region.show(that.dataTable${firstUpper(entity.name)});
 		<#if entity.relationships??>	
 		<#list entity.relationships as rel >
 			<#if rel.showInPages >		
@@ -226,8 +223,12 @@ define(function(require) {
 			this.ui.loadButton.button('loading');
 			this.${firstLower(entity.name)}s.filterQueryParams = {
 			<#list entity.attributes as att>
-				<#if att.showInPages >
+				<#if att.showInPages && att.viewApproach.type  != 'upload'>
+				<#if isNumeric(att.type.className)>
+		    	${firstLower(att.name)} : this.ui.input${firstUpper(att.name)}.escape(true),
+		    	<#else> 
 	    		${firstLower(att.name)} : this.ui.input${firstUpper(att.name)}.escape(), 
+		    	</#if>
 				</#if>
 			</#list>
 			<#if entity.relationships??>	
@@ -250,9 +251,6 @@ define(function(require) {
 				error : function(_coll, _resp, _opt) {
 					//console.error(_resp.responseText || (_resp.getResponseHeader && _resp.getResponseHeader('exception')));
 				},
-				complete : function(){
-					that.ui.loadButton.button('reset');
-				}
 			})		
 		},
 		reset${firstUpper(entity.name)} : function(){
