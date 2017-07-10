@@ -1,6 +1,8 @@
 Changelog do GERADO
 
-v0.94:
+v0.95:
+
+v0.94: seg, 10 de jul de 2017 00:38:33
 - Gerando com owner
 - gerando com e sem audit do envers 
 - Removendo separador de Milhar do plugin de inputNumerico
