@@ -33,7 +33,7 @@ public class MainDBDesign {
 		// File("C:\\cyg\\home\\robso\\repos\\mercadodelivery\\src\\main\\resources\\c3p-files\\mercado-delivery.xml");
 //		String string = "C:\\cyg\\home\\robson\\repos\\c3pgen\\in\\qualidade\\.xml";
 
-		String string = "C:\\cyg\\home\\robson\\repos\\c3pgen\\in\\handoverTaxi\\HandoverTaxi.xml";
+		String string = "C:\\cyg\\home\\robson\\repos\\c3pgen\\in\\handoverTaxi\\FinanceiroMotorista3.xml";
 		// "G:\\cyg\\home\\robso\\repos\\c3pgen\\in\\handoverTaxi\\qualidade.xml";
 		File source = new File(string);
 		DBModel example = null;
@@ -47,10 +47,11 @@ public class MainDBDesign {
 		ArrayList<Relation> relations = new ArrayList<>(example.getMetadata().getRelations());
 
 		for (Table table : tables) {
-			String nomeDaClasse = CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, Util.firstUpperCaseOnly(table.getTablename()));
+			
+			String nomeDaClasse = CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, Util.firstUpperCaseOnly(table.getTablename().toLowerCase()));
 			fileLines.add("- name: " + nomeDaClasse);
 			fileLines.add("  hasOwner: false ");
-			fileLines.add("  displayName: " + Util.firstUpperCaseOnly(table.getTablename()).replaceAll("_", " "));
+			fileLines.add("  displayName: " + Util.firstUpperCaseOnly(table.getTablename().toLowerCase()).replaceAll("_", " "));
 			fileLines.add("  tableName: " + table.getTablename().toUpperCase());
 			fileLines.add("  attributes:                     ");
 
@@ -59,7 +60,7 @@ public class MainDBDesign {
 			Collection<Column> colunas = table.getColumns();
 			for (Column column : colunas) {
 				if (column.isNotKey()) {
-					fileLines.add("  - name: " + Util.firstLowerCase(CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, column.getColName())));
+					fileLines.add("  - name: " + Util.firstLowerCase(CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, column.getColName().toLowerCase())));
 					fileLines.add("    tableFieldName: " + column.getColName().toUpperCase());
 
 					fileLines.add("    required: " + getRequired(column));
@@ -77,7 +78,7 @@ public class MainDBDesign {
 
 					// fileLines.add(" displayName: " +
 					// Util.firstUpperCaseOnly(column.getColName().toUpperCase()));
-					fileLines.add("    displayName: " + Util.firstNotNullUpper(column.getComments(), column.getColName()).replaceAll("_", " "));
+					fileLines.add("    displayName: " + Util.firstNotNullUpper(column.getComments(), column.getColName().toLowerCase()).replaceAll("_", " "));
 					fileLines.add("    type: ");
 					fileLines.add("      className: " + column.getDataType().getDescricao());
 					if (DataType.BIT.equals(column.getDataType()) || DataType.BIT.equals(column.getDataType())) {
@@ -106,11 +107,11 @@ public class MainDBDesign {
 				String destTable = byId.getDestTable();
 				String comments = byId.getComments();
 
-				fileLines.add("  - name: " + Util.firstLowerCase(CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, Util.firstNotNullLower(comments, getTableById(tables, destTable).getTablename()) + "s")));
+				fileLines.add("  - name: " + Util.firstLowerCase(CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, Util.firstNotNullLower(comments, getTableById(tables, destTable).getTablename().toLowerCase()) + "s")));
 				fileLines.add("    type: OneToMany");
 				fileLines.add("    ownerName: " + Util.firstLowerCase(nomeDaClasse));
-				fileLines.add("    model: " + CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, Util.firstUpperCase(getTableById(tables, destTable).getTablename())) + "                       ");
-				fileLines.add("    displayName: " + Util.firstUpperCase(getTableById(tables, destTable).getTablename()).replaceAll("_", " "));
+				fileLines.add("    model: " + CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, Util.firstUpperCase(getTableById(tables, destTable).getTablename().toLowerCase())) + "                       ");
+				fileLines.add("    displayName: " + Util.firstUpperCase(getTableById(tables, destTable).getTablename().toLowerCase()).replaceAll("_", " "));
 				// fileLines.add(" viewApproach: ");
 				// fileLines.add(" type: multiselect ");
 
@@ -128,8 +129,8 @@ public class MainDBDesign {
 
 				fileLines.add("  - name: " + Util.firstLowerCase(CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, Util.firstNotNullLower(comments, getTableById(tables, sourceTable).getTablename()))) + "             ");
 				fileLines.add("    type: ManyToOne");
-				fileLines.add("    model: " + Util.firstUpperCase(CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, getTableById(tables, sourceTable).getTablename())) + "                       ");
-				fileLines.add("    displayName: " + Util.firstUpperCase(getTableById(tables, sourceTable).getTablename()).replaceAll("_", " "));
+				fileLines.add("    model: " + Util.firstUpperCase(CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, getTableById(tables, sourceTable).getTablename().toLowerCase())) + "                       ");
+				fileLines.add("    displayName: " + Util.firstUpperCase(getTableById(tables, sourceTable).getTablename().toLowerCase()).replaceAll("_", " "));
 				fileLines.add("    viewApproach:   ");
 				fileLines.add("      type: modal ");
 				fileLines.add("      hiddenField: id ");
