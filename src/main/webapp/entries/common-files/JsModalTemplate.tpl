@@ -210,9 +210,9 @@ define(function(require) {
 			<#list entity.attributes as att>
 			<#if att.showInPages && att.viewApproach.type  != 'upload'>
 	    		<#if isNumeric(att.type.className)>
-		    	${firstLower(att.name)} : this.ui.input${firstUpper(att.name)}.escape(true),
+		    	${firstLower(att.name)} : this.ui.inputModal${firstUpper(att.name)}.escape(true),
 		    	<#else> 
-	    		${firstLower(att.name)} : this.ui.input${firstUpper(att.name)}.escape(), 
+	    		${firstLower(att.name)} : this.ui.inputModal${firstUpper(att.name)}.escape(), 
 		    	</#if>
 			</#if>
 			</#list>			
