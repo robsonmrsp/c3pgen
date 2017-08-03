@@ -1,0 +1,178 @@
+<article class="main-content" role="main">
+	<header>
+		<h1>Boxed sidebar</h1>
+		<p>To give you more layout varieties, we implemented a full-width layout with a fixed sidebar on left/right. Also, this sidebar has two color variations.</p>
+		<ol class="toc">
+			<li>
+				<a href="#page_layout">Page Layout</a>
+			</li>
+			<li>
+				<a href="#variations">Variations</a>
+			</li>
+		</ol>
+	</header>
+	<section>
+		<h2 id="page_layout">
+			<a href="#page_layout">Page Layout</a>
+		</h2>
+		<p>Please consider that this layout has a bit different html structure that other layouts.</p>
+		<div class="prism-show-language">
+			<div class="prism-show-language-label">Markup</div>
+		</div>
+		<pre class="line-numbers language-markup">
+			<span class="language-name"> markup</span>
+			<a class="btn btn-sm btn-purple clipboard-copy" data-original-title="Copied!">Copy</a>
+			<code class=" language-markup">
+				<span class="token doctype">&lt;!DOCTYPE html&gt;</span>
+					<span class="token tag">
+					<span class="token tag">
+						<span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span>
+					<span class="token attr-value">
+						<span class="token punctuation">=</span>
+						<span class="token punctuation">"</span>en<span class="token punctuation">"</span>
+					</span>
+					<span class="token punctuation">&gt;</span>
+				</span>
+  				<span class="token tag">
+					<span class="token tag">
+						<span class="token punctuation">&lt;</span>head</span>
+					<span class="token punctuation">&gt;</span>
+				</span>
+				<span class="token tag">
+					<span class="token tag">
+						<span class="token punctuation">&lt;/</span>head</span>
+					<span class="token punctuation">&gt;</span>
+				</span>
+  				<span class="token tag">
+					<span class="token tag">
+						<span class="token punctuation">&lt;</span>body</span>
+					<span class="token punctuation">&gt;</span>
+				</span>
+
+    			<span class="token comment" spellcheck="true">&lt;!-- Site header --&gt;</span>
+    			<span class="token tag">
+					<span class="token tag">
+						<span class="token punctuation">&lt;</span>header</span> <span class="token attr-name">class</span>
+					<span class="token attr-value">
+						<span class="token punctuation">=</span>
+						<span class="token punctuation">"</span>site-header<span class="token punctuation">"</span>
+					</span>
+					<span class="token punctuation">&gt;</span>
+				</span>
+
+    			<span class="token tag">
+					<span class="token tag">
+						<span class="token punctuation">&lt;/</span>header</span>
+					<span class="token punctuation">&gt;</span>
+				</span>
+    			
+    			<span class="token comment" spellcheck="true">&lt;!-- END Site header --&gt;</span>
+
+
+    			<span class="token comment" spellcheck="true">&lt;!-- Sidebar --&gt;</span>
+    			<span class="token tag">
+					<span class="token tag">
+						<span class="token punctuation">&lt;</span>aside</span> <span class="token attr-name">class</span>
+					<span class="token attr-value">
+						<span class="token punctuation">=</span>
+						<span class="token punctuation">"</span>sidebar sidebar-boxed<span class="token punctuation">"</span>
+					</span>
+					<span class="token punctuation">&gt;</span>
+				</span>
+
+    			<span class="token tag">
+					<span class="token tag">
+						<span class="token punctuation">&lt;/</span>aside</span>
+					<span class="token punctuation">&gt;</span>
+				</span>
+    			<span class="token comment" spellcheck="true">&lt;!-- END Sidebar --&gt;</span>
+
+    			<span class="token tag">
+					<span class="token tag">
+						<span class="token punctuation">&lt;</span>main</span> <span class="token attr-name">class</span>
+					<span class="token attr-value">
+						<span class="token punctuation">=</span>
+						<span class="token punctuation">"</span>container-fluid<span class="token punctuation">"</span>
+					</span>
+					<span class="token punctuation">&gt;</span>
+				</span>
+      			
+      			<span class="token tag">
+					<span class="token tag">
+						<span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span>
+					<span class="token attr-value">
+						<span class="token punctuation">=</span>
+						<span class="token punctuation">"</span>row<span class="token punctuation">"</span>
+					</span>
+					<span class="token punctuation">&gt;</span>
+				</span>
+
+		        <span class="token comment" spellcheck="true">&lt;!-- Main content --&gt;</span>
+		        <span class="token tag">
+					<span class="token tag">
+						<span class="token punctuation">&lt;</span>article</span> <span class="token attr-name">class</span>
+					<span class="token attr-value">
+						<span class="token punctuation">=</span>
+						<span class="token punctuation">"</span>main-content<span class="token punctuation">"</span>
+					</span> <span class="token attr-name">role</span>
+					<span class="token attr-value">
+						<span class="token punctuation">=</span>
+						<span class="token punctuation">"</span>main<span class="token punctuation">"</span>
+					</span>
+					<span class="token punctuation">&gt;</span>
+				</span>
+
+		        <span class="token tag">
+					<span class="token tag">
+						<span class="token punctuation">&lt;/</span>article</span>
+					<span class="token punctuation">&gt;</span>
+				</span>
+        		<span class="token comment" spellcheck="true">&lt;!-- END Main content --&gt;</span>
+
+
+        		<span class="token comment" spellcheck="true">&lt;!-- Footer --&gt;</span>
+        		<span class="token tag">
+					<span class="token tag">
+						<span class="token punctuation">&lt;</span>footer</span> <span class="token attr-name">class</span>
+					<span class="token attr-value">
+						<span class="token punctuation">=</span>
+						<span class="token punctuation">"</span>site-footer<span class="token punctuation">"</span>
+					</span>
+					<span class="token punctuation">&gt;</span>
+				</span>
+
+        		<span class="token tag">
+					<span class="token tag">
+						<span class="token punctuation">&lt;/</span>footer</span>
+					<span class="token punctuation">&gt;</span>
+				</span>
+        		<span class="token comment" spellcheck="true">&lt;!-- END Footer --&gt;</span>
+
+      			<span class="token tag">
+					<span class="token tag">
+						<span class="token punctuation">&lt;/</span>div</span>
+					<span class="token punctuation">&gt;</span>
+				</span>
+    			<span class="token tag">
+					<span class="token tag">
+						<span class="token punctuation">&lt;/</span>main</span>
+					<span class="token punctuation">&gt;</span>
+				</span>
+
+  				<span class="token tag">
+					<span class="token tag">
+						<span class="token punctuation">&lt;/</span>body</span>
+					<span class="token punctuation">&gt;</span>
+				</span>
+				<span class="token tag">
+					<span class="token tag">
+						<span class="token punctuation">&lt;/</span>html</span>
+					<span class="token punctuation">&gt;</span>
+				</span>
+				<span aria-hidden="true" class="line-numbers-rows">
+				
+				</span>
+			</code>
+		</pre>
+	</section>
+</article>

@@ -1,0 +1,26 @@
+<article class="main-content" role="main">
+	<header>
+		<h1>DataTable</h1>
+		<p>To give you more layout varieties, we implemented a full-width layout with a fixed sidebar on left/right. Also, this sidebar has two color variations.</p>
+		<ol class="toc">
+			<li>
+				<a href="#page_layout">Page Layout</a>
+			</li>
+		</ol>
+	</header>
+	<section>
+		<h2 id="page_layout">
+			<a href="#page_layout">Page Layout</a>
+		</h2>
+		<p>Please consider that this layout has a bit different html structure that other layouts.</p>
+		<pre>
+			<code class="language-javascript">
+Prism.hooks.add('wrap', function(env) {
+	if (env.token === 'entity') {
+		env.attributes['title'] = env.content.replace(/&amp;/, '&');
+	}
+});				
+			</code>
+		</pre>
+	</section>
+</article>
