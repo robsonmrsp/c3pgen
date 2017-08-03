@@ -1,0 +1,16 @@
+- name: Motorista
+  hasOwner: false 
+  displayName: Motorista
+  tableName: MOTORISTA
+  attributes:                     
+  relationships:                     
+  - name: prestacaoContass
+    type: OneToMany
+    ownerName: motorista
+    model: PrestacaoContas                       
+    displayName: Prestacao contas
+  - name: transacaos
+    type: OneToMany
+    ownerName: motorista
+    model: Transacao                       
+    displayName: Transacao

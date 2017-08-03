@@ -1,0 +1,120 @@
+- name: PrestacaoContas
+  hasOwner: false 
+  displayName: Prestacao contas
+  tableName: PRESTACAO_CONTAS
+  attributes:                     
+  - name: valorTotal
+    tableFieldName: VALOR_TOTAL
+    required: false
+    showInPages: false
+    displayName: Valor total
+    type: 
+      className: Double
+  - name: statusPrestacao
+    tableFieldName: STATUS_PRESTACAO
+    required: false
+    showInPages: false
+    maxLen: 50
+    displayName: Status
+    type: 
+      className: String
+  - name: dataPrestacao
+    tableFieldName: DATA_PRESTACAO
+    required: false
+    showInPages: false
+    displayName: Data prestação
+    type: 
+      className: Datetime
+    dateFormat: DD/MM/YYYY HH:MM             
+    mask: 99/99/9999 99:99                  
+    viewApproach:                        
+      type: datepicker                  
+  - name: descricao
+    tableFieldName: DESCRICAO
+    required: false
+    showInPages: false
+    maxLen: 400
+    viewApproach:                        
+      type: textarea                  
+    displayName: Descrição
+    type: 
+      className: String
+  - name: descricaoCurta
+    tableFieldName: DESCRICAO_CURTA
+    required: false
+    showInPages: false
+    maxLen: 100
+    displayName: Descrição curta
+    type: 
+      className: String
+  - name: localPrestacao
+    tableFieldName: LOCAL_PRESTACAO
+    required: false
+    showInPages: false
+    maxLen: 100
+    displayName: Local prestação
+    type: 
+      className: String
+  - name: valorPago
+    tableFieldName: VALOR_PAGO
+    required: false
+    showInPages: false
+    displayName: Valor pago
+    type: 
+      className: Double
+  - name: juros
+    tableFieldName: JUROS
+    required: false
+    showInPages: false
+    displayName: Juros
+    type: 
+      className: Double
+  - name: multa
+    tableFieldName: MULTA
+    required: false
+    showInPages: false
+    displayName: Multa
+    type: 
+      className: Double
+  - name: multaDiaria
+    tableFieldName: MULTA_DIARIA
+    required: false
+    showInPages: false
+    displayName: Multa diária
+    type: 
+      className: Double
+  relationships:                     
+  - name: transacaos
+    type: OneToMany
+    ownerName: prestacaoContas
+    model: Transacao                       
+    displayName: Transacao
+  - name: prestacaoContass
+    type: OneToMany
+    ownerName: prestacaoContas
+    model: PrestacaoContas                       
+    displayName: Prestacao contas
+  - name: motorista             
+    type: ManyToOne
+    model: Motorista                       
+    displayName: Motorista
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+  - name: prestacaoContas             
+    type: ManyToOne
+    model: PrestacaoContas                       
+    displayName: Prestacao contas
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+  - name: cliente             
+    type: ManyToOne
+    model: Cliente                       
+    displayName: Cliente
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 

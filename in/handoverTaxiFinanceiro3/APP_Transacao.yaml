@@ -1,0 +1,63 @@
+- name: Transacao
+  hasOwner: false 
+  displayName: Transacao
+  tableName: TRANSACAO
+  attributes:                     
+  - name: valor
+    tableFieldName: VALOR
+    required: false
+    showInPages: false
+    displayName: Valor
+    type: 
+      className: Double
+  - name: dataTransacao
+    tableFieldName: DATA_TRANSACAO
+    required: false
+    showInPages: false
+    displayName: Data transação
+    type: 
+      className: Datetime
+    dateFormat: DD/MM/YYYY HH:MM             
+    mask: 99/99/9999 99:99                  
+    viewApproach:                        
+      type: datepicker                  
+  - name: taxa
+    tableFieldName: TAXA
+    required: false
+    showInPages: false
+    displayName: Taxa
+    type: 
+      className: Double
+  - name: descricao
+    tableFieldName: DESCRICAO
+    required: false
+    showInPages: false
+    maxLen: 200
+    displayName: Descrição
+    type: 
+      className: String
+  relationships:                     
+  - name: corrida             
+    type: ManyToOne
+    model: Corrida                       
+    displayName: Corrida
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+  - name: motorista             
+    type: ManyToOne
+    model: Motorista                       
+    displayName: Motorista
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
+  - name: prestacaoContas             
+    type: ManyToOne
+    model: PrestacaoContas                       
+    displayName: Prestação contas
+    viewApproach:   
+      type: modal 
+      hiddenField: id 
+      textField: nome 
