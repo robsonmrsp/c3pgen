@@ -9,7 +9,7 @@
 	<div class="panel-body">
 		<div id="messages_div"></div>
 		<form id="form${firstUpper(entity.name)}Filter">
-			<div class="widget-main  ">
+			<div class="widget-main pad-hor-7">
 				<div class="row">
 					<div class="col-xs-6">
 						<a href="#app/new${firstUpper(entity.name)}" class="btn btn-info">

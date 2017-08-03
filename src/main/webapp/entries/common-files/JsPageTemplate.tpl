@@ -285,7 +285,7 @@ define(function(require) {
 		  		<#elseif att.inputAs == 'decimal' || att.type.className == 'Double'>
 		  		cell : JSetup.DecimalCell,	
 		  		<#else>
-				cell 	 : "string",
+				cell : JSetup.CustomStringCell
 		  		</#if>	
 			}, 
 		  		</#if>	
@@ -299,9 +299,7 @@ define(function(require) {
 				editable : false,  
 				sortable : true,  
 				label : "${rel.displayName}",
-				cell : JSetup.EntityCell.extend({
-					fieldName : '${firstLower(rel.name)}.${rel.viewApproach.textField}',
-				}),
+				cell : JSetup.CustomStringCell
 			},	
 					</#if>
 					<#if rel.viewApproach.type == 'combo'>
@@ -310,9 +308,7 @@ define(function(require) {
 				editable : false,
 				sortable : true,  
 				label : "${rel.displayName}",
-				cell : JSetup.EntityCell.extend({
-					fieldName : '${firstLower(rel.name)}.${rel.viewApproach.comboVal}',
-				}),
+				cell : JSetup.CustomStringCell
 			},	
 					</#if>
 				</#if>

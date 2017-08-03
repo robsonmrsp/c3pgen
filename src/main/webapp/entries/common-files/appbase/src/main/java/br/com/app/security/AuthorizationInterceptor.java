@@ -39,15 +39,16 @@ public class AuthorizationInterceptor extends AbstractPhaseInterceptor<Message> 
 		//printMessage(message);
 		String requestUri = (String) message.get(Message.REQUEST_URI);
 		String requestMethod = (String) message.get(Message.HTTP_REQUEST_METHOD);
-
-		Boolean authorizedAccess = authorizationService.authorizeRestServiceAccess(requestMethod, requestUri);
-
-		if (!authorizedAccess) {
-			LOGGER.warn("unauthorized user attempting to access service [ " + requestMethod + " ]" + "[ " + requestUri + " ]");
-			Response response = Response.status(Response.Status.FORBIDDEN).entity("Forbidden").build();
-			message.getExchange().put(Response.class, response);
-			// throw new AccessDeniedException("Unauthorized");
-		}
+//TODO Caso queira controlar o acesso via configuração de banco use o codigo abaixo
+		
+//		Boolean authorizedAccess = authorizationService.authorizeRestServiceAccess(requestMethod, requestUri);
+//
+//		if (!authorizedAccess) {
+//			LOGGER.warn("unauthorized user attempting to access service [ " + requestMethod + " ]" + "[ " + requestUri + " ]");
+//			Response response = Response.status(Response.Status.FORBIDDEN).entity("Forbidden").build();
+//			message.getExchange().put(Response.class, response);
+//			// throw new AccessDeniedException("Unauthorized");
+//		}
 	}
 
 	private void printMessage(Message message) {

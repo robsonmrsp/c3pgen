@@ -1,10 +1,23 @@
 Changelog do GERADO
 
 v0.95:
+ - Gerando o @Cascade comentado.
+ - Gerando cell : JSetup.CustomStringCell para celulas exibidas como string mesmo sendo compostas. Ex, "priduct.name"
+ - Alterado o JSetup.View para usar todas as functions do util como templateHelper. Utilizado no underscore template
+ - Corrigidos os JSetup.**NumericCell para as situações de objetos e campos simples e compostos. com e sem formatter
+ - Trazido o css de print/no-print 
+ - Alteração no backgrid-0.35 para considerar a coluna sortable=false como default
+ - pequena redução do paddings dos paineis
+ - correção do alinhamento do div de pesquiza com a tabela nas Pages
+ - Inicio da documentação
+ - Removido a execução de controle de acesso do AuthorizationInterceptor.
+ - Removida/Comentada a execução da checagem de permissão no Router .
+ - Removida/Comentada a execução do rbac.sql no beans.xml
 
 v0.94: seg, 10 de jul de 2017 00:38:33
 - Gerando com owner
-- gerando com e sem audit do envers 
+- gerando com e sem audit do envers , basta usar o parametro  	hasAudit
+- gerando com e sem doc rest do swagger, basta usar o parametro  hasDocRestApi
 - Removendo separador de Milhar do plugin de inputNumerico
 - NÃO serializando mais os Doubles.
 - Enxugando a geração do mecanismo de serialização. Concentramos os dates e doubles serializer e deserializer num ponto só, configurado no beans.xml 

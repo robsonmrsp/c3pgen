@@ -14,10 +14,12 @@ define(function(require) {
 	var Combobox = require('views/components/Combobox');
 	var Multiselect = require('views/components/Multiselect');
 	var InputUpload = require('views/components/InputUpload');
+	var InputButtonUpload = require('views/components/InputButtonUpload');
 	var Suggestbox = require('views/components/Suggestbox');
+	var BooleanBadgeCell = require('views/components/BooleanBadgeCell');
 
 	var Counter = Marionette.ItemView.extend({
-
+		className : 'counter-component',
 		template : _.template(CounterTemplate),
 		events : {
 			'change  .combo-page-size' : 'changePageSize',
@@ -94,6 +96,10 @@ define(function(require) {
 
 		initialize : function(options) {
 			var that = this;
+			options.showCounter = _.isUndefined(options.showCounter) || options.showCounter;
+			options.showPaginator = _.isUndefined(options.showPaginator) || options.showPaginator;
+			options.showColManager = _.isUndefined(options.showColManager) || options.showColManager;
+
 			if (!options.columns) {
 				throw new TypeError("Deve definir as colunas do grid");
 			}
@@ -107,51 +113,70 @@ define(function(require) {
 				options.columns[colSizes - 1].alwaysVisible = true;
 			}
 
-			options.columns.push({
-				label : "ColumnManager_visibility_tool",
-				cell : "string",
-				alwaysVisible : true,
-				headerCell : Backgrid.Extension.ColumnManager.ColumnVisibilityHeaderCell
-			});
+			// adicionando uma header compativel com tipos numericos
+			_.each(options.columns, function(col) {
+				if (col.cell.__super__ && col.cell.__super__.className == 'custom-number-cel') {
+					col.headerCell = Backgrid.HeaderCell.extend({
+						className : 'custom-number-cel'
+					})
+				}
+			})
 
 			var bbColumns = new Backgrid.Columns(options.columns);
 
-			var colManager = new Backgrid.Extension.ColumnManager(bbColumns, {
-				initialColumnsVisible : 6,
-				saveState : true,
-				loadStateOnInit : true
-			});
+			if (options.showColManager) {
+				options.columns.push({
+					label : "ColumnManager_visibility_tool",
+					cell : "string",
+					alwaysVisible : true,
+					headerCell : Backgrid.Extension.ColumnManager.ColumnVisibilityHeaderCell
+				});
 
-			var colVisibilityControl = new Backgrid.Extension.ColumnManagerVisibilityControl({
-				columnManager : colManager
-			});
+				var colManager = new Backgrid.Extension.ColumnManager(bbColumns, {
+					initialColumnsVisible : 6,
+					saveState : true,
+					loadStateOnInit : true
+				});
 
+				var colVisibilityControl = new Backgrid.Extension.ColumnManagerVisibilityControl({
+					columnManager : colManager
+				});
+			}
 			this.grid = new Backgrid.Grid({
 				row : options.row,
-				className : options.gridClass || 'table backgrid table-striped table-bordered table-hover dataTable no-footer  ',
+				className : options.className || options.gridClass || 'table backgrid table-striped table-bordered table-hover dataTable no-footer  ',
 				columns : bbColumns,
 
 				emptyText : options.emptyText || "Sem registros",
 				collection : options.collection
 			});
 
-			this.counter = new Counter({
-				collection : options.collection,
-			});
+			if (options.showCounter)
+				this.counter = new Counter({
+					collection : options.collection,
+				});
 
-			this.paginator = new Backgrid.Extension.Paginator({
-				columns : bbColumns,
-				collection : options.collection,
-				className : ' paging_simple_numbers',
-				uiClassName : 'pagination',
-			});
+			if (options.showPaginator)
+				this.paginator = new Backgrid.Extension.Paginator({
+					columns : bbColumns,
+					collection : options.collection,
+					className : ' paging_simple_numbers',
+					uiClassName : 'pagination',
+				});
 
 			this.on('show', function() {
 				that.gridRegion.show(that.grid);
-				if (!options.showCounter)
+				if (options.showCounter) {
 					that.counterRegion.show(that.counter);
-				if (!options.showPaginator)
+				} else {
+					that.counterRegion.$el.remove();
+					window.counterR = that.counterRegion;
+				}
+				if (options.showPaginator) {
 					that.paginatorRegion.show(that.paginator);
+				} else {
+					that.paginatorRegion.$el.remove();
+				}
 			})
 		},
 	})
@@ -159,25 +184,51 @@ define(function(require) {
 	var NumericCell = Backgrid.Cell.extend({
 		className : "custom-number-cel",
 		type : 'decimal',
+
 		render : function() {
 			this.$el.empty();
 			var model = this.model;
-			var theColValue = model.get(this.column.get("name"));
+			var theColValue = null;
+
+			if (this.column.get("name").indexOf('.') > 0) {// composto
+				var fields = this.column.get("name").split('.')
+				theColValue = parseFloat(model.get(fields[0]) && model.get(fields[0])[fields[1]]);
+			} else {
+
+				if (_.isObject(model.get(this.column.get("name")))) {
+					theColValue = model.get(this.column.get("name"));
+				} else {
+					theColValue = parseFloat(model.get(this.column.get("name")));
+				}
+			}
+
 			var theFormattedColValue = '';
 
 			if (theColValue) {
 				if (this.type === 'money') {
-					theFormattedColValue = this.formatter.fromRaw(util.formatNumeric(theColValue, 2), model);
+					if (_.isObject(theColValue)) {
+						theFormattedColValue = this.formatter.fromRaw(theColValue, model);
+					} else {
+						theFormattedColValue = this.formatter.fromRaw(util.formatNumeric(theColValue, 2), model);
+					}
 					this.$el.text('R$ ' + theFormattedColValue);
 				} else if (this.type === 'decimal') {
-					theFormattedColValue = this.formatter.fromRaw(util.formatNumeric(theColValue, 2), model);
+					if (_.isObject(theColValue)) {
+						theFormattedColValue = this.formatter.fromRaw(theColValue, model);
+					} else {
+						theFormattedColValue = this.formatter.fromRaw(util.formatNumeric(theColValue, 2), model);
+					}
 					this.$el.text(theFormattedColValue);
 				} else if (this.type === 'integer') {
 					theFormattedColValue = this.formatter.fromRaw(theColValue, model);
 					this.$el.text(theFormattedColValue);
 
 				} else if (this.type === 'percent') {
-					theFormattedColValue = this.formatter.fromRaw(util.formatNumeric(theColValue, 2), model);
+					if (_.isObject(theColValue)) {
+						theFormattedColValue = this.formatter.fromRaw(theColValue, model);
+					} else {
+						theFormattedColValue = this.formatter.fromRaw(util.formatNumeric(theColValue, 2), model);
+					}
 					this.$el.text(theFormattedColValue + ' %');
 				} else { // só pra garantir, mas aparentemente o integer
 					// seria tratado
@@ -218,6 +269,51 @@ define(function(require) {
 			return this;
 		}
 	});
+
+	// Aceita o html explicito na definição da celula na coluna e o objeto
+	// carregado pelo require
+	var TemplateCell = Backgrid.Cell.extend({
+		editor : Backgrid.CellEditor,
+
+		className : "custom-string-cell",
+		html : '<div> </div>',
+
+		render : function() {
+			this._template = _.template(this.html);
+			this.$el.empty();
+			var model = this.model;
+			var theColValue = model.get(this.column.get("name"));
+
+			this.$el.html(this.formatter.fromRaw(this._template(theColValue), model));
+
+			this.delegateEvents();
+			return this;
+		},
+	});
+
+	var CustomStringCell = Backgrid.Cell.extend({
+		className : "custom-string-cell",
+		render : function() {
+			this.$el.empty();
+			var model = this.model;
+			var theColValue = null;
+
+			if (this.column.get("name").indexOf('.') > 0) {// composto
+				var fields = this.column.get("name").split('.')
+				theColValue = model.get(fields[0]) && model.get(fields[0])[fields[1]];
+			} else {
+				theColValue = model.get(this.column.get("name"));
+			}
+
+			var theFormattedColValue = this.formatter.fromRaw(theColValue, model);
+
+			this.$el.text(this.formatter.fromRaw(theColValue, model));
+
+			this.delegateEvents();
+			return this;
+		},
+	});
+
 	var EntityCell = Backgrid.Cell.extend({
 		editor : Backgrid.CellEditor,
 		className : 'general-string-cell',
@@ -242,7 +338,9 @@ define(function(require) {
 			return this;
 		}
 	});
+
 	var View = Marionette.LayoutView.extend({
+		templateHelpers : util,
 		onShow : function() {
 			$.validate({
 				modules : 'location, date, security, brazil',
@@ -279,7 +377,7 @@ define(function(require) {
 			inputImage.attr('src', inputImage.attr('no-image-file'));
 		}
 	});
-	
+
 	var RowClick = Backgrid.Row.extend({
 		className : 'custom-row-click',
 		render : function() {
@@ -288,7 +386,6 @@ define(function(require) {
 			return this;
 		}
 	});
-
 	var JSetup = {
 
 		View : View,
@@ -320,14 +417,23 @@ define(function(require) {
 
 		EntityCell : EntityCell,
 
+		StringCell : CustomStringCell,
+
+		TemplateCell : TemplateCell,
+
+		BooleanBadgeCell : BooleanBadgeCell,
+
 		DataTable : DataTable,
 
 		InputUpload : InputUpload,
+
+		InputButtonUpload : InputButtonUpload,
+
 		Suggestbox : Suggestbox,
 
 		BaseModel : BaseModel,
-		BaseCollection : BaseCollection,
 
+		BaseCollection : BaseCollection,
 	}
 	return JSetup;
 });

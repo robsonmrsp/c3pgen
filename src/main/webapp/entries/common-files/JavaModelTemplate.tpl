@@ -109,7 +109,7 @@ public class ${entity.name} extends AbstractTimestampEntity{
 		<#if rel.type == 'OneToMany'>
 			<#if rel.ownerName?has_content>
 	@OneToMany(mappedBy="${rel.ownerName}")
-	@Cascade(value = CascadeType.ALL)
+	//@Cascade(value = CascadeType.ALL)
 			<#else>
 	@OneToMany()
 			</#if>
@@ -122,7 +122,7 @@ public class ${entity.name} extends AbstractTimestampEntity{
 			<#if rel.ownerName?has_content > 
     @ManyToMany(mappedBy="${rel.ownerName}")
         		<#if rel.viewApproach?? >
-    @Cascade(value = CascadeType.ALL)
+    //@Cascade(value = CascadeType.ALL)
 				</#if>
     private List<${firstUpper(rel.model)}> ${(rel.name)!firstLower(rel.model)};
 			<#else>
