@@ -8,7 +8,7 @@ define(function(require) {
 	
 	var util = require('utilities/utils');
 	
-	var AuthHandlerUtil = require('utilities/AuthHandlerUtil');
+	// var AuthHandlerUtil = require('utilities/AuthHandlerUtil');
 	
 	<#list application.entities as entity>
 	
@@ -28,7 +28,8 @@ define(function(require) {
 			this.$el.fadeIn(600);
 			view.listenTo(view, 'show', function() {
 				AppScripts.prepare();
-				AuthHandlerUtil.handlePermissions();
+
+				// AuthHandlerUtil.handlePermissions(); removed
 				setTimeout(function() {
 					util.NProgress.done(false, true);
 				}, 100);
@@ -47,7 +48,7 @@ define(function(require) {
 			</#list>			
 		},
 		initialize : function() {
-		    this.authHandler = new AuthHandlerUtil.Model();
+		    // this.authHandler = new AuthHandlerUtil.Model();
 			this.App = new Marionette.Application();
 			this.App.addRegions({
 				mainRegion : CustomRegion
@@ -69,14 +70,14 @@ define(function(require) {
 			Backbone.history.route(route, function(fragment) {
 				var args = router._extractParameters(route, fragment);
 				router.App.mainRegion.reset();
-				if (router.authHandler.canSeeScreen(fragment)) {
+				//if (router.authHandler.canSeeScreen(fragment)) {
 					router.execute(callback, args);
 					router.trigger.apply(router, [ 'route:' + name ].concat(args));
 					router.trigger('route', name, args);
 					Backbone.history.trigger('route', router, name, args);
-				} else {
-					router.App.mainRegion.show(new AuthHandlerUtil.PageAcessoNegado());
-				}
+				//} else {
+				//	router.App.mainRegion.show(new AuthHandlerUtil.PageAcessoNegado());
+				//}
 			});
 			
 			return this;
@@ -84,7 +85,7 @@ define(function(require) {
 
 		index : function(path) {
 			util.markActiveItem('dashboard');
-			AuthHandlerUtil.handlePermissions();
+			//AuthHandlerUtil.handlePermissions();
 			setTimeout(function() {
 				util.NProgress.done(false, true);
 			}, 500);
@@ -126,7 +127,7 @@ define(function(require) {
 			})
 			model.fetch({
 				success : function(model) {
-					form${entity.name} = new Form${entity.name}({
+					var form${entity.name} = new Form${entity.name}({
 						model : model,
 					});
 					that.App.mainRegion.show(form${entity.name});

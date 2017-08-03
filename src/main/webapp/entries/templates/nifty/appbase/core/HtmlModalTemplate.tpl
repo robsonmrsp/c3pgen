@@ -97,7 +97,7 @@
 				<div class="row">
 				<div class="col-xs-12">
 					<h3 class="header smaller lighter blue">Resultados</h3>
-					<div class="center">
+					<div class="center pad-hor">
 						<div  class="datatable-${firstLower(entity.name)} "></div>
 					</div>
 				</div>

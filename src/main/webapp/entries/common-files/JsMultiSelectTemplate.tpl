@@ -86,7 +86,8 @@ define(function(require) {
 			
 			this.dataTablePrincipal = new JSetup.DataTable({
 				columns : this.getPrincipalColumns(),
-				collection : this.principalCollection
+				collection : this.principalCollection,
+				gridClass : ' table table-striped',
 			});
 			
 			this.dataTableModal = new JSetup.DataTable({
@@ -95,7 +96,6 @@ define(function(require) {
 			});
 		},
 
-		
 		/** Called after DOM´s ready.*/
 		onShowView :  function() {
 			var that = this;
@@ -262,7 +262,7 @@ define(function(require) {
 				<#if att.showInPages && att.viewApproach.type  != 'upload' >				
 			{
 				name : "${att.name}",
-				sortable : true,
+				sortable : false,
 				editable : false,
 				label 	 : "${firstUpper(att.displayName)!firstUpper(att.name)}",
 				<#if att.inputAs == 'percent'>

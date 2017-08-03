@@ -6047,7 +6047,7 @@ a.text-dark:focus {
   margin-right: -20px;
 }
 .panel-body {
-  padding: 15px 20px 25px;
+  padding: 15px 15px 15px;
 }
 .panel-body > .row,
 .panel-body > [class^="form-"] > .row {
@@ -6912,3 +6912,113 @@ a.disabled-link:hover {
     margin-bottom: 0;
   }
 }
+#container .invoice-logo>.media-left, #container .invoice-logo>.media-body
+	{
+	display: table-cell;
+	float: none;
+	vertical-align: middle
+}
+
+#container .invoice-details {
+	min-width: 200px
+}
+
+#container .invoice-details td {
+	padding: 2px 0
+}
+
+#container .invoice-summary {
+	border-bottom: 2px solid #d0d0d0
+}
+
+#container .invoice-summary thead>tr>th {
+	font-weight: 700;
+	padding-bottom: 15px
+}
+
+#container .invoice-summary tbody>tr>td {
+	vertical-align: middle
+}
+
+#container .invoice-summary tbody>tr>td>strong {
+	display: block;
+	font-weight: 600
+}
+
+#container .invoice-summary tbody>tr>td>small {
+	color: #afb9c3
+}
+
+#container .invoice-summary .min-col {
+	width: 10%;
+	min-width: 100px
+}
+
+#container .invoice-summary th, #container .invoice-total th, #container .invoice-summary td,
+	#container .invoice-total td {
+	padding-left: 0 !important;
+	padding-right: 0 !important
+}
+
+#container .invoice-total {
+	width: 30%;
+	max-width: 320px;
+	float: right
+}
+
+#container .invoice-total>tbody>tr:first-child>td {
+	border: 0 !important
+}
+
+#container .invoice-total>tbody>tr td {
+	text-align: right
+}
+
+#container .invoice-total>tbody>tr td:last-child {
+	width: 200px
+}
+
+@media print {
+	#container .invoice-total {
+		width: auto
+	}
+}
+@media print {
+	body, #container {
+		background: transparent
+	}
+	.boxed {
+		width: 100%
+	}
+	.panel {
+		border-color: transparent;
+		box-shadow: none
+	}
+	#container .no-print, #demo-set, .print-content #mainnav-container,
+		.print-content #aside-container, .print-content #navbar,
+		.print-content #footer, .print-content .scroll-top {
+		display: none !important
+	}
+	#container.print-content #page-content, #container.print-content #content-container
+		{
+		padding: 0 !important;
+		margin: 0 !important;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0
+	}
+	.print-inline {
+		display: inline !important
+	}
+	.print-iblock {
+		display: inline-block !important
+	}
+	.print-block {
+		display: block !important
+	}
+	.no-print {
+		display: none !important
+	}
+}
+

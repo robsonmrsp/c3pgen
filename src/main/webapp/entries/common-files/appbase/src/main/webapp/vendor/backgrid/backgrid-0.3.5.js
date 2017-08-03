@@ -1647,7 +1647,7 @@
 		defaults : {
 			name : undefined,
 			label : undefined,
-			sortable : true,
+			sortable : false,
 			editable : true,
 			renderable : true,
 			formatter : undefined,

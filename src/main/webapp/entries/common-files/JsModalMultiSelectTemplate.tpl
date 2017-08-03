@@ -92,25 +92,28 @@ define(function(require) {
 				cell : "select-row",
 				headerCell : "select-all"
 			}, 
-			 
 			<#list entity.attributes as att>
-			<#if att.showInPages && att.viewApproach.type  != 'upload' >
+				<#if att.showInPages && att.viewApproach.type  != 'upload'>			
 			{
 				name : "${att.name}",
+				sortable : true,
 				editable : false,
-				sortable : false,
 				label 	 : "${firstUpper(att.displayName)!firstUpper(att.name)}",
-				<#if isNumeric(att.type.className)>
-				cell : CustomNumberCell.extend({}),
-		  		<#else>	
-				cell 	 : "string",
+				<#if att.inputAs == 'percent' || att.inputAs == 'percentagem'>
+				cell : JSetup.PercentCell,
+		  		<#elseif att.inputAs == 'money' || att.inputAs == 'monetario' >
+		  		cell : JSetup.MoneyCell,	
+		  		<#elseif att.inputAs == 'decimal' || att.type.className == 'Double'>
+		  		cell : JSetup.DecimalCell,	
+		  		<#else>
+				cell : JSetup.CustomStringCell
 		  		</#if>	
 			}, 
-			</#if>	
-			</#list>
-			];
+			  	</#if>	
+			</#list>			];
 			return columns;
 		},
+		
 	});
 
 	return Modal${firstUpper(entity.name)}s;

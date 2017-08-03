@@ -23,10 +23,8 @@
 	<context:property-placeholder />
 	<context:annotation-config />
 	
-	
 	<!-- CXF Swagger2Feature -->
 	<bean id="swagger2Feature" class="org.apache.cxf.jaxrs.swagger.Swagger2Feature"> </bean>
-
 	<jaxrs:server address="/" basePackages="${application.rootPackage}.rs,${application.corePackage}.rs, ${application.corePackage}.security">
 		<jaxrs:providers>
 			<bean class="com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider" />
@@ -46,7 +44,7 @@
 
 	<jdbc:initialize-database ignore-failures="ALL">
 		<jdbc:script location="classpath:db/seed.sql" />
-		<jdbc:script location="classpath:db/rbac.sql" />
+		<!-- <jdbc:script location="classpath:db/rbac.sql" /> -->
 	</jdbc:initialize-database>
 
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
@@ -54,7 +52,7 @@
 		<property name="driverClass" value="org.postgresql.Driver" />
 		<property name="jdbcUrl" value="jdbc:postgresql://localhost:5432/db_${lowercase(application.appName)}" />
 		<property name="user" value="postgres" />
-		<property name="password" value="sints" />
+		<property name="password" value="MasterKey@123" />
 
 		<property name="acquireIncrement" value="10" />
 		<property name="minPoolSize" value="10" />
