@@ -300,9 +300,9 @@ define(function(require) {
 
 			if (this.column.get("name").indexOf('.') > 0) {// composto
 				var fields = this.column.get("name").split('.')
-				theColValue = model.get(fields[0]) && model.get(fields[0])[fields[1]];
+				theColValue = model.get(fields[0]) && model.get(fields[0])[fields[1]] ||  '';
 			} else {
-				theColValue = model.get(this.column.get("name"));
+				theColValue = model.get(this.column.get("name")) || '';
 			}
 
 			var theFormattedColValue = this.formatter.fromRaw(theColValue, model);
@@ -417,7 +417,7 @@ define(function(require) {
 
 		EntityCell : EntityCell,
 
-		StringCell : CustomStringCell,
+		CustomStringCell : CustomStringCell,
 
 		TemplateCell : TemplateCell,
 

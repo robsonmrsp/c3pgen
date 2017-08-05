@@ -8,6 +8,7 @@ public interface TemplateFileName {
 	final String SERVICE_JAVA = "${entity.name}Service";
 	final String SERVICE_JAVA_IMP = "${entity.name}ServiceImp";
 	final String RESOURCE_JAVA = "${entity.name}Resources";
+	final String CONTROLLER_JAVA = "${entity.name}Controller";
 
 	final String MODEL_JS = "${entity.name}";
 	final String BASIC_FORM_JS = "Form${entity.name}";

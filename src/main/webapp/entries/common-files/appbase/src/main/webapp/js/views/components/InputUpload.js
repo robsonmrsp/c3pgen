@@ -92,7 +92,7 @@ define(function(require) {
 						that.onError(_resp, _options)
 					}
 				},
-				contentType : 'multipart/form-data',
+				contentType : false,
 				parse : false,
 				processData : false,
 				data : dataFile,

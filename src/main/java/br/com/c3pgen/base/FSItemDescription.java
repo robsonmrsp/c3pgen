@@ -127,7 +127,7 @@ public class FSItemDescription {
 	public static List<FSItemDescription> rsException(String rootFolder) {
 
 		List<FSItemDescription> list = new ArrayList<FSItemDescription>();
-		list.add(new FSItemDescription("ExceptionHandler", rootFolder + File.separator + "rs" + File.separator + "exception" + File.separator, "ExceptionHandler", FileType.JAVA));
+//		list.add(new FSItemDescription("ExceptionHandler", rootFolder + File.separator + "rs" + File.separator + "exception" + File.separator, "ExceptionHandler", FileType.JAVA));
 		list.add(new FSItemDescription("ValidationException", rootFolder + File.separator + "rs" + File.separator + "exception" + File.separator, "ValidationException", FileType.JAVA));
 		return list;
 	}
@@ -135,8 +135,8 @@ public class FSItemDescription {
 	public static List<FSItemDescription> rs(String rootFolder) {
 		List<FSItemDescription> list = new ArrayList<FSItemDescription>();
 		list.add(new FSItemDescription("DataUpload", rootFolder + File.separator + "rs" + File.separator, "DataUpload", FileType.JAVA));
-		list.add(new FSItemDescription("UploadResources", rootFolder + File.separator + "rs" + File.separator, "UploadResources", FileType.JAVA));
-		list.add(new FSItemDescription("SyncResources", rootFolder + File.separator + "rs" + File.separator, "SyncResources", FileType.JAVA));
+		list.add(new FSItemDescription("UploadController", rootFolder + File.separator + "rs" + File.separator, "UploadController", FileType.JAVA));
+//		list.add(new FSItemDescription("SyncResources", rootFolder + File.separator + "rs" + File.separator, "SyncResources", FileType.JAVA));
 
 		return list;
 	}
@@ -146,10 +146,10 @@ public class FSItemDescription {
 		List<FSItemDescription> list = new ArrayList<FSItemDescription>();
 		list.add(new FSItemDescription("SpringSecurityUserContext", rootFolder + File.separator + "security" + File.separator, "SpringSecurityUserContext", FileType.JAVA));
 		list.add(new FSItemDescription("UserAuthorityUtils", rootFolder + File.separator + "security" + File.separator, "UserAuthorityUtils", FileType.JAVA));
-		list.add(new FSItemDescription("AuthorizationInterceptor", rootFolder + File.separator + "security" + File.separator, "AuthorizationInterceptor", FileType.JAVA));
+//		list.add(new FSItemDescription("AuthorizationInterceptor", rootFolder + File.separator + "security" + File.separator, "AuthorizationInterceptor", FileType.JAVA));
 		list.add(new FSItemDescription("AuthorizationService", rootFolder + File.separator + "security" + File.separator, "AuthorizationService", FileType.JAVA));
 		list.add(new FSItemDescription("AuthorizationServiceImp", rootFolder + File.separator + "security" + File.separator, "AuthorizationServiceImp", FileType.JAVA));
-		list.add(new FSItemDescription("AuthorizationResources", rootFolder + File.separator + "security" + File.separator, "AuthorizationResources", FileType.JAVA));
+//		list.add(new FSItemDescription("AuthorizationResources", rootFolder + File.separator + "security" + File.separator, "AuthorizationResources", FileType.JAVA));
 		list.add(new FSItemDescription("UserContext", rootFolder + File.separator + "security" + File.separator, "UserContext", FileType.JAVA));
 		list.add(new FSItemDescription("UserDetailsServiceImp", rootFolder + File.separator + "security" + File.separator, "UserDetailsServiceImp", FileType.JAVA));
 		return list;
@@ -166,7 +166,7 @@ public class FSItemDescription {
 		list.add(new FSItemDescription("CustomDoubleSerializer", rootFolder + File.separator + "serialization" + File.separator, "CustomDoubleSerializer", FileType.JAVA));
 		list.add(new FSItemDescription("CustomDoubleDeserializer", rootFolder + File.separator + "serialization" + File.separator, "CustomDoubleDeserializer", FileType.JAVA));
 		list.add(new FSItemDescription("CustomSyncObjectIdDeserializer", rootFolder + File.separator + "serialization" + File.separator, "CustomSyncObjectIdDeserializer", FileType.JAVA));
-		list.add(new FSItemDescription("CustomJacksonObjectMapperProvider", rootFolder + File.separator + "serialization" + File.separator, "CustomJacksonObjectMapperProvider", FileType.JAVA));
+//		list.add(new FSItemDescription("CustomJacksonObjectMapperProvider", rootFolder + File.separator + "serialization" + File.separator, "CustomJacksonObjectMapperProvider", FileType.JAVA));
 		return list;
 	}
 
