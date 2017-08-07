@@ -1,24 +1,4 @@
-- Correções a serem aplicadasque foram percebidas durante o desenvlvimento do FormOrders no AllDelivery
+Sobre segurança no Spring-mvc
 
-  Veja o Commit fb023da239c9ecf7b9ea20b677d438401af707e7 do alldelivery
- - Correção do layout do JsetupDataTable Ver em frameItemOrder
- - Ajuste no JdataTable para exibir ou não o counter e paginator(ver GRidTemplate)
- - criação de css para ajuste de layout(ver custom.js)
- 
- - implementação do NumberCell para receber atributos compostos 
-	var NumericCell = Backgrid.Cell.extend({
-		className : "custom-number-cel",
-		type : 'decimal',
-		render : function() {
-			this.$el.empty();
-			var model = this.model;
-			var theColValue = null;
-
-			if (this.column.get("name").indexOf('.') > 0) {// composto
-				var fields = this.column.get("name").split('.')
-				theColValue = parseFloat(model.get(fields[0])[fields[1]]);
-			} else {
-				theColValue = parseFloat(model.get(this.column.get("name")));
-			}
-Fim do commit fb023da239c9ecf7b9ea20b677d438401af707e7
+http://www.studytrails.com/frameworks/spring/spring-security-method-level/
 

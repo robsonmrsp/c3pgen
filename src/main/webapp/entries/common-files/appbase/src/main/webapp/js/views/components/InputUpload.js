@@ -40,6 +40,8 @@ define(function(require) {
 			this.on('show', function() {
 				if (that._getBindEl() && that._getBindEl().val()) {
 					this.ui.imageView.attr('src', that._getBindEl().val());
+				} else {
+					this.ui.imageView.attr('src', that.noImage);
 				}
 				if (that.noImage) {
 					this.ui.imageView.attr('no-image-file', that.noImage);
@@ -98,11 +100,11 @@ define(function(require) {
 				data : dataFile,
 			});
 		},
-		
+
 		clear : function() {
 			this.ui.uploadImage.attr('src', this.ui.uploadImage.attr('no-image-file'));
-		}, 
-		
+		},
+
 		_getBindEl : function() {
 			if (this.bindElement) {
 				if (!(this.bindElement instanceof jQuery)) {

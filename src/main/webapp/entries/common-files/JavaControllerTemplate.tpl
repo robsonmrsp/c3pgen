@@ -219,7 +219,9 @@ public class ${entity.name}Controller {
 			<#else>
 			${entity.name} ${firstLower(entity.name)} = ${firstLower(entity.name)}Service.get(id);
 			</#if>
-
+			if (${firstLower(entity.name)} == null) {
+				return new ResponseEntity(HttpStatus.NO_CONTENT);
+			}
 			return ResponseEntity.ok(Parser.toJson(${firstLower(entity.name)}));
 
 		} catch (Exception e) {
