@@ -1,6 +1,7 @@
 Changelog do GERADO
 
 v0.95:
+ - Gerando no controller o metodo update chamando o update do serviço
  - Gerando o @Cascade comentado.
  - Gerando cell : JSetup.CustomStringCell para celulas exibidas como string mesmo sendo compostas. Ex, "priduct.name"
  - Alterado o JSetup.View para usar todas as functions do util como templateHelper. Utilizado no underscore template
