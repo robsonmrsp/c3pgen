@@ -268,7 +268,7 @@ public class ${entity.name}Controller {
 			${firstLower(entity.name)}.setOwner(context.getCurrentUser().getOwner());
 			</#if>
 
-			${firstLower(entity.name)} = ${firstLower(entity.name)}Service.save(${firstLower(entity.name)});
+			${firstLower(entity.name)} = ${firstLower(entity.name)}Service.update(${firstLower(entity.name)});
 			return ResponseEntity.ok(Parser.toJson(${firstLower(entity.name)}));
 		} catch (ValidationException e) {
 			String message = String.format("Não foi possivel salvar  o registro [ %s ] parametros [ %s ]", e.getOrigem().getMessage(), json${entity.name}.toString());
