@@ -123,9 +123,9 @@ define(function(require) {
 			})
 
 			var bbColumns = new Backgrid.Columns(options.columns);
-
+			
 			if (options.showColManager) {
-				options.columns.push({
+				bbColumns.add({
 					label : "ColumnManager_visibility_tool",
 					cell : "string",
 					alwaysVisible : true,
@@ -142,6 +142,7 @@ define(function(require) {
 					columnManager : colManager
 				});
 			}
+
 			this.grid = new Backgrid.Grid({
 				row : options.row,
 				className : options.className || options.gridClass || 'table backgrid table-striped table-bordered table-hover dataTable no-footer  ',
@@ -284,7 +285,7 @@ define(function(require) {
 			var model = this.model;
 			var theColValue = model.get(this.column.get("name"));
 
-			this.$el.html(this.formatter.fromRaw(this._template(theColValue), model));
+			this.$el.html(this.formatter.fromRaw(this._template(model && model.toJSON()), model));
 
 			this.delegateEvents();
 			return this;
@@ -300,9 +301,9 @@ define(function(require) {
 
 			if (this.column.get("name").indexOf('.') > 0) {// composto
 				var fields = this.column.get("name").split('.')
-				theColValue = model.get(fields[0]) && model.get(fields[0])[fields[1]] ||  '';
+				theColValue = model.get(fields[0]) && model.get(fields[0])[fields[1]];
 			} else {
-				theColValue = model.get(this.column.get("name")) || '';
+				theColValue = model.get(this.column.get("name"));
 			}
 
 			var theFormattedColValue = this.formatter.fromRaw(theColValue, model);
@@ -338,9 +339,15 @@ define(function(require) {
 			return this;
 		}
 	});
+	// var viewHelpers = {
+	// formatNumeric : util.formatNumeric,
+	// truncDate : util.truncDate
+	// }
+	var SimpleView = Marionette.LayoutView.extend({});
 
 	var View = Marionette.LayoutView.extend({
 		templateHelpers : util,
+
 		onShow : function() {
 			$.validate({
 				modules : 'location, date, security, brazil',
@@ -389,6 +396,7 @@ define(function(require) {
 	var JSetup = {
 
 		View : View,
+		SimpleView : SimpleView,
 		RowClick : RowClick,
 
 		Counter : Counter,
@@ -417,7 +425,7 @@ define(function(require) {
 
 		EntityCell : EntityCell,
 
-		CustomStringCell : CustomStringCell,
+		StringCell : CustomStringCell,
 
 		TemplateCell : TemplateCell,
 
@@ -426,14 +434,12 @@ define(function(require) {
 		DataTable : DataTable,
 
 		InputUpload : InputUpload,
-
 		InputButtonUpload : InputButtonUpload,
-
 		Suggestbox : Suggestbox,
 
 		BaseModel : BaseModel,
-
 		BaseCollection : BaseCollection,
+
 	}
 	return JSetup;
 });

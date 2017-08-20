@@ -3,7 +3,7 @@
 	<div class="panel-heading">
 		<h3 class="panel-title">
 			<i class="fa fa-search"></i>
-			Pesquisa de ${firstUpper(entity.name)}.
+			Pesquisa de ${firstUpper(entity.displayName)}.
 		</h3>
 	</div>
 	<div class="panel-body">
