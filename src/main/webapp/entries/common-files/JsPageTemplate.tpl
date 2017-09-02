@@ -220,7 +220,7 @@ define(function(require) {
 		 
 		search${firstUpper(entity.name)} : function(){
 			var that = this;
-			this.ui.loadButton.button('loading');
+			util.loadButton(this.ui.loadButton)
 			this.${firstLower(entity.name)}s.filterQueryParams = {
 			<#list entity.attributes as att>
 				<#if att.showInPages && att.viewApproach.type  != 'upload'>
@@ -403,11 +403,11 @@ define(function(require) {
 			}
 		},
 		startFetch : function() {
-			this.ui.loadButton.button('loading')
+			util.loadButton(this.ui.loadButton)
 		},
 
 		stopFetch : function() {
-			this.ui.loadButton.button('reset')
+			util.resetButton(this.ui.loadButton)
 		}
 	});
 

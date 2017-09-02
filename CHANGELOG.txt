@@ -1,6 +1,8 @@
 Changelog do GERADO
 
 v0.95:
+ - Fontes animadas, sons, bootsrapSwitch, summernote, tagsinput, etc.
+ - Melhorando o Counter para que possa sinalizar o fetch
  - Gerando no controller o metodo update chamando o update do serviço
  - Gerando o @Cascade comentado.
  - Gerando cell : JSetup.CustomStringCell para celulas exibidas como string mesmo sendo compostas. Ex, "priduct.name"
