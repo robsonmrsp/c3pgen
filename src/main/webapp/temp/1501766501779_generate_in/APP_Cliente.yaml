@@ -1,0 +1,11 @@
+- name: Cliente
+  hasOwner: false 
+  displayName: Cliente
+  tableName: CLIENTE
+  attributes:                     
+  relationships:                     
+  - name: prestacaoContass
+    type: OneToMany
+    ownerName: cliente
+    model: PrestacaoContas                       
+    displayName: Prestacao contas

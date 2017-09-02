@@ -1,0 +1,11 @@
+- name: Corrida
+  hasOwner: false 
+  displayName: Corrida
+  tableName: CORRIDA
+  attributes:                     
+  relationships:                     
+  - name: transacaos
+    type: OneToMany
+    ownerName: corrida
+    model: Transacao                       
+    displayName: Transacao
