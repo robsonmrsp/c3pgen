@@ -1,0 +1,32 @@
+<div class="panel-body text-center">
+	<img height="128" style="cursor: pointer;" src='images/upload-file.png' no-image-file='' class="input-image jsetup-upload-image   mar-btm">
+	<div class="">
+		<p class="text-sm text-muted">Click para escolher um arquivo</p>
+		<a href="javascript:void(-1)" class="show-preview">
+			<i class="fa fa-2x fa-external-link" aria-hidden="true"></i>
+		</a>
+	</div>
+</div>
+<input type="file" name="files[]" style="display: none" class="input-upload-file" multiple="multiple">
+
+<div class="modal fade" id="dialogAttachment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">
+					<i class="fa fa-times-circle-o fa-2x"></i>
+					<span class="sr-only">Close</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel"></h4>
+			</div>
+			<div class="modal-body" style="min-height: 300px">
+				<div class="row-fluid" style="min-height: 300px">
+					<iframe class="iframe-modal col-lg-12 col-md-12 col-sm-12" src="" style="min-height: 300px"></iframe>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button data-dismiss="modal" class="btn btn-default" type="button">Fechar</button>
+			</div>
+		</div>
+	</div>
+</div>

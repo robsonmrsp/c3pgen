@@ -48,6 +48,12 @@ require.config({
 		'typeahead' : '../vendor/typeahead/typeahead.jquery',
 		'bloodhound' : '../vendor/typeahead/bloodhound',
 		'sweetAlert' : '../vendor/sweetalert-1.1.3/dist/sweetalert-dev',
+		'tagsinput' : '../vendor/bootstrap-tagsinput-0.8.0/dist/bootstrap-tagsinput',
+		'nestable' : '../vendor/Nestable-master/jquery.nestable',
+
+		'bootstrapSwitch' : '../vendor/bootstrap-switch-3.3.4/dist/js/bootstrap-switch',
+		'summernote' : '../vendor/summernote-0.8.7/dist/summernote',
+		'ionsound' : '../vendor/ion.sound-3.0.7/ion.sound',
 	},
 	shim : {
 
@@ -134,9 +140,14 @@ require.config({
 		'jqueryInputMask' : [ 'jquery' ],
 		'jqueryFormValidator' : [ 'jquery' ],
 		'sweetAlert' : [ 'jquery' ],
-		
+
 		'metisMenu' : [ 'jquery' ],
 		'nifty' : [ 'jquery' ],
+		'tagsinput' : [ 'jquery' ],
+		'ionsound' : [ 'jquery' ],
+		'bootstrapSwitch' : [ 'jquery' ],
+		'summernote' : [ 'jquery' ],
+		'nestable' : [ 'jquery' ],
 	},
 	wrapShim : true,
 });

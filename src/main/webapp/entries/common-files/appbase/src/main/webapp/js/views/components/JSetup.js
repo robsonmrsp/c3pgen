@@ -14,6 +14,7 @@ define(function(require) {
 	var Combobox = require('views/components/Combobox');
 	var Multiselect = require('views/components/Multiselect');
 	var InputUpload = require('views/components/InputUpload');
+	var InputAllUpload = require('views/components/InputAllUpload');
 	var InputButtonUpload = require('views/components/InputButtonUpload');
 	var Suggestbox = require('views/components/Suggestbox');
 	var BooleanBadgeCell = require('views/components/BooleanBadgeCell');
@@ -29,13 +30,15 @@ define(function(require) {
 			outputInitialPage : '.initial-page',
 
 			noElementsSpan : '.has-no-elements',
+
 			elementsSpan : '.has-elements',
 
 			outputFinalPage : '.final-page',
 
 			outputTotalRecords : '.total-records',
 
-			inputComboPageSize : '.combo-page-size'
+			inputComboPageSize : '.combo-page-size',
+			loadingElements : '.loading-elements'
 		},
 		changePageSize : function() {
 			var newPageSize = parseInt(this.ui.inputComboPageSize.val() || 10);
@@ -47,6 +50,10 @@ define(function(require) {
 			this.listenTo(this.collection, "add", this.atualiza);
 			this.listenTo(this.collection, "remove", this.atualiza);
 			this.listenTo(this.collection, "reset", this.atualiza);
+
+			this.listenTo(this.collection, "request", this.startRequest);
+			// this.listenTo(this.collection, "sync", this.endRequest);
+
 			this.on('show', function() {
 				this.ui.inputComboPageSize.val();
 				this.ui.outputInitialPage.text();
@@ -55,6 +62,13 @@ define(function(require) {
 				this.atualiza();
 			});
 		},
+		startRequest : function() {
+			this.ui.noElementsSpan.hide();
+			this.ui.elementsSpan.hide();
+			
+			this.ui.loadingElements.show();
+
+		},
 
 		atualiza : function() {
 			this.ui.elementsSpan.hide();
@@ -62,11 +76,12 @@ define(function(require) {
 			if (this.collection.size() == 0) {
 				this.ui.noElementsSpan.show();
 				this.ui.elementsSpan.hide();
-
+				this.ui.loadingElements.hide();
 				this.ui.outputInitialPage.text(0);
 				this.ui.outputFinalPage.text(0);
 				this.ui.outputTotalRecords.text(0);
 			} else if (this.collection && this.collection instanceof Backbone.PageableCollection) {
+				this.ui.loadingElements.hide();
 				this.ui.noElementsSpan.hide();
 				this.ui.elementsSpan.show();
 				// this.el.html("testando");
@@ -123,7 +138,7 @@ define(function(require) {
 			})
 
 			var bbColumns = new Backgrid.Columns(options.columns);
-			
+
 			if (options.showColManager) {
 				bbColumns.add({
 					label : "ColumnManager_visibility_tool",
@@ -434,6 +449,7 @@ define(function(require) {
 		DataTable : DataTable,
 
 		InputUpload : InputUpload,
+		InputAllUpload : InputAllUpload,
 		InputButtonUpload : InputButtonUpload,
 		Suggestbox : Suggestbox,
 

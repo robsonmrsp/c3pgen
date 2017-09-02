@@ -8,6 +8,24 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'adapters/unders
 
 	window.logFile = LOG_FILE;
 
+	ion.sound({
+		sounds : [ {
+			name : "beer_can_opening"
+		}, {
+			name : "bell_ring"
+		}, {
+			name : "branch_break"
+		}, {
+			name : "button_click"
+		} ],
+
+		// main config
+		path : "sounds/",
+		preload : true,
+		multiplay : true,
+		volume : 0.9
+	});
+
 	window.addLogEntry = function(entry) {
 		if (window.logFile.size() > 1000) {
 			window.logFile.remove(0);
@@ -135,14 +153,15 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'adapters/unders
 		markActiveItem : function(itemId) {
 			try {
 				var itens = $('.nav .sub li a');
-				itens.parent().parent().removeClass('show')
+				itens.parent().removeClass('active');
+				itens.parent().parent().removeClass('show');
 				itens.removeClass('active');
 
 				$('#' + itemId).addClass('active');
 
 				var parent = $('#' + itemId).parent();
 				if (parent) {
-					$('#nav-accordion').find('li').removeClass('active')
+					$('#mainnav-menu').find('li').removeClass('active')
 					parent.parent().addClass('active').addClass('open');
 					parent.find('li').removeClass('active');
 					parent.addClass('collapse in');
@@ -198,6 +217,9 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'adapters/unders
 			}
 		},
 
+		goNewLocalTab : function(hash, wait) {
+			window.open("#" + hash);
+		},
 		goPage : function(hash, wait) {
 			if (wait)
 				window.setTimeout(function() {
@@ -483,13 +505,14 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'adapters/unders
 			var _number = number || 0;
 			return _number.formatMoney(places, ',', '.')
 		},
+
 		configureSuggest : function(suggestConfig) {
 			var bloodhound = new Bloodhound({
 				datumTokenizer : Bloodhound.tokenizers.obj.whitespace(suggestConfig.showValue),
 				queryTokenizer : Bloodhound.tokenizers.whitespace,
 				prefetch : false,
 				remote : {
-					url : suggestConfig.collection.url + '/filterAlike?' + suggestConfig.showValue + '=%QUERY',
+					url : suggestConfig.collection.url + '/filterAlike?' + (suggestConfig.queryValue || suggestConfig.showValue) + '=%QUERY',
 					wildcard : '%QUERY',
 					cache : false
 				}
@@ -498,7 +521,6 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'adapters/unders
 			var field = $(suggestConfig.field);
 			field.typeahead({
 				hint : false,
-
 				// minLength : 1,
 				highlight : true,
 				highlighter : function(item) {
@@ -507,7 +529,18 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'adapters/unders
 				},
 			}, {
 				name : 'modal-jsetup-input-suggest',
-				display : suggestConfig.showValue,
+				display : function(item) {
+					if (suggestConfig.display) {
+						var showValues = suggestConfig.display.split(',')
+						if (showValues.length == 1)
+							return item[showValues[0]];
+						if (showValues.length == 2)
+							return item[showValues[0]] + ' - ' + item[showValues[1]];
+						if (showValues.length == 3)
+							return item[showValues[0]] + ' - ' + item[showValues[1]] + ' - ' + item[showValues[2]];
+					}
+					return item[suggestConfig.showValue];
+				},
 				source : bloodhound,
 				limit : 15,
 				templates : {
@@ -523,7 +556,7 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'adapters/unders
 			})
 
 			field.bind('change', function(evt) {
-				if(!field.val()){
+				if (!field.val()) {
 					if (suggestConfig.onSelect) {
 						suggestConfig.onSelect(null);
 					}
@@ -562,12 +595,105 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'adapters/unders
 				type : options.type || "error",
 				showCancelButton : true,
 				closeOnConfirm : false,
-				showLoaderOnConfirm : true,
+				showLoaderOnConfirm : false,
 			}, function() {
 				if (options.onConfirm) {
 					options.onConfirm();
 				}
 			});
+		},
+		truncDate : function(dateTime) {
+			if (dateTime.length > 10) {
+				return dateTime.substring(0, 11);
+			}
+			return dateTime;
+		},
+		toRing : function() {
+			ion.sound.play("bell_ring");
+		},
+		truncHour : function(dateTime) {
+			if (dateTime.length > 10) {
+				return dateTime.substring(10, dateTime.length + 1);
+			}
+			return dateTime;
+		},
+
+		formatTelefone : function(numTelefone) {
+
+			var v = numTelefone.replace(/\D/g, ""); // Remove tudo o que não é
+			// dígito
+			var len = v.length;
+			v = v.replace(/^(\d{2})(\d)/g, "($1) $2");
+			if (len == 10) {
+				v = v.replace(/(\d)(\d{4})$/, "$1-$2");
+			} else if (len == 11) {
+				v = v.replace(/(\d)(\d{5})$/, "$1-$2");
+			}
+			return v;
+		},
+		getFiletype : function(responseType) {
+			if (responseType === 'images/jpeg') {
+				return 'JPEG'
+			}
+			if (responseType === 'images/png') {
+				return 'PNG'
+			}
+			if (responseType === 'text/html') {
+				return 'HTML'
+			}
+			if (responseType === 'text/plain') {
+				return 'TEXT'
+			}
+			if (responseType === 'application/pdf') {
+				return 'PDF'
+			}
+		},
+		
+		disableAll : function(element) {
+			element.find('input').prop('disabled', 'disabled');
+			element.find('select').prop('disabled', 'disabled');
+			element.find('button').prop('disabled', 'disabled');
+			element.find('textarea').prop('disabled', 'disabled');
+			element.find('a').bind('click', function(e) {
+				e.preventDefault();
+				e.stopPropagation();
+				return false;
+			})
+			element.find('div').bind('click', function(e) {
+				e.preventDefault();
+				e.stopPropagation();
+				return false;
+			})
+			element.find('button').bind('click', function(e) {
+				e.preventDefault();
+				e.stopPropagation();
+				return false;
+			})
+			element.find('*').bind('click', function(e) {
+				e.preventDefault();
+				e.stopPropagation();
+				return false;
+			})
+		},
+		loadButton : function($el) {
+			if (!_.isUndefined($el) && _.isString($el)) {
+				return false;
+			}
+			if (_.isFunction($el.button)) {
+				$el.button('loading');
+			}
+
+		},
+		resetButton : function($el) {
+			if (!_.isUndefined($el) && _.isString($el)) {
+				return false;
+			}
+
+			if (_.isFunction($el.button)) {
+				$el.button('reset');
+			}
+			
 		}
+
 	};
 });

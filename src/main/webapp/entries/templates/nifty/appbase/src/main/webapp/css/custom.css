@@ -902,3 +902,58 @@ span.twitter-typeahead {
 .counter-component {
 	margin-top: 15px	
 }
+th.image{
+	width: 100px !important;
+	text-align: center	
+}
+.image-view {
+	width: 100px !important;
+	text-align: center	
+}
+
+
+@media (min-width: 768px) {
+	.invoice-print{
+		padding-left: 100px !important; 
+		padding-right: 100px !important;
+	}
+}
+@media (min-width: 992px) {
+	.invoice-print{
+		padding-left: 150px !important; 
+		padding-right: 150px !important;
+	}
+}
+@media (min-width: 1200px) {
+	.invoice-print{
+		padding-left: 250px !important; 
+		padding-right: 250px !important;
+	}
+}
+@media (min-width: 1600px) {
+	.invoice-print{
+		padding-left: 350px !important; 
+		padding-right: 350px !important;
+	}
+}
+/* Para o desenho da coluna de statusOrder no pageOrders */
+.statusOrder{
+	text-align: center !important;
+}
+	
+.status-order{
+	width: 140px !important;
+	text-align: center !important;
+}
+.widget-order{
+	margin: 20px;
+}
+iframe{
+	border : 1px !important;
+}
+iframe.iframe-modal img{
+	text-align: center !important;
+}
+.checkbox-label{
+	margin-bottom: 5px !important;
+}

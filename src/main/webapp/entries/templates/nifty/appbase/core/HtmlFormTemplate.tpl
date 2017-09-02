@@ -14,12 +14,11 @@
 				<#list entity.attributes as att>
 				  <#if att.viewApproach?? >
 					<#if att.type.className == 'Boolean' && att.viewApproach.type  == 'check'  >
-					<div id="groupInput${firstUpper(att.name)}" class="form-group    checkbox">
-						<label class="checkbox ">
-							<input id="input${firstUpper(att.name)}" type="checkbox" {{${firstLower(att.name)} ? 'checked' :''}}>
-							${firstUpper(att.displayName)}
-						</label>
+					<div id="groupInput${firstUpper(att.name)}" class="form-group col-sm-12 col-md-4 col-lg-4">
+						<p class="checkbox-label" for="input${firstUpper(att.name)}">${firstUpper(att.displayName)}</p>
+						<input type="checkbox" id="input${firstUpper(att.name)}" {{${firstLower(att.name)} ? 'checked' :''}}>
 					</div>
+					
 					<#elseif att.viewApproach.type  == 'datepicker'  >
 					<div id="groupInput${firstUpper(att.name)}Container" class="form-group   ">
 						<label class="control-label" for="input${firstUpper(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}  ${att.required ? string('*','')}</label>

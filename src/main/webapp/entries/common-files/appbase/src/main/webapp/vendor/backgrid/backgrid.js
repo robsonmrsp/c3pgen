@@ -1881,7 +1881,7 @@
 				}
 				if (dir && this.column.get('sortable')) {
 					if (dir == 'ascending') {
-						//fa-sort-numeric-asc
+						// fa-sort-numeric-asc
 						a.removeClass('fa fa-sort-alpha-desc');
 						a.addClass('fa fa-sort-alpha-asc');
 						
@@ -2049,7 +2049,14 @@
 		 */
 		render : function() {
 			this.$el.empty();
-			var $label = $("<a>").text(this.column.get("label")).append('&nbsp;').append("<b id='" + this.column.get("name") + "' class=''></b>");
+			var $label = null;
+			
+			if(this.column.get("sortable")){
+				$label = $("<a>").text(this.column.get("label")).append('&nbsp;').append("<b id='" + this.column.get("name") + "' class=''></b>");
+			// add by jsetup
+			}else{
+				$label = $("<a>").text(this.column.get("label")).append("<b id='" + this.column.get("name") + "' class=''></b>");
+			}
 			// var $label = $("<a>").text(this.column.get("label")).append("<b
 			// class='icon-sort-by-alphabet'></b>");
 			this.$el.append($label);

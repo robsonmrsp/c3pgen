@@ -62,6 +62,25 @@ define(function(require) {
 
 			}
 		},
+		uploadOneFile_lixo : function(file) {
+			var oMyForm = new FormData();
+			oMyForm.append("file", file);
+			$.ajax({
+				dataType : 'json',
+				url : "rs/crud/uploads/file",
+				data : oMyForm,
+				type : "POST",
+				enctype : 'multipart/form-data',
+				processData : false,
+				contentType : false,
+				success : function(result) {
+					// ...;
+				},
+				error : function(result) {
+					// ...;
+				}
+			});
+		},
 
 		uploadOneFile : function(file) {
 			var that = this;
@@ -94,7 +113,7 @@ define(function(require) {
 						that.onError(_resp, _options)
 					}
 				},
-				contentType : false,
+				contentType : false,// 'multipart/form-data',
 				parse : false,
 				processData : false,
 				data : dataFile,

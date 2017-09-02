@@ -127,6 +127,9 @@ define(function(require) {
 		onShowView : function() {
 			var that = this;
 		<#list entity.attributes as att>
+		  <#if att.type.className == 'Boolean' && att.viewApproach.type  == 'check'  >
+		    this.ui.input${firstUpper(att.name)}.bootstrapSwitch();
+		  </#if>
 		  <#if att.inputAs == 'cpf' >
 			this.ui.input${firstUpper(att.name)}.cpf();
 		  </#if>	

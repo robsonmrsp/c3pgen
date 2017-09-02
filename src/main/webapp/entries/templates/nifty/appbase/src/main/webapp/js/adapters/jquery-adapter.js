@@ -1,5 +1,10 @@
 define([ 'jquery', 'bootstrap', 'jqueryScrollTo', 'datetimepicker', 'datetimepicker_lang_pt_BR', 'jqueryUI', 'nprogress', 'jqueryGritter', 'selectize', 'jqueryForm', 'jqueryChosen', 'jqueryInputMask', 'typeahead', 'bloodhound', 'jqueryFormValidator', 'sweetAlert', 'metisMenu',
-		'nifty' ], function($) {
+		'nifty', 'tagsinput', 'ionsound', 'bootstrapSwitch', 'summernote' ,'nestable'], function($, styleCheck) {
+
+	// http://bootstrapswitch.com/options.html
+	$.fn.bootstrapSwitch.defaults.size = 'small';
+	$.fn.bootstrapSwitch.defaults.onText = 'Sim';
+	$.fn.bootstrapSwitch.defaults.offText = 'Não';
 	$.fn.datetimepicker.defaults.icons = {
 		time : "fa fa-clock-o",
 		date : "fa fa-calendar",
@@ -90,6 +95,7 @@ define([ 'jquery', 'bootstrap', 'jqueryScrollTo', 'datetimepicker', 'datetimepic
 	$.fn.date = function() {
 		this.datetimepicker({
 			pickTime : false,
+
 			language : 'pt_BR',
 		});
 
@@ -169,6 +175,14 @@ define([ 'jquery', 'bootstrap', 'jqueryScrollTo', 'datetimepicker', 'datetimepic
 		});
 	}
 
+	$.fn.creditcard = function(places) {
+
+		this.inputmask({
+			mask : [ '9999-999999-99999', '9999-9999-9999-9999' ],
+			greedy : false,
+			clearIncomplete : true,
+		});
+	}
 	$.fn.fone = function(places) {
 
 		this.inputmask({
