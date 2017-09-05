@@ -270,7 +270,7 @@ define(function(require) {
 		  		<#elseif att.inputAs == 'money'>
 		  		cell : JSetup.MoneyCell,	
 		  		<#else>
-				cell 	 : "string",
+				cell : JSetup.CustomStringCell
 		  		</#if>	
 			}, 
 		  		</#if>	
@@ -335,7 +335,7 @@ define(function(require) {
 		  		<#elseif att.inputAs == 'money'>
 		  		cell : JSetup.MoneyCell,	
 		  		<#else>
-				cell 	 : "string",
+				cell : JSetup.CustomStringCell,
 		  		</#if>	
 			}, 
 		  		</#if>	

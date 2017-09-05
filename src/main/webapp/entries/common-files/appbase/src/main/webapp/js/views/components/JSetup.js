@@ -130,7 +130,7 @@ define(function(require) {
 
 			// adicionando uma header compativel com tipos numericos
 			_.each(options.columns, function(col) {
-				if (col.cell.__super__ && col.cell.__super__.className == 'custom-number-cel') {
+				if (col.cell && col.cell.__super__ && col.cell.__super__.className == 'custom-number-cel') {
 					col.headerCell = Backgrid.HeaderCell.extend({
 						className : 'custom-number-cel'
 					})
@@ -438,9 +438,7 @@ define(function(require) {
 
 		ActionCell : GeneralCell,
 
-		EntityCell : EntityCell,
-
-		StringCell : CustomStringCell,
+		CustomStringCell : CustomStringCell,
 
 		TemplateCell : TemplateCell,
 

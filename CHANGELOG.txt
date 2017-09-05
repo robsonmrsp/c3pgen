@@ -1,6 +1,9 @@
 Changelog do GERADO
 
 v0.95:
+-  Corrigido o JSetup para utilizar o CustomStringCell.
+-  Alterada a geração para SEMPRE gerar 'cell : JSetup.CustomStringCell' nos grids cuja represenação deva ser uma string;
+-  Delegando para o util chamar o reset e o load dos butons para evitar o numpointerexception
  - Fontes animadas, sons, bootsrapSwitch, summernote, tagsinput, etc.
  - Melhorando o Counter para que possa sinalizar o fetch
  - Gerando no controller o metodo update chamando o update do serviço

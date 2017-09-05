@@ -106,7 +106,7 @@ define(function(require) {
 		  		<#elseif att.inputAs == 'decimal' || att.type.className == 'Double'>
 		  		cell : JSetup.DecimalCell,	
 		  		<#else>
-				cell : JSetup.CustomStringCell
+				cell : JSetup.CustomStringCell,
 		  		</#if>	
 			}, 
 			  	</#if>	
