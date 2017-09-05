@@ -4,5 +4,40 @@ usar o template
 	
 	parece ser melhor
 	http://thetheme.io/thedocs/layout_full_left-sidebar.html
+
 	
+DataTable
+-	Options/Atributos: 
+		className,   
+		row, 	 
+		columns,
+		collection, 
+		emptyText, 
+		
+		options.showCounter, 
+		options.showPaginator, 
+		options.showColManager,
+- Objetos internos.
+
+	JSetup.RowClick
 	
+	JSetup.Counter
+	
+	JSetup.Paginattor,
+	 
+-	Tipos de Celulas
+	 Geradas
+		JSetup.PercentCell,
+		JSetup.MoneyCell,	
+		JSetup.DecimalCell,	
+		JSetup.CustomStringCell
+	
+	 Pode-se Alterar:
+		JSetup.TemplateCell 
+		JSetup.ActionCell 
+		JSetup.BooleanBadgeCell 
+
+		
+		
+	
+		
