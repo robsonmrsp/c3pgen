@@ -1,13 +1,7 @@
-usar o template
+Pluguins jquery enbutidos na solução.
 
-	http://gugggly.com/templates/doc-web/index.html
-	
-	parece ser melhor
-	http://thetheme.io/thedocs/layout_full_left-sidebar.html
-
-	
 DataTable
--	Options/Atributos: 
+- Options/Atributos: 
 		className,   
 		row, 	 
 		columns,

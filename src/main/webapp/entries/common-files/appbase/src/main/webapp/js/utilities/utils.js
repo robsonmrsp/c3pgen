@@ -512,7 +512,7 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'adapters/unders
 				queryTokenizer : Bloodhound.tokenizers.whitespace,
 				prefetch : false,
 				remote : {
-					url : suggestConfig.collection.url + '/filterAlike?' + (suggestConfig.queryValue || suggestConfig.showValue) + '=%QUERY',
+					url : suggestConfig.collection.url + '/filterAlike?' + (suggestConfig.queryValue || suggestConfig.showValue) + '=%QUERY' + '&' + (suggestConfig.extraQuery || ''),
 					wildcard : '%QUERY',
 					cache : false
 				}
@@ -563,7 +563,11 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'adapters/unders
 				}
 			})
 			field.bind('typeahead:change', function(evt, model) {
-				// console.log(evt, model);
+				if (!field.val()) {
+					if (suggestConfig.onSelect) {
+						suggestConfig.onSelect(null);
+					}
+				}
 			})
 
 		},
@@ -585,7 +589,7 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'adapters/unders
 		},
 
 		alert : function(options) {
-			swal(options.title || "Ok", options.text || "Alert!!", options.type || "success");
+			swal(options.title || "Info", options.text || "!!", options.type || "success");
 		},
 
 		confirm : function(options) {
@@ -648,7 +652,7 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'adapters/unders
 				return 'PDF'
 			}
 		},
-		
+
 		disableAll : function(element) {
 			element.find('input').prop('disabled', 'disabled');
 			element.find('select').prop('disabled', 'disabled');
@@ -692,7 +696,7 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'adapters/unders
 			if (_.isFunction($el.button)) {
 				$el.button('reset');
 			}
-			
+
 		}
 
 	};
