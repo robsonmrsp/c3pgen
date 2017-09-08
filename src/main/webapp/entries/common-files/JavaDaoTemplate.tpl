@@ -33,6 +33,17 @@ public class Dao${entity.name} extends AccessibleHibernateDao<Filter${entity.nam
 	<#if entity.attributes??>	
 	<#list entity.attributes as att>
 	<#if att.unique == true>
+		<#if entity.hasOwner>
+	public ${entity.name} findBy${firstUpper(att.name)}(String ${att.name}, CustomerOwner owner) {
+		${entity.name} ${firstLower(entity.name)} = null;
+		try {
+			${firstLower(entity.name)} = (${entity.name}) criteria().add(Restrictions.eq("${att.name}", ${att.name})).add(Restrictions.eq("owner", owner)).uniqueResult();
+		} catch (Exception e) {
+			LOGGER.error("Erro ao obter ${entity.displayName} pelo ${att.name}," + ${att.name}, e);
+		}
+		return ${firstLower(entity.name)};
+	}
+		<#else>
 	public ${entity.name} findBy${firstUpper(att.name)}(String ${att.name}) {
 		${entity.name} ${firstLower(entity.name)} = null;
 		try {
@@ -42,6 +53,7 @@ public class Dao${entity.name} extends AccessibleHibernateDao<Filter${entity.nam
 		}
 		return ${firstLower(entity.name)};
 	}
+		</#if>	
 	</#if>	
 	</#list>
 	</#if>	

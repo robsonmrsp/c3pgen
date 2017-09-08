@@ -1,7 +1,10 @@
 Changelog do GERADO
 
 v0.95:
-  
+-  Gerando os daoXpto.findXyz considerando tambem o CustomerOwner  
+-  Refatorada a geração do DaoXPTO para gerar apenas o que muda de uma entidade para outra!
+-  Corrigindo o import dos css e trazendo a past sounds
+-  Geração da constraint considerando o cliente
 -  Removida a geração de classes de sincronia.
 -  Alterado de Client para CustomerOwner o nome da entidade que referenciará o cliente  da aplicação
 -  Removido o joda.time do projeto gerado. Consequentemente foi adicionado a dependencia do hibernate java8 no pom.
