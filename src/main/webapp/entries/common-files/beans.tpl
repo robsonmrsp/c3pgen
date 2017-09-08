@@ -25,9 +25,7 @@
 	<tx:annotation-driven />
 	<mvc:annotation-driven />
 	<context:annotation-config />
-
 	<context:component-scan base-package="${application.rootPackage}" />
-
 	<context:property-placeholder />
 	
 	<mvc:resources mapping="/login.html" location="/login.html" />
@@ -39,21 +37,15 @@
 	<mvc:resources mapping="/decorators/**" location="/decorators/" />
 	<mvc:resources mapping="/downloads/**" location="/downloads/" />
 	<mvc:resources mapping="/fonts/**" location="/fonts/" />
+	<mvc:resources mapping="/sounds/**" location="/sounds/" />
 	<mvc:resources mapping="/images/**" location="/images/" />
 	<mvc:resources mapping="/javascript/**" location="/javascript/" />
 	<mvc:resources mapping="/js/**" location="/js/" />
 	<mvc:resources mapping="/j/**" location="/j/" />
 	<mvc:resources mapping="/uploads/**" location="/uploads/" />
 
-	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
-	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/views/" />
-		<property name="suffix" value=".jsp" />
-	</bean>
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<!-- max upload size in bytes -->
 		<property name="maxUploadSize" value="20971520" /> <!-- 20MB -->
-		<!-- max size of file in memory (in bytes) -->
 		<property name="maxInMemorySize" value="1048576" /> <!-- 1MB -->
 	</bean>
 	
@@ -65,7 +57,6 @@
 
 	<jdbc:initialize-database ignore-failures="ALL">
 		<jdbc:script location="classpath:db/seed.sql" />
-		<!-- <jdbc:script location="classpath:db/rbac.sql" /> -->
 	</jdbc:initialize-database>
 
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
