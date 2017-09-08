@@ -1,7 +1,7 @@
 Changelog do GERADO
 
 v0.95:
--  
+  
 -  Removida a geração de classes de sincronia.
 -  Alterado de Client para CustomerOwner o nome da entidade que referenciará o cliente  da aplicação
 -  Removido o joda.time do projeto gerado. Consequentemente foi adicionado a dependencia do hibernate java8 no pom.

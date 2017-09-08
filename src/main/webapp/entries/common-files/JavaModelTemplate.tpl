@@ -46,7 +46,11 @@ import ${corepackage}.model.AbstractTimestampEntity;
 @Table(name = "${dataBasePrefix}_${uppercase(entity.tableName!entity.name)}", uniqueConstraints = {
 	<#list entity.attributes as att >
 		<#if att.unique>
+			<#if entity.hasOwner>
+		@UniqueConstraint(name = "${dataBasePrefix}_${uppercase(entity.tableName!entity.name)}_${uppercase(att.tableFieldName!att.name)}", columnNames = { "${uppercase(att.tableFieldName!att.name)}", "ID_CUSTOMER_OWNER" }),
+			<#else>		
 		@UniqueConstraint(name = "${dataBasePrefix}_${uppercase(entity.tableName!entity.name)}_${uppercase(att.tableFieldName!att.name)}", columnNames = { "${uppercase(att.tableFieldName!att.name)}" }), 
+			</#if >
 		</#if >
 	</#list>		
 })
@@ -54,7 +58,11 @@ import ${corepackage}.model.AbstractTimestampEntity;
 @Table(name = "${uppercase(entity.tableName!entity.name)}", uniqueConstraints = {
 	<#list entity.attributes as att >
 		<#if att.unique>
+			<#if entity.hasOwner>
+		@UniqueConstraint(name = "${uppercase(entity.tableName!entity.name)}_${uppercase(att.tableFieldName!att.name)}", columnNames = { "${uppercase(att.tableFieldName!att.name)}",  "ID_CUSTOMER_OWNER"}), 
+			<#else >
 		@UniqueConstraint(name = "${uppercase(entity.tableName!entity.name)}_${uppercase(att.tableFieldName!att.name)}", columnNames = { "${uppercase(att.tableFieldName!att.name)}" }), 
+			</#if >
 		</#if >
 	</#list>		
 })
@@ -143,7 +151,7 @@ public class ${entity.name} extends AbstractTimestampEntity{
 	</#if>
 	<#if entity.hasOwner?? && entity.hasOwner>
 	@ManyToOne
-	@JoinColumn(name = "id_customer_owner")
+	@JoinColumn(name = "ID_CUSTOMER_OWNER")
 	private CustomerOwner owner;
 	
 	public  CustomerOwner getOwner() {

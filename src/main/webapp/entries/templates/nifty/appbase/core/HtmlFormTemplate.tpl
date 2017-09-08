@@ -14,7 +14,7 @@
 				<#list entity.attributes as att>
 				  <#if att.viewApproach?? >
 					<#if att.type.className == 'Boolean' && att.viewApproach.type  == 'check'  >
-					<div id="groupInput${firstUpper(att.name)}" class="form-group col-sm-12 col-md-4 col-lg-4">
+					<div id="groupInput${firstUpper(att.name)}" class="form-group ">
 						<p class="checkbox-label" for="input${firstUpper(att.name)}">${firstUpper(att.displayName)}</p>
 						<input type="checkbox" id="input${firstUpper(att.name)}" {{${firstLower(att.name)} ? 'checked' :''}}>
 					</div>
