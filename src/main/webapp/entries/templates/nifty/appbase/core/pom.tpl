@@ -70,13 +70,6 @@
 			<scope>provided</scope>
 		</dependency>
 
-
-		<dependency>
-			<groupId>org.jadira.usertype</groupId>
-			<artifactId>usertype.core</artifactId>
-			<version>${r"${jandira.usertype.version}"}</version>
-		</dependency>
-
 		<dependency>
 			<groupId>joda-time</groupId>
 			<artifactId>joda-time</artifactId>
@@ -218,6 +211,12 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-envers</artifactId>
+			<version>${r"${hibernate.version}"}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-java8</artifactId>
 			<version>${r"${hibernate.version}"}</version>
 		</dependency>
 

@@ -6,7 +6,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.springframework.transaction.annotation.Transactional;
-import org.joda.time.LocalDateTime;
+import java.time.LocalDateTime;
 
 import ${application.corePackage}.model.SyncInfo;
 import ${application.corePackage}.json.*;

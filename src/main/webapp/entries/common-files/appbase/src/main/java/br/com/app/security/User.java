@@ -25,7 +25,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 <#if application.hasClient()>
-import ${application.corePackage}.model.Client;
+import ${application.corePackage}.model.CustomerOwner;
 </#if>
 
 import ${application.corePackage}.model.AbstractTimestampEntity;
@@ -71,8 +71,8 @@ public class User extends AbstractTimestampEntity implements UserDetails {
 
 	
 	@ManyToOne
-	@JoinColumn(name = "ID_OWNER")
-	private Client owner;
+	@JoinColumn(name = "ID_CUSTOMER_OWNER")
+	private CustomerOwner owner;
 	
 	public User() {
 
@@ -185,11 +185,11 @@ public class User extends AbstractTimestampEntity implements UserDetails {
 	}
 
 	<#if application.hasClient()>
-	public Client getOwner() {
+	public CustomerOwner getOwner() {
 		return owner;
 	}
-	public void setOwner(Client client) {
-		this.owner = client;
+	public void setOwner(CustomerOwner owner) {
+		this.owner = owner;
 	}
 	</#if>
 }

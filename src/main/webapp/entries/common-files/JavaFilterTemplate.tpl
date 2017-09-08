@@ -4,9 +4,8 @@ import java.io.Serializable;
 
 <#--import com.fasterxml.jackson.databind.annotation.JsonDeserialize;  -->
 <#--import com.fasterxml.jackson.databind.annotation.JsonSerialize; -->
-import org.joda.time.LocalDate;
-import org.joda.time.LocalDateTime;
-
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 <#-- import ${corepackage}.serialization.CustomLocalDateSerializer;               -->
 <#-- import ${corepackage}.serialization.CustomLocalDateDeserializer;             -->
 <#-- import ${corepackage}.serialization.CustomLocalDateTimeSerializer;           -->

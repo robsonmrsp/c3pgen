@@ -10,7 +10,7 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 
 import org.hibernate.annotations.Type;
-import org.joda.time.LocalDateTime;
+import java.time.LocalDateTime;
 
 import ${application.corePackage}.serialization.CustomLocalDateTimeSerializer;import ${application.rootPackage}.model.User;
 

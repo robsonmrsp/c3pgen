@@ -15,6 +15,6 @@ define(function(require) {
 
 	return {
 		initialize : initialize,
-		JSETUP_GEN_VERSION : 'v0.94',
+		JSETUP_GEN_VERSION : 'v0.95',
 	};
 })

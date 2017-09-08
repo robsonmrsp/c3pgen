@@ -49,7 +49,7 @@ public class FSItemDescription {
 		persistences.add(new FSItemDescription("Paginator", rootFolder + "persistence" + File.separator + "pagination" + File.separator, "Paginator", FileType.JAVA));
 		persistences.add(new FSItemDescription("Pager", rootFolder + "persistence" + File.separator + "pagination" + File.separator, "Pager", FileType.JAVA));
 		persistences.add(new FSItemDescription("HibernateEventWiring", rootFolder + "persistence" + File.separator, "HibernateEventWiring", FileType.JAVA));
-		persistences.add(new FSItemDescription("DaoSyncInfo", rootFolder + "persistence" + File.separator, "DaoSyncInfo", FileType.JAVA));
+//		persistences.add(new FSItemDescription("DaoSyncInfo", rootFolder + "persistence" + File.separator, "DaoSyncInfo", FileType.JAVA));
 
 		return persistences;
 	}
@@ -61,10 +61,10 @@ public class FSItemDescription {
 		list.add(new FSItemDescription("JsonPaginator", rootFolder + File.separator + "json" + File.separator, "JsonPaginator", FileType.JAVA));
 		list.add(new FSItemDescription("JsonResponse", rootFolder + File.separator + "json" + File.separator, "JsonResponse", FileType.JAVA));
 //		list.add(new FSItemDescription("JsonUser", rootFolder + File.separator + "json" + File.separator, "JsonUser", FileType.JAVA));
-		list.add(new FSItemDescription("JsonWebSocket", rootFolder + File.separator + "json" + File.separator, "JsonWebSocket", FileType.JAVA));
-		list.add(new FSItemDescription("DtoDataBase", rootFolder + File.separator + "json" + File.separator, "DtoDataBase", FileType.JAVA));
-		list.add(new FSItemDescription("Conflict", rootFolder + File.separator + "json" + File.separator, "Conflict", FileType.JAVA));
-		list.add(new FSItemDescription("SyncOperation", rootFolder + File.separator + "json" + File.separator, "SyncOperation", FileType.JAVA));
+//		list.add(new FSItemDescription("JsonWebSocket", rootFolder + File.separator + "json" + File.separator, "JsonWebSocket", FileType.JAVA));
+//		list.add(new FSItemDescription("DtoDataBase", rootFolder + File.separator + "json" + File.separator, "DtoDataBase", FileType.JAVA));
+//		list.add(new FSItemDescription("Conflict", rootFolder + File.separator + "json" + File.separator, "Conflict", FileType.JAVA));
+//		list.add(new FSItemDescription("SyncOperation", rootFolder + File.separator + "json" + File.separator, "SyncOperation", FileType.JAVA));
 
 		return list;
 	}
@@ -104,11 +104,11 @@ public class FSItemDescription {
 	public static List<FSItemDescription> model(String rootFolder) {
 
 		List<FSItemDescription> list = new ArrayList<FSItemDescription>();
-		list.add(new FSItemDescription("Client", rootFolder + File.separator + "model" + File.separator, "Client", FileType.JAVA));
+		list.add(new FSItemDescription("CustomerOwner", rootFolder + File.separator + "model" + File.separator, "CustomerOwner", FileType.JAVA));
 		list.add(new FSItemDescription("ColumnDefinitions", rootFolder + File.separator + "model" + File.separator, "ColumnDefinitions", FileType.JAVA));
 		list.add(new FSItemDescription("CustomRevisionEntity", rootFolder + File.separator + "model" + File.separator, "CustomRevisionEntity", FileType.JAVA));
 		list.add(new FSItemDescription("AbstractTimestampEntity", rootFolder + File.separator + "model" + File.separator, "AbstractTimestampEntity", FileType.JAVA));
-		list.add(new FSItemDescription("SyncInfo", rootFolder + File.separator + "model" + File.separator, "SyncInfo", FileType.JAVA));
+		//list.add(new FSItemDescription("SyncInfo", rootFolder + File.separator + "model" + File.separator, "SyncInfo", FileType.JAVA));
 		// list.add(new FSItemDescription("User", rootFolder + File.separator +
 		// "model" + File.separator, "User", FileType.JAVA));
 
@@ -158,14 +158,17 @@ public class FSItemDescription {
 	public static List<FSItemDescription> serialization(String rootFolder) {
 
 		List<FSItemDescription> list = new ArrayList<FSItemDescription>();
-		list.add(new FSItemDescription("CustomDateSerializer", rootFolder + File.separator + "serialization" + File.separator, "CustomDateSerializer", FileType.JAVA));
+//		list.add(new FSItemDescription("CustomDateSerializer", rootFolder + File.separator + "serialization" + File.separator, "CustomDateSerializer", FileType.JAVA));
 		list.add(new FSItemDescription("CustomLocalDateDeserializer", rootFolder + File.separator + "serialization" + File.separator, "CustomLocalDateDeserializer", FileType.JAVA));
 		list.add(new FSItemDescription("CustomLocalDateSerializer", rootFolder + File.separator + "serialization" + File.separator, "CustomLocalDateSerializer", FileType.JAVA));
+		
 		list.add(new FSItemDescription("CustomLocalDateTimeDeserializer", rootFolder + File.separator + "serialization" + File.separator, "CustomLocalDateTimeDeserializer", FileType.JAVA));
 		list.add(new FSItemDescription("CustomLocalDateTimeSerializer", rootFolder + File.separator + "serialization" + File.separator, "CustomLocalDateTimeSerializer", FileType.JAVA));
+		
 		list.add(new FSItemDescription("CustomDoubleSerializer", rootFolder + File.separator + "serialization" + File.separator, "CustomDoubleSerializer", FileType.JAVA));
 		list.add(new FSItemDescription("CustomDoubleDeserializer", rootFolder + File.separator + "serialization" + File.separator, "CustomDoubleDeserializer", FileType.JAVA));
-		list.add(new FSItemDescription("CustomSyncObjectIdDeserializer", rootFolder + File.separator + "serialization" + File.separator, "CustomSyncObjectIdDeserializer", FileType.JAVA));
+		
+		//list.add(new FSItemDescription("CustomSyncObjectIdDeserializer", rootFolder + File.separator + "serialization" + File.separator, "CustomSyncObjectIdDeserializer", FileType.JAVA));
 //		list.add(new FSItemDescription("CustomJacksonObjectMapperProvider", rootFolder + File.separator + "serialization" + File.separator, "CustomJacksonObjectMapperProvider", FileType.JAVA));
 		return list;
 	}
@@ -175,8 +178,8 @@ public class FSItemDescription {
 		List<FSItemDescription> list = new ArrayList<FSItemDescription>();
 //		list.add(new FSItemDescription("UserService", rootFolder + File.separator + "service" + File.separator, "UserService", FileType.JAVA));
 //		list.add(new FSItemDescription("UserServiceImp", rootFolder + File.separator + "service" + File.separator, "UserServiceImp", FileType.JAVA));
-		list.add(new FSItemDescription("SyncService", rootFolder + File.separator + "service" + File.separator, "SyncService", FileType.JAVA));
-		list.add(new FSItemDescription("SyncServiceImp", rootFolder + File.separator + "service" + File.separator, "SyncServiceImp", FileType.JAVA));
+		//list.add(new FSItemDescription("SyncService", rootFolder + File.separator + "service" + File.separator, "SyncService", FileType.JAVA));
+		//list.add(new FSItemDescription("SyncServiceImp", rootFolder + File.separator + "service" + File.separator, "SyncServiceImp", FileType.JAVA));
 		return list;
 	}
 

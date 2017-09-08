@@ -23,9 +23,6 @@ import ${package}.json.Json${entity.name};
 
 import ${package}.model.${entity.name};
 
-<#if entity.hasOwner>
-import ${application.corePackage}.model.Client;
-</#if>
 import ${package}.service.${entity.name}Service;
 import ${package}.model.filter.Filter${entity.name};
 import ${corepackage}.persistence.pagination.Pager;

@@ -1,6 +1,8 @@
 package ${application.corePackage}.persistence;
 
 import javax.annotation.PostConstruct;
+import java.time.LocalDateTime;
+
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.hibernate.SessionFactory;
@@ -11,7 +13,6 @@ import org.hibernate.event.spi.PreInsertEventListener;
 import org.hibernate.event.spi.PreUpdateEvent;
 import org.hibernate.event.spi.PreUpdateEventListener;
 import org.hibernate.internal.SessionFactoryImpl;
-import org.joda.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

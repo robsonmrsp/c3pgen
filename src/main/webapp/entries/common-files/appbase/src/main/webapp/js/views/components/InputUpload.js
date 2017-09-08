@@ -12,11 +12,13 @@ define(function(require) {
 
 		events : {
 			'change .input-upload-file' : "sendFile",
-			'click .input-image' : "forceClickInputUploadFile"
+			'click .input-image' : "forceClickInputUploadFile",
+			'click  .remove-preview' : 'removeFile'
 		},
 
 		ui : {
 			imageView : '.input-image',
+			removePreview : '.remove-preview',
 			inputUploadFile : '.input-upload-file',
 			uploadImage : '.jsetup-upload-image',
 		},
@@ -40,6 +42,9 @@ define(function(require) {
 			this.on('show', function() {
 				if (that._getBindEl() && that._getBindEl().val()) {
 					this.ui.imageView.attr('src', that._getBindEl().val());
+					this.ui.removePreview.show();
+					this.testImage(that._getBindEl().val());
+
 				} else {
 					this.ui.imageView.attr('src', that.noImage);
 				}
@@ -48,6 +53,16 @@ define(function(require) {
 				}
 			});
 
+		},
+		testImage : function(URL) {
+			var that = this;
+			var tester = new Image();
+
+			tester.onerror = function() {
+				that.clear();
+			};
+
+			tester.src = URL;
 		},
 
 		sendFile : function() {
@@ -82,6 +97,11 @@ define(function(require) {
 			});
 		},
 
+		removeFile : function() {
+			this.clear();
+			this._getBindEl().val('')
+			this.ui.removePreview.hide();
+		},
 		uploadOneFile : function(file) {
 			var that = this;
 
@@ -96,6 +116,7 @@ define(function(require) {
 					console.log(_model, _resp, _options)
 					// if the updating file is a image, show it!
 					that.ui.imageView.attr('src', _resp.dataUrl)
+					that.ui.removePreview.show();
 
 					if (that.bindElement) {
 						that._getBindEl().val(_resp.dataUrl)
@@ -122,6 +143,7 @@ define(function(require) {
 
 		clear : function() {
 			this.ui.uploadImage.attr('src', this.ui.uploadImage.attr('no-image-file'));
+			this.ui.removePreview.hide();
 		},
 
 		_getBindEl : function() {
@@ -133,6 +155,7 @@ define(function(require) {
 			}
 			return null;
 		},
+
 		bindValueEl : function(_resp) {
 
 			this._getBindEl.val(_resp.dataUrl)

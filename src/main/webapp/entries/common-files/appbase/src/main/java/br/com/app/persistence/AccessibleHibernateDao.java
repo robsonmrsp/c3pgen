@@ -8,10 +8,9 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
-import org.joda.time.LocalDateTime;
 
 <#if application.hasClient()>
-import ${application.corePackage}.model.Client;
+import ${application.corePackage}.model.CustomerOwner;
 </#if>
 import ${application.corePackage}.persistence.pagination.Pagination;
 import ${application.corePackage}.persistence.pagination.PaginationParams;
@@ -26,25 +25,25 @@ public abstract class AccessibleHibernateDao<Entity> extends HibernateDao<Entity
 	}
 
 	<#if application.hasClient()>
-	public List<Entity> getAll(Client owner) {
+	public List<Entity> getAll(CustomerOwner owner) {
 		List<Entity> entities = criteria().add(Restrictions.eq("owner", owner)).list();
 		return entities;
 	}
 
-	public Entity find(Serializable key, Client owner) {
+	public Entity find(Serializable key, CustomerOwner owner) {
 		Entity media = (Entity) criteria().add(Restrictions.eq("owner", owner)).add(Restrictions.eq("id", key)).uniqueResult();
 		return media;
 	}
 
-	public Pagination<Entity> getAll(PaginationParams paginationParams, Client owner) {
+	public Pagination<Entity> getAll(PaginationParams paginationParams, CustomerOwner owner) {
 		return new Paginator<Entity>(criteria().add(Restrictions.eq("owner", owner)), criteria().add(Restrictions.eq("owner", owner))).paginate(paginationParams);
 	}
 
-	public Pagination<Entity> searchByText(PaginationParams paginationParams, Client owner, String searchText, String field) {
+	public Pagination<Entity> searchByText(PaginationParams paginationParams, CustomerOwner owner, String searchText, String field) {
 		return new Paginator<Entity>(criteria().add(Restrictions.eq("owner", owner)), criteria().add(Restrictions.eq("owner", owner)).add(Restrictions.eq(field, searchText))).paginate(paginationParams);
 	}
 
-	public List<Entity> searchByText(String field, String searchText, Client owner) {
+	public List<Entity> searchByText(String field, String searchText, CustomerOwner owner) {
 		return criteria().add(Restrictions.ilike(field, searchText, MatchMode.ANYWHERE)).add(Restrictions.eq("owner", owner)).list();
 	}
 	</#if>
