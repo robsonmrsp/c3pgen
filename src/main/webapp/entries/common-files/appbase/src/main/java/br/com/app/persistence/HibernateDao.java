@@ -52,10 +52,6 @@ public class HibernateDao<Entity> {
 		return entities;
 	}
 
-	public Pagination<Entity> getAll(PaginationParams paginationParams) {
-		return new Paginator<Entity>(criteria(), criteria()).paginate(paginationParams);
-	}
-
 	public Entity save(Entity entity) {
 		Session currentSession = sessionFactory.getCurrentSession();
 		currentSession.merge(entity);

@@ -52,6 +52,7 @@ public class DaoCliente extends AccessibleHibernateDao<FilterCliente, Cliente> {
 		return criteria;
 	}
 
+	@Override
 	protected Criteria prepareEquCriteria(FilterCliente filterCliente) {
 		Criteria criteria = criteria();
 		if (filterCliente.getNome() != null) {
