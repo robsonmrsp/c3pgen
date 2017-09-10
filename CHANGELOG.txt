@@ -1,6 +1,8 @@
 Changelog do GERADO
 
 v0.95:
+-  Gerando SEMPRE toBasicJson e toBasicEntity para atributos compostos. Caso seja necessário o contrário,
+   deve-se estudar caso a caso do gerado.
 -  Gerando os daoXpto.findXyz considerando tambem o CustomerOwner  
 -  Refatorada a geração do DaoXPTO para gerar apenas o que muda de uma entidade para outra!
 -  Corrigindo o import dos css e trazendo a past sounds

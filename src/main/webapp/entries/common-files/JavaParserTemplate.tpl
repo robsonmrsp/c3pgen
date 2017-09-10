@@ -83,7 +83,7 @@ public class Parser {
 		List<${firstUpper(rel.model)}> list${firstUpper(rel.name)!firstLower(rel.model)} = ${firstLower(entity.name)}.get${firstUpper(rel.name)!firstLower(rel.model)}();
 		if (list${firstUpper(rel.name)!firstLower(rel.model)} != null) {
 			for (${firstUpper(rel.model)} loop${firstUpper(rel.model)} : list${firstUpper(rel.name)!firstLower(rel.model)}) {
-				json${entity.name}.get${firstUpper(rel.name)!firstLower(rel.model)}().add(toJson(loop${firstUpper(rel.model)}));
+				json${entity.name}.get${firstUpper(rel.name)!firstLower(rel.model)}().add(toBasicJson(loop${firstUpper(rel.model)}));
 			}
 		}
 			<#else>
@@ -129,7 +129,7 @@ public class Parser {
 		ArrayList<Json${firstUpper(rel.model)}> list${firstUpper(rel.name)!firstUpper(rel.model)} = json${firstUpper(entity.name)}.get${firstUpper(rel.name)!firstLower(rel.model)}();			
 		if (list${firstUpper(rel.name)!firstUpper(rel.model)} != null) {
 			for (Json${firstUpper(rel.model)} loopJson${firstUpper(rel.model)} : list${firstUpper(rel.name)!firstUpper(rel.model)}) {
-				${firstLower(entity.name)}.add${firstUpper(rel.name)!firstLower(rel.model)}(toEntity(loopJson${firstUpper(rel.model)}));
+				${firstLower(entity.name)}.add${firstUpper(rel.name)!firstLower(rel.model)}(toBasicEntity(loopJson${firstUpper(rel.model)}));
 			}
 		}
 			<#else>
@@ -144,7 +144,7 @@ public class Parser {
 			<#elseif rel.type == 'ManyToOne' || rel.type == 'OneToOne'>
 		Json${firstUpper(rel.model)} ${firstLower(rel.name)!firstLower(rel.model)}_ = json${firstUpper(entity.name)}.get${firstUpper(rel.name)!firstLower(rel.model)}();
 		if (${firstLower(rel.name)!firstLower(rel.model)}_ != null) {
-			${firstLower(entity.name)}.set${firstUpper(rel.name)!firstLower(rel.model)}(toEntity(${firstLower(rel.name)!firstLower(rel.model)}_));
+			${firstLower(entity.name)}.set${firstUpper(rel.name)!firstLower(rel.model)}(toBasicEntity(${firstLower(rel.name)!firstLower(rel.model)}_));
 		}	
 			</#if>
 		</#list>
