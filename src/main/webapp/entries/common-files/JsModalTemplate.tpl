@@ -332,6 +332,8 @@ define(function(require) {
 					that.clear();
 					if (rsp) {
 						that.setValue(_model.toJSON());
+						that.modelSelect = _model;
+						
 						that.onSelectModel(_model);
 					}
 					that.ui.searchIcon.removeClass('icon-spinner icon-spin')

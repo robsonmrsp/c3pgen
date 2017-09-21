@@ -156,14 +156,6 @@ define(function(require) {
 				uiClassName : 'pagination',
 			});
 
-			this.${firstLower(entity.name)}s.getFirstPage({
-				success : function(_col, _resp, _opts) {
-					console.info('Primeira pagina do grid ${firstLower(entity.name)}');
-				},
-				error : function(_col, _resp, _opts) {
-					console.error(_resp.responseText || (_resp.getResponseHeader && _resp.getResponseHeader('exception')) );
-				}
-			});
 		<#if entity.relationships??>	
 		<#list entity.relationships as rel >
 			<#if rel.showInPages >
@@ -263,6 +255,7 @@ define(function(require) {
 		</#list>
 		</#if>
 			});
+			this.search${firstUpper(entity.name)}()
 		},
 		 
 		search${firstUpper(entity.name)} : function(){

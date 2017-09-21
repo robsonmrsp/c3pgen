@@ -15,18 +15,23 @@ public class Helper {
 		// "Nome Completo, RG, CPF, Data De Nascimento,Telefone Fixo, Telefone Celular, E-Mail, Nome da Mae Ou Responsável , CPF Mae Ou Responsável, Pai ou Responsável, CPF Do Pai ou Responsável, Endereço, Bairro, Cidade, CEP,Turno, Grau, Série, Curso, Horário , Nome Da Escola, Endereço Da Escola, Bairro Da Escola, Cidade Da Escola, CEP Da Escola, Malote, imagem, foto".split(",");
 		// String[] atributos =
 		// "Nome Do Campo, px1,py1,px2,py2,ativo,".split(",");
-		String[] atributos = "INSUFICIENCIA_RESPIRATORIA ,INSUFICIENCIA_HEPATICA     ,PERFURACAO_INTESTINAL      ,INSUFICIENCIA_RENAL        ,RISCO_AMPUTACAO            ,CEGUEIRA                   ,SURDEZ                     ,RISCO_HEMORRAGICO          ,HEMOPTISE                  ,HEMATEMESE                 ,MELENA                     ,ENTERORRAGIA               ,EPISTAXE                   ,OTORRAGIA                  ,METRORRAGIA                ,IMUNOCOMPROMETIDO          ,HETERO_AGRESSAO            ,VIOLENCIA_DOMESTICA        ,PERDA_CONSCIENCIA          ,INFECCAO_ATUAL             ,INCAPACITANTE              ,MENOR_UM_ANO               ,GESTANTE                   ,ULTIMOS_TRINTA_DIAS        ,".split(",");		
+		
+		
+		 		
+		
+//		String[] atributos = "ALTA_COMPLEXIDADE           ,MEDIA_COMPLEXIDADE         ,NEOPLASIA_ATUAL             ,SEQUELA_PERMANENTE          ,SEQUELA_NEUROLÓGICA         ,INSUFICIENCIA_RESPIRATORIA ,INSUFICIENCIA_HEPATICA     ,PERFURACAO_INTESTINAL      ,INSUFICIENCIA_RENAL        ,RISCO_AMPUTACAO            ,CEGUEIRA                   ,SURDEZ                     ,RISCO_HEMORRAGICO          ,HEMOPTISE                  ,HEMATEMESE                 ,MELENA                     ,ENTERORRAGIA               ,EPISTAXE                   ,OTORRAGIA                  ,METRORRAGIA                ,IMUNOCOMPROMETIDO          ,HETERO_AGRESSAO            ,VIOLENCIA_DOMESTICA        ,PERDA_CONSCIENCIA          ,INFECCAO_ATUAL             ,INCAPACITANTE              ,MENOR_UM_ANO               ,GESTANTE                   ,ULTIMOS_TRINTA_DIAS        ,".split(",");		
+		String[] atributos = "CHAVE_HISTORICO,         TABELA,         CHAVE,         CAMPO,         VALOR_ANTIGO,         VALOR_NOVO,         DATA,         TIPO_EVENTO,         EVENTO,         CHAVE_USUARIO,         USUÁRIO,         NOME_USUÁRIO,         USUÁRIO_SO,         MÁQUINA,         MÓDULO,         AÇÃO".split(",");		
 		// String[] atributos =		// "Title,  Link,   Description,   Language,   Copyright,   PubDate,".split(",");
 
 		for (String atributo : atributos) {
 			String nome = atributo.toLowerCase().replaceAll("_"," "); 
-			System.out.println("  - name: " + Util.firstLowerCase(Util.camelCase(nome)));
+			System.out.println("  - name: " + Util.removeNonUnicodeCharAndSpaces(Util.firstLowerCase(Util.camelCase(nome)).trim()));
 			System.out.println("    type:");
-			System.out.println("      className: Boolean");
-			System.out.println("    tableFieldName: " + atributo);
-			System.out.println("    displayName: " + Util.toUpperSpaceCase(Util.camelCase(nome)));
-			System.out.println("    viewApproach:");
-			System.out.println("       type: check");
+			System.out.println("      className: String");
+			System.out.println("    tableFieldName: " + Util.removeNonUnicodeCharAndSpaces(atributo.trim()));
+			System.out.println("    displayName: " + Util.toUpperSpaceCase(Util.camelCase(nome)).trim());
+//			System.out.println("    viewApproach:");
+//			System.out.println("       type: check");
 
 
 			System.out.println("");
@@ -69,3 +74,4 @@ public class Helper {
 		return localStr;
 	}
 }
+

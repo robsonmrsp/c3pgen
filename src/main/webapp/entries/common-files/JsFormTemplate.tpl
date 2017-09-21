@@ -240,8 +240,6 @@ define(function(require) {
 						util.showErrorMessage('Problema ao salvar registro',_resp);
 					}
 				});
-			} else {
-				util.showMessage('error', 'Verifique campos em destaque!');
 			}
 		},
 
