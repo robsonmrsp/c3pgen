@@ -9,7 +9,6 @@ define(function(require) {
 	var EntityModel = require('models/EntityModel');
 
 	var HtmlEntityTemplate = require('text!views/visual/models/tpl/HtmlEntityTemplate.html');
-	var DiagramEntityView = require('views/visual/componentes/DiagramEntityView');
 	var Col = require('adapters/col-adapter');
 
 	Joint.shapes.html = Joint.shapes.html || {};
@@ -19,7 +18,7 @@ define(function(require) {
 
 		initialize : function(opt) {
 			Joint.shapes.html.Element.__super__.initialize.apply(this, arguments);
-			this.onClickRemove = opt.onClickRemove;
+			this.htmlView = opt.htmlView;
 		},
 		defaults : Joint.util.deepSupplement({
 			type : 'html.Element',
@@ -39,22 +38,14 @@ define(function(require) {
 		template : HtmlEntityTemplate,
 
 		initialize : function(opt) {
+			// Joint.dia.ElementView.prototype.initialize.apply(this, arguments);
+			Joint.shapes.html.ElementView.__super__.initialize.apply(this, arguments);
 			var that = this;
-			this.onClickRemove = opt.onClickRemove;
+			this.htmlView = opt.htmlView;
+
 			_.bindAll(this, 'updateBox');
-			Joint.dia.ElementView.prototype.initialize.apply(this, arguments);
 
-			this.entity = this.model.get('entity');
-
-			this.diagramEntityView = new DiagramEntityView({
-				model : this.entity,
-				container : this,
-				onClickRemove : function(evt) {
-					if (that.model.onClickRemove) {
-						that.model.onClickRemove(that);
-					}
-				},
-			});
+			// this.entity = this.model.get('entity');
 
 			this.$box = $(_.template(this.template)());
 
@@ -68,7 +59,7 @@ define(function(require) {
 
 			this.updateBox();
 
-			this.entity.on('change', this._changeEntity, this);
+			// this.entity.on('change', this._changeEntity, this);
 		},
 
 		resizeView : function(size) {
@@ -81,12 +72,21 @@ define(function(require) {
 		},
 
 		render : function() {
+			var that = this;
 			Joint.dia.ElementView.prototype.render.apply(this, arguments);
 
-			util.appendView(this.$box, this.diagramEntityView);
+			util.appendView(this.$box, this.htmlView);
 
 			this.paper.$el.prepend(this.$box);
 			this.updateBox();
+
+			window.setTimeout(function() {
+				that.resizeView({
+					width : that.htmlView.$el.width(),
+					height : that.htmlView.$el.height()
+				})
+			}, 10);
+
 			return this;
 		},
 
@@ -103,12 +103,17 @@ define(function(require) {
 		removeBox : function(evt) {
 			this.$el.remove();
 		},
-		_changeEntity : function(_ent) {
-			this.entity.set(_ent.attributes);
-			this.diagramEntityView.refresh(this.entity);
-		},
+	// _changeEntity : function(_ent) {
+	// this.entity.set(_ent.attributes);
+	//
+	// if (this.model.onChangeEntity) {
+	// this.model.onChangeEntity(_ent);
+	// }
+	// this.htmlView.refresh(this.entity);
+	// },
 	});
 
 	return Joint.shapes.html.Element;
 
 });
+ç

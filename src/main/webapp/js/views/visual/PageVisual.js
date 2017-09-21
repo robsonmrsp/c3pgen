@@ -22,7 +22,7 @@ define(function(require) {
 	// para tentar dar zoom todos os objetos da tela devem ser graficos.
 	// var VisualEntity = require('views/visual/models/VisualEntity');
 
-	var VisualEntity = require('views/visual/models/HtmlEntity');
+	var HtmlEntity = require('views/visual/models/HtmlEntity');
 
 	var VisualRelationship = require('views/visual/models/VisualRelationship');
 	var InspetorEntidadesView = require('views/visual/InspetorEntidadesView');
@@ -192,6 +192,7 @@ define(function(require) {
 								window.globalVisualRelations.put(relation.id, relation);
 							}
 						}
+						console.log('terminou o drag' , _cellView);
 					}
 				});
 
@@ -203,7 +204,7 @@ define(function(require) {
 				window.paper.on('blank:pointerclick', function(_cellView, evt, x, y) {
 					if (that.activeAddEntity == true) {
 						that.addEntity();
-						var visualEntity = new VisualEntity({
+						var visualEntity = new HtmlEntity({
 							entity : that._getEntityModel({
 								x : MOUSE_X,
 								y : MOUSE_Y - 62
@@ -277,7 +278,7 @@ define(function(require) {
 			var posX = 150 + ((contador - 1) * 180); // LEFT
 
 			console.log(posX, posY);
-			var visualEntity = new VisualEntity({
+			var visualEntity = new HtmlEntity({
 				entity : entity,
 				position : {
 					x : entity.posX || entity.get('posX') || posX,
@@ -289,6 +290,10 @@ define(function(require) {
 				},
 				onClickRemove : function(visualE) {
 					that.removeVisualEntity(visualE);
+				},
+
+				onChangeEntity : function(entity) {
+					that.changeEntity(entity);
 				},
 			});
 
@@ -459,6 +464,9 @@ define(function(require) {
 					console.log(" Leaving  alone link", linkView);
 				}
 			});
+		},
+		changeEntity : function(entity) {
+			console.log(entity);
 		},
 		removeVisualEntity : function(visualE) {
 			var model = new EntityModel({

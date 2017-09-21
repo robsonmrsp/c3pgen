@@ -16,6 +16,8 @@ define(function(require) {
 	var DiagramAttributesCollectionView = require('views/visual/componentes/DiagramAttributesCollectionView');
 	var DiagramRelationshipsCollectionView = require('views/visual/componentes/DiagramRelationshipsCollectionView');
 
+	var HtmlEntity = require('views/visual/models/HtmlEntity');
+
 	var DiagramEntityView = Marionette.LayoutView.extend({
 		template : _.template(DiagramEntityViewTemplate),
 		className : 'entity-container',
@@ -33,12 +35,17 @@ define(function(require) {
 				this.onClickRemove();
 			}
 		},
+
 		ui : {
 			entityName : '.entity-name',
 		},
 
 		initialize : function(opt) {
 			var that = this;
+			this.htmlEntity = new HtmlEntity({
+				htmlView : this,
+			});
+
 			this.container = opt.container;
 
 			this.onClickRemove = opt.onClickRemove;
@@ -56,13 +63,13 @@ define(function(require) {
 			this.on('show', function() {
 				this.attributesRegion.show(this.attributesCollectionView);
 				this.relationshipsRegion.show(this.relationshipsCollectionView);
-				
-				window.setTimeout(function() {
-					that.container.resizeView({
-						width : that.$el.width(),
-						height : that.$el.height()
-					})
-				}, 10);
+
+//				window.setTimeout(function() {
+//					that.container.resizeView({
+//						width : that.$el.width(),
+//						height : that.$el.height()
+//					})
+//				}, 10);
 			});
 		},
 
@@ -72,6 +79,7 @@ define(function(require) {
 			this.ui.entityName.text(entity.get('name'));
 
 			this.attributesCollection.reset(this.model.get('attributes'));
+			this.relationshipsCollection.reset(this.model.get('relationships'));
 
 			window.setTimeout(function() {
 				that.container.resizeView({

@@ -147,35 +147,30 @@ define(function(require) {
 					console.log('Validando a info a exibir no modal ou combo-> ' + existeAttributo);
 				});
 
-				this.ui.inputModel.on('hidden', function() {});
+				this.ui.inputModel.on('hidden', function() {
+				});
 
 				this.ui.editableFields.on('hidden', function() {
 					that.changeRelationship();
 				})
 				this.ui.inputViewApproach.editable({
 					value : '',
-					source : [
-						{
-							value : 'none',
-							text : 'none'
-						},
-						{
-							value : 'modal',
-							text : 'modal'
-						},
-						{
-							value : 'combo',
-							text : 'combo'
-						}, 
-						{
-							value : 'multiselect',
-							text : 'multiselect'
-						},
-						{
-							value : 'multiselectmodal',
-							text : 'multiselectmodal'
-						},
-					]
+					source : [ {
+						value : 'none',
+						text : 'none'
+					}, {
+						value : 'modal',
+						text : 'modal'
+					}, {
+						value : 'combo',
+						text : 'combo'
+					}, {
+						value : 'multiselect',
+						text : 'multiselect'
+					}, {
+						value : 'multiselectmodal',
+						text : 'multiselectmodal'
+					}, ]
 				});
 
 				this.ui.inputViewApproach.on('hidden', function(e, editable) {
@@ -185,6 +180,9 @@ define(function(require) {
 				this.ui.inputType.editable({
 					value : 'OneToMany',
 					source : [ {
+						value : 'none',
+						text : 'none'
+					}, {
 						value : 'OneToMany',
 						text : 'OneToMany'
 					}, {
