@@ -40,10 +40,13 @@ define(function(require) {
 			entityName : '.entity-name',
 		},
 
+		getGraphEntity : function() {
+			return this.htmlEntity;
+		},
 		initialize : function(opt) {
 			var that = this;
 			this.htmlEntity = new HtmlEntity({
-				htmlView : this,
+				htmlView : that,
 			});
 
 			this.container = opt.container;
@@ -64,12 +67,12 @@ define(function(require) {
 				this.attributesRegion.show(this.attributesCollectionView);
 				this.relationshipsRegion.show(this.relationshipsCollectionView);
 
-//				window.setTimeout(function() {
-//					that.container.resizeView({
-//						width : that.$el.width(),
-//						height : that.$el.height()
-//					})
-//				}, 10);
+				// window.setTimeout(function() {
+				// that.container.resizeView({
+				// width : that.$el.width(),
+				// height : that.$el.height()
+				// })
+				// }, 10);
 			});
 		},
 

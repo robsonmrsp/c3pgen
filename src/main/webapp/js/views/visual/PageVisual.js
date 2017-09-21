@@ -22,7 +22,7 @@ define(function(require) {
 	// para tentar dar zoom todos os objetos da tela devem ser graficos.
 	// var VisualEntity = require('views/visual/models/VisualEntity');
 
-	var HtmlEntity = require('views/visual/models/HtmlEntity');
+	var DiagramEntityView = require('views/visual/componentes/DiagramEntityView');
 
 	var VisualRelationship = require('views/visual/models/VisualRelationship');
 	var InspetorEntidadesView = require('views/visual/InspetorEntidadesView');
@@ -192,7 +192,7 @@ define(function(require) {
 								window.globalVisualRelations.put(relation.id, relation);
 							}
 						}
-						console.log('terminou o drag' , _cellView);
+						console.log('terminou o drag', _cellView);
 					}
 				});
 
@@ -204,8 +204,8 @@ define(function(require) {
 				window.paper.on('blank:pointerclick', function(_cellView, evt, x, y) {
 					if (that.activeAddEntity == true) {
 						that.addEntity();
-						var visualEntity = new HtmlEntity({
-							entity : that._getEntityModel({
+						var diagramEntity = new DiagramEntityView({
+							model : that._getEntityModel({
 								x : MOUSE_X,
 								y : MOUSE_Y - 62
 							}),
@@ -222,10 +222,10 @@ define(function(require) {
 							},
 						});
 
-						that.graph.addCell(visualEntity);
+						that.graph.addCell(visualEntity.getGraphEntity());
 
-						globalVisualEntities.put(visualEntity.id, visualEntity)
-						that.inspetorView.setVisualEntity(visualEntity);
+						globalVisualEntities.put(visualEntity.id, visualEntity.getGraphEntity())
+						that.inspetorView.setVisualEntity(visualEntity.getGraphEntity());
 
 						that.activeAddEntity = false
 						$('#paper').removeClass('cursor-tabela');
@@ -278,8 +278,27 @@ define(function(require) {
 			var posX = 150 + ((contador - 1) * 180); // LEFT
 
 			console.log(posX, posY);
-			var visualEntity = new HtmlEntity({
-				entity : entity,
+
+			// var diagramEntity = new DiagramEntityView({
+			// model : that._getEntityModel({
+			// x : MOUSE_X,
+			// y : MOUSE_Y - 62
+			// }),
+			// position : {
+			// x : MOUSE_X,
+			// y : MOUSE_Y - 62
+			// },
+			// size : {
+			// width : 120,
+			// height : 100
+			// },
+			// onClickRemove : function(visualE) {
+			// that.removeVisualEntity(visualE);
+			// },
+			// });
+
+			var diagramEntity = new DiagramEntityView({
+				model : entity,
 				position : {
 					x : entity.posX || entity.get('posX') || posX,
 					y : entity.posY || entity.get('posY') || posY,
@@ -297,11 +316,11 @@ define(function(require) {
 				},
 			});
 
-			that.graph.addCell(visualEntity);
+			that.graph.addCell(diagramEntity.getGraphEntity());
 
-			globalVisualEntities.put(visualEntity.id, visualEntity)
+			globalVisualEntities.put(visualEntity.id, diagramEntity.getGraphEntity())
 
-			that.inspetorView.setVisualEntity(visualEntity);
+			that.inspetorView.setVisualEntity(diagramEntity.getGraphEntity());
 
 		},
 

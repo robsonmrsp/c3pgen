@@ -38,14 +38,14 @@ define(function(require) {
 		template : HtmlEntityTemplate,
 
 		initialize : function(opt) {
-			// Joint.dia.ElementView.prototype.initialize.apply(this, arguments);
-			Joint.shapes.html.ElementView.__super__.initialize.apply(this, arguments);
+			// Joint.shapes.html.ElementView.__super__.initialize.apply(this, arguments);
 			var that = this;
-			this.htmlView = opt.htmlView;
+			this.htmlView = this.model.htmlView;
 
 			_.bindAll(this, 'updateBox');
 
 			// this.entity = this.model.get('entity');
+			Joint.dia.ElementView.prototype.initialize.apply(this, arguments);
 
 			this.$box = $(_.template(this.template)());
 
@@ -116,4 +116,3 @@ define(function(require) {
 	return Joint.shapes.html.Element;
 
 });
-ç
