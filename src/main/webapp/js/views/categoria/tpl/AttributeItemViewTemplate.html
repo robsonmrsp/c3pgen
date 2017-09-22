@@ -12,18 +12,18 @@
 			</a>
 		</div>
 		<h5>
-			<i class="fa fa-plus-square-o"></i>
+			<i class="fa fa-plus-square-o icon-expand-attribute"></i>
 			<a href="javascript:void(-1)" data-type="text" data-placement="right" data-title="Digite o nome do atributo" class="editable editable-click inputAtributeName " data-original-title="" title=""> {{name}}</a>
-			<span>
-				<i>
-					:&nbsp;
-					<a class="editable editable-click  inputType" data-placement="right" data-title="Tipo do atributo" data-type="select" data-pk="1" data-title="Selecione o tipo">{{type && type.className}}</a>
-				</i>
-			</span>
 		</h5>
 	</div>
 	<div class="panel-body " style="padding: 1px; border-bottom: 1px solid #e4e5e7;">
 		<div class="widget-main">
+			<span>
+				<i>
+					Tipo:&nbsp;
+					<a class="editable editable-click  inputType" data-placement="right" data-title="Tipo do atributo" data-type="select" data-pk="1" data-title="Selecione o tipo">{{type && type.className}}</a>
+				</i>
+			</span>
 			<span>
 				Nome de exibição:&nbsp;
 				<a class="editable editable-click inputDisplayName" data-placement="right" data-title="Digite o nome a exibir">{{displayName}}</a>

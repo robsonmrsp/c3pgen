@@ -19,13 +19,26 @@ define(function(require) {
 		template : _.template(AtributeItemViewTemplate),
 
 		events : {
-			'click .showhide' : 'hideShow',
+			'click .showhide' : 'showhide',
+			'click .icon-expand-attribute' : 'expandAttributes',
 			'click .delete-attribute' : 'deleteAtribute',
 			'click .check-box' : 'changeAttribute'
 		},
+		expandAttributes : function() {
+			this.ui.widgetMain.toggle();
+			if (this.ui.widgetMain.is(':visible')) {
+				this.ui.iconExpandAttribute.removeClass('fa-plus-square-o');
+				this.ui.iconExpandAttribute.addClass('fa-minus-square-o');
 
+			} else {
+				this.ui.iconExpandAttribute.removeClass('fa-minus-square-o');
+				this.ui.iconExpandAttribute.addClass('fa-plus-square-o');
+			}
+
+		},
 		ui : {
 			inputId : '.inputId',
+			iconExpandAttribute : '.icon-expand-attribute',
 
 			inputAtributeName : '.inputAtributeName',
 			inputDisplayName : '.inputDisplayName',
