@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">
+<span id='draw2d-policy-canvas-SelectionPolicy'>/**
+</span> * @class draw2d.policy.canvas.SelectionPolicy
+ * 
+ *
+ * @author Andreas Herz
+ * @extends draw2d.policy.canvas.CanvasPolicy
+ */
+draw2d.policy.canvas.SelectionPolicy = draw2d.policy.canvas.CanvasPolicy.extend({
+
+    NAME : &quot;draw2d.policy.canvas.SelectionPolicy&quot;,
+    
+<span id='draw2d-policy-canvas-SelectionPolicy-method-constructor'>    /**
+</span>     * @constructor 
+     * Creates a new selection policy
+     */
+    init: function( attr, setter, getter)
+    {
+        this._super( attr, setter, getter);
+    },
+
+<span id='draw2d-policy-canvas-SelectionPolicy-method-select'>    /**
+</span>     * @method
+     * Selects the given figure within the canvas. The policy must unselect already selected
+     * figures or show any decorations.
+     *
+     * @param {draw2d.Canvas} canvas
+     * @param {draw2d.Figure} figure
+     *
+     */
+    select: function(canvas, figure)
+    {
+    },
+
+<span id='draw2d-policy-canvas-SelectionPolicy-method-unselect'>        /**
+</span>     * @method
+     * Unselect the given figure in the canvas and remove all resize handles
+     * 
+     * @param {draw2d.Canvas} canvas
+     * @param {draw2d.Figure} figure
+     */
+    unselect: function(canvas, figure)
+    {
+        canvas.getSelection().remove(figure);
+
+        figure.unselect();
+
+        // @since 6.1.42
+        canvas.fireEvent(&quot;unselect&quot;,{figure:figure});
+
+        // deprecated
+        canvas.fireEvent(&quot;select&quot;,{figure:null});
+    }
+});
+
+
+
+
+
+</pre>
+</body>
+</html>

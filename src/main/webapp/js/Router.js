@@ -110,6 +110,8 @@ define(function(require) {
 
 	var FormApplicationModulo = require('views/applicationModulo/FormApplicationModulo');
 
+	var AEditor = require('views/aeditor/AEditor');
+
 	util.NProgress.setBlockerPanel('block_panel');
 
 	// REMOVER ESSA GAMBA NO FUTURO
@@ -142,6 +144,7 @@ define(function(require) {
 	var AppRouter = Backbone.Router.extend({
 		routes : {
 			'app/visual/:id' : 'visual',
+			'app/aeditor' : 'aeditor',
 
 			// hashs de Application
 			// 'app/visual' : 'visual',
@@ -296,6 +299,9 @@ define(function(require) {
 					console.error(x, y, z);
 				}
 			});
+		},
+		aeditor : function(idApplication) {
+			this.App.mainRegion.show(new AEditor());
 		},
 		visual : function(idApplication) {
 			var that = this;

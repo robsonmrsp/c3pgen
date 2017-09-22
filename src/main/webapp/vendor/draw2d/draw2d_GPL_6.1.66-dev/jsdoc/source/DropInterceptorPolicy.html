@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='draw2d-policy-canvas-DropInterceptorPolicy'>/**
+</span> * @class draw2d.policy.canvas.DropInterceptorPolicy
+ *
+ * Drop interceptors are basically event handlers from which you can return a value
+ * that tells draw2d to abort what it is that it was doing.&lt;br&gt;
+ * &lt;br&gt;
+ * Interceptors can be registered via the registerEditPolicy method on the draw2d canvas just like any other 
+ * edit policies.&lt;br&gt;
+ * &lt;br&gt;
+ * The &lt;b&gt;delegateTarget&lt;/b&gt; method is responsible for all drop event especially to all connection and port handling.
+ * 
+ * 
+ *
+ * @author Andreas Herz
+ * @extends draw2d.policy.canvas.CanvasPolicy
+ * @since 5.0.0
+ */
+draw2d.policy.canvas.DropInterceptorPolicy = draw2d.policy.canvas.CanvasPolicy.extend({
+
+    NAME : &quot;draw2d.policy.canvas.DropInterceptorPolicy&quot;,
+    
+<span id='draw2d-policy-canvas-DropInterceptorPolicy-method-constructor'>    /**
+</span>     * @constructor 
+     * 
+     */
+    init: function(attr, setter, getter)
+    {
+        this._super(attr, setter, getter);
+    },
+    
+
+<span id='draw2d-policy-canvas-DropInterceptorPolicy-method-delegateTarget'>    /**
+</span>     * @method
+     * Called if the user want connect a port with any kind draw2d.Figure.&lt;br&gt;
+     * Return a non &lt;b&gt;null&lt;/b&gt; value if the interceptor accept the connect event.&lt;br&gt;
+     * &lt;br&gt;
+     * It is possible to delegate the drop event to another figure if the policy
+     * returns another figure. This is usefull if a figure want to accept a port 
+     * drop event and delegates this drop event to another port.&lt;br&gt;
+     * 
+     * 
+     * @param {draw2d.Figure} connectInquirer the figure who wants connect
+     * @param {draw2d.Figure} connectIntent the potential connect target
+     *
+     * @return {draw2d.Figure} the calculated connect intent or &lt;b&gt;null&lt;/b&gt; if the interceptor uses the veto right
+     */
+    delegateTarget: function(connectInquirer, connectIntent)
+    {
+        // a composite accept any kind of figures exceptional ports
+        //
+    	if(!(connectInquirer instanceof draw2d.Port) &amp;&amp; connectIntent instanceof draw2d.shape.composite.StrongComposite){
+    		return connectIntent;
+    	}
+    	
+    	// Ports accepts only Ports as DropTarget
+    	//
+    	if(!(connectIntent instanceof draw2d.Port) || !(connectInquirer instanceof draw2d.Port)){
+    		return null;
+    	}
+ 
+    	// consider the max possible connections for this port
+    	//
+    	if(connectIntent.getConnections().getSize() &gt;= connectIntent.getMaxFanOut()){
+    	    return null;
+    	}
+
+        // It is not allowed to connect two output ports
+        if (connectInquirer instanceof draw2d.OutputPort &amp;&amp; connectIntent instanceof draw2d.OutputPort) {
+            return null;
+        }
+        
+        // It is not allowed to connect two input ports
+        if (connectInquirer instanceof draw2d.InputPort &amp;&amp; connectIntent instanceof draw2d.InputPort) {
+            return null;
+        }
+
+        // It is not possible to create a loop back connection at the moment.
+        // Reason: no connection router implemented for this case
+        if((connectInquirer instanceof draw2d.Port) &amp;&amp; (connectIntent instanceof draw2d.Port)){
+	        if(connectInquirer.getParent() === connectIntent.getParent()){
+	            return null;
+	         }
+        }
+
+        // redirect the dragEnter handling to the hybrid port
+        //
+        if((connectInquirer instanceof draw2d.Port) &amp;&amp; (connectIntent instanceof draw2d.shape.node.Hub)) {
+            return connectIntent.getHybridPort(0);
+        }
+
+        // return the connectTarget determined by the framework or delegate it to another
+        // figure.
+        return connectIntent;
+    }
+    
+});
+</pre>
+</body>
+</html>

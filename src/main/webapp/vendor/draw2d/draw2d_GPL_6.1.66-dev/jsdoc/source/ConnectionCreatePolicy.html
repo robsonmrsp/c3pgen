@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">
+<span id='draw2d-policy-connection-ConnectionCreatePolicy'>/**
+</span> * @class draw2d.policy.connection.ConnectionCreatePolicy
+ * Base class for connection creation by user interaction.
+ *
+ *
+ * @author Andreas Herz
+ *
+ * @extends draw2d.policy.canvas.KeyboardPolicy
+ */
+draw2d.policy.connection.ConnectionCreatePolicy = draw2d.policy.canvas.KeyboardPolicy.extend({
+
+    NAME : &quot;draw2d.policy.connection.ConnectionCreatePolicy&quot;,
+    
+<span id='draw2d-policy-connection-ConnectionCreatePolicy-method-constructor'>    /**
+</span>     * @constructor
+     *
+     * Creates a new connection create policy instance
+     */
+    init: function(attr, setter, getter)
+    {
+        this._super( attr,setter,getter);
+    },
+
+
+<span id='draw2d-policy-connection-ConnectionCreatePolicy-method-createConnection'>    /**
+</span>     * @method
+     * Factory method to create the connection to insert.
+     *
+     * @return {draw2d.Connection}
+     * @template
+     */
+    createConnection:function()
+    {
+        return new draw2d.Connection({
+            router: new draw2d.layout.connection.DirectRouter()
+        });
+    },
+
+
+    ripple: function(x,y, type)
+    {
+        switch(type){
+            case 0:
+                var circle = this.canvas.paper.circle(x, y, 3, 3).attr({fill: null, stroke:&quot;#d0d0ff&quot;});
+                var anim = Raphael.animation(
+                    {transform: &quot;s6&quot;, opacity:0.0, &quot;stroke-width&quot;:3 },
+                    500,
+                    &quot;linear&quot;,
+                    function(){circle.remove()}
+                );
+                circle.animate(anim);
+                // return an emmpty raphael.set. The circle removes itself after animation is done
+                //
+                return this.canvas.paper.set();
+                break;
+            case 1:
+                var circle1 = this.canvas.paper.circle(x, y, 3, 3).attr({fill: null, stroke:&quot;#3f72bf&quot;});
+                var circle2 = this.canvas.paper.circle(x, y, 3, 3).attr({fill: null, stroke:&quot;#ff0000&quot;});
+                var anim1 = Raphael.animation(
+                    {transform: &quot;s6&quot;, opacity:0.0, &quot;stroke-width&quot;:1 },
+                    1200,
+                    &quot;linear&quot;
+                ).repeat(Infinity);
+                circle1.animate(anim1);
+                var anim2 = Raphael.animation(
+                    {transform: &quot;s12&quot;, opacity:0.0, &quot;stroke-width&quot;:4 },
+                    500,
+                    &quot;linear&quot;,
+                    function(){circle2.remove()}
+                );
+                circle2.animate(anim2);
+
+                // return the &quot;circle1&quot;. This shape must be remove by the caller
+                // &quot;circle2&quot; is removed automaticly
+                //
+                return circle1;
+                break;
+        }
+    }
+
+
+});
+
+</pre>
+</body>
+</html>

@@ -17,6 +17,7 @@ public interface ${entity.name}Service {
 
 	${entity.name} get(Integer id);
 
+
 	List<${entity.name}> all();
 	
 	Pager<${entity.name}> all(PaginationParams paginationParams);

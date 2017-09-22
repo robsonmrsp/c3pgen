@@ -369,7 +369,7 @@ body {
 	/* 	right: 9px; */
 	/* 	color: white; */
 	/* 	font-size: 10px; */
-	/* } */                           
+	/* } */                            
 
 .uml-class-name-rect {
 	background: #ff8450 !important;
@@ -500,4 +500,25 @@ ul.editor-list li:hover a {
 .card-application {
 	max-height: 280px !important;
 	height: 280px !important;
+}
+
+.chart div {
+	font: 10px sans-serif;
+	background-color: steelblue;
+	text-align: right;
+	padding: 3px;
+	margin: 1px;
+	color: white;
+}
+
+body {
+	font: 14px helvetica neue, helvetica, arial, sans-serif;
+}
+
+#cy {
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
 }

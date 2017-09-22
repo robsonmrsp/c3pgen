@@ -1,0 +1,120 @@
+﻿<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+<title></title>
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <link type="text/css" rel="stylesheet" href="./css/example.css" />
+
+    <link type="text/css" rel="stylesheet" href="../../../css/contextmenu.css" />
+
+
+    <SCRIPT src="../../../lib/shifty.js"></SCRIPT>
+    <SCRIPT src="../../../lib/raphael.js"></SCRIPT>
+    <SCRIPT src="../../../lib/jquery-1.12.0.min.js"></SCRIPT>
+    <SCRIPT src="../../../lib/jquery.autoresize.js"></SCRIPT>
+    <SCRIPT src="../../../lib/jquery-touch_punch.js"></SCRIPT>
+    <SCRIPT src="../../../lib/jquery.contextmenu.js"></SCRIPT>
+    <SCRIPT src="../../../lib/rgbcolor.js"></SCRIPT>
+    <SCRIPT src="../../../lib/StackBlur.js"></SCRIPT>
+    <SCRIPT src="../../../lib/canvg.js"></SCRIPT>
+    <SCRIPT src="../../../lib/Class.js"></SCRIPT>
+    <SCRIPT src="../../../lib/json2.js"></SCRIPT>
+    <SCRIPT src="../../../lib/pathfinding-browser.min.js"></SCRIPT>
+
+    <SCRIPT src="../../../src/draw2d.js"></SCRIPT>
+    <SCRIPT src="JSLitmus.js"></SCRIPT>
+
+<script type="text/javascript">
+
+var oval = null;
+var canvas = null;
+$(window).load(function () {
+
+    // create the canvas for the user interaction
+    //
+    canvas = new draw2d.Canvas("gfx_holder");
+
+    function injectNewMethod(){
+        draw2d.Figure.inject({
+            applyTransformation:function()
+            {
+                if(this.rotationAngle === this.lastAppliedRotation){
+                    return this;
+                }
+                this.lastAppliedRotation = this.rotationAngle ;
+                
+                this.shape.transform(
+                        "R"+
+                        this.rotationAngle);
+                
+                if(this.getRotationAngle()=== 90|| this.getRotationAngle()===270){
+                    var ratio = this.getHeight()/this.getWidth();
+                    var rs = "...S"+ratio+","+1/ratio+","+(this.getAbsoluteX() +this.getWidth()/2)+","+(this.getAbsoluteY() +this.getHeight()/2);
+                    this.shape.transform(rs);
+                }
+                
+                return this;
+            }
+        });
+
+    }
+    function injectOldMethod(){
+        draw2d.Figure.inject({
+            applyTransformation:function()
+            {
+               this.shape.transform(
+                        "R"+
+                        this.rotationAngle);
+                
+                if(this.getRotationAngle()=== 90|| this.getRotationAngle()===270){
+                    var ratio = this.getHeight()/this.getWidth();
+                    var rs = "...S"+ratio+","+1/ratio+","+(this.getAbsoluteX() +this.getWidth()/2)+","+(this.getAbsoluteY() +this.getHeight()/2);
+                    this.shape.transform(rs);
+                }
+                
+                return this;
+            }
+        });
+    }
+    oval  = new draw2d.shape.node.Start({width:80,height:30, x:50, y:50});
+    canvas.add(oval);
+    canvas.setCurrentSelection(oval);
+    
+    var useNewMethod=false;
+    JSLitmus.onTestStart= function(a){
+        if(useNewMethod){
+            injectNewMethod();
+        }
+        else{
+            injectOldMethod();
+        }
+        useNewMethod=true;
+    };
+    
+    JSLitmus.test("Old Version", function(count) {
+        while (count--) {
+            oval.setPosition(count,count);
+        }
+    });
+
+    JSLitmus.test("New Version", function(count) { 
+        while (count--) {
+            oval.setPosition(count,count);
+        }
+    });
+
+});
+
+
+</script>
+
+</head>
+
+<body>
+<div  onselectstart="javascript:/*IE8 hack*/return false" id="gfx_holder" style="width:500px; height:300px;">
+</div>
+
+</body>
+</html>

@@ -50,6 +50,10 @@ require.config({
 		'codemirrorYaml' : '../vendor/CodeMirror-4_beta2/mode/yaml/yaml',
 		'Yaml' : '../vendor/js-yaml-3.6.1/dist/js-yaml',
 		'jqueryForm' : '../vendor/jquery.form/jquery.form',
+		'draw2d_core' : '../vendor/draw2d/draw2d_GPL_6.1.66-min/src/draw2d_core',
+		'draw2d' : '../vendor/draw2d/draw2d_GPL_6.1.66-min/src/draw2d',
+		
+		
 	},
 	shim : {
 		'underscore' : {
@@ -145,15 +149,16 @@ require.config({
 		'metisMenu' : [ 'jquery' ],
 		'editable' : [ 'jquery', 'bootstrap' ],
 		'jqueryForm' : [ 'jquery' ],
+		'draw2d_core' : [ 'jquery' ],
+		'draw2d' : [ 'draw2d_core' ],
+
 	},
 	wrapShim : true,
 });
 requirejs.onResourceLoad = function(context, map, depArray) {
-	// var duration = new Date() - start;
-	// console.log("Carregando...", depArray);
-	// console.log("Carregando...", map.id);
+
 }
-require([ 'App' ], function(App) {
+require([ 'App',  ], function(App) {
 	App.initialize();
 
 });

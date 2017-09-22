@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">
+<span id='draw2d-policy-connection-ComposedConnectionCreatePolicy'>/**
+</span> * @class draw2d.policy.connection.ComposedConnectionCreatePolicy
+ * A composed connection create policy. Use this to install more than one
+ * ConnectionCreatePolicy into the canvas. Normally it is not allowed to install
+ * more than one policy from the same type.
+ *
+ *
+ * @author Andreas Herz
+ *
+ * @extends draw2d.policy.connection.ConnectionCreatePolicy
+ */
+draw2d.policy.connection.ComposedConnectionCreatePolicy = draw2d.policy.connection.ConnectionCreatePolicy.extend({
+
+    NAME : &quot;draw2d.policy.connection.ComposedConnectionCreatePolicy&quot;,
+    
+<span id='draw2d-policy-connection-ComposedConnectionCreatePolicy-method-constructor'>    /**
+</span>     * @constructor
+     *
+     * Creates a new connection create policy instance
+     *
+     * @param {array} policies the policies to use
+     */
+    init: function( policies )
+    {
+        this.policies = policies;
+        this._super();
+    },
+
+    onMouseDown: function()
+    {
+        var _arg = arguments;
+        $.each(this.policies, function(i,p){
+            p.onMouseDown.apply(p,_arg);
+        });
+    },
+    onMouseDrag: function()
+    {
+        var _arg = arguments;
+        $.each(this.policies, function(i,p){
+            p.onMouseDrag.apply(p,_arg);
+        });
+    },
+
+    onMouseUp: function()
+    {
+        var _arg = arguments;
+        $.each(this.policies, function(i,p){
+            p.onMouseUp.apply(p,_arg);
+        });
+    },
+
+    onClick: function()
+    {
+        var _arg = arguments;
+        $.each(this.policies, function(i,p){
+            p.onClick.apply(p,_arg);
+        });
+    },
+    onMouseMove: function()
+    {
+        var _arg = arguments;
+        $.each(this.policies, function(i,p){
+            p.onMouseMove.apply(p,_arg);
+        });
+    },
+
+<span id='draw2d-policy-connection-ComposedConnectionCreatePolicy-method-onKeyUp'>    /**
+</span>     * @inheritDoc
+     **/
+    onKeyUp: function(canvas, keyCode, shiftKey, ctrlKey)
+    {
+        var _arg = arguments;
+        $.each(this.policies, function(i,p){
+            p.onKeyUp.apply(p,_arg);
+        });
+    },
+
+<span id='draw2d-policy-connection-ComposedConnectionCreatePolicy-method-onKeyDown'>    /**
+</span>     * @inheritDoc
+     **/
+    onKeyDown: function(canvas, keyCode, shiftKey, ctrlKey)
+    {
+        var _arg = arguments;
+        $.each(this.policies, function(i,p){
+            p.onKeyDown.apply(p,_arg);
+        });
+    },
+
+<span id='draw2d-policy-connection-ComposedConnectionCreatePolicy-method-onInstall'>    /**
+</span>     * @method
+     * Called if the policy is installed into the canvas.
+     *
+     * @param {draw2d.Canvas} canvas
+     */
+    onInstall: function(canvas)
+    {
+        var _arg = arguments;
+        $.each(this.policies, function(i,p){
+            p.onInstall.apply(p,_arg);
+        });
+    },
+
+<span id='draw2d-policy-connection-ComposedConnectionCreatePolicy-method-onUninstall'>    /**
+</span>     * @method
+     * Called if the policy is deinstalled from the canvas
+     *
+     * @param {draw2d.Canvas} canvas
+     */
+    onUninstall: function(canvas)
+    {
+        var _arg = arguments;
+        $.each(this.policies, function(i,p){
+            p.onUninstall.apply(p,_arg);
+        });
+    }
+
+});
+
+</pre>
+</body>
+</html>

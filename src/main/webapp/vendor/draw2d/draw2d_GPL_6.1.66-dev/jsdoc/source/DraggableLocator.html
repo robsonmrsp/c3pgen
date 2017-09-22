@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js">
+<span id='draw2d-layout-locator-DraggableLocator'>/**
+</span> * @class draw2d.layout.locator.DraggableLocator
+ * 
+ * A DraggableLocator is used to place figures relative to the parent top left corner. It is
+ * possible to move a child node via drag&amp;drop.
+ *
+ * 
+ * See the example:
+ *
+ *     @example preview small frame
+ *     
+ *
+ *
+ *     
+ * @author Andreas Herz
+ * @extend draw2d.layout.locator.Locator
+ */
+draw2d.layout.locator.DraggableLocator= draw2d.layout.locator.Locator.extend({
+    NAME : &quot;draw2d.layout.locator.DraggableLocator&quot;,
+    
+<span id='draw2d-layout-locator-DraggableLocator-method-constructor'>    /**
+</span>     * @constructor
+     * Constructs a locator with associated parent.
+     * 
+     */
+    init: function( )
+    {
+        this._super();
+    },
+
+    bind: function(parent, child)
+    {
+        // override the parent implementation to avoid
+        // that the child is &quot;!selectable&quot; and &quot;!draggable&quot;
+
+        // Don&#39;t redirect the selection handling to the parent
+        // Using the DraggableLocator provides the ability to the children
+        // that they are selectable and draggable. Remove the SelectionAdapter from the parent
+        // assignment.
+        child.setSelectionAdapter( function(){
+            return child;
+        });
+    },
+
+    unbind: function(parent, child)
+    {
+        // use default
+        child.setSelectionAdapter(null);
+    }
+});
+</pre>
+</body>
+</html>
