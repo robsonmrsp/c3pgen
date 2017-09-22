@@ -263,20 +263,23 @@ body {
 }
 
 .tools {
-	position: absolute;
-	top: 300px;
-	left: 0px;
+	/* 	position: absolute; */
+	/* 	top: 300px; */
+	/* 	left: 0px; */
 	max-width: 80px !important;
 }
 /* paineis e toolbars  */
 .inspetor {
 	/* 	position: fixed; */
-	top: 62px;
-	right: 10px;
+	/* 	top: 62px; */
+	/* 	right: 10px; */
 	/* 	width: 450px; */
+	max-width: 219px !important;
 	height: 100px;
 }
-
+.inspetor-entidades-view{
+	max-width: 219px !important;
+}
 .inspetor-relacionamentos {
 	/* 	position: fixed; */
 	bottom: 362px;
@@ -369,7 +372,7 @@ body {
 	/* 	right: 9px; */
 	/* 	color: white; */
 	/* 	font-size: 10px; */
-	/* } */                           
+	/* } */                              
 
 .uml-class-name-rect {
 	background: #ff8450 !important;
@@ -441,6 +444,7 @@ body {
 
 #paper {
 	width: 1920px;
+	left: 220px !important;
 	/* 	height: 1024px impo; */
 	overflow: scroll;
 }

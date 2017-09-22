@@ -19,7 +19,7 @@ define(function(require) {
 
 	var EntidadeItem = Marionette.LayoutView.extend({
 		template : _.template(InspetorEntidadesViewTemplate),
-		className : ' drag-item',
+		className : ' ',
 
 		regions : {
 			attributesRegion : '.attributes',
@@ -64,14 +64,14 @@ define(function(require) {
 			var that = this;
 
 			// // Configuração do draggable
-			this.$el.draggable({
-				handle : 'h5',
-				containment : ".drag-entities",
-				scroll : false,
-				stop : function() {
-					// var offset = $(this).offset();
-				}
-			});
+//			this.$el.draggable({
+//				handle : 'h5',
+//				containment : ".drag-entities",
+//				scroll : false,
+//				stop : function() {
+//					// var offset = $(this).offset();
+//				}
+//			});
 
 			this.attributesCollection = new AttributeCollection(this.model.get('attributes'));
 			this.relationshipsCollection = new AttributeCollection(this.model.get('relationships'));

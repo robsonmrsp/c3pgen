@@ -112,9 +112,9 @@ define(function(require) {
 
 				this.modalError.initIn(this);
 
-				this.inspetorRegion.show(this.inspetorView);
-				this.diagramApplicationToolsRegion.show(this.diagramApplicationTools);
-				this.inspetorRelacionamentosRegion.show(this.inspetorRelacionamentosView);
+				 this.inspetorRegion.show(this.inspetorView);
+				// this.diagramApplicationToolsRegion.show(this.diagramApplicationTools);
+				// this.inspetorRelacionamentosRegion.show(this.inspetorRelacionamentosView);
 
 				this.graph = new Joint.dia.Graph();
 
@@ -138,7 +138,7 @@ define(function(require) {
 				// Joint.util.shapePerimeterConnectionPoint
 				});
 
-				$('#paper').css('width', (window.innerWidth - 455) + 'px')
+				// $('#paper').css('width', (window.innerWidth - 455) + 'px')
 
 				window.paper.on('link:options', function(_evento, _link, x, y) {
 					that.inspetorRelacionamentosView.setVisual(_link.model);
@@ -272,7 +272,7 @@ define(function(require) {
 				++linha;
 			}
 			var posY = 40 + ((contador++ % 2 - 1) * 240) + linha * 240; // TOP
-			var posX = 150 + ((contador - 1) * 180); // LEFT
+			var posX = 250 + ((contador - 1) * 180); // LEFT
 
 			entity.on('change', this.changeEntity, this);
 			var diagramEntity = new DiagramEntityView({
