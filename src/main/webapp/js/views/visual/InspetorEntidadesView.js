@@ -76,7 +76,8 @@ define(function(require) {
 			this.attributesCollection = new AttributeCollection(this.model.get('attributes'));
 			this.relationshipsCollection = new AttributeCollection(this.model.get('relationships'));
 			this.attributesCollection.on('change', this.updateViewEntity, this);
-//			this.relationshipsCollection.on('change', this.updateViewEntity, this);
+			// this.relationshipsCollection.on('change', this.updateViewEntity,
+			// this);
 			this.attributesCollection.on('destroy', this.updateViewEntity, this);
 
 			this.attributesCollectionView = new AttributesCollectionView({
@@ -126,8 +127,9 @@ define(function(require) {
 
 			this.entity.set(this.getModel())
 			this.entity.set('attributes', this.attributesCollection.toJSON());
-//			this.entity.set('relationships', this.attributesCollection.toJSON());
-//			this.visualEntity.updateHtmlEntity(this.entity);
+			// this.entity.set('relationships',
+			// this.attributesCollection.toJSON());
+			// this.visualEntity.updateHtmlEntity(this.entity);
 		},
 
 		deleteAtribute : function() {
@@ -138,12 +140,12 @@ define(function(require) {
 			var that = this;
 			this.visualEntity = visualEntity;
 
-			this.entity = visualEntity.get('entity');
+			this.entity = visualEntity.model;
 
-			this.visualEntity.on('change:position', function(_cellView, position, c, d) {
-				var _entity = _cellView.get('entity');
-				_entity.set('posX', position.x);
-				_entity.set('posY', position.y);
+			this.visualEntity.getGraphEntity().on('change:position', function(_cellView, position, c, d) {
+				// var _entity = _cellView.get('entity');
+				that.entity.set('posX', position.x);
+				that.entity.set('posY', position.y);
 			})
 
 			this.attributesCollection.reset(this.entity.get('attributes'));
@@ -158,7 +160,7 @@ define(function(require) {
 			util.refreshEditableVisual(this.ui.inputDisplayName);
 			util.refreshEditableVisual(this.ui.inputTableName);
 			util.refreshEditableVisual(this.ui.inputHasMobile);
-			
+
 			// this.visualEntity.updateEntityPosition();
 		},
 

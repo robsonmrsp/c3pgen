@@ -43,11 +43,16 @@ define(function(require) {
 		getGraphEntity : function() {
 			return this.htmlEntity;
 		},
+		reposition : function() {
+			this.htmlEntity.updatePosition(this.model.get('posX'), this.model.get('posY'));
+		},
 		initialize : function(opt) {
 			var that = this;
 			this.htmlEntity = new HtmlEntity({
 				htmlView : that,
 			});
+			
+			this.model.on('change', this.refresh, this);
 
 			this.container = opt.container;
 
@@ -67,6 +72,7 @@ define(function(require) {
 				this.attributesRegion.show(this.attributesCollectionView);
 				this.relationshipsRegion.show(this.relationshipsCollectionView);
 
+				this.htmlEntity.updatePosition(this.model.get('posX'), this.model.get('posY'));
 				// window.setTimeout(function() {
 				// that.container.resizeView({
 				// width : that.$el.width(),
@@ -84,12 +90,12 @@ define(function(require) {
 			this.attributesCollection.reset(this.model.get('attributes'));
 			this.relationshipsCollection.reset(this.model.get('relationships'));
 
-			window.setTimeout(function() {
-				that.container.resizeView({
-					width : that.$el.width(),
-					height : that.$el.height()
-				})
-			}, 10);
+//			window.setTimeout(function() {
+//				that.container.resizeView({
+//					width : that.$el.width(),
+//					height : that.$el.height()
+//				})
+//			}, 10);
 		},
 
 	});

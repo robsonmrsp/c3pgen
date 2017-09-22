@@ -114,8 +114,8 @@ define(function(require) {
 					var _sourceRelationModel = null;
 					var _targetRelationModel = null;
 					if (_source && _target) {
-						var _sourceEntity = _source.get('entity');
-						var _targetEntity = _target.get('entity');
+						var _sourceEntity = _source.model;
+						var _targetEntity = _target.model;
 
 						this.set('source', _source);
 						this.set('target', _target);

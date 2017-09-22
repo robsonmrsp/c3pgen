@@ -147,7 +147,7 @@ define(function(require) {
 					that.removeApplicationRelationship(linkView);
 
 				})
-				window.paper.on('cell:pointerdown', function(cellView, evt, x, y) {
+				window.paper.on('cell:pointerdown', function(_cellView, evt, x, y) {
 					// var toolRemove =
 					// $(evt.target).parents('.tool-remove')[0];
 					// if (toolRemove) {
@@ -158,10 +158,22 @@ define(function(require) {
 					// });
 					//
 					// }
+					if (_cellView.model.get('type') == 'html.Element') {
+
+						// pegar a referencia ao Diagrama associado a esse
+						// cellView
+						var view = globalVisualEntities.get(_cellView.model.id);
+						that.inspetorView.setVisualEntity(view);
+						// console.log('pointerdown')
+					}
 				});
 				window.paper.on('cell:pointerup', function(_cellView, evt, x, y) {
 					if (_cellView.model.get('type') == 'html.Element') {
-						that.inspetorView.setVisualEntity(_cellView.model);
+
+						// pegar a referencia ao Diagrama associado a esse
+						// cellView
+						var view = globalVisualEntities.get(_cellView.model.id);
+						// that.inspetorView.setVisualEntity(view);
 						if (that.activeAddRelation == true) {
 							if (that.sourceTempRelation == null) {
 								that.sourceTempRelation = _cellView;
@@ -192,7 +204,7 @@ define(function(require) {
 								window.globalVisualRelations.put(relation.id, relation);
 							}
 						}
-						console.log('terminou o drag', _cellView);
+						// console.log('terminou o drag', _cellView);
 					}
 				});
 
@@ -204,28 +216,12 @@ define(function(require) {
 				window.paper.on('blank:pointerclick', function(_cellView, evt, x, y) {
 					if (that.activeAddEntity == true) {
 						that.addEntity();
-						var diagramEntity = new DiagramEntityView({
-							model : that._getEntityModel({
-								x : MOUSE_X,
-								y : MOUSE_Y - 62
-							}),
-							position : {
-								x : MOUSE_X,
-								y : MOUSE_Y - 62
-							},
-							size : {
-								width : 120,
-								height : 100
-							},
-							onClickRemove : function(visualE) {
-								that.removeVisualEntity(visualE);
-							},
-						});
+						var diagramEntity = that.addVisualEntity(new EntityModel({
+							posX : MOUSE_X,
+							posY : MOUSE_Y - 62
+						}));
 
-						that.graph.addCell(visualEntity.getGraphEntity());
-
-						globalVisualEntities.put(visualEntity.id, visualEntity.getGraphEntity())
-						that.inspetorView.setVisualEntity(visualEntity.getGraphEntity());
+						that.inspetorView.setVisualEntity(diagramEntity);
 
 						that.activeAddEntity = false
 						$('#paper').removeClass('cursor-tabela');
@@ -248,7 +244,6 @@ define(function(require) {
 			that.quantidadeEntidades = application.get('entities').length
 			_.each(application.get('entities'), function(entity) {
 				try {
-
 					that.addVisualEntity(new EntityModel(entity));
 				} catch (e) {
 					console.error(e);
@@ -256,7 +251,9 @@ define(function(require) {
 			});
 
 			_.each(application.get('applicationRelationships'), function(appRelation) {
-				that.addVisualRelation(appRelation);
+
+				// comentando por enquanto
+				// that.addVisualRelation(appRelation);
 			});
 		},
 		openTools : function() {
@@ -277,26 +274,7 @@ define(function(require) {
 			var posY = 40 + ((contador++ % 2 - 1) * 240) + linha * 240; // TOP
 			var posX = 150 + ((contador - 1) * 180); // LEFT
 
-			console.log(posX, posY);
-
-			// var diagramEntity = new DiagramEntityView({
-			// model : that._getEntityModel({
-			// x : MOUSE_X,
-			// y : MOUSE_Y - 62
-			// }),
-			// position : {
-			// x : MOUSE_X,
-			// y : MOUSE_Y - 62
-			// },
-			// size : {
-			// width : 120,
-			// height : 100
-			// },
-			// onClickRemove : function(visualE) {
-			// that.removeVisualEntity(visualE);
-			// },
-			// });
-
+			entity.on('change', this.changeEntity, this);
 			var diagramEntity = new DiagramEntityView({
 				model : entity,
 				position : {
@@ -315,15 +293,15 @@ define(function(require) {
 					that.changeEntity(entity);
 				},
 			});
-
-			that.graph.addCell(diagramEntity.getGraphEntity());
-
-			globalVisualEntities.put(visualEntity.id, diagramEntity.getGraphEntity())
-
-			that.inspetorView.setVisualEntity(diagramEntity.getGraphEntity());
-
+			var visualEntity = diagramEntity.getGraphEntity();
+			that.graph.addCell(visualEntity);
+			globalVisualEntities.put(visualEntity.id, diagramEntity);
+			return diagramEntity;
+			// that.inspetorView.setVisualEntity(diagramEntity);
 		},
-
+		changeEntity : function(entity) {
+			console.log(JSON.stringify(entity));
+		},
 		addVisualRelation : function(applicationRelationshipModel) {
 			var that = this;
 
@@ -432,7 +410,7 @@ define(function(require) {
 		_getEntityView : function(relation) {
 			var visualModel = null
 			_.each(globalVisualEntities.values(), function(visual) {
-				if (visual.get('entity') && visual.get('entity').get('name') == relation.model) {
+				if (visual.model.get('name') == relation.model) {
 					visualModel = visual;
 				}
 			});
@@ -484,9 +462,7 @@ define(function(require) {
 				}
 			});
 		},
-		changeEntity : function(entity) {
-			console.log(entity);
-		},
+
 		removeVisualEntity : function(visualE) {
 			var model = new EntityModel({
 				id : visualE.entity.get('id')

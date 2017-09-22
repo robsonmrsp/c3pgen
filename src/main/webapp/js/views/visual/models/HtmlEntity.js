@@ -20,6 +20,13 @@ define(function(require) {
 			Joint.shapes.html.Element.__super__.initialize.apply(this, arguments);
 			this.htmlView = opt.htmlView;
 		},
+		updatePosition : function(x, y) {
+			this.set('position', {
+				x : x,
+				y : y
+			});
+		},
+
 		defaults : Joint.util.deepSupplement({
 			type : 'html.Element',
 
@@ -38,7 +45,8 @@ define(function(require) {
 		template : HtmlEntityTemplate,
 
 		initialize : function(opt) {
-			// Joint.shapes.html.ElementView.__super__.initialize.apply(this, arguments);
+			// Joint.shapes.html.ElementView.__super__.initialize.apply(this,
+			// arguments);
 			var that = this;
 			this.htmlView = this.model.htmlView;
 
@@ -67,8 +75,8 @@ define(function(require) {
 				width : size.width,
 				height : size.height,
 			});
-			this.updateBox()
 			this.$box.css('height', size.height);
+//			this.updateBox()
 		},
 
 		render : function() {
@@ -99,6 +107,10 @@ define(function(require) {
 				top : bbox.y,
 				transform : 'rotate(' + (this.model.get('angle') || 0) + 'deg)'
 			});
+			this.resizeView({
+				width : this.htmlView.$el.width(),
+				height : this.htmlView.$el.height()
+			})
 		},
 		removeBox : function(evt) {
 			this.$el.remove();
