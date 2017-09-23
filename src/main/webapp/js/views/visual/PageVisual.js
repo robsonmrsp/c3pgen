@@ -112,7 +112,7 @@ define(function(require) {
 
 				this.modalError.initIn(this);
 
-				 this.inspetorRegion.show(this.inspetorView);
+				this.inspetorRegion.show(this.inspetorView);
 				// this.diagramApplicationToolsRegion.show(this.diagramApplicationTools);
 				// this.inspetorRelacionamentosRegion.show(this.inspetorRelacionamentosView);
 
@@ -176,24 +176,29 @@ define(function(require) {
 						// that.inspetorView.setVisualEntity(view);
 						if (that.activeAddRelation == true) {
 							if (that.sourceTempRelation == null) {
-								that.sourceTempRelation = _cellView;
-								that.sourceTempRelation.highlight();
+								that.sourceTempRelation = view;
+								that.sourceViewTempRelation = _cellView;
+								_cellView.highlight();
 							} else {
-								that.targetTempRelation = _cellView;
-								that.targetTempRelation.highlight();
+								that.targetViewTempRelation = _cellView;
+								that.targetTempRelation = view;
+								_cellView.highlight();
 
 								var relation = new VisualRelationship({
 									applicationRelationshipModel : new ApplicationRelationshipModel({
-										sourceEntityView : that.sourceTempRelation.model,
-										targetEntityView : that.targetTempRelation.model,
+										sourceEntityView : that.sourceTempRelation,
+										targetEntityView : that.targetTempRelation,
 									})
 								});
 
 								setTimeout(function() {
-									that.sourceTempRelation.unhighlight();
-									that.targetTempRelation.unhighlight();
+									that.targetViewTempRelation.unhighlight();
+									that.sourceViewTempRelation.unhighlight();
+
 									that.sourceTempRelation = null;
 									that.targetTempRelation = null;
+									that.sourceViewTempRelation = null;
+									that.targetViewTempRelation = null;
 								}, 1000);
 
 								$('#paper').removeClass('cursor-relacao-1-n');
@@ -217,7 +222,7 @@ define(function(require) {
 					if (that.activeAddEntity == true) {
 						that.addEntity();
 						var diagramEntity = that.addVisualEntity(new EntityModel({
-							posX : MOUSE_X,
+							posX : MOUSE_X - 230,
 							posY : MOUSE_Y - 62
 						}));
 
@@ -272,7 +277,7 @@ define(function(require) {
 				++linha;
 			}
 			var posY = 40 + ((contador++ % 2 - 1) * 240) + linha * 240; // TOP
-			var posX = 250 + ((contador - 1) * 180); // LEFT
+			var posX = 120 + ((contador - 1) * 180); // LEFT
 
 			entity.on('change', this.changeEntity, this);
 			var diagramEntity = new DiagramEntityView({
@@ -300,7 +305,8 @@ define(function(require) {
 			// that.inspetorView.setVisualEntity(diagramEntity);
 		},
 		changeEntity : function(entity) {
-			console.log(JSON.stringify(entity));
+			//
+			// console.log(JSON.stringify(entity));
 		},
 		addVisualRelation : function(applicationRelationshipModel) {
 			var that = this;

@@ -4,22 +4,28 @@
 	<div class="panel-heading hbuilt" style="padding: 2px;">
 		<h5>
 			<!-- 			<i class="fa fa-link"></i> -->
-			Nome:
+			<!-- 			Nome: -->
+			<i class="fa fa-plus-square-o icon-expand-relationhip"></i>
 			<a href="javascript:void(-1)" data-type="text" data-placement="right" data-title="Digite o nome do atributo" class="editable editable-click inputRelationshipName " data-original-title="" title=""> {{name}} </a>
 		</h5>
 	</div>
 	<div class="panel-body" style="padding: 0px; border-bottom: 1px solid #e4e5e7;">
 		<div class="row widget-main-rel">
 			<div class="col-lg-12  animated-panel zoomIn" style="animation-delay: 0.3s;">
-				<input class="inputModel" type="hidden" value="{{model}}" />
-				<div class="">
+				<div class="widget-main">
 					<span>
-						Nome de exibição:&nbsp;
+						Model:&nbsp;
+						<!-- 						<a class="inputModel" type="text" value="{{model}}" /> -->
+						<a class="editable editable-click inputModel" data-placement="right" data-title="Model">{{model}}</a>
+					</span>
+					<br>
+					<span>
+						Exibição:&nbsp;
 						<a class="editable editable-click inputDisplayName" data-placement="right" data-title="Digite o nome a exibir">{{displayName}}</a>
 					</span>
 					<br>
 					<span>
-						Tipo de rel.:&nbsp;
+						Tipo:&nbsp;
 						<a class="editable editable-click inputType" data-placement="right" data-title="Tipo de elemento" data-type="select" data-pk="1" data-title="Selecione o tipo de  relacionamento">{{type}}</a>
 					</span>
 					<span style="display: none">
@@ -28,7 +34,7 @@
 					</span>
 					<br>
 					<span>
-						Elemento visual:&nbsp;
+						Visual:&nbsp;
 						<a class="editable  editable-click inputViewApproach" data-placement="right" data-title="Tipo de elemento" data-type="select" data-pk="1" data-title="Selecione o tipo de  componente">{{viewApproach && viewApproach.type}}</a>
 					</span>
 					<br>
@@ -60,7 +66,7 @@
 					<!-- 						Unidirecional?:&nbsp; -->
 					<!-- 						<input style="margin: 0px" type="checkbox" class="inputUniDirecional"{{uniDirecional ? 'checked' :''}}> -->
 					<!-- 					</span> -->
-					<br>
+					<!-- 					<br> -->
 				</div>
 			</div>
 		</div>

@@ -1,12 +1,12 @@
+Inspetor de Entidades
 <div class="inspetor-entidades-view hpanel " attrb-name="inspetorEntidadesViewTemplate">
 	<div class="hpanel  entity_{{id}}" style="margin-bottom: 3px">
 		<div class="panel-heading hbuilt" style="padding: 2px">
-			Inspetor de Entidades
 			<input id="inputId" type="hidden" value={{id}}>
 			<div class="panel-tools" style="margin-top: 10px;">
 				<input id="inputId" type="hidden" value={{id}}>
 				<a class="show-hide-ent" data-toggle="tooltip" data-placement="top" title="" data-original-title="mostrar/esconder atributos">
-					<i class="fa fa-15x fa-chevron-up"></i>
+					<i class="fa fa-15x icon-expand-entity fa-chevron-up"></i>
 				</a>
 				<a class="add-attribute" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Novo Atributo">
 					<i class="fa fa-15x fa-plus add-attr"></i>
@@ -34,12 +34,13 @@
 				</span>
 				<br>
 				<div class="widget-entidade attributes"></div>
+				<div class="widget-entidade relationships"></div>
 			</div>
 		</div>
-		<div class="panel-footer entity-content">
-			Observações: &nbsp;
-			<p class="editable editable-click" data-title="Observações da entidade">{{notes}}</p>
-		</div>
+		<!-- 		<div class="panel-footer "> -->
+		<!-- 			Observações: &nbsp; -->
+		<!-- 			<p class="editable editable-click" data-title="Observações da entidade">{{notes}}</p> -->
+		<!-- 		</div> -->
 	</div>
 </div>
-<div class="panel-footer message-entity-inspector"></div>
+<!-- <div class="panel-footer message-entity-inspector"></div> -->

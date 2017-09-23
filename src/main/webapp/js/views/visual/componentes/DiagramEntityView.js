@@ -59,11 +59,12 @@ define(function(require) {
 			this.onClickRemove = opt.onClickRemove;
 
 			this.attributesCollection = new AttributeCollection(this.model.get('attributes'));
-			this.relationshipsCollection = new AttributeCollection(this.model.get('relationships'));
+			
 			this.attributesCollectionView = new DiagramAttributesCollectionView({
 				collection : this.attributesCollection,
 			});
 
+			this.relationshipsCollection = new AttributeCollection(this.model.get('relationships'));
 			this.relationshipsCollectionView = new DiagramRelationshipsCollectionView({
 				collection : this.relationshipsCollection,
 			});

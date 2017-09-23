@@ -95,8 +95,8 @@ define(function(require) {
 
 					this.get('targetRelationModel').set(newTargetModel);
 
-					this.get('applicationRelationshipModel').set('source',newSourceModel);
-					this.get('applicationRelationshipModel').set('target',newTargetModel);
+					this.get('applicationRelationshipModel').set('source', newSourceModel);
+					this.get('applicationRelationshipModel').set('target', newTargetModel);
 
 					this._updateLabels();
 				},
@@ -114,11 +114,14 @@ define(function(require) {
 					var _sourceRelationModel = null;
 					var _targetRelationModel = null;
 					if (_source && _target) {
-						var _sourceEntity = _source.model;
-						var _targetEntity = _target.model;
+						var _sourceEntity = _source.model;// .htmlView.model;
+						var _sourceEntityRelations = _sourceEntity.get('relationships') || [];
 
-						this.set('source', _source);
-						this.set('target', _target);
+						var _targetEntity = _target.model;// .htmlView.model;
+						var _targetEntityRelations = _targetEntity.get('relationships') || [];
+
+						this.set('source', _source.getGraphEntity());
+						this.set('target', _target.getGraphEntity());
 
 						_sourceRelationModel = new RelationshipModel({
 							name : '_' + _targetEntity.get('name'),
@@ -139,6 +142,14 @@ define(function(require) {
 							entity : _targetEntity,
 							uniDirecional : '',
 						});
+
+						_sourceEntityRelations.push(_sourceRelationModel.toJSON());
+						_sourceEntity.set('relationships', _sourceEntityRelations);
+						_sourceEntity.set('notes', 'add' + _sourceRelationModel.id);
+
+						_targetEntityRelations.push(_targetRelationModel.toJSON());
+						_targetEntity.set('relationships', _targetEntityRelations);
+						_targetEntity.set('notes', 'add' + _targetRelationModel.id);
 					}
 					if (this.get('applicationRelationshipModel').get('source')) {
 						_sourceRelationModel = new RelationshipModel(this.get('applicationRelationshipModel').get('source'));

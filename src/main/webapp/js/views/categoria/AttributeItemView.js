@@ -25,15 +25,17 @@ define(function(require) {
 			'click .check-box' : 'changeAttribute'
 		},
 		expandAttributes : function() {
-			this.ui.widgetMain.toggle();
-			if (this.ui.widgetMain.is(':visible')) {
-				this.ui.iconExpandAttribute.removeClass('fa-plus-square-o');
-				this.ui.iconExpandAttribute.addClass('fa-minus-square-o');
+			var that = this;
+			this.ui.widgetMain.slideToggle("fast", function() {
+				if (that.ui.widgetMain.is(':visible')) {
+					that.ui.iconExpandAttribute.removeClass('fa-plus-square-o');
+					that.ui.iconExpandAttribute.addClass('fa-minus-square-o');
 
-			} else {
-				this.ui.iconExpandAttribute.removeClass('fa-minus-square-o');
-				this.ui.iconExpandAttribute.addClass('fa-plus-square-o');
-			}
+				} else {
+					that.ui.iconExpandAttribute.removeClass('fa-minus-square-o');
+					that.ui.iconExpandAttribute.addClass('fa-plus-square-o');
+				}
+			});
 
 		},
 		ui : {

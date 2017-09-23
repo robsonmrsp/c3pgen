@@ -274,12 +274,18 @@ body {
 	/* 	top: 62px; */
 	/* 	right: 10px; */
 	/* 	width: 450px; */
-	max-width: 219px !important;
+	max-width: 229px !important;
 	height: 100px;
 }
-.inspetor-entidades-view{
+
+.widget-main {
+	margin: 4px
+}
+
+.inspetor-entidades-view {
 	max-width: 219px !important;
 }
+
 .inspetor-relacionamentos {
 	/* 	position: fixed; */
 	bottom: 362px;
@@ -312,7 +318,14 @@ body {
 	box-sizing: border-box;
 	z-index: 2;
 	pointer-events: none;
-	box-shadow: 0 10px 6px -6px #777;
+	box-shadow: 0 5px 3px -3px #777;
+}
+
+.html-element .selected {
+	cursor: move;
+	border-size: 1px !important;
+	border-style: inset; ! important;
+	border-color: #28aae1! important;
 }
 
 .closebox {
@@ -372,7 +385,7 @@ body {
 	/* 	right: 9px; */
 	/* 	color: white; */
 	/* 	font-size: 10px; */
-	/* } */                              
+	/* } */                                  
 
 .uml-class-name-rect {
 	background: #ff8450 !important;
@@ -444,7 +457,7 @@ body {
 
 #paper {
 	width: 1920px;
-	left: 220px !important;
+	left: 230px !important;
 	/* 	height: 1024px impo; */
 	overflow: scroll;
 }

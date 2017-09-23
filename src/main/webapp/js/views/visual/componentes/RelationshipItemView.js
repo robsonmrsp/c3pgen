@@ -21,12 +21,28 @@ define(function(require) {
 
 		events : {
 			'click .showhide-rel' : 'hideShow',
+			'click .icon-expand-relationhip' : 'expandRelationhip',
 			'click .delete-relationship' : 'deleteRelationship',
+		},
+		expandRelationhip : function() {
+			var that = this;
+			this.ui.widgetMain.slideToggle("fast", function() {
+				if (that.ui.widgetMain.is(':visible')) {
+					that.ui.iconExpandRelationhip.removeClass('fa-plus-square-o');
+					that.ui.iconExpandRelationhip.addClass('fa-minus-square-o');
+
+				} else {
+					that.ui.iconExpandRelationhip.removeClass('fa-minus-square-o');
+					that.ui.iconExpandRelationhip.addClass('fa-plus-square-o');
+				}
+			});
+
 		},
 
 		ui : {
 			inputId : '.inputId',
 			inputRelationshipName : '.inputRelationshipName',
+			iconExpandRelationhip : '.icon-expand-relationhip',
 			inputDisplayName : '.inputDisplayName',
 			inputModel : '.inputModel',
 			inputType : '.inputType',
@@ -44,7 +60,7 @@ define(function(require) {
 			modalFields : '.modal-fields',
 			comboFields : '.combo-fields',
 
-			widgetMain : '.widget-main-rel',
+			widgetMain : '.widget-main',
 			showhide : '.showhide-rel',
 			editableFields : '.editable-click'
 		},
@@ -197,6 +213,7 @@ define(function(require) {
 					}, ]
 				});
 				this.treatViewApproach();
+				this.hideShow();
 			});
 		},
 		treatViewApproach : function() {
