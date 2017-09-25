@@ -27,7 +27,13 @@ define(function(require) {
 		},
 
 		events : {
-			'click  .closebox' : 'removeEntity'
+			'click  .closebox' : 'removeEntity',
+
+			'dblclick' : 'doubleClick'
+		},
+		
+		doubleClick : function() {
+			alert(this)
 		},
 
 		removeEntity : function() {
@@ -59,7 +65,7 @@ define(function(require) {
 			this.onClickRemove = opt.onClickRemove;
 
 			this.attributesCollection = new AttributeCollection(this.model.get('attributes'));
-			
+
 			this.attributesCollectionView = new DiagramAttributesCollectionView({
 				collection : this.attributesCollection,
 			});

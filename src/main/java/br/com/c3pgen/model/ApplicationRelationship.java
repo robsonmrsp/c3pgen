@@ -39,11 +39,11 @@ public class ApplicationRelationship {
 
 	@ManyToOne
 	@JoinColumn(name = "ID_SOURCE")
-	@Cascade(CascadeType.ALL)
+	// @Cascade(CascadeType.ALL)
 	private Relationship source;
 
 	@ManyToOne
-	@Cascade(CascadeType.ALL)
+	// @Cascade(CascadeType.ALL)
 	@JoinColumn(name = "ID_TARGET")
 	private Relationship target;
 
@@ -89,10 +89,10 @@ public class ApplicationRelationship {
 			return false;
 		ApplicationRelationship other = (ApplicationRelationship) obj;
 
-		if (other.getSource().equals(getSource()) && other.getTarget().equals(getTarget())) {
+		if (other.getSource() != null && other.getSource().equals(getSource()) && other.getTarget() != null && other.getTarget().equals(getTarget())) {
 			return true;
 		}
-		if (other.getSource().equals(getTarget()) && other.getTarget().equals(getSource())) {
+		if (other.getSource() != null && other.getSource().equals(getTarget()) && other.getTarget() != null && other.getTarget().equals(getSource())) {
 			return true;
 		}
 

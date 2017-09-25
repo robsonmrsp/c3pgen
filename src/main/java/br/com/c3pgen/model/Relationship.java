@@ -33,6 +33,9 @@ public class Relationship extends AbstractTimestampEntity {
 	@Column(name = "NAME")
 	private String name;
 
+	@Column(name = "ORIGIN")
+	private Boolean origin;
+
 	@Column(name = "TYPE")
 	private String type;
 
@@ -138,6 +141,10 @@ public class Relationship extends AbstractTimestampEntity {
 	}
 
 	public String getOwnerName() {
+
+		if (getOrigin() == Boolean.TRUE && ownerName == null && type.equals("ManyToMany")) {
+			setOwnerName(name + "s");
+		}
 		return ownerName;
 	}
 
@@ -257,6 +264,14 @@ public class Relationship extends AbstractTimestampEntity {
 	@Override
 	public String toString() {
 		return "Relationship [name=" + name + ", displayName=" + displayName + ", ownerName=" + ownerName + "]";
+	}
+
+	public Boolean getOrigin() {
+		return origin;
+	}
+
+	public void setOrigin(Boolean origin) {
+		this.origin = origin;
 	}
 
 }

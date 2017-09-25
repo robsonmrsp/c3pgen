@@ -23,7 +23,7 @@ import br.com.c3pgen.persistence.pagination.Paginator;
 public class HibernateDao<Entity> {
 
 	private static final Logger LOGGER = Logger.getLogger(HibernateDao.class);
-	
+
 	private Class<Entity> clazz;
 
 	public HibernateDao(Class<Entity> clazz) {
@@ -38,7 +38,7 @@ public class HibernateDao<Entity> {
 	}
 
 	public Entity find(Serializable key) {
-		if(key == null){
+		if (key == null) {
 			return null;
 		}
 		return (Entity) sessionFactory.getCurrentSession().get(clazz, key);
@@ -56,8 +56,8 @@ public class HibernateDao<Entity> {
 
 	public Entity save(Entity entity) {
 		Session currentSession = sessionFactory.getCurrentSession();
-		currentSession.saveOrUpdate(entity);
-		currentSession.flush();
+		entity = (Entity) currentSession.merge(entity);
+		// currentSession.flush();
 		return entity;
 	}
 
@@ -80,7 +80,7 @@ public class HibernateDao<Entity> {
 	public SQLQuery nativeQuery(String nativeSql) {
 		return getSession().createSQLQuery(nativeSql);
 	}
-	
+
 	public List<Entity> last(LocalDateTime dateTime) {
 		List<Entity> list = new ArrayList<Entity>();
 		Criteria searchCriteria = criteria();

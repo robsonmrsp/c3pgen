@@ -16,4 +16,6 @@ public interface ApplicationRelationshipService {
 
 	void deleteByEntity(Integer id);
 
+	void save(ApplicationRelationship applicationRelationship);
+
 }

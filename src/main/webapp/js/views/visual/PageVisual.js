@@ -140,11 +140,14 @@ define(function(require) {
 
 				// $('#paper').css('width', (window.innerWidth - 455) + 'px')
 
+				window.paper.on('link:pointerup', function(_link, _evento, x, y) {
+					console.log(_link)
+				});
 				window.paper.on('link:options', function(_evento, _link, x, y) {
-					that.inspetorRelacionamentosView.setVisual(_link.model);
+					// that.inspetorRelacionamentosView.setVisual(_link.model);
 				});
 				window.paper.on('tool:remove', function(evt, linkView) {
-					that.removeApplicationRelationship(linkView);
+					// that.removeApplicationRelationship(linkView);
 
 				})
 				window.paper.on('cell:pointerdown', function(_cellView, evt, x, y) {
@@ -185,6 +188,7 @@ define(function(require) {
 								_cellView.highlight();
 
 								var relation = new VisualRelationship({
+									newRelation : true,
 									applicationRelationshipModel : new ApplicationRelationshipModel({
 										sourceEntityView : that.sourceTempRelation,
 										targetEntityView : that.targetTempRelation,
@@ -201,10 +205,10 @@ define(function(require) {
 									that.targetViewTempRelation = null;
 								}, 1000);
 
+								that.graph.addCell(relation);
 								$('#paper').removeClass('cursor-relacao-1-n');
 								$('#paper').removeClass('cursor-tabela');
 								that.activeAddRelation = false;
-								that.graph.addCell(relation);
 
 								window.globalVisualRelations.put(relation.id, relation);
 							}
@@ -247,6 +251,7 @@ define(function(require) {
 				globalVisualRelations.clear();
 			}
 			that.quantidadeEntidades = application.get('entities').length
+
 			_.each(application.get('entities'), function(entity) {
 				try {
 					that.addVisualEntity(new EntityModel(entity));
@@ -255,10 +260,31 @@ define(function(require) {
 				}
 			});
 
-			_.each(application.get('applicationRelationships'), function(appRelation) {
+			this.drawRelations(application);
 
-				// comentando por enquanto
-				// that.addVisualRelation(appRelation);
+			// _.each(application.get('applicationRelationships'),
+			// function(appRelation) {
+			//
+			// // comentando por enquanto
+			// // that.addVisualRelation(appRelation);
+			// });
+		},
+
+		drawRelations : function(application) {
+			var that = this;
+			_.each(application.get('entities'), function(entity) {
+
+				_.each(entity.relationships, function(relation) {
+					if (relation.origin) {
+						var relation = new VisualRelationship({
+							applicationRelationshipModel : new ApplicationRelationshipModel({
+								sourceEntityView : util.getBackViewByNameEntity(entity.name),
+								targetEntityView : util.getBackViewByNameEntity(relation.model),
+							})
+						});
+						that.graph.addCell(relation);
+					}
+				});
 			});
 		},
 		openTools : function() {
@@ -300,6 +326,7 @@ define(function(require) {
 			});
 			var visualEntity = diagramEntity.getGraphEntity();
 			that.graph.addCell(visualEntity);
+
 			globalVisualEntities.put(visualEntity.id, diagramEntity);
 			return diagramEntity;
 			// that.inspetorView.setVisualEntity(diagramEntity);
@@ -373,23 +400,25 @@ define(function(require) {
 			var applicationRelationshipCollection = new ApplicationRelationshipCollection();
 
 			_.each(globalVisualEntities.values(), function(visual) {
-				entidadesCollection.add(visual.get('entity'));
+				entidadesCollection.add(visual.model);
 			});
 
-			_.each(globalVisualRelations.values(), function(relation) {
-				applicationRelationshipCollection.add(new ApplicationRelationshipModel({
-					source : relation.get('sourceRelationModel'),
-					target : relation.get('targetRelationModel'),
-					application : {
-						id : that.application.get('id'),
-						name : that.application.get('name'),
-					},
-				}));
-			});
+			// _.each(globalVisualRelations.values(), function(relation) {
+			// applicationRelationshipCollection.add(new
+			// ApplicationRelationshipModel({
+			// source : relation.get('sourceRelationModel'),
+			// target : relation.get('targetRelationModel'),
+			// application : {
+			// id : that.application.get('id'),
+			// name : that.application.get('name'),
+			// },
+			// }));
+			// });
 
 			this.application.set('entities', entidadesCollection.toJSON());
 
-			this.application.set('applicationRelationships', applicationRelationshipCollection.toJSON());
+			// this.application.set('applicationRelationships',
+			// applicationRelationshipCollection.toJSON());
 
 			this.application.save({}, {
 				success : function(generateFileInfo, _resp, _opt) {
@@ -401,7 +430,7 @@ define(function(require) {
 					$('.html-element').remove()
 					that.loadApplication(new ApplicationModel(application), true);
 
-					if (messages.messages && messages.messages.length > 0) {
+					if (messages && messages.messages && messages.messages.length > 0) {
 						that.modalError.showMessage(messages.messages);
 					}
 				},

@@ -46,8 +46,6 @@ public class ApplicationServiceImp implements ApplicationService {
 	TheEntityService entityService;
 
 	ApplicationValidator appValidator = new ApplicationValidator();
-	@Inject
-	ApplicationRelationshipService applicationRelationshipService;
 
 	@Override
 	public Application get(Integer id) {
@@ -102,26 +100,32 @@ public class ApplicationServiceImp implements ApplicationService {
 		return daoApplication.last(lastSyncDate);
 	}
 
+	@Inject
+	ApplicationRelationshipService applicationRelationshipService;
+
 	@Override
 	public GenerateFileInfo save(Application application) {
 		GenerateFileInfo generateFileInfo = new GenerateFileInfo();
+		Set<ApplicationRelationship> applicationRelationships = application.getApplicationRelationships();
+
 		GenService genService = new GenService();
 
-		applicationRelationshipService.removeAllByApplication(application);
+//		applicationRelationshipService.removeAllByApplication(application);
 
 		List<ApplicationEntity> entities = application.getEntities();
 		for (ApplicationEntity entity : entities) {
 			entityService.save(entity);
 		}
-		Set<ApplicationRelationship> applicationRelationships = application.getApplicationRelationships();
-		for (ApplicationRelationship applicationRelationship : applicationRelationships) {
-			relationshipService.save(applicationRelationship.getSource());
-			relationshipService.save(applicationRelationship.getTarget());
-		}
-		Application save = daoApplication.save(application);
-		generateFileInfo.setApplication(save);
 
-		generateFileInfo.setApplicationValidatorMessages(genService.validate(save));
+//		for (ApplicationRelationship applicationRelationship : applicationRelationships) {
+//			applicationRelationshipService.save(applicationRelationship);
+//		}
+
+		// Application save = daoApplication.save(application);
+
+		generateFileInfo.setApplication(application);
+
+//		generateFileInfo.setApplicationValidatorMessages(genService.validate(application));
 
 		return generateFileInfo;
 	}

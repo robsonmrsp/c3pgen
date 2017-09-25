@@ -10,6 +10,10 @@ public class ApplicationValidatorMessages {
 		return getMessages().add(msg);
 	}
 
+	public void clean() {
+		messages.clear();
+	}
+
 	public Boolean isEmpty() {
 		return getMessages().isEmpty();
 	}

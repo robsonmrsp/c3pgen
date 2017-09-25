@@ -66,11 +66,11 @@ public class Application extends AbstractTimestampEntity {
 	private String dataBasePrefix;
 
 	@OneToMany(mappedBy = "application")
-	@Cascade(CascadeType.ALL)
+//	@Cascade(CascadeType.ALL)
 	private List<ApplicationEntity> entities;
 
 	@OneToMany(mappedBy = "application")
-	@Cascade(CascadeType.ALL)
+//	@Cascade(CascadeType.ALL)
 	private Set<ApplicationRelationship> applicationRelationships;
 
 	@ManyToOne

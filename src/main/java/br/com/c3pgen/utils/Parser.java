@@ -485,13 +485,12 @@ public class Parser {
 			}
 		}
 
-		// ArrayList<JsonRelationship> listRelationships =
-		// jsonTheEntity.getRelationships();
-		// if (listRelationships != null) {
-		// for (JsonRelationship loopJsonRelationship : listRelationships) {
-		// theEntity.addRelationships(toEntity(loopJsonRelationship));
-		// }
-		// }
+		ArrayList<JsonRelationship> listRelationships = jsonTheEntity.getRelationships();
+		if (listRelationships != null) {
+			for (JsonRelationship loopJsonRelationship : listRelationships) {
+				theEntity.addRelationships(toBasicEntity(loopJsonRelationship));
+			}
+		}
 
 		return theEntity;
 
@@ -527,6 +526,7 @@ public class Parser {
 	private static void applyBasicJsonValues(JsonRelationship jsonRelationship, Relationship relationship) {
 		jsonRelationship.setId(relationship.getId());
 		jsonRelationship.setName(relationship.getName());
+		jsonRelationship.setOrigin(relationship.getOrigin());
 		jsonRelationship.setType(relationship.getType());
 		jsonRelationship.setDisplayName(relationship.getDisplayName());
 		jsonRelationship.setOwnerName(relationship.getOwnerName());
@@ -537,6 +537,7 @@ public class Parser {
 	private static void applyBasicEntityValues(Relationship relationship, JsonRelationship jsonRelationship) {
 		relationship.setId(jsonRelationship.getId());
 		relationship.setName(jsonRelationship.getName());
+		relationship.setOrigin(jsonRelationship.getOrigin());
 		relationship.setType(jsonRelationship.getType());
 		relationship.setDisplayName(jsonRelationship.getDisplayName());
 		relationship.setOwnerName(jsonRelationship.getOwnerName());

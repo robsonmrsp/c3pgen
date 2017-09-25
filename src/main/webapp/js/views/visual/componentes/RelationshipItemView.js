@@ -49,6 +49,7 @@ define(function(require) {
 			inputOwnerName : '.inputOwnerName',
 			inputUniDirecional : '.inputUniDirecional',
 			inputViewApproach : '.inputViewApproach',
+			inputViewApproachContainer : '.inputViewApproachContainer',
 			inputViewApproachId : '.inputViewApproachId',
 
 			inputComboId : '.inputComboId',
@@ -123,6 +124,14 @@ define(function(require) {
 				this.ui.showhide.find('i').removeClass('fa-chevron-up').addClass('fa-chevron-down')
 			}
 		},
+		refreshComboViewApproach : function() {
+			var that = this;
+			if (that.ui.inputType.text() === "none") {
+				that.ui.inputViewApproachContainer.hide();
+			} else {
+				that.ui.inputViewApproachContainer.show();
+			}
+		},
 
 		initialize : function(opt) {
 
@@ -132,14 +141,37 @@ define(function(require) {
 				this.ui.inputRelationshipName.editable();
 				this.ui.inputDisplayName.editable();
 
-				this.ui.inputModel.editable({
-					value : '',
-					source : that._getModels(),
+				this.ui.inputType.editable({
+					value : 'OneToMany',
+					source : [ {
+						value : 'none',
+						text : 'none'
+					}, {
+						value : 'OneToMany',
+						text : 'OneToMany'
+					}, {
+						value : 'ManyToOne',
+						text : 'ManyToOne'
+					}, {
+						value : 'OneToOne',
+						text : 'OneToOne'
+					}, {
+						value : 'ManyToMany',
+						text : 'ManyToMany'
+					}, ]
+				});
+
+				this.ui.inputType.on('hidden', function() {
+					that.refreshComboViewApproach();
 				});
 
 				this.ui.inputComboId.editable();
-				this.ui.inputComboVal.editable();
-				this.ui.inputTextField.editable();
+				this.ui.inputComboVal.editable({
+					source : that.getAtributesByModelName(),
+				});
+				this.ui.inputTextField.editable({
+					source : that.getAtributesByModelName(),
+				});
 				this.ui.inputHiddenField.editable();
 
 				// das entidades já cadastradas
@@ -162,9 +194,9 @@ define(function(require) {
 
 					console.log('Validando a info a exibir no modal ou combo-> ' + existeAttributo);
 				});
-
-				this.ui.inputModel.on('hidden', function() {
-				});
+				//
+				// this.ui.inputModel.on('hidden', function() {
+				// });
 
 				this.ui.editableFields.on('hidden', function() {
 					that.changeRelationship();
@@ -193,32 +225,13 @@ define(function(require) {
 					that.treatViewApproach();
 				});
 
-				this.ui.inputType.editable({
-					value : 'OneToMany',
-					source : [ {
-						value : 'none',
-						text : 'none'
-					}, {
-						value : 'OneToMany',
-						text : 'OneToMany'
-					}, {
-						value : 'ManyToOne',
-						text : 'ManyToOne'
-					}, {
-						value : 'OneToOne',
-						text : 'OneToOne'
-					}, {
-						value : 'ManyToMany',
-						text : 'ManyToMany'
-					}, ]
-				});
+				that.refreshComboViewApproach();
 				this.treatViewApproach();
 				this.hideShow();
 			});
 		},
 		treatViewApproach : function() {
 			var val = this.ui.inputViewApproach.text();
-
 			if (val == 'modal') {
 				this.ui.modalFields.show();
 				this.ui.comboFields.hide();
@@ -243,7 +256,19 @@ define(function(require) {
 			});
 
 			return arrayModels;
-		}
+		},
+		getAtributesByModelName : function() {
+			var arrayModels = [];
+
+			var view = util.getBackViewByNameEntity(this.ui.inputModel.val());
+			_.each(view.model.attributes.attributes, function(attr) {
+				arrayModels.push({
+					value : attr.name,
+					text : attr.name,
+				})
+			})
+			return arrayModels;
+		},
 	});
 
 	return RelationshipItem;

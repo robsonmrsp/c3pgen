@@ -76,9 +76,11 @@ define(function(require) {
 					targetEntityModel : null,
 
 					smooth : false,
-					toolMarkup : [
+					toolMarkup : [ '<g class="link-tool_">', '</g>' ].join(''),
+
+					_toolMarkup : [
 							'<g class="link-tool">',
-							'<g class="tool-remove" event="tool:remove">',
+							'<g class="tool-remove_" event="tool:remove">',
 							'<circle r="11" />',
 							'<path transform="scale(.8) translate(-16, -16)" d="M24.778,21.419 19.276,15.917 24.777,10.415 21.949,7.585 16.447,13.087 10.945,7.585 8.117,10.415 13.618,15.917 8.116,21.419 10.946,24.248 16.447,18.746 21.948,24.248z"/>',
 							'<title>Remove link.</title>',
@@ -103,6 +105,7 @@ define(function(require) {
 
 				initialize : function(options) {
 
+					this.newRelation = options.newRelation;
 					// Talvez não precise desse bloco
 					// applicationRelationshipModel
 					var _source = this.get('applicationRelationshipModel').get('sourceEntityView');
@@ -123,33 +126,40 @@ define(function(require) {
 						this.set('source', _source.getGraphEntity());
 						this.set('target', _target.getGraphEntity());
 
-						_sourceRelationModel = new RelationshipModel({
-							name : '_' + _targetEntity.get('name'),
-							type : 'OneToMany',
-							displayName : _targetEntity.get('name') + 's',
-							ownerName : '_' + _sourceEntity.get('name'),
-							model : _targetEntity.get('name'),
-							entity : _sourceEntity,
-							uniDirecional : '',
-						});
+						if (this.newRelation) {
+							_sourceRelationModel = new RelationshipModel({
+								name : (_targetEntity.get('name') + 's').toLowerCase(),
+								type : 'OneToMany',
+								origin : true,
+								displayName : _targetEntity.get('name') + 's',
+								ownerName : '_' + _sourceEntity.get('name'),
+								model : _targetEntity.get('name'),
+								entity : _sourceEntity,
+								entity : {
+									id : _sourceEntity.get('id')
+								},
+								uniDirecional : '',
+							});
 
-						_targetRelationModel = new RelationshipModel({
-							name : '_' + _sourceEntity.get('name'),
-							type : 'ManyToOne',
-							displayName : _sourceEntity.get('name') + 's',
-							ownerName : '',
-							model : _sourceEntity.get('name'),
-							entity : _targetEntity,
-							uniDirecional : '',
-						});
+							_targetRelationModel = new RelationshipModel({
+								name : _sourceEntity.get('name').toLowerCase(),
+								type : 'ManyToOne',
+								displayName : _sourceEntity.get('name') + 's',
+								ownerName : '',
+								model : _sourceEntity.get('name'),
+								entity : {
+									id : _targetEntity.get('id')
+								},
+								uniDirecional : '',
+							});
+							_sourceEntityRelations.push(_sourceRelationModel.toJSON());
+							_sourceEntity.set('relationships', _sourceEntityRelations);
+							_sourceEntity.set('notes', 'add' + _sourceRelationModel.name);
 
-						_sourceEntityRelations.push(_sourceRelationModel.toJSON());
-						_sourceEntity.set('relationships', _sourceEntityRelations);
-						_sourceEntity.set('notes', 'add' + _sourceRelationModel.id);
-
-						_targetEntityRelations.push(_targetRelationModel.toJSON());
-						_targetEntity.set('relationships', _targetEntityRelations);
-						_targetEntity.set('notes', 'add' + _targetRelationModel.id);
+							_targetEntityRelations.push(_targetRelationModel.toJSON());
+							_targetEntity.set('relationships', _targetEntityRelations);
+							_targetEntity.set('notes', 'add' + _targetRelationModel.name);
+						}
 					}
 					if (this.get('applicationRelationshipModel').get('source')) {
 						_sourceRelationModel = new RelationshipModel(this.get('applicationRelationshipModel').get('source'));
@@ -188,7 +198,7 @@ define(function(require) {
 						position : -25,
 						attrs : {
 							text : {
-								text : this.get('targetRelationModel').get('name'),
+								text : '',// this.get('targetRelationModel').get('name'),
 							}
 						}
 					});
@@ -196,7 +206,7 @@ define(function(require) {
 						position : 25,
 						attrs : {
 							text : {
-								text : this.get('sourceRelationModel').get('name'),
+								text : '',// this.get('sourceRelationModel').get('name'),
 							}
 						}
 					});
@@ -206,9 +216,13 @@ define(function(require) {
 
 	Joint.shapes.html.VisualRelationshipView = Joint.dia.LinkView.extend({
 		_nomeClasse : 'VisualRelationshipView',
+
+		mouseOver : function() {
+			console.log(this.model);
+		},
 		options : {
 			shortLinkLength : 100,
-			doubleLinkTools : true,
+			doubleLinkTools : false,
 			longLinkLength : 160,
 			linkToolsOffset : 40,
 			doubleLinkToolsOffset : 60,

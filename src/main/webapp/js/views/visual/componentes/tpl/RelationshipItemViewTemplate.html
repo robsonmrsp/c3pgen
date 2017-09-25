@@ -15,8 +15,8 @@
 				<div class="widget-main">
 					<span>
 						Model:&nbsp;
-						<!-- 						<a class="inputModel" type="text" value="{{model}}" /> -->
-						<a class="editable editable-click inputModel" data-placement="right" data-title="Model">{{model}}</a>
+						<input class="inputModel" type="hidden" value="{{model}}" />
+						<span class="" data-placement="right" data-title="Model">{{model}}</span>
 					</span>
 					<br>
 					<span>
@@ -33,7 +33,7 @@
 						<a class="editable editable-click inputOwnerName" data-placement="right" data-title="Tipo do atributo">{{ownerName}}</a>
 					</span>
 					<br>
-					<span>
+					<span class="inputViewApproachContainer">
 						Visual:&nbsp;
 						<a class="editable  editable-click inputViewApproach" data-placement="right" data-title="Tipo de elemento" data-type="select" data-pk="1" data-title="Selecione o tipo de  componente">{{viewApproach && viewApproach.type}}</a>
 					</span>
@@ -46,7 +46,7 @@
 						</span>
 						<span>
 							&nbsp;&nbsp;Info à exibir:&nbsp;
-							<a class="editable editable-click inputComboVal" data-placement="right" data-title="Tipo do atributo">{{viewApproach && viewApproach.comboVal}}</a>
+							<a class="editable editable-click inputComboVal" data-placement="right" data-type="select" data-title="Atributo">{{viewApproach && viewApproach.comboVal}}</a>
 						</span>
 						<br>
 					</span>
@@ -58,7 +58,7 @@
 						</span>
 						<span>
 							&nbsp;&nbsp;Info à exibir:&nbsp;
-							<a class="editable editable-click inputTextField" data-placement="right" data-title="Tipo do atributo">{{viewApproach && viewApproach.textField}}</a>
+							<a class="editable editable-click inputTextField" data-placement="right" data-type="select" data-title="Atributo">{{viewApproach && viewApproach.textField}}</a>
 						</span>
 						<br>
 					</span>

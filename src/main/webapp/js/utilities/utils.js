@@ -651,6 +651,19 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 			return allBEntities;
 		},
 
+		getBackViewByNameEntity : function(nameEntity) {
+			var allVEntities = globalVisualEntities.values();
+			var allBEntities = [];
+			var returnVntuty = null;
+			_.each(allVEntities, function(vEntity) {
+				if (vEntity.model.get('name') == nameEntity) {
+					returnVntuty = vEntity;
+					return returnVntuty;
+				}
+			})
+			return returnVntuty;
+		},
+
 		BEntityContainsAttribute : function(entityName, attributeName) {
 			var bbEntity = this.getBEntityByName(entityName);
 			var ret = false;
