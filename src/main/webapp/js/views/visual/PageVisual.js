@@ -16,6 +16,7 @@ define(function(require) {
 	var AttributeModel = require('models/AttributeModel');
 	var EntityModel = require('models/EntityModel');
 	var ApplicationModel = require('models/ApplicationModel');
+	var download = require('download');
 
 	var PageVisualTemplate = require('text!views/visual/tpl/PageVisualTemplate.html');
 
@@ -73,6 +74,7 @@ define(function(require) {
 			'click #addRelation' : 'addRelation',
 			'click #saveApp' : 'saveApplication',
 			'click #openTools' : 'openTools',
+			'click #generateApplication' : 'generateApplication',
 		},
 
 		ui : {},
@@ -287,9 +289,9 @@ define(function(require) {
 				});
 			});
 		},
-		openTools : function() {
-			this.diagramApplicationTools.showPage();
-		},
+		// openTools : function() {
+		// this.diagramApplicationTools.showPage();
+		// },
 		// RIDICULA ESSA CONTA, mas como tá desenhando legal as tabelas para
 		// muitos registros...
 		// fica assim
@@ -551,6 +553,24 @@ define(function(require) {
 				}
 			});
 
+		},
+
+		generateApplication : function() {
+			var old = this.model.url;
+			var that = this;
+
+			this.model.url = 'rs/crud/applications/generator/' + this.model.get('id');
+			this.model.fetch({
+				success : function(_model, _resp, _options) {
+					that.model.url = old;
+					util.showMessage('info', _resp.resp);
+					download(_resp.resp);
+				},
+				error : function(_model, _resp, _options) {
+					util.showMessage('error', util.getJson(_resp.responseText).legalMessage || '');
+					that.model.url = old;
+				}
+			});
 		},
 	});
 

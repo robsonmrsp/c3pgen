@@ -56,8 +56,8 @@ public class HibernateDao<Entity> {
 
 	public Entity save(Entity entity) {
 		Session currentSession = sessionFactory.getCurrentSession();
-		entity = (Entity) currentSession.merge(entity);
-		// currentSession.flush();
+		currentSession.saveOrUpdate(entity);
+		currentSession.flush();
 		return entity;
 	}
 

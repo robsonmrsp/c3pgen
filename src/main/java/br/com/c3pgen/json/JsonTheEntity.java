@@ -19,9 +19,11 @@ public class JsonTheEntity implements Serializable {
 	private Integer id;
 	private Integer posX;
 	private Integer posY;
+	
 	private SyncOperation syncOperation;
 
 	private String name;
+	private String color;
 	private String notes;
 	private String displayName;
 	private String tableName;
@@ -141,6 +143,14 @@ public class JsonTheEntity implements Serializable {
 
 	public void setPosY(Integer posY) {
 		this.posY = posY;
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
 	}
 
 }

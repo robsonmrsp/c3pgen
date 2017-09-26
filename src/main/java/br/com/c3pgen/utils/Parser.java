@@ -424,6 +424,7 @@ public class Parser {
 		jsonTheEntity.setPosY(theEntity.getPosY());
 
 		jsonTheEntity.setName(theEntity.getName());
+		jsonTheEntity.setColor(theEntity.getColor());
 		jsonTheEntity.setNotes(theEntity.getNotes());
 		jsonTheEntity.setDisplayName(theEntity.getDisplayName());
 		jsonTheEntity.setTableName(theEntity.getTableName());
@@ -436,6 +437,7 @@ public class Parser {
 		theEntity.setPosX(jsonTheEntity.getPosX());
 		theEntity.setPosY(jsonTheEntity.getPosY());
 		theEntity.setName(jsonTheEntity.getName());
+		theEntity.setColor(jsonTheEntity.getColor());
 		theEntity.setNotes(jsonTheEntity.getNotes());
 		theEntity.setDisplayName(jsonTheEntity.getDisplayName());
 		theEntity.setTableName(jsonTheEntity.getTableName());
@@ -531,6 +533,7 @@ public class Parser {
 		jsonRelationship.setDisplayName(relationship.getDisplayName());
 		jsonRelationship.setOwnerName(relationship.getOwnerName());
 		jsonRelationship.setModel(relationship.getModel());
+		jsonRelationship.setViewApproach(toJson(relationship.getViewApproach()));
 		jsonRelationship.setUniDirecional(relationship.getUniDirecional());
 	}
 
@@ -542,6 +545,7 @@ public class Parser {
 		relationship.setDisplayName(jsonRelationship.getDisplayName());
 		relationship.setOwnerName(jsonRelationship.getOwnerName());
 		relationship.setModel(jsonRelationship.getModel());
+		relationship.setViewApproach(toBasicEntity(jsonRelationship.getViewApproach()));
 		relationship.setUniDirecional(jsonRelationship.getUniDirecional());
 	}
 
@@ -611,10 +615,10 @@ public class Parser {
 			}
 		}
 
-		JsonViewApproach viewApproach = jsonRelationship.getViewApproach();
-		if (viewApproach != null) {
-			relationship.setViewApproach(toEntity(viewApproach));
-		}
+		// JsonViewApproach viewApproach = jsonRelationship.getViewApproach();
+		// if (viewApproach != null) {
+		// relationship.setViewApproach(toEntity(viewApproach));
+		// }
 		return relationship;
 
 	}

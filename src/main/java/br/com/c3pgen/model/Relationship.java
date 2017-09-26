@@ -23,7 +23,7 @@ public class Relationship extends AbstractTimestampEntity {
 	private static final long serialVersionUID = 1L;
 
 	public enum Types {
-		ManyToMany, OneToMany, ManyToOne, OneToOne,
+		None, ManyToMany, OneToMany, ManyToOne, OneToOne,
 	}
 
 	@Id
