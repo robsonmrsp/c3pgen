@@ -110,22 +110,23 @@ public class ApplicationServiceImp implements ApplicationService {
 
 		GenService genService = new GenService();
 
-//		applicationRelationshipService.removeAllByApplication(application);
+		// applicationRelationshipService.removeAllByApplication(application);
 
 		List<ApplicationEntity> entities = application.getEntities();
 		for (ApplicationEntity entity : entities) {
 			entityService.save(entity);
 		}
 
-//		for (ApplicationRelationship applicationRelationship : applicationRelationships) {
-//			applicationRelationshipService.save(applicationRelationship);
-//		}
+		// for (ApplicationRelationship applicationRelationship :
+		// applicationRelationships) {
+		// applicationRelationshipService.save(applicationRelationship);
+		// }
 
-		// Application save = daoApplication.save(application);
+		Application save = daoApplication.save(application);
 
 		generateFileInfo.setApplication(application);
 
-//		generateFileInfo.setApplicationValidatorMessages(genService.validate(application));
+		// generateFileInfo.setApplicationValidatorMessages(genService.validate(application));
 
 		return generateFileInfo;
 	}
