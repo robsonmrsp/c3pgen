@@ -283,7 +283,8 @@ body {
 }
 
 .inspetor-entidades-view {
-	max-width: 219px !important;
+	max-width: 226px !important;
+	padding-left: 2px !important;
 }
 
 .inspetor-relacionamentos {

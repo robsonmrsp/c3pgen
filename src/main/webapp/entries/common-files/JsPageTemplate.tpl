@@ -187,7 +187,7 @@ define(function(require) {
 			<#elseif rel.type == 'ManyToOne'>
 				<#if rel.viewApproach?? >
 					<#if rel.viewApproach.type  == 'combo'  >
-			this.combo${firstUpper(rel.model)} = new JSetup.Combobox({
+			this.combo${firstUpper(rel.name)} = new JSetup.Combobox({
 				el : this.ui.input${firstUpper(rel.name)},
 			   <#if rel.viewApproach.values??>
 			    values : '${toString(rel.viewApproach.values)}'
@@ -238,7 +238,7 @@ define(function(require) {
 			    ${firstLower(rel.name)} : this.modal${firstUpper(rel.name)}.getRawValue(), 
 				</#if> 
 				<#if  rel.viewApproach.type == 'combo'>
-			    ${firstLower(rel.name)} : this.combo${firstUpper(rel.model)}.getRawValue(), 
+			    ${firstLower(rel.name)} : this.combo${firstUpper(rel.name)}.getRawValue(), 
 				</#if>
 				</#if>
 			</#list>
@@ -262,7 +262,7 @@ define(function(require) {
 			 this.modal${firstUpper(rel.name)}.clear(); 
 				</#if> 
 				<#if  rel.viewApproach.type == 'combo'>
-			 this.combo${firstUpper(rel.model)}.clear(); 
+			 this.combo${firstUpper(rel.name)}.clear(); 
 				</#if>
 			</#if>
 		</#list>

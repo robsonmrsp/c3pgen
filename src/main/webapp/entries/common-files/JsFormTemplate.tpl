@@ -329,7 +329,7 @@ define(function(require) {
 		    this.modal${firstUpper(rel.name)}.clear(); 
 				</#if> 
 				<#if  rel.viewApproach.type == 'combo'>
-		    this.combo${firstUpper(rel.model)}.clear(); 
+		    this.combo${firstUpper(rel.name)}.clear(); 
 				</#if>
 				<#if  rel.viewApproach.type == 'multiselect'>
 		    this.multiselect${firstUpper(rel.name)}.clear(); 
