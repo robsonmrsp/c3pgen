@@ -150,6 +150,8 @@ public class Parser {
 		jsonApplication.setId(application.getId());
 		jsonApplication.setName(application.getAppName());
 		jsonApplication.setSkin(application.getSkin());
+		jsonApplication.setMultitenancy(application.getMultitenancy());
+		jsonApplication.setUseAudit(application.getUseAudit());
 		jsonApplication.setDescription(application.getDescription());
 		jsonApplication.setRootPackage(application.getRootPackage());
 		jsonApplication.setCorePackage(application.getCorePackage());
@@ -159,6 +161,8 @@ public class Parser {
 		application.setId(jsonApplication.getId());
 		application.setAppName(jsonApplication.getName());
 		application.setSkin(jsonApplication.getSkin());
+		application.setMultitenancy(jsonApplication.getMultitenancy());
+		application.setUseAudit(jsonApplication.getUseAudit());
 		application.setDescription(jsonApplication.getDescription());
 		application.setRootPackage(jsonApplication.getRootPackage());
 		application.setCorePackage(jsonApplication.getCorePackage());

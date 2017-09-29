@@ -21,4 +21,7 @@
 @import url("../vendor/joint/joint.css");
 @import url("../vendor/CodeMirror-3.12/lib/codemirror.css");
 
+
 @import url("custom.css");
+
+@import url("../vendor/magic-check-master/css/magic-check.css");

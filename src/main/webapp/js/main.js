@@ -50,6 +50,8 @@ require.config({
 		'codemirrorYaml' : '../vendor/CodeMirror-4_beta2/mode/yaml/yaml',
 		'Yaml' : '../vendor/js-yaml-3.6.1/dist/js-yaml',
 		'jqueryForm' : '../vendor/jquery.form/jquery.form',
+		
+		'bootstrapSwitch' : '../vendor/bootstrap-switch-3.3.4/dist/js/bootstrap-switch',
 	},
 	shim : {
 		'underscore' : {
@@ -145,6 +147,7 @@ require.config({
 		'metisMenu' : [ 'jquery' ],
 		'editable' : [ 'jquery', 'bootstrap' ],
 		'jqueryForm' : [ 'jquery' ],
+		'bootstrapSwitch' : [ 'jquery' ],
 	},
 	wrapShim : true,
 });

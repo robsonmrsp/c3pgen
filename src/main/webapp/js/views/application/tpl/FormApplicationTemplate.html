@@ -74,13 +74,25 @@
 										<label class="control-label" for="inputName">Descrição</label>
 										<textarea id="inputDescription" rows="3" placeholder="Nome" value="{{description}}" class="form-control  "> {{description}}</textarea>
 									</div>
-									<div id="groupInputRootPackage" class="form-group">
-										<label class="control-label" for="inputRootPackage">Pacote raiz</label>
-										<input type="text" id="inputRootPackage" placeholder="Exemplo:. br.com.locadora" value="{{rootPackage || 'br.com.locadora'}}" class="form-control  validate[required]">
+									<div class="row">
+										<div id="groupInputRootPackage" class="form-group col-sm-12 col-md-6 col-lg-6">
+											<label class="control-label" for="inputRootPackage">Pacote raiz</label>
+											<input type="text" id="inputRootPackage" placeholder="Exemplo:. br.com.locadora" value="{{rootPackage }}" class="form-control  validate[required]">
+										</div>
+										<div id="groupInputCorePackage" class="form-group col-sm-12 col-md-6 col-lg-6">
+											<label class="control-label" for="inputCorePackage">Pacote base</label>
+											<input type="text" id="inputCorePackage" placeholder="Exemplo:. br.com.locadora.core" value="{{corePackage }}" class="form-control  validate[required]">
+										</div>
 									</div>
-									<div id="groupInputCorePackage" class="form-group">
-										<label class="control-label" for="inputCorePackage">Pacote base</label>
-										<input type="text" id="inputCorePackage" placeholder="Exemplo:. br.com.locadora.core" value="{{corePackage || 'br.com.locadora.core'}}" class="form-control  validate[required]">
+									<div class="row">
+										<div id="groupInputMultitenancy" class="form-group col-sm-12 col-md-3 col-lg-3">
+											<input type="checkbox" id="inputMultitenancy" {{multitenancy ? 'checked' :''}}  class="magic-checkbox">
+											<label class="checkbox-label" for="inputMultitenancy">Multitenancy</label>
+										</div>
+										<div id="groupInputUseAudit" class="form-group col-sm-12 col-md-3 col-lg-3">
+											<input type="checkbox" id="inputUseAudit" {{useAudit ? 'checked' :''}} class="magic-checkbox">
+											<label class="checkbox-label" for="inputUseAudit">Usar Auditoria</label>
+										</div>
 									</div>
 								</div>
 							</div>
