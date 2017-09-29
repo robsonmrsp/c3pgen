@@ -42,7 +42,7 @@
 		<property name="driverClass" value="org.postgresql.Driver" />
 		<property name="jdbcUrl" value="jdbc:postgresql://localhost:5432/db_c3pgen" />
 		<property name="user" value="postgres" />
-		<property name="password" value="sints" />
+		<property name="password" value="MasterKey@123" />
 
 		<property name="acquireIncrement" value="10" />
 		<property name="minPoolSize" value="10" />
@@ -62,8 +62,8 @@
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQL82Dialect	</prop>
-				<prop key="hibernate.format_sql">false</prop>
-				<prop key="hibernate.show_sql">false</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
 				<prop key="hibernate.transaction.flush_before_completion">true</prop>
 			</props>

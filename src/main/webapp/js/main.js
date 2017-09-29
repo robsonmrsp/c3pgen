@@ -50,10 +50,8 @@ require.config({
 		'codemirrorYaml' : '../vendor/CodeMirror-4_beta2/mode/yaml/yaml',
 		'Yaml' : '../vendor/js-yaml-3.6.1/dist/js-yaml',
 		'jqueryForm' : '../vendor/jquery.form/jquery.form',
-		'draw2d_core' : '../vendor/draw2d/draw2d_GPL_6.1.66-min/src/draw2d_core',
-		'draw2d' : '../vendor/draw2d/draw2d_GPL_6.1.66-min/src/draw2d',
-		
-		
+			
+		'bootstrapSwitch' : '../vendor/bootstrap-switch-3.3.4/dist/js/bootstrap-switch',
 	},
 	shim : {
 		'underscore' : {
@@ -149,9 +147,8 @@ require.config({
 		'metisMenu' : [ 'jquery' ],
 		'editable' : [ 'jquery', 'bootstrap' ],
 		'jqueryForm' : [ 'jquery' ],
-		'draw2d_core' : [ 'jquery' ],
-		'draw2d' : [ 'draw2d_core' ],
 
+		'bootstrapSwitch' : [ 'jquery' ],
 	},
 	wrapShim : true,
 });

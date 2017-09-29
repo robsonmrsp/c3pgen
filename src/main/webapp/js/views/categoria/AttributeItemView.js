@@ -19,13 +19,28 @@ define(function(require) {
 		template : _.template(AtributeItemViewTemplate),
 
 		events : {
-			'click .showhide' : 'hideShow',
+			'click .showhide' : 'showhide',
+			'click .icon-expand-attribute' : 'expandAttributes',
 			'click .delete-attribute' : 'deleteAtribute',
 			'click .check-box' : 'changeAttribute'
 		},
+		expandAttributes : function() {
+			var that = this;
+			this.ui.widgetMain.slideToggle("fast", function() {
+				if (that.ui.widgetMain.is(':visible')) {
+					that.ui.iconExpandAttribute.removeClass('fa-plus-square-o');
+					that.ui.iconExpandAttribute.addClass('fa-minus-square-o');
 
+				} else {
+					that.ui.iconExpandAttribute.removeClass('fa-minus-square-o');
+					that.ui.iconExpandAttribute.addClass('fa-plus-square-o');
+				}
+			});
+
+		},
 		ui : {
 			inputId : '.inputId',
+			iconExpandAttribute : '.icon-expand-attribute',
 
 			inputAtributeName : '.inputAtributeName',
 			inputDisplayName : '.inputDisplayName',

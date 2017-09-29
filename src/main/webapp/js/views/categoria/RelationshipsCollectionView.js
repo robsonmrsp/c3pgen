@@ -8,17 +8,17 @@ define(function(require) {
 	var Marionette = require('marionette');
 	var util = require('utilities/utils');
 
-	// var RelationshipItemView =
-	// require('views/categoria/RelationshipItemView');
+	var RelationshipItemView = require('views/visual/componentes/RelationshipItemView');
 
-	var RelationshipsCollection = Marionette.View.extend({
+	var RelationshipsCollection = Marionette.CollectionView.extend({
 
+		childView : RelationshipItemView,
 		childViewOptions : function(opt) {
-			entity = this.entity;
+			// entity = this.entity;
 		},
 
 		initialize : function(opt) {
-			this.entity = opt.entity;
+			// this.entity = opt.entity;
 		},
 	})
 

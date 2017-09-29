@@ -53,12 +53,12 @@ public class ApplicationValidator {
 				if (main.getViewApproach() != null && (main.getViewApproach().getType().equals("modal") || main.getViewApproach().getType().equals("multiselect") || main.getViewApproach().getType().equals("combo"))) {
 
 					ApplicationEntity ent = mapEntities.get(main.getModel());
-					String showedField = main.getViewApproach().getTextField() == null ? main.getViewApproach().getComboName() : main.getViewApproach().getTextField();  
+					String showedField = main.getViewApproach().getTextField() == null ? main.getViewApproach().getComboName() : main.getViewApproach().getTextField();
 					if (showedField == null) {
 						applicationValidatorMessages.addMessage("Na entidade " + entity.getName() + ", no relacionamento " + main.getName() + " voce precisa definir um atributo de " + main.getModel() + " para exibir no campo de texto do modal");
 					} else if (!Util.entityContainsAttribute(ent, showedField)) {
-						applicationValidatorMessages.addMessage("Na entidade " + entity.getName() + ", no relacionamento " + main.getName() + " voce precisa definir um atributo de " + main.getModel() + " para exibir no campo de texto do modal. "
-								+ showedField + " Não é tributo de " + main.getModel());
+						applicationValidatorMessages.addMessage(
+								"Na entidade " + entity.getName() + ", no relacionamento " + main.getName() + " voce precisa definir um atributo de " + main.getModel() + " para exibir no campo de texto do modal. " + showedField + " Não é tributo de " + main.getModel());
 					}
 				}
 			}
@@ -114,6 +114,9 @@ public class ApplicationValidator {
 			}
 			LOGGER.warn("A aplicação não será gerada...");
 		}
+		// TODO verificar se realmente é necessária a validação do DONO do
+		// relacionamento, em caso necessário, eliminar a linha abaixo.
+		applicationValidatorMessages.clean();
 		return applicationValidatorMessages;
 	}
 

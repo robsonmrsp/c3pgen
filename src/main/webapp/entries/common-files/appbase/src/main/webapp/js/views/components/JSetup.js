@@ -19,6 +19,83 @@ define(function(require) {
 	var Suggestbox = require('views/components/Suggestbox');
 	var BooleanBadgeCell = require('views/components/BooleanBadgeCell');
 
+	var RadioGroup = Backbone.View.extend({
+		initialize : function(options) {
+			this.container = options.container;
+			this.radioboxes = this.container.find("input[type=radio]")
+		},
+
+		getValue : function() {
+			var that = this;
+			var radioValue = null;
+			_.each(that.radioboxes, function(radiobox) {
+				var $radiobox = $(radiobox);
+				if ($radiobox.is(':checked')) {
+					radioValue = $radiobox.val();
+				}
+			})
+			return radioValue;
+		},
+
+		setValue : function(val) {
+			var that = this;
+			that.clear();
+			_.each(that.radioboxes, function(radiobox) {
+				var $radiobox = $(radiobox);
+				// TODO verificar uma forma mais elegante para fazer isso
+				val = '' + val;
+				if ($radiobox.val() == val) {
+					$radiobox.prop('checked', true);
+				}
+			});
+		},
+
+		clear : function() {
+			_.each(this.radioboxes, function(radiobox) {
+				var $radiobox = $(radiobox);
+				$radiobox.prop('checked', false);
+			})
+		}
+	});
+
+	var CheckGroup = Backbone.View.extend({
+		initialize : function(options) {
+			this.container = options.container;
+			this.checkboxes = this.container.find("input[type=checkbox]")
+		},
+
+		getValue : function() {
+			var that = this;
+			var checkValues = [];
+			_.each(that.checkboxes, function(checkbox) {
+				var $checkbox = $(checkbox);
+				if ($checkbox.is(':checked')) {
+					checkValues.push($checkbox.val());
+				}
+			})
+			return checkValues;
+		},
+
+		setValue : function(models) {
+			var that = this;
+			that.clear();
+			_.each(models, function(model) {
+				_.each(that.checkboxes, function(checkbox) {
+					var $checkbox = $(checkbox);
+					if ($checkbox.val() == model) {
+						$checkbox.prop('checked', true);
+					}
+				});
+			});
+		},
+		clear : function() {
+			_.each(this.checkboxes, function(checkbox) {
+				var $checkbox = $(checkbox);
+				$checkbox.prop('checked', false);
+			})
+		}
+	});
+
 	var Counter = Marionette.ItemView.extend({
 		className : 'counter-component',
 		template : _.template(CounterTemplate),
@@ -130,7 +207,7 @@ define(function(require) {
 
 			// adicionando uma header compativel com tipos numericos
 			_.each(options.columns, function(col) {
-				if (col.cell && col.cell.__super__ && col.cell.__super__.className == 'custom-number-cel') {
+				if (col.cell.__super__ && col.cell.__super__.className == 'custom-number-cel') {
 					col.headerCell = Backgrid.HeaderCell.extend({
 						className : 'custom-number-cel'
 					})
@@ -409,6 +486,11 @@ define(function(require) {
 		}
 	});
 	var JSetup = {
+		BaseModel : BaseModel,
+		BaseCollection : BaseCollection,
+
+		CheckGroup : CheckGroup,
+		RadioGroup : RadioGroup,
 
 		View : View,
 		SimpleView : SimpleView,
@@ -417,6 +499,8 @@ define(function(require) {
 		Counter : Counter,
 
 		Combobox : Combobox,
+
+		DataTable : DataTable,
 
 		Multiselect : Multiselect,
 
@@ -439,20 +523,18 @@ define(function(require) {
 		ActionCell : GeneralCell,
 
 		CustomStringCell : CustomStringCell,
+		EntityCell : EntityCell,
+		StringCell : CustomStringCell,
 
 		TemplateCell : TemplateCell,
 
 		BooleanBadgeCell : BooleanBadgeCell,
-
-		DataTable : DataTable,
 
 		InputUpload : InputUpload,
 		InputAllUpload : InputAllUpload,
 		InputButtonUpload : InputButtonUpload,
 		Suggestbox : Suggestbox,
 
-		BaseModel : BaseModel,
-		BaseCollection : BaseCollection,
 
 	}
 	return JSetup;

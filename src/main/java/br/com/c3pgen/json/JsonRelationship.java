@@ -19,6 +19,7 @@ public class JsonRelationship implements Serializable {
 	private SyncOperation syncOperation;
 
 	private String name;
+	private Boolean origin;
 	private String type;
 	private String displayName;
 	private String ownerName;
@@ -122,6 +123,14 @@ public class JsonRelationship implements Serializable {
 
 	public void setTarget(JsonRelationship target) {
 		this.target = target;
+	}
+
+	public Boolean getOrigin() {
+		return origin;
+	}
+
+	public void setOrigin(Boolean origin) {
+		this.origin = origin;
 	}
 
 }

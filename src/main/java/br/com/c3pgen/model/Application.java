@@ -58,19 +58,22 @@ public class Application extends AbstractTimestampEntity {
 
 	@Column(name = "USE_AUDIT")
 	private Boolean useAudit;
-	
+
 	@Column(name = "USE_DOC_REST_API")
 	private Boolean useDocRestApi;
+
+	@Column(name = "MULTITENANCY")
+	private Boolean multitenancy;
 
 	@Column(name = "DATA_BASE_PREFIX")
 	private String dataBasePrefix;
 
 	@OneToMany(mappedBy = "application")
-	@Cascade(CascadeType.ALL)
+	// @Cascade(CascadeType.ALL)
 	private List<ApplicationEntity> entities;
 
 	@OneToMany(mappedBy = "application")
-	@Cascade(CascadeType.ALL)
+	// @Cascade(CascadeType.ALL)
 	private Set<ApplicationRelationship> applicationRelationships;
 
 	@ManyToOne
@@ -183,7 +186,7 @@ public class Application extends AbstractTimestampEntity {
 		}
 		return useAudit;
 	}
-	
+
 	public Boolean hasDocRestApi() {
 		if (useDocRestApi == null) {
 			return Boolean.FALSE;
@@ -269,6 +272,14 @@ public class Application extends AbstractTimestampEntity {
 
 	public void setUseAudit(Boolean useAudit) {
 		this.useAudit = useAudit;
+	}
+
+	public Boolean getMultitenancy() {
+		return multitenancy;
+	}
+
+	public void setMultitenancy(Boolean multitenancy) {
+		this.multitenancy = multitenancy;
 	}
 
 }

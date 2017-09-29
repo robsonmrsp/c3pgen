@@ -646,9 +646,22 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 			var allVEntities = globalVisualEntities.values();
 			var allBEntities = [];
 			_.each(allVEntities, function(vEntity) {
-				allBEntities.push(vEntity.get('entity'));
+				allBEntities.push(vEntity.model);
 			})
 			return allBEntities;
+		},
+
+		getBackViewByNameEntity : function(nameEntity) {
+			var allVEntities = globalVisualEntities.values();
+			var allBEntities = [];
+			var returnVntuty = null;
+			_.each(allVEntities, function(vEntity) {
+				if (vEntity.model.get('name') == nameEntity) {
+					returnVntuty = vEntity;
+					return returnVntuty;
+				}
+			})
+			return returnVntuty;
 		},
 
 		BEntityContainsAttribute : function(entityName, attributeName) {

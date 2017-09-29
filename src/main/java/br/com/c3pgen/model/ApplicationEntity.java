@@ -39,6 +39,9 @@ public class ApplicationEntity extends AbstractTimestampEntity {
 
 	@Column(name = "NAME")
 	private String name;
+	
+	@Column(name = "COLOR")
+	private String color;
 
 	@Column(name = "NOTES")
 	private String notes;
@@ -394,6 +397,14 @@ public class ApplicationEntity extends AbstractTimestampEntity {
 
 	public void setPk(String pk) {
 		this.pk = pk;
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
 	}
 
 }

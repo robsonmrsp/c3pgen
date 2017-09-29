@@ -520,6 +520,10 @@
 								<cssSourceFile>../vendor/jspanel/jquery.jspanel.css</cssSourceFile>
 								<cssSourceFile>../vendor/joint/joint.css</cssSourceFile>
 								<cssSourceFile>../vendor/CodeMirror-3.12/lib/codemirror.css</cssSourceFile>
+								
+								<cssSourceFile>../vendor/bootstrap-switch-3.3.4/dist/css/bootstrap3/bootstrap-switch.css</cssSourceFile>
+								<cssSourceFile>../vendor/magic-check-master/css/magic-check.css</cssSourceFile>
+
 								<cssSourceFile>custom.css</cssSourceFile>
 							</cssSourceFiles>
 							<cssFinalFile>main-built.css</cssFinalFile>

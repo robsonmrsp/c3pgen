@@ -150,9 +150,11 @@ public class DaoApplication extends AccessibleHibernateDao<Application> {
 		String hqlUpdate = "update Application c 		"//
 				+ "	set  c.appName = :appName ,				"//
 				+ "      c.skin = :skin, 				"//
-				+ "      c.description = :description, 	"//
+				+ "      c.description = :description , 	"//
 				+ "      c.rootPackage = :rootPackage , 	"//
-				+ "      c.corePackage = :corePackage	"//
+				+ "      c.corePackage = :corePackage ,	"//
+				+ "      c.multitenancy = :multitenancy ,	"//
+				+ "      c.useAudit = :useAudit	"//
 				+ " where c.id= :id";//
 		Session session = getSession();
 
@@ -162,6 +164,8 @@ public class DaoApplication extends AccessibleHibernateDao<Application> {
 				.setString("skin", application.getSkin())//
 				.setString("rootPackage", application.getRootPackage())//
 				.setString("corePackage", application.getCorePackage())//
+				.setBoolean("multitenancy", application.getMultitenancy())//
+				.setBoolean("useAudit", application.getUseAudit())//
 				.setInteger("id", application.getId())//
 				.executeUpdate();
 		return application;

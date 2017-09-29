@@ -263,9 +263,9 @@ body {
 }
 
 .tools {
-	position: absolute;
-	top: 300px;
-	left: 0px;
+	/* 	position: absolute; */
+	/* 	top: 300px; */
+	/* 	left: 0px; */
 	max-width: 80px !important;
 }
 /* paineis e toolbars  */
@@ -274,7 +274,17 @@ body {
 	top: 62px;
 	right: 10px;
 	/* 	width: 450px; */
+	max-width: 229px !important;
 	height: 100px;
+}
+
+.widget-main {
+	margin: 4px
+}
+
+.inspetor-entidades-view {
+	max-width: 226px !important;
+	padding-left: 2px !important;
 }
 
 .inspetor-relacionamentos {
@@ -309,7 +319,14 @@ body {
 	box-sizing: border-box;
 	z-index: 2;
 	pointer-events: none;
-	box-shadow: 0 10px 6px -6px #777;
+	box-shadow: 0 5px 3px -3px #777;
+}
+
+.html-element .selected {
+	cursor: move;
+	border-size: 1px !important;
+	border-style: inset; ! important;
+	border-color: #28aae1! important;
 }
 
 .closebox {
@@ -441,6 +458,7 @@ body {
 
 #paper {
 	width: 1920px;
+	left: 230px !important;
 	/* 	height: 1024px impo; */
 	overflow: scroll;
 }
@@ -502,23 +520,3 @@ ul.editor-list li:hover a {
 	height: 280px !important;
 }
 
-.chart div {
-	font: 10px sans-serif;
-	background-color: steelblue;
-	text-align: right;
-	padding: 3px;
-	margin: 1px;
-	color: white;
-}
-
-body {
-	font: 14px helvetica neue, helvetica, arial, sans-serif;
-}
-
-#cy {
-	height: 100%;
-	width: 100%;
-	position: absolute;
-	left: 0;
-	top: 0;
-}

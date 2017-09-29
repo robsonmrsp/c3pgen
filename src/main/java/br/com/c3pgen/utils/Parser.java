@@ -150,6 +150,8 @@ public class Parser {
 		jsonApplication.setId(application.getId());
 		jsonApplication.setName(application.getAppName());
 		jsonApplication.setSkin(application.getSkin());
+		jsonApplication.setMultitenancy(application.getMultitenancy());
+		jsonApplication.setUseAudit(application.getUseAudit());
 		jsonApplication.setDescription(application.getDescription());
 		jsonApplication.setRootPackage(application.getRootPackage());
 		jsonApplication.setCorePackage(application.getCorePackage());
@@ -159,6 +161,8 @@ public class Parser {
 		application.setId(jsonApplication.getId());
 		application.setAppName(jsonApplication.getName());
 		application.setSkin(jsonApplication.getSkin());
+		application.setMultitenancy(jsonApplication.getMultitenancy());
+		application.setUseAudit(jsonApplication.getUseAudit());
 		application.setDescription(jsonApplication.getDescription());
 		application.setRootPackage(jsonApplication.getRootPackage());
 		application.setCorePackage(jsonApplication.getCorePackage());
@@ -424,6 +428,7 @@ public class Parser {
 		jsonTheEntity.setPosY(theEntity.getPosY());
 
 		jsonTheEntity.setName(theEntity.getName());
+		jsonTheEntity.setColor(theEntity.getColor());
 		jsonTheEntity.setNotes(theEntity.getNotes());
 		jsonTheEntity.setDisplayName(theEntity.getDisplayName());
 		jsonTheEntity.setTableName(theEntity.getTableName());
@@ -436,6 +441,7 @@ public class Parser {
 		theEntity.setPosX(jsonTheEntity.getPosX());
 		theEntity.setPosY(jsonTheEntity.getPosY());
 		theEntity.setName(jsonTheEntity.getName());
+		theEntity.setColor(jsonTheEntity.getColor());
 		theEntity.setNotes(jsonTheEntity.getNotes());
 		theEntity.setDisplayName(jsonTheEntity.getDisplayName());
 		theEntity.setTableName(jsonTheEntity.getTableName());
@@ -485,13 +491,12 @@ public class Parser {
 			}
 		}
 
-		// ArrayList<JsonRelationship> listRelationships =
-		// jsonTheEntity.getRelationships();
-		// if (listRelationships != null) {
-		// for (JsonRelationship loopJsonRelationship : listRelationships) {
-		// theEntity.addRelationships(toEntity(loopJsonRelationship));
-		// }
-		// }
+		ArrayList<JsonRelationship> listRelationships = jsonTheEntity.getRelationships();
+		if (listRelationships != null) {
+			for (JsonRelationship loopJsonRelationship : listRelationships) {
+				theEntity.addRelationships(toBasicEntity(loopJsonRelationship));
+			}
+		}
 
 		return theEntity;
 
@@ -527,20 +532,24 @@ public class Parser {
 	private static void applyBasicJsonValues(JsonRelationship jsonRelationship, Relationship relationship) {
 		jsonRelationship.setId(relationship.getId());
 		jsonRelationship.setName(relationship.getName());
+		jsonRelationship.setOrigin(relationship.getOrigin());
 		jsonRelationship.setType(relationship.getType());
 		jsonRelationship.setDisplayName(relationship.getDisplayName());
 		jsonRelationship.setOwnerName(relationship.getOwnerName());
 		jsonRelationship.setModel(relationship.getModel());
+		jsonRelationship.setViewApproach(toJson(relationship.getViewApproach()));
 		jsonRelationship.setUniDirecional(relationship.getUniDirecional());
 	}
 
 	private static void applyBasicEntityValues(Relationship relationship, JsonRelationship jsonRelationship) {
 		relationship.setId(jsonRelationship.getId());
 		relationship.setName(jsonRelationship.getName());
+		relationship.setOrigin(jsonRelationship.getOrigin());
 		relationship.setType(jsonRelationship.getType());
 		relationship.setDisplayName(jsonRelationship.getDisplayName());
 		relationship.setOwnerName(jsonRelationship.getOwnerName());
 		relationship.setModel(jsonRelationship.getModel());
+		relationship.setViewApproach(toBasicEntity(jsonRelationship.getViewApproach()));
 		relationship.setUniDirecional(jsonRelationship.getUniDirecional());
 	}
 
@@ -610,10 +619,10 @@ public class Parser {
 			}
 		}
 
-		JsonViewApproach viewApproach = jsonRelationship.getViewApproach();
-		if (viewApproach != null) {
-			relationship.setViewApproach(toEntity(viewApproach));
-		}
+		// JsonViewApproach viewApproach = jsonRelationship.getViewApproach();
+		// if (viewApproach != null) {
+		// relationship.setViewApproach(toEntity(viewApproach));
+		// }
 		return relationship;
 
 	}

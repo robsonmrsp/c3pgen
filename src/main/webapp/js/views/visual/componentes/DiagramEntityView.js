@@ -16,6 +16,8 @@ define(function(require) {
 	var DiagramAttributesCollectionView = require('views/visual/componentes/DiagramAttributesCollectionView');
 	var DiagramRelationshipsCollectionView = require('views/visual/componentes/DiagramRelationshipsCollectionView');
 
+	var HtmlEntity = require('views/visual/models/HtmlEntity');
+
 	var DiagramEntityView = Marionette.LayoutView.extend({
 		template : _.template(DiagramEntityViewTemplate),
 		className : 'entity-container',
@@ -25,7 +27,13 @@ define(function(require) {
 		},
 
 		events : {
-			'click  .closebox' : 'removeEntity'
+			'click  .closebox' : 'removeEntity',
+
+			'dblclick' : 'doubleClick'
+		},
+		
+		doubleClick : function() {
+			alert(this)
 		},
 
 		removeEntity : function() {
@@ -33,22 +41,36 @@ define(function(require) {
 				this.onClickRemove();
 			}
 		},
+
 		ui : {
 			entityName : '.entity-name',
 		},
 
+		getGraphEntity : function() {
+			return this.htmlEntity;
+		},
+		reposition : function() {
+			this.htmlEntity.updatePosition(this.model.get('posX'), this.model.get('posY'));
+		},
 		initialize : function(opt) {
 			var that = this;
+			this.htmlEntity = new HtmlEntity({
+				htmlView : that,
+			});
+
+			this.model.on('change', this.refresh, this);
+
 			this.container = opt.container;
 
 			this.onClickRemove = opt.onClickRemove;
 
 			this.attributesCollection = new AttributeCollection(this.model.get('attributes'));
-			this.relationshipsCollection = new AttributeCollection(this.model.get('relationships'));
+
 			this.attributesCollectionView = new DiagramAttributesCollectionView({
 				collection : this.attributesCollection,
 			});
 
+			this.relationshipsCollection = new AttributeCollection(this.model.get('relationships'));
 			this.relationshipsCollectionView = new DiagramRelationshipsCollectionView({
 				collection : this.relationshipsCollection,
 			});
@@ -56,13 +78,8 @@ define(function(require) {
 			this.on('show', function() {
 				this.attributesRegion.show(this.attributesCollectionView);
 				this.relationshipsRegion.show(this.relationshipsCollectionView);
-				
-				window.setTimeout(function() {
-					that.container.resizeView({
-						width : that.$el.width(),
-						height : that.$el.height()
-					})
-				}, 10);
+
+				this.htmlEntity.updatePosition(this.model.get('posX'), this.model.get('posY'));
 			});
 		},
 
@@ -72,17 +89,10 @@ define(function(require) {
 			this.ui.entityName.text(entity.get('name'));
 
 			this.attributesCollection.reset(this.model.get('attributes'));
-
-			window.setTimeout(function() {
-				that.container.resizeView({
-					width : that.$el.width(),
-					height : that.$el.height()
-				})
-			}, 10);
+			this.relationshipsCollection.reset(this.model.get('relationships'));
 		},
 
 	});
 
 	return DiagramEntityView;
 });
-// html-element

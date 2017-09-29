@@ -23,13 +23,13 @@ public class ApplicationRelationshipServiceImp implements ApplicationRelationshi
 	@Override
 	public void removeAllByApplication(Application application) {
 		Set<ApplicationRelationship> applicationRelationships = application.getApplicationRelationships();
-		
+
 		daoApplicationRelationship.deleteByApplication(application);
 	}
 
 	@Override
 	public Boolean delete(Integer id) {
-		
+
 		return daoApplicationRelationship.delete(id);
 	}
 
@@ -47,5 +47,10 @@ public class ApplicationRelationshipServiceImp implements ApplicationRelationshi
 		for (ApplicationRelationship applicationRelationship : filter) {
 			delete(applicationRelationship.getId());
 		}
+	}
+
+	@Override
+	public void save(ApplicationRelationship applicationRelationship) {
+		daoApplicationRelationship.save(applicationRelationship);
 	}
 }

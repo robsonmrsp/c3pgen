@@ -29,9 +29,11 @@ public class GenService {
 	public GenService() {
 
 	}
+	
 
 	public ApplicationValidatorMessages validate(Application application) {
 		ApplicationValidator appValidator = new ApplicationValidator();
+		
 		Application fixApplication = fixApplication(application);
 		GenerateFileInfo fileInfo = new GenerateFileInfo();
 		LOGGER.info("Validando arquivo de entidades...");
@@ -228,11 +230,11 @@ public class GenService {
 
 	private Application fixApplication(Application oldApplication) {
 
-		List<ApplicationEntity> entities = oldApplication.getEntities();
-		for (ApplicationEntity applicationEntity : entities) {
-			applicationEntity.setRelationships(null);
-			applicationEntity.setRelationships(getNewRelations(applicationEntity, oldApplication.getApplicationRelationships()));
-		}
+//		List<ApplicationEntity> entities = oldApplication.getEntities();
+//		for (ApplicationEntity applicationEntity : entities) {
+//			applicationEntity.setRelationships(null);
+//			applicationEntity.setRelationships(getNewRelations(applicationEntity, oldApplication.getApplicationRelationships()));
+//		}
 
 		return oldApplication;
 	}

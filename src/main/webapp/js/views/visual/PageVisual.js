@@ -16,13 +16,14 @@ define(function(require) {
 	var AttributeModel = require('models/AttributeModel');
 	var EntityModel = require('models/EntityModel');
 	var ApplicationModel = require('models/ApplicationModel');
+	var download = require('download');
 
 	var PageVisualTemplate = require('text!views/visual/tpl/PageVisualTemplate.html');
 
 	// para tentar dar zoom todos os objetos da tela devem ser graficos.
 	// var VisualEntity = require('views/visual/models/VisualEntity');
 
-	var VisualEntity = require('views/visual/models/HtmlEntity');
+	var DiagramEntityView = require('views/visual/componentes/DiagramEntityView');
 
 	var VisualRelationship = require('views/visual/models/VisualRelationship');
 	var InspetorEntidadesView = require('views/visual/InspetorEntidadesView');
@@ -73,6 +74,7 @@ define(function(require) {
 			'click #addRelation' : 'addRelation',
 			'click #saveApp' : 'saveApplication',
 			'click #openTools' : 'openTools',
+			'click #generateApplication' : 'generateApplication',
 		},
 
 		ui : {},
@@ -113,8 +115,8 @@ define(function(require) {
 				this.modalError.initIn(this);
 
 				this.inspetorRegion.show(this.inspetorView);
-				this.diagramApplicationToolsRegion.show(this.diagramApplicationTools);
-				this.inspetorRelacionamentosRegion.show(this.inspetorRelacionamentosView);
+				// this.diagramApplicationToolsRegion.show(this.diagramApplicationTools);
+				// this.inspetorRelacionamentosRegion.show(this.inspetorRelacionamentosView);
 
 				this.graph = new Joint.dia.Graph();
 
@@ -138,16 +140,19 @@ define(function(require) {
 				// Joint.util.shapePerimeterConnectionPoint
 				});
 
-				$('#paper').css('width', (window.innerWidth - 455) + 'px')
+				// $('#paper').css('width', (window.innerWidth - 455) + 'px')
 
+				window.paper.on('link:pointerup', function(_link, _evento, x, y) {
+					console.log(_link)
+				});
 				window.paper.on('link:options', function(_evento, _link, x, y) {
-					that.inspetorRelacionamentosView.setVisual(_link.model);
+					// that.inspetorRelacionamentosView.setVisual(_link.model);
 				});
 				window.paper.on('tool:remove', function(evt, linkView) {
-					that.removeApplicationRelationship(linkView);
+					// that.removeApplicationRelationship(linkView);
 
 				})
-				window.paper.on('cell:pointerdown', function(cellView, evt, x, y) {
+				window.paper.on('cell:pointerdown', function(_cellView, evt, x, y) {
 					// var toolRemove =
 					// $(evt.target).parents('.tool-remove')[0];
 					// if (toolRemove) {
@@ -158,40 +163,59 @@ define(function(require) {
 					// });
 					//
 					// }
+					if (_cellView.model.get('type') == 'html.Element') {
+
+						// pegar a referencia ao Diagrama associado a esse
+						// cellView
+						var view = globalVisualEntities.get(_cellView.model.id);
+						that.inspetorView.setVisualEntity(view);
+						// console.log('pointerdown')
+					}
 				});
 				window.paper.on('cell:pointerup', function(_cellView, evt, x, y) {
 					if (_cellView.model.get('type') == 'html.Element') {
-						that.inspetorView.setVisualEntity(_cellView.model);
+
+						// pegar a referencia ao Diagrama associado a esse
+						// cellView
+						var view = globalVisualEntities.get(_cellView.model.id);
+						// that.inspetorView.setVisualEntity(view);
 						if (that.activeAddRelation == true) {
 							if (that.sourceTempRelation == null) {
-								that.sourceTempRelation = _cellView;
-								that.sourceTempRelation.highlight();
+								that.sourceTempRelation = view;
+								that.sourceViewTempRelation = _cellView;
+								_cellView.highlight();
 							} else {
-								that.targetTempRelation = _cellView;
-								that.targetTempRelation.highlight();
+								that.targetViewTempRelation = _cellView;
+								that.targetTempRelation = view;
+								_cellView.highlight();
 
 								var relation = new VisualRelationship({
+									newRelation : true,
 									applicationRelationshipModel : new ApplicationRelationshipModel({
-										sourceEntityView : that.sourceTempRelation.model,
-										targetEntityView : that.targetTempRelation.model,
+										sourceEntityView : that.sourceTempRelation,
+										targetEntityView : that.targetTempRelation,
 									})
 								});
 
 								setTimeout(function() {
-									that.sourceTempRelation.unhighlight();
-									that.targetTempRelation.unhighlight();
+									that.targetViewTempRelation.unhighlight();
+									that.sourceViewTempRelation.unhighlight();
+
 									that.sourceTempRelation = null;
 									that.targetTempRelation = null;
+									that.sourceViewTempRelation = null;
+									that.targetViewTempRelation = null;
 								}, 1000);
 
+								that.graph.addCell(relation);
 								$('#paper').removeClass('cursor-relacao-1-n');
 								$('#paper').removeClass('cursor-tabela');
 								that.activeAddRelation = false;
-								that.graph.addCell(relation);
 
 								window.globalVisualRelations.put(relation.id, relation);
 							}
 						}
+						// console.log('terminou o drag', _cellView);
 					}
 				});
 
@@ -203,28 +227,12 @@ define(function(require) {
 				window.paper.on('blank:pointerclick', function(_cellView, evt, x, y) {
 					if (that.activeAddEntity == true) {
 						that.addEntity();
-						var visualEntity = new VisualEntity({
-							entity : that._getEntityModel({
-								x : MOUSE_X,
-								y : MOUSE_Y - 62
-							}),
-							position : {
-								x : MOUSE_X,
-								y : MOUSE_Y - 62
-							},
-							size : {
-								width : 120,
-								height : 100
-							},
-							onClickRemove : function(visualE) {
-								that.removeVisualEntity(visualE);
-							},
-						});
+						var diagramEntity = that.addVisualEntity(new EntityModel({
+							posX : MOUSE_X - 230,
+							posY : MOUSE_Y - 62
+						}));
 
-						that.graph.addCell(visualEntity);
-
-						globalVisualEntities.put(visualEntity.id, visualEntity)
-						that.inspetorView.setVisualEntity(visualEntity);
+						that.inspetorView.setVisualEntity(diagramEntity);
 
 						that.activeAddEntity = false
 						$('#paper').removeClass('cursor-tabela');
@@ -245,22 +253,45 @@ define(function(require) {
 				globalVisualRelations.clear();
 			}
 			that.quantidadeEntidades = application.get('entities').length
+
 			_.each(application.get('entities'), function(entity) {
 				try {
-
 					that.addVisualEntity(new EntityModel(entity));
 				} catch (e) {
 					console.error(e);
 				}
 			});
 
-			_.each(application.get('applicationRelationships'), function(appRelation) {
-				that.addVisualRelation(appRelation);
+			this.drawRelations(application);
+
+			// _.each(application.get('applicationRelationships'),
+			// function(appRelation) {
+			//
+			// // comentando por enquanto
+			// // that.addVisualRelation(appRelation);
+			// });
+		},
+
+		drawRelations : function(application) {
+			var that = this;
+			_.each(application.get('entities'), function(entity) {
+
+				_.each(entity.relationships, function(relation) {
+					if (relation.origin) {
+						var relation = new VisualRelationship({
+							applicationRelationshipModel : new ApplicationRelationshipModel({
+								sourceEntityView : util.getBackViewByNameEntity(entity.name),
+								targetEntityView : util.getBackViewByNameEntity(relation.model),
+							})
+						});
+						that.graph.addCell(relation);
+					}
+				});
 			});
 		},
-		openTools : function() {
-			this.diagramApplicationTools.showPage();
-		},
+		// openTools : function() {
+		// this.diagramApplicationTools.showPage();
+		// },
 		// RIDICULA ESSA CONTA, mas como tá desenhando legal as tabelas para
 		// muitos registros...
 		// fica assim
@@ -274,11 +305,11 @@ define(function(require) {
 				++linha;
 			}
 			var posY = 40 + ((contador++ % 2 - 1) * 240) + linha * 240; // TOP
-			var posX = 150 + ((contador - 1) * 180); // LEFT
+			var posX = 120 + ((contador - 1) * 180); // LEFT
 
-			console.log(posX, posY);
-			var visualEntity = new VisualEntity({
-				entity : entity,
+			entity.on('change', this.changeEntity, this);
+			var diagramEntity = new DiagramEntityView({
+				model : entity,
 				position : {
 					x : entity.posX || entity.get('posX') || posX,
 					y : entity.posY || entity.get('posY') || posY,
@@ -290,16 +321,22 @@ define(function(require) {
 				onClickRemove : function(visualE) {
 					that.removeVisualEntity(visualE);
 				},
-			});
 
+				onChangeEntity : function(entity) {
+					that.changeEntity(entity);
+				},
+			});
+			var visualEntity = diagramEntity.getGraphEntity();
 			that.graph.addCell(visualEntity);
 
-			globalVisualEntities.put(visualEntity.id, visualEntity)
-
-			that.inspetorView.setVisualEntity(visualEntity);
-
+			globalVisualEntities.put(visualEntity.id, diagramEntity);
+			return diagramEntity;
+			// that.inspetorView.setVisualEntity(diagramEntity);
 		},
-
+		changeEntity : function(entity) {
+			//
+			// console.log(JSON.stringify(entity));
+		},
 		addVisualRelation : function(applicationRelationshipModel) {
 			var that = this;
 
@@ -365,23 +402,25 @@ define(function(require) {
 			var applicationRelationshipCollection = new ApplicationRelationshipCollection();
 
 			_.each(globalVisualEntities.values(), function(visual) {
-				entidadesCollection.add(visual.get('entity'));
+				entidadesCollection.add(visual.model);
 			});
 
-			_.each(globalVisualRelations.values(), function(relation) {
-				applicationRelationshipCollection.add(new ApplicationRelationshipModel({
-					source : relation.get('sourceRelationModel'),
-					target : relation.get('targetRelationModel'),
-					application : {
-						id : that.application.get('id'),
-						name : that.application.get('name'),
-					},
-				}));
-			});
+			// _.each(globalVisualRelations.values(), function(relation) {
+			// applicationRelationshipCollection.add(new
+			// ApplicationRelationshipModel({
+			// source : relation.get('sourceRelationModel'),
+			// target : relation.get('targetRelationModel'),
+			// application : {
+			// id : that.application.get('id'),
+			// name : that.application.get('name'),
+			// },
+			// }));
+			// });
 
 			this.application.set('entities', entidadesCollection.toJSON());
 
-			this.application.set('applicationRelationships', applicationRelationshipCollection.toJSON());
+			// this.application.set('applicationRelationships',
+			// applicationRelationshipCollection.toJSON());
 
 			this.application.save({}, {
 				success : function(generateFileInfo, _resp, _opt) {
@@ -393,7 +432,7 @@ define(function(require) {
 					$('.html-element').remove()
 					that.loadApplication(new ApplicationModel(application), true);
 
-					if (messages.messages && messages.messages.length > 0) {
+					if (messages && messages.messages && messages.messages.length > 0) {
 						that.modalError.showMessage(messages.messages);
 					}
 				},
@@ -408,7 +447,7 @@ define(function(require) {
 		_getEntityView : function(relation) {
 			var visualModel = null
 			_.each(globalVisualEntities.values(), function(visual) {
-				if (visual.get('entity') && visual.get('entity').get('name') == relation.model) {
+				if (visual.model.get('name') == relation.model) {
 					visualModel = visual;
 				}
 			});
@@ -460,6 +499,7 @@ define(function(require) {
 				}
 			});
 		},
+
 		removeVisualEntity : function(visualE) {
 			var model = new EntityModel({
 				id : visualE.entity.get('id')
@@ -513,6 +553,24 @@ define(function(require) {
 				}
 			});
 
+		},
+
+		generateApplication : function() {
+			var old = this.model.url;
+			var that = this;
+
+			this.model.url = 'rs/crud/applications/generator/' + this.model.get('id');
+			this.model.fetch({
+				success : function(_model, _resp, _options) {
+					that.model.url = old;
+					util.showMessage('info', _resp.resp);
+					download(_resp.resp);
+				},
+				error : function(_model, _resp, _options) {
+					util.showMessage('error', util.getJson(_resp.responseText).legalMessage || '');
+					that.model.url = old;
+				}
+			});
 		},
 	});
 

@@ -3,6 +3,8 @@ package br.com.c3pgen.json;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import javax.persistence.Column;
+
 import br.com.c3pgen.serialization.CustomSyncObjectIdDeserializer;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -24,6 +26,9 @@ public class JsonApplication implements Serializable {
 	private String description;
 	private String rootPackage;
 	private String corePackage;
+	private Boolean useAudit;
+	private Boolean multitenancy;
+
 	private ArrayList<JsonTheEntity> entities = new ArrayList<JsonTheEntity>();
 
 	private ArrayList<JsonApplicationRelationship> applicationRelationships = new ArrayList<JsonApplicationRelationship>();
@@ -105,6 +110,22 @@ public class JsonApplication implements Serializable {
 
 	public void setCorePackage(String corePackage) {
 		this.corePackage = corePackage;
+	}
+
+	public Boolean getMultitenancy() {
+		return multitenancy;
+	}
+
+	public void setMultitenancy(Boolean multitenancy) {
+		this.multitenancy = multitenancy;
+	}
+
+	public Boolean getUseAudit() {
+		return useAudit;
+	}
+
+	public void setUseAudit(Boolean useAudit) {
+		this.useAudit = useAudit;
 	}
 
 }

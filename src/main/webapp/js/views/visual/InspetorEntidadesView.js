@@ -12,29 +12,34 @@ define(function(require) {
 	var AttributeModel = require('models/AttributeModel');
 	var ApplicationRelationshipModel = require('models/ApplicationRelationshipModel');
 	var AttributeCollection = require('collections/AttributeCollection');
+	var RelationshipCollection = require('collections/RelationshipCollection');
 
 	var InspetorEntidadesViewTemplate = require('text!views/visual/tpl/InspetorEntidadesViewTemplate.html');
 
 	var AttributesCollectionView = require('views/categoria/AttributesCollectionView');
+	var RelationshipsCollectionView = require('views/categoria/RelationshipsCollectionView');
 
 	var EntidadeItem = Marionette.LayoutView.extend({
 		template : _.template(InspetorEntidadesViewTemplate),
-		className : ' drag-item',
+		className : ' inspetor-entidades-view',
 
 		regions : {
 			attributesRegion : '.attributes',
+			relationshipsRegion : '.relationships',
 		},
 
 		events : {
 			'click .add-attribute' : 'addAttribute',
 			'click .rem-entity' : 'deleteEntidade',
 			'click .show-hide-ent' : 'hideShowEnt',
+			'click .icon-expand-entity' : 'expandEntity',
 			'click checkbox' : 'changeEntity'
 		},
 
 		ui : {
 			inputId : '#inputId',
 			inputEntityName : '.inputEntityName',
+			iconExpandEntity : '.icon-expand-entity',
 			inputDisplayName : '.inputDisplayName',
 			inputTableName : '.inputTableName',
 			inputHasMobile : '.inputHasMobile',
@@ -64,28 +69,31 @@ define(function(require) {
 			var that = this;
 
 			// // Configuração do draggable
-			this.$el.draggable({
-				handle : 'h5',
-				containment : ".drag-entities",
-				scroll : false,
-				stop : function() {
-					// var offset = $(this).offset();
-				}
-			});
+			// this.$el.draggable({
+			// handle : 'h5',
+			// containment : ".drag-entities",
+			// scroll : false,
+			// stop : function() {
+			// // var offset = $(this).offset();
+			// }
+			// });
 
 			this.attributesCollection = new AttributeCollection(this.model.get('attributes'));
-			this.relationshipsCollection = new AttributeCollection(this.model.get('relationships'));
+
 			this.attributesCollection.on('change', this.updateViewEntity, this);
-//			this.relationshipsCollection.on('change', this.updateViewEntity, this);
 			this.attributesCollection.on('destroy', this.updateViewEntity, this);
 
 			this.attributesCollectionView = new AttributesCollectionView({
 				collection : this.attributesCollection,
 			});
 
-			// this.model.set('attributes', this.model.get('attributes'));
+			this.relationshipsCollection = new RelationshipCollection(this.model.get('relationships'));
+			this.relationshipsCollection.on('change', this.updateViewEntity, this);
+			this.relationshipsCollection.on('destroy', this.updateViewEntity, this);
 
-			// configuração dos relacionamentos
+			this.relationshipsCollectionView = new RelationshipsCollectionView({
+				collection : this.relationshipsCollection,
+			});
 
 			this.on('show', function() {
 
@@ -116,6 +124,7 @@ define(function(require) {
 				this.ui.showHideEntity.tooltip();
 
 				this.attributesRegion.show(this.attributesCollectionView);
+				this.relationshipsRegion.show(this.relationshipsCollectionView);
 
 				// abrindo com os atributos escondidos.
 				// this.hideShowEnt();
@@ -126,8 +135,8 @@ define(function(require) {
 
 			this.entity.set(this.getModel())
 			this.entity.set('attributes', this.attributesCollection.toJSON());
-//			this.entity.set('relationships', this.attributesCollection.toJSON());
-//			this.visualEntity.updateHtmlEntity(this.entity);
+			this.entity.set('relationships', this.relationshipsCollection.toJSON());
+			// this.visualEntity.updateHtmlEntity(this.entity);
 		},
 
 		deleteAtribute : function() {
@@ -136,17 +145,23 @@ define(function(require) {
 
 		setVisualEntity : function(visualEntity) {
 			var that = this;
+
+			this.visualEntity && this.visualEntity.$el.removeClass('selected');
+
 			this.visualEntity = visualEntity;
 
-			this.entity = visualEntity.get('entity');
+			this.visualEntity.$el.addClass('selected');
 
-			this.visualEntity.on('change:position', function(_cellView, position, c, d) {
-				var _entity = _cellView.get('entity');
-				_entity.set('posX', position.x);
-				_entity.set('posY', position.y);
+			this.entity = visualEntity.model;
+
+			this.visualEntity.getGraphEntity().on('change:position', function(_cellView, position, c, d) {
+				// var _entity = _cellView.get('entity');
+				that.entity.set('posX', position.x);
+				that.entity.set('posY', position.y);
 			})
 
 			this.attributesCollection.reset(this.entity.get('attributes'));
+			this.relationshipsCollection.reset(this.entity.get('relationships'));
 
 			this.ui.inputId.val(this.entity.get('id'));
 			this.ui.inputEntityName.text(this.entity.get('name'));
@@ -158,7 +173,7 @@ define(function(require) {
 			util.refreshEditableVisual(this.ui.inputDisplayName);
 			util.refreshEditableVisual(this.ui.inputTableName);
 			util.refreshEditableVisual(this.ui.inputHasMobile);
-			
+
 			// this.visualEntity.updateEntityPosition();
 		},
 
@@ -173,12 +188,14 @@ define(function(require) {
 		},
 
 		hideShowEnt : function() {
-			this.ui.panelBody.toggle();
-			if (this.ui.panelBody.is(':visible')) {
-				this.ui.showhide.find('i').removeClass('fa-chevron-down').addClass('fa-chevron-up')
-			} else {
-				this.ui.showhide.find('i').removeClass('fa-chevron-up').addClass('fa-chevron-down')
-			}
+			var that = this;
+			this.ui.panelBody.slideToggle("fast", function() {
+				if (that.ui.panelBody.is(':visible')) {
+					that.ui.iconExpandEntity.removeClass('fa-chevron-down').addClass('fa-chevron-up')
+				} else {
+					that.ui.iconExpandEntity.removeClass('fa-chevron-up').addClass('fa-chevron-down')
+				}
+			});
 		},
 
 	});
