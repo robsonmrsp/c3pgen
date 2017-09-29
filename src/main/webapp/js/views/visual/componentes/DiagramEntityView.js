@@ -31,14 +31,20 @@ define(function(require) {
 
 			'dblclick' : 'doubleClick'
 		},
-		
+
 		doubleClick : function() {
 			alert(this)
 		},
 
+		remove : function() {
+			this.trigger('remove-entity', this)
+			this.getGraphEntity().remove();
+			return Backbone.View.prototype.remove.apply(this, arguments)
+		},
+
 		removeEntity : function() {
 			if (this.onClickRemove) {
-				this.onClickRemove();
+				this.onClickRemove(this);
 			}
 		},
 

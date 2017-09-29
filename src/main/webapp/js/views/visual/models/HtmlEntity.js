@@ -27,6 +27,11 @@ define(function(require) {
 			});
 		},
 
+		remove : function() {
+			this.trigger('remove-entity', this)
+			console.log('Chamando remove na htmlEntity')
+		},
+
 		defaults : Joint.util.deepSupplement({
 			type : 'html.Element',
 
@@ -59,6 +64,7 @@ define(function(require) {
 
 			this.model.on('change', this.updateBox, this);
 			this.model.on('destroy', this.removeBox, this);
+			this.model.on('remove-entity', this.removeBox, this);
 
 			this.model.set('size', {
 				width : 200,
@@ -76,7 +82,7 @@ define(function(require) {
 				height : size.height,
 			});
 			this.$box.css('height', size.height);
-//			this.updateBox()
+			// this.updateBox()
 		},
 
 		render : function() {
@@ -114,6 +120,7 @@ define(function(require) {
 		},
 		removeBox : function(evt) {
 			this.$el.remove();
+			$(this.$box).remove();
 		},
 	// _changeEntity : function(_ent) {
 	// this.entity.set(_ent.attributes);

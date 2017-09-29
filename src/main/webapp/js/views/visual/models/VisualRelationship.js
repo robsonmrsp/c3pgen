@@ -138,6 +138,9 @@ define(function(require) {
 								entity : {
 									id : _sourceEntity.get('id')
 								},
+								viewApproach : {
+									type : 'none'
+								},
 								uniDirecional : '',
 							});
 
@@ -149,6 +152,9 @@ define(function(require) {
 								model : _sourceEntity.get('name'),
 								entity : {
 									id : _targetEntity.get('id')
+								},
+								viewApproach : {
+									type : 'none'
 								},
 								uniDirecional : '',
 							});

@@ -1,9 +1,9 @@
 
 <div class="inspetor-entidades-view hpanel " attrb-name="inspetorEntidadesViewTemplate">
-	<div class="hpanel  entity_{{id}}" style="margin-bottom: 3px">
-		<div class="panel-heading hbuilt" style="padding: 2px">
+	<div class="hpanel  entity_{{id}}">
+		<div class="panel-heading hbuilt">
 			<input id="inputId" type="hidden" value={{id}}>
-			<div class="panel-tools" style="margin-top: 10px;">
+			<div class="panel-tools">
 				<input id="inputId" type="hidden" value={{id}}>
 				<a class="show-hide-ent" data-toggle="tooltip" data-placement="top" title="" data-original-title="mostrar/esconder atributos">
 					<i class="fa fa-15x icon-expand-entity fa-chevron-up"></i>
@@ -12,11 +12,9 @@
 					<i class="fa fa-15x fa-plus add-attr"></i>
 				</a>
 			</div>
-			 
 			<h4>
-				<a href="javascript:void(-1)" data-type="text" data-placement="right" data-title="Nome da Entidade" class="dropdown-toggle btn btn-primary btn-block editable editable-click inputEntityName" data-original-title="" title="">{{name}}</a>
+				<a href="javascript:void(-1)" data-type="text" data-placement="right" data-title="Nome da Entidade" class=" editable editable-click inputEntityName" data-original-title="" title="">{{name}}</a>
 			</h4>
-			
 		</div>
 		<div class="panel-body " style="padding: 2px">
 			<div class="entity-content">

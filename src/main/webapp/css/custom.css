@@ -262,6 +262,11 @@ body {
 	max-width: 80px !important;
 }
 
+.panel-tools {
+	margin-top: 8px !important;
+	margin-right: 5px !important;
+}
+
 .tools {
 	/* 	position: absolute; */
 	/* 	top: 300px; */
@@ -326,7 +331,7 @@ body {
 	cursor: move;
 	border-size: 1px !important;
 	border-style: inset; ! important;
-	border-color: #28aae1! important;
+	border-color: #28aae1 ! important;
 }
 
 .closebox {
@@ -386,7 +391,7 @@ body {
 	/* 	right: 9px; */
 	/* 	color: white; */
 	/* 	font-size: 10px; */
-	/* } */                            
+	/* } */                             
 
 .uml-class-name-rect {
 	background: #ff8450 !important;
@@ -519,4 +524,3 @@ ul.editor-list li:hover a {
 	max-height: 280px !important;
 	height: 280px !important;
 }
-

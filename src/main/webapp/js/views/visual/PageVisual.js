@@ -285,6 +285,7 @@ define(function(require) {
 							})
 						});
 						that.graph.addCell(relation);
+						window.globalVisualRelations.put(relation.id, relation);
 					}
 				});
 			});
@@ -501,8 +502,9 @@ define(function(require) {
 		},
 
 		removeVisualEntity : function(visualE) {
+			var that = this;
 			var model = new EntityModel({
-				id : visualE.entity.get('id')
+				id : visualE.model.get('id')
 			});
 
 			util.Bootbox.confirm("Tem certeza que deseja remover a entidade ?", function(yes) {
@@ -511,24 +513,25 @@ define(function(require) {
 						success : function(_model, resp, xhr) {
 							// Por enquanto forcando funcionar.
 							try {
-								$(visualE.el).remove()
-								visualE.diagramEntityView.remove()
-								$(visualE.$box).remove()
-								globalVisualEntities.remove(visualE.model && visualE.model.get('id'));
+								visualE.remove();
+
+								// $(visualE.$box).remove()
+								globalVisualEntities.remove(visualE.getGraphEntity().id);
 								// remover os relacionamentos com essa entidade
 								// visualmente.
 
 								var relations = [];
 
 								_.each(globalVisualRelations.values(), function(relation) {
-									var source = relation.get('sourceRelationModel');
-									var target = relation.get('targetRelationModel')
+									var source = relation.get('applicationRelationshipModel').get('sourceEntityView');
+									var target = relation.get('applicationRelationshipModel').get('targetEntityView');
 
-									console.log(source.get('model'), visualE.entity.get('name'))
-									if (source.get('model') === visualE.entity.get('name')) {
+									// console.log(source.get('model'), visualE.entity.get('name'))
+									if (source.model.get('name') === visualE.model.get('name')) {
 										relations.push(relation)
 									}
-									if (target.get('model') === visualE.entity.get('name')) {
+
+									if (target.model.get('name') === visualE.model.get('name')) {
 										relations.push(relation)
 									}
 								});
@@ -536,8 +539,10 @@ define(function(require) {
 								//
 								_.each(relations, function(relation) {
 									relation.remove();
-									globalVisualRelations.remove(relation.get('id'));
+									globalVisualRelations.remove(relation.id);
 								});
+
+								that.removeOrphansRelationships(visualE);
 							} catch (e) {
 								console.error(e);
 							}
@@ -553,6 +558,23 @@ define(function(require) {
 				}
 			});
 
+		},
+
+		removeOrphansRelationships : function(visualE) {
+			_.each(globalVisualEntities.values(), function(visualEntity) {
+				var entity = visualEntity.model;
+
+				_.each(entity.get('relationships'), function(relation) {
+					if (relation.model === visualE.model.get('name')) {
+						var relations = entity.get('relationships');
+
+						var index = _.indexOf(relations, relation);
+
+						relations.splice(index, 1);
+						entity.set('notes', 'rem ' + relation);
+					}
+				})
+			});
 		},
 
 		generateApplication : function() {

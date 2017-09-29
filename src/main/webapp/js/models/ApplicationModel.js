@@ -23,6 +23,8 @@ define(function(require) {
 			description : '',
 			rootPackage : '',
 			corePackage : '',
+			multitenancy : '',
+			useAudit : '',
 			entities : null,
 		},
 		updateOnlyApplication : function(obj, options) {

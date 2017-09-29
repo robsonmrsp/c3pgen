@@ -39,7 +39,7 @@ public class ApplicationEntity extends AbstractTimestampEntity {
 
 	@Column(name = "NAME")
 	private String name;
-	
+
 	@Column(name = "COLOR")
 	private String color;
 
@@ -68,11 +68,11 @@ public class ApplicationEntity extends AbstractTimestampEntity {
 	@JoinColumn(name = "ID_APPLICATION")
 	private Application application;
 
-	@OneToMany(mappedBy = "entity")
+	@OneToMany(mappedBy = "entity", cascade = { javax.persistence.CascadeType.ALL })
 	@Cascade(CascadeType.ALL)
 	private List<Attribute> attributes;
 
-	@OneToMany(mappedBy = "entity")
+	@OneToMany(mappedBy = "entity", cascade = { javax.persistence.CascadeType.ALL })
 	@Cascade(CascadeType.ALL)
 	private List<Relationship> relationships;
 
