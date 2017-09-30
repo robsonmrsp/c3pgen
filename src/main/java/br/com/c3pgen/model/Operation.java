@@ -12,14 +12,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.hibernate.envers.Audited;
-
 /**
 * generated: 03/09/2015 14:51:49
 Entity [name=Operation, displayName=Operação, hasOwner=false, attributes=[Attribute [name=name, displayName=Nome, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=canEdit, displayName=Pode Editar, type=AttributeType [className=Boolean], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=canRead, displayName=Pode Ler, type=AttributeType [className=Boolean], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=canUpdate, displayName=Pode atualizar, type=AttributeType [className=Boolean], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=canDelete, displayName=Pode Deletar, type=AttributeType [className=Boolean], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=canExecute, displayName=Pode executar, type=AttributeType [className=Boolean], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null]], relationships=[Relationship [name=permissions, model=Permission, viewApproach=com.mr.codegenerator.entities.ViewApproach@7ac7a4e4, type=OneToMany, displayName=Permissões, implementation=]]]
 **/
 @Entity
-@Audited
+//@Audited
 @Table(name = "RBAC_OPERATION")
 @SequenceGenerator(name = "OPERATION_SEQUENCE", sequenceName = "OPERATION_SEQUENCE")
 public class Operation extends AbstractTimestampEntity{

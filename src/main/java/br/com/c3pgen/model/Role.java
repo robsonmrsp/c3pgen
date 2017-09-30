@@ -16,14 +16,13 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
-import org.hibernate.envers.Audited;
 
 /**
 * generated: 03/09/2015 14:51:49
 Entity [name=Role, displayName=Papel, hasOwner=false, attributes=[Attribute [name=authority, displayName=Autoridade, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=description, displayName=Descrição, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null]], relationships=[Relationship [name=sessions, model=Session, viewApproach=com.mr.codegenerator.entities.ViewApproach@1810399e, type=ManyToMany, displayName=Sessões, implementation=], Relationship [name=users, model=User, viewApproach=com.mr.codegenerator.entities.ViewApproach@32d992b2, type=ManyToMany, displayName=Usuários, implementation=], Relationship [name=permissions, model=Permission, viewApproach=com.mr.codegenerator.entities.ViewApproach@215be6bb, type=ManyToMany, displayName=Permissões, implementation=]]]
 **/
 @Entity
-@Audited
+//@Audited
 @Table(name = "RBAC_ROLE")
 @SequenceGenerator(name = "ROLE_SEQUENCE", sequenceName = "ROLE_SEQUENCE")
 public class Role extends AbstractTimestampEntity{

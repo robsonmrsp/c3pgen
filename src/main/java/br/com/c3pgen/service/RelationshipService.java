@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.joda.time.LocalDateTime;
 
+import br.com.c3pgen.model.ApplicationEntity;
 import br.com.c3pgen.model.Client;
 import br.com.c3pgen.model.Relationship;
 import br.com.c3pgen.persistence.pagination.Pager;
@@ -37,4 +38,6 @@ public interface RelationshipService {
     List<Relationship> last(LocalDateTime lastSyncDate);		
 
 	Boolean delete(Integer id);
+
+	void deleteByEntity(ApplicationEntity entity);
 }

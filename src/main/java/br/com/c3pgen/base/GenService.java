@@ -1,13 +1,11 @@
 package br.com.c3pgen.base;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.joda.time.LocalDateTime;
 
@@ -247,13 +245,13 @@ public class GenService {
 			Relationship source = applicationRelationship.getSource();
 			Relationship target = applicationRelationship.getTarget();
 
-			if (source != null && source.getEntity() != null && source.getEntity().equals(applicationEntity)) {
-				relationships.add(source);
-			}
-
-			if (target != null && target.getEntity() != null && target.getEntity().equals(applicationEntity)) {
-				relationships.add(target);
-			}
+//			if (source != null && source.getEntity() != null && source.getEntity().equals(applicationEntity)) {
+//				relationships.add(source);
+//			}
+//
+//			if (target != null && target.getEntity() != null && target.getEntity().equals(applicationEntity)) {
+//				relationships.add(target);
+//			}
 
 		}
 

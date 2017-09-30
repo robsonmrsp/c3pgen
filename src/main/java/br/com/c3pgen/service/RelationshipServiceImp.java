@@ -10,6 +10,7 @@ import org.apache.log4j.Logger;
 import org.joda.time.LocalDateTime;
 import org.springframework.transaction.annotation.Transactional;
 
+import br.com.c3pgen.model.ApplicationEntity;
 import br.com.c3pgen.model.Client;
 import br.com.c3pgen.model.Relationship;
 import br.com.c3pgen.persistence.DaoRelationship;
@@ -96,5 +97,10 @@ public class RelationshipServiceImp implements RelationshipService {
 	@Override
 	public Boolean delete(Integer id) {
 		return daoRelationship.delete(id);
+	}
+
+	@Override
+	public void deleteByEntity(ApplicationEntity entity) {
+		daoRelationship.removeReverseRelationship(entity);
 	}
 }

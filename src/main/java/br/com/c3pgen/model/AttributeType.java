@@ -13,13 +13,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.hibernate.envers.Audited;
-
 /**
  * generated: 03/09/2015 14:51:48 
  **/
 @Entity
-@Audited
+//@Audited
 @Table(name = "ATTRIBUTE_TYPE")
 @SequenceGenerator(name = "ATTRIBUTETYPE_SEQUENCE", sequenceName = "ATTRIBUTETYPE_SEQUENCE")
 public class AttributeType extends AbstractTimestampEntity {

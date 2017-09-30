@@ -36,7 +36,7 @@ import ${application.corePackage}.security.UserAuthorityUtils;
 **/
 @Entity
 <#if application.hasAudit()>
-@Audited
+//@Audited
 </#if>
 @Table(name = "APP_USER", uniqueConstraints = { @UniqueConstraint(name = "APP_USER_NAME", columnNames = { "NAME" }), @UniqueConstraint(name = "APP_USER_USERNAME", columnNames = { "USERNAME" }), })
 public class User extends AbstractTimestampEntity implements UserDetails {

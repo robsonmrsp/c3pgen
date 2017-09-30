@@ -17,7 +17,7 @@ import org.hibernate.envers.Audited;
 import org.hibernate.envers.RelationTargetAuditMode;
 
 @Entity
-@Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
+//@Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
 @Table(name = "address")
 @SequenceGenerator(name = "ADDRESS_GENERATOR", sequenceName = "ADDRESS_SEQUENCE")
 public class Address implements Serializable {

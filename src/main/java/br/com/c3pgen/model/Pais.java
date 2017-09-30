@@ -8,14 +8,12 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.hibernate.envers.Audited;
-
 /**
 * generated: 03/09/2015 14:51:48
 Entity [name=Pais, displayName=Pais, hasOwner=false, attributes=[Attribute [name=codigo, displayName=Código, type=AttributeType [className=Integer], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=nome, displayName=Nome, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null]], relationships=[]]
 **/
 @Entity
-@Audited
+//@Audited
 @Table(name = "PAIS")
 @SequenceGenerator(name = "PAIS_SEQUENCE", sequenceName = "PAIS_SEQUENCE")
 public class Pais extends AbstractTimestampEntity{

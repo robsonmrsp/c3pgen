@@ -8,14 +8,12 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.hibernate.envers.Audited;
-
 /**
 * generated: 03/09/2015 14:51:48
 Entity [name=ItemType, displayName=Tipo de Item, hasOwner=false, attributes=[Attribute [name=name, displayName=Nome, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=description, displayName=Descrição, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null]], relationships=[]]
 **/
 @Entity
-@Audited
+//@Audited
 @Table(name = "RBAC_ITEM_TYPE")
 @SequenceGenerator(name = "ITEMTYPE_SEQUENCE", sequenceName = "ITEMTYPE_SEQUENCE")
 public class ItemType extends AbstractTimestampEntity{

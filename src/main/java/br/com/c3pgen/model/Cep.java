@@ -10,14 +10,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.hibernate.envers.Audited;
-
 /**
 * generated: 03/09/2015 14:51:48
 Entity [name=Cep, displayName=Cep, hasOwner=false, attributes=[Attribute [name=logradouro, displayName=Logadouro, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=numero, displayName=Numero, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null]], relationships=[Relationship [name=bairro, model=Bairro, viewApproach=com.mr.codegenerator.entities.ViewApproach@6a2bcfcb, type=ManyToOne, displayName=Bairro, implementation=], Relationship [name=cidade, model=Cidade, viewApproach=com.mr.codegenerator.entities.ViewApproach@4de8b406, type=ManyToOne, displayName=Cidade, implementation=], Relationship [name=estado, model=Estado, viewApproach=com.mr.codegenerator.entities.ViewApproach@3c756e4d, type=ManyToOne, displayName=Estado, implementation=]]]
 **/
 @Entity
-@Audited
+//@Audited
 @Table(name = "CEP")
 @SequenceGenerator(name = "CEP_SEQUENCE", sequenceName = "CEP_SEQUENCE")
 public class Cep extends AbstractTimestampEntity{

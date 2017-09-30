@@ -1,7 +1,6 @@
 package br.com.c3pgen.service;
 
 import java.util.List;
-import java.util.Set;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -22,7 +21,7 @@ public class ApplicationRelationshipServiceImp implements ApplicationRelationshi
 
 	@Override
 	public void removeAllByApplication(Application application) {
-		Set<ApplicationRelationship> applicationRelationships = application.getApplicationRelationships();
+//		Set<ApplicationRelationship> applicationRelationships = application.getApplicationRelationships();
 
 		daoApplicationRelationship.deleteByApplication(application);
 	}

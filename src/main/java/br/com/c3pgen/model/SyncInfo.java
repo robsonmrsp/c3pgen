@@ -11,7 +11,6 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
-import org.hibernate.envers.Audited;
 import org.joda.time.LocalDateTime;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -19,7 +18,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import br.com.c3pgen.serialization.CustomLocalDateTimeSerializer;
 
 @Entity
-@Audited
+//@Audited
 @Table(name = "SYNC_INFO")
 @SequenceGenerator(name = "SYNC_INFO_SEQUENCE", sequenceName = "SYNC_INFO_SEQUENCE")
 public class SyncInfo implements Serializable {

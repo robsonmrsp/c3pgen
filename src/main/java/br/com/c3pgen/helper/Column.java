@@ -3,7 +3,6 @@ package br.com.c3pgen.helper;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Root;
 import org.simpleframework.xml.Transient;
-import org.simpleframework.xml.convert.Convert;
 
 @Root(name = "COLUMN", strict = false)
 public class Column {

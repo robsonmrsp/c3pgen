@@ -2,10 +2,10 @@ package br.com.c3pgen.json;
 
 import java.io.Serializable;
 
-import br.com.c3pgen.serialization.CustomSyncObjectIdDeserializer;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
+import br.com.c3pgen.serialization.CustomSyncObjectIdDeserializer;
 
 /**
 *  generated: 03/09/2015 14:51:48

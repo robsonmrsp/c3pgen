@@ -14,14 +14,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.hibernate.envers.Audited;
-
 /**
 * generated: 03/09/2015 14:51:48
 Entity [name=Item, displayName=Item, hasOwner=false, attributes=[Attribute [name=name, displayName=Nome, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=description, displayName=Descrição, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null]], relationships=[Relationship [name=type, model=ItemType, viewApproach=com.mr.codegenerator.entities.ViewApproach@5ae9a829, type=ManyToOne, displayName=Tipo, implementation=], Relationship [name=permissions, model=Permission, viewApproach=com.mr.codegenerator.entities.ViewApproach@6d8a00e3, type=OneToMany, displayName=Permissões, implementation=]]]
 **/
 @Entity
-@Audited
+//@Audited
 @Table(name = "RBAC_ITEM")
 @SequenceGenerator(name = "ITEM_SEQUENCE", sequenceName = "ITEM_SEQUENCE")
 public class Item extends AbstractTimestampEntity{

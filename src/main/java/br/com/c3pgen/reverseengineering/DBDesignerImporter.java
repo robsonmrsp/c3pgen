@@ -4,12 +4,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
-import java.util.regex.Matcher;
 
 import org.apache.commons.lang3.StringUtils;
 import org.simpleframework.xml.Serializer;
@@ -133,12 +131,12 @@ public class DBDesignerImporter {
 
 				// atores Atores ator Ator
 				Relationship relationshipOnEntitySource = new Relationship(relationNameOnOrigin, displayNameOnOrigin + "s", "OneToMany", ownerNameOnOrigin, modelNameOnOrigin, false, ViewApproach.noneInstance());
-				relationshipOnEntitySource.setEntity(new ApplicationEntity(nomeDaClasse, tableName));
+//				relationshipOnEntitySource.setEntity(new ApplicationEntity(nomeDaClasse, tableName));
 
 				// <<------ filme filme Filme
 				Relationship relationshipOnEntityTarget = new Relationship(Util.firstLowerCase(nomeDaClasse), Util.firstUpperCase(sourceRelName), "ManyToOne", null, sourceRelModel, false, ViewApproach.modalInstance("id", nomeDaClasse + "'s attribute"));
 
-				relationshipOnEntityTarget.setEntity(new ApplicationEntity(modelNameOnOrigin, modelNameOnOrigin.toUpperCase()));
+//				relationshipOnEntityTarget.setEntity(new ApplicationEntity(modelNameOnOrigin, modelNameOnOrigin.toUpperCase()));
 
 				ApplicationRelationship appRel = new ApplicationRelationship();
 				appRel.setSource(relationshipOnEntitySource);
@@ -190,7 +188,7 @@ public class DBDesignerImporter {
 			//
 			System.out.println("DBDesignerImporter.extractApplication()" + applicationRelationships);
 			application.addEntities(applicationEntity);
-			application.addAllApplicationRelationships(applicationRelationships);
+	//		application.addAllApplicationRelationships(applicationRelationships);
 		}
 		return application;
 	}

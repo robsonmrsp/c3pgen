@@ -16,13 +16,12 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
-import org.hibernate.envers.Audited;
 
 /**
  * generated: 05/08/2016 15:23:44
  **/
 @Entity
-@Audited
+//@Audited
 @Table(name = "MODULO")
 @SequenceGenerator(name = "MODULO_SEQUENCE", sequenceName = "MODULO_SEQUENCE")
 public class Modulo extends AbstractTimestampEntity {

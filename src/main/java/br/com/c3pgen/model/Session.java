@@ -18,7 +18,6 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.Type;
-import org.hibernate.envers.Audited;
 import org.joda.time.LocalDateTime;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -30,7 +29,7 @@ import br.com.c3pgen.serialization.CustomLocalDateTimeSerializer;
 Entity [name=Session, displayName=Sessão, hasOwner=false, attributes=[Attribute [name=name, displayName=Nome, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=creationDate, displayName=Data da criação, type=AttributeType [className=Datetime], mask=99/99/9999, dateFormat=DD/MM/YYYY DD:MM, placeholder=null, validationRules=null]], relationships=[Relationship [name=roles, model=Role, viewApproach=com.mr.codegenerator.entities.ViewApproach@4439f31e, type=ManyToMany, displayName=Papeis, implementation=], Relationship [name=user, model=User, viewApproach=com.mr.codegenerator.entities.ViewApproach@5dfcfece, type=ManyToOne, displayName=Usuario, implementation=]]]
 **/
 @Entity
-@Audited
+//@Audited
 @Table(name = "RBAC_SESSION")
 @SequenceGenerator(name = "SESSION_SEQUENCE", sequenceName = "SESSION_SEQUENCE")
 public class Session extends AbstractTimestampEntity{

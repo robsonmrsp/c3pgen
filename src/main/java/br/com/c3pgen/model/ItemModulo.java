@@ -10,13 +10,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.hibernate.envers.Audited;
-
 /**
  * generated: 05/08/2016 15:23:43
  **/
 @Entity
-@Audited
+//@Audited
 @Table(name = "ITEM_MODULO")
 @SequenceGenerator(name = "ITEMMODULO_SEQUENCE", sequenceName = "ITEMMODULO_SEQUENCE")
 public class ItemModulo extends AbstractTimestampEntity {

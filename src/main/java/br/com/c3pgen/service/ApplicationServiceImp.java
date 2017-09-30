@@ -3,7 +3,6 @@ package br.com.c3pgen.service;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -13,11 +12,8 @@ import org.joda.time.LocalDateTime;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.c3pgen.base.ApplicationValidator;
-import br.com.c3pgen.base.GenService;
 import br.com.c3pgen.base.GenerateFileInfo;
 import br.com.c3pgen.model.Application;
-import br.com.c3pgen.model.ApplicationEntity;
-import br.com.c3pgen.model.ApplicationRelationship;
 import br.com.c3pgen.model.Client;
 import br.com.c3pgen.persistence.DaoApplication;
 import br.com.c3pgen.persistence.pagination.Pager;
@@ -106,16 +102,17 @@ public class ApplicationServiceImp implements ApplicationService {
 	@Override
 	public GenerateFileInfo save(Application application) {
 		GenerateFileInfo generateFileInfo = new GenerateFileInfo();
-		Set<ApplicationRelationship> applicationRelationships = application.getApplicationRelationships();
+		// Set<ApplicationRelationship> applicationRelationships =
+		// application.getApplicationRelationships();
 
-		GenService genService = new GenService();
+		// GenService genService = new GenService();
 
 		// applicationRelationshipService.removeAllByApplication(application);
 
-		List<ApplicationEntity> entities = application.getEntities();
-		for (ApplicationEntity entity : entities) {
-			entityService.save(entity);
-		}
+		// List<ApplicationEntity> entities = application.getEntities();
+		//// for (ApplicationEntity entity : entities) {
+		//// entityService.save(entity);
+		//// }
 
 		// for (ApplicationRelationship applicationRelationship :
 		// applicationRelationships) {

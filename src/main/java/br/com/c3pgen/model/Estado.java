@@ -9,14 +9,12 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
-import org.hibernate.envers.Audited;
-
 /**
 * generated: 03/09/2015 14:51:48
 Entity [name=Estado, displayName=Estado, hasOwner=false, attributes=[Attribute [name=nome, displayName=Nome, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=faixaCep1Ini, displayName=faixa_cep1_ini, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=faixaCep1Fim, displayName=faixa_cep1_fim, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=faixaCep2Ini, displayName=faixa_cep2_ini, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=faixaCep2Fim, displayName=faixa_cep2_fim, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null]], relationships=[]]
 **/
 @Entity
-@Audited
+//@Audited
 
 @Table(name = "ESTADO", uniqueConstraints = {
 		@UniqueConstraint(name = "ESTADO_NOME", columnNames = { "NOME" }), 

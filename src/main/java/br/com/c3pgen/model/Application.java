@@ -1,9 +1,7 @@
 package br.com.c3pgen.model;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,13 +15,12 @@ import javax.persistence.SequenceGenerator;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
-import org.hibernate.envers.Audited;
 
 /**
  * generated: 03/09/2015 14:51:47
  **/
 @Entity
-@Audited
+//@Audited
 @SequenceGenerator(name = "APPLICATION_SEQUENCE", sequenceName = "APPLICATION_SEQUENCE")
 public class Application extends AbstractTimestampEntity {
 	private static final long serialVersionUID = 1L;
@@ -69,12 +66,8 @@ public class Application extends AbstractTimestampEntity {
 	private String dataBasePrefix;
 
 	@OneToMany(mappedBy = "application")
-	// @Cascade(CascadeType.ALL)
+	@Cascade(CascadeType.ALL)
 	private List<ApplicationEntity> entities;
-
-	@OneToMany(mappedBy = "application")
-	// @Cascade(CascadeType.ALL)
-	private Set<ApplicationRelationship> applicationRelationships;
 
 	@ManyToOne
 	@JoinColumn(name = "id_client")
@@ -138,19 +131,6 @@ public class Application extends AbstractTimestampEntity {
 	public boolean addEntities(ApplicationEntity theEntity) {
 		theEntity.setApplication(this);
 		return getEntities().add(theEntity);
-	}
-
-	public boolean addAllApplicationRelationships(Set<ApplicationRelationship> applicationRelationships) {
-		for (ApplicationRelationship applicationRelationship : applicationRelationships) {
-			this.addApplicationRelationships(applicationRelationship);
-		}
-		return true;
-	}
-
-	public boolean addApplicationRelationships(ApplicationRelationship applicationRelationship) {
-		applicationRelationship.setApplication(this);
-
-		return getApplicationRelationships().add(applicationRelationship);
 	}
 
 	public boolean removeEntities(ApplicationEntity theEntity) {
@@ -220,17 +200,6 @@ public class Application extends AbstractTimestampEntity {
 
 	public void setAppName(String appName) {
 		this.appName = appName;
-	}
-
-	public Set<ApplicationRelationship> getApplicationRelationships() {
-		if (applicationRelationships == null) {
-			setApplicationRelationships(new HashSet<ApplicationRelationship>());
-		}
-		return applicationRelationships;
-	}
-
-	public void setApplicationRelationships(Set<ApplicationRelationship> applicationRelationships) {
-		this.applicationRelationships = applicationRelationships;
 	}
 
 	public String getCorePackage() {

@@ -10,9 +10,8 @@ import org.apache.log4j.Logger;
 
 import br.com.c3pgen.base.util.Util;
 import br.com.c3pgen.model.Application;
-import br.com.c3pgen.model.Relationship;
-import br.com.c3pgen.model.ViewApproach;
 import br.com.c3pgen.model.ApplicationEntity;
+import br.com.c3pgen.model.Relationship;
 
 public class ApplicationValidator {
 	public static final Logger LOGGER = Logger.getLogger(ApplicationValidator.class);

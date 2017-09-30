@@ -12,12 +12,11 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
-import org.hibernate.envers.Audited;
 
 import br.com.c3pgen.base.util.Util;
 
 @Entity
-@Audited
+//@Audited
 @Table(name = "ATTRIBUTE")
 @SequenceGenerator(name = "ATTRIBUTE_SEQUENCE", sequenceName = "ATTRIBUTE_SEQUENCE")
 public class Attribute extends AbstractTimestampEntity {
@@ -67,7 +66,7 @@ public class Attribute extends AbstractTimestampEntity {
 	private Boolean basicSearch;
 
 	@ManyToOne
-	@JoinColumn(name = "ID_ENTITY")
+	@JoinColumn(name = "ID_ENTITY" )
 	private ApplicationEntity entity;
 
 	@ManyToOne

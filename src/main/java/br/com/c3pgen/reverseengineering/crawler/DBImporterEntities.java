@@ -12,6 +12,16 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.springframework.jdbc.datasource.SingleConnectionDataSource;
 
+import com.google.common.base.CaseFormat;
+
+import br.com.c3pgen.base.util.Util;
+import br.com.c3pgen.model.Application;
+import br.com.c3pgen.model.ApplicationEntity;
+import br.com.c3pgen.model.ApplicationRelationship;
+import br.com.c3pgen.model.Attribute;
+import br.com.c3pgen.model.AttributeType;
+import br.com.c3pgen.model.Relationship;
+import br.com.c3pgen.model.ViewApproach;
 import schemacrawler.schema.Catalog;
 import schemacrawler.schema.Column;
 import schemacrawler.schema.ForeignKey;
@@ -21,16 +31,6 @@ import schemacrawler.schemacrawler.InclusionRule;
 import schemacrawler.schemacrawler.SchemaCrawlerOptions;
 import schemacrawler.schemacrawler.SchemaInfoLevelBuilder;
 import schemacrawler.utility.SchemaCrawlerUtility;
-import br.com.c3pgen.base.util.Util;
-import br.com.c3pgen.model.Application;
-import br.com.c3pgen.model.ApplicationEntity;
-import br.com.c3pgen.model.ApplicationRelationship;
-import br.com.c3pgen.model.Attribute;
-import br.com.c3pgen.model.AttributeType;
-import br.com.c3pgen.model.Relationship;
-import br.com.c3pgen.model.ViewApproach;
-
-import com.google.common.base.CaseFormat;
 
 public class DBImporterEntities {
 	final String url;
@@ -172,11 +172,11 @@ public class DBImporterEntities {
 
 					// ---->>
 					Relationship relationshipTarget = new Relationship(name, displayName, "OneToMany", ownerName, model, false, ViewApproach.noneInstance());
-					relationshipTarget.setEntity(applicationEntity);
+//					relationshipTarget.setEntity(applicationEntity);
 
 					// <<------
 					Relationship relationshipSource = new Relationship(sourceRelName, Util.firstUpperCase(sourceRelName), "ManyToOne", null, sourceRelModel, false, ViewApproach.modalInstance("id", "nome"));
-					relationshipSource.setEntity(new ApplicationEntity(sourceRelModel, table.getName()));
+//					relationshipSource.setEntity(new ApplicationEntity(sourceRelModel, table.getName()));
 
 					ApplicationRelationship appRel = new ApplicationRelationship();
 					appRel.setSource(relationshipSource);
@@ -203,11 +203,11 @@ public class DBImporterEntities {
 					fileLines.add("      textField: nome ");
 					// <<------
 					Relationship relationshipTarget = new Relationship(name, displayName, "ManyToOne", null, model, false, ViewApproach.modalInstance("id", "nome"));
-					relationshipTarget.setEntity(applicationEntity);
+//					relationshipTarget.setEntity(applicationEntity);
 
 					// ---->>
 					Relationship relationshipSource = new Relationship(relName + "s", Util.firstUpperCase(relName + "s"), "OneToMany", Util.firstLowerCase(relName), Util.firstUpperCase(relName), false, ViewApproach.noneInstance());
-					relationshipSource.setEntity(new ApplicationEntity(relName, table.getName()));
+//					relationshipSource.setEntity(new ApplicationEntity(relName, table.getName()));
 
 					ApplicationRelationship appRel = new ApplicationRelationship();
 					appRel.setSource(relationshipSource);
@@ -220,7 +220,7 @@ public class DBImporterEntities {
 				fileLines.clear();
 
 				application.addEntities(applicationEntity);
-				application.addAllApplicationRelationships(applicationRelationships);
+//				application.addAllApplicationRelationships(applicationRelationships);
 			}
 		}
 

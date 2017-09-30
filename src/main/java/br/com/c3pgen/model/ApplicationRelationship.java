@@ -9,13 +9,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
-import org.hibernate.envers.Audited;
-
 @Entity
-@Table(name = "APPLICATION_RELATIONSHIP")
-@Audited
+@Table(name = "APPLICATION_RELATIONSHIP_LIXO")
+// @Audited
 @SequenceGenerator(name = "APP_REL_SEQUENCE", sequenceName = "APP_REL_SEQUENCE")
 public class ApplicationRelationship {
 

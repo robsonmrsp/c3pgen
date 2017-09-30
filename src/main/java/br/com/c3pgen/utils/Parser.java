@@ -2,7 +2,6 @@ package br.com.c3pgen.utils;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import org.joda.time.DateTime;
 import org.joda.time.LocalDateTime;
@@ -179,13 +178,6 @@ public class Parser {
 				jsonApplication.getEntities().add(toJson(loopTheEntity));
 			}
 		}
-		Set<ApplicationRelationship> listRels = application.getApplicationRelationships();
-		if (listRels != null) {
-
-			for (ApplicationRelationship loopRel : listRels) {
-				jsonApplication.getApplicationRelationships().add(toJson(loopRel));
-			}
-		}
 		return jsonApplication;
 	}
 
@@ -215,28 +207,8 @@ public class Parser {
 			}
 		}
 
-		ArrayList<JsonApplicationRelationship> listApplicationRelationships = jsonApplication.getApplicationRelationships();
-		if (listEntities != null) {
-			for (JsonApplicationRelationship loopJson : listApplicationRelationships) {
-				application.addApplicationRelationships(toEntity(application, loopJson));
-			}
-		}
-
 		return application;
 
-	}
-
-	private static ApplicationRelationship toEntity(Application application, JsonApplicationRelationship jsonApplicationRelationship) {
-
-		ApplicationRelationship applicationRelationship = new ApplicationRelationship();
-
-		applicationRelationship.setApplication(toBasicEntity(jsonApplicationRelationship.getApplication()));
-		applicationRelationship.setId(jsonApplicationRelationship.getId());
-
-		applicationRelationship.setSource(toEntity(application, jsonApplicationRelationship.getSource()));
-		applicationRelationship.setTarget(toEntity(application, jsonApplicationRelationship.getTarget()));
-
-		return applicationRelationship;
 	}
 
 	public static Application toEntity(JsonApplication jsonApplication) {
@@ -489,6 +461,8 @@ public class Parser {
 			for (JsonAttribute loopJsonAttribute : listAttributes) {
 				theEntity.addAttributes(toEntity(loopJsonAttribute));
 			}
+		} else {
+			theEntity.setAttributes(new ArrayList<Attribute>());
 		}
 
 		ArrayList<JsonRelationship> listRelationships = jsonTheEntity.getRelationships();
@@ -496,6 +470,9 @@ public class Parser {
 			for (JsonRelationship loopJsonRelationship : listRelationships) {
 				theEntity.addRelationships(toBasicEntity(loopJsonRelationship));
 			}
+
+		} else {
+			theEntity.setRelationships(new ArrayList<Relationship>());
 		}
 
 		return theEntity;
@@ -563,10 +540,10 @@ public class Parser {
 			jsonRelationship.setEntity(toBasicJson(entity));
 		}
 
-		Relationship target = relationship.getTarget();
-		if (target != null) {
-			jsonRelationship.setTarget(toBasicJson(target));
-		}
+		// Relationship target = relationship.getTarget();
+		// if (target != null) {
+		// jsonRelationship.setTarget(toBasicJson(target));
+		// }
 
 		ViewApproach viewApproach = relationship.getViewApproach();
 		if (viewApproach != null) {
@@ -582,10 +559,10 @@ public class Parser {
 
 		applyBasicEntityValues(relationship, jsonRelationship);
 
-		JsonRelationship jsonTarget = jsonRelationship.getTarget();
-		if (jsonTarget != null) {
-			relationship.setTarget(toBasicEntity(jsonTarget));
-		}
+		// JsonRelationship jsonTarget = jsonRelationship.getTarget();
+		// if (jsonTarget != null) {
+		// relationship.setTarget(toBasicEntity(jsonTarget));
+		// }
 		JsonTheEntity entity = jsonRelationship.getEntity();
 		if (entity != null) {
 			relationship.setEntity(toBasicEntity(entity));
@@ -607,9 +584,9 @@ public class Parser {
 		applyBasicEntityValues(relationship, jsonRelationship);
 
 		JsonRelationship jsonTarget = jsonRelationship.getTarget();
-		if (jsonTarget != null) {
-			relationship.setTarget(toBasicEntity(jsonTarget));
-		}
+		// if (jsonTarget != null) {
+		// relationship.setTarget(toBasicEntity(jsonTarget));
+		// }
 		// tentando evitar o problema ao inserir objeto transiente
 		JsonTheEntity entity = jsonRelationship.getEntity();
 		for (ApplicationEntity ent : application.getEntities()) {

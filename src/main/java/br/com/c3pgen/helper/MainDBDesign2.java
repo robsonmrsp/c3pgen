@@ -2,14 +2,12 @@ package br.com.c3pgen.helper;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 
-import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
@@ -113,12 +111,12 @@ public class MainDBDesign2 {
 				String sourceRelName = Util.firstLowerCase(sourceRelModel);
 
 				Relationship relationshipTarget = new Relationship(relationName, displayName, "OneToMany", ownerName, modelName, false, ViewApproach.noneInstance());
-				relationshipTarget.setEntity(applicationEntity);
+//				relationshipTarget.setEntity(applicationEntity);
 
 				// <<------
 				Relationship relationshipSource = new Relationship(Util.firstLowerCase(nomeDaClasse), Util.firstUpperCase(sourceRelName), "ManyToOne", null, sourceRelModel, false, ViewApproach.modalInstance("id", "nome"));
 
-				relationshipSource.setEntity(new ApplicationEntity(nomeDaClasse, tableName));
+//				relationshipSource.setEntity(new ApplicationEntity(nomeDaClasse, tableName));
 
 				ApplicationRelationship appRel = new ApplicationRelationship();
 				appRel.setSource(relationshipSource);
@@ -138,11 +136,11 @@ public class MainDBDesign2 {
 				String model = Util.firstUpperCase(CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, tableName));
 
 				Relationship relationshipTarget = new Relationship(name, displayName, "ManyToOne", null, model, false, ViewApproach.modalInstance("id", "nome"));
-				relationshipTarget.setEntity(applicationEntity);
+//				relationshipTarget.setEntity(applicationEntity);
 
 				// ---->>
 				Relationship relationshipSource = new Relationship(relName + "s", Util.firstUpperCase(relName + "s"), "OneToMany", Util.firstLowerCase(relName), Util.firstUpperCase(relName), false, ViewApproach.noneInstance());
-				relationshipSource.setEntity(new ApplicationEntity(relName, tableName));
+//				relationshipSource.setEntity(new ApplicationEntity(relName, tableName));
 
 				ApplicationRelationship appRel = new ApplicationRelationship();
 				appRel.setSource(relationshipSource);
@@ -153,7 +151,7 @@ public class MainDBDesign2 {
 			}
 
 			application.addEntities(applicationEntity);
-			application.addAllApplicationRelationships(applicationRelationships);
+//			application.addAllApplicationRelationships(applicationRelationships);
 		}
 
 	}

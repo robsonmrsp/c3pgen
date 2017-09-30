@@ -10,8 +10,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.hibernate.envers.Audited;
-
 /**
  * generated: 03/09/2015 14:51:48 Entity [name=ViewApproach, displayName=Modo de
  * Exibição, hasOwner=true, attributes=[Attribute [name=type, displayName=Tipo,
@@ -31,7 +29,7 @@ import org.hibernate.envers.Audited;
  * placeholder=null, validationRules=null]], relationships=[]]
  **/
 @Entity
-@Audited
+//@Audited
 @Table(name = "VIEW_APPROACH")
 @SequenceGenerator(name = "VIEWAPPROACH_SEQUENCE", sequenceName = "VIEWAPPROACH_SEQUENCE")
 public class ViewApproach extends AbstractTimestampEntity {

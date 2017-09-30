@@ -11,14 +11,12 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
-import org.hibernate.envers.Audited;
-
 /**
 * generated: 03/09/2015 14:51:48
 Entity [name=Cliente, displayName=Cliente, hasOwner=false, attributes=[Attribute [name=nome, displayName=Nome, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=email, displayName=Email, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=cpf, displayName=cpf, type=AttributeType [className=String], mask=999.999.999-99, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=telefone, displayName=Outro Telefone, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=outroTelefone, displayName=Outro Telefone, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null]], relationships=[Relationship [name=endereco, model=Endereco, viewApproach=com.mr.codegenerator.entities.ViewApproach@573f2bb1, type=OneToOne, displayName=Endereco, implementation=]]]
 **/
 @Entity
-@Audited
+//@Audited
 
 @Table(name = "CLIENTE", uniqueConstraints = {
 		@UniqueConstraint(name = "CLIENTE_CPF", columnNames = { "CPF" }), 

@@ -30,7 +30,7 @@ public class TheEntityServiceImp implements TheEntityService {
 	@Inject
 	DaoTheEntity daoTheEntity;
 	@Inject
-	ApplicationRelationshipService applicationRelationshipService;
+	RelationshipService applicationRelationshipService;
 
 	@Override
 	public ApplicationEntity get(Integer id) {
@@ -97,7 +97,9 @@ public class TheEntityServiceImp implements TheEntityService {
 
 	@Override
 	public Boolean delete(Integer id) {
-		applicationRelationshipService.deleteByEntity(id);
+		ApplicationEntity entity = get(id);
+
+		applicationRelationshipService.deleteByEntity(entity);
 
 		return daoTheEntity.delete(id);
 	}

@@ -7,18 +7,21 @@ import javax.inject.Named;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
+import org.hibernate.Session;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
+import br.com.c3pgen.model.ApplicationEntity;
 import br.com.c3pgen.model.Client;
 import br.com.c3pgen.model.Relationship;
 import br.com.c3pgen.model.filter.FilterRelationship;
 import br.com.c3pgen.persistence.pagination.Pagination;
 import br.com.c3pgen.persistence.pagination.PaginationParams;
 import br.com.c3pgen.persistence.pagination.Paginator;
+
 /**
-*  generated: 03/09/2015 14:51:48
-**/
+ * generated: 03/09/2015 14:51:48
+ **/
 
 @Named
 @SuppressWarnings("rawtypes")
@@ -57,7 +60,7 @@ public class DaoRelationship extends AccessibleHibernateDao<Relationship> {
 		if (filterRelationship.getUniDirecional() != null) {
 			searchCriteria.add(Restrictions.eq("uniDirecional", filterRelationship.getUniDirecional()));
 			countCriteria.add(Restrictions.eq("uniDirecional", filterRelationship.getUniDirecional()));
-		}				
+		}
 		if (filterRelationship.getEntity() != null) {
 			searchCriteria.createAlias("entity", "entity_");
 			countCriteria.createAlias("entity", "entity_");
@@ -73,7 +76,7 @@ public class DaoRelationship extends AccessibleHibernateDao<Relationship> {
 
 		return new Paginator<Relationship>(searchCriteria, countCriteria).paginate(paginationParams);
 	}
-	
+
 	public List<Relationship> filter(PaginationParams paginationParams) {
 		List<Relationship> list = new ArrayList<Relationship>();
 		FilterRelationship filterRelationship = (FilterRelationship) paginationParams.getFilter();
@@ -108,6 +111,7 @@ public class DaoRelationship extends AccessibleHibernateDao<Relationship> {
 		list.addAll(searchCriteria.list());
 		return list;
 	}
+
 	@Override
 	public Pagination<Relationship> getAll(PaginationParams paginationParams, Client owner) {
 		FilterRelationship filterRelationship = (FilterRelationship) paginationParams.getFilter();
@@ -115,7 +119,7 @@ public class DaoRelationship extends AccessibleHibernateDao<Relationship> {
 		Criteria countCriteria = criteria();
 		searchCriteria.add(Restrictions.eq("owner", owner));
 		countCriteria.add(Restrictions.eq("owner", owner));
-		
+
 		if (filterRelationship.getName() != null) {
 			searchCriteria.add(Restrictions.ilike("name", filterRelationship.getName(), MatchMode.ANYWHERE));
 			countCriteria.add(Restrictions.ilike("name", filterRelationship.getName(), MatchMode.ANYWHERE));
@@ -139,7 +143,7 @@ public class DaoRelationship extends AccessibleHibernateDao<Relationship> {
 		if (filterRelationship.getUniDirecional() != null) {
 			searchCriteria.add(Restrictions.eq("uniDirecional", filterRelationship.getUniDirecional()));
 			countCriteria.add(Restrictions.eq("uniDirecional", filterRelationship.getUniDirecional()));
-		}				
+		}
 		if (filterRelationship.getEntity() != null) {
 			searchCriteria.createAlias("entity", "entity_");
 			countCriteria.createAlias("entity", "entity_");
@@ -152,9 +156,8 @@ public class DaoRelationship extends AccessibleHibernateDao<Relationship> {
 			searchCriteria.add(Restrictions.eq("viewApproach_.id", filterRelationship.getViewApproach()));
 			countCriteria.add(Restrictions.eq("viewApproach_.id", filterRelationship.getViewApproach()));
 		}
-	return new Paginator<Relationship>(searchCriteria, countCriteria).paginate(paginationParams);
+		return new Paginator<Relationship>(searchCriteria, countCriteria).paginate(paginationParams);
 	}
-	
 
 	public List<Relationship> filter(PaginationParams paginationParams, Client owner) {
 		List<Relationship> list = new ArrayList<Relationship>();
@@ -191,5 +194,16 @@ public class DaoRelationship extends AccessibleHibernateDao<Relationship> {
 		list.addAll(searchCriteria.list());
 		return list;
 	}
-	
+
+	public Integer removeReverseRelationship(ApplicationEntity entity) {
+
+		String hqlDelete = "delete from  Relationship  		"//
+				+ " where model = :entityName";//
+		Session session = getSession();
+
+		int deletedEntities = session.createQuery(hqlDelete).setString("entityName", entity.getName()).executeUpdate();
+		return deletedEntities;
+
+	}
+
 }

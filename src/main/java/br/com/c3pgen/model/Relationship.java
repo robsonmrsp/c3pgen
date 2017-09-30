@@ -13,10 +13,9 @@ import javax.persistence.Table;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
-import org.hibernate.envers.Audited;
 
 @Entity
-@Audited
+// @Audited
 @Table(name = "RELATIONSHIP")
 @SequenceGenerator(name = "RELATIONSHIP_SEQUENCE", sequenceName = "RELATIONSHIP_SEQUENCE")
 public class Relationship extends AbstractTimestampEntity {
@@ -62,7 +61,7 @@ public class Relationship extends AbstractTimestampEntity {
 
 	@Column(name = "TABLE_FIELD_NAME")
 	private String tableFieldName; // mybatis
-
+	//
 	@ManyToOne
 	@JoinColumn(name = "ID_ENTITY")
 	private ApplicationEntity entity;
@@ -75,11 +74,6 @@ public class Relationship extends AbstractTimestampEntity {
 	@ManyToOne
 	@JoinColumn(name = "id_client")
 	private Client owner;
-
-	@ManyToOne
-	@Cascade(CascadeType.ALL)
-	@JoinColumn(name = "id_target")
-	private Relationship target;
 
 	public Relationship(String name, String displayName, String type, String ownerName, String model, Boolean uniDirecional, ViewApproach viewApproach) {
 		super();
@@ -171,14 +165,6 @@ public class Relationship extends AbstractTimestampEntity {
 		this.uniDirecional = uniDirecional;
 	}
 
-	public ApplicationEntity getEntity() {
-		return entity;
-	}
-
-	public void setEntity(ApplicationEntity theEntity) {
-		this.entity = theEntity;
-	}
-
 	public ViewApproach getViewApproach() {
 		if (viewApproach == null) {
 			setViewApproach(ViewApproach.noneInstance());
@@ -188,14 +174,6 @@ public class Relationship extends AbstractTimestampEntity {
 
 	public void setViewApproach(ViewApproach viewApproach) {
 		this.viewApproach = viewApproach;
-	}
-
-	public Relationship getTarget() {
-		return target;
-	}
-
-	public void setTarget(Relationship target) {
-		this.target = target;
 	}
 
 	@Override
@@ -272,6 +250,14 @@ public class Relationship extends AbstractTimestampEntity {
 
 	public void setOrigin(Boolean origin) {
 		this.origin = origin;
+	}
+
+	public ApplicationEntity getEntity() {
+		return entity;
+	}
+
+	public void setEntity(ApplicationEntity entity) {
+		this.entity = entity;
 	}
 
 }

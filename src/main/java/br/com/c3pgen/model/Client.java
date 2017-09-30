@@ -8,14 +8,12 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.hibernate.envers.Audited;
-
 /**
 * generated: 03/09/2015 14:51:48
 
 **/
 @Entity
-@Audited
+//@Audited
 @Table(name = "CLIENT")
 @SequenceGenerator(name = "CLIENT_SEQUENCE", sequenceName = "CLIENT_SEQUENCE")
 public class Client extends AbstractTimestampEntity{

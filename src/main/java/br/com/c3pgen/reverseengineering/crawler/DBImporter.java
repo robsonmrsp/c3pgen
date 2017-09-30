@@ -1,15 +1,15 @@
 package br.com.c3pgen.reverseengineering.crawler;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 
-import org.apache.commons.io.IOUtils;
 import org.springframework.jdbc.datasource.SingleConnectionDataSource;
 
+import com.google.common.base.CaseFormat;
+
+import br.com.c3pgen.base.util.Util;
 import schemacrawler.schema.Catalog;
 import schemacrawler.schema.Column;
 import schemacrawler.schema.ForeignKey;
@@ -19,9 +19,6 @@ import schemacrawler.schemacrawler.InclusionRule;
 import schemacrawler.schemacrawler.SchemaCrawlerOptions;
 import schemacrawler.schemacrawler.SchemaInfoLevelBuilder;
 import schemacrawler.utility.SchemaCrawlerUtility;
-import br.com.c3pgen.base.util.Util;
-
-import com.google.common.base.CaseFormat;
 
 public class DBImporter {
 	final String url;

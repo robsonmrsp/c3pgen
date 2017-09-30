@@ -18,14 +18,13 @@ import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
-import org.hibernate.envers.Audited;
 
 /**
 * generated: 03/09/2015 14:51:49
 Entity [name=User, displayName=Usuário, hasOwner=false, attributes=[Attribute [name=name, displayName=Nome, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=username, displayName=Username, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=password, displayName=Password, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=enable, displayName=Ativo, type=AttributeType [className=Boolean], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=image, displayName=Imagem, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null]], relationships=[Relationship [name=roles, model=Role, viewApproach=com.mr.codegenerator.entities.ViewApproach@23ceabc1, type=ManyToMany, displayName=Papeis, implementation=], Relationship [name=owner, model=Client, viewApproach=com.mr.codegenerator.entities.ViewApproach@5d5eef3d, type=ManyToOne, displayName=Cliente, implementation=]]]
 **/
 @Entity
-@Audited
+//@Audited
 
 @Table(name = "TB_USER", uniqueConstraints = {
 		@UniqueConstraint(name = "TB_USER_USERNAME", columnNames = { "USERNAME" }), 

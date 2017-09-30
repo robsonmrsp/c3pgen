@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
@@ -16,10 +18,9 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
-import org.hibernate.envers.Audited;
 
 @Entity
-@Audited
+// @Audited
 @Table(name = "ENTITY")
 @SequenceGenerator(name = "THEENTITY_SEQUENCE", sequenceName = "THEENTITY_SEQUENCE")
 public class ApplicationEntity extends AbstractTimestampEntity {
@@ -68,12 +69,12 @@ public class ApplicationEntity extends AbstractTimestampEntity {
 	@JoinColumn(name = "ID_APPLICATION")
 	private Application application;
 
-	@OneToMany(mappedBy = "entity", cascade = { javax.persistence.CascadeType.ALL })
+	@OneToMany(mappedBy = "entity", cascade = { javax.persistence.CascadeType.ALL }, orphanRemoval = true)
 	@Cascade(CascadeType.ALL)
 	private List<Attribute> attributes;
 
-	@OneToMany(mappedBy = "entity", cascade = { javax.persistence.CascadeType.ALL })
-	@Cascade(CascadeType.ALL)
+	@OneToMany(mappedBy = "entity")
+	@Cascade(value = CascadeType.ALL)
 	private List<Relationship> relationships;
 
 	@ManyToOne

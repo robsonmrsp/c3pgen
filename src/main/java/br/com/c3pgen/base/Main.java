@@ -1,18 +1,11 @@
 package br.com.c3pgen.base;
 
 import java.io.File;
-import java.io.IOException;
-import java.util.Arrays;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
-import org.joda.time.LocalDateTime;
 
 import br.com.c3pgen.base.util.Util;
 import br.com.c3pgen.model.Application;
-import br.com.c3pgen.model.Modulo;
-import br.com.c3pgen.utils.DateUtil;
-import br.com.c3pgen.utils.ZipUtils;
 
 public class Main {
 	private static final Logger LOGGER = Logger.getLogger(Main.class);

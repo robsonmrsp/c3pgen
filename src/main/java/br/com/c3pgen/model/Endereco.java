@@ -10,14 +10,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.hibernate.envers.Audited;
-
 /**
 * generated: 03/09/2015 14:51:48
 Entity [name=Endereco, displayName=Endereco, hasOwner=false, attributes=[Attribute [name=complemento, displayName=Complemento, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null], Attribute [name=numero, displayName=Número, type=AttributeType [className=String], mask=, dateFormat=dd/MM/yyyy, placeholder=null, validationRules=null]], relationships=[Relationship [name=cep, model=Cep, viewApproach=com.mr.codegenerator.entities.ViewApproach@48eff760, type=ManyToOne, displayName=Cep, implementation=]]]
 **/
 @Entity
-@Audited
+//@Audited
 @Table(name = "ENDERECO")
 @SequenceGenerator(name = "ENDERECO_SEQUENCE", sequenceName = "ENDERECO_SEQUENCE")
 public class Endereco extends AbstractTimestampEntity{
