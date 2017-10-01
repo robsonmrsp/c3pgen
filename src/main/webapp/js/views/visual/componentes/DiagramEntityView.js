@@ -93,9 +93,11 @@ define(function(require) {
 			var that = this;
 			var entity = ent || this.model
 			this.ui.entityName.text(entity.get('name'));
+			// this.reposition();
 
 			this.attributesCollection.reset(this.model.get('attributes'));
 			this.relationshipsCollection.reset(this.model.get('relationships'));
+
 		},
 
 	});

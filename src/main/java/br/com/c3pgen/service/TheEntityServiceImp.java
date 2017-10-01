@@ -1,6 +1,7 @@
 package br.com.c3pgen.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -12,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.c3pgen.model.ApplicationEntity;
 import br.com.c3pgen.model.Client;
+import br.com.c3pgen.model.Relationship;
 import br.com.c3pgen.persistence.DaoTheEntity;
 import br.com.c3pgen.persistence.pagination.Pager;
 import br.com.c3pgen.persistence.pagination.Pagination;
@@ -87,7 +89,8 @@ public class TheEntityServiceImp implements TheEntityService {
 
 	@Override
 	public ApplicationEntity save(ApplicationEntity entity) {
-		return daoTheEntity.save(entity);
+		ApplicationEntity saved = daoTheEntity.save(entity);
+		return saved;
 	}
 
 	@Override

@@ -143,13 +143,15 @@ define(function(require) {
 				// $('#paper').css('width', (window.innerWidth - 455) + 'px')
 
 				window.paper.on('link:pointerup', function(_link, _evento, x, y) {
-					console.log(_link)
+
+					// console.log(_link)
 				});
 				window.paper.on('link:options', function(_evento, _link, x, y) {
 					// that.inspetorRelacionamentosView.setVisual(_link.model);
 				});
 				window.paper.on('tool:remove', function(evt, linkView) {
-					// that.removeApplicationRelationship(linkView);
+
+					that.removeRelationship(linkView);
 
 				})
 				window.paper.on('cell:pointerdown', function(_cellView, evt, x, y) {
@@ -183,11 +185,11 @@ define(function(require) {
 							if (that.sourceTempRelation == null) {
 								that.sourceTempRelation = view;
 								that.sourceViewTempRelation = _cellView;
-								_cellView.highlight();
+//								_cellView.highlight();
 							} else {
 								that.targetViewTempRelation = _cellView;
 								that.targetTempRelation = view;
-								_cellView.highlight();
+//								_cellView.highlight();
 
 								var relation = new VisualRelationship({
 									newRelation : true,
@@ -198,8 +200,8 @@ define(function(require) {
 								});
 
 								setTimeout(function() {
-									that.targetViewTempRelation.unhighlight();
-									that.sourceViewTempRelation.unhighlight();
+//									that.targetViewTempRelation.unhighlight();
+//									that.sourceViewTempRelation.unhighlight();
 
 									that.sourceTempRelation = null;
 									that.targetTempRelation = null;
@@ -476,25 +478,43 @@ define(function(require) {
 			})
 		},
 
-		removeApplicationRelationship : function(linkView) {
-			var model = new ApplicationRelationshipModel(linkView.model.get('applicationRelationshipModel'));
+		removeRelationship : function(linkView) {
+			var model = linkView.model.get('applicationRelationshipModel');
+
+			var sourceEntityView = model.get('sourceEntityView');
+			var sourceEntity = sourceEntityView.model;
+
+			var targetEntityView = model.get('targetEntityView');
+			var targetEntity = targetEntityView.model;
+
+			var sourceName = sourceEntity.get('name');
+			var targetName = targetEntity.get('name');
 
 			util.Bootbox.confirm("Tem certeza que deseja remover o	 relacionamento ?", function(yes) {
 				if (yes) {
-					model.destroy({
-						success : function() {
-							console.log("Removendo o relacionamento: " + linkView.model.get('id'))
-							var model = linkView.remove();
+					var model = linkView.remove();
 
-							window.globalVisualRelations.remove(linkView.model.get('id'));
+					window.globalVisualRelations.remove(linkView.model.get('id'));
 
-							console.log(' log');
-						},
-						error : function() {
-							console.error(' erro')
+					_.each(sourceEntity.get('relationships'), function(relation) {
+						if (relation.model === targetName) {
+							var relations = sourceEntity.get('relationships');
+
+							var index = _.indexOf(relations, relation);
+							relations.splice(index, 1);
+							sourceEntity.set('notes', 'rem ' + new Date());
 						}
 					})
 
+					_.each(targetEntity.get('relationships'), function(relation) {
+						if (relation.model === sourceName) {
+							var relations = targetEntity.get('relationships');
+
+							var index = _.indexOf(relations, relation);
+							relations.splice(index, 1);
+							targetEntity.set('notes', 'rem ' + new Date());
+						}
+					})
 				} else {
 					console.log(" Leaving  alone link", linkView);
 				}
@@ -526,7 +546,8 @@ define(function(require) {
 									var source = relation.get('applicationRelationshipModel').get('sourceEntityView');
 									var target = relation.get('applicationRelationshipModel').get('targetEntityView');
 
-									// console.log(source.get('model'), visualE.entity.get('name'))
+									// console.log(source.get('model'),
+									// visualE.entity.get('name'))
 									if (source.model.get('name') === visualE.model.get('name')) {
 										relations.push(relation)
 									}

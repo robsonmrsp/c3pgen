@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import br.com.c3pgen.base.ApplicationValidator;
 import br.com.c3pgen.base.GenerateFileInfo;
 import br.com.c3pgen.model.Application;
+import br.com.c3pgen.model.ApplicationEntity;
 import br.com.c3pgen.model.Client;
 import br.com.c3pgen.persistence.DaoApplication;
 import br.com.c3pgen.persistence.pagination.Pager;
@@ -110,9 +111,9 @@ public class ApplicationServiceImp implements ApplicationService {
 		// applicationRelationshipService.removeAllByApplication(application);
 
 		// List<ApplicationEntity> entities = application.getEntities();
-		//// for (ApplicationEntity entity : entities) {
-		//// entityService.save(entity);
-		//// }
+		// for (ApplicationEntity entity : entities) {
+		// entityService.save(entity);
+		// }
 
 		// for (ApplicationRelationship applicationRelationship :
 		// applicationRelationships) {

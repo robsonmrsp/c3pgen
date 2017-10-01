@@ -62,6 +62,7 @@ define(function(require) {
 
 			this.$box = $(_.template(this.template)());
 
+			this.model.htmlView.model.on('change', this.updateBox, this);
 			this.model.on('change', this.updateBox, this);
 			this.model.on('destroy', this.removeBox, this);
 			this.model.on('remove-entity', this.removeBox, this);
@@ -108,7 +109,7 @@ define(function(require) {
 			var bbox = this.model.getBBox();
 			this.$box.css({
 				width : bbox.width,
-				height : bbox.height,
+				height : bbox.height + 2,
 				left : bbox.x,
 				top : bbox.y,
 				transform : 'rotate(' + (this.model.get('angle') || 0) + 'deg)'

@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.annotations.Cascade;
@@ -61,7 +62,7 @@ public class Relationship extends AbstractTimestampEntity {
 
 	@Column(name = "TABLE_FIELD_NAME")
 	private String tableFieldName; // mybatis
-	//
+
 	@ManyToOne
 	@JoinColumn(name = "ID_ENTITY")
 	private ApplicationEntity entity;

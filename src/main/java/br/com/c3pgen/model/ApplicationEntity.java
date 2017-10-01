@@ -73,7 +73,8 @@ public class ApplicationEntity extends AbstractTimestampEntity {
 	@Cascade(CascadeType.ALL)
 	private List<Attribute> attributes;
 
-	@OneToMany(mappedBy = "entity")
+	@OneToMany
+	@JoinTable(name = "REL_ENT", joinColumns = @JoinColumn(name = "ENT_ID", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "REL_ID", referencedColumnName = "ID"))
 	@Cascade(value = CascadeType.ALL)
 	private List<Relationship> relationships;
 
