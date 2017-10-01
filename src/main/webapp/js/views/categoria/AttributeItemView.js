@@ -70,14 +70,20 @@ define(function(require) {
 		},
 
 		deleteAtribute : function() {
-			this.model.destroy({
-				success : function(a, b, c) {
-					console.log('Removendo atributo ', a, b, c);
-				},
-				error : function(a, b, c) {
-					console.warn('Erro ao detelar atributo ', a, b, c);
+			var that = this;
+			util.Bootbox.confirm("Tem certeza que deseja remover o atributo  " + that.model.get('name') + " ?", function(yes) {
+				if (yes) {
+					that.model.destroy({
+						success : function(a, b, c) {
+							console.log('Removendo atributo ', a, b, c);
+						},
+						error : function(a, b, c) {
+							console.warn('Erro ao detelar atributo ', a, b, c);
+						}
+					});
 				}
 			});
+
 		},
 
 		getModel : function() {
