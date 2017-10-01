@@ -3,28 +3,31 @@
 	<div class="panel-body" style="min-height: 180px">
 		<span class="label label-success pull-right"></span>
 		<div class="row">
-			<div class="col-sm-8">
+			<div class="col-sm-8 col-md-9">
 				<h4>
 					<a style="color: #3498db; font-size: 1.5em" href="#app/editApplication/{{id}}">{{name}}</a>
 				</h4>
 				<p>{{description}}</p>
 				<div class="row">
-					<div class="col-sm-8">
+					<div class="col-sm-12">
 						<div class="project-label">ENTIDADES</div>
 						<small>
 							<p class="text-left desc-entities"></p>
 						</small>
 					</div>
-					<div class="col-sm-4">
-						<div class="project-label">MODULOS</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="project-label">CARACTERÍSTICAS</div>
 						<small>
-							<p class="text-left desc-modules">Autentication, Audit</p>
+							<p class="text-left desc-modules">Multitenancy : {{multitenancy ? 'Sim' :'Não' }}</p>
+							<p class="text-left desc-modules">Template usado: {{skin}}</p>
 						</small>
 					</div>
 				</div>
 			</div>
-			<div class="col-sm-4 project-info">
-				<div class="project-people">
+			<div class="col-sm-4 col-md-3 project-info pull-right">
+				<div class="project-people pull-right">
 					<img alt="logo" class="" src="images/templates/{{skin}}.png" width="180">
 				</div>
 			</div>

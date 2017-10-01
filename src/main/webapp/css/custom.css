@@ -391,7 +391,7 @@ body {
 	/* 	right: 9px; */
 	/* 	color: white; */
 	/* 	font-size: 10px; */
-	/* } */                             
+	/* } */                                      
 
 .uml-class-name-rect {
 	background: #ff8450 !important;
@@ -523,4 +523,8 @@ ul.editor-list li:hover a {
 .card-application {
 	max-height: 280px !important;
 	height: 280px !important;
+}
+
+.desc-modules {
+	margin-bottom: 0px !important;
 }

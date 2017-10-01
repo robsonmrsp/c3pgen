@@ -20,7 +20,7 @@ define(function(require) {
 
 	var CardItem = Marionette.ItemView.extend({
 		template : _.template(CardApplicationItemTemplate),
-		className : "col-lg-4 card-application",
+		className : "col-lg-6 card-application",
 		events : {
 			'click .bt-gerar' : 'geraAplicacao'
 		},
