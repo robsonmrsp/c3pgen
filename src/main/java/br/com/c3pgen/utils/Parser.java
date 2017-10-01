@@ -203,7 +203,9 @@ public class Parser {
 		ArrayList<JsonTheEntity> listEntities = jsonApplication.getEntities();
 		if (listEntities != null) {
 			for (JsonTheEntity loopJsonTheEntity : listEntities) {
-				application.addEntities(toEntity(loopJsonTheEntity));
+				ApplicationEntity entity = toEntity(loopJsonTheEntity);
+				
+				application.addEntities(entity);
 			}
 		}
 

@@ -79,6 +79,10 @@ public class Application extends AbstractTimestampEntity {
 
 	public void setOwner(Client owner) {
 		this.owner = owner;
+		List<ApplicationEntity> entities2 = getEntities();
+		for (ApplicationEntity applicationEntity : entities2) {
+			applicationEntity.setOwner(owner);
+		}
 	}
 
 	public Application() {

@@ -88,6 +88,13 @@ public class ApplicationEntity extends AbstractTimestampEntity {
 
 	public void setOwner(Client owner) {
 		this.owner = owner;
+
+		for (Attribute attribute : getAttributes()) {
+			attribute.setOwner(owner);
+		}
+		for (Relationship relationship : getRelationships()) {
+			relationship.setOwner(owner);
+		}
 	}
 
 	public ApplicationEntity(String name, String displayName, String tableName) {

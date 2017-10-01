@@ -197,12 +197,37 @@ public class DaoRelationship extends AccessibleHibernateDao<Relationship> {
 
 	public Integer removeReverseRelationship(ApplicationEntity entity) {
 
-		String hqlDelete = "delete from  Relationship  		"//
-				+ " where model = :entityName";//
+		String hqlDelete = "delete from Relationship  where (id_entity = :entityId  or model = :entityName) and	id_client = :idClient";//
+
+		// String hqlDeleteEntRel = "delete from rel_ent where ent_id = :entId
+		// or ";//
+
+		String hqlDeleteEntRel = "delete from rel_ent where ent_id = :entityId  or rel_id in(select id from Relationship  where (id_entity = :entityId  or model = :entityName) and	id_client = :idClient)";//
+
 		Session session = getSession();
 
-		int deletedEntities = session.createQuery(hqlDelete).setString("entityName", entity.getName()).executeUpdate();
-		return deletedEntities;
+		int deletedEntitiesEntRel = session.createSQLQuery(hqlDeleteEntRel) //
+				.setInteger("entityId", entity.getId())//
+				.setInteger("idClient", entity.getOwner().getId())//
+				.setString("entityName", entity.getName())//
+				.executeUpdate();
+		
+		// int deletedEntitiesEntRel =
+		// session.createSQLQuery(hqlDeleteEntRel).setInteger("entId",
+		// entity.getId()).executeUpdate();
+
+		// int deletedEntities =
+		// session.createSQLQuery(hqlDelete).setInteger("idClient",
+		// entity.getOwner().getId()).setInteger("entityId",
+		// entity.getId()).executeUpdate();
+		int deletedEntities = session.createSQLQuery(hqlDelete)//
+				.setInteger("entityId", entity.getId())//
+				.setInteger("idClient", entity.getOwner().getId())//
+				.setString("entityName", entity.getName())//
+				.executeUpdate();
+
+
+		return deletedEntitiesEntRel;
 
 	}
 
