@@ -30,8 +30,7 @@ import java.util.List;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
-
-<#if entity.hasOwner>
+<#if application.multitenancy>
 import ${application.corePackage}.model.CustomerOwner;
 </#if>
 
@@ -46,7 +45,7 @@ import ${corepackage}.model.AbstractTimestampEntity;
 @Table(name = "${dataBasePrefix}_${uppercase(entity.tableName!entity.name)}", uniqueConstraints = {
 	<#list entity.attributes as att >
 		<#if att.unique>
-			<#if entity.hasOwner>
+			<#if application.multitenancy>
 		@UniqueConstraint(name = "${dataBasePrefix}_${uppercase(entity.tableName!entity.name)}_${uppercase(att.tableFieldName!att.name)}", columnNames = { "${uppercase(att.tableFieldName!att.name)}", "ID_CUSTOMER_OWNER" }),
 			<#else>		
 		@UniqueConstraint(name = "${dataBasePrefix}_${uppercase(entity.tableName!entity.name)}_${uppercase(att.tableFieldName!att.name)}", columnNames = { "${uppercase(att.tableFieldName!att.name)}" }), 
@@ -58,7 +57,7 @@ import ${corepackage}.model.AbstractTimestampEntity;
 @Table(name = "${uppercase(entity.tableName!entity.name)}", uniqueConstraints = {
 	<#list entity.attributes as att >
 		<#if att.unique>
-			<#if entity.hasOwner>
+			<#if application.multitenancy>
 		@UniqueConstraint(name = "${uppercase(entity.tableName!entity.name)}_${uppercase(att.tableFieldName!att.name)}", columnNames = { "${uppercase(att.tableFieldName!att.name)}",  "ID_CUSTOMER_OWNER"}), 
 			<#else >
 		@UniqueConstraint(name = "${uppercase(entity.tableName!entity.name)}_${uppercase(att.tableFieldName!att.name)}", columnNames = { "${uppercase(att.tableFieldName!att.name)}" }), 
@@ -149,7 +148,7 @@ public class ${entity.name} extends AbstractTimestampEntity{
 		</#if>
 	</#list>
 	</#if>
-	<#if entity.hasOwner?? && entity.hasOwner>
+	<#if application.multitenancy?? && application.multitenancy>
 	@ManyToOne
 	@JoinColumn(name = "ID_CUSTOMER_OWNER")
 	private CustomerOwner owner;

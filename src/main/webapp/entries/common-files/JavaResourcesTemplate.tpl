@@ -12,7 +12,7 @@ import ${package}.json.Json${entity.name};
 
 import ${package}.model.${entity.name};
 
-<#if entity.hasOwner>
+<#if application.multitenancy>
 import ${application.corePackage}.model.Client;
 </#if>
 import ${package}.service.${entity.name}Service;
@@ -36,7 +36,7 @@ import io.swagger.annotations.ApiOperation;
 public class ${entity.name}Resources {
 	@Inject
 	${entity.name}Service ${firstLower(entity.name)}Service;
-	<#if entity.hasOwner == true>
+	<#if application.multitenancy == true>
 	@Inject
 	private SpringSecurityUserContext context;
 	</#if>
@@ -68,7 +68,7 @@ public class ${entity.name}Resources {
 		Response response = null;
 		try {
 			PaginationParams<Filter${entity.name}> paginationParams = new PaginationParams<Filter${entity.name}>(uriInfo, Filter${entity.name}.class);
-			<#if entity.hasOwner == true>
+			<#if application.multitenancy == true>
 			List<Json${entity.name}> json${entity.name}s = Parser.toListJson${entity.name}s(${firstLower(entity.name)}Service.filter(paginationParams, context.getCurrentUser().getOwner(), Boolean.TRUE));
 			<#else>
 			List<Json${entity.name}> json${entity.name}s = Parser.toListJson${entity.name}s(${firstLower(entity.name)}Service.filter(paginationParams, Boolean.TRUE));
@@ -111,7 +111,7 @@ public class ${entity.name}Resources {
 		try {
 			PaginationParams<Filter${entity.name}> paginationParams = new PaginationParams<Filter${entity.name}>(uriInfo, Filter${entity.name}.class);
 
-			<#if entity.hasOwner == true>
+			<#if application.multitenancy == true>
 			List<Json${entity.name}> json${entity.name}s = Parser.toListJson${entity.name}s(${firstLower(entity.name)}Service.filter(paginationParams, context.getCurrentUser().getOwner(), Boolean.FALSE));
 			<#else>
 			List<Json${entity.name}> json${entity.name}s = Parser.toListJson${entity.name}s(${firstLower(entity.name)}Service.filter(paginationParams, Boolean.FALSE));
@@ -136,7 +136,7 @@ public class ${entity.name}Resources {
 	public Response all() {
 		Response response = null;
 		try {
-			<#if entity.hasOwner == true>
+			<#if application.multitenancy == true>
 			List<Json${entity.name}> json${entity.name}s = Parser.toListJson${entity.name}s(${firstLower(entity.name)}Service.all(context.getCurrentUser().getOwner()));
 			<#else>
 			List<Json${entity.name}> json${entity.name}s = Parser.toListJson${entity.name}s(${firstLower(entity.name)}Service.all());
@@ -181,7 +181,7 @@ public class ${entity.name}Resources {
 
 		try {
 			PaginationParams<Filter${entity.name}> paginationParams = new PaginationParams<Filter${entity.name}>(uriInfo, Filter${entity.name}.class);
-			<#if entity.hasOwner == true>
+			<#if application.multitenancy == true>
 			${firstLower(entity.name)}s = ${firstLower(entity.name)}Service.all(paginationParams, context.getCurrentUser().getOwner());
 			<#else>
 			${firstLower(entity.name)}s = ${firstLower(entity.name)}Service.all(paginationParams);
@@ -208,7 +208,7 @@ public class ${entity.name}Resources {
 	public Response get(@PathParam("id") Integer id) {
 		try {
 
-			<#if entity.hasOwner == true>
+			<#if application.multitenancy == true>
 			${entity.name} ${firstLower(entity.name)} = ${firstLower(entity.name)}Service.get(id, context.getCurrentUser().getOwner());
 			<#else>
 			${entity.name} ${firstLower(entity.name)} = ${firstLower(entity.name)}Service.get(id);
@@ -233,7 +233,7 @@ public class ${entity.name}Resources {
 		try {
 
 			${entity.name} ${firstLower(entity.name)} = Parser.toEntity(json${entity.name});
-			<#if entity.hasOwner == true>
+			<#if application.multitenancy == true>
 			${firstLower(entity.name)}.setOwner(context.getCurrentUser().getOwner());
 			</#if>
 			${firstLower(entity.name)} = ${firstLower(entity.name)}Service.save(${firstLower(entity.name)});
@@ -260,7 +260,7 @@ public class ${entity.name}Resources {
 		try {
 			${entity.name} ${firstLower(entity.name)} = Parser.toEntity(json${entity.name});
 
-			<#if entity.hasOwner == true>
+			<#if application.multitenancy == true>
 			${firstLower(entity.name)}.setOwner(context.getCurrentUser().getOwner());
 			</#if>
 			${firstLower(entity.name)} = ${firstLower(entity.name)}Service.save(${firstLower(entity.name)});

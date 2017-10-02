@@ -17,7 +17,7 @@ import ${application.corePackage}.persistence.pagination.PaginationParams;
 import ${application.corePackage}.persistence.pagination.Paginator;
 
 import ${application.rootPackage}.model.${entity.name};
-<#if entity.hasOwner>
+<#if application.multitenancy>
 import ${application.corePackage}.model.CustomerOwner;
 </#if>	
 
@@ -33,7 +33,7 @@ public class Dao${entity.name} extends AccessibleHibernateDao<Filter${entity.nam
 	<#if entity.attributes??>	
 	<#list entity.attributes as att>
 	<#if att.unique == true>
-		<#if entity.hasOwner>
+		<#if application.multitenancy>
 	public ${entity.name} findBy${firstUpper(att.name)}(String ${att.name}, CustomerOwner owner) {
 		${entity.name} ${firstLower(entity.name)} = null;
 		try {

@@ -9,7 +9,7 @@ import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.time.LocalDate;
-<#if entity.hasOwner>
+<#if application.multitenancy>
 import ${application.corePackage}.model.CustomerOwner ;
 </#if>
 
@@ -93,7 +93,7 @@ public class ${entity.name}ServiceImp implements ${entity.name}Service {
 		return del;			
 	}
 	
-	<#if entity.hasOwner>
+	<#if application.multitenancy>
 	@Override
 	public ${entity.name} get(Integer id, CustomerOwner  client) {
 		return dao${entity.name}.find(id, client);

@@ -3,7 +3,7 @@ package ${package}.service;
 import java.util.List;
 import java.time.LocalDateTime;
 import java.time.LocalDate;
-<#if entity.hasOwner?? && entity.hasOwner>
+<#if application.multitenancy?? && application.multitenancy>
 import ${application.corePackage}.model.CustomerOwner;
 </#if>
 import ${application.rootPackage}.model.${entity.name};
@@ -35,7 +35,7 @@ public interface ${entity.name}Service {
     List<${entity.name}> last(LocalDateTime lastSyncDate);		
 
 	Boolean delete(Integer id);
-	<#if entity.hasOwner?? &&  entity.hasOwner>
+	<#if application.multitenancy?? &&  application.multitenancy>
 	${entity.name} get(Integer id, CustomerOwner client);
 
 	List<${entity.name}> all(CustomerOwner owner);
