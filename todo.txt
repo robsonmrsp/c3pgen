@@ -1,7 +1,11 @@
 
+
+
+
 atualização da criteria no hibernate 5 
 https://www.boraji.com/hibernate-5-criteria-query-example
 
+https://www.boraji.com/hibernate-5-criteria-query-example
 
 
 Sobre segurança no Spring-mvc

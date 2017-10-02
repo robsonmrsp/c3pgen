@@ -13,8 +13,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.annotation.Propagation;
 
-import ${application.rootPackage}.utils.Parser;
-
 import ${application.rootPackage}.model.User;
 import ${application.rootPackage}.persistence.DaoUser;
 
@@ -26,6 +24,10 @@ import ${application.rootPackage}.persistence.DaoUser;
 public class UserDetailsServiceImp implements UserDetailsService {
 	private final DaoUser userDao;
 
+
+	@Inject
+	SpringSecurityUserContext context;
+
 	@Inject
 	public UserDetailsServiceImp(DaoUser userDao) {
 		if (userDao == null) {
@@ -36,11 +38,14 @@ public class UserDetailsServiceImp implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		<#if application.multitenancy>
+		User appUser = userDao.findByUsername(username, context.getOwner());
+		<#else>
 		User appUser = userDao.findByUsername(username);
+		</#if>
 		if (appUser == null) {
 			throw new UsernameNotFoundException("Invalid username...");
 		}
-		Parser.toJson(appUser);// somente para forcar os gets e carregar TODO o
 		return appUser;
 	}
 }

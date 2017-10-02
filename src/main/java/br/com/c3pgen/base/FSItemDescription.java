@@ -104,7 +104,7 @@ public class FSItemDescription {
 	public static List<FSItemDescription> model(String rootFolder) {
 
 		List<FSItemDescription> list = new ArrayList<FSItemDescription>();
-		list.add(new FSItemDescription("CustomerOwner", rootFolder + File.separator + "model" + File.separator, "CustomerOwner", FileType.JAVA));
+		list.add(new FSItemDescription("Owner", rootFolder + File.separator + "model" + File.separator, "Owner", FileType.JAVA));
 		list.add(new FSItemDescription("ColumnDefinitions", rootFolder + File.separator + "model" + File.separator, "ColumnDefinitions", FileType.JAVA));
 		list.add(new FSItemDescription("CustomRevisionEntity", rootFolder + File.separator + "model" + File.separator, "CustomRevisionEntity", FileType.JAVA));
 		list.add(new FSItemDescription("AbstractTimestampEntity", rootFolder + File.separator + "model" + File.separator, "AbstractTimestampEntity", FileType.JAVA));

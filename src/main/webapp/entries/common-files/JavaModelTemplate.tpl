@@ -28,10 +28,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
 <#if application.multitenancy>
-import ${application.corePackage}.model.CustomerOwner;
+import ${application.corePackage}.model.Owner;
 </#if>
 
 import ${corepackage}.model.AbstractTimestampEntity;
@@ -79,52 +77,56 @@ public class ${entity.name} extends AbstractTimestampEntity{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)	
 	private Integer id;
+	
 	<#if entity.attributes??>	
 	<#list entity.attributes as att>
 		<#if att.name != 'id'>
-		
 		<#if dataType(att.type.className) ==  "LocalDateTime" >
 	@Column(name = "${uppercase(att.tableFieldName!att.name)}")
 	private ${dataType(att.type.className)} ${att.name};
+	
 		<#elseif  dataType(att.type.className) ==  "LocalDate" >
 	@Column(name = "${uppercase(att.tableFieldName!att.name)}")
-	private ${dataType(att.type.className)} ${att.name};  			
+	private ${dataType(att.type.className)} ${att.name};  
+				
 		<#elseif  dataType(att.type.className) ==  "String" >
-		<#if att.maxLen?? >
-	@Column(name = "${uppercase(att.tableFieldName!att.name)}" , columnDefinition="varchar" /*, length=${att.maxLen}*/) 
+		<#if att.viewApproach.type == 'textarea'>
+	@Column(name = "${uppercase(att.tableFieldName!att.name)}" , columnDefinition="varchar" ) 
 		<#else>
-	@Column(name = "${uppercase(att.tableFieldName!att.name)}" , columnDefinition="varchar" )
+	@Column(name = "${uppercase(att.tableFieldName!att.name)}" )
 		</#if>
 	private String ${att.name};		
+	
 		<#else>
 	@Column(name = "${uppercase(att.tableFieldName!att.name)}")
-	private ${dataType(att.type.className)} ${att.name};  			
+	private ${dataType(att.type.className)} ${att.name};  	
+			
 		</#if>  
 		</#if>
 	</#list>
 	</#if>
 	<#if entity.relationships??>	
 	<#list entity.relationships as rel>
-	
 		<#if rel.type == 'OneToMany'>
 			<#if rel.ownerName?has_content>
 	@OneToMany(mappedBy="${rel.ownerName}")
-	//@Cascade(value = CascadeType.ALL)
 			<#else>
 	@OneToMany()
 			</#if>
-	private List<${firstUpper(rel.model)}> ${(rel.name)};		
+	private List<${firstUpper(rel.model)}> ${(rel.name)};	
+		
 		<#elseif rel.type == 'ManyToOne'>
 	@ManyToOne
 	@JoinColumn(name = "ID_${uppercase(rel.name)}")
-	private ${firstUpper(rel.model)} ${firstLower(rel.name)};		
+	private ${firstUpper(rel.model)} ${firstLower(rel.name)};
+			
 		<#elseif rel.type == 'ManyToMany'>
 			<#if rel.ownerName?has_content > 
     @ManyToMany(mappedBy="${rel.ownerName}")
         		<#if rel.viewApproach?? >
-    //@Cascade(value = CascadeType.ALL)
 				</#if>
     private List<${firstUpper(rel.model)}> ${(rel.name)!firstLower(rel.model)};
+    
 			<#else>
     @ManyToMany
 				<#if dataBasePrefix??>
@@ -133,6 +135,7 @@ public class ${entity.name} extends AbstractTimestampEntity{
     			<#else>
     @JoinTable(name="${uppercase(entity.name)}_${uppercase(rel.model)}", joinColumns = @JoinColumn(name = "ID_${uppercase(entity.name)}", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "ID_${uppercase(rel.model)}", referencedColumnName = "ID") )
     private List<${firstUpper(rel.model)}> ${(rel.name)};
+    
 				</#if>		
 			</#if>		
 		<#elseif rel.type == 'OneToOne'>
@@ -140,24 +143,26 @@ public class ${entity.name} extends AbstractTimestampEntity{
 	@OneToOne(optional=false, mappedBy="${rel.ownerName}")
 	@JoinColumn(name = "ID_${uppercase(rel.name)}")
 	private ${firstUpper(rel.model)} ${firstLower(rel.name)!firstLower(rel.model)};
+	
 			<#else>
 	@OneToOne
 	@JoinColumn(name = "ID_${uppercase(rel.name)}")
 	private ${firstUpper(rel.model)} ${firstLower(rel.name)!firstLower(rel.model)};
+	
 			</#if>
 		</#if>
 	</#list>
 	</#if>
-	<#if application.multitenancy?? && application.multitenancy>
+		<#if application.multitenancy?? && application.multitenancy>
 	@ManyToOne
-	@JoinColumn(name = "ID_CUSTOMER_OWNER")
-	private CustomerOwner owner;
+	@JoinColumn(name = "ID_OWNER")
+	private Owner owner;
 	
-	public  CustomerOwner getOwner() {
+	public  Owner getOwner() {
 		return owner;
 	}
 	
-	public void setOwner(CustomerOwner owner) {
+	public void setOwner(Owner owner) {
 		this.owner = owner;
 	}
 	</#if>

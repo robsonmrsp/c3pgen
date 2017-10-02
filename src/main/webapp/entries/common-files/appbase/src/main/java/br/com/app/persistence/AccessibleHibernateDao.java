@@ -9,8 +9,8 @@ import org.hibernate.Criteria;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
-<#if application.hasClient()>
-import ${application.corePackage}.model.CustomerOwner;
+<#if application.multitenancy>
+import ${application.corePackage}.model.Owner;
 </#if>
 import ${application.corePackage}.persistence.pagination.Pagination;
 import ${application.corePackage}.persistence.pagination.PaginationParams;
@@ -24,7 +24,7 @@ public abstract class AccessibleHibernateDao<Filter, Entity> extends HibernateDa
 		super(clazz);
 	}
 
-	public List<Entity> getAll(CustomerOwner owner) {
+	public List<Entity> getAll(Owner owner) {
 		List<Entity> entities = criteria().add(Restrictions.eq("owner", owner)).list();
 		return entities;
 	}
@@ -70,7 +70,7 @@ public abstract class AccessibleHibernateDao<Filter, Entity> extends HibernateDa
 		return list;
 	}
 
-	public Pagination<Entity> getAll(PaginationParams<Filter> paginationParams, CustomerOwner owner) {
+	public Pagination<Entity> getAll(PaginationParams<Filter> paginationParams, Owner owner) {
 		Filter filter = (Filter) paginationParams.getFilter();
 		Criteria searchCriteria = prepareIlikeCriteria(filter);
 		Criteria countCriteria = prepareIlikeCriteria(filter);
@@ -81,7 +81,7 @@ public abstract class AccessibleHibernateDao<Filter, Entity> extends HibernateDa
 		return new Paginator<Entity>(searchCriteria, countCriteria).paginate(paginationParams);
 	}
 
-	public List<Entity> filter(PaginationParams<Filter> paginationParams, CustomerOwner owner) {
+	public List<Entity> filter(PaginationParams<Filter> paginationParams, Owner owner) {
 		List<Entity> list = new ArrayList<Entity>();
 		Filter filter = (Filter) paginationParams.getFilter();
 		Criteria searchCriteria = prepareEqCriteria(filter);
@@ -92,14 +92,14 @@ public abstract class AccessibleHibernateDao<Filter, Entity> extends HibernateDa
 		return list;
 	}
 
-	public List<Entity> filter(PaginationParams<Filter> paginationParams, CustomerOwner owner, Boolean equals) {
+	public List<Entity> filter(PaginationParams<Filter> paginationParams, Owner owner, Boolean equals) {
 		List<Entity> list = new ArrayList<Entity>();
 		Filter filter = (Filter) paginationParams.getFilter();
 
 		return filter(filter, owner, equals);
 	}
 
-	public List<Entity> filter(Filter filter, CustomerOwner owner, Boolean equals) {
+	public List<Entity> filter(Filter filter, Owner owner, Boolean equals) {
 		if (equals) {
 			return filterEqual(filter, owner);
 		} else {
@@ -107,7 +107,7 @@ public abstract class AccessibleHibernateDao<Filter, Entity> extends HibernateDa
 		}
 	}
 
-	public List<Entity> filterEqual(Filter filter, CustomerOwner owner) {
+	public List<Entity> filterEqual(Filter filter, Owner owner) {
 		List<Entity> list = new ArrayList<Entity>();
 		Criteria searchCriteria = prepareEqCriteria(filter);
 		searchCriteria.add(Restrictions.eq("owner", owner));
@@ -117,7 +117,7 @@ public abstract class AccessibleHibernateDao<Filter, Entity> extends HibernateDa
 		return list;
 	}
 
-	public List<Entity> filterAlike(Filter filter, CustomerOwner owner) {
+	public List<Entity> filterAlike(Filter filter, Owner owner) {
 		List<Entity> list = new ArrayList<Entity>();
 		Criteria searchCriteria = prepareIlikeCriteria(filter);
 		searchCriteria.add(Restrictions.eq("owner", owner));
@@ -127,16 +127,16 @@ public abstract class AccessibleHibernateDao<Filter, Entity> extends HibernateDa
 		return list;
 	}
 
-	public Entity find(Serializable key, CustomerOwner owner) {
+	public Entity find(Serializable key, Owner owner) {
 		Entity media = (Entity) criteria().add(Restrictions.eq("owner", owner)).add(Restrictions.eq("id", key)).uniqueResult();
 		return media;
 	}
 
-	public Pagination<Entity> searchByText(PaginationParams<Filter> paginationParams, CustomerOwner owner, String searchText, String field) {
+	public Pagination<Entity> searchByText(PaginationParams<Filter> paginationParams, Owner owner, String searchText, String field) {
 		return new Paginator<Entity>(criteria().add(Restrictions.eq("owner", owner)), criteria().add(Restrictions.eq("owner", owner)).add(Restrictions.eq(field, searchText))).paginate(paginationParams);
 	}
 
-	public List<Entity> searchByText(String field, String searchText, CustomerOwner owner) {
+	public List<Entity> searchByText(String field, String searchText, Owner owner) {
 		return criteria().add(Restrictions.ilike(field, searchText, MatchMode.ANYWHERE)).add(Restrictions.eq("owner", owner)).list();
 	}
 

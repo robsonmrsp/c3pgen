@@ -18,8 +18,8 @@ import org.hibernate.envers.Audited;
 <#if application.hasAudit()>
 //@Audited
 </#if>
-@Table(name = "CUSTOMER_OWNER")
-public class CustomerOwner extends AbstractTimestampEntity{
+@Table(name = "OWNER")
+public class Owner extends AbstractTimestampEntity{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -42,7 +42,7 @@ public class CustomerOwner extends AbstractTimestampEntity{
 	private String corporateName;  			
 	
 		
-	public  CustomerOwner() {
+	public  Owner() {
 		
 	}
 	public Integer getId() {

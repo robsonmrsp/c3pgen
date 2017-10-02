@@ -24,8 +24,8 @@ import org.hibernate.envers.Audited;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-<#if application.hasClient()>
-import ${application.corePackage}.model.CustomerOwner;
+<#if application.multitenancy>
+import ${application.corePackage}.model.Owner;
 </#if>
 
 import ${application.corePackage}.model.AbstractTimestampEntity;
@@ -72,7 +72,7 @@ public class User extends AbstractTimestampEntity implements UserDetails {
 	
 	@ManyToOne
 	@JoinColumn(name = "ID_CUSTOMER_OWNER")
-	private CustomerOwner owner;
+	private Owner owner;
 	
 	public User() {
 
@@ -184,11 +184,11 @@ public class User extends AbstractTimestampEntity implements UserDetails {
 		this.email = email;
 	}
 
-	<#if application.hasClient()>
-	public CustomerOwner getOwner() {
+	<#if application.multitenancy>
+	public Owner getOwner() {
 		return owner;
 	}
-	public void setOwner(CustomerOwner owner) {
+	public void setOwner(Owner owner) {
 		this.owner = owner;
 	}
 	</#if>

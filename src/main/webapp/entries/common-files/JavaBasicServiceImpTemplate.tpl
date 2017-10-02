@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.time.LocalDate;
 <#if application.multitenancy>
-import ${application.corePackage}.model.CustomerOwner ;
+import ${application.corePackage}.model.Owner ;
 </#if>
 
 import ${application.rootPackage}.model.${entity.name};
@@ -95,35 +95,35 @@ public class ${entity.name}ServiceImp implements ${entity.name}Service {
 	
 	<#if application.multitenancy>
 	@Override
-	public ${entity.name} get(Integer id, CustomerOwner  client) {
-		return dao${entity.name}.find(id, client);
+	public ${entity.name} get(Integer id, Owner  owner) {
+		return dao${entity.name}.find(id, owner);
 	}
 
 	@Override
-	public List<${entity.name}> all(CustomerOwner  client) {
-		return dao${entity.name}.getAll(client);
+	public List<${entity.name}> all(Owner  owner) {
+		return dao${entity.name}.getAll(owner);
 	}
 
 	@Override
-	public Pager<${entity.name}> all(PaginationParams paginationParams, CustomerOwner  owner) {
+	public Pager<${entity.name}> all(PaginationParams paginationParams, Owner  owner) {
 		Pagination<${entity.name}> pagination = dao${entity.name}.getAll(paginationParams, owner);
 		return new Pager<${entity.name}>(pagination.getResults(), paginationParams.getPage(), pagination.getTotalRecords());
 	}
 	
 		@Override
-	public List<${entity.name}> filter(PaginationParams paginationParams, CustomerOwner  owner) {
+	public List<${entity.name}> filter(PaginationParams paginationParams, Owner  owner) {
 		List<${entity.name}> list = dao${entity.name}.filter(paginationParams, owner);
 		return list;
 	}
 	
 	@Override
-	public List<${entity.name}> filter(PaginationParams paginationParams,  CustomerOwner  owner, Boolean equals) {
+	public List<${entity.name}> filter(PaginationParams paginationParams,  Owner  owner, Boolean equals) {
 		List<${entity.name}> list = dao${entity.name}.filter(paginationParams, owner, equals);
 		return list;
 	}
 	
 	@Override
-	public List<${entity.name}> filter(Filter${entity.name} filter${entity.name} , CustomerOwner  owner,  Boolean equals) {
+	public List<${entity.name}> filter(Filter${entity.name} filter${entity.name} , Owner  owner,  Boolean equals) {
 		List<${entity.name}> list = dao${entity.name}.filter(filter${entity.name}, owner, equals);
 		return list;
 	}
