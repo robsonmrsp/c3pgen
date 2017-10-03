@@ -180,12 +180,12 @@ public class Parser {
 			}
 		}
 		Set<ApplicationRelationship> listRels = application.getApplicationRelationships();
-		if (listRels != null) {
-
-			for (ApplicationRelationship loopRel : listRels) {
-				jsonApplication.getApplicationRelationships().add(toJson(loopRel));
-			}
-		}
+//		if (listRels != null) {
+//
+//			for (ApplicationRelationship loopRel : listRels) {
+//				jsonApplication.getApplicationRelationships().add(toJson(loopRel));
+//			}
+//		}
 		return jsonApplication;
 	}
 
