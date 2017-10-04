@@ -3,7 +3,7 @@ package ${application.rootPackage}.persistence;
 import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
-
+import org.apache.log4j.Logger;
 import javax.inject.Named;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -37,9 +37,16 @@ public class Dao${entity.name} extends HibernateDao<${entity.name}> {
 	<#if att.unique == true>
 		<#if application.multitenancy>
 	public ${entity.name} findBy${firstUpper(att.name)}(String ${att.name}, Owner owner) {
+
 		${entity.name} ${firstLower(entity.name)} = null;
 		try {
-			${firstLower(entity.name)} = (${entity.name}) criteria().add(Restrictions.eq("${att.name}", ${att.name})).add(Restrictions.eq("owner", owner)).uniqueResult();
+			CriteriaBuilder builder = getCriteriaBuilder();
+			CriteriaQuery<${entity.name}> query = builder.createQuery(${entity.name}.class);
+			Root<${entity.name}> root = query.from(${entity.name}.class);
+
+			Predicate and = builder.and(builder.equal(root.get("${att.name}"), ${att.name}), builder.equal(root.get("owner").get("id"), owner.getId()));
+
+			${firstLower(entity.name)} = getSession().createQuery(query.select(root).where(and)).uniqueResult();
 		} catch (Exception e) {
 			LOGGER.error("Erro ao obter ${entity.displayName} pelo ${att.name}," + ${att.name}, e);
 		}
@@ -49,7 +56,13 @@ public class Dao${entity.name} extends HibernateDao<${entity.name}> {
 	public ${entity.name} findBy${firstUpper(att.name)}(String ${att.name}) {
 		${entity.name} ${firstLower(entity.name)} = null;
 		try {
-			${firstLower(entity.name)} = (${entity.name}) criteria().add(Restrictions.eq("${att.name}", ${att.name})).uniqueResult();
+			CriteriaBuilder builder = getCriteriaBuilder();
+			CriteriaQuery<${entity.name}> query = builder.createQuery(${entity.name}.class);
+			Root<${entity.name}> root = query.from(${entity.name}.class);
+
+			Predicate where = builder.and(builder.equal(root.get("${att.name}"), ${att.name}));
+
+			${firstLower(entity.name)} = getSession().createQuery(query.select(root).where(where)).uniqueResult();
 		} catch (Exception e) {
 			LOGGER.error("Erro ao obter ${entity.displayName} pelo ${att.name}," + ${att.name}, e);
 		}
@@ -62,7 +75,6 @@ public class Dao${entity.name} extends HibernateDao<${entity.name}> {
 
 //Consultas considerando o multitenancy	
 <#if application.multitenancy>
-	@Override
 	public Pager<${entity.name}> getAll(PaginationParams<Filter${entity.name}> queryParams, Owner owner) {
 		CriteriaBuilder builder = getCriteriaBuilder();
 		Filter${entity.name} filter${entity.name} = queryParams.getFilter();
@@ -81,7 +93,7 @@ public class Dao${entity.name} extends HibernateDao<${entity.name}> {
 	<#list entity.attributes as att>
       	<#if att.type.className == 'String'>	
 		if (filter${entity.name}.get${firstUpper(att.name)}() != null) {
-			whereClause = builder.and(whereClause, builder.like(builder.upper(root.get("${att.name}")), "%" + filter${entity.name}.get${firstUpper(att.name)}().toUpperCase() + "%"));
+			whereClause = builder.and(whereClause, builder.like(builder.upper(root.<String>get("${att.name}")), "%" + filter${entity.name}.get${firstUpper(att.name)}().toUpperCase() + "%"));
 		}
 		<#else>
 		if (filter${entity.name}.get${firstUpper(att.name)}() != null) {
@@ -125,7 +137,7 @@ public class Dao${entity.name} extends HibernateDao<${entity.name}> {
 	<#list entity.attributes as att>
       	<#if att.type.className == 'String'>	
 		if (filter${entity.name}.get${firstUpper(att.name)}() != null) {
-			whereClause = builder.and(whereClause, builder.like(builder.upper(root.get("${att.name}")), "%" + filter${entity.name}.get${firstUpper(att.name)}().toUpperCase() + "%"));
+			whereClause = builder.and(whereClause, builder.like(builder.upper(root.<String>get("${att.name}")), "%" + filter${entity.name}.get${firstUpper(att.name)}().toUpperCase() + "%"));
 		}
 		<#else>
 		if (filter${entity.name}.get${firstUpper(att.name)}() != null) {
@@ -152,58 +164,16 @@ public class Dao${entity.name} extends HibernateDao<${entity.name}> {
 		return results;
 	}
 
-	public List<${entity.name}> filter(PaginationParams paginationParams, Client owner, Boolean equals) {
+	public List<${entity.name}> filter(PaginationParams paginationParams, Owner owner, Boolean equals) {
 		List<${entity.name}> list = new ArrayList<${entity.name}>();
 		Filter${entity.name} filter${entity.name} = (Filter${entity.name}) paginationParams.getFilter();
 
 		return filter(filter${entity.name}, owner, equals);
 	}
 
-	public List<${entity.name}> filter(PaginationParams<Filter${entity.name}> queryParams, Owner owner) {
-		CriteriaBuilder builder = getCriteriaBuilder();
-		Filter${entity.name} filter${entity.name} = queryParams.getFilter();
-
-		CriteriaQuery<${entity.name}> query = builder.createQuery(${entity.name}.class);
-		Root<${entity.name}> root = query.from(${entity.name}.class);
-
-		Predicate whereClause = builder.and();
-
-		whereClause = builder.and(whereClause, builder.equal(root.get("owner").get("id"), owner.getId()));
-
-	<#if entity.attributes??>	
-	<#list entity.attributes as att>
-      	<#if att.type.className == 'String'>	
-		if (filter${entity.name}.get${firstUpper(att.name)}() != null) {
-			whereClause = builder.and(whereClause, builder.like(builder.upper(root.get("${att.name}")), "%" + filter${entity.name}.get${firstUpper(att.name)}().toUpperCase() + "%"));
-		}
-		<#else>
-		if (filter${entity.name}.get${firstUpper(att.name)}() != null) {
-			whereClause = builder.and(whereClause, builder.equal(root.get("${att.name}"), filter${entity.name}.get${firstUpper(att.name)}()));
-		}				
-		</#if>	
-	</#list>
-	</#if>	
-	<#if entity.relationships??>	
-	<#list entity.relationships as rel>
-		<#if rel.type == 'ManyToOne'>
-		if (filter${entity.name}.get${firstUpper(rel.name)!firstLower(rel.model)}() != null) {
-			whereClause = builder.and(whereClause, builder.equal(root.get("${firstLower(rel.name)!firstLower(rel.model)}").get("id"), filter${entity.name}.get${firstUpper(rel.name)!firstLower(rel.model)}() ));
-		}
-		</#if>	
-	</#list>
-	</#if>
-	
-		Order orderBy = getOrderBy(queryParams, builder, root);
-
-		TypedQuery<${entity.name}> typedQuery = getSession().createQuery(query.select(root).where(whereClause).orderBy(orderBy));
-
-		List<${entity.name}> results = typedQuery.setFirstResult(queryParams.getFirstResults()).setMaxResults(queryParams.getPageSize()).getResultList();
-
-		return results;
-	}
 
 
-	public List<${entity.name}> filter(Filter${entity.name} filter${entity.name}, Client owner, Boolean equals) {
+	public List<${entity.name}> filter(Filter${entity.name} filter${entity.name}, Owner owner, Boolean equals) {
 		if (equals) {
 			return filterEqual(filter${entity.name}, owner);
 		} else {
@@ -258,7 +228,7 @@ public class Dao${entity.name} extends HibernateDao<${entity.name}> {
 	<#list entity.attributes as att>
       	<#if att.type.className == 'String'>	
 		if (filter${entity.name}.get${firstUpper(att.name)}() != null) {
-			whereClause = builder.and(whereClause, builder.like(builder.upper(root.get("${att.name}")), "%" + filter${entity.name}.get${firstUpper(att.name)}().toUpperCase() + "%"));
+			whereClause = builder.and(whereClause, builder.like(builder.upper(root.<String>get("${att.name}")), "%" + filter${entity.name}.get${firstUpper(att.name)}().toUpperCase() + "%"));
 		}
 		<#else>
 		if (filter${entity.name}.get${firstUpper(att.name)}() != null) {
@@ -284,7 +254,7 @@ public class Dao${entity.name} extends HibernateDao<${entity.name}> {
 		return results;
 	}
 <#else>
-	@Override
+	
 	public Pager<${entity.name}> getAll(PaginationParams<Filter${entity.name}> queryParams) {
 		CriteriaBuilder builder = getCriteriaBuilder();
 		Filter${entity.name} filter${entity.name} = queryParams.getFilter();
@@ -301,7 +271,7 @@ public class Dao${entity.name} extends HibernateDao<${entity.name}> {
 	<#list entity.attributes as att>
       	<#if att.type.className == 'String'>	
 		if (filter${entity.name}.get${firstUpper(att.name)}() != null) {
-			whereClause = builder.and(whereClause, builder.like(builder.upper(root.get("${att.name}")), "%" + filter${entity.name}.get${firstUpper(att.name)}().toUpperCase() + "%"));
+			whereClause = builder.and(whereClause, builder.like(builder.upper(root.<String>get("${att.name}")), "%" + filter${entity.name}.get${firstUpper(att.name)}().toUpperCase() + "%"));
 		}
 		<#else>
 		if (filter${entity.name}.get${firstUpper(att.name)}() != null) {
@@ -343,7 +313,7 @@ public class Dao${entity.name} extends HibernateDao<${entity.name}> {
 	<#list entity.attributes as att>
       	<#if att.type.className == 'String'>	
 		if (filter${entity.name}.get${firstUpper(att.name)}() != null) {
-			whereClause = builder.and(whereClause, builder.like(builder.upper(root.get("${att.name}")), "%" + filter${entity.name}.get${firstUpper(att.name)}().toUpperCase() + "%"));
+			whereClause = builder.and(whereClause, builder.like(builder.upper(root.<String>get("${att.name}")), "%" + filter${entity.name}.get${firstUpper(att.name)}().toUpperCase() + "%"));
 		}
 		<#else>
 		if (filter${entity.name}.get${firstUpper(att.name)}() != null) {
@@ -390,7 +360,7 @@ public class Dao${entity.name} extends HibernateDao<${entity.name}> {
 	<#list entity.attributes as att>
       	<#if att.type.className == 'String'>	
 		if (filter${entity.name}.get${firstUpper(att.name)}() != null) {
-			whereClause = builder.and(whereClause, builder.like(builder.upper(root.get("${att.name}")), "%" + filter${entity.name}.get${firstUpper(att.name)}().toUpperCase() + "%"));
+			whereClause = builder.and(whereClause, builder.like(builder.upper(root.<String>get("${att.name}")), "%" + filter${entity.name}.get${firstUpper(att.name)}().toUpperCase() + "%"));
 		}
 		<#else>
 		if (filter${entity.name}.get${firstUpper(att.name)}() != null) {
@@ -470,7 +440,7 @@ public class Dao${entity.name} extends HibernateDao<${entity.name}> {
 	<#list entity.attributes as att>
       	<#if att.type.className == 'String'>	
 		if (filter${entity.name}.get${firstUpper(att.name)}() != null) {
-			whereClause = builder.and(whereClause, builder.like(builder.upper(root.get("${att.name}")), "%" + filter${entity.name}.get${firstUpper(att.name)}().toUpperCase() + "%"));
+			whereClause = builder.and(whereClause, builder.like(builder.upper(root.<String>get("${att.name}")), "%" + filter${entity.name}.get${firstUpper(att.name)}().toUpperCase() + "%"));
 		}
 		<#else>
 		if (filter${entity.name}.get${firstUpper(att.name)}() != null) {

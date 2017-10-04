@@ -42,11 +42,11 @@ public class FSItemDescription {
 //		persistences.add(new FSItemDescription("DaoUser", rootFolder + "persistence" + File.separator, "DaoUser", FileType.JAVA));
 		persistences.add(new FSItemDescription("CatchThrowConstraintViolationException", rootFolder + "persistence" + File.separator, "CatchThrowConstraintViolationException", FileType.JAVA));
 
-		persistences.add(new FSItemDescription("AccessibleHibernateDao", rootFolder + "persistence" + File.separator, "AccessibleHibernateDao", FileType.JAVA));
+//		persistences.add(new FSItemDescription("AccessibleHibernateDao", rootFolder + "persistence" + File.separator, "AccessibleHibernateDao", FileType.JAVA));
 
 		persistences.add(new FSItemDescription("Pagination", rootFolder + "persistence" + File.separator + "pagination" + File.separator, "Pagination", FileType.JAVA));
 		persistences.add(new FSItemDescription("PaginationParams", rootFolder + "persistence" + File.separator + "pagination" + File.separator, "PaginationParams", FileType.JAVA));
-		persistences.add(new FSItemDescription("Paginator", rootFolder + "persistence" + File.separator + "pagination" + File.separator, "Paginator", FileType.JAVA));
+//		persistences.add(new FSItemDescription("Paginator", rootFolder + "persistence" + File.separator + "pagination" + File.separator, "Paginator", FileType.JAVA));
 		persistences.add(new FSItemDescription("Pager", rootFolder + "persistence" + File.separator + "pagination" + File.separator, "Pager", FileType.JAVA));
 		persistences.add(new FSItemDescription("HibernateEventWiring", rootFolder + "persistence" + File.separator, "HibernateEventWiring", FileType.JAVA));
 //		persistences.add(new FSItemDescription("DaoSyncInfo", rootFolder + "persistence" + File.separator, "DaoSyncInfo", FileType.JAVA));

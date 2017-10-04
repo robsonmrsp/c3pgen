@@ -44,7 +44,7 @@ import ${corepackage}.model.AbstractTimestampEntity;
 	<#list entity.attributes as att >
 		<#if att.unique>
 			<#if application.multitenancy>
-		@UniqueConstraint(name = "${dataBasePrefix}_${uppercase(entity.tableName!entity.name)}_${uppercase(att.tableFieldName!att.name)}", columnNames = { "${uppercase(att.tableFieldName!att.name)}", "ID_CUSTOMER_OWNER" }),
+		@UniqueConstraint(name = "${dataBasePrefix}_${uppercase(entity.tableName!entity.name)}_${uppercase(att.tableFieldName!att.name)}", columnNames = { "${uppercase(att.tableFieldName!att.name)}", "ID_OWNER" }),
 			<#else>		
 		@UniqueConstraint(name = "${dataBasePrefix}_${uppercase(entity.tableName!entity.name)}_${uppercase(att.tableFieldName!att.name)}", columnNames = { "${uppercase(att.tableFieldName!att.name)}" }), 
 			</#if >
@@ -56,7 +56,7 @@ import ${corepackage}.model.AbstractTimestampEntity;
 	<#list entity.attributes as att >
 		<#if att.unique>
 			<#if application.multitenancy>
-		@UniqueConstraint(name = "${uppercase(entity.tableName!entity.name)}_${uppercase(att.tableFieldName!att.name)}", columnNames = { "${uppercase(att.tableFieldName!att.name)}",  "ID_CUSTOMER_OWNER"}), 
+		@UniqueConstraint(name = "${uppercase(entity.tableName!entity.name)}_${uppercase(att.tableFieldName!att.name)}", columnNames = { "${uppercase(att.tableFieldName!att.name)}",  "ID_OWNER"}), 
 			<#else >
 		@UniqueConstraint(name = "${uppercase(entity.tableName!entity.name)}_${uppercase(att.tableFieldName!att.name)}", columnNames = { "${uppercase(att.tableFieldName!att.name)}" }), 
 			</#if >
