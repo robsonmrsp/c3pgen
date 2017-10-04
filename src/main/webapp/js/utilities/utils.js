@@ -624,6 +624,10 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'bootbox', 'adap
 		firstUpper : function(string) {
 			return string.charAt(0).toUpperCase() + string.slice(1);
 		},
+		
+		firstLower : function(string) {
+			return string.charAt(0).toLowerCase() + string.slice(1);
+		},
 
 		getVEntityByName : function(/*
 									 * nome da entidade representada no editor

@@ -33,6 +33,9 @@ public class Relationship extends AbstractTimestampEntity {
 	@Column(name = "NAME")
 	private String name;
 
+	@Column(name = "TARGET_NAME")
+	private String targetName;
+
 	@Column(name = "ORIGIN")
 	private Boolean origin;
 
@@ -71,6 +74,11 @@ public class Relationship extends AbstractTimestampEntity {
 	@JoinColumn(name = "ID_VIEWAPPROACH")
 	@Cascade(CascadeType.ALL)
 	private ViewApproach viewApproach;
+
+	@ManyToOne
+	@Cascade(CascadeType.ALL)
+	@JoinColumn(name = "id_target")
+	private Relationship target;
 
 	@ManyToOne
 	@JoinColumn(name = "id_client")
@@ -137,9 +145,10 @@ public class Relationship extends AbstractTimestampEntity {
 
 	public String getOwnerName() {
 
-		if (getOrigin() == Boolean.TRUE && ownerName == null && type.equals("ManyToMany")) {
-			setOwnerName(name + "s");
-		}
+		// if (getOrigin() == Boolean.TRUE && ownerName == null && type.equals("ManyToMany")) {
+		// setOwnerName(name + "s");
+		// }
+
 		return ownerName;
 	}
 
@@ -246,6 +255,9 @@ public class Relationship extends AbstractTimestampEntity {
 	}
 
 	public Boolean getOrigin() {
+		if (origin == null) {
+			setOrigin(Boolean.FALSE);
+		}
 		return origin;
 	}
 
@@ -259,6 +271,22 @@ public class Relationship extends AbstractTimestampEntity {
 
 	public void setEntity(ApplicationEntity entity) {
 		this.entity = entity;
+	}
+
+	public Relationship getTarget() {
+		return target;
+	}
+
+	public void setTarget(Relationship target) {
+		this.target = target;
+	}
+
+	public String getTargetName() {
+		return targetName;
+	}
+
+	public void setTargetName(String targetName) {
+		this.targetName = targetName;
 	}
 
 }

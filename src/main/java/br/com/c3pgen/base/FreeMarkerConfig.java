@@ -17,6 +17,7 @@ import br.com.c3pgen.base.methods.SnakeCaseStringMethod;
 import br.com.c3pgen.base.methods.ToLowerCaseMethod;
 import br.com.c3pgen.base.methods.ToStringMethod;
 import br.com.c3pgen.base.methods.ToUpperCaseMethod;
+import br.com.c3pgen.base.methods.getOwnerNameMethod;
 import br.com.c3pgen.base.util.Util;
 import br.com.c3pgen.model.Application;
 import freemarker.cache.FileTemplateLoader;
@@ -116,6 +117,7 @@ public class FreeMarkerConfig {
 		data.put("toListString", new ToStringMethod());
 		data.put("application", application);
 		data.put("package", application.getRootPackage());
+		data.put("getOwnerName", new getOwnerNameMethod());
 		data.put("JSetupVersion", Util.JSETUP_VERSION);
 		return data;
 	}

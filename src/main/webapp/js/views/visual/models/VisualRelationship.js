@@ -5,6 +5,7 @@ define(function(require) {
 	var AttributeModel = require('models/AttributeModel');
 	var RelationshipModel = require('models/RelationshipModel');
 	var EntityModel = require('models/EntityModel');
+	var Util = require('utilities/utils');
 
 	Joint.shapes.html = Joint.shapes.html || {};
 
@@ -130,25 +131,9 @@ define(function(require) {
 						this.set('target', _target.getGraphEntity());
 
 						if (this.newRelation) {
-							_sourceRelationModel = new RelationshipModel({
-								name : (_targetEntity.get('name') + 's').toLowerCase(),
-								type : 'OneToMany',
-								origin : true,
-								displayName : _targetEntity.get('name') + 's',
-								ownerName : '_' + _sourceEntity.get('name'),
-								model : _targetEntity.get('name'),
-								entity : _sourceEntity,
-								entity : {
-									id : _sourceEntity.get('id')
-								},
-								viewApproach : {
-									type : 'none'
-								},
-								uniDirecional : '',
-							});
 
 							_targetRelationModel = new RelationshipModel({
-								name : _sourceEntity.get('name').toLowerCase(),
+								name : Util.firstLower(_sourceEntity.get('name')),
 								type : 'ManyToOne',
 								displayName : _sourceEntity.get('name') + 's',
 								ownerName : '',
@@ -161,11 +146,30 @@ define(function(require) {
 								},
 								uniDirecional : '',
 							});
+
+							_sourceRelationModel = new RelationshipModel({
+								name : Util.firstLower(_targetEntity.get('name') + 's').toLowerCase(),
+								type : 'OneToMany',
+								origin : true,
+								displayName : _targetEntity.get('name') + 's',
+								ownerName : Util.firstLower(_sourceEntity.get('name')),
+								model : _targetEntity.get('name'),
+//								entity : _sourceEntity,
+								entity : {
+									id : _sourceEntity.get('id')
+								},
+								viewApproach : {
+									type : 'none'
+								},
+								uniDirecional : '',
+								targetName : _targetRelationModel.get('name'),
+							});
+
 							_sourceEntityRelations.push(_sourceRelationModel.toJSON());
 							_sourceEntity.set('relationships', _sourceEntityRelations);
 							_sourceEntity.set('notes', 'add' + _sourceRelationModel.name);
 							_sourceEntity.set('posX', _sourceEntity.get('posX') + 1);
-							
+
 							_targetEntityRelations.push(_targetRelationModel.toJSON());
 							_targetEntity.set('relationships', _targetEntityRelations);
 							_targetEntity.set('notes', 'add' + _targetRelationModel.name);

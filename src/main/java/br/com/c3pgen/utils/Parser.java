@@ -204,7 +204,7 @@ public class Parser {
 		if (listEntities != null) {
 			for (JsonTheEntity loopJsonTheEntity : listEntities) {
 				ApplicationEntity entity = toEntity(loopJsonTheEntity);
-				
+
 				application.addEntities(entity);
 			}
 		}
@@ -511,6 +511,7 @@ public class Parser {
 	private static void applyBasicJsonValues(JsonRelationship jsonRelationship, Relationship relationship) {
 		jsonRelationship.setId(relationship.getId());
 		jsonRelationship.setName(relationship.getName());
+		jsonRelationship.setTargetName(relationship.getTargetName());
 		jsonRelationship.setOrigin(relationship.getOrigin());
 		jsonRelationship.setType(relationship.getType());
 		jsonRelationship.setDisplayName(relationship.getDisplayName());
@@ -523,6 +524,7 @@ public class Parser {
 	private static void applyBasicEntityValues(Relationship relationship, JsonRelationship jsonRelationship) {
 		relationship.setId(jsonRelationship.getId());
 		relationship.setName(jsonRelationship.getName());
+		relationship.setTargetName(jsonRelationship.getTargetName());
 		relationship.setOrigin(jsonRelationship.getOrigin());
 		relationship.setType(jsonRelationship.getType());
 		relationship.setDisplayName(jsonRelationship.getDisplayName());
@@ -542,10 +544,10 @@ public class Parser {
 			jsonRelationship.setEntity(toBasicJson(entity));
 		}
 
-		// Relationship target = relationship.getTarget();
-		// if (target != null) {
-		// jsonRelationship.setTarget(toBasicJson(target));
-		// }
+		Relationship target = relationship.getTarget();
+		if (target != null) {
+			jsonRelationship.setTarget(toBasicJson(target));
+		}
 
 		ViewApproach viewApproach = relationship.getViewApproach();
 		if (viewApproach != null) {
@@ -561,10 +563,10 @@ public class Parser {
 
 		applyBasicEntityValues(relationship, jsonRelationship);
 
-		// JsonRelationship jsonTarget = jsonRelationship.getTarget();
-		// if (jsonTarget != null) {
-		// relationship.setTarget(toBasicEntity(jsonTarget));
-		// }
+		JsonRelationship jsonTarget = jsonRelationship.getTarget();
+		if (jsonTarget != null) {
+			relationship.setTarget(toBasicEntity(jsonTarget));
+		}
 		JsonTheEntity entity = jsonRelationship.getEntity();
 		if (entity != null) {
 			relationship.setEntity(toBasicEntity(entity));
@@ -586,9 +588,9 @@ public class Parser {
 		applyBasicEntityValues(relationship, jsonRelationship);
 
 		JsonRelationship jsonTarget = jsonRelationship.getTarget();
-		// if (jsonTarget != null) {
-		// relationship.setTarget(toBasicEntity(jsonTarget));
-		// }
+		if (jsonTarget != null) {
+			relationship.setTarget(toBasicEntity(jsonTarget));
+		}
 		// tentando evitar o problema ao inserir objeto transiente
 		JsonTheEntity entity = jsonRelationship.getEntity();
 		for (ApplicationEntity ent : application.getEntities()) {

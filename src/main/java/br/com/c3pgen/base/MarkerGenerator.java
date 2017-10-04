@@ -23,6 +23,7 @@ import br.com.c3pgen.base.methods.SnakeCaseStringMethod;
 import br.com.c3pgen.base.methods.ToLowerCaseMethod;
 import br.com.c3pgen.base.methods.ToStringMethod;
 import br.com.c3pgen.base.methods.ToUpperCaseMethod;
+import br.com.c3pgen.base.methods.getOwnerNameMethod;
 import br.com.c3pgen.base.util.Util;
 import br.com.c3pgen.model.Application;
 import br.com.c3pgen.model.ApplicationEntity;
@@ -107,6 +108,7 @@ public class MarkerGenerator {
 		data.put("toListString", new ToStringMethod());
 		data.put("entity", object);
 		data.put("application", application);
+		data.put("getOwnerName", new getOwnerNameMethod());
 		data.put("dataBasePrefix", application.getDataBasePrefix());
 		data.put("JSetupVersion", Util.JSETUP_VERSION);
 		return data;
@@ -128,6 +130,7 @@ public class MarkerGenerator {
 		data.put("package", ApplicationConfiguration.MAIN_PACKAGE);
 		data.put("entities", object);
 		data.put("dataBasePrefix", application.getDataBasePrefix());
+		data.put("getOwnerName", new getOwnerNameMethod());
 		data.put("JSetupVersion", Util.JSETUP_VERSION);
 		return data;
 	}

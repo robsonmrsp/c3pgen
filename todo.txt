@@ -13,3 +13,8 @@ Sobre segurança no Spring-mvc
 http://www.studytrails.com/frameworks/spring/spring-security-method-level/
 
 5
+
+Mudar o endereço da classe Pager para um local neutro, nem do servico, nem do persistencia nem do controller
+
+
+Ao salvar a aplicação deveremos passar pelos relacionamentos e apagar aqyeles que não estão em rel_ent

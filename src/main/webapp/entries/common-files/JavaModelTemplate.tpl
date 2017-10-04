@@ -108,7 +108,7 @@ public class ${entity.name} extends AbstractTimestampEntity{
 	<#if entity.relationships??>	
 	<#list entity.relationships as rel>
 		<#if rel.type == 'OneToMany'>
-			<#if rel.ownerName?has_content>
+			<#if rel.origin>
 	@OneToMany(mappedBy="${rel.ownerName}")
 			<#else>
 	@OneToMany()
