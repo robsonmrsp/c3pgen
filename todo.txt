@@ -17,4 +17,5 @@ http://www.studytrails.com/frameworks/spring/spring-security-method-level/
 Mudar o endereço da classe Pager para um local neutro, nem do servico, nem do persistencia nem do controller
 
 
-Ao salvar a aplicação deveremos passar pelos relacionamentos e apagar aqyeles que não estão em rel_ent
+1 Ao salvar a aplicação deveremos passar pelos relacionamentos e apagar aqyeles que não estão em rel_ent
+2 Acredito que a cada nova execução de uma consulta devamos criar um novo trio de objetos builder, query e root. Aparentemente eles mantem informações como orderby
