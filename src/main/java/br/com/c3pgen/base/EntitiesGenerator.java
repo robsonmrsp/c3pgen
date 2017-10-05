@@ -276,11 +276,11 @@ public class EntitiesGenerator {
 							if (!ent.getName().equalsIgnoreCase("User")) {
 								System.out.println(" Gerando o model " + ent.getName());
 								javaModelGenerator.generateEntityFile(application, ent);
+								daoGenerator.generateEntityFile(application, ent);
 							}
 
 							basicServiceGenerator.generateEntityFile(application, ent);
 							basicServiceImpGenerator.generateEntityFile(application, ent);
-							daoGenerator.generateEntityFile(application, ent);
 							// resourcesGenerator.generateEntityFile(application,
 							// ent);
 							controllerGenerator.generateEntityFile(application, ent);

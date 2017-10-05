@@ -40,10 +40,10 @@ public class Dao${entity.name} extends HibernateDao<${entity.name}> {
 
 		${entity.name} ${firstLower(entity.name)} = null;
 		try {
-			CriteriaBuilder builder = getCriteriaBuilder();
-			CriteriaQuery<${entity.name}> query = builder.createQuery(${entity.name}.class);
-			Root<${entity.name}> root = query.from(${entity.name}.class);
-
+			CriteriaBuilder builder = builder();
+			CriteriaQuery<${entity.name}> query = query();
+			Root<${entity.name}> root = root();
+		
 			Predicate and = builder.and(builder.equal(root.get("${att.name}"), ${att.name}), builder.equal(root.get("owner").get("id"), owner.getId()));
 
 			${firstLower(entity.name)} = getSession().createQuery(query.select(root).where(and)).uniqueResult();
@@ -56,10 +56,10 @@ public class Dao${entity.name} extends HibernateDao<${entity.name}> {
 	public ${entity.name} findBy${firstUpper(att.name)}(String ${att.name}) {
 		${entity.name} ${firstLower(entity.name)} = null;
 		try {
-			CriteriaBuilder builder = getCriteriaBuilder();
-			CriteriaQuery<${entity.name}> query = builder.createQuery(${entity.name}.class);
-			Root<${entity.name}> root = query.from(${entity.name}.class);
-
+			CriteriaBuilder builder = builder();
+			CriteriaQuery<${entity.name}> query = query();
+			Root<${entity.name}> root = root();
+		
 			Predicate where = builder.and(builder.equal(root.get("${att.name}"), ${att.name}));
 
 			${firstLower(entity.name)} = getSession().createQuery(query.select(root).where(where)).uniqueResult();
@@ -76,15 +76,14 @@ public class Dao${entity.name} extends HibernateDao<${entity.name}> {
 //Consultas considerando o multitenancy	
 <#if application.multitenancy>
 	public Pager<${entity.name}> getAll(PaginationParams<Filter${entity.name}> queryParams, Owner owner) {
-		CriteriaBuilder builder = getCriteriaBuilder();
 		Filter${entity.name} filter${entity.name} = queryParams.getFilter();
+		CriteriaBuilder builder = builder();
+		CriteriaQuery<${entity.name}> query = query();
+		Root<${entity.name}> root = root();
+		CriteriaQuery<Long> queryCount = queryCount();
+		Root<${entity.name}> rootCount = rootCount();
 
-		CriteriaQuery<${entity.name}> query = builder.createQuery(${entity.name}.class);
-		Root<${entity.name}> root = query.from(${entity.name}.class);
-
-		CriteriaQuery<Long> queryCount = builder.createQuery(Long.class);
-		Root<${entity.name}> rootCount = queryCount.from(${entity.name}.class);
-
+		
 		Predicate whereClause = builder.and();
 		
 		whereClause = builder.and(whereClause, builder.equal(root.get("owner").get("id"),owner.getId()));
@@ -111,7 +110,7 @@ public class Dao${entity.name} extends HibernateDao<${entity.name}> {
 		</#if>	
 	</#list>
 	</#if>	
-		Order orderBy = getOrderBy(queryParams, builder, root);
+		Order orderBy = getOrderBy(queryParams);
 
 		TypedQuery<${entity.name}> typedQuery = getSession().createQuery(query.select(root).where(whereClause).orderBy(orderBy));
 		TypedQuery<Long> typedCountQuery = getSession().createQuery(queryCount.select(builder.count(rootCount)).where(whereClause));
@@ -123,14 +122,13 @@ public class Dao${entity.name} extends HibernateDao<${entity.name}> {
 	}
 	
 	public List<${entity.name}> filter(PaginationParams<Filter${entity.name}> queryParams, Owner owner) {
-		CriteriaBuilder builder = getCriteriaBuilder();
 		Filter${entity.name} filter${entity.name} = queryParams.getFilter();
-
-		CriteriaQuery<${entity.name}> query = builder.createQuery(${entity.name}.class);
-		Root<${entity.name}> root = query.from(${entity.name}.class);
-
-		Predicate whereClause = builder.and();
+		CriteriaBuilder builder = builder();
+		CriteriaQuery<${entity.name}> query = query();
+		Root<${entity.name}> root = root();
 		
+		Predicate whereClause = builder.and();
+
 		whereClause = builder.and(whereClause, builder.equal(root.get("owner").get("id"),owner.getId()));
 		
 	<#if entity.attributes??>	
@@ -155,7 +153,7 @@ public class Dao${entity.name} extends HibernateDao<${entity.name}> {
 		</#if>	
 	</#list>
 	</#if>
-		Order orderBy = getOrderBy(queryParams, builder, root);
+		Order orderBy = getOrderBy(queryParams);
 
 		TypedQuery<${entity.name}> typedQuery = getSession().createQuery(query.select(root).where(whereClause).orderBy(orderBy));
 	
@@ -182,11 +180,10 @@ public class Dao${entity.name} extends HibernateDao<${entity.name}> {
 	}
 
 	public List<${entity.name}> filterEqual(Filter${entity.name} filter${entity.name}, Owner owner) {
-		CriteriaBuilder builder = getCriteriaBuilder();
-
-		CriteriaQuery<${entity.name}> query = builder.createQuery(${entity.name}.class);
-		Root<${entity.name}> root = query.from(${entity.name}.class);
-
+		CriteriaBuilder builder = builder();
+		CriteriaQuery<${entity.name}> query = query();
+		Root<${entity.name}> root = root();
+		
 		Predicate whereClause = builder.and();
 
 		whereClause = builder.and(whereClause, builder.equal(root.get("owner").get("id"), owner.getId()));
@@ -215,11 +212,10 @@ public class Dao${entity.name} extends HibernateDao<${entity.name}> {
 	}
 
 	public List<${entity.name}> filterAlike(Filter${entity.name} filter${entity.name}, Owner owner) {
-		CriteriaBuilder builder = getCriteriaBuilder();
-
-		CriteriaQuery<${entity.name}> query = builder.createQuery(${entity.name}.class);
-		Root<${entity.name}> root = query.from(${entity.name}.class);
-
+		CriteriaBuilder builder = builder();
+		CriteriaQuery<${entity.name}> query = query();
+		Root<${entity.name}> root = root();
+		
 		Predicate whereClause = builder.and();
 
 		whereClause = builder.and(whereClause, builder.equal(root.get("owner").get("id"), owner.getId()));
@@ -256,15 +252,13 @@ public class Dao${entity.name} extends HibernateDao<${entity.name}> {
 <#else>
 	
 	public Pager<${entity.name}> getAll(PaginationParams<Filter${entity.name}> queryParams) {
-		CriteriaBuilder builder = getCriteriaBuilder();
 		Filter${entity.name} filter${entity.name} = queryParams.getFilter();
-
-		CriteriaQuery<${entity.name}> query = builder.createQuery(${entity.name}.class);
-		Root<${entity.name}> root = query.from(${entity.name}.class);
-
-		CriteriaQuery<Long> queryCount = builder.createQuery(Long.class);
-		Root<${entity.name}> rootCount = queryCount.from(${entity.name}.class);
-
+		CriteriaBuilder builder = builder();
+		CriteriaQuery<${entity.name}> query = query();
+		Root<${entity.name}> root = root();
+		CriteriaQuery<Long> queryCount = queryCount();
+		Root<${entity.name}> rootCount = rootCount();
+		
 		Predicate whereClause = builder.and();
 				
 	<#if entity.attributes??>	
@@ -289,7 +283,7 @@ public class Dao${entity.name} extends HibernateDao<${entity.name}> {
 		</#if>	
 	</#list>
 	</#if>	
-		Order orderBy = getOrderBy(queryParams, builder, root);
+		Order orderBy = getOrderBy(queryParams);
 
 		TypedQuery<${entity.name}> typedQuery = getSession().createQuery(query.select(root).where(whereClause).orderBy(orderBy));
 		TypedQuery<Long> typedCountQuery = getSession().createQuery(queryCount.select(builder.count(rootCount)).where(whereClause));
@@ -301,12 +295,11 @@ public class Dao${entity.name} extends HibernateDao<${entity.name}> {
 	}
 	
 	public List<${entity.name}> filter(PaginationParams<Filter${entity.name}> queryParams) {
-		CriteriaBuilder builder = getCriteriaBuilder();
 		Filter${entity.name} filter${entity.name} = queryParams.getFilter();
-
-		CriteriaQuery<${entity.name}> query = builder.createQuery(${entity.name}.class);
-		Root<${entity.name}> root = query.from(${entity.name}.class);
-
+		CriteriaBuilder builder = builder();
+		CriteriaQuery<${entity.name}> query = query();
+		Root<${entity.name}> root = root();
+		
 		Predicate whereClause = builder.and();
 		
 	<#if entity.attributes??>	
@@ -331,7 +324,7 @@ public class Dao${entity.name} extends HibernateDao<${entity.name}> {
 		</#if>	
 	</#list>
 	</#if>
-		Order orderBy = getOrderBy(queryParams, builder, root);
+		Order orderBy = getOrderBy(queryParams);
 
 		TypedQuery<${entity.name}> typedQuery = getSession().createQuery(query.select(root).where(whereClause).orderBy(orderBy));
 	
@@ -348,12 +341,11 @@ public class Dao${entity.name} extends HibernateDao<${entity.name}> {
 	}
 
 	public List<${entity.name}> filter(PaginationParams<Filter${entity.name}> queryParams) {
-		CriteriaBuilder builder = getCriteriaBuilder();
 		Filter${entity.name} filter${entity.name} = queryParams.getFilter();
-
-		CriteriaQuery<${entity.name}> query = builder.createQuery(${entity.name}.class);
-		Root<${entity.name}> root = query.from(${entity.name}.class);
-
+		CriteriaBuilder builder = builder();
+		CriteriaQuery<${entity.name}> query = query();
+		Root<${entity.name}> root = root();
+				
 		Predicate whereClause = builder.and();
 
 	<#if entity.attributes??>	
@@ -379,7 +371,7 @@ public class Dao${entity.name} extends HibernateDao<${entity.name}> {
 	</#list>
 	</#if>
 	
-		Order orderBy = getOrderBy(queryParams, builder, root);
+		Order orderBy = getOrderBy(queryParams);
 
 		TypedQuery<${entity.name}> typedQuery = getSession().createQuery(query.select(root).where(whereClause).orderBy(orderBy));
 
@@ -398,12 +390,12 @@ public class Dao${entity.name} extends HibernateDao<${entity.name}> {
 	}
 
 	public List<${entity.name}> filterEqual(Filter${entity.name} filter${entity.name}) {
-		CriteriaBuilder builder = getCriteriaBuilder();
-
-		CriteriaQuery<${entity.name}> query = builder.createQuery(${entity.name}.class);
-		Root<${entity.name}> root = query.from(${entity.name}.class);
-
+		CriteriaBuilder builder = builder();
+		CriteriaQuery<${entity.name}> query = query();
+		Root<${entity.name}> root = root();
+		
 		Predicate whereClause = builder.and();
+		
 
 	<#if entity.attributes??>	
 	<#list entity.attributes as att>
@@ -429,11 +421,10 @@ public class Dao${entity.name} extends HibernateDao<${entity.name}> {
 	}
 
 	public List<${entity.name}> filterAlike(Filter${entity.name} filter${entity.name}) {
-		CriteriaBuilder builder = getCriteriaBuilder();
-
-		CriteriaQuery<${entity.name}> query = builder.createQuery(${entity.name}.class);
-		Root<${entity.name}> root = query.from(${entity.name}.class);
-
+		CriteriaBuilder builder = builder();
+		CriteriaQuery<${entity.name}> query = query();
+		Root<${entity.name}> root = root();
+	
 		Predicate whereClause = builder.and();
 
 	<#if entity.attributes??>	

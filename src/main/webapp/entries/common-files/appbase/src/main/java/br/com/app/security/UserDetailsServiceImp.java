@@ -38,11 +38,7 @@ public class UserDetailsServiceImp implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		<#if application.multitenancy>
-		User appUser = userDao.findByUsername(username, context.getOwner());
-		<#else>
 		User appUser = userDao.findByUsername(username);
-		</#if>
 		if (appUser == null) {
 			throw new UsernameNotFoundException("Invalid username...");
 		}

@@ -71,7 +71,7 @@ public class User extends AbstractTimestampEntity implements UserDetails {
 
 	
 	@ManyToOne
-	@JoinColumn(name = "ID_CUSTOMER_OWNER")
+	@JoinColumn(name = "ID_OWNER")
 	private Owner owner;
 	
 	public User() {
