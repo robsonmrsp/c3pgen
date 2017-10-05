@@ -154,7 +154,7 @@ define(function(require) {
 								displayName : _targetEntity.get('name') + 's',
 								ownerName : Util.firstLower(_sourceEntity.get('name')),
 								model : _targetEntity.get('name'),
-//								entity : _sourceEntity,
+								// entity : _sourceEntity,
 								entity : {
 									id : _sourceEntity.get('id')
 								},

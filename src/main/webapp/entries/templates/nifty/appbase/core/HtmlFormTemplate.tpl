@@ -73,7 +73,14 @@
 				<#if entity.relationships??>	
 				<#list entity.relationships as rel>
 					<#if (rel.type == 'OneToMany' || rel.type == 'ManyToMany' ) && rel.viewApproach.type == 'multiselectmodal'>
-					<div id="${firstLower(rel.name)}MultiselectModal" class="${firstLower(rel.name)}-container panel"> </div>
+					<div class="panel">
+						<div class="panel-heading">
+							<h3 class="panel-title">${firstUpper(rel.displayName)</h3>
+						</div>
+						<div class="" >
+							<div id="${firstLower(rel.name)}MultiselectModal" class="${firstLower(rel.name)}-container"> </div>
+						</div>
+					</div>
 					</#if>					
 					<#if (rel.type == 'OneToMany' || rel.type == 'ManyToMany' ) && rel.viewApproach.type == 'multiselect'>
 

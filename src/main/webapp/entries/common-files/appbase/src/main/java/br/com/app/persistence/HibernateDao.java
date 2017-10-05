@@ -34,18 +34,17 @@ public class HibernateDao<Entity> {
 	private static final Logger LOGGER = Logger.getLogger(HibernateDao.class);
 
 	private Class<Entity> clazz;
+	private CriteriaBuilder builder;
+	private CriteriaQuery<Entity> query;
+	private Root<Entity> root;
+	private CriteriaQuery<Long> queryCount;
+	private Root<Entity> rootCount;
 
-	protected CriteriaBuilder builder;
-	protected CriteriaQuery<Entity> query;
-	protected Root<Entity> root;
-	protected CriteriaQuery<Long> queryCount;
-	protected Root<Entity> rootCount;
-
-	protected Root<Entity> rootCount() {
-		if (rootCount == null) {
-			rootCount = queryCount().from(this.clazz);
+	protected CriteriaQuery<Long> queryCount() {
+		if (queryCount == null) {
+			queryCount = builder().createQuery(Long.class);
 		}
-		return rootCount;
+		return queryCount;
 	}
 
 	protected CriteriaQuery<Entity> query() {
