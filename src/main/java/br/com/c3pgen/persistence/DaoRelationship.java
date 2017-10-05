@@ -204,6 +204,8 @@ public class DaoRelationship extends AccessibleHibernateDao<Relationship> {
 
 		String hqlDeleteEntRel = "delete from rel_ent where ent_id = :entityId  or rel_id in(select id from Relationship  where (id_entity = :entityId  or model = :entityName) and	id_client = :idClient)";//
 
+		String hqlDeleteOrfanRel = "delete from relationship where not exists (select rel_id from rel_ent where rel_ent.rel_id = id)";//
+
 		Session session = getSession();
 
 		int deletedEntitiesEntRel = session.createSQLQuery(hqlDeleteEntRel) //
@@ -211,21 +213,14 @@ public class DaoRelationship extends AccessibleHibernateDao<Relationship> {
 				.setInteger("idClient", entity.getOwner().getId())//
 				.setString("entityName", entity.getName())//
 				.executeUpdate();
-		
-		// int deletedEntitiesEntRel =
-		// session.createSQLQuery(hqlDeleteEntRel).setInteger("entId",
-		// entity.getId()).executeUpdate();
 
-		// int deletedEntities =
-		// session.createSQLQuery(hqlDelete).setInteger("idClient",
-		// entity.getOwner().getId()).setInteger("entityId",
-		// entity.getId()).executeUpdate();
 		int deletedEntities = session.createSQLQuery(hqlDelete)//
 				.setInteger("entityId", entity.getId())//
 				.setInteger("idClient", entity.getOwner().getId())//
 				.setString("entityName", entity.getName())//
 				.executeUpdate();
 
+		int deletedOrfanRel = session.createSQLQuery(hqlDeleteOrfanRel).executeUpdate();//
 
 		return deletedEntitiesEntRel;
 
