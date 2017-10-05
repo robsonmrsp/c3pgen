@@ -395,7 +395,7 @@ define(function(require) {
 				var fields = this.column.get("name").split('.')
 				theColValue = model.get(fields[0]) && model.get(fields[0])[fields[1]];
 			} else {
-				theColValue = model.get(this.column.get("name"));
+				theColValue = model.get(this.column.get("name")) || '';
 			}
 
 			var theFormattedColValue = this.formatter.fromRaw(theColValue, model);
