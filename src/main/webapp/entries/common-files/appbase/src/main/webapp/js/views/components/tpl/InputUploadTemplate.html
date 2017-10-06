@@ -1,10 +1,33 @@
 <div class="panel">
 	<div class="pad-all text-center ">
-		<img height="128" style="cursor: pointer;" src='images/upload-file.png' no-image-file='' class="input-image jsetup-upload-image   img-lg img-circl mar-btm">
+		<img height="128" style="cursor: pointer;" src='images/upload-file.png' no-image-file='' class="input-image jsetup-upload-image  img-circl mar-btm">
 		<div class="btn-group btn-group-justified pad-top">
-			<a href="javascript:void(-1)" class="btn btn-icon bord-no  fa fa-external-link icon-lg"></a>
+			<a href="javascript:void(-1)" class="btn btn-icon bord-no  fa fa-external-link icon-lg show-preview "></a>
 			<a href="javascript:void(-1)" class="remove-preview btn btn-icon bord-no fa fa-2x fa-trash icon-lg" style="display: none"></a>
 		</div>
 	</div>
 </div>
 <input type="file" name="files[]" style="display: none" class="input-upload-file" multiple="multiple">
+<div class="modal fade" id="dialogAttachment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">
+					<i class="fa fa-times-circle-o fa-2x"></i>
+					<span class="sr-only">Close</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel"></h4>
+			</div>
+			<div class="modal-body" style="min-height: 300px">
+				<div class="row-fluid" style="min-height: 300px">
+					<div class="pad-all text-center ">
+						<img src='images/upload-file.png' height="350" class="modal-image   mar-btm">
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button data-dismiss="modal" class="btn btn-default" type="button">Fechar</button>
+			</div>
+		</div>
+	</div>
+</div>

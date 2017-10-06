@@ -54,6 +54,7 @@ require.config({
 		'bootstrapSwitch' : '../vendor/bootstrap-switch-3.3.4/dist/js/bootstrap-switch',
 		'summernote' : '../vendor/summernote-0.8.7/dist/summernote',
 		'ionsound' : '../vendor/ion.sound-3.0.7/ion.sound',
+		'Collections' : '../vendor/collections-5.0.7/collections.min',
 	},
 	shim : {
 

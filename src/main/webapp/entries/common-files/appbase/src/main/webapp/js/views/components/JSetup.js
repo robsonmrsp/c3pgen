@@ -1,7 +1,7 @@
 define(function(require) {
 	var _ = require('adapters/underscore-adapter');
 	var $ = require('adapters/jquery-adapter');
-	var Col = require('adapters/col-adapter');
+
 	var Backbone = require('adapters/backbone-adapter');
 	var Marionette = require('marionette');
 	var Backgrid = require('adapters/backgrid-adapter');

@@ -13,7 +13,8 @@ define(function(require) {
 		events : {
 			'change .input-upload-file' : "sendFile",
 			'click .input-image' : "forceClickInputUploadFile",
-			'click  .remove-preview' : 'removeFile'
+			'click  .remove-preview' : 'removeFile',
+			'click 	.show-preview' : 'showPreview',
 		},
 
 		ui : {
@@ -21,6 +22,12 @@ define(function(require) {
 			removePreview : '.remove-preview',
 			inputUploadFile : '.input-upload-file',
 			uploadImage : '.jsetup-upload-image',
+			modalView : '.modal',
+			modalImage : '.modal-image',
+		},
+
+		showPreview : function() {
+			this.ui.modalView.modal('show');
 		},
 
 		forceClickInputUploadFile : function(evt) {
@@ -100,6 +107,8 @@ define(function(require) {
 		removeFile : function() {
 			this.clear();
 			this._getBindEl().val('')
+			
+			this.ui.modalImage.src(this.ui.uploadImage.attr('no-image-file'))
 			this.ui.removePreview.hide();
 		},
 		uploadOneFile : function(file) {
@@ -116,6 +125,7 @@ define(function(require) {
 					console.log(_model, _resp, _options)
 					// if the updating file is a image, show it!
 					that.ui.imageView.attr('src', _resp.dataUrl)
+					that.ui.modalImage.attr('src', _resp.dataUrl.replace('uploads/', 'uploads/ORIGINAL_'));
 					that.ui.removePreview.show();
 
 					if (that.bindElement) {

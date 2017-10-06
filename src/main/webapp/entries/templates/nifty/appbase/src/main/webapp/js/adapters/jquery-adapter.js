@@ -1,5 +1,5 @@
 define([ 'jquery', 'bootstrap', 'jqueryScrollTo', 'datetimepicker', 'datetimepicker_lang_pt_BR', 'jqueryUI', 'nprogress', 'jqueryGritter', 'selectize', 'jqueryForm', 'jqueryChosen', 'jqueryInputMask', 'typeahead', 'bloodhound', 'jqueryFormValidator', 'sweetAlert', 'metisMenu',
-		'nifty', 'tagsinput', 'ionsound', 'bootstrapSwitch', 'summernote' ,'nestable'], function($, styleCheck) {
+		'nifty', 'tagsinput', 'ionsound', 'bootstrapSwitch', 'summernote' ,'nestable', 'Collections'], function($, styleCheck) {
 
 	// http://bootstrapswitch.com/options.html
 	$.fn.bootstrapSwitch.defaults.size = 'small';

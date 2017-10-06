@@ -1,13 +1,13 @@
-define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'adapters/underscore-adapter', 'adapters/jquery-adapter', 'bootstrap', ], function(NProgress, moment, Spinner, Col, _, $) {
+define([ 'nprogress', 'moment', 'spin', 'adapters/underscore-adapter', 'adapters/jquery-adapter', 'bootstrap', ], function(NProgress, moment, Spinner, _, $) {
 	Number.prototype.formatMoney = function(c, d, t) {
 		var n = this, c = isNaN(c = Math.abs(c)) ? 2 : c, d = d == undefined ? "." : d, t = t == undefined ? "," : t, s = n < 0 ? "-" : "", i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "", j = (j = i.length) > 3 ? j % 3 : 0;
 		return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
 	};
 
-	LOG_FILE = window.logFile || new Col.List();
+	LOG_FILE = window.logFile || new List();
 
 	window.logFile = LOG_FILE;
-
+	// adapters/col-adapter
 	ion.sound({
 		sounds : [ {
 			name : "beer_can_opening"
@@ -27,8 +27,8 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'adapters/unders
 	});
 
 	window.addLogEntry = function(entry) {
-		if (window.logFile.size() > 1000) {
-			window.logFile.remove(0);
+		if (window.logFile.length > 1000) {
+			window.logFile.shift();
 		}
 		window.logFile.add('\n[ ' + location.toString() + ' ][ ' + moment().format('DD/MM/YYYY HH:mm:ss SSS') + ' ]' + entry);
 		window.store('\n[ ' + location.toString() + ' ][ ' + moment().format('DD/MM/YYYY HH:mm:ss SSS') + ' ]' + entry);
@@ -44,9 +44,10 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'adapters/unders
 		console.log(log.replace(/  /g, '\n'));
 	};
 	window.showLog = function() {
-		_.each(window.logFile.elements, function(entr) {
+		window.logFile.forEach(function(entr) {
 			console.log(entr.replace(/  /g, '\n'));
 		})
+
 	};
 
 	var spinnerOpts = {
@@ -266,8 +267,7 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/col-adapter', 'adapters/unders
 		},
 
 		/*
-		 * Usage: breadcrumb({iconClass:'',itemLabel:'',
-		 * itemSubFolderName:'',url:''});
+		 * Usage: breadcrumb({iconClass:'',itemLabel:'', itemSubFolderName:'',url:''});
 		 */
 		breadcrumb : function(itemMenu) {
 			if (itemMenu) {
