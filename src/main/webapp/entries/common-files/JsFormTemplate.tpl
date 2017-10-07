@@ -91,6 +91,11 @@ define(function(require) {
 		<#if entity.relationships??>	
 		<#list entity.relationships as rel>
 			<#if rel.type == 'OneToMany'>
+				<#if rel.viewApproach?? >
+					<#if  rel.viewApproach.type  == 'multiselect'>
+			input${firstUpper(rel.name)} : '#input${firstUpper(rel.name)}',
+					</#if> 
+				</#if>
 			<#elseif rel.type == 'ManyToOne'>
 				<#if rel.viewApproach?? >
 					<#if rel.viewApproach.type  == 'combo'  || rel.viewApproach.type  == 'multiselect'>

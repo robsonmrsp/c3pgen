@@ -75,7 +75,7 @@
 					<#if (rel.type == 'OneToMany' || rel.type == 'ManyToMany' ) && rel.viewApproach.type == 'multiselectmodal'>
 					<div class="panel">
 						<div class="panel-heading">
-							<h3 class="panel-title">${firstUpper(rel.displayName)</h3>
+							<h3 class="panel-title">${firstUpper(rel.displayName)}</h3>
 						</div>
 						<div class="" >
 							<div id="${firstLower(rel.name)}MultiselectModal" class="${firstLower(rel.name)}-container"> </div>

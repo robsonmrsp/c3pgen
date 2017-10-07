@@ -112,16 +112,20 @@ public class HibernateDao<Entity> {
 	}
 
 	public Entity find(Serializable key, Owner owner) {
-		
+		Entity resultEntity = null;
 		CriteriaBuilder builder = getCriteriaBuilder();
 		CriteriaQuery<Entity> query = builder.createQuery(this.clazz);
 		Root<Entity> root = query.from(this.clazz);
 
-		Predicate and = builder.and(builder.equal(root.get("owner").get("id"), owner.getId()));
+		Predicate and = builder.and(builder.equal(root.get("id"), key), builder.equal(root.get("owner").get("id"), owner.getId()));
 
 		TypedQuery<Entity> typedQuery = getSession().createQuery(query.select(root).where(and));
 
-		return typedQuery.getSingleResult(); 
+		List<Entity> resultList = typedQuery.getResultList();
+		if (!resultList.isEmpty()) {
+			resultEntity = resultList.get(0);
+		}
+		return resultEntity;
 	}
 	</#if>
 

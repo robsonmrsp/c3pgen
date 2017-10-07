@@ -109,9 +109,9 @@ define(function(require) {
 					comboId : 'id',
 					hiddenField : 'id',
 					type : C3P.notEmptyVal(this.ui.inputViewApproach),
-					comboVal : C3P.notEmptyVal(this.ui.inputComboVal),
-					comboName : C3P.notEmptyVal(this.ui.inputComboVal),
-					textField : C3P.notEmptyVal(this.ui.inputTextField) || C3P.notEmptyVal(this.ui.inputComboVal)
+					comboVal : C3P.notEmptyVal(this.ui.inputComboVal) || C3P.notEmptyVal(this.ui.inputTextField),
+					comboName : C3P.notEmptyVal(this.ui.inputComboVal) || C3P.notEmptyVal(this.ui.inputTextField),
+					textField : C3P.notEmptyVal(this.ui.inputTextField) || C3P.notEmptyVal(this.ui.inputComboVal),
 				},
 			};
 		},

@@ -19,3 +19,45 @@ Mudar o endereço da classe Pager para um local neutro, nem do servico, nem do p
 
 1 Ao salvar a aplicação deveremos passar pelos relacionamentos e apagar aqyeles que não estão em rel_ent
 2 Acredito que a cada nova execução de uma consulta devamos criar um novo trio de objetos builder, query e root. Aparentemente eles mantem informações como orderby
+
+
+Livre para todas as idades;
+Não recomendado para menores de 10 anos;
+Não recomendado para menores de 12 anos;
+Não recomendado para menores de 14 anos;
+Não recomendado para menores de 16 anos;
+Proibida a entrada de menores de 18 anos;
+
+
+INSERT INTO genero(descricao, nome, id_owner)    VALUES ('Ação'                    ,'Ação'                   ,1);
+INSERT INTO genero(descricao, nome, id_owner)    VALUES ('Animação'                ,'Animação'               ,1);
+INSERT INTO genero(descricao, nome, id_owner)    VALUES ('Aventura'                ,'Aventura'               ,1);
+INSERT INTO genero(descricao, nome, id_owner)    VALUES ('Chanchada'               ,'Chanchada'              ,1);
+INSERT INTO genero(descricao, nome, id_owner)    VALUES ('Cinema catástrofe'       ,'Cinema catástrofe'      ,1);
+INSERT INTO genero(descricao, nome, id_owner)    VALUES ('Comédia'                 ,'Comédia'                ,1);
+INSERT INTO genero(descricao, nome, id_owner)    VALUES ('Comédia romântica'       ,'Comédia romântica'      ,1);
+INSERT INTO genero(descricao, nome, id_owner)    VALUES ('Comédia dramática'       ,'Comédia dramática'      ,1);
+INSERT INTO genero(descricao, nome, id_owner)    VALUES ('Comédia de ação'         ,'Comédia de ação'        ,1);
+INSERT INTO genero(descricao, nome, id_owner)    VALUES ('Cult'                    ,'Cult'                   ,1);
+INSERT INTO genero(descricao, nome, id_owner)    VALUES ('Dança'                   ,'Dança'                  ,1);
+INSERT INTO genero(descricao, nome, id_owner)    VALUES ('Documentários'           ,'Documentários'          ,1);
+INSERT INTO genero(descricao, nome, id_owner)    VALUES ('Drama'                   ,'Drama'                  ,1);
+INSERT INTO genero(descricao, nome, id_owner)    VALUES ('Espionagem'              ,'Espionagem'             ,1);
+INSERT INTO genero(descricao, nome, id_owner)    VALUES ('Erótico'                 ,'Erótico'                ,1);
+INSERT INTO genero(descricao, nome, id_owner)    VALUES ('Fantasia'                ,'Fantasia'               ,1);
+INSERT INTO genero(descricao, nome, id_owner)    VALUES ('Faroeste (ou western)'   ,'Faroeste (ou western)'  ,1);
+INSERT INTO genero(descricao, nome, id_owner)    VALUES ('Ficção científica'       ,'Ficção científica'      ,1);
+INSERT INTO genero(descricao, nome, id_owner)    VALUES ('Franchise/Séries'        ,'Franchise/Séries'       ,1);
+INSERT INTO genero(descricao, nome, id_owner)    VALUES ('Guerra'                  ,'Guerra'                 ,1);
+INSERT INTO genero(descricao, nome, id_owner)    VALUES ('Machinima'               ,'Machinima'              ,1);
+INSERT INTO genero(descricao, nome, id_owner)    VALUES ('Masala'                  ,'Masala'                 ,1);
+INSERT INTO genero(descricao, nome, id_owner)    VALUES ('Musical'                 ,'Musical'                ,1);
+INSERT INTO genero(descricao, nome, id_owner)    VALUES ('Filme noir'              ,'Filme noir'             ,1);
+INSERT INTO genero(descricao, nome, id_owner)    VALUES ('Policial'                ,'Policial'               ,1);
+INSERT INTO genero(descricao, nome, id_owner)    VALUES ('Pornochanchada'          ,'Pornochanchada'         ,1);
+INSERT INTO genero(descricao, nome, id_owner)    VALUES ('Pornográfico'            ,'Pornográfico'           ,1);
+INSERT INTO genero(descricao, nome, id_owner)    VALUES ('Romance'                 ,'Romance'                ,1);
+INSERT INTO genero(descricao, nome, id_owner)    VALUES ('Seriado'                 ,'Seriado'                ,1);
+INSERT INTO genero(descricao, nome, id_owner)    VALUES ('Suspense'                ,'Suspense'               ,1);
+INSERT INTO genero(descricao, nome, id_owner)    VALUES ('Terror (ou horror)'      ,'Terror (ou horror)'     ,1);
+INSERT INTO genero(descricao, nome, id_owner)    VALUES ('Trash'                   ,'Trash'                  ,1);

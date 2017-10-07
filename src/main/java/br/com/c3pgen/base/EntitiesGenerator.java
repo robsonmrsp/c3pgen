@@ -38,8 +38,8 @@ public class EntitiesGenerator {
 	private static MarkerGenerator htmlModalGenerator;
 	private static MarkerGenerator JsMultiSelectGenerator;
 	private static MarkerGenerator htmlMultiSelectGenerator;
-	private static MarkerGenerator JsModalMultiSelectGenerator;
-	private static MarkerGenerator htmlModalMultiSelectGenerator;
+//	private static MarkerGenerator JsModalMultiSelectGenerator;
+//	private static MarkerGenerator htmlModalMultiSelectGenerator;
 
 	private static MarkerGenerator javaModelGenerator;
 	private static MarkerGenerator parserGenerator;

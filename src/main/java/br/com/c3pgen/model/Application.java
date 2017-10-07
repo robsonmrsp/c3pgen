@@ -23,6 +23,7 @@ import org.hibernate.annotations.CascadeType;
 //@Audited
 @SequenceGenerator(name = "APPLICATION_SEQUENCE", sequenceName = "APPLICATION_SEQUENCE")
 public class Application extends AbstractTimestampEntity {
+	
 	private static final long serialVersionUID = 1L;
 
 	@Id

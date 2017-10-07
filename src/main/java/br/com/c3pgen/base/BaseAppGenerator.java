@@ -8,6 +8,7 @@ import org.apache.commons.io.FileUtils;
 import br.com.c3pgen.base.util.Util;
 import br.com.c3pgen.model.Application;
 
+
 public class BaseAppGenerator {
 
 	private FreeMarkerConfig freeMarkerConfig;

@@ -15,11 +15,12 @@
 
 .chosen-container .chosen-drop {
 	background: #fff;
-	border: 1px solid #ccc;
+	border: 1px solid #e9e9e9;
 /* 	border-bottom-right-radius: 4px; */
 /* 	border-bottom-left-radius: 4px; */
-	-webkit-box-shadow: 0 8px 8px rgba(0, 0, 0, 0.25);
-	box-shadow: 0 8px 8px rgba(0, 0, 0, 0.25);
+
+/* 	-webkit-box-shadow: 0 8px 8px rgba(0, 0, 0, 0.25); */
+/* 	box-shadow: 0 8px 8px rgba(0, 0, 0, 0.25); */
 	margin-top: -1px;
 	position: absolute;
 	top: 100%;
@@ -125,13 +126,13 @@
 	-webkit-background-clip: padding-box;
 	-moz-background-clip: padding;
 	background-clip: padding-box;
-	border: 1px solid #ccc;
+	border: 1px solid #e9e9e9;
 /* 	border-top-right-radius: 4px; */
 /* 	border-top-left-radius: 4px; */
 /* 	border-bottom-right-radius: 4px; */
 /* 	border-bottom-left-radius: 4px; */
-	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+/* 	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); */
+/* 	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); */
 	color: #555555;
 	display: block;
 	height: 34px;
@@ -201,13 +202,13 @@
 
 .chosen-container-single .chosen-search input[type="text"] {
 /* 	background: url("images/chosen-sprite.png") no-repeat 100% -20px, #fff; */
-	border: 1px solid #ccc;
+	border: 1px solid #e9e9e9;
 /* 	border-top-right-radius: 4px; */
 /* 	border-top-left-radius: 4px; */
 /* 	border-bottom-right-radius: 4px; */
 /* 	border-bottom-left-radius: 4px; */
-	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+/* 	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); */
+/* 	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); */
 	margin: 1px 0;
 	padding: 4px 20px 4px 4px;
 	width: 100%;
@@ -229,13 +230,13 @@
 
 .chosen-container-multi .chosen-choices {
 	background-color: #fff;
-	border: 1px solid #ccc;
+	border: 1px solid #e9e9e9;
 /* 	border-top-right-radius: 4px; */
 /* 	border-top-left-RADIUS: 4px; */
 /* 	border-bottom-right-radius: 4px; */
 /* 	border-bottom-left-radius: 4px; */
-	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+/* 	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); */
+/* 	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); */
 	cursor: text;
 	height: 34px !important;
 /* 	margin: 0; */
@@ -277,7 +278,7 @@
 	-moz-background-clip: padding;
 	background-clip: padding-box;
 	background-color: #eeeeee;
-	border: 1px solid #ccc;
+	border: 1px solid #e9e9e9;
 /* 	border-top-right-radius: 4px; */
 /* 	border-top-left-radius: 4px; */
 /* 	border-bottom-right-radius: 4px; */
@@ -288,8 +289,8 @@
 	background-repeat: repeat-x;
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFFFF',
 		endColorstr='#FFEEEEEE', GradientType=0);
-	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+/* 	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); */
+/* 	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); */
 	color: #333333;
 	cursor: default;
 	line-height: 13px;
@@ -335,13 +336,12 @@
 }
 
 .chosen-container-active .chosen-single {
-	border: 1px solid #66afe9;
-	-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px
-		#66afe9;
-	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px #66afe9;
-	-webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
-	-o-transition: border linear 0.2s, box-shadow linear 0.2s;
-	transition: border linear 0.2s, box-shadow linear 0.2s;
+/* 	border: 1px solid #e9e9e9; */
+/* 	-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px	#66afe9; */
+/* 	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px #66afe9; */
+/* 	-webkit-transition: border linear 0.2s, box-shadow linear 0.2s; */
+/* 	-o-transition: border linear 0.2s, box-shadow linear 0.2s; */
+/* 	transition: border linear 0.2s, box-shadow linear 0.2s; */
 }
 
 .chosen-container-active.chosen-with-drop .chosen-single {
@@ -349,12 +349,11 @@
 	border: 1px solid #66afe9;
 	border-bottom-right-radius: 0;
 	border-bottom-left-radius: 0;
-	-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px
-		#66afe9;
-	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px #66afe9;
-	-webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
-	-o-transition: border linear 0.2s, box-shadow linear 0.2s;
-	transition: border linear 0.2s, box-shadow linear 0.2s;
+/* 	-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px		#66afe9; */
+/* 	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px #66afe9; */
+/* 	-webkit-transition: border linear 0.2s, box-shadow linear 0.2s; */
+/* 	-o-transition: border linear 0.2s, box-shadow linear 0.2s; */
+/* 	transition: border linear 0.2s, box-shadow linear 0.2s; */
 }
 
 .chosen-container-active.chosen-with-drop .chosen-single div {
@@ -370,12 +369,11 @@
 	border: 1px solid #66afe9;
 	border-bottom-right-radius: 0;
 	border-bottom-left-radius: 0;
-	-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px
-		#66afe9;
-	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px #66afe9;
-	-webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
-	-o-transition: border linear 0.2s, box-shadow linear 0.2s;
-	transition: border linear 0.2s, box-shadow linear 0.2s;
+/* 	-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px	#66afe9; */
+/* 	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px #66afe9; */
+/* 	-webkit-transition: border linear 0.2s, box-shadow linear 0.2s; */
+/* 	-o-transition: border linear 0.2s, box-shadow linear 0.2s; */
+/* 	transition: border linear 0.2s, box-shadow linear 0.2s; */
 }
 
 .chosen-container-active .chosen-choices .search-field input[type="text"]
