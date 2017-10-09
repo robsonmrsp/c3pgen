@@ -1,7 +1,7 @@
 define(function(require) {
 	var _ = require('adapters/underscore-adapter');
 	var $ = require('adapters/jquery-adapter');
-
+	var Col = require('adapters/col-adapter');
 	var Backbone = require('adapters/backbone-adapter');
 	var Marionette = require('marionette');
 	var Backgrid = require('adapters/backgrid-adapter');
@@ -12,89 +12,14 @@ define(function(require) {
 	var CounterTemplate = require('text!views/components/tpl/CounterTemplate.html');
 
 	var Combobox = require('views/components/Combobox');
+	var RadioGroup = require('views/components/RadioGroup');
+	var CheckGroup = require('views/components/CheckGroup');
 	var Multiselect = require('views/components/Multiselect');
 	var InputUpload = require('views/components/InputUpload');
 	var InputAllUpload = require('views/components/InputAllUpload');
 	var InputButtonUpload = require('views/components/InputButtonUpload');
 	var Suggestbox = require('views/components/Suggestbox');
 	var BooleanBadgeCell = require('views/components/BooleanBadgeCell');
-
-	var RadioGroup = Backbone.View.extend({
-		initialize : function(options) {
-			this.container = options.container;
-			this.radioboxes = this.container.find("input[type=radio]")
-		},
-
-		getValue : function() {
-			var that = this;
-			var radioValue = null;
-			_.each(that.radioboxes, function(radiobox) {
-				var $radiobox = $(radiobox);
-				if ($radiobox.is(':checked')) {
-					radioValue = $radiobox.val();
-				}
-			})
-			return radioValue;
-		},
-
-		setValue : function(val) {
-			var that = this;
-			that.clear();
-			_.each(that.radioboxes, function(radiobox) {
-				var $radiobox = $(radiobox);
-				// TODO verificar uma forma mais elegante para fazer isso
-				val = '' + val;
-				if ($radiobox.val() == val) {
-					$radiobox.prop('checked', true);
-				}
-			});
-		},
-
-		clear : function() {
-			_.each(this.radioboxes, function(radiobox) {
-				var $radiobox = $(radiobox);
-				$radiobox.prop('checked', false);
-			})
-		}
-	});
-
-	var CheckGroup = Backbone.View.extend({
-		initialize : function(options) {
-			this.container = options.container;
-			this.checkboxes = this.container.find("input[type=checkbox]")
-		},
-
-		getValue : function() {
-			var that = this;
-			var checkValues = [];
-			_.each(that.checkboxes, function(checkbox) {
-				var $checkbox = $(checkbox);
-				if ($checkbox.is(':checked')) {
-					checkValues.push($checkbox.val());
-				}
-			})
-			return checkValues;
-		},
-
-		setValue : function(models) {
-			var that = this;
-			that.clear();
-			_.each(models, function(model) {
-				_.each(that.checkboxes, function(checkbox) {
-					var $checkbox = $(checkbox);
-					if ($checkbox.val() == model) {
-						$checkbox.prop('checked', true);
-					}
-				});
-			});
-		},
-		clear : function() {
-			_.each(this.checkboxes, function(checkbox) {
-				var $checkbox = $(checkbox);
-				$checkbox.prop('checked', false);
-			})
-		}
-	});
 
 	var Counter = Marionette.ItemView.extend({
 		className : 'counter-component',
@@ -132,17 +57,15 @@ define(function(require) {
 			// this.listenTo(this.collection, "sync", this.endRequest);
 
 			this.on('show', function() {
-				this.ui.inputComboPageSize.val();
-				this.ui.outputInitialPage.text();
-				this.ui.outputFinalPage.text();
-				this.ui.outputTotalRecords.text();
+				this.ui.inputComboPageSize.val(this.collection.state.pageSize);
+
 				this.atualiza();
 			});
 		},
 		startRequest : function() {
 			this.ui.noElementsSpan.hide();
 			this.ui.elementsSpan.hide();
-			
+
 			this.ui.loadingElements.show();
 
 		},
@@ -207,7 +130,7 @@ define(function(require) {
 
 			// adicionando uma header compativel com tipos numericos
 			_.each(options.columns, function(col) {
-				if (col.cell.__super__ && col.cell.__super__.className == 'custom-number-cel') {
+				if (col.cell && col.cell.__super__ && col.cell.__super__.className == 'custom-number-cel') {
 					col.headerCell = Backgrid.HeaderCell.extend({
 						className : 'custom-number-cel'
 					})
@@ -274,9 +197,21 @@ define(function(require) {
 		},
 	})
 
+	var InputCellNumericEditor = Backgrid.InputCellEditor.extend({
+
+		render : function() {
+			var model = this.model;
+			this.$el.percent();
+			this.$el.val(model.get(this.column.get("name")));
+			return this;
+		},
+
+	});
+
 	var NumericCell = Backgrid.Cell.extend({
 		className : "custom-number-cel",
 		type : 'decimal',
+		editor : InputCellNumericEditor,
 
 		render : function() {
 			this.$el.empty();
@@ -291,7 +226,13 @@ define(function(require) {
 				if (_.isObject(model.get(this.column.get("name")))) {
 					theColValue = model.get(this.column.get("name"));
 				} else {
-					theColValue = parseFloat(model.get(this.column.get("name")));
+					if (_.isNumber(model.get(this.column.get("name")))) {
+						theColValue = model.get(this.column.get("name"));
+					} else {
+						var value = model.get(this.column.get("name")) || '';
+						theColValue = parseFloat(value.replace(/\./g, '').replace(',', '.'));
+						model.set(this.column.get("name"), theColValue);
+					}
 				}
 			}
 
@@ -375,9 +316,8 @@ define(function(require) {
 			this._template = _.template(this.html);
 			this.$el.empty();
 			var model = this.model;
-			var theColValue = model.get(this.column.get("name"));
 
-			this.$el.html(this.formatter.fromRaw(this._template(model && model.toJSON()), model));
+			this.$el.html(this._template(model && model.toJSON()));
 
 			this.delegateEvents();
 			return this;
@@ -395,12 +335,12 @@ define(function(require) {
 				var fields = this.column.get("name").split('.')
 				theColValue = model.get(fields[0]) && model.get(fields[0])[fields[1]];
 			} else {
-				theColValue = model.get(this.column.get("name")) || '';
+				theColValue = model.get(this.column.get("name"));
 			}
 
-			var theFormattedColValue = this.formatter.fromRaw(theColValue, model);
+			var theFormattedColValue = this.formatter.fromRaw(theColValue || '', model);
 
-			this.$el.text(this.formatter.fromRaw(theColValue, model));
+			this.$el.text(this.formatter.fromRaw(theColValue || '', model));
 
 			this.delegateEvents();
 			return this;
@@ -486,11 +426,6 @@ define(function(require) {
 		}
 	});
 	var JSetup = {
-		BaseModel : BaseModel,
-		BaseCollection : BaseCollection,
-
-		CheckGroup : CheckGroup,
-		RadioGroup : RadioGroup,
 
 		View : View,
 		SimpleView : SimpleView,
@@ -499,8 +434,6 @@ define(function(require) {
 		Counter : Counter,
 
 		Combobox : Combobox,
-
-		DataTable : DataTable,
 
 		Multiselect : Multiselect,
 
@@ -520,21 +453,25 @@ define(function(require) {
 			type : 'percent'
 		}),
 
-		ActionCell : GeneralCell,
-
 		CustomStringCell : CustomStringCell,
+
 		EntityCell : EntityCell,
-		StringCell : CustomStringCell,
 
 		TemplateCell : TemplateCell,
-
+		ActionCell : GeneralCell,
 		BooleanBadgeCell : BooleanBadgeCell,
+
+		DataTable : DataTable,
 
 		InputUpload : InputUpload,
 		InputAllUpload : InputAllUpload,
 		InputButtonUpload : InputButtonUpload,
 		Suggestbox : Suggestbox,
 
+		BaseModel : BaseModel,
+		BaseCollection : BaseCollection,
+		RadioGroup : RadioGroup,
+		CheckGroup : CheckGroup,
 
 	}
 	return JSetup;
