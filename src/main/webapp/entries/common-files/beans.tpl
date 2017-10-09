@@ -44,6 +44,9 @@
 	<mvc:resources mapping="/j/**" location="/j/" />
 	<mvc:resources mapping="/uploads/**" location="/uploads/" />
 
+	
+	<bean class="${application.corePackage}.rs.exception.SimpleErrorMessageHandlerExceptionResolver" />
+
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="maxUploadSize" value="20971520" /> <!-- 20MB -->
 		<property name="maxInMemorySize" value="1048576" /> <!-- 1MB -->

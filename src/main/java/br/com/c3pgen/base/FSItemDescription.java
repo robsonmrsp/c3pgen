@@ -136,7 +136,7 @@ public class FSItemDescription {
 	public static List<FSItemDescription> rsException(String rootFolder) {
 
 		List<FSItemDescription> list = new ArrayList<FSItemDescription>();
-		// list.add(new FSItemDescription("ExceptionHandler", rootFolder + File.separator + "rs" + File.separator + "exception" + File.separator, "ExceptionHandler", FileType.JAVA));
+		 list.add(new FSItemDescription("SimpleErrorMessageHandlerExceptionResolver", rootFolder + File.separator + "rs" + File.separator + "exception" + File.separator, "SimpleErrorMessageHandlerExceptionResolver", FileType.JAVA));
 		list.add(new FSItemDescription("ValidationException", rootFolder + File.separator + "rs" + File.separator + "exception" + File.separator, "ValidationException", FileType.JAVA));
 		return list;
 	}

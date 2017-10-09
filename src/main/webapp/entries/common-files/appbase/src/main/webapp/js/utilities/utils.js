@@ -121,25 +121,6 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/underscore-adapter', 'adapters
 			return '';
 		},
 
-		setVal : function(id, value) {
-			var object = $('#' + id) || $("input:radio[name ='" + id + "'][value='" + value + "']");
-			if (object) {
-				var type = object.attr('type');
-				if (type === 'checkbox' || type === 'radio') {
-					object.prop('checked', value)
-				} else {
-					object.val(value);
-				}
-			}
-		},
-		escapeByAttr : function(id, attr) {
-			return _.escape($('#' + id).attr(attr));
-		},
-
-		escapeByIdSelect : function(id) {
-			return _.escape($('#' + id + ' option:selected').text());
-		},
-
 		resfresh : function(time, functionRefresh) {
 			if (this.intervalName) {
 				clearInterval(this.intervalName);
@@ -221,6 +202,7 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/underscore-adapter', 'adapters
 		goNewLocalTab : function(hash, wait) {
 			window.open("#" + hash);
 		},
+		
 		goPage : function(hash, wait) {
 			if (wait)
 				window.setTimeout(function() {
@@ -419,6 +401,7 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/underscore-adapter', 'adapters
 				return valor.replace(/[^0-9]+/, '');
 			return '';
 		},
+		
 		notificationError : function(options) {
 
 			$.gritter.add({
@@ -577,7 +560,8 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/underscore-adapter', 'adapters
 			try {
 				if (_resp.responseText) {
 					var _en = this.getJson(_resp.responseText);
-					entry = _en.errorMessage + ' \n\n [ Parametros da requisição: ]-> ' + JSON.stringify(_en.parameters);
+					var error = _en.error || _en;
+					entry = error.errorMessage + ' \n\n [ Parametros da requisição: ]-> ' + JSON.stringify(error.parameters);
 				} else {
 					entry = _resp.getResponseHeader && _resp.getResponseHeader('exception')
 				}
