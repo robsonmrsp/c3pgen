@@ -13,6 +13,11 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 public class CustomDoubleSerializer extends JsonSerializer<Double> {
 
 	@Override
+	public Class<Double> handledType() {
+		return Double.class;
+	}
+
+	@Override
 	public void serialize(Double value, JsonGenerator jgen, SerializerProvider provider) throws IOException, JsonProcessingException {
 
 		BigDecimal bigDecimal = new BigDecimal(value);

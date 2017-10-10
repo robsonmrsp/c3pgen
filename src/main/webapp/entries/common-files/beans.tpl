@@ -23,7 +23,7 @@
         			 
 					">
 	<tx:annotation-driven />
-	<mvc:annotation-driven />
+	
 	<context:annotation-config />
 	<context:component-scan base-package="${application.rootPackage}" />
 	<context:property-placeholder />
@@ -43,9 +43,33 @@
 	<mvc:resources mapping="/js/**" location="/js/" />
 	<mvc:resources mapping="/j/**" location="/j/" />
 	<mvc:resources mapping="/uploads/**" location="/uploads/" />
-
 	
 	<bean class="${application.corePackage}.rs.exception.SimpleErrorMessageHandlerExceptionResolver" />
+
+	<mvc:annotation-driven>
+		<mvc:message-converters>
+			<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+				<property name="objectMapper">
+					<bean class="org.springframework.http.converter.json.Jackson2ObjectMapperFactoryBean">
+						<property name="serializers">
+							<array>
+								<bean class="${application.corePackage}.serialization.CustomLocalDateSerializer" />
+								<bean class="${application.corePackage}.serialization.CustomLocalDateTimeSerializer" />
+							</array>
+						</property>
+						<property name="deserializers">
+							<array>
+								<bean class="${application.corePackage}.serialization.CustomLocalDateDeserializer" />
+								<bean class="${application.corePackage}.serialization.CustomLocalDateTimeDeserializer" />
+								<bean class="${application.corePackage}.serialization.CustomDoubleDeserializer" />
+							</array>
+						</property>
+					</bean>
+				</property>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+
 
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="maxUploadSize" value="20971520" /> <!-- 20MB -->

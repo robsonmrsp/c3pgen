@@ -23,6 +23,7 @@ Mudar o endereço da classe Pager para um local neutro, nem do servico, nem do p
 
 //cuidar do exception handler global
 http://www.baeldung.com/exception-handling-for-rest-with-spring
+https://github.com/jirutka/spring-rest-exception-handler
 
 Livre para todas as idades;
 Não recomendado para menores de 10 anos;

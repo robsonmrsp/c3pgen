@@ -35,13 +35,16 @@ public class Parser {
 		json${entity.name}.setId(${firstLower(entity.name)}.getId());
 	<#if entity.attributes ??>		
 	<#list entity.attributes as att>
+	<#--		                                                                    
 		<#if dataType(att.type.className) ==  "LocalDateTime" >
 	    json${entity.name}.set${firstUpper(att.name)}(DateUtil.localDateTimeAsString(${firstLower(entity.name)}.get${firstUpper(att.name)}()));
 		<#elseif  dataType(att.type.className) ==  "LocalDate" >
 		json${entity.name}.set${firstUpper(att.name)}(DateUtil.localDateAsString(${firstLower(entity.name)}.get${firstUpper(att.name)}()));
 		<#else>
+		
+		</#if>
+	-->  
 	    json${entity.name}.set${firstUpper(att.name)}(${firstLower(entity.name)}.get${firstUpper(att.name)}());
-		</#if>  
 	</#list>
 	</#if >
 	}	
@@ -49,13 +52,15 @@ public class Parser {
 		${firstLower(entity.name)}.setId(json${entity.name}.getId());
 	<#if entity.attributes ??>				
 	<#list entity.attributes as att>
-	    	<#if dataType(att.type.className) ==  "LocalDateTime" >
+<#--		                    	
+	    <#if dataType(att.type.className) ==  "LocalDateTime" >
 	    ${firstLower(entity.name)}.set${firstUpper(att.name)}(DateUtil.stringAsLocalDateTime(json${entity.name}.get${firstUpper(att.name)}()));
 			<#elseif  dataType(att.type.className) ==  "LocalDate" >
 	    ${firstLower(entity.name)}.set${firstUpper(att.name)}(DateUtil.stringAsLocalDate(json${entity.name}.get${firstUpper(att.name)}()));
 			<#else>
+			</#if>
+-->    
 		${firstLower(entity.name)}.set${firstUpper(att.name)}(json${entity.name}.get${firstUpper(att.name)}());
-			</#if>  
 	</#list>
 	</#if>
 	}	
