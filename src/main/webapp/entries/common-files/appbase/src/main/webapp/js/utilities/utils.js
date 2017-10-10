@@ -1,10 +1,21 @@
-define([ 'nprogress', 'moment', 'spin', 'adapters/underscore-adapter', 'adapters/jquery-adapter', 'bootstrap', ], function(NProgress, moment, Spinner, _, $) {
+define([ 'Noty', 'nprogress', 'moment', 'spin', 'adapters/underscore-adapter', 'adapters/jquery-adapter', 'bootstrap' ], function(Noty, NProgress, moment, Spinner, _, $) {
 	Number.prototype.formatMoney = function(c, d, t) {
 		var n = this, c = isNaN(c = Math.abs(c)) ? 2 : c, d = d == undefined ? "." : d, t = t == undefined ? "," : t, s = n < 0 ? "-" : "", i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "", j = (j = i.length) > 3 ? j % 3 : 0;
 		return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
 	};
 
 	LOG_FILE = window.logFile || new List();
+
+	Noty.overrideDefaults({
+		layout : 'bottomCenter',
+		theme : 'mint',
+		killer : true,
+		closeWith : [ 'click', 'button' ],
+		animation : {
+			open : 'animated bounceInUp',
+			close : 'animated bounceOutDown'
+		}
+	});
 
 	window.logFile = LOG_FILE;
 	// adapters/col-adapter
@@ -121,6 +132,25 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/underscore-adapter', 'adapters
 			return '';
 		},
 
+		setVal : function(id, value) {
+			var object = $('#' + id) || $("input:radio[name ='" + id + "'][value='" + value + "']");
+			if (object) {
+				var type = object.attr('type');
+				if (type === 'checkbox' || type === 'radio') {
+					object.prop('checked', value)
+				} else {
+					object.val(value);
+				}
+			}
+		},
+		escapeByAttr : function(id, attr) {
+			return _.escape($('#' + id).attr(attr));
+		},
+
+		escapeByIdSelect : function(id) {
+			return _.escape($('#' + id + ' option:selected').text());
+		},
+
 		resfresh : function(time, functionRefresh) {
 			if (this.intervalName) {
 				clearInterval(this.intervalName);
@@ -202,7 +232,6 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/underscore-adapter', 'adapters
 		goNewLocalTab : function(hash, wait) {
 			window.open("#" + hash);
 		},
-		
 		goPage : function(hash, wait) {
 			if (wait)
 				window.setTimeout(function() {
@@ -401,6 +430,16 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/underscore-adapter', 'adapters
 				return valor.replace(/[^0-9]+/, '');
 			return '';
 		},
+
+		notification : function(options) {
+			var noty = new Noty({
+				type : 'error',
+				text : '<strong>NOTY</strong> - a jquery notification library!',
+				layout : 'bottomCenter',
+				closeWith : [ 'click', 'button' ],
+			});
+			noty.show();
+		},
 		
 		notificationError : function(options) {
 
@@ -413,6 +452,7 @@ define([ 'nprogress', 'moment', 'spin', 'adapters/underscore-adapter', 'adapters
 				icon : options.icon || 'fa fa-exclamation-circle',
 				class_name : options.className || 'warn-notice',
 			});
+			ç
 
 			return false;
 		},

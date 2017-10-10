@@ -55,6 +55,7 @@ require.config({
 		'summernote' : '../vendor/summernote-0.8.7/dist/summernote',
 		'ionsound' : '../vendor/ion.sound-3.0.7/ion.sound',
 		'Collections' : '../vendor/collections-5.0.7/collections.min',
+		'Noty' : '../vendor/noty-3.1.3/lib/noty',
 	},
 	shim : {
 
