@@ -21,6 +21,8 @@
 @import url("../vendor/theme/demo/css/nifty-demo-icons.css");
 @import url("../vendor/theme/demo/css/theme-ocean.css");
 
+@import url("../vendor/animate.css/animate.css");
+
 
 @import url("custom.css");
 /* included only when we don't want to use fonts from google server */

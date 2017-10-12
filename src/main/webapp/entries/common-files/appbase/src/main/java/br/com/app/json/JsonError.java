@@ -7,13 +7,14 @@ import org.apache.commons.lang3.exception.ExceptionUtils;
 //TODO O que fazer com essa classe de modo que o cliente possa usufruir das mensages
 public class JsonError implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private String errorCode;
+	private String type;
 	private String errorMessage;
 	private Object parameters;
 	private String legalMessage;
 
 	public JsonError(Exception error, String legalMessage) {
 		this(ExceptionUtils.getStackTrace(error), legalMessage);
+		setType(error.getClass().getSimpleName());
 	}
 
 	public JsonError(String errorMessage, String leString) {
@@ -55,14 +56,6 @@ public class JsonError implements Serializable {
 		}
 	}
 
-	public String getErrorCode() {
-		return errorCode;
-	}
-
-	public void setErrorCode(String errorCode) {
-		this.errorCode = errorCode;
-	}
-
 	public Object getParameters() {
 		return parameters;
 	}
@@ -78,4 +71,11 @@ public class JsonError implements Serializable {
 	public void setLegalMessage(String legalMessage) {
 		this.legalMessage = legalMessage;
 	}
-}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}

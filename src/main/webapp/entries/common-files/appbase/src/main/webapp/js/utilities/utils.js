@@ -7,15 +7,15 @@ define([ 'Noty', 'nprogress', 'moment', 'spin', 'adapters/underscore-adapter', '
 	LOG_FILE = window.logFile || new List();
 
 	Noty.overrideDefaults({
-		layout : 'bottomCenter',
-		theme : 'mint',
-		killer : true,
-		closeWith : [ 'click', 'button' ],
-		animation : {
-			open : 'animated bounceInUp',
-			close : 'animated bounceOutDown'
+		callbacks : {
+			onTemplate : function() {
+				if (this.options.type === 'reply') {
+					this.barDom.innerHTML = '<div class="my-custom-template noty_body">';
+
+				}
+			}
 		}
-	});
+	})
 
 	window.logFile = LOG_FILE;
 	// adapters/col-adapter
@@ -278,7 +278,8 @@ define([ 'Noty', 'nprogress', 'moment', 'spin', 'adapters/underscore-adapter', '
 		},
 
 		/*
-		 * Usage: breadcrumb({iconClass:'',itemLabel:'', itemSubFolderName:'',url:''});
+		 * Usage: breadcrumb({iconClass:'',itemLabel:'',
+		 * itemSubFolderName:'',url:''});
 		 */
 		breadcrumb : function(itemMenu) {
 			if (itemMenu) {
@@ -433,14 +434,120 @@ define([ 'Noty', 'nprogress', 'moment', 'spin', 'adapters/underscore-adapter', '
 
 		notification : function(options) {
 			var noty = new Noty({
-				type : 'error',
-				text : '<strong>NOTY</strong> - a jquery notification library!',
-				layout : 'bottomCenter',
+				type : options.type || 'info',
+				text : options.text || 'informação',
+				layout : options.layout || 'bottomRight',
 				closeWith : [ 'click', 'button' ],
+				killer : options.killer || true,
+				timeout : options.timout || 1000,
+				callbacks : {
+					onTemplate : function() {
+						if (this.options.type === 'danger') {
+							this.barDom.innerHTML = "<div class='media-body  notification-danger-right'>                 " + //
+							"	<div class='notification-danger'>                                       " + //
+							"		<div class='notification-danger-heading'>                           " + //
+							"			<span style='float: left;'>                                    " + //
+							"				<strong> 												   " + //
+							"				<i class='fa fa-exclamation-circle ' aria-hidden='true'></i>" + //
+							"					Erro													" + //
+							"				</strong>   			                                  " + //
+							"			</span>                                                        " + //
+							"			<span class='notification-danger-time' style='float: right:;'>  " + //
+							"				<i class='demo-pli-clock icon-fw'></i>                     " + //
+							moment().format("HH:mm:ss") + //
+							"			</span>                                                        " + //
+							"		</div>                                                             " + //
+							"		<p class='notification-text'>" + this.options.text + "</p>    " + //
+							"	</div>                                                                 " + //
+							"</div>                                                                    ";
+						}
+						if (this.options.type === 'error') {
+							this.barDom.innerHTML = "<div class='media-body  notification-error-right'>                 " + //
+							"	<div class='notification-error'>                                       " + //
+							"		<div class='notification-error-heading'>                           " + //
+							"			<span style='float: left;'>                                    " + //
+							"				<strong> 												   " + //
+							"				<i class='fa fa-exclamation-circle ' aria-hidden='true'></i>" + //
+							"					Erro													" + //
+							"				</strong>   			                                  " + //
+							"			</span>                                                        " + //
+							"			<span class='notification-error-time' style='float: right:;'>  " + //
+							"				<i class='demo-pli-clock icon-fw'></i>                     " + //
+							moment().format("HH:mm:ss") + //
+							"			</span>                                                        " + //
+							"		</div>                                                             " + //
+							"		<p class='notification-text'>" + this.options.text + "</p>    " + //
+							"	</div>                                                                 " + //
+							"</div>                                                                    ";
+						}
+
+						if (this.options.type === 'info') {
+							this.barDom.innerHTML = "<div class='media-body  notification-info-right'>                 " + //
+							"	<div class='notification-info'>                                       " + //
+							"		<div class='notification-info-heading'>                           " + //
+							"			<span style='float: left;'>                                    " + //
+							"				<strong> 												   " + //
+							"				<i class='fa fa-exclamation-circle ' aria-hidden='true'></i>" + //
+							"					Informação													" + //
+							"				</strong>   			                                  " + //
+							"			</span>                                                        " + //
+							"			<span class='notification-info-time' style='float: right:;'>  " + //
+							"				<i class='demo-pli-clock icon-fw'></i>                     " + //
+							moment().format("HH:mm:ss") + //
+							"			</span>                                                        " + //
+							"		</div>                                                             " + //
+							"		<p class='notification-text'>" + this.options.text + "</p>    " + //
+							"	</div>                                                                 " + //
+							"</div>                                                                    ";
+						}
+						if (this.options.type === 'warning') {
+							this.barDom.innerHTML = "<div class='media-body  notification-warning-right'>                 " + //
+							"	<div class='notification-warning'>                                       " + //
+							"		<div class='notification-warning-heading'>                           " + //
+							"			<span style='float: left;'>                                    " + //
+							"				<strong> 												   " + //
+							"				<i class='fa fa-exclamation-circle ' aria-hidden='true'></i>" + //
+							"					Sucesso													" + //
+							"				</strong>   			                                  " + //
+							"			</span>                                                        " + //
+							"			<span class='notification-warning-time' style='float: right:;'>  " + //
+							"				<i class='demo-pli-clock icon-fw'></i>                     " + //
+							moment().format("HH:mm:ss") + //
+							"			</span>                                                        " + //
+							"		</div>                                                             " + //
+							"		<p class='notification-text'>" + this.options.text + "</p>    " + //
+							"	</div>                                                                 " + //
+							"</div>                                                                    ";
+						}
+						if (this.options.type === 'success') {
+							this.barDom.innerHTML = "<div class='media-body  notification-success-right'>                 " + //
+							"	<div class='notification-success'>                                       " + //
+							"		<div class='notification-success-heading'>                           " + //
+							"			<span style='float: left;'>                                    " + //
+							"				<strong> 												   " + //
+							"				<i class='fa fa-exclamation-circle ' aria-hidden='true'></i>" + //
+							"					Sucesso													" + //
+							"				</strong>   			                                  " + //
+							"			</span>                                                        " + //
+							"			<span class='notification-success-time' style='float: right:;'>  " + //
+							"				<i class='demo-pli-clock icon-fw'></i>                     " + //
+							moment().format("HH:mm:ss") + //
+							"			</span>                                                        " + //
+							"		</div>                                                             " + //
+							"		<p class='notification-text'>" + this.options.text + "</p>    " + //
+							"	</div>                                                                 " + //
+							"</div>                                                                    ";
+						}
+					}
+				},
+				animation : {
+					open : 'animated bounceInRight',
+					close : 'animated bounceOutRight'
+				}
 			});
 			noty.show();
 		},
-		
+
 		notificationError : function(options) {
 
 			$.gritter.add({
@@ -452,7 +559,6 @@ define([ 'Noty', 'nprogress', 'moment', 'spin', 'adapters/underscore-adapter', '
 				icon : options.icon || 'fa fa-exclamation-circle',
 				class_name : options.className || 'warn-notice',
 			});
-			ç
 
 			return false;
 		},
