@@ -1,0 +1,27 @@
+Depois de configurar o spring boot pra rodar os testes ficou a aprecendo um erro que envolvia do messageService e o proxy etc.
+Tudo isso por causa de uma implementação que havia feito para o tratamento das exceptions 
+
+	<bean id="afterThrow"
+		class="br.com.netflics.core.persistence.CatchThrowConstraintViolationException" />
+	<bean
+		class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+		<property name="proxyTargetClass" value="true" />
+		<property name="beanNames">
+			<list>
+				<value>*Service</value>
+				<value>*ServiceImp</value>
+			</list>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>afterThrow</value>
+			</list>
+		</property>
+	</bean>
+	
+	
+	Originalmente não havia essa config:  
+	
+	<property name="proxyTargetClass" value="true" />
+	
+	só depois de adicionalá deu tudo certo

@@ -121,17 +121,17 @@
 		</div>
 		<div >
 			<div class="clearfix form-actions">
-				<a href="javascript:void(-1)" id="save"  class="save btn btn-primary  button-saving" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Salvando...">
+				<a href="javascript:void(-1)" id="save"  class="save btn btn-primary  btn-lg button-saving" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Salvando...">
 					<i class="save fa fa-check "></i>
 					Salvar
 				</a>
 				&nbsp; &nbsp; 
-				<a href="javascript:void(-1)" class="save-continue btn btn-info  button-saving" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Salvando..."  style="display: {{ id ? 'none' : 'inline-block' }} ">
+				<a href="javascript:void(-1)" class="save-continue btn btn-info btn-lg button-saving" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Salvando..."  style="display: {{ id ? 'none' : 'inline-block' }} ">
 					<i class="fa fa-check "></i>
 					Salvar e Continuar
 				</a>
 				&nbsp; &nbsp; 
-				<a href="#app/${firstLower(entity.name)}s" class="go-back-link btn btn-light" >
+				<a href="#app/${firstLower(entity.name)}s" class="go-back-link btn-lg btn btn-light" >
 					<i class=" fa fa-undo "></i>
 					Voltar para a listagem
 				</a>
