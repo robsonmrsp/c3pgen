@@ -51,6 +51,7 @@ define(function(require) {
 					this.ui.imageView.attr('src', that._getBindEl().val());
 					this.ui.removePreview.show();
 					this.testImage(that._getBindEl().val());
+					this.ui.modalImage.attr('src', that._getBindEl().val().replace('uploads/', 'uploads/ORIGINAL_'));
 
 				} else {
 					this.ui.imageView.attr('src', that.noImage);
