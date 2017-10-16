@@ -32,11 +32,7 @@ require.config({
 		'text' : '../vendor/require/text-2.0.3',
 		'async' : '../vendor/require/async-0.1.1',
 		'moment' : '../vendor/moment/moment-2.7',
-		'list' : '../vendor/jscf/list',
-		'map' : '../vendor/jscf/map',
-		'set' : '../vendor/jscf/set',
 
-		'jqueryGritter' : '../vendor/jquery.gritter-1.7.4/js/jquery.gritter',
 		'selectize' : '../vendor/selectize/js/standalone/selectize',
 		'jqueryForm' : '../vendor/jquery.form/jquery.form',
 		'jqueryChosen' : '../vendor/chosen_v1.6.2/chosen.jquery',
@@ -125,17 +121,7 @@ require.config({
 		},
 
 		'multiselect' : [ 'jquery' ],
-		'list' : {
-			exports : 'List'
-		},
-		'map' : {
-			exports : 'Map'
-		},
-		'set' : {
-			exports : 'Set'
-		},
 
-		'jqueryGritter' : [ 'jquery' ],
 		'selectize' : [ 'jquery' ],
 		'jqueryForm' : [ 'jquery' ],
 		'jqueryChosen' : [ 'jquery' ],

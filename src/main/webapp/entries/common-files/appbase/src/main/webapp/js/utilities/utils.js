@@ -6,17 +6,6 @@ define([ 'Noty', 'nprogress', 'moment', 'spin', 'adapters/underscore-adapter', '
 
 	LOG_FILE = window.logFile || new List();
 
-	Noty.overrideDefaults({
-		callbacks : {
-			onTemplate : function() {
-				if (this.options.type === 'reply') {
-					this.barDom.innerHTML = '<div class="my-custom-template noty_body">';
-
-				}
-			}
-		}
-	})
-
 	window.logFile = LOG_FILE;
 	// adapters/col-adapter
 	ion.sound({
@@ -278,8 +267,7 @@ define([ 'Noty', 'nprogress', 'moment', 'spin', 'adapters/underscore-adapter', '
 		},
 
 		/*
-		 * Usage: breadcrumb({iconClass:'',itemLabel:'',
-		 * itemSubFolderName:'',url:''});
+		 * Usage: breadcrumb({iconClass:'',itemLabel:'', itemSubFolderName:'',url:''});
 		 */
 		breadcrumb : function(itemMenu) {
 			if (itemMenu) {
@@ -432,46 +420,62 @@ define([ 'Noty', 'nprogress', 'moment', 'spin', 'adapters/underscore-adapter', '
 			return '';
 		},
 
-		notification : function(options) {
+		notificationError : function(text) {
+			this.notification('error', text, 'bottomRight');
+		},
+		notificationInfo : function() {
+			this.notification('info', text, 'topRight');
+		},
+		notificationWarn : function(text) {
+			this.notification('warn', text, 'topRight');
+		},
+		notificationSuccess : function(text) {
+			this.notification('succses', text, 'topRight');
+		},
+		notification : function() {
+			var options = {};
+			var args = arguments;
+
+			if (arguments.length == 0) {
+				if (_.isObject(arguments[0])) {
+					options = _.isObject(arguments[0]) ? arguments[0] : {};
+				} else {
+					options.type = "info";
+					options.text = arguments[0];
+					options.layout = 'topRight';
+				}
+
+			} else if (arguments.length == 2) {
+				options.type = arguments[0];
+				options.text = arguments[1];
+				options.layout = 'topRight';
+
+			} else if (arguments.length == 3) {
+				options.type = arguments[0];
+				options.text = arguments[1];
+				options.layout = arguments[2];
+			}
+
 			var noty = new Noty({
 				type : options.type || 'info',
 				text : options.text || 'informação',
 				layout : options.layout || 'bottomRight',
 				closeWith : [ 'click', 'button' ],
 				killer : options.killer || true,
-				timeout : options.timout || 1000,
+				timeout : options.timout || 10000,
 				callbacks : {
 					onTemplate : function() {
-						if (this.options.type === 'danger') {
-							this.barDom.innerHTML = "<div class='media-body  notification-danger-right'>                 " + //
-							"	<div class='notification-danger'>                                       " + //
-							"		<div class='notification-danger-heading'>                           " + //
+						if (this.options.type === 'success') {
+							this.barDom.innerHTML = "<div class='media-body  notification-success-right'>                 " + //
+							"	<div class='notification-success'>                                       " + //
+							"		<div class='notification-success-heading'>                           " + //
 							"			<span style='float: left;'>                                    " + //
 							"				<strong> 												   " + //
 							"				<i class='fa fa-exclamation-circle ' aria-hidden='true'></i>" + //
-							"					Erro													" + //
+							"					Sucesso													" + //
 							"				</strong>   			                                  " + //
 							"			</span>                                                        " + //
-							"			<span class='notification-danger-time' style='float: right:;'>  " + //
-							"				<i class='demo-pli-clock icon-fw'></i>                     " + //
-							moment().format("HH:mm:ss") + //
-							"			</span>                                                        " + //
-							"		</div>                                                             " + //
-							"		<p class='notification-text'>" + this.options.text + "</p>    " + //
-							"	</div>                                                                 " + //
-							"</div>                                                                    ";
-						}
-						if (this.options.type === 'error') {
-							this.barDom.innerHTML = "<div class='media-body  notification-error-right'>                 " + //
-							"	<div class='notification-error'>                                       " + //
-							"		<div class='notification-error-heading'>                           " + //
-							"			<span style='float: left;'>                                    " + //
-							"				<strong> 												   " + //
-							"				<i class='fa fa-exclamation-circle ' aria-hidden='true'></i>" + //
-							"					Erro													" + //
-							"				</strong>   			                                  " + //
-							"			</span>                                                        " + //
-							"			<span class='notification-error-time' style='float: right:;'>  " + //
+							"			<span class='notification-success-time' style='float: right:;'>  " + //
 							"				<i class='demo-pli-clock icon-fw'></i>                     " + //
 							moment().format("HH:mm:ss") + //
 							"			</span>                                                        " + //
@@ -500,7 +504,7 @@ define([ 'Noty', 'nprogress', 'moment', 'spin', 'adapters/underscore-adapter', '
 							"	</div>                                                                 " + //
 							"</div>                                                                    ";
 						}
-						if (this.options.type === 'warning') {
+						if (this.options.type === 'warning' || this.options.type === 'warn') {
 							this.barDom.innerHTML = "<div class='media-body  notification-warning-right'>                 " + //
 							"	<div class='notification-warning'>                                       " + //
 							"		<div class='notification-warning-heading'>                           " + //
@@ -519,17 +523,18 @@ define([ 'Noty', 'nprogress', 'moment', 'spin', 'adapters/underscore-adapter', '
 							"	</div>                                                                 " + //
 							"</div>                                                                    ";
 						}
-						if (this.options.type === 'success') {
-							this.barDom.innerHTML = "<div class='media-body  notification-success-right'>                 " + //
-							"	<div class='notification-success'>                                       " + //
-							"		<div class='notification-success-heading'>                           " + //
+
+						if (this.options.type === 'error') {
+							this.barDom.innerHTML = "<div class='media-body  notification-error-right'>                 " + //
+							"	<div class='notification-error'>                                       " + //
+							"		<div class='notification-error-heading'>                           " + //
 							"			<span style='float: left;'>                                    " + //
 							"				<strong> 												   " + //
 							"				<i class='fa fa-exclamation-circle ' aria-hidden='true'></i>" + //
-							"					Sucesso													" + //
+							"					Erro													" + //
 							"				</strong>   			                                  " + //
 							"			</span>                                                        " + //
-							"			<span class='notification-success-time' style='float: right:;'>  " + //
+							"			<span class='notification-error-time' style='float: right:;'>  " + //
 							"				<i class='demo-pli-clock icon-fw'></i>                     " + //
 							moment().format("HH:mm:ss") + //
 							"			</span>                                                        " + //
@@ -538,6 +543,26 @@ define([ 'Noty', 'nprogress', 'moment', 'spin', 'adapters/underscore-adapter', '
 							"	</div>                                                                 " + //
 							"</div>                                                                    ";
 						}
+						if (this.options.type === 'danger' || this.options.type === 'severe') {
+							this.barDom.innerHTML = "<div class='media-body  notification-danger-right'>                 " + //
+							"	<div class='notification-danger'>                                       " + //
+							"		<div class='notification-danger-heading'>                           " + //
+							"			<span style='float: left;'>                                    " + //
+							"				<strong> 												   " + //
+							"				<i class='fa fa-exclamation-circle ' aria-hidden='true'></i>" + //
+							"					Erro													" + //
+							"				</strong>   			                                  " + //
+							"			</span>                                                        " + //
+							"			<span class='notification-danger-time' style='float: right:;'>  " + //
+							"				<i class='demo-pli-clock icon-fw'></i>                     " + //
+							moment().format("HH:mm:ss") + //
+							"			</span>                                                        " + //
+							"		</div>                                                             " + //
+							"		<p class='notification-text'>" + this.options.text + "</p>    " + //
+							"	</div>                                                                 " + //
+							"</div>                                                                    ";
+						}
+
 					}
 				},
 				animation : {
@@ -548,20 +573,20 @@ define([ 'Noty', 'nprogress', 'moment', 'spin', 'adapters/underscore-adapter', '
 			noty.show();
 		},
 
-		notificationError : function(options) {
-
-			$.gritter.add({
-				title : options.title || 'Aviso !',
-				text : options.text,
-				time : 10000, // 10 segundos
-				sticky : false,
-				// close_icon : 'fa fa-times',
-				icon : options.icon || 'fa fa-exclamation-circle',
-				class_name : options.className || 'warn-notice',
-			});
-
-			return false;
-		},
+		// notificationError : function(options) {
+		//
+		// $.gritter.add({
+		// title : options.title || 'Aviso !',
+		// text : options.text,
+		// time : 10000, // 10 segundos
+		// sticky : false,
+		// // close_icon : 'fa fa-times',
+		// icon : options.icon || 'fa fa-exclamation-circle',
+		// class_name : options.className || 'warn-notice',
+		// });
+		//
+		// return false;
+		// },
 		validateUnique : function(options) {
 			var that = this;
 			if (!options.collection) {
@@ -588,10 +613,7 @@ define([ 'Noty', 'nprogress', 'moment', 'spin', 'adapters/underscore-adapter', '
 				success : function() {
 					localCol.each(function(obj) {
 						if (obj.get('id') != validateField.val()) {
-							that.notificationError({
-								title : 'Erro',
-								text : options.text || 'Já existe registro com ' + (options.displayFieldName || options.fieldName) + ' ' + fieldValue,
-							})
+							that.notificationError(options.text || 'Já existe registro com ' + (options.displayFieldName || options.fieldName) + ' ' + fieldValue);
 							options.element.val('');
 						}
 					});
