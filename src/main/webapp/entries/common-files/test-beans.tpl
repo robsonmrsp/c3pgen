@@ -88,7 +88,7 @@
 
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
 		<property name="driverClass" value="org.postgresql.Driver" />
-		<property name="jdbcUrl" value="jdbc:postgresql://localhost:5432/db_${lowercase(application.appName)}" />
+		<property name="jdbcUrl" value="jdbc:postgresql://localhost:5432/db_${lowercase(application.appName)}_test" />
 		<property name="user" value="postgres" />
 		<property name="password" value="MasterKey@123" />
 
