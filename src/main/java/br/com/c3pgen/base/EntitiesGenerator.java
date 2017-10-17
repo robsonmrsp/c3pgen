@@ -38,8 +38,8 @@ public class EntitiesGenerator {
 	private static MarkerGenerator htmlModalGenerator;
 	private static MarkerGenerator JsMultiSelectGenerator;
 	private static MarkerGenerator htmlMultiSelectGenerator;
-//	private static MarkerGenerator JsModalMultiSelectGenerator;
-//	private static MarkerGenerator htmlModalMultiSelectGenerator;
+	// private static MarkerGenerator JsModalMultiSelectGenerator;
+	// private static MarkerGenerator htmlModalMultiSelectGenerator;
 
 	private static MarkerGenerator javaModelGenerator;
 	private static MarkerGenerator parserGenerator;
@@ -47,6 +47,7 @@ public class EntitiesGenerator {
 	private static MarkerGenerator javaMybatisModelGenerator;
 	// private static MarkerGenerator resourcesGenerator;
 	private static MarkerGenerator controllerGenerator;
+	private static MarkerGenerator testControllerGenerator;
 	private static MarkerGenerator mybatisResourcesGenerator;
 	private static MarkerGenerator daoGenerator;
 	private static MarkerGenerator mapperMybatisGenerator;
@@ -59,6 +60,8 @@ public class EntitiesGenerator {
 	private static MarkerGenerator fragmentsGenerator;
 	private static MarkerGenerator jsRouterSpecGenerator;
 	private static MarkerGenerator beansGenerator;
+	private static MarkerGenerator testBeansGenerator;
+	private static MarkerGenerator testSecurityGenerator;
 	private static MarkerGenerator pomGenerator;
 	private static MarkerGenerator produIndexGenerator;
 	private static MarkerGenerator rbacSeedGenerator;
@@ -102,6 +105,10 @@ public class EntitiesGenerator {
 		String jsSpecRootFolder = webAppRootFolder + "js/" + "spec/router/";
 		String javaRootFolder = appRootFolder + "/src/main/java/" + application.getRootPackage().replace(".", File.separator);
 
+		String javaTestRootFolder = appRootFolder + "/src/test/java/" + application.getRootPackage().replace(".", File.separator);
+
+		String javaTestResourcesRootFolder = appRootFolder + "/src/test/resources/";
+
 		javaModelGenerator = new MarkerGenerator(freeMarkerConfig, application, "JavaModelTemplate.tpl", javaRootFolder + "/model/", TemplateFileName.MODEL_JAVA, FileType.JAVA);
 
 		javaModelGenerator = new MarkerGenerator(freeMarkerConfig, application, "JavaModelTemplate.tpl", javaRootFolder + "/model/", TemplateFileName.MODEL_JAVA, FileType.JAVA);
@@ -129,6 +136,8 @@ public class EntitiesGenerator {
 		// TemplateFileName.RESOURCE_JAVA, FileType.JAVA);
 
 		controllerGenerator = new MarkerGenerator(freeMarkerConfig, application, "JavaControllerTemplate.tpl", javaRootFolder + "/rs/", TemplateFileName.CONTROLLER_JAVA, FileType.JAVA);
+
+		testControllerGenerator = new MarkerGenerator(freeMarkerConfig, application, "JavaTestControllerTemplate.tpl", javaTestRootFolder + "/integration/controller/", TemplateFileName.TEST_CONTROLLER_JAVA, FileType.JAVA);
 
 		mybatisResourcesGenerator = new MarkerGenerator(freeMarkerConfig, application, "JavaMybatisResourcesTemplate.tpl", javaRootFolder + "/rs/", TemplateFileName.RESOURCE_JAVA, FileType.JAVA);
 
@@ -189,6 +198,10 @@ public class EntitiesGenerator {
 		jsRouterSpecGenerator = new MarkerGenerator(freeMarkerConfig, application, "JSRouterSpecTemplate.js", jsSpecRootFolder, TemplateFileName.ROUTER_SPEC_JS, FileType.JAVASCRIPT);
 
 		beansGenerator = new MarkerGenerator(freeMarkerConfig, application, "beans.tpl", webAppRootFolder + "WEB-INF/", TemplateFileName.BEANS_XML, FileType.XML);
+
+		testBeansGenerator = new MarkerGenerator(freeMarkerConfig, application, "test-beans.tpl", javaTestResourcesRootFolder, TemplateFileName.TEST_BEANS_XML, FileType.XML);
+
+		testSecurityGenerator = new MarkerGenerator(freeMarkerConfig, application, "test-security.tpl", javaTestResourcesRootFolder, TemplateFileName.TEST_SECURITY_XML, FileType.XML);
 
 		pomGenerator = new MarkerGenerator(freeMarkerConfig, application, "pom.tpl", appRootFolder + "/", TemplateFileName.POM_XML, FileType.XML);
 
@@ -257,6 +270,9 @@ public class EntitiesGenerator {
 				htmlAngularProduLoginGenerator.generate(application);
 
 				beansGenerator.generate(application);
+				testBeansGenerator.generate(application);
+				testSecurityGenerator.generate(application);
+
 				xmlAngularPomGenerator.generate(application);
 
 				buildPropertiesGenerator.generate(application);
@@ -284,6 +300,7 @@ public class EntitiesGenerator {
 							// resourcesGenerator.generateEntityFile(application,
 							// ent);
 							controllerGenerator.generateEntityFile(application, ent);
+							testControllerGenerator.generateEntityFile(application, ent);
 						} else {
 							javaMybatisModelGenerator.generateEntityFile(application, ent);
 							basicMybatisServiceGenerator.generateEntityFile(application, ent);
@@ -325,6 +342,11 @@ public class EntitiesGenerator {
 				jsRouterGenerator.generate(application);
 				jsRouterSpecGenerator.generate(application);
 				beansGenerator.generate(application);
+
+				testBeansGenerator.generate(application);
+				beansGenerator.generate(application);
+				testSecurityGenerator.generate(application);
+
 				pomGenerator.generate(application);
 
 				buildPropertiesGenerator.generate(application);

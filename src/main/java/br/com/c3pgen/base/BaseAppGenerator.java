@@ -8,7 +8,6 @@ import org.apache.commons.io.FileUtils;
 import br.com.c3pgen.base.util.Util;
 import br.com.c3pgen.model.Application;
 
-
 public class BaseAppGenerator {
 
 	private FreeMarkerConfig freeMarkerConfig;
@@ -27,11 +26,17 @@ public class BaseAppGenerator {
 
 		String javaCoreFolder = Util.currentDir() + File.separator + "out/" + application.getAppName() + "/src/main/java/" + application.getCorePackage().replace(".", File.separator) + File.separator;
 		String javaRootFolder = Util.currentDir() + File.separator + "out/" + application.getAppName() + "/src/main/java/" + application.getRootPackage().replace(".", File.separator) + File.separator;
+		String javaRootTestFolder = Util.currentDir() + File.separator + "out/" + application.getAppName() + "/src/test/java/" + application.getRootPackage().replace(".", File.separator) + File.separator;
+
+		String javaRootTestResourcesFolder = Util.currentDir() + File.separator + "out/" + application.getAppName() + "/src/test/resources/";
 
 		String serviceFolder = javaCoreFolder;
 		new File(serviceFolder).mkdirs();
+		new File(javaRootTestFolder).mkdirs();
+		new File(javaRootTestResourcesFolder).mkdirs();
 
 		genericGenerator.generate(FSItemDescription.persistences(javaCoreFolder));
+		genericGenerator.generate(FSItemDescription.test(javaRootTestFolder));
 		genericGenerator.generate(FSItemDescription.persistences2(javaRootFolder));
 		genericGenerator.generate(FSItemDescription.audit(javaCoreFolder));
 		genericGenerator.generate(FSItemDescription.json(javaCoreFolder));

@@ -46,7 +46,7 @@ public class FSItemDescription {
 
 		List<FSItemDescription> persistences = new ArrayList<FSItemDescription>();
 
-//		persistences.add(new FSItemDescription("DaoUser", rootFolder + "persistence" + File.separator, "DaoUser", FileType.JAVA));
+		// persistences.add(new FSItemDescription("DaoUser", rootFolder + "persistence" + File.separator, "DaoUser", FileType.JAVA));
 
 		persistences.add(new FSItemDescription("HibernateDao", rootFolder + "persistence" + File.separator, "HibernateDao", FileType.JAVA));
 		persistences.add(new FSItemDescription("CatchThrowConstraintViolationException", rootFolder + "persistence" + File.separator, "CatchThrowConstraintViolationException", FileType.JAVA));
@@ -136,7 +136,7 @@ public class FSItemDescription {
 	public static List<FSItemDescription> rsException(String rootFolder) {
 
 		List<FSItemDescription> list = new ArrayList<FSItemDescription>();
-		 list.add(new FSItemDescription("SimpleErrorMessageHandlerExceptionResolver", rootFolder + File.separator + "rs" + File.separator + "exception" + File.separator, "SimpleErrorMessageHandlerExceptionResolver", FileType.JAVA));
+		list.add(new FSItemDescription("SimpleErrorMessageHandlerExceptionResolver", rootFolder + File.separator + "rs" + File.separator + "exception" + File.separator, "SimpleErrorMessageHandlerExceptionResolver", FileType.JAVA));
 		list.add(new FSItemDescription("ValidationException", rootFolder + File.separator + "rs" + File.separator + "exception" + File.separator, "ValidationException", FileType.JAVA));
 		return list;
 	}
@@ -186,6 +186,16 @@ public class FSItemDescription {
 
 		List<FSItemDescription> list = new ArrayList<FSItemDescription>();
 		// list.add(new FSItemDescription("UserService", rootFolder + File.separator + "service" + File.separator, "UserService", FileType.JAVA));
+		// list.add(new FSItemDescription("UserServiceImp", rootFolder + File.separator + "service" + File.separator, "UserServiceImp", FileType.JAVA));
+		// list.add(new FSItemDescription("SyncService", rootFolder + File.separator + "service" + File.separator, "SyncService", FileType.JAVA));
+		// list.add(new FSItemDescription("SyncServiceImp", rootFolder + File.separator + "service" + File.separator, "SyncServiceImp", FileType.JAVA));
+		return list;
+	}
+
+	public static List<FSItemDescription> test(String rootTesteFolder) {
+
+		List<FSItemDescription> list = new ArrayList<FSItemDescription>();
+		list.add(new FSItemDescription("Application", rootTesteFolder, "Application", FileType.JAVA));
 		// list.add(new FSItemDescription("UserServiceImp", rootFolder + File.separator + "service" + File.separator, "UserServiceImp", FileType.JAVA));
 		// list.add(new FSItemDescription("SyncService", rootFolder + File.separator + "service" + File.separator, "SyncService", FileType.JAVA));
 		// list.add(new FSItemDescription("SyncServiceImp", rootFolder + File.separator + "service" + File.separator, "SyncServiceImp", FileType.JAVA));

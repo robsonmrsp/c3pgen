@@ -10,12 +10,12 @@
 	<properties>
 			<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 			<jackson.version>2.8.8</jackson.version>
-			<joda.time.version>2.4</joda.time.version>
-			<spring.version>4.3.8.RELEASE</spring.version>
+			<spring.version>4.3.11.RELEASE</spring.version>			
+			<spring.boot.test.version>1.5.7.RELEASE</spring.boot.test.version>
 			<spring.security.version>4.2.2.RELEASE</spring.security.version>
 			<hibernate.version>5.2.10.Final</hibernate.version>
 			<jasperreports.version>6.3.0</jasperreports.version>
-			<jandira.usertype.version>6.0.0.GA</jandira.usertype.version>
+			<tomcat.version>8.5.20</tomcat.version>
 	</properties>
 	
 	<dependencies>
@@ -64,17 +64,18 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-catalina</artifactId>
-			<version>7.0.39</version>
-			<scope>provided</scope>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<version>${r"${spring.boot.test.version}"}</version>
+			<scope>test</scope>
 		</dependency>
 
 		<dependency>
-			<groupId>joda-time</groupId>
-			<artifactId>joda-time</artifactId>
-			<version>${r"${joda.time.version}"}</version>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<version>${r"${spring.boot.test.version}"}</version>
 		</dependency>
+
 		
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -144,7 +145,7 @@
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-servlet-api</artifactId>
-			<version>7.0.39</version>
+			<version>${r"${tomcat.version}"}</version>
 			<scope>provided</scope>
 		</dependency>
 
@@ -157,7 +158,7 @@
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-coyote</artifactId>
-			<version>7.0.39</version>
+			<version>${r"${tomcat.version}"}</version>
 			<scope>provided</scope>
 		</dependency>
 

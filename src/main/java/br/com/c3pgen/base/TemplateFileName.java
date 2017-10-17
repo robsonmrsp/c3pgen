@@ -9,6 +9,7 @@ public interface TemplateFileName {
 	final String SERVICE_JAVA_IMP = "${entity.name}ServiceImp";
 	final String RESOURCE_JAVA = "${entity.name}Resources";
 	final String CONTROLLER_JAVA = "${entity.name}Controller";
+	final String TEST_CONTROLLER_JAVA = "${entity.name}ControllerTest";
 
 	final String MODEL_JS = "${entity.name}";
 	final String BASIC_FORM_JS = "Form${entity.name}";
@@ -33,6 +34,11 @@ public interface TemplateFileName {
 	final String MODAL_TEMPLATE_JS = "Modal${entity.name}";
 
 	final String BEANS_XML = "beans";
+	
+	final String TEST_BEANS_XML = "test-beans";
+	
+	final String TEST_SECURITY_XML = "test-security";
+	
 	final String ROUTER_SPEC_JS = "RouterSpec";
 	final String ROUTER_JS = "Router";
 	final String MOBILE_ROUTER_JS = "MobileRouter";

@@ -80,12 +80,17 @@ public class FreeMarkerConfig {
 
 			FileTemplateLoader fileTemplateWebApp = new FileTemplateLoader(new File(commonPathName + "appbase/src/main/webapp"));
 			FileTemplateLoader fileTemplateWEB_INF = new FileTemplateLoader(new File(commonPathName + "appbase/src/main/webapp/WEB-INF"));
-			FileTemplateLoader fileTemplateRestClientTests = new FileTemplateLoader(new File(commonPathName + "appbase/src/test/java/br/com/app/restclientes"));
+
+			// FileTemplateLoader fileTemplateRestClientTests = new FileTemplateLoader(new File(commonPathName + "appbase/src/test/java/br/com/app/restclientes"));
 			FileTemplateLoader fileTemplateTestResources = new FileTemplateLoader(new File(commonPathName + "appbase/src/test/resources"));
+			FileTemplateLoader fileTemplateBaseTests = new FileTemplateLoader(new File(commonPathName + "appbase/src/test/java/br/com/app"));
+
+			//quando adiciona esse rtemplate a geração para de funcionar, por isso foi removido
+			// FileTemplateLoader fileTemplateRestControllerTests = new FileTemplateLoader(new File(commonPathName + "appbase/src/test/java/br/com/app/integration/controller"));
 
 			TemplateLoader[] loaders = new TemplateLoader[] { ftl1, ftlMobileCommon, ftlMobileTemplateCommon, ftlTests, fileTemplateBase, fileTemplateroot, fileTemplateProdu, fileTemplateAudit, fileTemplateJson, fileTemplateModel, fileTemplatePersistence,
 					fileTemplatePersistencePagination, fileTemplateReports, fileTemplateRs, fileTemplateRsException, fileTemplateSecuriy, fileTemplateSerialization, fileTemplateService, fileTemplateUtils, fileTemplateResources, fileTemplateWebApp, fileTemplateWEB_INF,
-					fileTemplateRestClientTests, fileTemplateTestResources, };
+					fileTemplateTestResources, fileTemplateBaseTests };
 
 			MultiTemplateLoader loader = new MultiTemplateLoader(loaders);
 			configuration = new Configuration();
