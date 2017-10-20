@@ -49,7 +49,7 @@
 					<#elseif att.viewApproach.type  == 'textarea'  >
 					<div id="groupInput${firstUpper(att.name)}" class="form-group   ">
 						<label class="control-label" for="input${firstUpper(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}  ${att.required ? string('*','')}</label>
-						<textarea rows="3" id="input${firstUpper(att.name)}" placeholder="${firstUpper(att.displayName)!firstLower(att.name)}" ${getRequiredClass(att.required)} value="{{${att.name}}}"  class="form-control " ${getMaxLen(att.maxLen)}>{{${att.name}}} </textarea>
+						<textarea rows="3" id="input${firstUpper(att.name)}" placeholder="${firstUpper(att.displayName)!firstLower(att.name)}" ${getRequiredClass(att.required)} value="{{${att.name}}}"  class="form-control " ${getMaxLen(att.maxLen)}>{{${att.name}}}</textarea>
 					</div>					
 					<#elseif att.viewApproach.type  == 'upload'  >
 					<div id="groupInput${firstUpper(att.name)}" class="form-group   ">

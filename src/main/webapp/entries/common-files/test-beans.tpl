@@ -111,13 +111,14 @@
 				<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQL82Dialect	</prop>
 				<prop key="hibernate.format_sql">true</prop>
 				<prop key="hibernate.show_sql">true</prop>
-				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.hbm2ddl.auto">create</prop>
 				<prop key="hibernate.transaction.flush_before_completion">true</prop>
 			</props>
 		</property>
 	</bean>
 	<bean id="afterThrow" class="${application.corePackage}.persistence.CatchThrowConstraintViolationException" />
 	<bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+		<property name="proxyTargetClass" value="true" />
 		<property name="beanNames">
 			<list>
 				<value>*Service</value>

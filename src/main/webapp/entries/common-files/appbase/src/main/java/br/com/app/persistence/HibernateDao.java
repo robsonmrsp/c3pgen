@@ -137,7 +137,7 @@ public class HibernateDao<Entity> {
 
 	public Entity save(Entity entity) {
 		Session currentSession = sessionFactory.getCurrentSession();
-		currentSession.merge(entity);
+		entity = (Entity)currentSession.merge(entity);
 		return entity;
 	}
 

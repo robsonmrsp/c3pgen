@@ -118,6 +118,7 @@
 	</bean>
 	<bean id="afterThrow" class="${application.corePackage}.persistence.CatchThrowConstraintViolationException" />
 	<bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+		<property name="proxyTargetClass" value="true" />
 		<property name="beanNames">
 			<list>
 				<value>*Service</value>

@@ -80,7 +80,7 @@ public class ${entity.name}Controller {
 			PaginationParams<Filter${entity.name}> paginationParams = new PaginationParams(requestParams, Filter${entity.name}.class);
 			
 			<#if application.multitenancy == true>
-			List<Json${entity.name}> json${entity.name}s = Parser.toListJson${entity.name}s(${firstLower(entity.name)}Service.filter(paginationParams, context.getCurrentUser().getOwner(), Boolean.TRUE));
+			List<Json${entity.name}> json${entity.name}s = Parser.toListJson${entity.name}s(${firstLower(entity.name)}Service.filter(paginationParams, context.getOwner(), Boolean.TRUE));
 			<#else>
 			List<Json${entity.name}> json${entity.name}s = Parser.toListJson${entity.name}s(${firstLower(entity.name)}Service.filter(paginationParams, Boolean.TRUE));
 			</#if>
@@ -120,7 +120,7 @@ public class ${entity.name}Controller {
 			PaginationParams<Filter${entity.name}> paginationParams = new PaginationParams<Filter${entity.name}>(requestParams, Filter${entity.name}.class);
 
 			<#if application.multitenancy == true>
-			List<Json${entity.name}> json${entity.name}s = Parser.toListJson${entity.name}s(${firstLower(entity.name)}Service.filter(paginationParams, context.getCurrentUser().getOwner(), Boolean.FALSE));
+			List<Json${entity.name}> json${entity.name}s = Parser.toListJson${entity.name}s(${firstLower(entity.name)}Service.filter(paginationParams, context.getOwner(), Boolean.FALSE));
 			<#else>
 			List<Json${entity.name}> json${entity.name}s = Parser.toListJson${entity.name}s(${firstLower(entity.name)}Service.filter(paginationParams, Boolean.FALSE));
 			</#if>
@@ -142,7 +142,7 @@ public class ${entity.name}Controller {
 		try {
 			
 			<#if application.multitenancy == true>
-			List<Json${entity.name}> json${entity.name}s = Parser.toListJson${entity.name}s(${firstLower(entity.name)}Service.all(context.getCurrentUser().getOwner()));
+			List<Json${entity.name}> json${entity.name}s = Parser.toListJson${entity.name}s(${firstLower(entity.name)}Service.all(context.getOwner()));
 			<#else>
 			List<Json${entity.name}> json${entity.name}s = Parser.toListJson${entity.name}s(${firstLower(entity.name)}Service.all());
 			</#if>
@@ -187,7 +187,7 @@ public class ${entity.name}Controller {
 			PaginationParams<Filter${entity.name}> paginationParams = new PaginationParams<Filter${entity.name}>(requestParams, Filter${entity.name}.class);
 
 			<#if application.multitenancy == true>
-			${firstLower(entity.name)}s = ${firstLower(entity.name)}Service.all(paginationParams, context.getCurrentUser().getOwner());
+			${firstLower(entity.name)}s = ${firstLower(entity.name)}Service.all(paginationParams, context.getOwner());
 			<#else>
 			${firstLower(entity.name)}s = ${firstLower(entity.name)}Service.all(paginationParams);
 			</#if>
@@ -212,7 +212,7 @@ public class ${entity.name}Controller {
 		try {
 
 			<#if application.multitenancy == true>
-			${entity.name} ${firstLower(entity.name)} = ${firstLower(entity.name)}Service.get(id, context.getCurrentUser().getOwner());
+			${entity.name} ${firstLower(entity.name)} = ${firstLower(entity.name)}Service.get(id, context.getOwner());
 			<#else>
 			${entity.name} ${firstLower(entity.name)} = ${firstLower(entity.name)}Service.get(id);
 			</#if>
@@ -237,7 +237,7 @@ public class ${entity.name}Controller {
 
 			${entity.name} ${firstLower(entity.name)} = Parser.toEntity(json${entity.name});
 			<#if application.multitenancy == true>
-			${firstLower(entity.name)}.setOwner(context.getCurrentUser().getOwner());
+			${firstLower(entity.name)}.setOwner(context.getOwner());
 			</#if>
 			${firstLower(entity.name)} = ${firstLower(entity.name)}Service.save(${firstLower(entity.name)});
 			return ResponseEntity.ok(Parser.toJson(${firstLower(entity.name)}));
@@ -262,7 +262,7 @@ public class ${entity.name}Controller {
 			${entity.name} ${firstLower(entity.name)} = Parser.toEntity(json${entity.name});
 
 			<#if application.multitenancy == true>
-			${firstLower(entity.name)}.setOwner(context.getCurrentUser().getOwner());
+			${firstLower(entity.name)}.setOwner(context.getOwner());
 			</#if>
 
 			${firstLower(entity.name)} = ${firstLower(entity.name)}Service.update(${firstLower(entity.name)});
