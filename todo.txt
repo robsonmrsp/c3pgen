@@ -1,4 +1,8 @@
-Atualização das libs do hibernate e spring no pom.xml
+1 - testar se a geração está funcionando para o col e para as notificações.
+2 - Criar uma branch para a geração dos testes de integração/controller. Mas antes definir o melhor layout usando a alicação netflics
+3 - Alterar o POM.xml para atualização das libs do hibernate e spring no pom.xml 
+4 - puxar o fexture factory para o netflix para ver como ele pode ajudar nos testes.  
+
 
 
 

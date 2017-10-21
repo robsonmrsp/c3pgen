@@ -227,7 +227,7 @@ define(function(require) {
 			</#if>				
 			};
 
-			this.${firstLower(entity.name)}Collection.fetch({
+			this.${firstLower(entity.name)}Collection.getFirstPage({
 				resetState : true,
 				success : function(_coll, _resp, _opt) {
 					//caso queira algum tratamento de sucesso adicional

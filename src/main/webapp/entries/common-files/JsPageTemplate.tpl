@@ -244,7 +244,7 @@ define(function(require) {
 			</#list>
 			</#if>
 			}
-			this.${firstLower(entity.name)}s.fetch({
+			this.${firstLower(entity.name)}s.getFirstPage({
 				success : function(_coll, _resp, _opt) {
 					//console.info('Consulta para o grid ${firstLower(entity.name)}');
 				},

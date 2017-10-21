@@ -193,7 +193,7 @@ define(function(require) {
 			</#if>				
 			};
 
-			this.modalCollection.fetch({
+			this.modalCollection.getFirstPage({
 				resetState : true,
 				success : function(_coll, _resp, _opt) {
 					//caso queira algum tratamento de sucesso adicional
