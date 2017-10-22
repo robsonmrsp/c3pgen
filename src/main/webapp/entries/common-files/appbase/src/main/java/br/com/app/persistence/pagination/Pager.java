@@ -7,6 +7,10 @@ public class Pager<Entity> {
 	private final Integer actualPage;
 	private final Long totalRecords;
 
+	public Pager() {
+		this(null, 0, 10L);
+	}
+	
 	public Pager(List<Entity> itens, Integer actualPage, Long totalRecords) {
 		super();
 		this.itens = itens;

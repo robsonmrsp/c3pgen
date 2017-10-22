@@ -37,6 +37,7 @@ public class BaseAppGenerator {
 
 		genericGenerator.generate(FSItemDescription.persistences(javaCoreFolder));
 		genericGenerator.generate(FSItemDescription.test(javaRootTestFolder));
+		genericGenerator.generate(FSItemDescription.testResources(javaRootTestResourcesFolder));
 		genericGenerator.generate(FSItemDescription.persistences2(javaRootFolder));
 		genericGenerator.generate(FSItemDescription.audit(javaCoreFolder));
 		genericGenerator.generate(FSItemDescription.json(javaCoreFolder));

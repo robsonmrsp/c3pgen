@@ -196,9 +196,15 @@ public class FSItemDescription {
 
 		List<FSItemDescription> list = new ArrayList<FSItemDescription>();
 		list.add(new FSItemDescription("Application", rootTesteFolder, "Application", FileType.JAVA));
-		// list.add(new FSItemDescription("UserServiceImp", rootFolder + File.separator + "service" + File.separator, "UserServiceImp", FileType.JAVA));
-		// list.add(new FSItemDescription("SyncService", rootFolder + File.separator + "service" + File.separator, "SyncService", FileType.JAVA));
-		// list.add(new FSItemDescription("SyncServiceImp", rootFolder + File.separator + "service" + File.separator, "SyncServiceImp", FileType.JAVA));
+		list.add(new FSItemDescription("FixtureUtils", rootTesteFolder + "/fixture/", "FixtureUtils", FileType.JAVA));
+		return list;
+	}
+
+	public static List<FSItemDescription> testResources(String rootResourcesFolder) {
+
+		List<FSItemDescription> list = new ArrayList<FSItemDescription>();
+
+		list.add(new FSItemDescription("init-data", rootResourcesFolder, "init-data", FileType.SQL));
 		return list;
 	}
 

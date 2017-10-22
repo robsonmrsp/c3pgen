@@ -141,6 +141,9 @@ public class ApplicationEntity extends AbstractTimestampEntity {
 	}
 
 	public String getTableName() {
+		if (tableName.equalsIgnoreCase("user")) {
+			setTableName("TB_USER");
+		}
 		return tableName;
 	}
 
@@ -222,6 +225,14 @@ public class ApplicationEntity extends AbstractTimestampEntity {
 			return getAttributes().get(0);
 		else
 			return null;
+	}
+
+	public Attribute getPrimaryStringAttribute() {
+		for (Attribute a : getAttributes()) {
+			if (a.getType().getClassName().contains("String"))
+				return a;
+		}
+		return null;
 	}
 
 	public Attribute getSecondaryAttribute() {

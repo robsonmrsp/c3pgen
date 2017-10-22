@@ -19,12 +19,14 @@
 	</properties>
 	
 	<dependencies>
-		<dependency>
-			<groupId>org.webjars</groupId>
-			<artifactId>swagger-ui</artifactId>
-			<version>2.2.10-1</version>
-		</dependency>
 	
+		<dependency>
+			<groupId>br.com.six2six</groupId>
+			<artifactId>fixture-factory</artifactId>
+			<version>3.1.0</version>
+			<scope>test</scope>
+		</dependency>
+		
 		<dependency>
 			<groupId>net.sf.jasperreports</groupId>
 			<artifactId>jasperreports</artifactId>
