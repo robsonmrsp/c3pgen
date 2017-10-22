@@ -441,7 +441,9 @@
 								<cssSourceFile>../vendor/sweetalert-1.1.3/dist/sweetalert.css</cssSourceFile>
 								<cssSourceFile>../vendor/theme/demo/css/nifty.css</cssSourceFile>
 								<cssSourceFile>../vendor/theme/demo/css/nifty-demo-icons.css</cssSourceFile>
-								<cssSourceFile>../vendor/theme/demo/css/theme-ocean.css</cssSourceFile>								
+								<cssSourceFile>../vendor/theme/demo/css/theme-ocean.css</cssSourceFile>		
+								<cssSourceFile>../vendor/noty-3.1.3/lib/noty.css</cssSourceFile>
+								<cssSourceFile>../vendor/animate.css/animate.css</cssSourceFile>	
 								<cssSourceFile>custom.css</cssSourceFile>
 								</cssSourceFiles>
 							<cssFinalFile>main-built.css</cssFinalFile>

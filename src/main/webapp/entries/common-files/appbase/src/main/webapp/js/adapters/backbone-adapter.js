@@ -3,6 +3,23 @@ define([ 'backbone', 'backbonePageable', 'backboneLocalstorage', 'backboneWebSoc
 
 	defaultSync = Back.sync
 
+	// Evitando multiplos posts
+	Backbone.Model.prototype._save = Backbone.Model.prototype.save;
+	Backbone.Model.prototype.save = function(attrs, options) {
+		if (this.isNew() && this.request && this.request.readyState !== 4) {
+			var that = this, args = arguments;
+
+			if (_.isEmpty(attrs))
+				attrs = this.toJSON();
+			$.when(this.request).always(function() {
+				Backbone.Model.prototype._save.apply(that, args);
+			});
+		} else {
+			this.request = Backbone.Model.prototype._save.apply(this, arguments);
+			return this.request;
+		}
+	};
+
 	// TODO CENTRALIZAR os erros de server nesse function
 	Back.sync = function(method, model, options) {
 		var _success = options.success

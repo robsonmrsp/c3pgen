@@ -214,8 +214,9 @@ define(function(require) {
 			</#if>
 			</#if>
 		</#list>
-		</#if>		
-			this.search${firstUpper(entity.name)}();
+		</#if>
+		
+			this.that.dataTable${firstUpper(entity.name)}.recoveryLastQuery();
 		},
 		 
 		search${firstUpper(entity.name)} : function(){
