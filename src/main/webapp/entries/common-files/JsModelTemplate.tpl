@@ -35,39 +35,14 @@ define(function(require) {
 		<#else>
 		url : '../rs/crud/${firstLower(entity.name)}s/all',
 		</#if>
-		
 	});
 	
-	var ${entity.name}sCollection = Backbone.PageableCollection.extend({
-
+	var ${entity.name}sCollection = JSetup.BasePageableCollection.extend({
 		model : ${entity.name}Model,
 
 		url : 'rs/crud/${firstLower(entity.name)}s',
 
 		mode : 'server',
-
-		state : {
-			firstPage : 1,
-			lastPage : null,
-			currentPage : 1,
-			pageSize :10,
-			totalPages : null,
-			totalRecords : null,
-			sortKey : null,
-			order : -1
-		},
-
-		queryParams : {
-			totalPages : null,
-			pageSize : "pageSize",
-			totalRecords : null,
-			sortKey : "orderBy",
-			order : "direction",
-			directions : {
-				"-1" : "asc",
-				"1" : "desc"
-			}
-		},
 	});
 
 	var ${entity.name}PageClientCollection = ${entity.name}sCollection.extend({
