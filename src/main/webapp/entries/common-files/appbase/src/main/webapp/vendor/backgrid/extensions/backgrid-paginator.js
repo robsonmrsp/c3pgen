@@ -22,44 +22,22 @@
 	"use strict";
 
 	/**
-	 * PageHandle is a class that renders the actual page handles and reacts to
-	 * click events for pagination.
+	 * PageHandle is a class that renders the actual page handles and reacts to click events for pagination.
 	 * 
-	 * This class acts in two modes - control or discrete page handle modes. If
-	 * one of the `is*` flags is `true`, an instance of this class is under
-	 * control page handle mode. Setting a `pageIndex` to an instance of this
-	 * class under control mode has no effect and the correct page index will
-	 * always be inferred from the `is*` flag. Only one of the `is*` flags
-	 * should be set to `true` at a time. For example, an instance of this class
-	 * cannot simultaneously be a rewind control and a fast forward control. A
-	 * `label` and a `title` template or a string are required to be passed to
-	 * the constuctor under this mode. If a `title` template is provided, it
-	 * __MUST__ accept a parameter `label`. When the `label` is provided to the
-	 * `title` template function, its result will be used to render the
-	 * generated anchor's title attribute.
+	 * This class acts in two modes - control or discrete page handle modes. If one of the `is*` flags is `true`, an instance of this class is under control page handle mode. Setting a `pageIndex` to an instance of this class under control mode has no effect and the correct page
+	 * index will always be inferred from the `is*` flag. Only one of the `is*` flags should be set to `true` at a time. For example, an instance of this class cannot simultaneously be a rewind control and a fast forward control. A `label` and a `title` template or a string are
+	 * required to be passed to the constuctor under this mode. If a `title` template is provided, it __MUST__ accept a parameter `label`. When the `label` is provided to the `title` template function, its result will be used to render the generated anchor's title attribute.
 	 * 
-	 * If all of the `is*` flags is set to `false`, which is the default, an
-	 * instance of this class will be in discrete page handle mode. An instance
-	 * under this mode requires the `pageIndex` to be passed from the
-	 * constructor as an option and it __MUST__ be a 0-based index of the list
-	 * of page numbers to render. The constuctor will normalize the base to the
-	 * same base the underlying PageableCollection collection instance uses. A
-	 * `label` is not required under this mode, which will default to the
-	 * equivalent 1-based page index calculated from `pageIndex` and the
-	 * underlying PageableCollection instance. A provided `label` will still be
-	 * honored however. The `title` parameter is also not required under this
-	 * mode, in which case the default `title` template will be used. You are
-	 * encouraged to provide your own `title` template however if you wish to
-	 * localize the title strings.
+	 * If all of the `is*` flags is set to `false`, which is the default, an instance of this class will be in discrete page handle mode. An instance under this mode requires the `pageIndex` to be passed from the constructor as an option and it __MUST__ be a 0-based index of the
+	 * list of page numbers to render. The constuctor will normalize the base to the same base the underlying PageableCollection collection instance uses. A `label` is not required under this mode, which will default to the equivalent 1-based page index calculated from
+	 * `pageIndex` and the underlying PageableCollection instance. A provided `label` will still be honored however. The `title` parameter is also not required under this mode, in which case the default `title` template will be used. You are encouraged to provide your own `title`
+	 * template however if you wish to localize the title strings.
 	 * 
-	 * If this page handle represents the current page, an `active` class will
-	 * be placed on the root list element.
+	 * If this page handle represents the current page, an `active` class will be placed on the root list element.
 	 * 
-	 * if this page handle is at the border of the list of pages, a `disabled`
-	 * class will be placed on the root list element.
+	 * if this page handle is at the border of the list of pages, a `disabled` class will be placed on the root list element.
 	 * 
-	 * Only page handles that are neither `active` nor `disabled` will respond
-	 * to click events and triggers pagination.
+	 * Only page handles that are neither `active` nor `disabled` will respond to click events and triggers pagination.
 	 * 
 	 * @class Backgrid.Extension.PageHandle
 	 */
@@ -74,35 +52,27 @@
 		},
 
 		/**
-		 * @property {string|function(Object.<string, string>): string} title
-		 *           The title to use for the `title` attribute of the generated
-		 *           page handle anchor elements. It can be a string or an
-		 *           Underscore template function that takes a mandatory `label`
-		 *           parameter.
+		 * @property {string|function(Object.<string, string>): string} title The title to use for the `title` attribute of the generated page handle anchor elements. It can be a string or an Underscore template function that takes a mandatory `label` parameter.
 		 */
 		title : _.template('Página {{ label }}'),
 
 		/**
-		 * @property {boolean} isRewind Whether this handle represents a rewind
-		 *           control
+		 * @property {boolean} isRewind Whether this handle represents a rewind control
 		 */
 		isRewind : false,
 
 		/**
-		 * @property {boolean} isBack Whether this handle represents a back
-		 *           control
+		 * @property {boolean} isBack Whether this handle represents a back control
 		 */
 		isBack : false,
 
 		/**
-		 * @property {boolean} isForward Whether this handle represents a
-		 *           forward control
+		 * @property {boolean} isForward Whether this handle represents a forward control
 		 */
 		isForward : false,
 
 		/**
-		 * @property {boolean} isFastForward Whether this handle represents a
-		 *           fast forward control
+		 * @property {boolean} isFastForward Whether this handle represents a fast forward control
 		 */
 		isFastForward : false,
 
@@ -114,14 +84,9 @@
 		 * @param {Backbone.Collection}
 		 *            options.collection
 		 * @param {number}
-		 *            pageIndex 0-based index of the page number this handle
-		 *            handles. This parameter will be normalized to the base the
-		 *            underlying PageableCollection uses.
+		 *            pageIndex 0-based index of the page number this handle handles. This parameter will be normalized to the base the underlying PageableCollection uses.
 		 * @param {string}
-		 *            [options.label] If provided it is used to render the
-		 *            anchor text, otherwise the normalized pageIndex will be
-		 *            used instead. Required if any of the `is*` flags is set to
-		 *            `true`.
+		 *            [options.label] If provided it is used to render the anchor text, otherwise the normalized pageIndex will be used instead. Required if any of the `is*` flags is set to `true`.
 		 * @param {string}
 		 *            [options.title]
 		 * @param {boolean}
@@ -188,9 +153,7 @@
 		},
 
 		/**
-		 * jQuery click event handler. Goes to the page this PageHandle instance
-		 * represents. No-op if this page handle is currently active or
-		 * disabled.
+		 * jQuery click event handler. Goes to the page this PageHandle instance represents. No-op if this page handle is currently active or disabled.
 		 */
 		changePage : function(e) {
 			e.preventDefault();
@@ -204,12 +167,8 @@
 	});
 
 	/**
-	 * Paginator is a Backgrid extension that renders a series of configurable
-	 * pagination handles. This extension is best used for splitting a large
-	 * data set across multiple pages. If the number of pages is larger then a
-	 * threshold, which is set to 10 by default, the page handles are rendered
-	 * within a sliding window, plus the rewind, back, forward and fast forward
-	 * control handles. The individual control handles can be turned off.
+	 * Paginator is a Backgrid extension that renders a series of configurable pagination handles. This extension is best used for splitting a large data set across multiple pages. If the number of pages is larger then a threshold, which is set to 10 by default, the page handles
+	 * are rendered within a sliding window, plus the rewind, back, forward and fast forward control handles. The individual control handles can be turned off.
 	 * 
 	 * @class Backgrid.Extension.Paginator
 	 */
@@ -222,9 +181,7 @@
 		windowSize : 10,
 
 		/**
-		 * @property {Object.<string, Object.<string, string>>} controls You
-		 *           can disable specific control handles by omitting certain
-		 *           keys.
+		 * @property {Object.<string, Object.<string, string>>} controls You can disable specific control handles by omitting certain keys.
 		 */
 		controls : {
 			rewind : {
@@ -246,8 +203,7 @@
 		},
 
 		/**
-		 * @property {Backgrid.Extension.PageHandle} pageHandle. The PageHandle
-		 *           class to use for rendering individual handles
+		 * @property {Backgrid.Extension.PageHandle} pageHandle. The PageHandle class to use for rendering individual handles
 		 */
 		pageHandle : PageHandle,
 
@@ -273,6 +229,8 @@
 			this.pageHandle = options.pageHandle || this.pageHandle;
 			this.uiClassName = options.uiClassName
 
+			// robson
+			this.windowSize = options.windowSize || 10;
 			var collection = this.collection;
 			this.listenTo(collection, "add", this.render);
 			this.listenTo(collection, "remove", this.render);
