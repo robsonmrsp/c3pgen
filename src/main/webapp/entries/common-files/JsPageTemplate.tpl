@@ -117,8 +117,7 @@ define(function(require) {
 				onFetching : this.startFetch,
 				onFetched : this.stopFetch,
 				view : this
-			});
-			
+			});			
 		<#if entity.relationships??>	
 		<#list entity.relationships as rel >
 			<#if rel.showInPages >
@@ -430,7 +429,7 @@ define(function(require) {
 		</#list>
 		</#if>
 		
-		// adictional functions
+		// additional functions
 		toggleAdvancedForm : function() {
 			this.ui.advancedSearchForm.slideToggle("slow");
 		},
