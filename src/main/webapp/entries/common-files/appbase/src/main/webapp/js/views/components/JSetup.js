@@ -144,7 +144,6 @@ define(function(require) {
 	 * ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	 */
 
-
 	var Counter = Marionette.ItemView.extend({
 		className : 'counter-component',
 		template : _.template(CounterTemplate),
@@ -230,6 +229,11 @@ define(function(require) {
 			counterRegion : '.counter',
 			paginatorRegion : '.paginator',
 		},
+		
+		getFirstPage : function(options) {
+			this.collection.filterQueryParams = options.filterQueryParams;
+			this.collection.getFirstPage(options);
+		},
 
 		recoveryLastQuery : function(initialQuery) {
 
@@ -259,13 +263,24 @@ define(function(require) {
 			if (!options.collection) {
 				throw new TypeError("Deve definir a coleção do grid");
 			}
+			
+			this.onFetching : options.onFetching;
+			this.onFetched : options.onFetched;
+			this.context : options.view;
+			this.collection = options.collection;
+			
+			if(this.onFetching){
+				this.collection.on('fetching', this.onFetching, this.context);
+			}
+			if(this.onFetched){
+				this.collection.on('fetched', this.onFetched, this.context);
+			}
 
 			var colSizes = options.columns.length
 			if (colSizes > 0 && options.columns[colSizes - 1].name === 'acoes') {
 				options.columns[colSizes - 1].alwaysVisible = true;
 			}
 
-			this.collection = options.collection;
 			// adicionando uma header compativel com tipos numericos
 			_.each(options.columns, function(col) {
 				if (col.cell && col.cell.__super__ && col.cell.__super__.className == 'custom-number-cel') {
@@ -498,7 +513,7 @@ define(function(require) {
 			if (this.column.get("name").indexOf('.') > 0) {// composto
 				var fields = this.column.get("name").split('.')
 				if (fields.length == 2) {
-				theColValue = model.get(fields[0]) && model.get(fields[0])[fields[1]];
+					theColValue = model.get(fields[0]) && model.get(fields[0])[fields[1]];
 				} else if (fields.length == 3) {
 					theColValue = model.get(fields[0]) && model.get(fields[0])[fields[1]] && model.get(fields[0])[fields[1]][fields[2]];
 				}
@@ -650,8 +665,8 @@ define(function(require) {
 				}
 				if (that.noImage) {
 					this.ui.imageView.attr('no-image-file', that.noImage);
-		}
-	});
+				}
+			});
 		},
 
 		sendFile : function() {

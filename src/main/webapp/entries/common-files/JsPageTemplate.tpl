@@ -110,13 +110,15 @@ define(function(require) {
 		initialize : function() {
 			var that = this;
 			this.${firstLower(entity.name)}s = new ${entity.name}.PageCollection();
-			this.${firstLower(entity.name)}s.on('fetching', this.startFetch, this);
-			this.${firstLower(entity.name)}s.on('fetched', this.stopFetch, this);
 			
 			this.dataTable${firstUpper(entity.name)} = new JSetup.DataTable({
 				columns : this.getColumns(),
-				collection : this.${firstLower(entity.name)}s
+				collection : this.${firstLower(entity.name)}s,
+				onFetching : this.startFetch,
+				onFetched : this.stopFetch,
+				view : this
 			});
+			
 		<#if entity.relationships??>	
 		<#list entity.relationships as rel >
 			<#if rel.showInPages >
@@ -205,7 +207,8 @@ define(function(require) {
 			</#if>
 		</#list>
 		</#if>
-			this.dataTable${firstUpper(entity.name)}Region.show(that.dataTable${firstUpper(entity.name)});
+		
+			this.dataTable${firstUpper(entity.name)}Region.show(this.dataTable${firstUpper(entity.name)});
 		<#if entity.relationships??>	
 		<#list entity.relationships as rel >
 			<#if rel.showInPages >		
@@ -216,44 +219,79 @@ define(function(require) {
 		</#list>
 		</#if>
 		
-			this.that.dataTable${firstUpper(entity.name)}.recoveryLastQuery();
+			this.dataTable${firstUpper(entity.name)}.recoveryLastQuery();
 		},
-		 
-		search${firstUpper(entity.name)} : function(){
-			var that = this;
-			util.loadButton(this.ui.loadButton)
-			this.${firstLower(entity.name)}s.filterQueryParams = {
-			<#list entity.attributes as att>
-				<#if att.showInPages && att.viewApproach.type  != 'upload'>
-				<#if isNumeric(att.type.className)>
-		    	${firstLower(att.name)} : this.ui.input${firstUpper(att.name)}.escape(true),
-		    	<#else> 
-	    		${firstLower(att.name)} : this.ui.input${firstUpper(att.name)}.escape(), 
-		    	</#if>
-				</#if>
-			</#list>
-			<#if entity.relationships??>	
-			<#list entity.relationships as rel >
-				<#if rel.showInPages >			
-				<#if rel.viewApproach.type == 'modal' >
-			    ${firstLower(rel.name)} : this.modal${firstUpper(rel.name)}.getRawValue(), 
-				</#if> 
-				<#if  rel.viewApproach.type == 'combo'>
-			    ${firstLower(rel.name)} : this.combo${firstUpper(rel.name)}.getRawValue(), 
-				</#if>
-				</#if>
-			</#list>
-			</#if>
-			}
-			this.${firstLower(entity.name)}s.getFirstPage({
-				success : function(_coll, _resp, _opt) {
-					//console.info('Consulta para o grid ${firstLower(entity.name)}');
-				},
-				error : function(_coll, _resp, _opt) {
-					//console.error(_resp.responseText || (_resp.getResponseHeader && _resp.getResponseHeader('exception')));
-				},
-			})		
-		},
+		
+		 search${firstUpper(entity.name)} : function(){		                                                                   
+		 	var that = this;                                                                                                   
+		 	this.dataTableLinguagem.getFirstPage({                                                                             
+		 		success : function(_coll, _resp, _opt) {                                                                       
+		 			//console.info('Consulta para o grid ${firstLower(entity.name)}');                                         
+		 		},                                                                                                             
+		 		error : function(_coll, _resp, _opt) {                                                                         
+		 			//console.error(_resp.responseText || (_resp.getResponseHeader && _resp.getResponseHeader('exception')));  
+		 		},                                                                                                             
+		 		filterQueryParams : {                                                                                          
+		 		<#list entity.attributes as att>                                                                               
+		 			<#if att.showInPages && att.viewApproach.type  != 'upload'>                                                
+		 			<#if isNumeric(att.type.className)>                                                                        
+		 	    	${firstLower(att.name)} : this.ui.input${firstUpper(att.name)}.escape(true),                               
+		 	    	<#else>                                                                                                    
+		     		${firstLower(att.name)} : this.ui.input${firstUpper(att.name)}.escape(),                                   
+		 	    	</#if>                                                                                                     
+		 			</#if>                                                                                                     
+		 		</#list>                                                                                                       
+		 		<#if entity.relationships??>	                                                                               
+		 		<#list entity.relationships as rel >                                                                           
+		 			<#if rel.showInPages >			                                                                           
+		 			<#if rel.viewApproach.type == 'modal' >                                                                    
+		 		    ${firstLower(rel.name)} : this.modal${firstUpper(rel.name)}.getRawValue(),                                 
+		 			</#if>                                                                                                     
+		 			<#if  rel.viewApproach.type == 'combo'>                                                                    
+		 		    ${firstLower(rel.name)} : this.combo${firstUpper(rel.name)}.getRawValue(),                                 
+		 			</#if>                                                                                                     
+		 			</#if>                                                                                                     
+		 		</#list>                                                                                                       
+		 		</#if>                                                                                                         
+		 		}                                                                                                              
+		 	})                                                                                                                 
+		 },																													   
+		<#--search${firstUpper(entity.name)} : function(){                                                                                         -->
+		<#--	var that = this;                                                                                                                   -->
+		<#--	//util.loadButton(this.ui.loadButton)                                                                                              -->
+		<#--	this.${firstLower(entity.name)}s.filterQueryParams = {                                                                             -->
+		<#--	<#list entity.attributes as att>                                                                                                   -->
+		<#--		<#if att.showInPages && att.viewApproach.type  != 'upload'>                                                                    -->
+		<#--		<#if isNumeric(att.type.className)>                                                                                            -->
+		<#--    	${firstLower(att.name)} : this.ui.input${firstUpper(att.name)}.escape(true),                                                   -->
+		<#--    	<#else>                                                                                                                        -->
+	    <#--		${firstLower(att.name)} : this.ui.input${firstUpper(att.name)}.escape(),                                                       -->
+		<#--    	</#if>                                                                                                                         -->
+		<#--		</#if>                                                                                                                         -->
+		<#--	</#list>                                                                                                                           -->
+		<#--	<#if entity.relationships??>	                                                                                                   -->
+		<#--	<#list entity.relationships as rel >                                                                                               -->
+		<#--		<#if rel.showInPages >			                                                                                               -->
+		<#--		<#if rel.viewApproach.type == 'modal' >                                                                                        -->
+		<#--	    ${firstLower(rel.name)} : this.modal${firstUpper(rel.name)}.getRawValue(),                                                     -->
+		<#--		</#if>                                                                                                                         -->
+		<#--		<#if  rel.viewApproach.type == 'combo'>                                                                                        -->
+		<#--	    ${firstLower(rel.name)} : this.combo${firstUpper(rel.name)}.getRawValue(),                                                     -->
+		<#--		</#if>                                                                                                                         -->
+		<#--		</#if>                                                                                                                         -->
+		<#--	</#list>                                                                                                                           -->
+		<#--	</#if>                                                                                                                             -->
+		<#--	}                                                                                                                                  -->
+		<#--	this.${firstLower(entity.name)}s.getFirstPage({                                                                                    -->
+		<#--		success : function(_coll, _resp, _opt) {                                                                                       -->
+		<#--			//console.info('Consulta para o grid ${firstLower(entity.name)}');                                                         -->
+		<#--		},                                                                                                                             -->
+		<#--		error : function(_coll, _resp, _opt) {                                                                                         -->
+		<#--			//console.error(_resp.responseText || (_resp.getResponseHeader && _resp.getResponseHeader('exception')));                  -->
+		<#--		},                                                                                                                             -->
+		<#--	})		                                                                                                                           -->
+		<#--},                                                                                                                                     -->
+		
 		reset${firstUpper(entity.name)} : function(){
 			this.ui.form.get(0).reset();
 			this.${firstLower(entity.name)}s.reset();

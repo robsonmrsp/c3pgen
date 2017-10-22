@@ -423,7 +423,7 @@ define([ 'Noty', 'nprogress', 'moment', 'spin', 'adapters/underscore-adapter', '
 		notificationError : function(text) {
 			this.notification('error', text, 'bottomRight');
 		},
-		notificationInfo : function() {
+		notificationInfo : function(text) {
 			this.notification('info', text, 'topRight');
 		},
 		notificationWarn : function(text) {
@@ -613,7 +613,7 @@ define([ 'Noty', 'nprogress', 'moment', 'spin', 'adapters/underscore-adapter', '
 				success : function() {
 					localCol.each(function(obj) {
 						if (obj.get('id') != validateField.val()) {
-							that.notificationError(options.text || 'Já existe registro com ' + (options.displayFieldName || options.fieldName) + ' ' + fieldValue);
+							that.notificationWarn(options.text || 'Já existe registro com ' + (options.displayFieldName || options.fieldName) + ' ' + fieldValue);
 							options.element.val('');
 						}
 					});
