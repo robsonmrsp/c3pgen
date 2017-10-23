@@ -10,6 +10,7 @@ public interface TemplateFileName {
 	final String RESOURCE_JAVA = "${entity.name}Resources";
 	final String CONTROLLER_JAVA = "${entity.name}Controller";
 	final String TEST_CONTROLLER_JAVA = "${entity.name}ControllerTest";
+	final String TEST_ERROR_MOCK = "${entity.name}ErrorMockTest";
 
 	final String MODEL_JS = "${entity.name}";
 	final String BASIC_FORM_JS = "Form${entity.name}";
@@ -35,6 +36,8 @@ public interface TemplateFileName {
 
 	final String BEANS_XML = "beans";
 	
+	final String TEST_INIT_DATA = "init-data-${entity.name}";
+
 	final String TEST_BEANS_XML = "test-beans";
 	
 	final String TEST_SECURITY_XML = "test-security";

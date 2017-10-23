@@ -204,7 +204,7 @@ public class FSItemDescription {
 
 		List<FSItemDescription> list = new ArrayList<FSItemDescription>();
 
-		list.add(new FSItemDescription("init-data", rootResourcesFolder, "init-data", FileType.SQL));
+//		list.add(new FSItemDescription("init-data", rootResourcesFolder, "init-data", FileType.SQL)); comentado pois estamos gerando um por entidade
 		return list;
 	}
 

@@ -31,7 +31,7 @@ import br.com.six2six.fixturefactory.Fixture;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-@Sql("classpath:init-data.sql")
+@Sql("classpath:init-data-${entity.name}.sql")
 public class ${entity.name}ControllerTest {
 
 	@Autowired
@@ -112,10 +112,7 @@ public class ${entity.name}ControllerTest {
 
 		TestRestTemplate withBasicAuth = testRestTemplate.withBasicAuth("jsetup", "123456");
 
-		UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(URL + "/filterEqual").queryParam("${firstLower(entity.primaryStringAttribute)}", "${firstLower(entity.name)}1");
-
-		String uriString = builder.toUriString();
-		ResponseEntity<${entity.name}[]> responseEntity = withBasicAuth.getForEntity(uriString, ${entity.name}[].class);
+		ResponseEntity<${entity.name}[]> responseEntity = withBasicAuth.getForEntity(URL + "/filterEqual?${firstLower(entity.primaryStringAttribute)}={${firstLower(entity.primaryStringAttribute)}}", ${entity.name}[].class,"${firstLower(entity.primaryStringAttribute)} ${firstLower(entity.name)}1");
 		${entity.name}[] ${firstLower(entity.name)}s = responseEntity.getBody();
 		HttpStatus status = responseEntity.getStatusCode();
 
@@ -127,7 +124,7 @@ public class ${entity.name}ControllerTest {
 			@Override
 			public void accept(${entity.name} ${firstLower(entity.name)}) {
 			<#if entity.primaryStringAttribute??>
-				assertEquals("A not null ${entity.name} should be returned white the 'name' = '${firstLower(entity.name)}1'", ${firstLower(entity.name)}.get${firstUpper(entity.primaryStringAttribute)}(), "${firstLower(entity.name)}1");
+				assertEquals("A not null ${entity.name} should be returned white the 'name' = '${firstLower(entity.primaryStringAttribute)} ${firstLower(entity.name)}1'", ${firstLower(entity.name)}.get${firstUpper(entity.primaryStringAttribute)}(), "${firstLower(entity.primaryStringAttribute)} ${firstLower(entity.name)}1");
 			</#if>
 			}
 		});

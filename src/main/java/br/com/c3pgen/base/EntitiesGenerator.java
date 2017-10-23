@@ -48,6 +48,8 @@ public class EntitiesGenerator {
 	// private static MarkerGenerator resourcesGenerator;
 	private static MarkerGenerator controllerGenerator;
 	private static MarkerGenerator testControllerGenerator;
+	private static MarkerGenerator testErrorMockGenerator;
+	private static MarkerGenerator testInitData;
 	private static MarkerGenerator mybatisResourcesGenerator;
 	private static MarkerGenerator daoGenerator;
 	private static MarkerGenerator mapperMybatisGenerator;
@@ -138,6 +140,10 @@ public class EntitiesGenerator {
 		controllerGenerator = new MarkerGenerator(freeMarkerConfig, application, "JavaControllerTemplate.tpl", javaRootFolder + "/rs/", TemplateFileName.CONTROLLER_JAVA, FileType.JAVA);
 
 		testControllerGenerator = new MarkerGenerator(freeMarkerConfig, application, "JavaTestControllerTemplate.tpl", javaTestRootFolder + "/integration/controller/", TemplateFileName.TEST_CONTROLLER_JAVA, FileType.JAVA);
+
+		testErrorMockGenerator = new MarkerGenerator(freeMarkerConfig, application, "JavaTestErrorMock.tpl", javaTestRootFolder + "/integration/controller/", TemplateFileName.TEST_ERROR_MOCK, FileType.JAVA);
+
+		testInitData = new MarkerGenerator(freeMarkerConfig, application, "init-data.tpl", javaTestResourcesRootFolder, TemplateFileName.TEST_INIT_DATA, FileType.SQL);
 
 		mybatisResourcesGenerator = new MarkerGenerator(freeMarkerConfig, application, "JavaMybatisResourcesTemplate.tpl", javaRootFolder + "/rs/", TemplateFileName.RESOURCE_JAVA, FileType.JAVA);
 
@@ -271,6 +277,7 @@ public class EntitiesGenerator {
 
 				beansGenerator.generate(application);
 				testBeansGenerator.generate(application);
+				// testInitData.generate(application);
 				testSecurityGenerator.generate(application);
 
 				xmlAngularPomGenerator.generate(application);
@@ -301,6 +308,8 @@ public class EntitiesGenerator {
 							// ent);
 							controllerGenerator.generateEntityFile(application, ent);
 							testControllerGenerator.generateEntityFile(application, ent);
+							testErrorMockGenerator.generateEntityFile(application, ent);
+							testInitData.generateEntityFile(application, ent);
 						} else {
 							javaMybatisModelGenerator.generateEntityFile(application, ent);
 							basicMybatisServiceGenerator.generateEntityFile(application, ent);
@@ -344,6 +353,7 @@ public class EntitiesGenerator {
 				beansGenerator.generate(application);
 
 				testBeansGenerator.generate(application);
+				// testInitData.generate(application);
 				beansGenerator.generate(application);
 				testSecurityGenerator.generate(application);
 
