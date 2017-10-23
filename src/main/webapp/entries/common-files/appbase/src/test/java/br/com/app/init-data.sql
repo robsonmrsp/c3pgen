@@ -29,10 +29,12 @@ INSERT INTO ${entity.tableName} 	( id
 
 
 --Somente para a autenticação dos testes
+
+ TRUNCATE TABLE user_role  CASCADE;
+ DELETE FROM OWNER WHERE id = 101;
  INSERT INTO role( id, authority, description)  VALUES (101, 'ROLE_USER', 'Usuário do sistema');
  INSERT INTO owner (id, cnpj, corporate_name,  phone_number, logo, name) values (101,'','JSetup Developer', '997608620','','JSetup Developer');
 -- Tabela de usuários
  INSERT INTO app_user(  id, enable, image, name, password, username, email, id_owner) VALUES (101, true, '', 'Usuário JSetup Comum', '$2a$10$teJrCEnsxNT49ZpXU7n22O27aCGbVYYe/RG6/XxdWPJbOLZubLIi2', 'jsetup', 'contato@jsetup.com', 101);
-
  --INSERT INTO role_user(role_id, user_id) values (2, 1);
  INSERT INTO user_role(id_role, id_user) values (101, 101);
