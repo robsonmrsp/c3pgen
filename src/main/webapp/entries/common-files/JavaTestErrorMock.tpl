@@ -87,8 +87,16 @@ public class ${entity.name}ErrorMockTest {
 	public void errorPostiting${entity.name}() throws Exception {
 		when(service.save(any(${entity.name}.class))).thenThrow(new RuntimeException("Error creating ${entity.name}"));
 		when(context.getOwner()).thenReturn(new Owner());
+		this.mockMvc.perform(post("/rs/crud/${firstLower(entity.name)}s").contentType(MediaType.APPLICATION_JSON).content("{}")).andDo(print()).andExpect(status().is5xxServerError()).andExpect(content().string(containsString("Error creating ${entity.name}")));
+	}
+	
+	@Test
+	public void errorUpdating${entity.name}() throws Exception {
+		when(service.update(any(${entity.name}.class))).thenThrow(new RuntimeException("Error updating ${entity.name}"));
 
-		this.mockMvc.perform(post("/rs/crud/${firstLower(entity.name)}s").param("nome", "chco").contentType(MediaType.APPLICATION_JSON)).andDo(print()).andExpect(status().is5xxServerError()).andExpect(content().string(containsString("Error Getting ${entity.name}")));
+		when(context.getOwner()).thenReturn(new Owner());
+
+		this.mockMvc.perform(put("/rs/crud/${firstLower(entity.name)}s/1").contentType(MediaType.APPLICATION_JSON).content("{}")).andDo(print()).andExpect(status().is5xxServerError()).andExpect(content().string(containsString("Error updating ${entity.name}")));
 	}
 
 	@Test
@@ -100,12 +108,4 @@ public class ${entity.name}ErrorMockTest {
 		this.mockMvc.perform(delete("/rs/crud/${firstLower(entity.name)}s/1")).andDo(print()).andExpect(status().is5xxServerError()).andExpect(content().string(containsString("Error removing ${entity.name}")));
 	}
 
-	@Test
-	public void errorUpdating${entity.name}() throws Exception {
-		when(service.update(any(${entity.name}.class))).thenThrow(new RuntimeException("Error updating ${entity.name}"));
-
-		when(context.getOwner()).thenReturn(new Owner());
-
-		this.mockMvc.perform(put("/rs/crud/${firstLower(entity.name)}s/1")).andDo(print()).andExpect(status().is5xxServerError()).andExpect(content().string(containsString("Error updating ${entity.name}")));
-	}
 }
