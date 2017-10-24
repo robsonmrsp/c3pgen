@@ -16,6 +16,7 @@
 			<hibernate.version>5.2.10.Final</hibernate.version>
 			<jasperreports.version>6.3.0</jasperreports.version>
 			<tomcat.version>8.5.20</tomcat.version>
+			<postgresql.version>42.1.4</postgresql.version>
 	</properties>
 	
 	<dependencies>
@@ -258,11 +259,9 @@
 		</dependency>
 
 		<dependency>
-			<groupId>postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<!-- Com essa linha abaixo, o arquivo de driver não foi copiado para a pasta lib da aplicação, consequentemente o war não foi completo -->
-			<!-- <scope>provided</scope> -->
-			<version>8.4-701.jdbc3</version>
+		    <groupId>org.postgresql</groupId>
+		    <artifactId>postgresql</artifactId>
+			<version>${r"${postgresql.version}"}</version>
 		</dependency>
 
 

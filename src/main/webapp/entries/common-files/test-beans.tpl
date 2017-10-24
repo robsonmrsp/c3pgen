@@ -92,11 +92,46 @@
 		<property name="user" value="postgres" />
 		<property name="password" value="MasterKey@123" />
 
-		<property name="acquireIncrement" value="10" />
+		<property name="acquireIncrement" value="3" />
 		<property name="minPoolSize" value="10" />
-		<property name="maxPoolSize" value="80" />
-		<property name="maxIdleTime" value="200" />
+		<property name="maxPoolSize" value="20" />
+		<property name="testConnectionOnCheckout" value="true" />
+		<property name="testConnectionOnCheckin" value="false" />
+		<property name="idleConnectionTestPeriod" value="0" />
+		<property name="maxConnectionAge" value="2" />
+		<property name="maxIdleTime" value="2" />
 	</bean>
+
+
+	<!-- <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"> -->
+	<!-- <property name="driverClassName" value="org.postgresql.Driver" /> -->
+	<!-- <property name="url" value="jdbc:postgresql://localhost:5432/db_netflics_test" /> -->
+	<!-- <property name="username" value="postgres" /> -->
+	<!-- <property name="password" value="MasterKey@123" /> -->
+	<!-- <property name="initialSize" value="10" /> -->
+	<!-- <property name="maxActive" value="15" /> -->
+	<!-- </bean> -->
+
+	<!-- <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig"> -->
+	<!-- <property name="poolName" value="springHikariCP" /> -->
+	<!-- <property name="idleTimeout" value="1000" /> -->
+	<!-- <property name="maximumPoolSize" value="5" /> -->
+	<!-- <property name="dataSourceClassName" value="org.postgresql.ds.PGSimpleDataSource" /> -->
+	<!-- <property name="dataSourceProperties"> -->
+	<!-- <props> -->
+	<!-- <prop key="user">postgres</prop> -->
+	<!-- <prop key="password">MasterKey@123</prop> -->
+	<!-- <prop key="databaseName">db_netflics_test</prop> -->
+	<!-- </props> -->
+	<!-- </property> -->
+	<!-- </bean> -->
+
+	<!-- <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close" > -->
+	<!-- <constructor-arg ref="hikariConfig" /> -->
+	<!-- </bean> -->
+
+
+
 
 	<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
