@@ -60,8 +60,8 @@
 							<#elseif att.viewApproach.type  == 'datepicker'  >
 						<div id="groupInput${firstUpper(att.name)}Container" class="form-group   ">
 							<label class="control-label" for="input${firstUpper(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}</label>
-							<div id="groupInput${firstUpper(att.name)}" class="input-group date" data-date-format="${att.dateFormat}">
-								<input id="input${firstUpper(att.name)}" placeholder="Pesquise pela ${firstUpper(att.displayName)}" type="text" class="form-control append-left" />
+							<div id="groupInput${firstUpper(att.name)}" class="input-group" >
+								<input id="input${firstUpper(att.name)}" placeholder="Pesquise pela ${firstUpper(att.displayName)}" type="text" class="form-control append-left" data-date-format="${att.dateFormat}/>
 								<div class="input-group-addon	append-right">
 									<span class="fa fa-calendar"></span>
 								</div>
@@ -152,7 +152,7 @@
 	<#list entity.relationships as rel >
 		<#if rel.viewApproach.type??>
 			<#if rel.viewApproach.type == 'modal'>
-				<div class='${firstLower(rel.name)}-modal'></div>
+				<div class='modal-${firstLower(rel.name)}-container'></div>
 			</#if>
 		</#if>
 	</#list>

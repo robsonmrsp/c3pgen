@@ -42,16 +42,16 @@ define(function(require) {
 		regions : {
 			<#list entity.attributes as att >
 			<#if att.viewApproach.type == 'upload'>
-			upload${firstUpper(att.name)}Region : '.${firstLower(att.name)}-container',		
+			upload${firstUpper(att.name)}Region : '.upload-${firstLower(att.name)}-container',		
 			</#if>
 			</#list>
 			<#if entity.relationships??>	
 			<#list entity.relationships as rel >
 				<#if rel.viewApproach.type == 'modal'>
-			modal${firstUpper(rel.name)}Region : '.${firstLower(rel.name)}.modal',
+			modal${firstUpper(rel.name)}Region : '.modal-${firstLower(rel.name)}-container',
 				</#if>
 				<#if rel.viewApproach.type == 'multiselectmodal'>
-			multiselectModal${firstUpper(rel.name)}Region : '.${firstLower(rel.name)}-container',
+			multiselectModal${firstUpper(rel.name)}Region : '.multiselect-${firstLower(rel.name)}-container',
 				</#if>
 			</#list>
 			</#if>
@@ -84,7 +84,6 @@ define(function(require) {
 			input${firstUpper(att.name)} : '#input${firstUpper(att.name)}',
 			<#if att.viewApproach?? >
 				<#if att.viewApproach.type == 'datepicker'>			
-			groupInput${firstUpper(att.name)} : '#groupInput${firstUpper(att.name)}',
 				</#if>
 			</#if>
 		</#list>
@@ -146,11 +145,9 @@ define(function(require) {
 		  </#if>
 		  <#if att.inputAs == 'date' || att.type.className == 'Date'>
 			this.ui.input${firstUpper(att.name)}.date();
-			this.ui.groupInput${firstUpper(att.name)}.date();
 		  </#if>	
 		  <#if att.inputAs == 'datetime' ||  att.type.className == 'Datetime'>
 			this.ui.input${firstUpper(att.name)}.datetime();
-			this.ui.groupInput${firstUpper(att.name)}.datetime();
 		  </#if>	
 		  <#if att.inputAs == 'percent' || att.inputAs == 'percentagem' || att.inputAs == 'decimal' || att.type.className == 'Double' || att.inputAs == 'monetario'>
 			this.ui.input${firstUpper(att.name)}.decimal();

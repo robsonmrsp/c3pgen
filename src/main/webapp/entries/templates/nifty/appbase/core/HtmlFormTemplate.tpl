@@ -22,7 +22,7 @@
 					<#elseif att.viewApproach.type  == 'datepicker'  >
 					<div id="groupInput${firstUpper(att.name)}Container" class="form-group   ">
 						<label class="control-label" for="input${firstUpper(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}  ${att.required ? string('*','')}</label>
-						<div id="groupInput${firstUpper(att.name)}" class="input-group date" data-date-format="${att.dateFormat}">
+						<div id="groupInput${firstUpper(att.name)}" class="input-group" >
 							<input id="input${firstUpper(att.name)}" placeholder="Escolha ou digite uma data." type="text" ${getRequiredClass(att.required)} class="form-control append-left" value="{{${firstLower(att.name)}}}"  data-date-format="${att.dateFormat}" />
 							<div class="input-group-addon	append-right">
 								<span class="fa fa-calendar"></span>
@@ -54,7 +54,7 @@
 					<#elseif att.viewApproach.type  == 'upload'  >
 					<div id="groupInput${firstUpper(att.name)}" class="form-group   ">
 						<label class="control-label" for="input${firstUpper(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}  </label>
-						<span class="${att.name}-container"> </span>
+						<span class="upload-${att.name}-container"> </span>
 						<input type="text"  id="input${firstUpper(att.name)}" placeholder="${(att.placeholder)!''}" value="{{${firstLower(att.name)}}}" ${getRequiredClass(att.required)} class="form-control " ${getMaxLen(att.maxLen)} style="display : none">
 					</div>
 					<#else>
@@ -78,7 +78,7 @@
 							<h3 class="panel-title">${firstUpper(rel.displayName)}</h3>
 						</div>
 						<div class="" >
-							<div class="${firstLower(rel.name)}-container"> </div>
+							<div class="multiselect-${firstLower(rel.name)}-container"> </div>
 						</div>
 					</div>
 					</#if>					
@@ -142,7 +142,7 @@
 <#if entity.relationships??>	
 <#list entity.relationships as rel >
 	<#if rel.viewApproach.type == 'modal'>
-<div class='${firstLower(rel.name)}-modal'></div>
+<div class='modal-${firstLower(rel.name)}-container'></div>
 	</#if>
 </#list>
 </#if>
