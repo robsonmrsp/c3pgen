@@ -229,7 +229,7 @@ define(function(require) {
 			counterRegion : '.counter',
 			paginatorRegion : '.paginator',
 		},
-		
+
 		getFirstPage : function(options) {
 			this.collection.filterQueryParams = options.filterQueryParams;
 			this.collection.getFirstPage(options);
@@ -263,16 +263,16 @@ define(function(require) {
 			if (!options.collection) {
 				throw new TypeError("Deve definir a coleção do grid");
 			}
-			
-			this.onFetching : options.onFetching;
-			this.onFetched : options.onFetched;
-			this.context : options.view;
+
+			this.onFetching = options.onFetching;
+			this.onFetched = options.onFetched;
+			this.context = options.view;
 			this.collection = options.collection;
-			
-			if(this.onFetching){
+
+			if (this.onFetching) {
 				this.collection.on('fetching', this.onFetching, this.context);
 			}
-			if(this.onFetched){
+			if (this.onFetched) {
 				this.collection.on('fetched', this.onFetched, this.context);
 			}
 

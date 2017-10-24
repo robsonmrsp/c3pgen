@@ -29,6 +29,7 @@
 	<context:property-placeholder />
 	
 	<mvc:resources mapping="/login.html" location="/login.html" />
+	<mvc:resources mapping="/SpecRunner.html" location="/SpecRunner.html" />
 	<mvc:resources mapping="/vendor/**" location="/vendor/" />
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 	<mvc:resources mapping="/applets/**" location="/applets/" />
