@@ -17,7 +17,7 @@ define(function(require) {
 		});
 		
 		<#list application.entities as entity>
-		it("Rota de \"${entity.name}s\"", function() {
+		it("Rota de '${entity.name}s'", function() {
 			spyOn(Router.prototype, "${firstLower(entity.name)}s")
 			var router = new Router();
 			Backbone.history.start();
@@ -25,7 +25,7 @@ define(function(require) {
 			expect(Router.prototype.${firstLower(entity.name)}s).toHaveBeenCalled();
 		});
 
-		it("Rota de \"new${entity.name}\"", function() {
+		it("Rota de 'new${entity.name}'", function() {
 			spyOn(Router.prototype, "new${entity.name}")
 			var router = new Router();
 			Backbone.history.start();
@@ -33,7 +33,7 @@ define(function(require) {
 			expect(Router.prototype.new${entity.name}).toHaveBeenCalled();
 		});
 		
-		it("Rota de \"edit${entity.name}\"", function() {
+		it("Rota de 'edit${entity.name}'", function() {
 			spyOn(Router.prototype, "edit${entity.name}")
 			var router = new Router();
 			Backbone.history.start();
