@@ -48,10 +48,10 @@ define(function(require) {
 			<#if entity.relationships??>	
 			<#list entity.relationships as rel >
 				<#if rel.viewApproach.type == 'modal'>
-			modal${firstUpper(rel.name)}Region : '#${firstLower(rel.name)}Modal',
+			modal${firstUpper(rel.name)}Region : '.${firstLower(rel.name)}.modal',
 				</#if>
 				<#if rel.viewApproach.type == 'multiselectmodal'>
-			multiselectModal${firstUpper(rel.name)}Region : '#${firstLower(rel.name)}MultiselectModal',
+			multiselectModal${firstUpper(rel.name)}Region : '.${firstLower(rel.name)}-container',
 				</#if>
 			</#list>
 			</#if>

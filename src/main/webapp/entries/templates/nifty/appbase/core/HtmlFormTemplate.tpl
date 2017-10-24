@@ -78,7 +78,7 @@
 							<h3 class="panel-title">${firstUpper(rel.displayName)}</h3>
 						</div>
 						<div class="" >
-							<div id="${firstLower(rel.name)}MultiselectModal" class="${firstLower(rel.name)}-container"> </div>
+							<div class="${firstLower(rel.name)}-container"> </div>
 						</div>
 					</div>
 					</#if>					
@@ -142,7 +142,7 @@
 <#if entity.relationships??>	
 <#list entity.relationships as rel >
 	<#if rel.viewApproach.type == 'modal'>
-<div id='${firstLower(rel.name)}Modal'></div>
+<div class='${firstLower(rel.name)}-modal'></div>
 	</#if>
 </#list>
 </#if>

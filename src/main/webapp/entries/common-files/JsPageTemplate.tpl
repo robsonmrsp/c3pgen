@@ -44,7 +44,7 @@ define(function(require) {
 			<#if entity.relationships??>	
 			<#list entity.relationships as rel >
 				<#if rel.viewApproach.type == 'modal'>
-			modal${firstUpper(rel.name)}Region : '#${firstLower(rel.name)}Modal',
+			modal${firstUpper(rel.name)}Region : '.${firstLower(rel.name)}-modal',
 				</#if>
 			</#list>
 			</#if>			
