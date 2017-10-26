@@ -14,12 +14,10 @@ require.config({
 		'underscore' : '../vendor/underscore/underscore-1.5.1',
 		'backbone' : '../vendor/backbone/backbone-1.1.2',
 		'backgrid' : '../vendor/backgrid/backgrid-0.3.5',
-		'backboneLocalstorage' : '../vendor/backbone.localStorage/backbone.localStorage',
-		'backgridMomentCell' : '../vendor/backgrid/extensions/backgrid-moment-cell',
+
 		'backgridColumnManager' : '../vendor/Backgrid.ColumnManager/lib/Backgrid.ColumnManager',
 		'backboneSelectAll' : '../vendor/backgrid/extensions/backgrid-select-all',
 
-		'backboneWebSocket' : '../vendor/backbone.websocket/backbone.websocket',
 		'backbonePageable' : '../vendor/backgrid/extensions/backbone-pageable1.4.8',
 		'backbonePaginator' : '../vendor/backgrid/extensions/backgrid-paginator',
 		'marionette' : '../vendor/backbone.marionette/backbone.marionette-2.2.0',
@@ -79,14 +77,6 @@ require.config({
 			exports : 'moment'
 		},
 
-		'backboneWebSocket' : {
-			deps : [ 'backbone', 'underscore' ],
-			exports : 'WebSocket'
-		},
-		'backboneLocalstorage' : {
-			deps : [ 'backbone' ],
-			exports : 'Store'
-		},
 		'backbonePageable' : {
 			deps : [ 'backbone' ],
 			exports : 'PageableCollection'
