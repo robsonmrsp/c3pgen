@@ -179,7 +179,7 @@ public class ${entity.name}Controller {
 	})	
 	</#if>
 	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity all(@RequestParam MultiValueMap<String, String> requestParams) {
+	public ResponseEntity allPage(@RequestParam MultiValueMap<String, String> requestParams) {
 		ResponseEntity response = null;
 		Pager<${entity.name}> ${firstLower(entity.name)}s = null;
 
@@ -208,7 +208,7 @@ public class ${entity.name}Controller {
 	@ApiOperation(value = "Retrieve  a ${entity.name} by id ", response = Json${entity.name}.class)
 	</#if>
 	@RequestMapping(value = "{id:\\d+}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity get(@PathVariable("id") int id) {
+	public ResponseEntity getOne(@PathVariable("id") int id) {
 		try {
 
 			<#if application.multitenancy == true>

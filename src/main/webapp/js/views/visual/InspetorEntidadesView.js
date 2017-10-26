@@ -135,24 +135,28 @@ define(function(require) {
 
 			// var relationships = this.entity.get('relationships');
 			// mudou o nome
-			if (model.previousAttributes().name) {
-				var oldName = model.previousAttributes().name;// "minhaLista"
-				var newName = model.get('name');// minhaListaFilme
-				// Entidade destino;
-				var targetEntity = util.getBackViewByNameEntity(model.get('model')).model;
+			if (model) {
+				if (model.previousAttributes().name) {
+					var oldName = model.previousAttributes().name;// "minhaLista"
+					var newName = model.get('name');// minhaListaFilme
+					// Entidade destino;
+					var targetEntity = util.getBackViewByNameEntity(model.get('model')) && util.getBackViewByNameEntity(model.get('model')).model;
 
-				var relationships = targetEntity.get('relationships');
-				_.each(relationships, function(relation) {
-					if (relation.targetName == oldName) {
-						relation.targetName = newName;
+					if (targetEntity) {
+						var relationships = targetEntity.get('relationships');
+						_.each(relationships, function(relation) {
+							if (relation.targetName == oldName) {
+								relation.targetName = newName;
+							}
+						})
+						targetEntity.set('relationships', relationships);
+						targetEntity.set('notes', new Date());
 					}
-				})
-				targetEntity.set('relationships', relationships);
-				targetEntity.set('notes', new Date());
 
+				}
+				model.set('ownerName', '');
 			}
 
-			model.set('ownerName', '');
 			// var view = util.getBackViewByNameEntity
 			this.entity.set(this.getModel())
 			this.entity.set('attributes', this.attributesCollection.toJSON());
