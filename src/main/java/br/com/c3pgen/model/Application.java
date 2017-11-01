@@ -20,10 +20,10 @@ import org.hibernate.annotations.CascadeType;
  * generated: 03/09/2015 14:51:47
  **/
 @Entity
-//@Audited
+// @Audited
 @SequenceGenerator(name = "APPLICATION_SEQUENCE", sequenceName = "APPLICATION_SEQUENCE")
 public class Application extends AbstractTimestampEntity {
-	
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -50,6 +50,12 @@ public class Application extends AbstractTimestampEntity {
 
 	@Column(name = "PERSISTENCE_FRAMEWORK")
 	private String persistenceFramework = "hibernate";
+
+	@Column(name = "CONFIGURATION_TYPE")
+	private ApplicationConfigurationType configurationType;
+
+	@Column(name = "APPLICATION_TYPE")
+	private ApplicationType applicationType;
 
 	@Column(name = "VIEW")
 	private String view;
@@ -254,6 +260,28 @@ public class Application extends AbstractTimestampEntity {
 
 	public void setMultitenancy(Boolean multitenancy) {
 		this.multitenancy = multitenancy;
+	}
+
+	public ApplicationConfigurationType getConfigurationType() {
+		if (configurationType == null) {
+			setConfigurationType(ApplicationConfigurationType.JAVA);
+		}
+		return configurationType;
+	}
+
+	public void setConfigurationType(ApplicationConfigurationType configurationType) {
+		this.configurationType = configurationType;
+	}
+
+	public ApplicationType getApplicationType() {
+		if (applicationType == null) {
+			setApplicationType(ApplicationType.MVC);
+		}
+		return applicationType;
+	}
+
+	public void setApplicationType(ApplicationType applicationType) {
+		this.applicationType = applicationType;
 	}
 
 }

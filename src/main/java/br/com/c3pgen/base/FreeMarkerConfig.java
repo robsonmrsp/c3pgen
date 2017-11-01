@@ -65,6 +65,7 @@ public class FreeMarkerConfig {
 			FileTemplateLoader fileTemplateProdu = new FileTemplateLoader(new File(commonPathName + "appbase/produ"));
 			FileTemplateLoader fileTemplateAudit = new FileTemplateLoader(new File(commonPathName + "appbase/src/main/java/br/com/app/audit"));
 			FileTemplateLoader fileTemplateJson = new FileTemplateLoader(new File(commonPathName + "appbase/src/main/java/br/com/app/json"));
+			FileTemplateLoader fileTemplateConfig = new FileTemplateLoader(new File(commonPathName + "appbase/src/main/java/br/com/app/config"));
 			FileTemplateLoader fileTemplateModel = new FileTemplateLoader(new File(commonPathName + "appbase/src/main/java/br/com/app/model"));
 			FileTemplateLoader fileTemplatePersistence = new FileTemplateLoader(new File(commonPathName + "appbase/src/main/java/br/com/app/persistence"));
 			FileTemplateLoader fileTemplatePersistencePagination = new FileTemplateLoader(new File(commonPathName + "appbase/src/main/java/br/com/app/persistence/pagination"));
@@ -88,7 +89,7 @@ public class FreeMarkerConfig {
 			//quando adiciona esse rtemplate a geração para de funcionar, por isso foi removido
 			// FileTemplateLoader fileTemplateRestControllerTests = new FileTemplateLoader(new File(commonPathName + "appbase/src/test/java/br/com/app/integration/controller"));
 
-			TemplateLoader[] loaders = new TemplateLoader[] { ftl1, ftlMobileCommon, ftlMobileTemplateCommon, ftlTests, fileTemplateBase, fileTemplateroot, fileTemplateProdu, fileTemplateAudit, fileTemplateJson, fileTemplateModel, fileTemplatePersistence,
+			TemplateLoader[] loaders = new TemplateLoader[] { ftl1, ftlMobileCommon, ftlMobileTemplateCommon, ftlTests, fileTemplateBase, fileTemplateroot, fileTemplateProdu, fileTemplateAudit, fileTemplateJson,fileTemplateConfig, fileTemplateModel, fileTemplatePersistence,
 					fileTemplatePersistencePagination, fileTemplateReports, fileTemplateRs, fileTemplateRsException, fileTemplateSecuriy, fileTemplateSerialization, fileTemplateService, fileTemplateUtils, fileTemplateResources, fileTemplateWebApp, fileTemplateWEB_INF,
 					fileTemplateTestResources, fileTemplateBaseTests };
 

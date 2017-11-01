@@ -7,6 +7,7 @@ import org.apache.commons.io.FileUtils;
 
 import br.com.c3pgen.base.util.Util;
 import br.com.c3pgen.model.Application;
+import br.com.c3pgen.model.ApplicationConfigurationType;
 
 public class BaseAppGenerator {
 
@@ -24,17 +25,28 @@ public class BaseAppGenerator {
 
 		GenericGenerator genericGenerator = new GenericGenerator(freeMarkerConfig, application);
 
+		String webInfFolder = Util.currentDir() + File.separator + "out/" + application.getAppName() + "src/main/webapp/WEB-INF/" + File.separator;
+
 		String javaCoreFolder = Util.currentDir() + File.separator + "out/" + application.getAppName() + "/src/main/java/" + application.getCorePackage().replace(".", File.separator) + File.separator;
 		String javaRootFolder = Util.currentDir() + File.separator + "out/" + application.getAppName() + "/src/main/java/" + application.getRootPackage().replace(".", File.separator) + File.separator;
 		String javaRootTestFolder = Util.currentDir() + File.separator + "out/" + application.getAppName() + "/src/test/java/" + application.getRootPackage().replace(".", File.separator) + File.separator;
 
 		String javaRootTestResourcesFolder = Util.currentDir() + File.separator + "out/" + application.getAppName() + "/src/test/resources/";
+		String javaRootResourcesFolder = Util.currentDir() + File.separator + "out/" + application.getAppName() + "/src/main/resources/";
 
 		String serviceFolder = javaCoreFolder;
 		new File(serviceFolder).mkdirs();
 		new File(javaRootTestFolder).mkdirs();
 		new File(javaRootTestResourcesFolder).mkdirs();
 
+		if (application.getConfigurationType().equals(ApplicationConfigurationType.JAVA)) {
+			genericGenerator.generate(FSItemDescription.config(javaRootFolder));
+			genericGenerator.generate(FSItemDescription.resources(javaRootResourcesFolder));
+
+		} else {
+			genericGenerator.generate(FSItemDescription.configXml(webInfFolder));
+
+		}
 		genericGenerator.generate(FSItemDescription.persistences(javaCoreFolder));
 		genericGenerator.generate(FSItemDescription.test(javaRootTestFolder));
 		genericGenerator.generate(FSItemDescription.testResources(javaRootTestResourcesFolder));

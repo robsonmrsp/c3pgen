@@ -204,7 +204,7 @@ public class FSItemDescription {
 
 		List<FSItemDescription> list = new ArrayList<FSItemDescription>();
 
-//		list.add(new FSItemDescription("init-data", rootResourcesFolder, "init-data", FileType.SQL)); comentado pois estamos gerando um por entidade
+		// list.add(new FSItemDescription("init-data", rootResourcesFolder, "init-data", FileType.SQL)); comentado pois estamos gerando um por entidade
 		return list;
 	}
 
@@ -218,6 +218,34 @@ public class FSItemDescription {
 		list.add(new FSItemDescription("MD5ChecksumUtil", rootFolder + File.separator + "utils" + File.separator, "MD5ChecksumUtil", FileType.JAVA));
 		// list.add(new FSItemDescription("JavaParserTemplate.tpl", rootFolder + File.separator + "utils" + File.separator, "Parser", FileType.JAVA));
 		list.add(new FSItemDescription("Util", rootFolder + File.separator + "utils" + File.separator, "Util", FileType.JAVA));
+		return list;
+	}
+
+	public static List<FSItemDescription> resources(String resourceFolder) {
+		List<FSItemDescription> list = new ArrayList<FSItemDescription>();
+
+		list.add(new FSItemDescription("application", resourceFolder, "application", FileType.PROPERTIES));
+		return list;
+	}
+
+	public static List<FSItemDescription> config(String javaRootFolder) {
+		List<FSItemDescription> list = new ArrayList<FSItemDescription>();
+
+		list.add(new FSItemDescription("SecurityWebApplicationInitializer", javaRootFolder + File.separator + "config" + File.separator, "SecurityWebApplicationInitializer", FileType.JAVA));
+		list.add(new FSItemDescription("SpringConfig", javaRootFolder + File.separator + "config" + File.separator, "SpringConfig", FileType.JAVA));
+		list.add(new FSItemDescription("SpringSecurityConfig", javaRootFolder + File.separator + "config" + File.separator, "SpringSecurityConfig", FileType.JAVA));
+		list.add(new FSItemDescription("WebServletConfiguration", javaRootFolder + File.separator + "config" + File.separator, "WebServletConfiguration", FileType.JAVA));
+		list.add(new FSItemDescription("HibernateConfig", javaRootFolder + File.separator + "config" + File.separator, "HibernateConfig", FileType.JAVA));
+		return list;
+	}
+
+	public static List<FSItemDescription> configXml(String webInfFolder) {
+		List<FSItemDescription> list = new ArrayList<FSItemDescription>();
+
+		list.add(new FSItemDescription("spring-security", webInfFolder, "spring-security", FileType.XML));
+		list.add(new FSItemDescription("web", webInfFolder, "web", FileType.XML));
+		list.add(new FSItemDescription("beans", webInfFolder, "beans", FileType.XML));
+
 		return list;
 	}
 }

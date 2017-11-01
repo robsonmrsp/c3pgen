@@ -61,7 +61,7 @@ public class EntitiesGenerator {
 	private static MarkerGenerator javaJsonGenerator;
 	private static MarkerGenerator fragmentsGenerator;
 	private static MarkerGenerator jsRouterSpecGenerator;
-	private static MarkerGenerator beansGenerator;
+//	private static MarkerGenerator beansGenerator;
 	private static MarkerGenerator testBeansGenerator;
 	private static MarkerGenerator testSecurityGenerator;
 	private static MarkerGenerator pomGenerator;
@@ -203,7 +203,7 @@ public class EntitiesGenerator {
 
 		jsRouterSpecGenerator = new MarkerGenerator(freeMarkerConfig, application, "JSRouterSpecTemplate.js", jsSpecRootFolder, TemplateFileName.ROUTER_SPEC_JS, FileType.JAVASCRIPT);
 
-		beansGenerator = new MarkerGenerator(freeMarkerConfig, application, "beans.tpl", webAppRootFolder + "WEB-INF/", TemplateFileName.BEANS_XML, FileType.XML);
+//		beansGenerator = new MarkerGenerator(freeMarkerConfig, application, "beans.tpl", webAppRootFolder + "WEB-INF/", TemplateFileName.BEANS_XML, FileType.XML);
 
 		testBeansGenerator = new MarkerGenerator(freeMarkerConfig, application, "test-beans.tpl", javaTestResourcesRootFolder, TemplateFileName.TEST_BEANS_XML, FileType.XML);
 
@@ -275,7 +275,7 @@ public class EntitiesGenerator {
 				htmlAngularDesenvLoginGenerator.generate(application);
 				htmlAngularProduLoginGenerator.generate(application);
 
-				beansGenerator.generate(application);
+//				beansGenerator.generate(application);
 				testBeansGenerator.generate(application);
 				// testInitData.generate(application);
 				testSecurityGenerator.generate(application);
@@ -350,11 +350,11 @@ public class EntitiesGenerator {
 
 				jsRouterGenerator.generate(application);
 				jsRouterSpecGenerator.generate(application);
-				beansGenerator.generate(application);
+//				beansGenerator.generate(application);
 
 				testBeansGenerator.generate(application);
 				// testInitData.generate(application);
-				beansGenerator.generate(application);
+//				beansGenerator.generate(application);
 				testSecurityGenerator.generate(application);
 
 				pomGenerator.generate(application);
