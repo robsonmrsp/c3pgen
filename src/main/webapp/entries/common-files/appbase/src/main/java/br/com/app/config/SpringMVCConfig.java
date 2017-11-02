@@ -1,4 +1,4 @@
-package br.com.netflics.config;
+package ${application.rootPackage}.config;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -24,17 +24,17 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-import br.com.netflics.core.persistence.CatchThrowConstraintViolationException;
-import br.com.netflics.core.rs.exception.SimpleErrorMessageHandlerExceptionResolver;
-import br.com.netflics.core.serialization.CustomDoubleDeserializer;
-import br.com.netflics.core.serialization.CustomLocalDateDeserializer;
-import br.com.netflics.core.serialization.CustomLocalDateSerializer;
-import br.com.netflics.core.serialization.CustomLocalDateTimeDeserializer;
-import br.com.netflics.core.serialization.CustomLocalDateTimeSerializer;
+import ${application.corePackage}.persistence.CatchThrowConstraintViolationException;
+import ${application.corePackage}.rs.exception.SimpleErrorMessageHandlerExceptionResolver;
+import ${application.corePackage}.serialization.CustomDoubleDeserializer;
+import ${application.corePackage}.serialization.CustomLocalDateDeserializer;
+import ${application.corePackage}.serialization.CustomLocalDateSerializer;
+import ${application.corePackage}.serialization.CustomLocalDateTimeDeserializer;
+import ${application.corePackage}.serialization.CustomLocalDateTimeSerializer;
 
 @EnableWebMvc
-@ComponentScan(basePackages = "br.com.netflics")
-public class SpringConfig extends WebMvcConfigurerAdapter {
+@ComponentScan(basePackages = "${application.rootPackage}")
+public class SpringMVCConfig extends WebMvcConfigurerAdapter {
 
 	@Inject
 	OpenSessionInViewInterceptor interceptor;
@@ -85,9 +85,9 @@ public class SpringConfig extends WebMvcConfigurerAdapter {
 
 	@Bean
 	public OpenSessionInViewInterceptor openSessionInViewInterceptor(SessionFactory sf) {
-		final OpenSessionInViewInterceptor tor = new OpenSessionInViewInterceptor();
-		tor.setSessionFactory(sf);
-		return tor;
+		final OpenSessionInViewInterceptor openSessionInViewInterceptor = new OpenSessionInViewInterceptor();
+		openSessionInViewInterceptor.setSessionFactory(sf);
+		return openSessionInViewInterceptor;
 	}
 
 	@Override
@@ -116,27 +116,6 @@ public class SpringConfig extends WebMvcConfigurerAdapter {
 		return new CatchThrowConstraintViolationException();
 	}
 
-	/**
-	 * <code>
-	 * 	<bean id="afterThrow" class="br.com.netflics.core.persistence.CatchThrowConstraintViolationException" />
-	<bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
-		<property name="proxyTargetClass" value="true" />
-		<property name="beanNames">
-			<list>
-				<value>*Service</value>
-				<value>*ServiceImp</value>
-			</list>
-		</property>
-		<property name="interceptorNames">
-			<list>
-				<value>afterThrow</value>
-			</list>
-		</property>
-	</bean>
-	 * </code>
-	 * 
-	 * @return
-	 */
 	@Bean
 	public BeanNameAutoProxyCreator autoProxyCreator() {
 		BeanNameAutoProxyCreator autoProxyCreator = new BeanNameAutoProxyCreator();

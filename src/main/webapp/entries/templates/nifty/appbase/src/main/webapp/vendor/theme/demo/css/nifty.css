@@ -4043,7 +4043,7 @@ hr {
 /*======================================*/
 .form-control {
   font-size: 13px;
-  height: 100%;
+/*   height: 100%; removido por robson*/
   border-radius: 0;
   box-shadow: none;
   border: 1px solid #e9e9e9;

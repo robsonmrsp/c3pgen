@@ -17,6 +17,7 @@
 			<jasperreports.version>6.3.0</jasperreports.version>
 			<tomcat.version>8.5.20</tomcat.version>
 			<postgresql.version>42.1.4</postgresql.version>
+			<hikari.version>2.7.2</hikari.version>
 	</properties>
 	
 	<dependencies>
@@ -77,6 +78,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 			<version>${r"${spring.boot.test.version}"}</version>
+			<scope>test</scope>
 		</dependency>
 
 		
@@ -224,12 +226,11 @@
 			<version>${r"${hibernate.version}"}</version>
 		</dependency>
 
-		<!-- Pool de conexões gerenciado pelo hibernate -->
 		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-c3p0</artifactId>
-			<!-- <version>${r"${hibernate.version}"}</version> -->
-			<version>${r"${hibernate.version}"}</version>
+		    <groupId>com.zaxxer</groupId>
+		    <artifactId>HikariCP</artifactId>
+		    <version>${r"${hikari.version}"}</version>
+		    <scope>compile</scope>
 		</dependency>
 
 		<dependency>
@@ -342,41 +343,13 @@
 					</execution>
 				</executions>
 			</plugin>
-			<plugin>
-				<groupId>org.apache.tomcat.maven</groupId>
-				<artifactId>tomcat7-maven-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>start-tomcat</id>
-						<goals>
-							<goal>run-war</goal>
-						</goals>
-						<phase>pre-integration-test</phase>
-						<configuration>
-							<port>${r"${test.server.port}"}</port>
-							<path>/jaxrs-service</path>
-							<fork>true</fork>
-							<useSeparateTomcatClassLoader>true</useSeparateTomcatClassLoader>
-						</configuration>
-					</execution>
-					<execution>
-						<id>stop-tomcat</id>
-						<goals>
-							<goal>shutdown</goal>
-						</goals>
-						<phase>post-integration-test</phase>
-						<configuration>
-							<path>/jaxrs-service</path>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
+			
 
 			<!-- A longo prazo, será mais simples manter a minificação dos css e js com os plugins abaixo. Isso porque, dada a maneira que estamos criando a view, serão vários arquivos js. -->
 				<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
-				<version>2.4</version>
+				<version>3.2.0</version>
 				<configuration>
 					<warSourceExcludes>j/**,js/**,css/**,produ/**, assets/**, vendor/**</warSourceExcludes>
 					

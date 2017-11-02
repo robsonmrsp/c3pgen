@@ -231,10 +231,9 @@ public class FSItemDescription {
 	public static List<FSItemDescription> config(String javaRootFolder) {
 		List<FSItemDescription> list = new ArrayList<FSItemDescription>();
 
-		list.add(new FSItemDescription("SecurityWebApplicationInitializer", javaRootFolder + File.separator + "config" + File.separator, "SecurityWebApplicationInitializer", FileType.JAVA));
-		list.add(new FSItemDescription("SpringConfig", javaRootFolder + File.separator + "config" + File.separator, "SpringConfig", FileType.JAVA));
+		list.add(new FSItemDescription("WebSecurityServletConfiguration", javaRootFolder + File.separator + "config" + File.separator, "WebSecurityServletConfiguration", FileType.JAVA));
+		list.add(new FSItemDescription("SpringMVCConfig", javaRootFolder + File.separator + "config" + File.separator, "SpringMVCConfig", FileType.JAVA));
 		list.add(new FSItemDescription("SpringSecurityConfig", javaRootFolder + File.separator + "config" + File.separator, "SpringSecurityConfig", FileType.JAVA));
-		list.add(new FSItemDescription("WebServletConfiguration", javaRootFolder + File.separator + "config" + File.separator, "WebServletConfiguration", FileType.JAVA));
 		list.add(new FSItemDescription("HibernateConfig", javaRootFolder + File.separator + "config" + File.separator, "HibernateConfig", FileType.JAVA));
 		return list;
 	}
