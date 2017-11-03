@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -52,9 +54,11 @@ public class Application extends AbstractTimestampEntity {
 	private String persistenceFramework = "hibernate";
 
 	@Column(name = "CONFIGURATION_TYPE")
+	@Enumerated(EnumType.STRING)
 	private ApplicationConfigurationType configurationType;
 
 	@Column(name = "APPLICATION_TYPE")
+	@Enumerated(EnumType.STRING)
 	private ApplicationType applicationType;
 
 	@Column(name = "VIEW")

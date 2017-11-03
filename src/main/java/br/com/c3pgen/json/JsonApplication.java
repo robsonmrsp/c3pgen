@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
+import br.com.c3pgen.model.ApplicationConfigurationType;
+import br.com.c3pgen.model.ApplicationType;
 import br.com.c3pgen.serialization.CustomSyncObjectIdDeserializer;
 
 /**
@@ -26,6 +28,10 @@ public class JsonApplication implements Serializable {
 	private String corePackage;
 	private Boolean useAudit;
 	private Boolean multitenancy;
+
+	private ApplicationConfigurationType configurationType;
+	private ApplicationType applicationType;
+
 
 	private ArrayList<JsonTheEntity> entities = new ArrayList<JsonTheEntity>();
 
@@ -124,6 +130,22 @@ public class JsonApplication implements Serializable {
 
 	public void setUseAudit(Boolean useAudit) {
 		this.useAudit = useAudit;
+	}
+
+	public ApplicationConfigurationType getConfigurationType() {
+		return configurationType;
+	}
+
+	public void setConfigurationType(ApplicationConfigurationType configurationType) {
+		this.configurationType = configurationType;
+	}
+
+	public ApplicationType getApplicationType() {
+		return applicationType;
+	}
+
+	public void setApplicationType(ApplicationType applicationType) {
+		this.applicationType = applicationType;
 	}
 
 }

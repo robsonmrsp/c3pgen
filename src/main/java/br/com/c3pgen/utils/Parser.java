@@ -154,6 +154,9 @@ public class Parser {
 		jsonApplication.setDescription(application.getDescription());
 		jsonApplication.setRootPackage(application.getRootPackage());
 		jsonApplication.setCorePackage(application.getCorePackage());
+		
+		jsonApplication.setApplicationType(application.getApplicationType());
+		jsonApplication.setConfigurationType(application.getConfigurationType());
 	}
 
 	private static void applyBasicEntityValues(Application application, JsonApplication jsonApplication) {
@@ -161,6 +164,8 @@ public class Parser {
 		application.setAppName(jsonApplication.getName());
 		application.setSkin(jsonApplication.getSkin());
 		application.setMultitenancy(jsonApplication.getMultitenancy());
+		application.setApplicationType(jsonApplication.getApplicationType());
+		application.setConfigurationType(jsonApplication.getConfigurationType());
 		application.setUseAudit(jsonApplication.getUseAudit());
 		application.setDescription(jsonApplication.getDescription());
 		application.setRootPackage(jsonApplication.getRootPackage());

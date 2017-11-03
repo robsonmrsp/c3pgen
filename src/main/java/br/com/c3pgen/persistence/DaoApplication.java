@@ -153,6 +153,10 @@ public class DaoApplication extends AccessibleHibernateDao<Application> {
 				+ "      c.description = :description , 	"//
 				+ "      c.rootPackage = :rootPackage , 	"//
 				+ "      c.corePackage = :corePackage ,	"//
+
+				+ "      c.configurationType = :configurationType ,	"//
+				+ "      c.applicationType = :applicationType ,	"//
+
 				+ "      c.multitenancy = :multitenancy ,	"//
 				+ "      c.useAudit = :useAudit	"//
 				+ " where c.id= :id";//
@@ -166,6 +170,8 @@ public class DaoApplication extends AccessibleHibernateDao<Application> {
 				.setString("corePackage", application.getCorePackage())//
 				.setBoolean("multitenancy", application.getMultitenancy())//
 				.setBoolean("useAudit", application.getUseAudit())//
+				.setString("configurationType", application.getConfigurationType().name())//
+				.setString("applicationType", application.getApplicationType().name())//
 				.setInteger("id", application.getId())//
 				.executeUpdate();
 		return application;

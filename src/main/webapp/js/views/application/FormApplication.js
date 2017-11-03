@@ -128,6 +128,12 @@ define(function(require) {
 				rootPackage : util.escapeById('inputRootPackage'),
 				corePackage : util.escapeById('inputCorePackage'),
 				multitenancy : util.escapeById('inputMultitenancy'),
+				
+				configurationType : util.escapeById('inputConfigurationType'),
+				applicationType : util.escapeById('inputApplicationType'),
+
+				
+				multitenancy : util.escapeById('inputMultitenancy'),
 				useAudit : util.escapeById('inputUseAudit'),
 //				entities : that.entities.toJSON(),
 			});

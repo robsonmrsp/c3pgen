@@ -85,6 +85,22 @@
 										</div>
 									</div>
 									<div class="row">
+										<div id="groupApplicationType" class="form-group col-sm-12 col-md-6 col-lg-6">
+											<label class="control-label" for="inputApplicationType">Tipo de Aplicação</label>
+											<select id="inputApplicationType" class="form-control ">
+												<option value="MVC" {{applicationType=='MVC' ? 'selected' : '' }}>Spring Web MVC</option>
+												<option value="BOOT" {{applicationType=='BOOT' ? 'selected' : '' }}>Spring Boot</option>
+											</select>
+										</div>
+										<div id="groupConfigurationType" class="form-group col-sm-12 col-md-6 col-lg-6">
+											<label class="control-label" for="inputConfigurationType">Configuração</label>
+											<select id="inputConfigurationType" class="form-control ">
+												<option value="JAVA" {{configurationType=='JAVA' ? 'selected' : '' }}>Baseada em Java</option>
+												<option value="XML" {{configurationType=='XML' ? 'selected' : '' }}>Baseada em Xml</option>
+											</select>
+										</div>
+									</div>
+									<div class="row">
 										<div id="groupInputMultitenancy" class="form-group col-sm-12 col-md-3 col-lg-3">
 											<input type="checkbox" id="inputMultitenancy" {{multitenancy ? 'checked' :''}}  class="magic-checkbox">
 											<label class="checkbox-label" for="inputMultitenancy">Multitenancy</label>
