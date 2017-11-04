@@ -231,10 +231,10 @@ public class FSItemDescription {
 	public static List<FSItemDescription> config(String javaRootFolder) {
 		List<FSItemDescription> list = new ArrayList<FSItemDescription>();
 
-		list.add(new FSItemDescription("WebSecurityServletConfiguration", javaRootFolder + File.separator + "config" + File.separator, "WebSecurityServletConfiguration", FileType.JAVA));
 		list.add(new FSItemDescription("SpringMVCConfig", javaRootFolder + File.separator + "config" + File.separator, "SpringMVCConfig", FileType.JAVA));
 		list.add(new FSItemDescription("SpringSecurityConfig", javaRootFolder + File.separator + "config" + File.separator, "SpringSecurityConfig", FileType.JAVA));
 		list.add(new FSItemDescription("HibernateConfig", javaRootFolder + File.separator + "config" + File.separator, "HibernateConfig", FileType.JAVA));
+		list.add(new FSItemDescription("WebSecurityServletConfiguration", javaRootFolder + File.separator + "config" + File.separator, "WebSecurityServletConfiguration", FileType.JAVA));
 		return list;
 	}
 

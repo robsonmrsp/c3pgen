@@ -1,7 +1,7 @@
 Changelog do GERADO
 
 v0.95:
- - 
+-  Gerando a configuração do sistema baseado em java ou xml dependendo da escolha feita no FormApplication. 
 -  Gerando SEMPRE toBasicJson e toBasicEntity para atributos compostos. Caso seja necessário o contrário,
    deve-se estudar caso a caso do gerado.
 -  Gerando os daoXpto.findXyz considerando tambem o Owner  

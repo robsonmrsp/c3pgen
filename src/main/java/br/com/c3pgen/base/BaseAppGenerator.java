@@ -39,14 +39,6 @@ public class BaseAppGenerator {
 		new File(javaRootTestFolder).mkdirs();
 		new File(javaRootTestResourcesFolder).mkdirs();
 
-		if (application.getConfigurationType().equals(ApplicationConfigurationType.JAVA)) {
-			genericGenerator.generate(FSItemDescription.config(javaRootFolder));
-			genericGenerator.generate(FSItemDescription.resources(javaRootResourcesFolder));
-
-		} else {
-			genericGenerator.generate(FSItemDescription.configXml(webInfFolder));
-
-		}
 		genericGenerator.generate(FSItemDescription.persistences(javaCoreFolder));
 		genericGenerator.generate(FSItemDescription.test(javaRootTestFolder));
 		genericGenerator.generate(FSItemDescription.testResources(javaRootTestResourcesFolder));
@@ -64,6 +56,15 @@ public class BaseAppGenerator {
 		genericGenerator.generate(FSItemDescription.service(javaCoreFolder));
 
 		genericGenerator.generate(FSItemDescription.utils(javaCoreFolder));
+
+		if (application.getConfigurationType().equals(ApplicationConfigurationType.JAVA)) {
+			genericGenerator.generate(FSItemDescription.config(javaRootFolder));
+			genericGenerator.generate(FSItemDescription.resources(javaRootResourcesFolder));
+
+		} else {
+			genericGenerator.generate(FSItemDescription.configXml(webInfFolder));
+
+		}
 
 	}
 
@@ -112,6 +113,9 @@ public class BaseAppGenerator {
 
 		FileUtils.copyDirectoryToDirectory(new File(fileInputResources), new File(fileOutput));
 		FileUtils.copyDirectoryToDirectory(new File(fileInputWebApp), new File(fileOutput));
+		//
+		FileUtils.forceDelete(new File(fileOutput + "/webapp/WEB-INF/xml-java-based-config.txt"));
+
 	}
 
 	private static void generateStaticFromTemplateFiles(Application application) throws IOException {
