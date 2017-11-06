@@ -4764,7 +4764,7 @@ a.list-group-item-dark:focus {
   border-radius: 0;
   box-shadow: 0 5px 12px 2px rgba(0, 0, 0, 0.25);
   margin: 0;
-  padding: 0;
+  padding: 10px;
   border: 0;
 }
 .dropdown-menu > li > a {
