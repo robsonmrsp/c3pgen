@@ -25,6 +25,7 @@ public class JsonApplication implements Serializable {
 	private String skin;
 	private String description;
 	private String rootPackage;
+	private String persistenceFramework;
 	private String corePackage;
 	private Boolean useAudit;
 	private Boolean multitenancy;
@@ -146,6 +147,14 @@ public class JsonApplication implements Serializable {
 
 	public void setApplicationType(ApplicationType applicationType) {
 		this.applicationType = applicationType;
+	}
+
+	public String getPersistenceFramework() {
+		return persistenceFramework;
+	}
+
+	public void setPersistenceFramework(String persistenceFramework) {
+		this.persistenceFramework = persistenceFramework;
 	}
 
 }

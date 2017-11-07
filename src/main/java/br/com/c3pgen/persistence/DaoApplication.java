@@ -156,7 +156,7 @@ public class DaoApplication extends AccessibleHibernateDao<Application> {
 
 				+ "      c.configurationType = :configurationType ,	"//
 				+ "      c.applicationType = :applicationType ,	"//
-
+				+ "      c.persistenceFramework = :persistenceFramework ,	"//
 				+ "      c.multitenancy = :multitenancy ,	"//
 				+ "      c.useAudit = :useAudit	"//
 				+ " where c.id= :id";//
@@ -165,6 +165,7 @@ public class DaoApplication extends AccessibleHibernateDao<Application> {
 		int updatedEntities = session.createQuery(hqlUpdate)//
 				.setString("appName", application.getAppName())//
 				.setString("description", application.getDescription())//
+				.setString("persistenceFramework", application.getPersistenceFramework())//
 				.setString("skin", application.getSkin())//
 				.setString("rootPackage", application.getRootPackage())//
 				.setString("corePackage", application.getCorePackage())//

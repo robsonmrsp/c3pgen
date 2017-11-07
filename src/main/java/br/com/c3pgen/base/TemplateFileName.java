@@ -13,6 +13,7 @@ public interface TemplateFileName {
 	final String TEST_ERROR_MOCK = "${entity.name}ErrorMockTest";
 
 	final String MODEL_JS = "${entity.name}";
+	final String MODEL_MYBATIS_JS = "${entity.name}Model";
 	final String BASIC_FORM_JS = "Form${entity.name}";
 	final String PAGE_JS = "Page${entity.name}";
 

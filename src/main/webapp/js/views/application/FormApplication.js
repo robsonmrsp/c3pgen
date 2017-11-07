@@ -131,6 +131,7 @@ define(function(require) {
 				
 				configurationType : util.escapeById('inputConfigurationType'),
 				applicationType : util.escapeById('inputApplicationType'),
+				persistenceFramework : util.escapeById('inputPersistenceFramework'),
 
 				
 				multitenancy : util.escapeById('inputMultitenancy'),

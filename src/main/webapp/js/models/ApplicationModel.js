@@ -25,6 +25,7 @@ define(function(require) {
 			corePackage : '',
 			multitenancy : '',
 			applicationType  : '',
+			persistenceFramework  : 'hibernate',
 			configurationType  : '',
 			multitenancy : '',
 			useAudit : '',

@@ -32,19 +32,26 @@
 									<ol class="carousel-indicators" style="color: #6a6c6f; border-color: #6a6c6f">
 										<li data-target="#myCarousel" data-slide-to="0" style="background-color: #6a6c6f; color: #6a6c6f; border-color: #6a6c6f"></li>
 										<li data-target="#myCarousel" data-slide-to="1" style="background-color: #6a6c6f; color: #6a6c6f; border-color: #6a6c6f"></li>
+										<li data-target="#myCarousel" data-slide-to="2" style="background-color: #6a6c6f; color: #6a6c6f; border-color: #6a6c6f"></li>
 									</ol>
 									<!-- Wrapper for slides -->
 									<div class="carousel-inner" role="listbox">
-										<div class="item active" skin="Ace">
+										<div class="item {{skin === 'Nifty' ? 'active' : '' }}" skin="Nifty">
+											<img src="images/templates/Nifty.png" alt="Nifty">
+											<div class="carousel-caption">
+												<h3 style="font-size: 60px; color: #6a6c6f">Nifty</h3>
+											</div>
+										</div>
+										<div class="item {{skin === 'Ace' ? 'active' : '' }}" skin="Ace">
 											<img src="images/templates/Ace.png" alt="Ace">
 											<div class="carousel-caption">
 												<h3 style="font-size: 60px; color: #6a6c6f">Ace</h3>
 											</div>
 										</div>
-										<div class="item " skin="Nifty">
-											<img src="images/templates/Nifty.png" alt="Nifty">
+										<div class="item {{skin === 'Bootstrap2' ? 'active' : '' }}" skin="Bootstrap2">
+											<img src="images/templates/Bootstrap2.png" alt="Bootstrap2">
 											<div class="carousel-caption">
-												<h3 style="font-size: 60px; color: #6a6c6f">Nifty</h3>
+												<h3 style="font-size: 60px; color: #6a6c6f">Bootstrap2</h3>
 											</div>
 										</div>
 									</div>
@@ -85,17 +92,24 @@
 										</div>
 									</div>
 									<div class="row">
-										<div id="groupApplicationType" class="form-group col-sm-12 col-md-6 col-lg-6">
+										<div id="groupApplicationType" class="form-group col-sm-12 col-md-4 col-lg-4">
 											<label class="control-label" for="inputApplicationType">Tipo de Aplicação</label>
 											<select id="inputApplicationType" class="form-control ">
 												<option value="MVC" {{applicationType=='MVC' ? 'selected' : '' }}>Spring Web MVC</option>
 											</select>
 										</div>
-										<div id="groupConfigurationType" class="form-group col-sm-12 col-md-6 col-lg-6">
+										<div id="groupConfigurationType" class="form-group col-sm-12 col-md-4 col-lg-4">
 											<label class="control-label" for="inputConfigurationType">Configuração</label>
 											<select id="inputConfigurationType" class="form-control ">
 												<option value="JAVA" {{configurationType=='JAVA' ? 'selected' : '' }}>Baseada em Java</option>
 												<option value="XML" {{configurationType=='XML' ? 'selected' : '' }}>Baseada em Xml</option>
+											</select>
+										</div>
+										<div id="groupPersistenceFramework" class="form-group col-sm-12 col-md-4 col-lg-4">
+											<label class="control-label" for="inputPersistenceFramework">Configuração</label>
+											<select id="inputPersistenceFramework" class="form-control ">
+												<option value="hibernate" {{persistenceFramework=='hibernate' ? 'selected' : '' }}>Hibernate</option>
+												<option value="mybatis" {{persistenceFramework=='mybatis' ? 'selected' : '' }}>Mybatis</option>
 											</select>
 										</div>
 									</div>

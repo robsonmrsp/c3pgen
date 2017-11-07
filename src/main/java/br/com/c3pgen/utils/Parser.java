@@ -152,6 +152,7 @@ public class Parser {
 		jsonApplication.setMultitenancy(application.getMultitenancy());
 		jsonApplication.setUseAudit(application.getUseAudit());
 		jsonApplication.setDescription(application.getDescription());
+		jsonApplication.setPersistenceFramework(application.getPersistenceFramework());
 		jsonApplication.setRootPackage(application.getRootPackage());
 		jsonApplication.setCorePackage(application.getCorePackage());
 		
@@ -166,6 +167,7 @@ public class Parser {
 		application.setMultitenancy(jsonApplication.getMultitenancy());
 		application.setApplicationType(jsonApplication.getApplicationType());
 		application.setConfigurationType(jsonApplication.getConfigurationType());
+		application.setPersistenceFramework(jsonApplication.getPersistenceFramework());
 		application.setUseAudit(jsonApplication.getUseAudit());
 		application.setDescription(jsonApplication.getDescription());
 		application.setRootPackage(jsonApplication.getRootPackage());
