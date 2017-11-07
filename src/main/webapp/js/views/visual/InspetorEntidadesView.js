@@ -146,7 +146,12 @@ define(function(require) {
 						var relationships = targetEntity.get('relationships');
 						_.each(relationships, function(relation) {
 							if (relation.targetName == oldName) {
+								var type = model.get('type');
 								relation.targetName = newName;
+								relation.ownerName = newName;
+								if (type === 'none') {
+									relation.ownerName = null;
+								}
 							}
 						})
 						targetEntity.set('relationships', relationships);

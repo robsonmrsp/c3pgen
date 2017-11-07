@@ -399,14 +399,14 @@ public class ApplicationEntity extends AbstractTimestampEntity {
 
 	public String getPk() {
 		if (pk == null) {
-			setPk("ID_" + getName().toUpperCase());
+			setPk("ID_" + getTableName().toUpperCase());
 		}
 		return pk.toUpperCase();
 	}
 
 	public String getSequence() {
 		if (sequence == null) {
-			setSequence("SEQ_" + getName().toUpperCase());
+			setSequence("GSH_SEQ_" + getTableName().toUpperCase());
 		}
 		return sequence.toUpperCase();
 	}
