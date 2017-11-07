@@ -108,7 +108,7 @@ public class ${entity.name} extends AbstractTimestampEntity{
 	<#if entity.relationships??>	
 	<#list entity.relationships as rel>
 		<#if rel.type == 'OneToMany'>
-			<#if rel.origin>
+			<#if rel.origin && rel.ownerName?has_content>
 	@OneToMany(mappedBy="${rel.ownerName}")
 			<#else>
 	@OneToMany()
@@ -120,13 +120,12 @@ public class ${entity.name} extends AbstractTimestampEntity{
 	@JoinColumn(name = "ID_${uppercase(rel.name)}")
 	private ${firstUpper(rel.model)} ${firstLower(rel.name)};
 			
-		<#elseif rel.type == 'ManyToMany'>
-			<#if rel.ownerName?has_content > 
+		<#elseif rel.type == 'ManyToMany'>			
+			<#if rel.origin && rel.ownerName?has_content> 
     @ManyToMany(mappedBy="${rel.ownerName}")
         		<#if rel.viewApproach?? >
 				</#if>
     private List<${firstUpper(rel.model)}> ${(rel.name)!firstLower(rel.model)};
-    
 			<#else>
     @ManyToMany
 				<#if dataBasePrefix??>
@@ -139,7 +138,7 @@ public class ${entity.name} extends AbstractTimestampEntity{
 				</#if>		
 			</#if>		
 		<#elseif rel.type == 'OneToOne'>
-			<#if rel.ownerName?has_content>
+			<#if rel.origin && rel.ownerName?has_content>
 	@OneToOne(optional=false, mappedBy="${rel.ownerName}")
 	@JoinColumn(name = "ID_${uppercase(rel.name)}")
 	private ${firstUpper(rel.model)} ${firstLower(rel.name)!firstLower(rel.model)};

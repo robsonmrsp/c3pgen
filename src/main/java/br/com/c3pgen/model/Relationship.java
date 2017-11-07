@@ -15,6 +15,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
+import br.com.c3pgen.base.util.Util;
+
 @Entity
 // @Audited
 @Table(name = "RELATIONSHIP")
@@ -54,7 +56,7 @@ public class Relationship extends AbstractTimestampEntity {
 	@Column(name = "UNI_DIRECIONAL")
 	private Boolean uniDirecional;
 
-	@Column(name = "UNIDIRECIONAL")
+	// @Column(name = "SHOW_IN_PAGES")
 	private Boolean showInPages = Boolean.TRUE;
 
 	@Column(name = "FOREING_KEY_NAME")
@@ -226,6 +228,9 @@ public class Relationship extends AbstractTimestampEntity {
 	}
 
 	public String getFk() {
+		if (fk == null || fk.isEmpty()) {
+			setFk("ID_" + Util.toUpperSnakeCase(getModel()));
+		}
 		return fk;
 	}
 
