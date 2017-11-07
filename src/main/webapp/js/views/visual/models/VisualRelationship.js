@@ -135,7 +135,7 @@ define(function(require) {
 							_targetRelationModel = new RelationshipModel({
 								name : Util.firstLower(_sourceEntity.get('name')),
 								type : 'ManyToOne',
-								displayName : _sourceEntity.get('name') + 's',
+								displayName :Util.firstUpper( _sourceEntity.get('name') ),
 								ownerName : '',
 								model : _sourceEntity.get('name'),
 								entity : {
