@@ -44,6 +44,7 @@ define(function(require) {
 			inputRelationshipName : '.inputRelationshipName',
 			iconExpandRelationhip : '.icon-expand-relationhip',
 			inputDisplayName : '.inputDisplayName',
+			inputFk : '.inputFk',
 			inputModel : '.inputModel',
 			inputType : '.inputType',
 			inputOwnerName : '.inputOwnerName',
@@ -54,6 +55,8 @@ define(function(require) {
 
 			inputComboId : '.inputComboId',
 			inputComboVal : '.inputComboVal',
+
+			containerFk : '.fk',
 
 			inputTextField : '.inputTextField',
 			inputHiddenField : '.inputHiddenField',
@@ -101,6 +104,7 @@ define(function(require) {
 				name : C3P.notEmptyVal(this.ui.inputRelationshipName),
 				type : C3P.notEmptyVal(this.ui.inputType),
 				displayName : C3P.notEmptyVal(this.ui.inputDisplayName),
+				fk : C3P.notEmptyVal(this.ui.inputFk),
 				model : C3P.notEmptyVal(this.ui.inputModel),
 				// ownerName : C3P.notEmptyVal(this.ui.inputOwnerName),
 				uniDirecional : this.ui.inputUniDirecional.is(':checked'),
@@ -143,6 +147,7 @@ define(function(require) {
 			this.on('show', function() {
 				this.ui.inputRelationshipName.editable();
 				this.ui.inputDisplayName.editable();
+				this.ui.inputFk.editable();
 
 				this.ui.inputType.editable({
 					source : [ {
@@ -184,6 +189,7 @@ define(function(require) {
 
 				this.ui.inputRelationshipName.on('hidden', function() {
 					util.refreshEditable(that.ui.inputDisplayName, util.toFrase(that.ui.inputRelationshipName.text()));
+					util.refreshEditable(that.ui.inputFk, 'ID_' + util.toUnderscore(that.ui.inputModel.text()));
 				});
 
 				this.ui.inputTextField.on('hidden', function(evt) {
@@ -210,6 +216,7 @@ define(function(require) {
 				text : 'none'
 			} ];
 			if (this.ui.inputType.text() === "ManyToOne") {
+				this.ui.containerFk.show();
 				source.push({
 					value : 'modal',
 					text : 'modal'
@@ -219,6 +226,7 @@ define(function(require) {
 					text : 'combo'
 				})
 			} else if (this.ui.inputType.text() === "OneToMany" || this.ui.inputType.text() === "ManyToMany") {
+				this.ui.containerFk.hide();
 				source.push({
 					value : 'multiselect',
 					text : 'multiselect'

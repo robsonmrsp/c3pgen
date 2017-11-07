@@ -24,6 +24,8 @@ public class JsonTheEntity implements Serializable {
 
 	private String name;
 	private String color;
+	private String pk;
+	private String sequence;
 	private String notes;
 	private String displayName;
 	private String tableName;
@@ -151,6 +153,22 @@ public class JsonTheEntity implements Serializable {
 
 	public void setColor(String color) {
 		this.color = color;
+	}
+
+	public String getSequence() {
+		return sequence;
+	}
+
+	public void setSequence(String sequence) {
+		this.sequence = sequence;
+	}
+
+	public String getPk() {
+		return pk;
+	}
+
+	public void setPk(String pk) {
+		this.pk = pk;
 	}
 
 }

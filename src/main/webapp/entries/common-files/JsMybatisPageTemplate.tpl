@@ -254,19 +254,23 @@ define(function(require) {
 			</#if>
 		</#list>
 		</#if>
+				this.search${firstUpper(entity.name)}()
 			});
-			this.search${firstUpper(entity.name)}()
 		},
 		 
 		search${firstUpper(entity.name)} : function(){
 			var that = this;
 
 			this.${firstLower(entity.name)}s.filterQueryParams = {
-			<#list entity.attributes as att>
-				<#if att.showInPages >
-	    		${firstLower(att.name)} : util.escapeById('input${firstUpper(att.name)}'),
-				</#if>
-			</#list>
+	 		<#list entity.attributes as att>                                                                               
+	 			<#if att.showInPages && att.viewApproach.type  != 'upload'>                                                
+	 			<#if isNumeric(att.type.className)>                                                                        
+	 	    	${firstLower(att.name)} : this.ui.input${firstUpper(att.name)}.escape(true),                               
+	 	    	<#else>                                                                                                    
+	     		${firstLower(att.name)} : this.ui.input${firstUpper(att.name)}.escape(),                                   
+	 	    	</#if>                                                                                                     
+	 			</#if>                                                                                                     
+	 		</#list>                                                                                                       
 			<#if entity.relationships??>	
 			<#list entity.relationships as rel >
 				<#if rel.showInPages >			

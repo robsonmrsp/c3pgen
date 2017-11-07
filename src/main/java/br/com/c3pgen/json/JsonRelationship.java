@@ -25,6 +25,7 @@ public class JsonRelationship implements Serializable {
 	private String displayName;
 	private String ownerName;
 	private String model;
+	private String fk;
 	private Boolean uniDirecional;
 	private JsonTheEntity entity;
 	private JsonViewApproach viewApproach;
@@ -140,6 +141,14 @@ public class JsonRelationship implements Serializable {
 
 	public void setTargetName(String targetName) {
 		this.targetName = targetName;
+	}
+
+	public String getFk() {
+		return fk;
+	}
+
+	public void setFk(String fk) {
+		this.fk = fk;
 	}
 
 }

@@ -43,8 +43,10 @@ public class EntitiesGenerator {
 	private static MarkerGenerator htmlMobilePageGenerator;
 	private static MarkerGenerator htmlMobileFormGenerator;
 
-	private static MarkerGenerator flterGenerator;
+	private static MarkerGenerator javaFilterGenerator;
+	private static MarkerGenerator javaMybatisfilterGenerator;
 	private static MarkerGenerator htmlModalGenerator;
+	private static MarkerGenerator htmlMybatisModalGenerator;
 	private static MarkerGenerator htmlMultiSelectGenerator;
 	// private static MarkerGenerator JsModalMultiSelectGenerator;
 	// private static MarkerGenerator htmlModalMultiSelectGenerator;
@@ -128,7 +130,8 @@ public class EntitiesGenerator {
 		javaMybatisModelTemplate = new MarkerGenerator(freeMarkerConfig, application, "JavaMybatisModelTemplate.tpl", javaRootFolder + "/model/", TemplateFileName.MODEL_JAVA, FileType.JAVA);
 		javaMybatisModelGenerator = new MarkerGenerator(freeMarkerConfig, application, "JavaModelTemplate.tpl", javaRootFolder + "/model/", TemplateFileName.MODEL_JAVA, FileType.JAVA);
 
-		flterGenerator = new MarkerGenerator(freeMarkerConfig, application, "JavaFilterTemplate.tpl", javaRootFolder + "/model/filter/", TemplateFileName.FILTER_MODEL_JAVA, FileType.JAVA);
+		javaFilterGenerator = new MarkerGenerator(freeMarkerConfig, application, "JavaFilterTemplate.tpl", javaRootFolder + "/model/filter/", TemplateFileName.FILTER_MODEL_JAVA, FileType.JAVA);
+		javaMybatisfilterGenerator = new MarkerGenerator(freeMarkerConfig, application, "JavaMybatisFilterTemplate.tpl", javaRootFolder + "/model/filter/", TemplateFileName.FILTER_MODEL_JAVA, FileType.JAVA);
 
 		javaJsonGenerator = new MarkerGenerator(freeMarkerConfig, application, "JavaJsonTemplate.tpl", javaRootFolder + "/json/", TemplateFileName.JSON_JAVA, FileType.JAVA);
 
@@ -178,7 +181,9 @@ public class EntitiesGenerator {
 		htmlPageGenerator = new MarkerGenerator(freeMarkerConfig, application, "HtmlPageTemplate.tpl", jsRootFolder + "/views/${entity.name}/tpl/", TemplateFileName.PAGE_TEMPLATE_HTML, FileType.HTML);
 
 		jsModalGenerator = new MarkerGenerator(freeMarkerConfig, application, "JsModalTemplate.tpl", jsRootFolder + "/views/modalComponents/", TemplateFileName.MODAL_TEMPLATE_JS, FileType.JAVASCRIPT);
-		htmlModalGenerator = new MarkerGenerator(freeMarkerConfig, application, "HtmlModalTemplate.tpl", jsRootFolder + "/views/modalComponents/tpl/", TemplateFileName.MODAL_TEMPLATE_HTML, FileType.HTML);
+		
+		htmlModalGenerator = new MarkerGenerator(freeMarkerConfig, application, "HtmlModalTemplate.tpl", jsRootFolder + "/views/modalComponents/tpl/", TemplateFileName.MODAL_MYBATIS_TEMPLATE_JS, FileType.HTML);
+		htmlMybatisModalGenerator = new MarkerGenerator(freeMarkerConfig, application, "HtmlModalTemplate.tpl", jsRootFolder + "/views/modalComponents/tpl/", TemplateFileName.MODAL_MYBATIS_TEMPLATE_HTML, FileType.HTML);
 
 		mapperMybatisGenerator = new MarkerGenerator(freeMarkerConfig, application, "JavaMapperTemplate.tpl", javaRootFolder + "/persistence/", TemplateFileName.MYBATIS_MAPPER_JAVA, FileType.JAVA);
 
@@ -250,7 +255,9 @@ public class EntitiesGenerator {
 		jsMybatisPageColelctionGenerator = new MarkerGenerator(freeMarkerConfig, application, "JsMybatisPageCollectionTemplate.tpl", jsRootFolder + "/collections/", TemplateFileName.PAGE_COLLECTION_JS, FileType.JAVASCRIPT);
 		JsMybatisMultiSelectGenerator = new MarkerGenerator(freeMarkerConfig, application, "JsMybatisModalMultiSelectTemplate.tpl", jsRootFolder + "/collections/", TemplateFileName.PAGE_COLLECTION_JS, FileType.JAVASCRIPT);
 		jsMybatisModelGenerator = new MarkerGenerator(freeMarkerConfig, application, "JsMybatisModelTemplate.tpl", jsRootFolder + "/models/", TemplateFileName.MODEL_MYBATIS_JS, FileType.JAVASCRIPT);
-		jsMybatisModalGenerator = new MarkerGenerator(freeMarkerConfig, application, "JsMybatisModalTemplate.tpl", jsRootFolder + "/views/modalComponents/", TemplateFileName.MODAL_TEMPLATE_JS, FileType.JAVASCRIPT);
+		
+		jsMybatisModalGenerator = new MarkerGenerator(freeMarkerConfig, application, "JsMybatisModalTemplate.tpl", jsRootFolder + "/views/modalComponents/", TemplateFileName.MODAL_MYBATIS_TEMPLATE_JS, FileType.JAVASCRIPT);
+		
 		jsMybatisPageGenerator = new MarkerGenerator(freeMarkerConfig, application, "JsMybatisPageTemplate.tpl", jsRootFolder + "/views/${entity.name}/", TemplateFileName.PAGE_JS, FileType.JAVASCRIPT);
 		jsMybatisFormGenerator = new MarkerGenerator(freeMarkerConfig, application, "JsMybatisFormTemplate.tpl", jsRootFolder + "/views/${entity.name}/", TemplateFileName.BASIC_FORM_JS, FileType.JAVASCRIPT);
 
@@ -263,7 +270,7 @@ public class EntitiesGenerator {
 					basicServiceGenerator.generateEntityFile(application, ent);
 					basicServiceImpGenerator.generateEntityFile(application, ent);
 					daoGenerator.generateEntityFile(application, ent);
-					flterGenerator.generateEntityFile(application, ent);
+					javaFilterGenerator.generateEntityFile(application, ent);
 					// resourcesGenerator.generateEntityFile(application, ent);
 					controllerGenerator.generateEntityFile(application, ent);
 
@@ -297,9 +304,9 @@ public class EntitiesGenerator {
 
 					if (notInException(ent.getName(), exceptions)) {
 						LOGGER.info("-------------------------------Processando entidade " + ent.getName() + "-------------------------------");
-						javaJsonGenerator.generateEntityFile(application, ent);
 
 						if (application.getPersistenceFramework().equals("hibernate")) {
+							javaJsonGenerator.generateEntityFile(application, ent);
 
 							// TODO melhorar isso, mas por enquanto somente não
 							// gerar o User.java já resolve. Certificar que o
@@ -318,14 +325,39 @@ public class EntitiesGenerator {
 							testControllerGenerator.generateEntityFile(application, ent);
 							testErrorMockGenerator.generateEntityFile(application, ent);
 							testInitData.generateEntityFile(application, ent);
-							
+
 							jsFormGenerator.generateEntityFile(application, ent);
 							jsModelGenerator.generateEntityFile(application, ent);
 							jsPageGenerator.generateEntityFile(application, ent);
 							jsModalGenerator.generateEntityFile(application, ent);
 							JsMultiSelectGenerator.generateEntityFile(application, ent);
 
+							rbacSeedGenerator.generateAppFragmentFile(application.getEntities());
+
+							jsRouterGenerator.generate(application);
+							jsRouterSpecGenerator.generate(application);
+							// beansGenerator.generate(application);
+
+							testBeansGenerator.generate(application);
+							// testInitData.generate(application);
+							// beansGenerator.generate(application);
+							testSecurityGenerator.generate(application);
+
+							pomGenerator.generate(application);
+
+							buildPropertiesGenerator.generate(application);
+							buildXmlGenerator.generate(application);
+
+							produIndexGenerator.generate(application);
+							desenvIndexGenerator.generate(application);
+							produLoginGenerator.generate(application);
+							desenvLoginGenerator.generate(application);
+							parserGenerator.generate(application);
+							javaFilterGenerator.generateEntityFile(application, ent);
+							htmlModalGenerator.generateEntityFile(application, ent);
+
 						} else {
+							javaMybatisfilterGenerator.generateEntityFile(application, ent);
 							javaMybatisModelGenerator.generateEntityFile(application, ent);
 							basicMybatisServiceGenerator.generateEntityFile(application, ent);
 							mapperMybatisGenerator.generateEntityFile(application, ent);
@@ -340,9 +372,11 @@ public class EntitiesGenerator {
 							jsMybatisModalGenerator.generateEntityFile(application, ent);
 							jsMybatisPageGenerator.generateEntityFile(application, ent);
 							jsMybatisFormGenerator.generateEntityFile(application, ent);
+							
+							htmlMybatisModalGenerator.generateEntityFile(application, ent);
 						}
 
-						flterGenerator.generateEntityFile(application, ent);
+						fragmentsGenerator.generateAppFragmentFile(application.getEntities());
 
 						// geração de particulares a tecnologia da view
 						// jsColelctionGenerator.generateEntityFile(application,
@@ -352,7 +386,7 @@ public class EntitiesGenerator {
 
 						htmlFormGenerator.generateEntityFile(application, ent);
 						htmlPageGenerator.generateEntityFile(application, ent);
-						htmlModalGenerator.generateEntityFile(application, ent);
+						
 						htmlMultiSelectGenerator.generateEntityFile(application, ent);
 
 						// JsModalMultiSelectGenerator.generateEntityFile(application,
@@ -362,28 +396,6 @@ public class EntitiesGenerator {
 					}
 
 				}
-				fragmentsGenerator.generateAppFragmentFile(application.getEntities());
-				rbacSeedGenerator.generateAppFragmentFile(application.getEntities());
-
-				jsRouterGenerator.generate(application);
-				jsRouterSpecGenerator.generate(application);
-				// beansGenerator.generate(application);
-
-				testBeansGenerator.generate(application);
-				// testInitData.generate(application);
-				// beansGenerator.generate(application);
-				testSecurityGenerator.generate(application);
-
-				pomGenerator.generate(application);
-
-				buildPropertiesGenerator.generate(application);
-				buildXmlGenerator.generate(application);
-
-				produIndexGenerator.generate(application);
-				desenvIndexGenerator.generate(application);
-				produLoginGenerator.generate(application);
-				desenvLoginGenerator.generate(application);
-				parserGenerator.generate(application);
 			}
 		} catch (TemplateException e) {
 			LOGGER.error(e);

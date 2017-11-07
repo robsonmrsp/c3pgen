@@ -32,8 +32,11 @@ public interface TemplateFileName {
 	
 	final String PARSER = "Parser";
 
-	final String MODAL_TEMPLATE_HTML = "Modal${entity.name}Template";
 	final String MODAL_TEMPLATE_JS = "Modal${entity.name}";
+
+	final String MODAL_MYBATIS_TEMPLATE_HTML = "${entity.name}ModalTemplate";
+	
+	final String MODAL_MYBATIS_TEMPLATE_JS = "${entity.name}Modal";
 
 	final String BEANS_XML = "beans";
 	

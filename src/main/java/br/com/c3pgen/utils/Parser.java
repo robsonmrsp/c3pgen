@@ -155,7 +155,7 @@ public class Parser {
 		jsonApplication.setPersistenceFramework(application.getPersistenceFramework());
 		jsonApplication.setRootPackage(application.getRootPackage());
 		jsonApplication.setCorePackage(application.getCorePackage());
-		
+
 		jsonApplication.setApplicationType(application.getApplicationType());
 		jsonApplication.setConfigurationType(application.getConfigurationType());
 	}
@@ -410,6 +410,8 @@ public class Parser {
 
 		jsonTheEntity.setName(theEntity.getName());
 		jsonTheEntity.setColor(theEntity.getColor());
+		jsonTheEntity.setPk(theEntity.getPk());
+		jsonTheEntity.setSequence(theEntity.getSequence());
 		jsonTheEntity.setNotes(theEntity.getNotes());
 		jsonTheEntity.setDisplayName(theEntity.getDisplayName());
 		jsonTheEntity.setTableName(theEntity.getTableName());
@@ -423,6 +425,9 @@ public class Parser {
 		theEntity.setPosY(jsonTheEntity.getPosY());
 		theEntity.setName(jsonTheEntity.getName());
 		theEntity.setColor(jsonTheEntity.getColor());
+		theEntity.setPk(jsonTheEntity.getPk());
+		theEntity.setSequence(jsonTheEntity.getSequence());
+
 		theEntity.setNotes(jsonTheEntity.getNotes());
 		theEntity.setDisplayName(jsonTheEntity.getDisplayName());
 		theEntity.setTableName(jsonTheEntity.getTableName());
@@ -524,6 +529,7 @@ public class Parser {
 		jsonRelationship.setDisplayName(relationship.getDisplayName());
 		jsonRelationship.setOwnerName(relationship.getOwnerName());
 		jsonRelationship.setModel(relationship.getModel());
+		jsonRelationship.setFk(relationship.getFk());
 		jsonRelationship.setViewApproach(toJson(relationship.getViewApproach()));
 		jsonRelationship.setUniDirecional(relationship.getUniDirecional());
 	}
@@ -534,6 +540,7 @@ public class Parser {
 		relationship.setTargetName(jsonRelationship.getTargetName());
 		relationship.setOrigin(jsonRelationship.getOrigin());
 		relationship.setType(jsonRelationship.getType());
+		relationship.setFk(jsonRelationship.getFk());
 		relationship.setDisplayName(jsonRelationship.getDisplayName());
 		relationship.setOwnerName(jsonRelationship.getOwnerName());
 		relationship.setModel(jsonRelationship.getModel());

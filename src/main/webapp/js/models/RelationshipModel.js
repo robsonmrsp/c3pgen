@@ -19,6 +19,7 @@ define(function(require) {
 			id : null,
 			name : '',
 			type : '',
+			fk : '',
 			displayName : '',
 			ownerName : '',
 			model : '',

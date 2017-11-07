@@ -42,6 +42,7 @@ define(function(require) {
 			iconExpandEntity : '.icon-expand-entity',
 			inputDisplayName : '.inputDisplayName',
 			inputTableName : '.inputTableName',
+			inputPk : '.inputPk',
 			inputHasMobile : '.inputHasMobile',
 
 			widgetEntMain : '.widget-entidade',
@@ -101,10 +102,12 @@ define(function(require) {
 				this.ui.inputEntityName.editable();
 				this.ui.inputDisplayName.editable();
 				this.ui.inputTableName.editable();
+				this.ui.inputPk.editable();
 
 				this.ui.inputEntityName.on('hidden', function() {
 					util.refreshEditable(that.ui.inputDisplayName, util.toFrase(that.ui.inputEntityName.text()));
 					util.refreshEditable(that.ui.inputTableName, util.toUnderscore(that.ui.inputEntityName.text(), true));
+					util.refreshEditable(that.ui.inputPk, 'ID_' + util.toUnderscore(that.ui.inputEntityName.text(), true));
 				});
 
 				this.ui.editableFields.on('shown', function(evt, editable) {
@@ -197,11 +200,13 @@ define(function(require) {
 			this.ui.inputEntityName.text(this.entity.get('name'));
 			this.ui.inputDisplayName.text(this.entity.get('displayName'));
 			this.ui.inputTableName.text(this.entity.get('tableName'));
+			this.ui.inputPk.text(this.entity.get('pk'));
 			this.ui.inputHasMobile.prop('checked', this.entity.get('hasMobile'));
 
 			util.refreshEditableVisual(this.ui.inputEntityName);
 			util.refreshEditableVisual(this.ui.inputDisplayName);
 			util.refreshEditableVisual(this.ui.inputTableName);
+			util.refreshEditableVisual(this.ui.inputPk);
 			util.refreshEditableVisual(this.ui.inputHasMobile);
 
 			// this.visualEntity.updateEntityPosition();
@@ -213,6 +218,7 @@ define(function(require) {
 				name : this.ui.inputEntityName.text(),
 				displayName : this.ui.inputDisplayName.text(),
 				tableName : this.ui.inputTableName.text(),
+				pk : this.ui.inputPk.text(),
 				hasMobile : this.ui.inputHasMobile.is(':checked'),
 			};
 		},

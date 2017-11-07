@@ -21,6 +21,7 @@ define(function(require) {
 			name : 'NO_NAME',
 			displayName : '',
 			tableName : '',
+			pk : '',
 			hasOwner : '',
 			hasMobile : '',
 			notes : '',

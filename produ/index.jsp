@@ -14,8 +14,6 @@
 <style type="text/css"></style>
 <style>
 </style>
-
-
 </head>
 <body class="hide-sidebar">
 	<!-- Simple splash screen-->
@@ -92,18 +90,18 @@
 												<h5>Applicações</h5>
 											</a>
 										</td>
-										<td>
-											<a href="#app/modulos">
-												<i class="pe pe-7s-network text-warning"></i>
-												<h5>Módulos</h5>
-											</a>
-										</td>
-<!-- 										<td> -->
-<!-- 											<a href="contacts.html"> -->
-<!-- 												<i class="pe pe-7s-users text-success"></i> -->
-<!-- 												<h5>Contacts</h5> -->
-<!-- 											</a> -->
-<!-- 										</td> -->
+										<!-- 										<td> -->
+										<!-- 											<a href="#app/modulos"> -->
+										<!-- 												<i class="pe pe-7s-network text-warning"></i> -->
+										<!-- 												<h5>Módulos</h5> -->
+										<!-- 											</a> -->
+										<!-- 										</td> -->
+										<!-- 										<td> -->
+										<!-- 											<a href="contacts.html"> -->
+										<!-- 												<i class="pe pe-7s-users text-success"></i> -->
+										<!-- 												<h5>Contacts</h5> -->
+										<!-- 											</a> -->
+										<!-- 										</td> -->
 									</tr>
 								</tbody>
 							</table>

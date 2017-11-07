@@ -235,14 +235,14 @@ define(function(require) {
 			'app/newUser' : 'newUser',
 			'app/editUser/:id' : 'editUser',
 
-			// hashs de ItemModulo
-			'app/itemModulos' : 'itemModulos',
-			'app/newItemModulo' : 'newItemModulo',
-			'app/editItemModulo/:id' : 'editItemModulo',
-			// hashs de Modulo
-			'app/modulos' : 'modulos',
-			'app/newModulo' : 'newModulo',
-			'app/editModulo/:id' : 'editModulo',
+//			// hashs de ItemModulo
+//			'app/itemModulos' : 'itemModulos',
+//			'app/newItemModulo' : 'newItemModulo',
+//			'app/editItemModulo/:id' : 'editItemModulo',
+//			// hashs de Modulo
+//			'app/modulos' : 'modulos',
+//			'app/newModulo' : 'newModulo',
+//			'app/editModulo/:id' : 'editModulo',
 			// hashs de User
 			'app/users' : 'users',
 			'app/newUser' : 'newUser',
