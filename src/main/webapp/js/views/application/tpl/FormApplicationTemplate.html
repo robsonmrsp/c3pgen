@@ -1,3 +1,4 @@
+
 <!-- FormApplicationTemplate ini-->
 <div class="hpanel small-header-action" style="margin-bottom: 5">
 	<div class="panel-body" style="padding: 5">
@@ -35,13 +36,13 @@
 									</ol>
 									<!-- Wrapper for slides -->
 									<div class="carousel-inner" role="listbox">
-										<div class="item active" skin="Ace">
+										<div class="item {{skin === 'Ace' ? 'active' : '' }}" skin="Ace">
 											<img src="images/templates/Ace.png" alt="Ace">
 											<div class="carousel-caption">
 												<h3 style="font-size: 60px; color: #6a6c6f">Ace</h3>
 											</div>
 										</div>
-										<div class="item " skin="Nifty">
+										<div class="item {{(skin === 'Nifty' || skin === '' || skin === null) ? 'active' : '' }}" skin="Nifty">
 											<img src="images/templates/Nifty.png" alt="Nifty">
 											<div class="carousel-caption">
 												<h3 style="font-size: 60px; color: #6a6c6f">Nifty</h3>
@@ -65,6 +66,10 @@
 									<div id="groupInputSkin" class="form-group" style='display: none;'>
 										<label class="control-label" for="inputSkin">Template</label>
 										<input type="text" id="inputSkin" placeholder="Template" value="{{skin || 'Ace'}}" class="form-control" readonly="readonly">
+									</div>
+									<div id="groupInputAsModule" class="form-group ">
+										<input type="checkbox" id="inputAsModule" {{asModule ? 'checked' :''}} class="magic-checkbox">
+										<label class="checkbox-label" for="inputAsModule">Módulo</label>
 									</div>
 									<div id="groupInputName" class="form-group">
 										<label class="control-label" for="inputName">Nome</label>
@@ -107,6 +112,10 @@
 										<div id="groupInputUseAudit" class="form-group col-sm-12 col-md-3 col-lg-3">
 											<input type="checkbox" id="inputUseAudit" {{useAudit ? 'checked' :''}} class="magic-checkbox">
 											<label class="checkbox-label" for="inputUseAudit">Usar Auditoria</label>
+										</div>
+										<div id="groupInputGenerateTest" class="form-group col-sm-12 col-md-3 col-lg-3">
+											<input type="checkbox" id="inputGenerateTest" {{generateTest ? 'checked' :''}} class="magic-checkbox">
+											<label class="checkbox-label" for="inputGenerateTest">Gerar testes</label>
 										</div>
 									</div>
 								</div>

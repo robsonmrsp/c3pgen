@@ -28,6 +28,8 @@ define(function(require) {
 			configurationType  : '',
 			multitenancy : '',
 			useAudit : '',
+			asModule : '',
+			generateTest : '',
 			entities : null,
 		},
 		updateOnlyApplication : function(obj, options) {

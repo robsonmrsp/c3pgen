@@ -3,6 +3,8 @@ package br.com.c3pgen.json;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import javax.persistence.Column;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
@@ -28,6 +30,8 @@ public class JsonApplication implements Serializable {
 	private String corePackage;
 	private Boolean useAudit;
 	private Boolean multitenancy;
+	private Boolean generateTest;
+	private Boolean asModule;
 
 	private ApplicationConfigurationType configurationType;
 	private ApplicationType applicationType;
@@ -146,6 +150,22 @@ public class JsonApplication implements Serializable {
 
 	public void setApplicationType(ApplicationType applicationType) {
 		this.applicationType = applicationType;
+	}
+
+	public Boolean getGenerateTest() {
+		return generateTest;
+	}
+
+	public void setGenerateTest(Boolean generateTest) {
+		this.generateTest = generateTest;
+	}
+
+	public Boolean getAsModule() {
+		return asModule;
+	}
+
+	public void setAsModule(Boolean asModule) {
+		this.asModule = asModule;
 	}
 
 }

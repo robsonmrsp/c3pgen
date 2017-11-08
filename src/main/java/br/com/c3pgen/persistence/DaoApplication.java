@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Named;
+import javax.persistence.Column;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
@@ -158,9 +159,14 @@ public class DaoApplication extends AccessibleHibernateDao<Application> {
 				+ "      c.applicationType = :applicationType ,	"//
 
 				+ "      c.multitenancy = :multitenancy ,	"//
-				+ "      c.useAudit = :useAudit	"//
+				+ "      c.useAudit = :useAudit	, "//
+				
+				+ "      c.generateTest = :generateTest ,	"//
+				+ "      c.asModule = :asModule	"//
 				+ " where c.id= :id";//
 		Session session = getSession();
+		
+		
 
 		int updatedEntities = session.createQuery(hqlUpdate)//
 				.setString("appName", application.getAppName())//
@@ -170,6 +176,8 @@ public class DaoApplication extends AccessibleHibernateDao<Application> {
 				.setString("corePackage", application.getCorePackage())//
 				.setBoolean("multitenancy", application.getMultitenancy())//
 				.setBoolean("useAudit", application.getUseAudit())//
+				.setBoolean("generateTest", application.getGenerateTest())//
+				.setBoolean("asModule", application.getAsModule())//
 				.setString("configurationType", application.getConfigurationType().name())//
 				.setString("applicationType", application.getApplicationType().name())//
 				.setInteger("id", application.getId())//
