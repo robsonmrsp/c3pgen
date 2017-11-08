@@ -5,6 +5,7 @@ logs/basewebapp.log
 target/
 *.class
 *.jar
+src/main/webapp/javascript
 src/main/webapp/out
 src/main/webapp/out/*
 src/main/webapp/temp
