@@ -2,12 +2,17 @@ package br.com.c3pgen.reverseengineering.crawler;
 
 import java.io.File;
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Properties;
 
 import org.apache.log4j.Logger;
 import org.springframework.jdbc.datasource.SingleConnectionDataSource;
@@ -51,12 +56,23 @@ public class DBImporterEntities {
 		this.password = password;
 		this.singleConnectionDataSource = new SingleConnectionDataSource(url, username, password, true);
 		this.singleConnectionDataSource.setDriverClassName(getByType(databasetype));
+		Properties properties = this.singleConnectionDataSource.getConnectionProperties();
+		if (properties == null) {
+			properties = new Properties();
+			properties.setProperty("charSet", "utf-8");
+
+		}
+		this.singleConnectionDataSource.setConnectionProperties(properties);
 
 	}
 
 	public static String getByType(String databasetype) {
-		if (databasetype.equalsIgnoreCase("postgressql"))
+		if (databasetype.equalsIgnoreCase("firebird"))
+			return "org.firebirdsql.jdbc.FBDriver";
+
+		if (databasetype.equalsIgnoreCase("postgres"))
 			return "org.postgresql.Driver";
+
 		else if (databasetype.equalsIgnoreCase("oracle"))
 			return "oracle.jdbc.driver.OracleDriver";
 
@@ -93,7 +109,14 @@ public class DBImporterEntities {
 	}
 
 	public Application extractToApplication(DBImporterOptions options) throws Exception {
+
+		if (this.databaseType.equalsIgnoreCase("firebird")) {
+
+			return getApplicationFromFirebase(options);
+		}
+
 		DBImportResult result = new DBImportResult();
+
 		Application application = new Application();
 
 		application.setAppName("ExtractToApplication");
@@ -195,10 +218,53 @@ public class DBImporterEntities {
 					ApplicationEntity entity = getEntity(application, Util.firstUpperCase(relName));
 					relationshipSource.setEntity(entity);
 
-					if (!entity.getRelationships().contains(relationshipSource) &&  !entity.equals(applicationEntity))
+					if (!entity.getRelationships().contains(relationshipSource) && !entity.equals(applicationEntity))
 						entity.addRelationships(relationshipSource);
 				}
 			}
+		}
+
+		return application;
+	}
+
+	private Application getApplicationFromFirebase(DBImporterOptions options) throws SQLException {
+
+		Application application = new Application();
+
+		DatabaseMetaData metaData = this.singleConnectionDataSource.getConnection().getMetaData();
+		//
+		// // Print TABLE_TYPE "TABLE"
+		ResultSet resultSet = metaData.getTables(null, null, null, new String[] { "TABLE" });
+		System.out.println("Printing TABLE_TYPE \"TABLE\" ");
+
+		Map<String, Integer> tipos = new HashMap<String, Integer>();
+
+		for (String tableName : options.getTables()) {
+			// String tableName = resultSet.getString("TABLE_NAME");
+			String nomeDaClasse = CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, Util.firstUpperCaseOnly(tableName));
+			ApplicationEntity applicationEntity = new ApplicationEntity(nomeDaClasse, tableName);
+			// Collection<Column> colunas = table.getColumns();
+
+			ResultSet columns = metaData.getColumns(null, null, tableName, null);
+			while (columns.next()) {
+				String columnName = columns.getString("COLUMN_NAME");
+				String datatype = columns.getString("DATA_TYPE");
+				String columnsize = columns.getString("COLUMN_SIZE");
+				String decimaldigits = columns.getString("DECIMAL_DIGITS");
+				String isNullable = columns.getString("IS_NULLABLE");
+
+				String name = Util.firstLowerCase(CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, columnName));
+				String tableFieldName = columnName;
+				String displayName = Util.snakeFromCamelCase(columnName);
+				Boolean required = isNullable.equals("YES");
+				Boolean unique = false;
+				String className = Util.getEquivalentClassName(datatype);
+
+				applicationEntity.addAttributes(new Attribute(name, name, tableFieldName, required, unique, true, AttributeType.byName(className)));
+			}
+
+			application.addEntities(applicationEntity);
+
 		}
 
 		return application;

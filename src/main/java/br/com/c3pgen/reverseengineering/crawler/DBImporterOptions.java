@@ -10,6 +10,7 @@ public class DBImporterOptions {
 	private List<String> tableNamesToImport = new ArrayList<String>();
 	private List<String> excludeColumnNames = new ArrayList<String>();
 	private List<String> includeSchemaNames = new ArrayList<String>();
+	private List<String> tables = new ArrayList<String>();
 
 	private String sufixToSupress = "";
 	private String prefixToSupress = "";
@@ -73,6 +74,18 @@ public class DBImporterOptions {
 
 	public void setTableNamesToImport(List<String> tableNamesToImport) {
 		this.tableNamesToImport = tableNamesToImport;
+	}
+
+	public void addTables(String... tables) {
+		this.getTables().addAll(Arrays.asList(tables));
+	}
+
+	public List<String> getTables() {
+		return tables;
+	}
+
+	public void setTables(List<String> tables) {
+		this.tables = tables;
 	}
 
 }

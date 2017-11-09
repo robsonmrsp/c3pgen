@@ -140,27 +140,27 @@ public class ApplicationServiceImp implements ApplicationService {
 	}
 
 	@Override
-	public Application generateAppFromDataBase(String url, String username, String password, String databasetype, String supressPrefix, String tableRegex, String columnRegex) throws Exception {
+	public Application generateAppFromDataBase(String url, String username, String password, String databasetype, String supressPrefix, String tableRegex, String columnRegex, String justThisTables) throws Exception {
 
 		LOGGER.info("Start extraction [ " + Arrays.asList("url= " + url, "username= " + username, "databasetype= " + databasetype, "supressPrefix= " + supressPrefix, "tabeRegex= " + tableRegex, "columnRegex= " + columnRegex) + " ]");
 		DBImporterEntities dbImporterEntities = new DBImporterEntities(url, username, password, databasetype);
 
 		DBImporterOptions options = new DBImporterOptions();
 		options.addInclusionSchemaName("public");
+		if (justThisTables != null) {
+			String[] split = justThisTables.split(",");
+			if (split.length == 0) {
+				options.addTables(justThisTables);
+			} else {
+				options.addTables(split);
+			}
+		}
 		options.addExclusionColumnNamePatterns(columnRegex.split(";"));
 		options.addExclusionTableNamePatterns(tableRegex.split(";"));
 
-		// options.addExclusionColumnNamePatterns("(.*)create_datetime(.*)");
-		//
-		// options.addExclusionColumnNamePatterns("(.*)create_datetime(.*)");
-		// options.addExclusionColumnNamePatterns("(.*)last_update_datetime(.*)");
-		// options.addExclusionColumnNamePatterns("(.*)user_change(.*)");
-		// options.addExclusionColumnNamePatterns("(.*)user_create(.*)");
-		//
 		options.addExclusionTableNamePatterns("(.*)AUD", "(.*)aud");
 		options.addExclusionTableNamePatterns("public.RBAC(.*)", "public.Rbac(.*)", "public.rbac(.*)");
 		options.addExclusionTableNamePatterns("(.*)AUD", "(.*)aud", "(.*)revinfo(.*)");
-//		options.addExclusionTableNamePatterns("access_group, app_user,role,owner,owner,role_group,group_permission,item,item_permission,permission,revinfo,user_role,access_group,role_permission".split(","));
 
 		options.setPrefixToSupress(supressPrefix);
 

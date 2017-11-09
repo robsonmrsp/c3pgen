@@ -46,19 +46,20 @@
 											<select id="inputDatabaseType" class="form-control validate[required]">
 												<option selected value="POSTGRES">Postgres</option>
 												<option value="ORACLE">Oracle</option>
+												<option value="FIREBIRD" selected="selected">Firebird</option>
 											</select>
 										</div>
 										<div id="groupInputDatabaseUrl" class="form-group col-xs-5 col-sm-5">
 											<label class="control-label" for="inputDatabaseUrl">url</label>
-											<input type="text" id="inputDatabaseUrl" placeholder="Url" class="form-control validate[required]" value="jdbc:postgresql://localhost:5432/db_netflics">
+											<input type="text" id="inputDatabaseUrl" placeholder="Url" class="form-control validate[required]" value="jdbc:firebirdsql:localhost/3050:C:/Users/robson/Desktop/importacaoCnes/CNES.GDB">
 										</div>
 										<div id="groupInputDatabaseUsername" class="form-group col-xs-3 col-sm-3">
 											<label class="control-label" for="inputModalName">Usuario</label>
-											<input type="text" id="inputDatabaseUsername" placeholder="usuário do banco de dados" class="form-control validate[required]" value="postgres">
+											<input type="text" id="inputDatabaseUsername" placeholder="usuário do banco de dados" class="form-control validate[required]" value="sysdba">
 										</div>
 										<div id="groupInputDatabasePassword" class="form-group col-xs-2 col-sm-2">
 											<label class="control-label" for="inputDatabasePassword">Senha</label>
-											<input type="text" id="inputDatabasePassword" placeholder="Senha do banco de dados " class="form-control validate[required]" value="MasterKey@123">
+											<input type="text" id="inputDatabasePassword" placeholder="Senha do banco de dados " class="form-control validate[required]" value="masterkey">
 										</div>
 									</div>
 									<div class="form-actions spinner" id="spinApplication">
@@ -70,8 +71,17 @@
 								</div>
 							</div>
 							<div class="hpanel" style="margin-bottom: 0px;">
-								<div class="panel-heading">Exceções</div>
-								<div class="panel-body">
+								<div class="panel-heading table-names" style="display: none">Tabelas</div>
+								<div class="panel-body table-names" style="display: none">
+									<div class="row">
+										<div id="groupInputDatabaseTableNames" class="form-group col-xs-12 col-sm-12">
+											<label class="control-label" for="inputDatabaseTableNames">Nomes de tabelas para importar</label>
+											<input type="text" id="inputDatabaseTableNames" placeholder="Nomes de tabelas a importar separadas por virgulas" class="form-control" value="LFCES004">
+										</div>
+									</div>
+								</div>
+								<div class="panel-heading exceptions">Exceções</div>
+								<div class="panel-body exceptions">
 									<div class="row">
 										<div id="groupInputDatabaseTableNameExceptions" class="form-group col-xs-12 col-sm-12">
 											<label class="control-label" for="inputDatabaseTableNameExceptions">Nomes de tabelas (regex*)</label>

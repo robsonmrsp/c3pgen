@@ -49,13 +49,24 @@ public class Util {
 
 	public static String currentDir() {
 		return currentDir;
-//		 return templateFolder();
+		// return templateFolder();
 	}
 
 	private static String currentDir = Paths.get(".").toAbsolutePath().toString();
 
 	public static void setCurrentDir(String a) {
 		currentDir = a;
+	}
+
+	public static String snakeFromCamelCase(String verb) {
+		String[] str = verb.toLowerCase().split("_");
+		String ret = "";
+		for (int i = 0; i < str.length; i++) {
+			if (str[i].trim().length() > 0)
+				ret += firstUpperCase(str[i].trim());
+		}
+		return ret;
+
 	}
 
 	public static String camelCase(String verb) {
@@ -562,6 +573,37 @@ public class Util {
 			}
 		}
 		return false;
+	}
+
+	public static String getEquivalentClassName(String typeName) {
+		//
+		// public final static int VARCHAR = 12;
+		// public final static int CHAR = 1;
+		// public final static int NUMERIC = 2;
+		// public final static int INTEGER = 4;
+		// public final static int DATE = 91;
+		// public final static int TIMESTAMP = 93;
+		//
+		//
+
+		if (typeName.equals("12") || typeName.equals("1")) {
+			return "String";
+		}
+		if (typeName.equals("91")) {
+			return "Date";
+		}
+		if (typeName.equals("93")) {
+			return "Datetime";
+		}
+
+		if (typeName.equals("4")) {
+			return "Integer";
+		}
+		if (typeName.equals("2")) {
+			return "Double";
+		}
+		return "String";
+
 	}
 
 }
