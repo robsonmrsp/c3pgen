@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import br.com.c3pgen.model.ApplicationConfigurationType;
 import br.com.c3pgen.model.ApplicationType;
+import br.com.c3pgen.model.CriteriaType;
 import br.com.c3pgen.serialization.CustomSyncObjectIdDeserializer;
 
 /**
@@ -29,6 +30,9 @@ public class JsonApplication implements Serializable {
 	private String corePackage;
 	private Boolean useAudit;
 	private Boolean multitenancy;
+	private Boolean generateTest;
+	private Boolean asModule;
+	private CriteriaType criteriaType;
 
 	private ApplicationConfigurationType configurationType;
 	private ApplicationType applicationType;
@@ -157,4 +161,28 @@ public class JsonApplication implements Serializable {
 		this.persistenceFramework = persistenceFramework;
 	}
 
+
+	public Boolean getGenerateTest() {
+		return generateTest;
+	}
+
+	public void setGenerateTest(Boolean generateTest) {
+		this.generateTest = generateTest;
+	}
+
+	public Boolean getAsModule() {
+		return asModule;
+	}
+
+	public void setAsModule(Boolean asModule) {
+		this.asModule = asModule;
+	}
+
+	public CriteriaType getCriteriaType() {
+		return criteriaType;
+	}
+
+	public void setCriteriaType(CriteriaType criteriaType) {
+		this.criteriaType = criteriaType;
+	}
 }

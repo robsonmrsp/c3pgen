@@ -1,6 +1,5 @@
 package br.com.c3pgen.persistence.pagination;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -13,7 +12,6 @@ import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import br.com.c3pgen.base.util.Util;
-
 
 public class Paginator<T> {
 
@@ -45,7 +43,6 @@ public class Paginator<T> {
 
 		return result;
 	}
-
 
 	private Criteria adjusteCriteriaBySearchParams(PaginationParams paginationParams) {
 		searchCriteria.setProjection(null);
@@ -85,6 +82,8 @@ public class Paginator<T> {
 					searchCriteria.addOrder(Order.asc(orderBy));
 				}
 			}
+		} else {
+			searchCriteria.addOrder(Order.desc("id"));
 		}
 		return searchCriteria;
 	}

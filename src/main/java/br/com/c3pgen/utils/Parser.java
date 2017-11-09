@@ -150,10 +150,16 @@ public class Parser {
 		jsonApplication.setName(application.getAppName());
 		jsonApplication.setSkin(application.getSkin());
 		jsonApplication.setMultitenancy(application.getMultitenancy());
+
 		jsonApplication.setUseAudit(application.getUseAudit());
+
+		jsonApplication.setAsModule(application.getAsModule());
+		jsonApplication.setGenerateTest(application.getGenerateTest());
+
 		jsonApplication.setDescription(application.getDescription());
 		jsonApplication.setPersistenceFramework(application.getPersistenceFramework());
 		jsonApplication.setRootPackage(application.getRootPackage());
+		jsonApplication.setCriteriaType(application.getCriteriaType());
 		jsonApplication.setCorePackage(application.getCorePackage());
 
 		jsonApplication.setApplicationType(application.getApplicationType());
@@ -164,11 +170,16 @@ public class Parser {
 		application.setId(jsonApplication.getId());
 		application.setAppName(jsonApplication.getName());
 		application.setSkin(jsonApplication.getSkin());
+		application.setCriteriaType(jsonApplication.getCriteriaType());
 		application.setMultitenancy(jsonApplication.getMultitenancy());
 		application.setApplicationType(jsonApplication.getApplicationType());
 		application.setConfigurationType(jsonApplication.getConfigurationType());
 		application.setPersistenceFramework(jsonApplication.getPersistenceFramework());
 		application.setUseAudit(jsonApplication.getUseAudit());
+
+		application.setAsModule(jsonApplication.getAsModule());
+		application.setGenerateTest(jsonApplication.getGenerateTest());
+
 		application.setDescription(jsonApplication.getDescription());
 		application.setRootPackage(jsonApplication.getRootPackage());
 		application.setCorePackage(jsonApplication.getCorePackage());

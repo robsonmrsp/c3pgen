@@ -127,12 +127,15 @@ define(function(require) {
 				description : util.escapeById('inputDescription'),
 				rootPackage : util.escapeById('inputRootPackage'),
 				corePackage : util.escapeById('inputCorePackage'),
-				multitenancy : util.escapeById('inputMultitenancy'),
 				
+				multitenancy : util.escapeById('inputMultitenancy'),
+				asModule : util.escapeById('inputAsModule'),
+				generateTest : util.escapeById('inputGenerateTest'),
 				configurationType : util.escapeById('inputConfigurationType'),
 				applicationType : util.escapeById('inputApplicationType'),
 				persistenceFramework : util.escapeById('inputPersistenceFramework'),
-
+				criteriaType : util.escapeById('inputCriteriaType'),
+				useAudit : util.escapeById('inputUseAudit'),
 				
 				multitenancy : util.escapeById('inputMultitenancy'),
 				useAudit : util.escapeById('inputUseAudit'),

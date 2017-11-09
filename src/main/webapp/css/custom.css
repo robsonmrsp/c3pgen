@@ -528,3 +528,8 @@ ul.editor-list li:hover a {
 .desc-modules {
 	margin-bottom: 0px !important;
 }
+
+.tooltips {
+	width : 42px;
+	padding : 5px;
+}

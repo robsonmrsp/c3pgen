@@ -77,7 +77,8 @@ public class ApplicationResources {
 		try {
 			PaginationParams<FilterExtrationTools> paginationParams = new PaginationParams<FilterExtrationTools>(uriInfo, FilterExtrationTools.class);
 			FilterExtrationTools filter = paginationParams.getFilter();
-			Application generateAppFromDataBase = applicationService.generateAppFromDataBase(filter.getUrl(), filter.getUsername(), filter.getPassword(), filter.getDatabaseType(), filter.getSupressPrefix(), filter.getTableRegex(), filter.getColumnRegex());
+			Application generateAppFromDataBase = applicationService.generateAppFromDataBase(filter.getUrl(), filter.getUsername(), filter.getPassword(), filter.getDatabaseType(), filter.getSupressPrefix(), filter.getTableRegex(), filter.getColumnRegex(),
+					filter.getJustThisTables());
 
 			JsonApplication jsonApplication = Parser.toJson(generateAppFromDataBase);
 			response = Response.ok(jsonApplication).build();

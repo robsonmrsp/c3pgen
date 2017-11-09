@@ -18,13 +18,27 @@ define(function(require) {
 			'click #btnImportApplication' : 'importApplication',
 			'click #btnConnectionTest' : 'connectionTest',
 			'change #inputUploadXml' : 'uploadXml',
+			'change #inputDatabaseType' : 'changeDatabaseType',
 		},
 
 		regions : {
 
 		},
 
+		changeDatabaseType : function() {
+			if (this.ui.inputDatabaseType.val() === 'FIREBIRD') {
+				this.ui.exceptionsContainer.hide();
+				this.ui.tableNamesContainer.show();
+			} else {
+				this.ui.exceptionsContainer.show();
+				this.ui.tableNamesContainer.hide();
+			}
+		},
+
 		ui : {
+
+			tableNamesContainer : '.table-names',
+			exceptionsContainer : '.exceptions',
 			inputDatabaseType : '#inputDatabaseType',
 			inputDatabaseUrl : '#inputDatabaseUrl',
 			inputDatabaseUsername : '#inputDatabaseUsername',
@@ -34,6 +48,7 @@ define(function(require) {
 			inputSupressPrefix : '#inputSupressPrefix',
 			modalScreen : '.modal',
 			inputUploadXml : '#inputUploadXml',
+			inputDatabaseTableNames : '#inputDatabaseTableNames',
 			form : '.formConfig',
 		},
 
@@ -116,6 +131,7 @@ define(function(require) {
 						password : that.ui.inputDatabasePassword.val(),
 						tableRegex : that.ui.inputDatabaseTableNameExceptions.val(),
 						columnRegex : that.ui.inputDatabaseColumnNameExceptions.val(),
+						justThisTables : that.ui.inputDatabaseTableNames.val(),
 						supressPrefix : that.ui.inputSupressPrefix.val(),
 					}
 				});
@@ -144,6 +160,7 @@ define(function(require) {
 					password : that.ui.inputDatabasePassword.val(),
 					tableRegex : that.ui.inputDatabaseTableNameExceptions.val(),
 					columnRegex : that.ui.inputDatabaseColumnNameExceptions.val(),
+					justThisTables : that.ui.inputDatabaseTableNames.val(),
 					supressPrefix : that.ui.inputSupressPrefix.val(),
 				}
 			})

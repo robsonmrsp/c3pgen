@@ -1,5 +1,6 @@
 Manifest-Version: 1.0
-Class-Path: guava-19.0.jar schemacrawler-14.09.01.jar com.eclipsesourc
+Class-Path: guava-19.0.jar jaybird-jdk18-3.0.1.jar connector-api-1.5.j
+ ar antlr4-runtime-4.7.jar schemacrawler-14.09.01.jar com.eclipsesourc
  e.restfuse-1.2.0.jar jetty-server-8.1.3.v20120416.jar javax.servlet-3
  .0.0.v201112011016.jar jetty-continuation-8.1.3.v20120416.jar jetty-h
  ttp-8.1.3.v20120416.jar jetty-io-8.1.3.v20120416.jar jetty-util-8.1.3

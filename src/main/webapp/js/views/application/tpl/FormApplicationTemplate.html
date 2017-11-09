@@ -73,6 +73,10 @@
 										<label class="control-label" for="inputSkin">Template</label>
 										<input type="text" id="inputSkin" placeholder="Template" value="{{skin || 'Ace'}}" class="form-control" readonly="readonly">
 									</div>
+									<div id="groupInputAsModule" class="form-group ">
+										<input type="checkbox" id="inputAsModule" {{asModule ? 'checked' :''}} class="magic-checkbox">
+										<label class="checkbox-label" for="inputAsModule">Módulo</label>
+									</div>
 									<div id="groupInputName" class="form-group">
 										<label class="control-label" for="inputName">Nome</label>
 										<input type="text" id="inputName" placeholder="Nome" value="{{name}}" class="form-control  validate[required]">
@@ -121,6 +125,10 @@
 										<div id="groupInputUseAudit" class="form-group col-sm-12 col-md-3 col-lg-3">
 											<input type="checkbox" id="inputUseAudit" {{useAudit ? 'checked' :''}} class="magic-checkbox">
 											<label class="checkbox-label" for="inputUseAudit">Usar Auditoria</label>
+										</div>
+										<div id="groupInputGenerateTest" class="form-group col-sm-12 col-md-3 col-lg-3">
+											<input type="checkbox" id="inputGenerateTest" {{generateTest ? 'checked' :''}} class="magic-checkbox">
+											<label class="checkbox-label" for="inputGenerateTest">Gerar testes</label>
 										</div>
 									</div>
 								</div>

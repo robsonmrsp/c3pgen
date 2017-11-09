@@ -164,7 +164,7 @@ public class GenService {
 		ApplicationValidator appValidator = new ApplicationValidator();
 
 		// TODO melhorar essa infra no futuro!!!
-		if (complete && application.getPersistenceFramework().equalsIgnoreCase("hibernate")) {
+		if (complete && application.getPersistenceFramework().equalsIgnoreCase("hibernate") && !application.getAsModule()) {
 			fixModules(newApplication);
 		}
 
@@ -182,7 +182,7 @@ public class GenService {
 		LOGGER.info("Finalizada a validação....");
 
 		if (validateMessages.isEmpty()) {
-			if (complete && application.getPersistenceFramework().equalsIgnoreCase("hibernate")) {
+			if (complete && application.getPersistenceFramework().equalsIgnoreCase("hibernate") && !application.getAsModule() ) {
 				LOGGER.info("Gerando a base da aplicação. Isso pode levar alguns segundos...");
 				appGenerator.generate();
 				LOGGER.info("Finalizada a geração básica....");

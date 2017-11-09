@@ -60,6 +60,10 @@ public class Application extends AbstractTimestampEntity {
 	@Column(name = "APPLICATION_TYPE")
 	@Enumerated(EnumType.STRING)
 	private ApplicationType applicationType;
+	
+	@Column(name = "CRITERIA_TYPE")
+	@Enumerated(EnumType.STRING)
+	private CriteriaType criteriaType;
 
 	@Column(name = "VIEW")
 	private String view;
@@ -69,6 +73,13 @@ public class Application extends AbstractTimestampEntity {
 
 	@Column(name = "USE_DOC_REST_API")
 	private Boolean useDocRestApi;
+
+	
+	@Column(name = "GENERATE_TEST")
+	private Boolean generateTest;
+	
+	@Column(name = "AS_MODULE")
+	private Boolean asModule;
 
 	@Column(name = "MULTITENANCY")
 	private Boolean multitenancy;
@@ -286,6 +297,30 @@ public class Application extends AbstractTimestampEntity {
 
 	public void setApplicationType(ApplicationType applicationType) {
 		this.applicationType = applicationType;
+	}
+
+	public Boolean getGenerateTest() {
+		return generateTest;
+	}
+
+	public void setGenerateTest(Boolean generateTest) {
+		this.generateTest = generateTest;
+	}
+
+	public Boolean getAsModule() {
+		return asModule;
+	}
+
+	public void setAsModule(Boolean asModule) {
+		this.asModule = asModule;
+	}
+
+	public CriteriaType getCriteriaType() {
+		return criteriaType;
+	}
+
+	public void setCriteriaType(CriteriaType criteriaType) {
+		this.criteriaType = criteriaType;
 	}
 
 }

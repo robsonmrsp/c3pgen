@@ -15,6 +15,8 @@ public class FilterExtrationTools implements Serializable {
 	private String tableRegex;
 	private String columnRegex;
 	private String supressPrefix;
+	
+	private String justThisTables;
 
 	public FilterExtrationTools() {
 
@@ -80,6 +82,14 @@ public class FilterExtrationTools implements Serializable {
 
 	public void setSupressPrefix(String supressPrefix) {
 		this.supressPrefix = supressPrefix;
+	}
+
+	public String getJustThisTables() {
+		return justThisTables;
+	}
+
+	public void setJustThisTables(String justThisTables) {
+		this.justThisTables = justThisTables;
 	}
 
 }

@@ -45,10 +45,11 @@ public interface ApplicationService {
 
 	Boolean ping(String url, String username, String password, String databaseType) throws Exception;
 
-	Application generateAppFromDataBase(String url, String username, String password, String databasetype, String supressPrefix, String tableRegex, String columnRegex) throws Exception;
+	Application generateAppFromDataBase(String url, String username, String password, String databasetype, String supressPrefix, String tableRegex, String columnRegex, String string) throws Exception;
 
 	DBImportResult generateYamlFromDataBase(String url, String username, String password, String databaseType, String supressPrefix, String tableRegex, String columnRegex) throws Exception;
 
 	Application saveOnlyApplication(Application application);
+
 
 }
