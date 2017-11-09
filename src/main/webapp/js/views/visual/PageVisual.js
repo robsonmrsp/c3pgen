@@ -74,10 +74,13 @@ define(function(require) {
 			'click #addRelation' : 'addRelation',
 			'click #saveApp' : 'saveApplication',
 			'click #openTools' : 'openTools',
+
 			'click #generateApplication' : 'generateApplication',
 		},
 
-		ui : {},
+		ui : {
+			'tootips' : '.tooltips'
+		},
 		initialize : function() {
 			var that = this;
 			lastPositionX = 0;
@@ -112,6 +115,7 @@ define(function(require) {
 			this.modalError = new ModalError({});
 			this.on('show', function() {
 
+				this.ui.tootips.tooltip();
 				this.modalError.initIn(this);
 
 				this.inspetorRegion.show(this.inspetorView);
@@ -317,8 +321,12 @@ define(function(require) {
 
 			console.log(coluna, linha);
 			console.log(posX, posY);
-			entity.set('posX', posX);
-			entity.set('posY', posY);
+
+			if (!entity.get('posX'))
+				entity.set('posX', posX);
+			if (!entity.get('posY'))
+				entity.set('posY', posY);
+
 			entity.on('change', this.changeEntity, this);
 			var diagramEntity = new DiagramEntityView({
 				model : entity,

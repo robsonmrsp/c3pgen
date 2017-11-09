@@ -105,27 +105,15 @@ public class DBImporterEntities {
 		HashSet<Relationship> relationships = new HashSet<Relationship>();
 
 		Connection connection = singleConnectionDataSource.getConnection();
-
 		Catalog catalog = SchemaCrawlerUtility.getCatalog(connection, createCrawlerOptions(options));
+
 		for (final Schema schema : catalog.getSchemas()) {
 
 			System.out.println(schema);
 			for (final Table table : catalog.getTables(schema)) {
-
-//				if (table.getName().equals("fornecedor")) {
-//					System.out.println();
-//				}
 				String nomeDaClasse = CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, Util.firstUpperCaseOnly(table.getName()));
 				ApplicationEntity applicationEntity = new ApplicationEntity(nomeDaClasse, table.getName());
-
-//				fileLines.add("- name: " + nomeDaClasse);
-//				fileLines.add("  hasOwner: false ");
-//				fileLines.add("  displayName: " + Util.firstUpperCaseOnly(table.getName()));
-//				fileLines.add("  tableName: " + table.getName().toUpperCase());
-//				fileLines.add("  attributes:                     ");
 				Collection<Column> colunas = table.getColumns();
-
-				List<Column> relations = new ArrayList<Column>();
 
 				for (Column column : colunas) {
 					if (!column.isPartOfPrimaryKey() && !column.isPartOfForeignKey()) {
@@ -137,20 +125,26 @@ public class DBImporterEntities {
 						Boolean unique = column.isPartOfUniqueIndex();
 						String className = Util.getEquivalentClassName(column.getColumnDataType());
 
-//						fileLines.add("  - name: " + name);
-//						fileLines.add("    tableFieldName: " + tableFieldName);
-//						fileLines.add("    displayName: " + displayName);
-//						fileLines.add("    type: ");
-//						fileLines.add("      className: " + className);
-
 						applicationEntity.addAttributes(new Attribute(name, name, tableFieldName, required, unique, true, AttributeType.byName(className)));
-
 					}
+				}
+				application.addEntities(applicationEntity);
+			}
+
+			////////////////////////// somente relatcionamentos ///////////////////////
+
+			for (final Table table : catalog.getTables(schema)) {
+				String nomeDaClasse = CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, Util.firstUpperCaseOnly(table.getName()));
+
+				ApplicationEntity applicationEntity = getEntity(application, nomeDaClasse);
+
+				List<Column> relations = new ArrayList<Column>();
+				Collection<Column> colunas = table.getColumns();
+				for (Column column : colunas) {
 					if (column.isPartOfForeignKey()) {
 						relations.add(column);
 					}
 				}
-				fileLines.add("  relationships:                     ");
 				Collection<ForeignKey> foreignKeys = table.getExportedForeignKeys();
 				for (ForeignKey foreignKey : foreignKeys) {
 
@@ -164,30 +158,19 @@ public class DBImporterEntities {
 
 					String sourceRelModel = CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, table.getName());
 					String sourceRelName = Util.firstLowerCase(sourceRelModel);
-
-//					fileLines.add("  - name: " + name);
-//					fileLines.add("    type: OneToMany");
-//					fileLines.add("    ownerName: " + ownerName);
-//					fileLines.add("    model: " + model + "                       ");
-//					fileLines.add("    displayName: " + displayName + "                       ");
-
 					// ---->>
 					Relationship relationshipTarget = new Relationship(name, displayName, "OneToMany", ownerName, model, false, ViewApproach.noneInstance());
 					relationshipTarget.setOrigin(Boolean.TRUE);
 					relationshipTarget.setEntity(applicationEntity);
-					applicationEntity.addRelationships(relationshipTarget);
+					if (!applicationEntity.getRelationships().contains(relationshipTarget))
+						applicationEntity.addRelationships(relationshipTarget);
 
 					// <<------
 					Relationship relationshipSource = new Relationship(sourceRelName, Util.firstUpperCase(sourceRelName), "ManyToOne", null, sourceRelModel, false, ViewApproach.modalInstance("id", "nome"));
-					relationshipSource.setEntity(getEntity(new ApplicationEntity(sourceRelModel, table.getName())));
-
-					relationships.add(relationshipTarget);
-					relationships.add(relationshipSource);
-//					ApplicationRelationship appRel = new ApplicationRelationship();
-//					appRel.setSource(relationshipSource);
-//					appRel.setTarget(relationshipTarget);
-//
-//					applicationRelationships.add(appRel);
+					ApplicationEntity entity = getEntity(application, sourceRelModel);
+					relationshipSource.setEntity(entity);
+					if (!entity.getRelationships().contains(relationshipSource) && !entity.equals(applicationEntity))
+						entity.addRelationships(relationshipSource);
 				}
 				for (final Column column : relations) {
 					String tableName = column.getReferencedColumn().getParent().getName();
@@ -198,52 +181,40 @@ public class DBImporterEntities {
 					String relName = Util.firstLowerCase(CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, table.getName()));
 					String displayName = Util.firstUpperCase(tableName);
 
-//					fileLines.add("  - name: " + name + "     ");
-//					fileLines.add("    type: ManyToOne");
-//					fileLines.add("    model: " + model + "                       ");
-//					fileLines.add("    displayName: " + displayName + "                       ");
-//					fileLines.add("    viewApproach:   ");
-//					fileLines.add("      type: modal ");
-//					fileLines.add("      hiddenField: id ");
-//					fileLines.add("      textField: nome ");
 					// <<------
 					Relationship relationshipTarget = new Relationship(name, displayName, "ManyToOne", null, model, false, ViewApproach.modalInstance("id", "nome"));
 					relationshipTarget.setEntity(applicationEntity);
 
+					if (!applicationEntity.getRelationships().contains(relationshipTarget))
+						applicationEntity.addRelationships(relationshipTarget);
+
 					// ---->>
 					Relationship relationshipSource = new Relationship(relName + "s", Util.firstUpperCase(relName + "s"), "OneToMany", Util.firstLowerCase(relName), Util.firstUpperCase(relName), false, ViewApproach.noneInstance());
-					relationshipSource.setEntity(new ApplicationEntity(relName, table.getName()));
+					relationshipSource.setOrigin(Boolean.TRUE);
 
-					ApplicationRelationship appRel = new ApplicationRelationship();
-					appRel.setSource(relationshipSource);
-					appRel.setTarget(relationshipTarget);
+					ApplicationEntity entity = getEntity(application, Util.firstUpperCase(relName));
+					relationshipSource.setEntity(entity);
 
-					applicationRelationships.add(appRel);
-					
-					relationships.add(relationshipTarget);
-					relationships.add(relationshipSource);
-
+					if (!entity.getRelationships().contains(relationshipSource) &&  !entity.equals(applicationEntity))
+						entity.addRelationships(relationshipSource);
 				}
-
-				fileLines.clear();
-
-				application.addEntities(applicationEntity);
-				// application.addAllApplicationRelationships(applicationRelationships);
 			}
 		}
 
-		return fixApplicationRelations(application);
+		return application;
+	}
+
+	private ApplicationEntity getEntity(Application application, String nomeDaClasse) {
+		for (ApplicationEntity appEnt : application.getEntities()) {
+			if (appEnt.getName().equals(nomeDaClasse)) {
+				return appEnt;
+			}
+		}
+		return null;
 	}
 
 	private ApplicationEntity getEntity(ApplicationEntity applicationEntity) {
 
-		return null;
-	}
-
-	private Application fixApplicationRelations(Application application) {
-
-//		application.
-		
 		return null;
 	}
 
@@ -270,7 +241,7 @@ public class DBImporterEntities {
 			public boolean test(String tableName) {
 				for (String regex : options.getExcludeTableNamePatterns()) {
 					String trimed = regex.trim();
-					if (tableName.matches(trimed)) {
+					if (tableName.matches(trimed) || tableName.equals("public." + trimed) || tableName.equals(trimed)) {
 						return false;
 					}
 				}

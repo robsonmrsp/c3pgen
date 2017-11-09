@@ -160,6 +160,7 @@ public class ApplicationServiceImp implements ApplicationService {
 		options.addExclusionTableNamePatterns("(.*)AUD", "(.*)aud");
 		options.addExclusionTableNamePatterns("public.RBAC(.*)", "public.Rbac(.*)", "public.rbac(.*)");
 		options.addExclusionTableNamePatterns("(.*)AUD", "(.*)aud", "(.*)revinfo(.*)");
+//		options.addExclusionTableNamePatterns("access_group, app_user,role,owner,owner,role_group,group_permission,item,item_permission,permission,revinfo,user_role,access_group,role_permission".split(","));
 
 		options.setPrefixToSupress(supressPrefix);
 
