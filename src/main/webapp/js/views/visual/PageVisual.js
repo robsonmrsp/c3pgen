@@ -115,7 +115,7 @@ define(function(require) {
 				this.modalError.initIn(this);
 
 				this.inspetorRegion.show(this.inspetorView);
-				// this.diagramApplicationToolsRegion.show(this.diagramApplicationTools);
+				this.diagramApplicationToolsRegion.show(this.diagramApplicationTools);
 				// this.inspetorRelacionamentosRegion.show(this.inspetorRelacionamentosView);
 
 				this.graph = new Joint.dia.Graph();
@@ -185,11 +185,11 @@ define(function(require) {
 							if (that.sourceTempRelation == null) {
 								that.sourceTempRelation = view;
 								that.sourceViewTempRelation = _cellView;
-//								_cellView.highlight();
+								// _cellView.highlight();
 							} else {
 								that.targetViewTempRelation = _cellView;
 								that.targetTempRelation = view;
-//								_cellView.highlight();
+								// _cellView.highlight();
 
 								var relation = new VisualRelationship({
 									newRelation : true,
@@ -200,8 +200,8 @@ define(function(require) {
 								});
 
 								setTimeout(function() {
-//									that.targetViewTempRelation.unhighlight();
-//									that.sourceViewTempRelation.unhighlight();
+									// that.targetViewTempRelation.unhighlight();
+									// that.sourceViewTempRelation.unhighlight();
 
 									that.sourceTempRelation = null;
 									that.targetTempRelation = null;
@@ -255,7 +255,9 @@ define(function(require) {
 				globalVisualRelations.clear();
 			}
 			that.quantidadeEntidades = application.get('entities').length
-
+			contador = 0;
+			coluna = 0;
+			linha = 0;
 			_.each(application.get('entities'), function(entity) {
 				try {
 					that.addVisualEntity(new EntityModel(entity));
@@ -292,24 +294,31 @@ define(function(require) {
 				});
 			});
 		},
-		// openTools : function() {
-		// this.diagramApplicationTools.showPage();
-		// },
+		openTools : function() {
+			this.diagramApplicationTools.showPage();
+		},
 		// RIDICULA ESSA CONTA, mas como tá desenhando legal as tabelas para
 		// muitos registros...
 		// fica assim
 		addVisualEntity : function(entity) {
 			var that = this;
-			var _mod = this.quantidadeEntidades > 9 ? 6 : 4
+			var _mod = this.quantidadeEntidades > 20 ? 13 : 6
 
-			if (contador % 6 == 0) {
+			if (++contador % 9 == 0) {
 				coluna = 0;
 				contador = 0;
 				++linha;
 			}
-			var posY = 40 + ((contador++ % 2 - 1) * 240) + linha * 240; // TOP
-			var posX = 120 + ((contador - 1) * 180); // LEFT
+			// var posY = 100 + ((contador++ % 2 - 1) * 260) + linha * 260; // TOP
+			// var posX = 120 + ((contador - 1) * 180); // LEFT
+			var posY = 50 + (linha * 250);
 
+			var posX = 120 + (250 * coluna++);
+
+			console.log(coluna, linha);
+			console.log(posX, posY);
+			entity.set('posX', posX);
+			entity.set('posY', posY);
 			entity.on('change', this.changeEntity, this);
 			var diagramEntity = new DiagramEntityView({
 				model : entity,

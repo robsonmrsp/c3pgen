@@ -133,6 +133,7 @@ define(function(require) {
 				generateTest : util.escapeById('inputGenerateTest'),
 				configurationType : util.escapeById('inputConfigurationType'),
 				applicationType : util.escapeById('inputApplicationType'),
+				criteriaType : util.escapeById('inputCriteriaType'),
 				useAudit : util.escapeById('inputUseAudit'),
 				
 //				entities : that.entities.toJSON(),

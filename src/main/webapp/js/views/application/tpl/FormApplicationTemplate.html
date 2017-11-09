@@ -90,17 +90,24 @@
 										</div>
 									</div>
 									<div class="row">
-										<div id="groupApplicationType" class="form-group col-sm-12 col-md-6 col-lg-6">
+										<div id="groupApplicationType" class="form-group col-sm-12 col-md-4 col-lg-4">
 											<label class="control-label" for="inputApplicationType">Tipo de Aplicação</label>
 											<select id="inputApplicationType" class="form-control ">
 												<option value="MVC" {{applicationType=='MVC' ? 'selected' : '' }}>Spring Web MVC</option>
 											</select>
 										</div>
-										<div id="groupConfigurationType" class="form-group col-sm-12 col-md-6 col-lg-6">
+										<div id="groupConfigurationType" class="form-group col-sm-12 col-md-4 col-lg-4">
 											<label class="control-label" for="inputConfigurationType">Configuração</label>
 											<select id="inputConfigurationType" class="form-control ">
 												<option value="JAVA" {{configurationType=='JAVA' ? 'selected' : '' }}>Baseada em Java</option>
 												<option value="XML" {{configurationType=='XML' ? 'selected' : '' }}>Baseada em Xml</option>
+											</select>
+										</div>
+										<div id="groupCriteriaType" class="form-group col-sm-12 col-md-4 col-lg-4">
+											<label class="control-label" for="inputCriteriaType">Tipo de Criteria</label>
+											<select id="inputCriteriaType" class="form-control ">
+												<option value="JPA" {{criteriaType=='JPA' ? 'selected' : '' }}>JPA</option>
+												<option value="HIBERNATE" {{criteriaType=='HIBERNATE' ? 'selected' : '' }}>Hibernate</option>
 											</select>
 										</div>
 									</div>

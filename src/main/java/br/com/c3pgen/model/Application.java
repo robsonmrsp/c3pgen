@@ -60,6 +60,10 @@ public class Application extends AbstractTimestampEntity {
 	@Column(name = "APPLICATION_TYPE")
 	@Enumerated(EnumType.STRING)
 	private ApplicationType applicationType;
+	
+	@Column(name = "CRITERIA_TYPE")
+	@Enumerated(EnumType.STRING)
+	private CriteriaType criteriaType;
 
 	@Column(name = "VIEW")
 	private String view;
@@ -309,6 +313,14 @@ public class Application extends AbstractTimestampEntity {
 
 	public void setAsModule(Boolean asModule) {
 		this.asModule = asModule;
+	}
+
+	public CriteriaType getCriteriaType() {
+		return criteriaType;
+	}
+
+	public void setCriteriaType(CriteriaType criteriaType) {
+		this.criteriaType = criteriaType;
 	}
 
 }

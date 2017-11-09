@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import br.com.c3pgen.model.ApplicationConfigurationType;
 import br.com.c3pgen.model.ApplicationType;
+import br.com.c3pgen.model.CriteriaType;
 import br.com.c3pgen.serialization.CustomSyncObjectIdDeserializer;
 
 /**
@@ -32,10 +33,10 @@ public class JsonApplication implements Serializable {
 	private Boolean multitenancy;
 	private Boolean generateTest;
 	private Boolean asModule;
+	private CriteriaType criteriaType;
 
 	private ApplicationConfigurationType configurationType;
 	private ApplicationType applicationType;
-
 
 	private ArrayList<JsonTheEntity> entities = new ArrayList<JsonTheEntity>();
 
@@ -166,6 +167,14 @@ public class JsonApplication implements Serializable {
 
 	public void setAsModule(Boolean asModule) {
 		this.asModule = asModule;
+	}
+
+	public CriteriaType getCriteriaType() {
+		return criteriaType;
+	}
+
+	public void setCriteriaType(CriteriaType criteriaType) {
+		this.criteriaType = criteriaType;
 	}
 
 }
