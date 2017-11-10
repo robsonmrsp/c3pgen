@@ -511,7 +511,7 @@ define([ 'Noty', 'nprogress', 'moment', 'spin', 'adapters/underscore-adapter', '
 							"			<span style='float: left;'>                                    " + //
 							"				<strong> 												   " + //
 							"				<i class='fa fa-exclamation-circle ' aria-hidden='true'></i>" + //
-							"					Sucesso													" + //
+							"					Atenção													" + //
 							"				</strong>   			                                  " + //
 							"			</span>                                                        " + //
 							"			<span class='notification-warning-time' style='float: right:;'>  " + //
