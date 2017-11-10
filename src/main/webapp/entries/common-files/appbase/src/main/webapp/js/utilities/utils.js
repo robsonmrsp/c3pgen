@@ -189,7 +189,7 @@ define([ 'Noty', 'nprogress', 'moment', 'spin', 'adapters/underscore-adapter', '
 				} else {
 					this.showMessage('error', message, containerMessage);
 				}
-				this.logError(xhr);
+				// this.logError(xhr);
 			} else {
 				this.showMessage('error', message, containerMessage);
 			}
@@ -627,6 +627,7 @@ define([ 'Noty', 'nprogress', 'moment', 'spin', 'adapters/underscore-adapter', '
 		},
 
 		handleError : function(xhr, resp, opt) {
+			this.logError(xhr);
 			if (xhr.status === 0 && xhr.readyState === 0) {
 				this.notificationError({
 					title : 'Sem conexão',
@@ -737,7 +738,7 @@ define([ 'Noty', 'nprogress', 'moment', 'spin', 'adapters/underscore-adapter', '
 			}
 			window.addLogEntry(entry);
 
-			console.error("veja no console o erro: [ window.showStoreLog()]");
+			console.error("veja no console o erro: [ digite showStoreLog() ]");
 		},
 
 		alert : function(options) {
