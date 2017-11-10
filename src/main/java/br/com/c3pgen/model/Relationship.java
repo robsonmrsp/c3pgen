@@ -9,7 +9,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.annotations.Cascade;
@@ -56,7 +55,7 @@ public class Relationship extends AbstractTimestampEntity {
 	@Column(name = "UNI_DIRECIONAL")
 	private Boolean uniDirecional;
 
-	// @Column(name = "SHOW_IN_PAGES")
+	@Column(name = "SHOW_IN_PAGES")
 	private Boolean showInPages = Boolean.TRUE;
 
 	@Column(name = "FOREING_KEY_NAME")
@@ -220,6 +219,9 @@ public class Relationship extends AbstractTimestampEntity {
 	}
 
 	public Boolean getShowInPages() {
+		if (showInPages == null) {
+			setShowInPages(Boolean.TRUE);
+		}
 		return showInPages;
 	}
 

@@ -40,6 +40,7 @@ public class AttributeResources {
 	@Inject
 	AttributeService attributeService;
 
+	
 	@Inject
 	private SpringSecurityUserContext context;
 
