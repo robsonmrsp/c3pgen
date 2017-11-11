@@ -60,7 +60,7 @@ public class Application extends AbstractTimestampEntity {
 	@Column(name = "APPLICATION_TYPE")
 	@Enumerated(EnumType.STRING)
 	private ApplicationType applicationType;
-	
+
 	@Column(name = "CRITERIA_TYPE")
 	@Enumerated(EnumType.STRING)
 	private CriteriaType criteriaType;
@@ -74,10 +74,9 @@ public class Application extends AbstractTimestampEntity {
 	@Column(name = "USE_DOC_REST_API")
 	private Boolean useDocRestApi;
 
-	
 	@Column(name = "GENERATE_TEST")
 	private Boolean generateTest;
-	
+
 	@Column(name = "AS_MODULE")
 	private Boolean asModule;
 
@@ -212,7 +211,9 @@ public class Application extends AbstractTimestampEntity {
 	}
 
 	public String getDataBasePrefix() {
-
+		if (dataBasePrefix == null) {
+			dataBasePrefix = "";
+		}
 		return dataBasePrefix;
 	}
 
