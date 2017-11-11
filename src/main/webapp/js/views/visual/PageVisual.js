@@ -250,18 +250,18 @@ define(function(require) {
 		},
 		loadApplication : function(application, clean) {
 
-			globalVisualEntities.clear();
-			globalVisualRelations.clear();
+			// globalVisualEntities.clear();
+			// globalVisualRelations.clear();
 
 			var that = this;
-			if (clean) {
+			if (clean == true) {
 				globalVisualEntities.clear();
 				globalVisualRelations.clear();
+				contador = 0;
+				coluna = 0;
+				linha = 0;
 			}
 			that.quantidadeEntidades = application.get('entities').length
-			contador = 0;
-			coluna = 0;
-			linha = 0;
 			_.each(application.get('entities'), function(entity) {
 				try {
 					that.addVisualEntity(new EntityModel(entity));
