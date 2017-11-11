@@ -105,9 +105,11 @@ define(function(require) {
 				this.ui.inputPk.editable();
 
 				this.ui.inputEntityName.on('hidden', function() {
-					util.refreshEditable(that.ui.inputDisplayName, util.toFrase(that.ui.inputEntityName.text()));
-					util.refreshEditable(that.ui.inputTableName, util.toUnderscore(that.ui.inputEntityName.text(), true));
-					util.refreshEditable(that.ui.inputPk, 'ID_' + util.toUnderscore(that.ui.inputEntityName.text(), true));
+					if (!that.entity || !that.entity.get('id')) {
+						util.refreshEditable(that.ui.inputDisplayName, util.toFrase(that.ui.inputEntityName.text()));
+						util.refreshEditable(that.ui.inputTableName, util.toUnderscore(that.ui.inputEntityName.text(), true));
+						util.refreshEditable(that.ui.inputPk, 'ID_' + util.toUnderscore(that.ui.inputEntityName.text(), true));
+					}
 				});
 
 				this.ui.editableFields.on('shown', function(evt, editable) {
