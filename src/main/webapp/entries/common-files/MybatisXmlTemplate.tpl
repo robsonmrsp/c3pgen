@@ -4,7 +4,7 @@
 <mapper namespace="${application.rootPackage}.persistence.${entity.name}Mapper">
 	<resultMap type="${entity.name}" id="result">
 		<!-- pk -->
-		<result column="${entity.pk}" property="id" />
+		<result column="${entity.pk}" property="id" /> 
 	<#if entity.attributes??>	
 	<#list entity.attributes as att>
 		<result column="${uppercase(att.tableFieldName!att.name)}" property="${att.name}" />
@@ -26,8 +26,8 @@
         	*
         FROM
         	${uppercase(entity.tableName!entity.name)}
-        WHERE
-        	${entity.pk} = ${r"#{"} id ${r"}"}
+        WHERE 
+        	${entity.pk} = ${r"#{"} id ${r"}"} 
     </select>
     
     <select id="carrega${entity.name}" parameterType="${entity.name}" resultMap="result">
@@ -36,7 +36,7 @@
         FROM
         	${uppercase(entity.tableName!entity.name)}
         WHERE
-        	${entity.pk} = ${r"#{"} id ${r"}"}
+        	${entity.pk} = ${r"#{"} id ${r"}"} 
 	<#if entity.attributes??>	
 	<#list entity.attributes as att>
 			<if test=" ${att.name} != null ">
@@ -52,7 +52,7 @@
         	*
         FROM
         	${uppercase(entity.tableName!entity.name)}
-        ROWNUM &lt;= 1000
+        WHERE ROWNUM &lt;= 5000 
     </select>
     
     <select id="pesquisa" resultMap="result" parameterType="map">
@@ -139,7 +139,7 @@
             ${uppercase(entity.tableName!entity.name)}
             (   
 		<#if entity.attributes??>
-				${entity.pk} 
+				${entity.pk}  
 		<#list entity.attributes as att>
 	    		,${uppercase(att.tableFieldName!att.name)}  
 		</#list>
@@ -162,7 +162,7 @@
         	${uppercase(entity.tableName!entity.name)}
  		SET 
  		<#if entity.attributes??>
- 		    ${entity.pk} = ${r"#{"} id ${r"}"}
+ 		    ${entity.pk} = ${r"#{"} id ${r"}"} 
         <#list entity.attributes as att>
 			<if test=" ${att.name} != null ">
 			, ${uppercase(att.tableFieldName!att.name)} = ${r"#{"} ${att.name} ${r"}"} 
@@ -170,11 +170,13 @@
 		</#list>
 		</#if>	
 			
- 		WHERE 
-            ${entity.pk} = ${r"#{"} id ${r"}"}
+ 		WHERE  
+            ${entity.pk} = ${r"#{"} id ${r"}"} 
     </update>
     
     <delete id="deleta" parameterType="Integer" >
-    	DELETE FROM ${uppercase(entity.tableName!entity.name)} 	WHERE ${entity.pk} = ${r"#{"} id ${r"}"}
+    	DELETE 	
+    	FROM ${uppercase(entity.tableName!entity.name)} 	
+    	WHERE ${entity.pk} = ${r"#{"} id ${r"}"} 
     </delete>
 </mapper>	

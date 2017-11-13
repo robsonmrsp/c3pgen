@@ -9,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>c3pgen</title>
 <link rel="stylesheet" href="css/all.css">
-<script src="https://d3js.org/d3.v4.js"></script>
+<!-- <script src="https://d3js.org/d3.v4.js"></script> -->
 <link rel="icon" href="images/ico/favicon.png" type="image/png">
 <style type="text/css">
 

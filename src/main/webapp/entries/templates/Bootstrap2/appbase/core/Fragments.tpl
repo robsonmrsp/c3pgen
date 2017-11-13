@@ -183,7 +183,6 @@
 			Rota.CRUD_${upperSnakeCase(entity.name)}_EDITA, //
 			Rota.SERVICOS_${upperSnakeCase(entity.name)}, //
 			Rota.SPA, //
-			Rota.CRUD_${upperSnakeCase(entity.name)}_REGISTRA
 	);
 	
 </#list>

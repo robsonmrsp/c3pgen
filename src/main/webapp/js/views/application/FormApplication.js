@@ -122,12 +122,12 @@ define(function(require) {
 			var application = that.model;
 			application.set({
 				id : util.escapeById('inputId') || null,
-				name : util.escapeById('inputName') ,
+				name : util.escapeById('inputName'),
 				skin : util.escapeById('inputSkin') || 'ace',
 				description : util.escapeById('inputDescription'),
 				rootPackage : util.escapeById('inputRootPackage'),
 				corePackage : util.escapeById('inputCorePackage'),
-				
+
 				multitenancy : util.escapeById('inputMultitenancy'),
 				asModule : util.escapeById('inputAsModule'),
 				generateTest : util.escapeById('inputGenerateTest'),
@@ -136,39 +136,13 @@ define(function(require) {
 				persistenceFramework : util.escapeById('inputPersistenceFramework'),
 				criteriaType : util.escapeById('inputCriteriaType'),
 				useAudit : util.escapeById('inputUseAudit'),
-				
+
 				multitenancy : util.escapeById('inputMultitenancy'),
 				useAudit : util.escapeById('inputUseAudit'),
-//				entities : that.entities.toJSON(),
+			// entities : that.entities.toJSON(),
 			});
 			return application;
 		},
-
-		changeSkin : function() {
-			var that = this;
-			util.validateUnique({
-				element : that.ui.inputSkin,
-				fieldName : 'skin',
-				fieldDisplayName : 'Template',
-				// onlyNumber : true, //caso queira que as mascaras sejam
-				// removidas e somente NUMEROS sejam enviados na consulta.
-				view : that,
-				collection : ApplicationCollection,
-			})
-		},
-		changeRootPackage : function() {
-			var that = this;
-			util.validateUnique({
-				element : that.ui.inputRootPackage,
-				fieldName : 'rootPackage',
-				fieldDisplayName : 'Pacote raiz',
-				// onlyNumber : true, //caso queira que as mascaras sejam
-				// removidas e somente NUMEROS sejam enviados na consulta.
-				view : that,
-				collection : ApplicationCollection,
-			})
-		},
-
 	});
 
 	return FormApplications;
