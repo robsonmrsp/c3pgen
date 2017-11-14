@@ -181,7 +181,7 @@
 			Rota.CRUD_${upperSnakeCase(entity.name)}_LISTA, //
 			Rota.CRUD_${upperSnakeCase(entity.name)}_NOVO, //
 			Rota.CRUD_${upperSnakeCase(entity.name)}_EDITA, //
-			Rota.SERVICOS_${upperSnakeCase(entity.name)}, //
+			Rota.SERVICOS_REST_${upperSnakeCase(entity.name)}, //
 			Rota.SPA, //
 	);
 	

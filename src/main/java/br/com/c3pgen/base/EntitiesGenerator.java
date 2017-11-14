@@ -252,8 +252,10 @@ public class EntitiesGenerator {
 
 		// b2
 		jsMybatisColelctionGenerator = new MarkerGenerator(freeMarkerConfig, application, "JsMybatisCollectionTemplate.tpl", jsRootFolder + "/collections/", TemplateFileName.COLLECTION_JS, FileType.JAVASCRIPT);
+		
 		jsMybatisPageColelctionGenerator = new MarkerGenerator(freeMarkerConfig, application, "JsMybatisPageCollectionTemplate.tpl", jsRootFolder + "/collections/", TemplateFileName.PAGE_COLLECTION_JS, FileType.JAVASCRIPT);
-		JsMybatisMultiSelectGenerator = new MarkerGenerator(freeMarkerConfig, application, "JsMybatisModalMultiSelectTemplate.tpl", jsRootFolder + "/collections/", TemplateFileName.PAGE_COLLECTION_JS, FileType.JAVASCRIPT);
+//		JsMybatisMultiSelectGenerator = new MarkerGenerator(freeMarkerConfig, application, "JsMybatisModalMultiSelectTemplate.tpl", jsRootFolder + "/collections/", TemplateFileName.PAGE_COLLECTION_JS, FileType.JAVASCRIPT);
+		
 		jsMybatisModelGenerator = new MarkerGenerator(freeMarkerConfig, application, "JsMybatisModelTemplate.tpl", jsRootFolder + "/models/", TemplateFileName.MODEL_MYBATIS_JS, FileType.JAVASCRIPT);
 		
 		jsMybatisModalGenerator = new MarkerGenerator(freeMarkerConfig, application, "JsMybatisModalTemplate.tpl", jsRootFolder + "/views/modalComponents/", TemplateFileName.MODAL_MYBATIS_TEMPLATE_JS, FileType.JAVASCRIPT);
@@ -334,7 +336,7 @@ public class EntitiesGenerator {
 
 							rbacSeedGenerator.generateAppFragmentFile(application.getEntities());
 
-							jsRouterGenerator.generate(application);
+							
 							jsRouterSpecGenerator.generate(application);
 							// beansGenerator.generate(application);
 
@@ -367,7 +369,7 @@ public class EntitiesGenerator {
 
 							jsMybatisColelctionGenerator.generateEntityFile(application, ent);
 							jsMybatisPageColelctionGenerator.generateEntityFile(application, ent);
-							JsMybatisMultiSelectGenerator.generateEntityFile(application, ent);
+//							JsMybatisMultiSelectGenerator.generateEntityFile(application, ent);
 							jsMybatisModelGenerator.generateEntityFile(application, ent);
 							jsMybatisModalGenerator.generateEntityFile(application, ent);
 							jsMybatisPageGenerator.generateEntityFile(application, ent);
@@ -375,7 +377,7 @@ public class EntitiesGenerator {
 							
 							htmlMybatisModalGenerator.generateEntityFile(application, ent);
 						}
-
+						jsRouterGenerator.generate(application);
 						fragmentsGenerator.generateAppFragmentFile(application.getEntities());
 
 						// geração de particulares a tecnologia da view
