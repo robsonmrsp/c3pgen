@@ -220,7 +220,7 @@ define(function(require) {
 		
 		 search${firstUpper(entity.name)} : function(){		                                                                   
 		 	var that = this;                                                                                                   
-		 	this.dataTableLinguagem.getFirstPage({                                                                             
+		 	this.dataTable${firstUpper(entity.name)}.getFirstPage({                                                                             
 		 		success : function(_coll, _resp, _opt) {                                                                       
 		 			//console.info('Consulta para o grid ${firstLower(entity.name)}');                                         
 		 		},                                                                                                             
