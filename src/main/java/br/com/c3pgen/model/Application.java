@@ -308,6 +308,9 @@ public class Application extends AbstractTimestampEntity {
 	}
 
 	public Boolean getAsModule() {
+		if(asModule == null){
+			setAsModule(Boolean.FALSE);
+		}
 		return asModule;
 	}
 
