@@ -18,6 +18,7 @@ import br.com.c3pgen.base.methods.FirstUpperCaseMethod;
 import br.com.c3pgen.base.methods.IsNumericMethod;
 import br.com.c3pgen.base.methods.IsRequiredMethod;
 import br.com.c3pgen.base.methods.MaxLenMethod;
+import br.com.c3pgen.base.methods.MybatisJdbcType;
 import br.com.c3pgen.base.methods.OnlyFirstUpperCaseMethod;
 import br.com.c3pgen.base.methods.SnakeCaseStringMethod;
 import br.com.c3pgen.base.methods.ToLowerCaseMethod;
@@ -112,6 +113,7 @@ public class MarkerGenerator {
 		data.put("getOwnerName", new getOwnerNameMethod());
 		data.put("dataBasePrefix", application.getDataBasePrefix());
 		data.put("upperSnakeCase", new UpperSnakeCaseStringMethod());
+		data.put("getMybatisJdbcType", new MybatisJdbcType());
 		data.put("JSetupVersion", Util.JSETUP_VERSION);
 		return data;
 	}
@@ -133,6 +135,7 @@ public class MarkerGenerator {
 		data.put("entities", object);
 		data.put("dataBasePrefix", application.getDataBasePrefix());
 		data.put("getOwnerName", new getOwnerNameMethod());
+		data.put("getMybatisJdbcType", new MybatisJdbcType());
 		data.put("upperSnakeCase", new UpperSnakeCaseStringMethod());
 		data.put("JSetupVersion", Util.JSETUP_VERSION);
 		return data;

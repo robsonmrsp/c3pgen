@@ -13,6 +13,7 @@ import br.com.c3pgen.base.methods.FirstUpperCaseMethod;
 import br.com.c3pgen.base.methods.IsNumericMethod;
 import br.com.c3pgen.base.methods.IsRequiredMethod;
 import br.com.c3pgen.base.methods.MaxLenMethod;
+import br.com.c3pgen.base.methods.MybatisJdbcType;
 import br.com.c3pgen.base.methods.SnakeCaseStringMethod;
 import br.com.c3pgen.base.methods.ToLowerCaseMethod;
 import br.com.c3pgen.base.methods.ToStringMethod;
@@ -123,6 +124,7 @@ public class FreeMarkerConfig {
 		data.put("package", application.getRootPackage());
 		data.put("toListString", new ToStringMethod());
 		data.put("application", application);
+		data.put("getMybatisJdbcType", new MybatisJdbcType());
 		data.put("package", application.getRootPackage());
 		data.put("getOwnerName", new getOwnerNameMethod());
 		data.put("upperSnakeCase", new UpperSnakeCaseStringMethod());

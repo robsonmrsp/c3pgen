@@ -193,5 +193,31 @@
 	CRUD_${upperSnakeCase(entity.name)}_EDITA("app/edit${firstUpper(entity.name)}/" + PaginaRegex.NUMEROS), //
 	SERVICOS_REST_${upperSnakeCase(entity.name)}("/rs/crud/${firstLower(entity.name)}s" + PaginaRegex.QUALQUER_CARACTER),
 </#list>
+<#list entities as entity>
+	private void importa${firstLower(entity.name)}CNES() {
+		LOGGER.info(" - - -> Iniciando ${firstUpper(entity.displayName)}  ");
+		${firstLower(entity.name)}Service.deleta();
+		Integer quantidadeRegistros = 0;
+		LogExecucaoImportacao logExecucaoImportacao = new LogExecucaoImportacao();
+		logExecucaoImportacao.setDataHora(LocalDateTime.now());
+		logExecucaoImportacao.setTabela("${firstLower(entity.displayName)} ");
+
+		try {
+			List<${firstUpper(entity.name)}CNES> lista = ${firstLower(entity.name)}CNESService.lista();
+			quantidadeRegistros = lista.size();
+			logExecucaoImportacao.setQuantidadeRegistrosParaImportar(quantidadeRegistros);
+			for (${firstUpper(entity.name)}CNES itemLista : lista) {
+				${firstUpper(entity.name)} importacao = mapper.map(itemLista, ${firstUpper(entity.name)}.class);
+				${firstLower(entity.name)}Service.salva(importacao);
+			}
+			Thread.sleep(2);
+		} catch (Exception e) {
+			LOGGER.error("Problema ao importar ${firstUpper(entity.displayName)}", e);
+			logExecucaoImportacao.setMensagemErroExecucao(ExceptionUtils.getStackTrace(e));
+		}
+		LOGGER.info(" - - -> Finalizando ${firstUpper(entity.displayName)} ");
+		logExecucaoImportacaoService.salva(logExecucaoImportacao);
+	}
+</#list>
 	
 	

@@ -13,6 +13,7 @@ import org.joda.time.LocalDateTime;
 /* generated: ${.now} */
 public class Filter${entity.name} implements Serializable {
 	private static final long serialVersionUID = 1L;
+	private Integer id;
 	<#if entity.attributes??>	
 	<#list entity.attributes as att>
 		<#if att.name != 'id'>
@@ -44,6 +45,14 @@ public class Filter${entity.name} implements Serializable {
 	
 	public  Filter${entity.name}() {
 		
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	<#list entity.attributes as att>
