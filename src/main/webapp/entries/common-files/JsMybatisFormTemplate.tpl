@@ -281,22 +281,25 @@ define(function(require) {
 			var that = this;
 			var ${firstLower(entity.name)} = that.model; 
 			${firstLower(entity.name)}.set({
-				id: util.escapeById('inputId') || null,
+				id: this.ui.inputId.escape(),
 				<#list entity.attributes as att>
-				  	<#if isNumeric(att.type.className)>
-		    	${firstLower(att.name)} : util.escapeById('input${firstUpper(att.name)}', true), 
-		  			<#else>	
-		    	${firstLower(att.name)} : util.escapeById('input${firstUpper(att.name)}'), 
-					</#if>
-				
+				<#if isNumeric(att.type.className)>
+		    	${firstLower(att.name)} : this.ui.input${firstUpper(att.name)}.escape(true),
+		    	<#else> 
+		    	${firstLower(att.name)} : this.ui.input${firstUpper(att.name)}.escape(), 
+		    	</#if>
 				</#list>
+				
 				<#if entity.relationships??>	
 				<#list entity.relationships as rel >
-				<#if (rel.type == 'OneToMany' || rel.type == 'ManyToMany' ) && rel.viewApproach.type == 'multiselect'>
-				${firstLower(rel.name)} : that.${firstLower(rel.name)}.toJSON(),
-				</#if>			
+					<#if (rel.type == 'OneToMany' || rel.type == 'ManyToMany' ) && rel.viewApproach.type == 'multiselect'>
+				${firstLower(rel.name)} :  that.multiselect${firstUpper(rel.name)}.getJsonValue(),
+					</#if>			
 					<#if rel.viewApproach.type == 'modal' >
-				${firstLower(rel.name)} : that.${firstLower(rel.name)}Modal.getJsonValue(),
+				${firstLower(rel.name)} : that.modal${firstUpper(rel.name)}.getJsonValue(),
+					</#if>			
+					<#if rel.viewApproach.type == 'multiselectmodal' >
+				${firstLower(rel.name)} : that.multiselectModal${firstUpper(rel.name)}.getJsonValue(),
 					</#if>			
 					<#if rel.viewApproach.type == 'combo'>
 				${firstLower(rel.name)} :  that.combo${firstUpper(rel.name)}.getJsonValue(),
