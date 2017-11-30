@@ -1,5 +1,0 @@
-appName: Locadora
-skin: ace
-view: backbone
-rootPackage: br.com.locadora
-corePackage: br.com.locadora.core

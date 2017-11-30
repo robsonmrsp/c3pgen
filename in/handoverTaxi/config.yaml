@@ -1,5 +1,0 @@
-appName: HandoverTaxi
-skin: ace
-view: backbone
-rootPackage: br.com.invista
-corePackage: br.com.invista.core
