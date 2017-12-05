@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 
+import br.com.c3pgen.base.methods.DataInputFormatMethod;
 import br.com.c3pgen.base.methods.DataTypeMethod;
 import br.com.c3pgen.base.methods.FirstLowerCaseMethod;
 import br.com.c3pgen.base.methods.FirstUpperCaseMethod;
@@ -126,6 +127,7 @@ public class FreeMarkerConfig {
         data.put("isNumeric", new IsNumericMethod());
         data.put("getRequiredClass", new IsRequiredMethod());
         data.put("getMaxLen", new MaxLenMethod());
+        data.put("getDataInputFormat", new DataInputFormatMethod());
         data.put("dataType", new DataTypeMethod());
         data.put("package", application.getRootPackage());
         data.put("toListString", new ToStringMethod());

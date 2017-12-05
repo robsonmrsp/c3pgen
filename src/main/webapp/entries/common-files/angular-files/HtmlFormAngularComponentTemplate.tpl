@@ -24,7 +24,7 @@
 				<#else>
 			<div id="groupInput${firstUpper(att.name)}" class="form-group   ">
 				<label class="control-label" for="input${firstUpper(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)} ${att.required ? string('*','')}</label>
-				<input type="text" id="input${firstUpper(att.name)}" name="${att.name}" class=" form-control " [(ngModel)]="${firstLower(entity.name)}.${att.name}" ${getMaxLen(att.maxLen)} #${att.name}="ngModel" />
+				<input ${getMaxLen(att.inputAs,att.type.className,att.type.className, att.mask)} type="text" id="input${firstUpper(att.name)}" name="${att.name}" class=" form-control " [(ngModel)]="${firstLower(entity.name)}.${att.name}" ${getMaxLen(att.maxLen)} #${att.name}="ngModel" />
 					<#if att.required>
 				<div *ngIf="${att.name}.invalid && (${att.name}.dirty || ${att.name}.touched) && ${att.name}.errors.required" class="alert-danger">
 					${firstUpper(att.displayName)!firstLower(att.name)} é Obrigatório!
