@@ -18,6 +18,9 @@ public class EntitiesGenerator {
     // private static MarkerGenerator jsColelctionGenerator;
     private static MarkerGenerator jsPageGenerator;
     private static MarkerGenerator jsFormGenerator;
+
+    private static MarkerGenerator tsFormAngularGenerator;
+
     private static MarkerGenerator jsModelGenerator;
     private static MarkerGenerator jsRouterGenerator;
     private static MarkerGenerator desenvIndexGenerator;
@@ -78,8 +81,11 @@ public class EntitiesGenerator {
 
         String appRootFolder = Util.currentDir() + File.separator + "out/" + application.getAppName();
 
+        String appAngularRootFolder = Util.currentDir() + File.separator + "out/" + application.getAppName() + File.separator + "angular/src/app/layout/";
+
         String webAppRootFolder = appRootFolder + "/src/main/webapp/";
         String jsRootFolder = webAppRootFolder + "js/"; // js/spec/router
+
         String jsSpecRootFolder = webAppRootFolder + "js/" + "spec/router/";
         String javaRootFolder = appRootFolder + "/src/main/java/" + application.getRootPackage().replace(".", File.separator);
 
@@ -123,16 +129,6 @@ public class EntitiesGenerator {
 
         mybatisResourcesGenerator = new MarkerGenerator(freeMarkerConfig, application, "JavaMybatisResourcesTemplate.tpl", javaRootFolder + "/rs/", TemplateFileName.RESOURCE_JAVA, FileType.JAVA);
 
-        // jsColelctionGenerator = new MarkerGenerator(freeMarkerConfig,
-        // application, "JsCollectionTemplate.tpl", jsRootFolder +
-        // "/collections/", TemplateFileName.COLLECTION_JS,
-        // FileType.JAVASCRIPT);
-
-        // jsPageColelctionGenerator = new MarkerGenerator(freeMarkerConfig,
-        // application, "JsPageCollectionTemplate.tpl", jsRootFolder +
-        // "/collections/", TemplateFileName.PAGE_COLLECTION_JS,
-        // FileType.JAVASCRIPT);
-
         jsModelGenerator = new MarkerGenerator(freeMarkerConfig, application, "JsModelTemplate.tpl", jsRootFolder + "/models/", TemplateFileName.MODEL_JS, FileType.JAVASCRIPT);
 
         jsFormGenerator = new MarkerGenerator(freeMarkerConfig, application, "JsFormTemplate.tpl", jsRootFolder + "/views/${entity.name}/", TemplateFileName.BASIC_FORM_JS, FileType.JAVASCRIPT);
@@ -142,16 +138,6 @@ public class EntitiesGenerator {
         JsMultiSelectGenerator = new MarkerGenerator(freeMarkerConfig, application, "JsMultiSelectTemplate.tpl", jsRootFolder + "/views/modalComponents/", TemplateFileName.MULTI_SELECT_JS, FileType.JAVASCRIPT);
         htmlMultiSelectGenerator = new MarkerGenerator(freeMarkerConfig, application, "HtmlMultiSelectTemplate.tpl", jsRootFolder + "/views/modalComponents/tpl", TemplateFileName.MULTI_SELECT_HTML, FileType.HTML);
 
-        // JsModalMultiSelectGenerator = new MarkerGenerator(freeMarkerConfig,
-        // application, "JsModalMultiSelectTemplate.tpl", jsRootFolder +
-        // "/views/${entity.name}/", TemplateFileName.MODAL_MULTI_SELECT_JS,
-        // FileType.JAVASCRIPT);
-
-        // htmlModalMultiSelectGenerator = new MarkerGenerator(freeMarkerConfig,
-        // application, "HtmlModalMultiSelectTemplate.tpl", jsRootFolder +
-        // "/views/${entity.name}/tpl/",
-        // TemplateFileName.MODAL_MULTI_SELECT_HTML, FileType.HTML);
-
         htmlFormGenerator = new MarkerGenerator(freeMarkerConfig, application, "HtmlFormTemplate.tpl", jsRootFolder + "/views/${entity.name}/tpl/", TemplateFileName.FORM_TEMPLATE_HTML, FileType.HTML);
         htmlPageGenerator = new MarkerGenerator(freeMarkerConfig, application, "HtmlPageTemplate.tpl", jsRootFolder + "/views/${entity.name}/tpl/", TemplateFileName.PAGE_TEMPLATE_HTML, FileType.HTML);
 
@@ -159,19 +145,6 @@ public class EntitiesGenerator {
         htmlModalGenerator = new MarkerGenerator(freeMarkerConfig, application, "HtmlModalTemplate.tpl", jsRootFolder + "/views/modalComponents/tpl/", TemplateFileName.MODAL_TEMPLATE_HTML, FileType.HTML);
 
         mapperMybatisGenerator = new MarkerGenerator(freeMarkerConfig, application, "JavaMapperTemplate.tpl", javaRootFolder + "/persistence/", TemplateFileName.MYBATIS_MAPPER_JAVA, FileType.JAVA);
-
-        // htmlBootstrap2FormGenerator = new MarkerGenerator(freeMarkerConfig,
-        // application, "HtmlBootstrap2FormTemplate.tpl", jsRootFolder +
-        // "/views/${entity.name}/tpl/", TemplateFileName.FORM_TEMPLATE_HTML,
-        // FileType.HTML);
-        // htmlBootstrap2PageGenerator = new MarkerGenerator(freeMarkerConfig,
-        // application, "HtmlBootstrap2PageTemplate.tpl", jsRootFolder +
-        // "/views/${entity.name}/tpl/", TemplateFileName.PAGE_TEMPLATE_HTML,
-        // FileType.HTML);
-        // htmlBootstrap2ModalGenerator = new MarkerGenerator(freeMarkerConfig,
-        // application, "HtmlBootstrap2ModalTemplate.tpl", jsRootFolder +
-        // "/views/modalComponents/tpl/", TemplateFileName.MODAL_TEMPLATE_HTML,
-        // FileType.HTML);JavaParserTemplate
 
         fragmentsGenerator = new MarkerGenerator(freeMarkerConfig, application, "Fragments.tpl", jsRootFolder + "/fragments", TemplateFileName.FRAGMENT_TEMPLATE_HTML, FileType.FRAGMENT);
 
@@ -201,29 +174,15 @@ public class EntitiesGenerator {
 
         produLoginGenerator = new MarkerGenerator(freeMarkerConfig, application, "produ_login.tpl", appRootFolder + "/produ/", TemplateFileName.LOGIN_HTML, FileType.HTML);
 
+        // geração angular
+        htmlPageGenerator = new MarkerGenerator(freeMarkerConfig, application, "HtmlPageTemplate.tpl", jsRootFolder + "/${entity.name}/tpl/", TemplateFileName.PAGE_TEMPLATE_HTML, FileType.HTML);
+
+        tsFormAngularGenerator = new MarkerGenerator(freeMarkerConfig, application, "TsFormAngularComponentTemplate.tpl", appAngularRootFolder + "$kc{entity.name}/form-$kc{entity.name}/", TemplateFileName.FORM_TS, FileType.TYPESCRIPT);
         try {
             if (application.getView().equalsIgnoreCase("angular")) {
                 for (ApplicationEntity ent : application.getEntities()) {
-                    LOGGER.info("-------------------------------Processando entidade " + ent.getName() + "-------------------------------");
-                    javaModelGenerator.generateEntityFile(application, ent);
-                    javaJsonGenerator.generateEntityFile(application, ent);
-                    basicServiceGenerator.generateEntityFile(application, ent);
-                    basicServiceImpGenerator.generateEntityFile(application, ent);
-                    daoGenerator.generateEntityFile(application, ent);
-                    flterGenerator.generateEntityFile(application, ent);
-                    // resourcesGenerator.generateEntityFile(application, ent);
-                    controllerGenerator.generateEntityFile(application, ent);
-
-                    // geração de particulares a tecnologia da view
+                    tsFormAngularGenerator.generateEntityFile(application, ent);
                 }
-
-                // beansGenerator.generate(application);
-                testBeansGenerator.generate(application);
-                // testInitData.generate(application);
-                testSecurityGenerator.generate(application);
-
-                buildPropertiesGenerator.generate(application);
-                buildXmlGenerator.generate(application);
             } else {
                 for (ApplicationEntity ent : application.getEntities()) {
 

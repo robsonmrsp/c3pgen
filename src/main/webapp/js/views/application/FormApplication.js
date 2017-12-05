@@ -130,6 +130,7 @@ define(function(require) {
 				
 				multitenancy : util.escapeById('inputMultitenancy'),
 				asModule : util.escapeById('inputAsModule'),
+				view : util.escapeById('inputView'),
 				generateTest : util.escapeById('inputGenerateTest'),
 				configurationType : util.escapeById('inputConfigurationType'),
 				applicationType : util.escapeById('inputApplicationType'),
