@@ -36,94 +36,97 @@ import ${application.corePackage}.serialization.CustomLocalDateTimeSerializer;
 @ComponentScan(basePackages = "${application.rootPackage}")
 public class SpringMVCConfig extends WebMvcConfigurerAdapter {
 
-	@Inject
-	OpenSessionInViewInterceptor interceptor;
+    @Inject
+    OpenSessionInViewInterceptor interceptor;
 
-	@Override
-	public void addResourceHandlers(final ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/login.html").addResourceLocations("/login.html");
-		registry.addResourceHandler("/SpecRunner.html").addResourceLocations("/SpecRunner.html");
-		registry.addResourceHandler("/vendor/**").addResourceLocations("/vendor/");
-		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
-		registry.addResourceHandler("/applets/**").addResourceLocations("/applets/");
-		registry.addResourceHandler("/c/**").addResourceLocations("/c/");
-		registry.addResourceHandler("/css/**").addResourceLocations("/css/");
-		registry.addResourceHandler("/decorators/**").addResourceLocations("/decorators/");
-		registry.addResourceHandler("/downloads/**").addResourceLocations("/downloads/");
-		registry.addResourceHandler("/fonts/**").addResourceLocations("/fonts/");
-		registry.addResourceHandler("/sounds/**").addResourceLocations("/sounds/");
-		registry.addResourceHandler("/images/**").addResourceLocations("/images/");
-		registry.addResourceHandler("/javascript/**").addResourceLocations("/javascript/");
-		registry.addResourceHandler("/js/**").addResourceLocations("/js/");
-		registry.addResourceHandler("/j/**").addResourceLocations("/j/");
-		registry.addResourceHandler("/uploads/**").addResourceLocations("/uploads/");
-	}
+    @Override
+    public void addResourceHandlers(final ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/login.html").addResourceLocations("/login.html");
+        registry.addResourceHandler("/SpecRunner.html").addResourceLocations("/SpecRunner.html");
+        registry.addResourceHandler("/vendor/**").addResourceLocations("/vendor/");
+        registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+        registry.addResourceHandler("/applets/**").addResourceLocations("/applets/");
+        registry.addResourceHandler("/c/**").addResourceLocations("/c/");
+        registry.addResourceHandler("/css/**").addResourceLocations("/css/");
+        registry.addResourceHandler("/decorators/**").addResourceLocations("/decorators/");
+        registry.addResourceHandler("/downloads/**").addResourceLocations("/downloads/");
+        registry.addResourceHandler("/fonts/**").addResourceLocations("/fonts/");
+        registry.addResourceHandler("/sounds/**").addResourceLocations("/sounds/");
+        registry.addResourceHandler("/images/**").addResourceLocations("/images/");
+        registry.addResourceHandler("/javascript/**").addResourceLocations("/javascript/");
+        registry.addResourceHandler("/js/**").addResourceLocations("/js/");
+        registry.addResourceHandler("/j/**").addResourceLocations("/j/");
+        registry.addResourceHandler("/uploads/**").addResourceLocations("/uploads/");
 
-	@Override
-	public void addViewControllers(ViewControllerRegistry registry) {
-		registry.addViewController("/").setViewName("forward:/index.jsp");
-	}
+    }
 
-	@Bean
-	public HandlerExceptionResolver customExceptionResolver() {
-		return new SimpleErrorMessageHandlerExceptionResolver();
-	}
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("/").setViewName("forward:/index.jsp");
+    }
 
-	@Bean(name = "multipartResolver")
-	public CommonsMultipartResolver createMultipartResolver() {
-		CommonsMultipartResolver resolver = new CommonsMultipartResolver();
-		resolver.setMaxInMemorySize(20971520);
-		resolver.setMaxInMemorySize(1048576);
+    @Override
+    public void configureHandlerExceptionResolvers(List<HandlerExceptionResolver> exceptionResolvers) {
+        exceptionResolvers.add(new SimpleErrorMessageHandlerExceptionResolver());
+    }
 
-		return resolver;
-	}
+    @Bean(name = "multipartResolver")
+    public CommonsMultipartResolver createMultipartResolver() {
+        CommonsMultipartResolver resolver = new CommonsMultipartResolver();
+        resolver.setMaxInMemorySize(20971520);
+        resolver.setMaxInMemorySize(1048576);
 
-	@Override
-	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addWebRequestInterceptor(interceptor);
-	}
+        return resolver;
+    }
 
-	@Bean
-	public OpenSessionInViewInterceptor openSessionInViewInterceptor(SessionFactory sf) {
-		final OpenSessionInViewInterceptor openSessionInViewInterceptor = new OpenSessionInViewInterceptor();
-		openSessionInViewInterceptor.setSessionFactory(sf);
-		return openSessionInViewInterceptor;
-	}
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addWebRequestInterceptor(interceptor);
+    }
 
-	@Override
-	public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-		Jackson2ObjectMapperBuilder builder = new Jackson2ObjectMapperBuilder() //
-				.indentOutput(true) //
+    @Bean
+    public OpenSessionInViewInterceptor openSessionInViewInterceptor(SessionFactory sf) {
+        final OpenSessionInViewInterceptor openSessionInViewInterceptor = new OpenSessionInViewInterceptor();
+        openSessionInViewInterceptor.setSessionFactory(sf);
+        return openSessionInViewInterceptor;
+    }
 
-				.deserializerByType(LocalDate.class, new CustomLocalDateDeserializer())//
-				.deserializerByType(LocalDateTime.class, new CustomLocalDateTimeDeserializer())//
-				.deserializerByType(Double.class, new CustomDoubleDeserializer())//
-				//
-				.serializerByType(LocalDate.class, new CustomLocalDateSerializer())//
-				.serializerByType(LocalDateTime.class, new CustomLocalDateTimeSerializer())//
-		;//
-		 converters.add(new MappingJackson2HttpMessageConverter(builder.build()));
-		 converters.add(new MappingJackson2XmlHttpMessageConverter(Jackson2ObjectMapperBuilder.xml().build()));
-	}
+    @Override
+    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+        Jackson2ObjectMapperBuilder builder = new Jackson2ObjectMapperBuilder() //
+                .indentOutput(true) //
 
-	@Override
-	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-		configurer.enable();
-	}
+                .deserializerByType(LocalDate.class, new CustomLocalDateDeserializer())//
+                .deserializerByType(LocalDateTime.class, new CustomLocalDateTimeDeserializer())//
+                .deserializerByType(Double.class, new CustomDoubleDeserializer())//
+                //
+                .serializerByType(LocalDate.class, new CustomLocalDateSerializer())//
+                .serializerByType(LocalDateTime.class, new CustomLocalDateTimeSerializer())//
+        ;//
+        converters.add(new MappingJackson2HttpMessageConverter(builder.build()));
+        converters.add(new MappingJackson2XmlHttpMessageConverter(Jackson2ObjectMapperBuilder.xml().build()));
+    }
 
-	@Bean(name = "afterThrow")
-	public CatchThrowConstraintViolationException afterThrow() {
-		return new CatchThrowConstraintViolationException();
-	}
+    @Override
+    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+        configurer.enable();
+    }
 
-	@Bean
-	public BeanNameAutoProxyCreator autoProxyCreator() {
-		BeanNameAutoProxyCreator autoProxyCreator = new BeanNameAutoProxyCreator();
-		autoProxyCreator.setProxyTargetClass(true);
-		autoProxyCreator.setBeanNames(new String[] { "*Service", "*ServiceImp" });
-		autoProxyCreator.setInterceptorNames("afterThrow");
+    @Bean(name = "afterThrow")
+    public CatchThrowConstraintViolationException afterThrow() {
+        return new CatchThrowConstraintViolationException();
+    }
 
-		return autoProxyCreator;
-	}
+    @Bean
+    public BeanNameAutoProxyCreator autoProxyCreator() {
+        BeanNameAutoProxyCreator autoProxyCreator = new BeanNameAutoProxyCreator();
+        autoProxyCreator.setProxyTargetClass(true);
+        autoProxyCreator.setBeanNames(new String[] { "*Service", "*ServiceImp" });
+        autoProxyCreator.setInterceptorNames("afterThrow");
+
+        return autoProxyCreator;
+    }
+
+
 
 }
