@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -88,6 +90,8 @@ public class DBImporterEntities {
 			rs = st.executeQuery("select version();");
 		} else if (databaseType.equalsIgnoreCase("oracle")) {
 			rs = st.executeQuery("select 1 from dual");
+		} else {// firebird
+			rs = st.executeQuery("SELECT 1 as PING  FROM RDB$DATABASE");
 		}
 		con.close();
 
@@ -110,7 +114,7 @@ public class DBImporterEntities {
 
 	public Application extractToApplication(DBImporterOptions options) throws Exception {
 
-		if (this.databaseType.equalsIgnoreCase("firebird")) {
+		if (this.databaseType.equalsIgnoreCase("firebird") || this.databaseType.equalsIgnoreCase("oracle")) {
 
 			return getApplicationFromFirebase(options);
 		}
@@ -234,18 +238,22 @@ public class DBImporterEntities {
 		DatabaseMetaData metaData = this.singleConnectionDataSource.getConnection().getMetaData();
 		//
 		// // Print TABLE_TYPE "TABLE"
-		ResultSet resultSet = metaData.getTables(null, null, null, new String[] { "TABLE" });
+		// ResultSet resultSet = metaData.getTables(null, null, null, new String[] { "TABLE" });
 		System.out.println("Printing TABLE_TYPE \"TABLE\" ");
 
 		Map<String, Integer> tipos = new HashMap<String, Integer>();
 
-		for (String tableName : options.getTables()) {
+		List<String> tables = options.getTables();
+		System.out.println("Quantidade de tabelas: " + tables.size());
+		for (String tableName : tables) {
 			// String tableName = resultSet.getString("TABLE_NAME");
 			String nomeDaClasse = CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, Util.firstUpperCaseOnly(tableName));
 			ApplicationEntity applicationEntity = new ApplicationEntity(nomeDaClasse, tableName);
 			// Collection<Column> colunas = table.getColumns();
 
 			ResultSet columns = metaData.getColumns(null, null, tableName, null);
+
+			HashMap<String, Attribute> hashMap = new HashMap<>();
 			while (columns.next()) {
 				String columnName = columns.getString("COLUMN_NAME");
 				String datatype = columns.getString("DATA_TYPE");
@@ -260,8 +268,18 @@ public class DBImporterEntities {
 				Boolean unique = false;
 				String className = Util.getEquivalentClassName(datatype);
 
-				applicationEntity.addAttributes(new Attribute(name, name, tableFieldName, required, unique, true, AttributeType.byName(className)));
+				Attribute attribute = new Attribute(name, name, tableFieldName, required, unique, true, AttributeType.byName(className));
+
+				hashMap.put(name, attribute);
 			}
+			ArrayList<Attribute> list = new ArrayList<>(hashMap.values());
+			Collections.sort(list, new Comparator<Attribute>() {
+				@Override
+				public int compare(Attribute o1, Attribute o2) {
+					return o1.getName().compareTo(o2.getName());
+				}
+			});
+			applicationEntity.getAttributes().addAll(list);
 
 			application.addEntities(applicationEntity);
 

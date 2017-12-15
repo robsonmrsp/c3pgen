@@ -596,7 +596,7 @@ public class Util {
 			return "Datetime";
 		}
 
-		if (typeName.equals("4")) {
+		if (typeName.equals("4") || typeName.equals("3")) {
 			return "Integer";
 		}
 		if (typeName.equals("2")) {

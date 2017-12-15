@@ -66,6 +66,7 @@ define(function(require) {
 		},
 
 		changeAttribute : function() {
+			console.log('mudança');
 			this.model.set(this.getModel());
 		},
 
@@ -131,9 +132,13 @@ define(function(require) {
 				this.ui.inputMask.editable();
 
 				this.ui.inputAtributeName.on('hidden', function() {
-					util.refreshEditable(that.ui.inputDisplayName, util.toFrase(that.ui.inputAtributeName.text()));
-					util.refreshEditable(that.ui.inputTableFieldName, util.toUnderscore(that.ui.inputAtributeName.text(), true));
-					util.refreshEditable(that.ui.inputMaxLen, 255)
+					if (!that.ui.inputId.val()) {
+						util.refreshEditable(that.ui.inputDisplayName, util.toFrase(that.ui.inputAtributeName.text()));
+						util.refreshEditable(that.ui.inputType, 'String');
+						util.refreshEditable(that.ui.inputViewApproach, 'Textfield');
+						util.refreshEditable(that.ui.inputTableFieldName, util.toUnderscore(that.ui.inputAtributeName.text(), true));
+						util.refreshEditable(that.ui.inputMaxLen, 255)
+					}
 				});
 
 				this.ui.inputType.on('hidden', function() {
@@ -147,7 +152,7 @@ define(function(require) {
 						util.refreshEditable(that.ui.inputMask, '');
 					}
 					if (that.ui.inputType.text() == 'String') {
-						that.ui.inputViewApproach.text('textfield')
+						that.ui.inputViewApproach.text('Textfield')
 						util.refreshEditable(that.ui.inputMask, '');
 						util.refreshEditable(that.ui.inputMaxLen, 255)
 					}
@@ -167,29 +172,30 @@ define(function(require) {
 					if ((that.ui.inputViewApproach.text() == 'Check') || (that.ui.inputViewApproach.text() == 'Radio')) {
 						that.ui.inputType.text('Boolean')
 					}
-					if ((that.ui.inputViewApproach.text() == 'Textfield')) {
-						// that.ui.inputType.text('String')
+					if ( (that.ui.inputViewApproach.text() == 'Textfield') ) {
+						//that.ui.inputType.text('String')
+						util.refreshEditable(that.ui.inputType, 'String');
 						util.refreshEditable(that.ui.inputMask, '');
 						util.refreshEditable(that.ui.inputMaxLen, 255)
 					}
-					if ((that.ui.inputViewApproach.text() == 'Textarea')) {
+					if ( (that.ui.inputViewApproach.text() == 'Textarea') ) {
 						that.ui.inputType.text('String')
 						util.refreshEditable(that.ui.inputMask, '');
 						util.refreshEditable(that.ui.inputMaxLen, 2000)
 					}
 
-					if ((that.ui.inputViewApproach.text() == 'Datepicker')) {
+					if ( (that.ui.inputViewApproach.text() == 'Datepicker') ) {
 						util.refreshEditable(that.ui.inputType, 'Date');
 						util.refreshEditable(that.ui.inputMask, '99/99/9999');
 						util.refreshEditable(that.ui.inputMaxLen, 10)
 
 					}
-					if ((that.ui.inputViewApproach.text() == 'DateTimepicker')) {
+					if ( (that.ui.inputViewApproach.text() == 'DateTimepicker') ) {
 						util.refreshEditable(that.ui.inputType, 'Datetime');
 						util.refreshEditable(that.ui.inputMask, '99/99/9999 99:99');
 						util.refreshEditable(that.ui.inputMaxLen, 16)
 					}
-					// this.trigger('attribute:change', this.model);
+				// this.trigger('attribute:change', this.model);
 				})
 
 				this.ui.inputViewApproach.editable({
@@ -210,7 +216,7 @@ define(function(require) {
 						value : 'textarea',
 						text : 'Textarea'
 					}, {
-						value : 'tatepicker',
+						value : 'datepicker',
 						text : 'Datepicker'
 					}, {
 						value : 'datetimepicker',
@@ -227,41 +233,47 @@ define(function(require) {
 						text : 'cnpj'
 					},
 
-					{
-						value : 'telefone',
-						text : 'telefone'
-					}, {
-						value : 'monetario',
-						text : 'monetario'
-					}, {
-						value : 'percentagem',
-						text : 'percentagem'
-					}, ]
+						{
+							value : 'telefone',
+							text : 'telefone'
+						}, {
+							value : 'monetario',
+							text : 'monetario'
+						}, {
+							value : 'percentagem',
+							text : 'percentagem'
+						}, ]
 				});
 				this.ui.inputType.editable({
-					value : 'String',
-					source : [ {
-						value : 'String',
-						text : 'String'
-					}, {
-						value : 'Long',
-						text : 'Long'
-					}, {
-						value : 'Boolean',
-						text : 'Boolean'
-					}, {
-						value : 'Integer',
-						text : 'Integer'
-					}, {
-						value : 'Double',
-						text : 'Double'
-					}, {
-						value : 'Date',
-						text : 'Date'
-					}, {
-						value : 'Datetime',
-						text : 'Datetime'
-					}, ]
+					value : '',
+					source : [
+						{
+							value : '',
+							text : ''
+						},
+						{
+							value : 'String',
+							text : 'String'
+						},
+						{
+							value : 'Long',
+							text : 'Long'
+						}, {
+							value : 'Boolean',
+							text : 'Boolean'
+						}, {
+							value : 'Integer',
+							text : 'Integer'
+						}, {
+							value : 'Double',
+							text : 'Double'
+						}, {
+							value : 'Date',
+							text : 'Date'
+						}, {
+							value : 'Datetime',
+							text : 'Datetime'
+						}, ]
 				})
 
 				this.ui.editableFields.on('hidden', function() {

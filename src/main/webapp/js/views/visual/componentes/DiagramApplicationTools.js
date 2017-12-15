@@ -26,17 +26,28 @@ define(function(require) {
 		},
 
 		changeDatabaseType : function() {
-			if (this.ui.inputDatabaseType.val() === 'FIREBIRD') {
+			if (this.ui.inputDatabaseType.val() === 'FIREBIRD' || this.ui.inputDatabaseType.val() === 'ORACLE') {
 				this.ui.exceptionsContainer.hide();
+
+				if (this.ui.inputDatabaseType.val() === 'FIREBIRD') {
+					this.ui.inputDatabaseUrl.val('jdbc:firebirdsql:localhost/3050:C:/Users/robson/Desktop/importacaoCnes/CNES.GDB');
+					this.ui.inputDatabaseUsername.val('sysdba');
+					this.ui.inputDatabasePassword.val('masterkey');
+				} else {
+					this.ui.inputDatabaseUrl.val('jdbc:oracle:thin:@192.168.0.47:1521:db12c');
+					this.ui.inputDatabaseUsername.val('gsh_desenv_new');
+					this.ui.inputDatabasePassword.val('hs2017');
+				}
 				this.ui.tableNamesContainer.show();
 			} else {
+
+
 				this.ui.exceptionsContainer.show();
 				this.ui.tableNamesContainer.hide();
 			}
 		},
 
 		ui : {
-
 			tableNamesContainer : '.table-names',
 			exceptionsContainer : '.exceptions',
 			inputDatabaseType : '#inputDatabaseType',
@@ -182,9 +193,7 @@ define(function(require) {
 
 		},
 
-		clearModal : function() {
-
-		},
+		clearModal : function() {},
 	});
 
 	return DiagramApplicationTools;

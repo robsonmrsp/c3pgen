@@ -24,7 +24,7 @@
 		<security:authentication property="principal.username" />
 	</c:set>
 </security:authorize>
-<body class="hide-sidebar">
+<body class="hide-sidebar fixed-navbar ">
 	<!-- Simple splash screen-->
 	<div class="splash" id="loadInitialPanel" class="fader" style="position: fixed; text-align: center; height: 100%; width: 100%; top: 0; right: 0; left: 0; z-index: 99999999999; opacity: 0.99;">
 		<div class="color-line"></div>
