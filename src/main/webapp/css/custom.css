@@ -521,8 +521,8 @@ ul.editor-list li:hover a {
 }
 
 .card-application {
-	max-height: 280px !important;
-	height: 280px !important;
+/* 	max-height: 280px !important; */
+/* 	height: 280px !important; */
 }
 
 .desc-modules {

@@ -13,6 +13,7 @@ define(function(require) {
 	var Counter = require('views/components/Counter');
 	var ActionsCell = require('views/components/ActionsCell');
 	var GeneralActionsCell = require('views/components/GeneralActionsCell');
+	var AghosAuthView = require('views/components/AghosAuthView');
 
 	var CustomNumberCell = require('views/components/CustomNumberCell');
 
@@ -55,7 +56,7 @@ define(function(require) {
 	
 	// End of "Import´s" definition
 
-	var Page${entity.name} = Marionette.LayoutView.extend({
+	var Page${entity.name} = AghosAuthView.extend({
 		template : _.template(Page${entity.name}Template),
 
 		regions : {
@@ -133,7 +134,7 @@ define(function(require) {
 	    	}
 		},
 
-		initialize : function() {
+		init : function() {
 			var that = this;
 
 			this.${firstLower(entity.name)}s = new ${entity.name}PageCollection();
@@ -169,7 +170,7 @@ define(function(require) {
 			</#if>
 		</#list>
 		</#if>
-			this.on('show', function() {
+			this.on('show:auth', function() {
 				that.gridRegion.show(that.grid);
 				that.counterRegion.show(that.counter);
 				that.paginatorRegion.show(that.paginator);
