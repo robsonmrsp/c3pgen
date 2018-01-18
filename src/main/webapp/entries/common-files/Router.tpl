@@ -14,7 +14,7 @@ define(function(require) {
 	
 	var Page${entity.name} = require('views/${firstLower(entity.name)}/Page${entity.name}');
 	var Form${entity.name} = require('views/${firstLower(entity.name)}/Form${entity.name}');
-	var ${entity.name} = require('models/${entity.name}');
+	var ${entity.name}Model = require('models/${entity.name}Model');
 	</#list>
 	
 	util.NProgress.setBlockerPanel('block_panel');
@@ -48,7 +48,7 @@ define(function(require) {
 			</#list>			
 		},
 		initialize : function() {
-		    // this.authHandler = new AuthHandlerUtil.Model();
+		    // this.authHandler = new AuthHandlerUtilModel();
 			this.App = new Marionette.Application();
 			this.App.addRegions({
 				mainRegion : CustomRegion
@@ -108,7 +108,7 @@ define(function(require) {
 		new${entity.name}: function() {
 			util.markActiveItem('${firstLower(entity.name)}s');
 			var form${entity.name} = new Form${entity.name}({
-				model : new ${entity.name}.Model(),
+				model : new ${entity.name}Model(),
 			});
 			this.App.mainRegion.show(form${entity.name});
 			util.breadcrumb({
@@ -122,7 +122,7 @@ define(function(require) {
 		edit${entity.name}: function(id${entity.name}) {
 			var that = this;
 			util.markActiveItem('${firstLower(entity.name)}s');
-			var model = new ${entity.name}.Model({
+			var model = new ${entity.name}Model({
 				id : id${entity.name},
 			})
 			model.fetch({

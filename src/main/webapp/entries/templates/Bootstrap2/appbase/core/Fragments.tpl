@@ -106,3 +106,7 @@
 </#list>
 
 	
+<#list entities as entity>
+    <typeAlias alias="${entity.name}" type="${package}.model.${entity.name}" />
+</#list>
+                    

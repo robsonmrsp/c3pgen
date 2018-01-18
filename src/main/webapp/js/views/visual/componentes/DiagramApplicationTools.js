@@ -15,6 +15,8 @@ define(function(require) {
 		template : _.template(DiagramApplicationToolsTemplate),
 
 		events : {
+			'click #btnImportFlatFile' : 'importFlatFile',
+
 			'click #btnImportApplication' : 'importApplication',
 			'click #btnConnectionTest' : 'connectionTest',
 			'change #inputUploadXml' : 'uploadXml',
@@ -40,7 +42,6 @@ define(function(require) {
 				}
 				this.ui.tableNamesContainer.show();
 			} else {
-
 
 				this.ui.exceptionsContainer.show();
 				this.ui.tableNamesContainer.hide();
@@ -176,6 +177,21 @@ define(function(require) {
 				}
 			})
 		},
+
+		importFlatFile : function() {
+			var that = this;
+			var applicationModel = new ApplicationModel();
+			applicationModel.url = 'rs/crud/applications/extraction/flatFile';
+			applicationModel.fetch({
+				success : function(_model, _resp) {
+					that.onExtract.call(that.context, _model);
+				},
+				error : function(_model, _resp) {
+					util.showMessage('error', "Não foi possivel extrair a base de dados");
+					console.log('não extraiu', _resp.responseJSON.errorMessage);
+				},
+			})
+		},
 		importApplication : function() {
 			this.connectionTest(this._import);
 		},
@@ -193,7 +209,8 @@ define(function(require) {
 
 		},
 
-		clearModal : function() {},
+		clearModal : function() {
+		},
 	});
 
 	return DiagramApplicationTools;

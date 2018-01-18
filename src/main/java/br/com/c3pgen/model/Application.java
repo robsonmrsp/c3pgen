@@ -71,6 +71,9 @@ public class Application extends AbstractTimestampEntity {
 	@Column(name = "USE_AUDIT")
 	private Boolean useAudit;
 
+	@Column(name = "USE_FLAT_FILE")
+	private Boolean useFlatFile;
+
 	@Column(name = "USE_DOC_REST_API")
 	private Boolean useDocRestApi;
 
@@ -322,6 +325,17 @@ public class Application extends AbstractTimestampEntity {
 
 	public void setCriteriaType(CriteriaType criteriaType) {
 		this.criteriaType = criteriaType;
+	}
+
+	public Boolean getUseFlatFile() {
+		if (useFlatFile == null) {
+			setUseFlatFile(Boolean.FALSE);
+		}
+		return useFlatFile;
+	}
+
+	public void setUseFlatFile(Boolean useFlatFile) {
+		this.useFlatFile = useFlatFile;
 	}
 
 }

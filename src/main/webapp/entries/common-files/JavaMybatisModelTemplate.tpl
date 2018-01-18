@@ -1,8 +1,11 @@
+/* generated: ${.now} */
 package ${package}.model;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
@@ -13,7 +16,14 @@ import ${corepackage}.serialization.CustomLocalDateSerializer;
 import ${corepackage}.serialization.CustomLocalDateDeserializer;
 import ${corepackage}.serialization.CustomLocalDateTimeSerializer;
 import ${corepackage}.serialization.CustomLocalDateTimeDeserializer;
-/* generated: ${.now} */
+
+
+<#if application.useFlatFile>
+import com.ancientprogramming.fixedformat4j.annotation.Record;
+import com.ancientprogramming.fixedformat4j.annotation.Field;
+
+@Record
+</#if>
 public class ${entity.name} {
 	
 	private Integer id;
@@ -84,6 +94,11 @@ public class ${entity.name} {
 	
 	<#list entity.attributes as att>
 		<#if att.name != 'id'>
+	<#if application.useFlatFile>
+    <#if dataType(att.type.className) == 'String'>    
+	@Field(offset = ${att.offSet}, length = ${att.lenght})
+    </#if>
+	</#if>
 	public ${dataType(att.type.className)} get${firstUpper(att.name)}() {
 		return ${att.name};
 	}

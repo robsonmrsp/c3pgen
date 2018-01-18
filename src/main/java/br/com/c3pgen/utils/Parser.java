@@ -262,6 +262,10 @@ public class Parser {
 		jsonAttribute.setId(attribute.getId());
 		jsonAttribute.setName(attribute.getName());
 		jsonAttribute.setDisplayName(attribute.getDisplayName());
+
+		jsonAttribute.setLenght(attribute.getLenght());
+		jsonAttribute.setOffSet(attribute.getOffSet());
+
 		jsonAttribute.setMaxLen(attribute.getMaxLen());
 		jsonAttribute.setTableFieldName(attribute.getTableFieldName());
 		jsonAttribute.setmask(attribute.getMask());
@@ -277,6 +281,10 @@ public class Parser {
 		attribute.setName(jsonAttribute.getName());
 		attribute.setDisplayName(jsonAttribute.getDisplayName());
 		attribute.setMaxLen(jsonAttribute.getMaxLen());
+
+		attribute.setLenght(jsonAttribute.getLenght());
+		attribute.setOffSet(jsonAttribute.getOffSet());
+
 		attribute.setTableFieldName(jsonAttribute.getTableFieldName());
 		attribute.setMask(jsonAttribute.getmask());
 		attribute.setDefaultValue(jsonAttribute.getDefaultValue());

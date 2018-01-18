@@ -16,8 +16,7 @@ define(function(require) {
 	var AghosAuthView = require('views/components/AghosAuthView');
 
 	var CustomNumberCell = require('views/components/CustomNumberCell');
-
-	var TemplateForm${entity.name}s = require('text!views/${firstLower(entity.name)}/tpl/Form${entity.name}Template.html');
+	
 	var ${entity.name}Model = require('models/${entity.name}Model');
 	var ${entity.name}Collection = require('collections/${entity.name}Collection');
 	var ${entity.name}PageCollection = require('collections/${entity.name}PageCollection');

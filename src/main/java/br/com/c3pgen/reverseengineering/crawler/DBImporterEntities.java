@@ -138,7 +138,7 @@ public class DBImporterEntities {
 
 			System.out.println(schema);
 			for (final Table table : catalog.getTables(schema)) {
-				String nomeDaClasse = CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, Util.firstUpperCaseOnly(table.getName()));
+				String nomeDaClasse = CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, Util.firstUpperCaseOnly(table.getName())).replace("GshSig", "");
 				ApplicationEntity applicationEntity = new ApplicationEntity(nomeDaClasse, table.getName());
 				Collection<Column> colunas = table.getColumns();
 
@@ -247,31 +247,45 @@ public class DBImporterEntities {
 		System.out.println("Quantidade de tabelas: " + tables.size());
 		for (String tableName : tables) {
 			// String tableName = resultSet.getString("TABLE_NAME");
-			String nomeDaClasse = CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, Util.firstUpperCaseOnly(tableName));
+			String nomeDaClasse = CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, Util.firstUpperCaseOnly(tableName)).replaceAll("GshSig", "") + "SIGTAP";
 			ApplicationEntity applicationEntity = new ApplicationEntity(nomeDaClasse, tableName);
 			// Collection<Column> colunas = table.getColumns();
 
 			ResultSet columns = metaData.getColumns(null, null, tableName, null);
+			ResultSet primaryKeys = metaData.getPrimaryKeys(null, null, tableName);
+			ArrayList<String> pks = new ArrayList<>();
+			String primaryKey = "ID_" + tableName;
+			while (primaryKeys.next()) {
+				String columnName = primaryKeys.getString("COLUMN_NAME");
+				primaryKey = columnName;
+			}
 
+			applicationEntity.setPk(primaryKey);
+			applicationEntity.setSequence("GSH_SEQ_SIG_" + tableName.replace("GSH_SIG_", ""));
 			HashMap<String, Attribute> hashMap = new HashMap<>();
+
 			while (columns.next()) {
 				String columnName = columns.getString("COLUMN_NAME");
-				String datatype = columns.getString("DATA_TYPE");
-				String columnsize = columns.getString("COLUMN_SIZE");
-				String decimaldigits = columns.getString("DECIMAL_DIGITS");
-				String isNullable = columns.getString("IS_NULLABLE");
+				if (!columnName.equalsIgnoreCase(primaryKey)) {
 
-				String name = Util.firstLowerCase(CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, columnName));
-				String tableFieldName = columnName;
-				String displayName = Util.snakeFromCamelCase(columnName);
-				Boolean required = isNullable.equals("YES");
-				Boolean unique = false;
-				String className = Util.getEquivalentClassName(datatype);
+					String datatype = columns.getString("DATA_TYPE");
+					String columnsize = columns.getString("COLUMN_SIZE");
+					String decimaldigits = columns.getString("DECIMAL_DIGITS");
+					String isNullable = columns.getString("IS_NULLABLE");
 
-				Attribute attribute = new Attribute(name, name, tableFieldName, required, unique, true, AttributeType.byName(className));
+					String name = Util.firstLowerCase(CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, columnName));
+					String tableFieldName = columnName;
+					String displayName = Util.snakeFromCamelCase(columnName);
+					Boolean required = isNullable.equals("YES");
+					Boolean unique = false;
+					String className = Util.getEquivalentClassName(datatype, decimaldigits != null && new Integer(decimaldigits) > 0);
 
-				hashMap.put(name, attribute);
+					Attribute attribute = new Attribute(name, name, tableFieldName, required, unique, true, AttributeType.byName(className));
+
+					hashMap.put(name, attribute);
+				}
 			}
+
 			ArrayList<Attribute> list = new ArrayList<>(hashMap.values());
 			Collections.sort(list, new Comparator<Attribute>() {
 				@Override

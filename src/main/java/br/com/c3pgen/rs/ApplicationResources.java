@@ -91,6 +91,26 @@ public class ApplicationResources {
 	}
 
 	@GET
+	@Path("extraction/flatFile")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response generateByFlatFile(@Context UriInfo uriInfo) {
+		Response response = null;
+		try {
+
+			Application generateAppFromDataBase = applicationService.generateAppFromFlatFile();
+
+			JsonApplication jsonApplication = Parser.toJson(generateAppFromDataBase);
+			response = Response.ok(jsonApplication).build();
+		} catch (Exception e) {
+			String message = String.format("Não foi possivel carregar todos os registros[%s]", e.getMessage());
+			LOGGER.error(message, e);
+			response = Response.serverError().entity(new JsonError(message, null)).build();
+		}
+		return response;
+	}
+
+	@GET
 	@Path("extraction/extractyaml")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)

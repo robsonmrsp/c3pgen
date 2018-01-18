@@ -23,6 +23,7 @@ import br.com.c3pgen.persistence.pagination.PaginationParams;
 import br.com.c3pgen.reverseengineering.crawler.DBImportResult;
 import br.com.c3pgen.reverseengineering.crawler.DBImporter;
 import br.com.c3pgen.reverseengineering.crawler.DBImporterEntities;
+import br.com.c3pgen.reverseengineering.crawler.DBImporterEntitiesFromFileLayout;
 import br.com.c3pgen.reverseengineering.crawler.DBImporterOptions;
 
 /**
@@ -207,5 +208,11 @@ public class ApplicationServiceImp implements ApplicationService {
 	public Application saveOnlyApplication(Application application) {
 
 		return daoApplication.saveOnlyApplication(application);
+	}
+
+	@Override
+	public Application generateAppFromFlatFile() throws Exception {
+
+		return new DBImporterEntitiesFromFileLayout().extractToApplication(null);
 	}
 }

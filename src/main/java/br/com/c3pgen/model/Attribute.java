@@ -16,7 +16,7 @@ import org.hibernate.annotations.CascadeType;
 import br.com.c3pgen.base.util.Util;
 
 @Entity
-//@Audited
+// @Audited
 @Table(name = "ATTRIBUTE")
 @SequenceGenerator(name = "ATTRIBUTE_SEQUENCE", sequenceName = "ATTRIBUTE_SEQUENCE")
 public class Attribute extends AbstractTimestampEntity {
@@ -34,6 +34,12 @@ public class Attribute extends AbstractTimestampEntity {
 
 	@Column(name = "MAX_LEN")
 	private Integer maxLen;
+
+	@Column(name = "LENGHT")
+	private Integer lenght;
+
+	@Column(name = "OFF_SET")
+	private Integer offSet;
 
 	@Column(name = "TABLE_FIELD_NAME")
 	private String tableFieldName;
@@ -66,7 +72,7 @@ public class Attribute extends AbstractTimestampEntity {
 	private Boolean basicSearch;
 
 	@ManyToOne
-	@JoinColumn(name = "ID_ENTITY" )
+	@JoinColumn(name = "ID_ENTITY")
 	private ApplicationEntity entity;
 
 	@ManyToOne
@@ -93,6 +99,12 @@ public class Attribute extends AbstractTimestampEntity {
 
 	public Attribute() {
 
+	}
+
+	public Attribute(String attributeName, String displayName, String dataBaseFieldName, Boolean required, boolean unique, boolean showInPages, AttributeType type, String lenght, String offSet) {
+		this(attributeName, displayName, dataBaseFieldName, required, unique, showInPages, type, ViewApproach.noneInstance());
+		this.lenght = new Integer(lenght);
+		this.offSet = new Integer(offSet);
 	}
 
 	public Attribute(String attributeName, String displayName, String dataBaseFieldName, Boolean required, boolean unique, boolean showInPages, AttributeType type) {
@@ -316,6 +328,22 @@ public class Attribute extends AbstractTimestampEntity {
 		} else if (!name.equals(other.name))
 			return false;
 		return true;
+	}
+
+	public Integer getLenght() {
+		return lenght;
+	}
+
+	public void setLenght(Integer lenght) {
+		this.lenght = lenght;
+	}
+
+	public Integer getOffSet() {
+		return offSet;
+	}
+
+	public void setOffSet(Integer offSet) {
+		this.offSet = offSet;
 	}
 
 }

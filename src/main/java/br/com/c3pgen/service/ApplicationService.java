@@ -51,5 +51,7 @@ public interface ApplicationService {
 
 	Application saveOnlyApplication(Application application);
 
+	Application generateAppFromFlatFile() throws Exception;
+
 
 }

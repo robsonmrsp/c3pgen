@@ -1,4 +1,4 @@
-package br.com.c3pgen.base.util;
+	package br.com.c3pgen.base.util;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -575,7 +575,7 @@ public class Util {
 		return false;
 	}
 
-	public static String getEquivalentClassName(String typeName) {
+	public static String getEquivalentClassName(String typeName, boolean digts) {
 		//
 		// public final static int VARCHAR = 12;
 		// public final static int CHAR = 1;
@@ -586,21 +586,22 @@ public class Util {
 		//
 		//
 
-		if (typeName.equals("12") || typeName.equals("1")) {
+		if (typeName.equals("12") || typeName.equals("1") || typeName.toUpperCase().contains("VARCHAR")) {
 			return "String";
 		}
-		if (typeName.equals("91")) {
+		if (typeName.equals("91") || typeName.equalsIgnoreCase("DATE")) {
 			return "Date";
 		}
-		if (typeName.equals("93")) {
-			return "Datetime";
+		if (typeName.equals("93") || typeName.equalsIgnoreCase("TIMESTAMP")) {
+			return "Date";
 		}
 
-		if (typeName.equals("4") || typeName.equals("3")) {
-			return "Integer";
-		}
-		if (typeName.equals("2")) {
+		if (typeName.equals("2") || typeName.equalsIgnoreCase("NUMERIC") || digts) {
 			return "Double";
+		}
+
+		if (typeName.equals("4") || typeName.equals("3") || typeName.equalsIgnoreCase("INTEGER") ||  typeName.equalsIgnoreCase("NUMBER") ) {
+			return "Integer";
 		}
 		return "String";
 

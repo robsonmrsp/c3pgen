@@ -20,6 +20,7 @@ import br.com.c3pgen.base.methods.IsRequiredMethod;
 import br.com.c3pgen.base.methods.MaxLenMethod;
 import br.com.c3pgen.base.methods.MybatisJdbcType;
 import br.com.c3pgen.base.methods.OnlyFirstUpperCaseMethod;
+import br.com.c3pgen.base.methods.ReplaceAllMethod;
 import br.com.c3pgen.base.methods.SnakeCaseStringMethod;
 import br.com.c3pgen.base.methods.ToLowerCaseMethod;
 import br.com.c3pgen.base.methods.ToStringMethod;
@@ -83,7 +84,7 @@ public class MarkerGenerator {
 		// PrintWriter fileWriter = new PrintWriter( fileName, "UTF-8" );
 
 		try {
-			template.process(adjustData(application, entity), fileWriter);
+			template.process(adjustData(entity), fileWriter);
 		} catch (Exception e) {
 			LOGGER.error("Erro gerando entidade " + entity.getName() + " Arquivo: " + fileName, e);
 		}
@@ -93,7 +94,7 @@ public class MarkerGenerator {
 		return Boolean.TRUE;
 	}
 
-	private Object adjustData(Application application, ApplicationEntity object) {
+	private Object adjustData(ApplicationEntity object) {
 		Map<String, Object> data = new HashMap<String, Object>();
 		data.put("firstLower", new FirstLowerCaseMethod());
 		data.put("onlyFirstUpper", new OnlyFirstUpperCaseMethod());
@@ -111,6 +112,7 @@ public class MarkerGenerator {
 		data.put("entity", object);
 		data.put("application", application);
 		data.put("getOwnerName", new getOwnerNameMethod());
+		data.put("replaceAll", new ReplaceAllMethod());
 		data.put("dataBasePrefix", application.getDataBasePrefix());
 		data.put("upperSnakeCase", new UpperSnakeCaseStringMethod());
 		data.put("getMybatisJdbcType", new MybatisJdbcType());
@@ -120,6 +122,7 @@ public class MarkerGenerator {
 
 	private Object adjustData(List<ApplicationEntity> object) {
 		Map<String, Object> data = new HashMap<String, Object>();
+		data.put("application", application);
 		data.put("firstLower", new FirstLowerCaseMethod());
 		data.put("onlyFirstUpper", new OnlyFirstUpperCaseMethod());
 		data.put("firstUpper", new FirstUpperCaseMethod());
@@ -131,11 +134,12 @@ public class MarkerGenerator {
 		data.put("uppercase", new ToUpperCaseMethod());
 		data.put("lowercase", new ToLowerCaseMethod());
 		data.put("dataType", new DataTypeMethod());
-		data.put("package", ApplicationConfiguration.MAIN_PACKAGE);
+		data.put("package", application.getRootPackage());
 		data.put("entities", object);
 		data.put("dataBasePrefix", application.getDataBasePrefix());
 		data.put("getOwnerName", new getOwnerNameMethod());
 		data.put("getMybatisJdbcType", new MybatisJdbcType());
+		data.put("replaceAll", new ReplaceAllMethod());
 		data.put("upperSnakeCase", new UpperSnakeCaseStringMethod());
 		data.put("JSetupVersion", Util.JSETUP_VERSION);
 		return data;
@@ -149,11 +153,11 @@ public class MarkerGenerator {
 		String model = Util.currentDir() + File.separator + "out" + File.separator + ApplicationConfiguration.MAIN_PACKAGE.replace(".", File.separator) + File.separator + "model";
 		String filter = Util.currentDir() + File.separator + "out" + File.separator + ApplicationConfiguration.MAIN_PACKAGE.replace(".", File.separator) + File.separator + "model" + File.separator + "filter";
 		String json = Util.currentDir() + File.separator + "out" + File.separator + ApplicationConfiguration.MAIN_PACKAGE.replace(".", File.separator) + File.separator + "json";
-		
+
 		String rs = Util.currentDir() + File.separator + "out" + File.separator + ApplicationConfiguration.MAIN_PACKAGE.replace(".", File.separator) + File.separator + "rs";
-		
+
 		String utils = Util.currentDir() + File.separator + "out" + File.separator + ApplicationConfiguration.MAIN_PACKAGE.replace(".", File.separator) + File.separator + "utils";
-		
+
 		String baseJs = Util.currentDir() + File.separator + "out" + File.separator + "js" + File.separator;
 		String baseJSViews = Util.currentDir() + File.separator + "out" + File.separator + "js" + File.separator + "views";
 		String baseJSCollections = Util.currentDir() + File.separator + "out" + File.separator + "js" + File.separator + "collections";
@@ -193,12 +197,12 @@ public class MarkerGenerator {
 		// FileWriter fileWriter = new FileWriter(destinationFolder +
 		// templateFileName.replace("${entity.name}", "Fragment") + "." +
 		// fileType.getSufix());
-		template.process(adjustData(aplication, null), fileWriter);
+		template.process(adjustData(aplication.getEntities()), fileWriter);
 		fileWriter.close();
 		return Boolean.FALSE;
 	}
 
-	public Boolean generateAppFragmentFile(List<ApplicationEntity> entities) throws IOException, TemplateException {
+	public Boolean generateAppFragmentFile(Application application, List<ApplicationEntity> entities) throws IOException, TemplateException {
 		Template template = freeMarkerConfig.getTemplate(templateName);
 		tryCreateFolder(destinationFolder);
 		FileWriter fileWriter = new FileWriter(destinationFolder + templateFileName.replace("${entity.name}", "Fragment") + "." + fileType.getSufix());
