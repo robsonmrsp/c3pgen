@@ -71,12 +71,10 @@
 										<input type="checkbox" id="inputAsModule" {{asModule ? 'checked' :''}} class="magic-checkbox">
 										<label class="checkbox-label" for="inputAsModule">Módulo</label>
 									</div>
-
 									<div id="groupInputName" class="form-group">
 										<label class="control-label" for="inputName">Nome</label>
 										<input type="text" id="inputName" placeholder="Nome" value="{{name}}" class="form-control  validate[required]">
 									</div>
-
 									<div id="groupInputName" class="form-group">
 										<label class="control-label" for="inputName">Descrição</label>
 										<textarea id="inputDescription" rows="3" placeholder="Nome" value="{{description}}" class="form-control  "> {{description}}</textarea>
@@ -105,7 +103,6 @@
 												<option value="XML" {{configurationType=='XML' ? 'selected' : '' }}>Baseada em Xml</option>
 											</select>
 										</div>
-
 										<div id="groupCriteriaType" class="form-group col-sm-12 col-md-3 col-lg-3">
 											<label class="control-label" for="inputCriteriaType">Tipo de Criteria</label>
 											<select id="inputCriteriaType" class="form-control ">
@@ -116,8 +113,9 @@
 										<div id="groupView" class="form-group col-sm-12 col-md-3 col-lg-3">
 											<label class="control-label" for="inputView">Framework da View</label>
 											<select id="inputView" class="form-control ">
-												<option value="BACKBONE" {{view=='BACKBONE' ? 'selected' : '' }}>Backbone</option>
-												<option value="ANGULAR" {{view=='ANGULAR' ? 'selected' : '' }}>Angular</option>
+												<option value="BACKBONE" {{view=='BACKBONE' ? 'selected' : '' }}>Backbone/Marionette</option>
+												<option value="ANGULAR" {{view=='ANGULAR' ? 'selected' : '' }}>Angular 2.0</option>
+												<option value="VUE" {{view=='VUE' ? 'selected' : '' }}>VueJS 2.0</option>
 											</select>
 										</div>
 									</div>

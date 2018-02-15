@@ -1,0 +1,6 @@
+.block {
+	display: block !important;
+	overflow: hidden !important;
+	-webkit-transition: height .5s;
+	transition: height .5s;
+}

@@ -173,7 +173,7 @@ public class GenService {
 
 		// fix module-entities
 
-		BaseAppGenerator appGenerator = new BaseAppGenerator(freeMarkerConfig, newApplication);
+		BaseAppGenerator baseAppGenerator = new BaseAppGenerator(freeMarkerConfig, newApplication);
 
 		EntitiesGenerator entitiesGenerator = new EntitiesGenerator(freeMarkerConfig, newApplication);
 
@@ -184,7 +184,7 @@ public class GenService {
 		if (validateMessages.isEmpty()) {
 			if (complete && !application.getAsModule()) {
 				LOGGER.info("Gerando a base da aplicação. Isso pode levar alguns segundos...");
-				appGenerator.generate();
+				baseAppGenerator.generate();
 				LOGGER.info("Finalizada a geração básica....");
 			}
 			LOGGER.info("Gerando as entidades...");
@@ -192,7 +192,7 @@ public class GenService {
 			LOGGER.info("Concluida a geração da aplicação");
 
 			if (newApplication.hasMobApp()) {
-				appGenerator.generateMobile();
+				baseAppGenerator.generateMobile();
 				LOGGER.info("Finalizada a geração básica....");
 				entitiesGenerator.generateMobile();
 

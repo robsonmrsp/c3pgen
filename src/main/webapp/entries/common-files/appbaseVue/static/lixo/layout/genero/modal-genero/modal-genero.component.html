@@ -1,0 +1,95 @@
+<form>
+	<div class="form-group input-group">
+		<input type="text" id="inputDescricao" class="form-control"   value="{{genero?.descricao}}" name="descricao">
+		<span class="input-group-btn">
+			<button type="button" class="btn btn-default search-button loading-button" (click)="generoModal.show()">
+				<span class="fa fa-search"></span>
+			</button>
+		</span>
+	</div>
+</form>
+
+<div bsModal #generoModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" (click)="generoModal.hide()">
+					<i class="fa fa-times-circle-o fa-2x"></i>
+					<span class="sr-only">Close</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel">Pesquisa de Gênero</h4>
+			</div>
+			<div class="modal-body">
+				<div id="groupInputNome" class="form-group col-sm-	col-md-	col-lg-">
+					<label class="control-label" for="inputNome">Nome</label>
+					<input type="text" id="inputNome" [(ngModel)]="datatableConfig.filterParameters.nome" placeholder="Pesquise pelo Nome" class="form-control">
+				</div>
+				<div id="groupInputDescricao" class="form-group col-sm-	col-md-	col-lg-  ">
+					<label class="control-label" for="inputDescricao">Descrição</label>
+					<input type="text" id="inputDescricao" [(ngModel)]="datatableConfig.filterParameters.descricao" placeholder="Pesquise pelo Descrição" class="form-control">
+				</div>
+				<button type="button" class="btn btn-info btn-sm " (click)="paging($event)">
+					<i class="ace-icon fa fa-search "></i>
+					Pesquisar
+				</button>
+				<hr>
+				<div class="card">
+					<div class="card-header">
+						<i *ngIf="!datatableConfig.loading" class="fa fa-align-justify"></i>
+						<i *ngIf="datatableConfig.loading" class="fa fa-spinner fa-spin fa-fw"></i>
+						Resultado da pesquisa
+					</div>
+					<div class="card-block">
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th class="renderable descricao">
+										<a appDatatableSort [sortConfig]=datatableConfig.config [sortName]="'descricao'" (sortChanged)="paging($event)">
+											<i class="fa fa-arrows-v" aria-hidden="true"></i>
+											&nbsp;Descrição
+										</a>
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr *ngFor="let genero of datatableConfig.pager.items;" (click)="chosen(genero, generoModal) ">
+									<td>{{genero.descricao}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="row ">
+					<div class="counter col-md-6" style="text-align: left; margin: 15px 0">
+						<div class=" float-left ">
+							<span class="has-elements" style="display: inline;">
+								Registros
+								<span class="initial-page">1</span>
+								a
+								<span class="final-page">{{datatableConfig.config.pageSize}}</span>
+								de
+								<span class="total-records">{{datatableConfig.pager.totalRecords}}</span>
+								. Exibindo até
+								<select class="combo-page-size" [(ngModel)]="datatableConfig.config.pageSize" (change)="paging($event)" style="padding: 0 0 0 0; height: 20px">
+									<option [value]="5">5</option>
+									<option [value]="10">10</option>
+								</select>
+								por página.
+							</span>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class=" paging_simple_numbers pull-right ">
+							<pagination [totalItems]="datatableConfig.pager.totalRecords" [firstText]="'<<'" [previousText]="'<'" [lastText]="'>>'" [nextText]="'>'" (pageChanged)="paging($event)" [maxSize]="7" [boundaryLinks]="true" [itemsPerPage]="datatableConfig.config.pageSize"
+								[directionLinks]="true"> </pagination>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" (click)="generoModal.hide()">Fechar</button>
+			</div>
+		</div>
+	</div>
+</div>
+
