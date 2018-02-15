@@ -101,12 +101,14 @@ public class BaseAppGenerator {
 
 	private static void generateStaticFromCommonFiles(Application application) throws IOException {
 
+		// entries/templates/nifty/vue-files
+		// entries/templates/nifty/vue-files
 		String baseCommonFolder = Util.currentDir() + File.separator + "entries/" + "common-files" + File.separator;
-		String fileInputResources = baseCommonFolder + "/appbase/src/main/resources";
+
 		String fileInputWebApp = "";
 		String fileOutput = "";
 		if (application.getView().equalsIgnoreCase("vue")) {
-			fileInputWebApp = baseCommonFolder + "appbaseVue";
+			fileInputWebApp = Util.currentDir() + File.separator + "/entries/templates/nifty/vue-files/web";
 			fileOutput = Util.currentDir() + File.separator + "out" + File.separator + application.getAppName() + "/web";
 
 		} else if (application.getView().equalsIgnoreCase("angular")) {
@@ -116,7 +118,7 @@ public class BaseAppGenerator {
 			fileOutput = Util.currentDir() + File.separator + "out" + File.separator + application.getAppName() + "/src/main";
 		}
 
-		FileUtils.copyDirectoryToDirectory(new File(fileInputResources), new File(fileOutput));
+		// FileUtils.copyDirectoryToDirectory(new File(fileInputResources), new File(fileOutput));
 
 		FileUtils.copyDirectoryToDirectory(new File(fileInputWebApp), new File(fileOutput));
 		//

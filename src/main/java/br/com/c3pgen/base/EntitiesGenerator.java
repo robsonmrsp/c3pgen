@@ -182,7 +182,9 @@ public class EntitiesGenerator {
 		tsFormAngularGenerator = new MarkerGenerator(freeMarkerConfig, application, "TsFormAngularComponentTemplate.tpl", appAngularRootFolder + "$kc{entity.name}/form-$kc{entity.name}/", TemplateFileName.FORM_TS, FileType.TYPESCRIPT);
 
 		jsFormVueGenerator = new MarkerGenerator(freeMarkerConfig, application, "VueFormTemplate.tpl", appVueRootFolder + "${entity.name}/", TemplateFileName.FORM_VUE, FileType.VUE);
+
 		try {
+
 			if (application.getView().equalsIgnoreCase("angular")) {
 				for (ApplicationEntity ent : application.getEntities()) {
 					tsFormAngularGenerator.generateEntityFile(application, ent);
@@ -191,90 +193,76 @@ public class EntitiesGenerator {
 				for (ApplicationEntity ent : application.getEntities()) {
 					jsFormVueGenerator.generateEntityFile(application, ent);
 				}
-			} else {
+			} else if (application.getView().equalsIgnoreCase("backbone")) {
 				for (ApplicationEntity ent : application.getEntities()) {
-
-					if (notInException(ent.getName(), exceptions)) {
-						LOGGER.info("-------------------------------Processando entidade " + ent.getName() + "-------------------------------");
-						javaJsonGenerator.generateEntityFile(application, ent);
-
-						if (application.getPersistenceFramework().equals("hibernate")) {
-
-							// TODO melhorar isso, mas por enquanto somente não
-							// gerar o User.java já resolve. Certificar que o
-							// user.java é o mesmo SEMPRE.
-							if (!ent.getName().equalsIgnoreCase("User")) {
-								System.out.println(" Gerando o model " + ent.getName());
-								javaModelGenerator.generateEntityFile(application, ent);
-								daoGenerator.generateEntityFile(application, ent);
-							}
-
-							basicServiceGenerator.generateEntityFile(application, ent);
-							basicServiceImpGenerator.generateEntityFile(application, ent);
-							// resourcesGenerator.generateEntityFile(application,
-							// ent);
-							controllerGenerator.generateEntityFile(application, ent);
-							testControllerGenerator.generateEntityFile(application, ent);
-							testErrorMockGenerator.generateEntityFile(application, ent);
-							testInitData.generateEntityFile(application, ent);
-						} else {
-							javaMybatisModelGenerator.generateEntityFile(application, ent);
-							basicMybatisServiceGenerator.generateEntityFile(application, ent);
-							mapperMybatisGenerator.generateEntityFile(application, ent);
-							xmlMybatisGenerator.generateEntityFile(application, ent);
-							mybatisResourcesGenerator.generateEntityFile(application, ent);
-							javaMybatisModelTemplate.generateEntityFile(application, ent);
-						}
-
-						flterGenerator.generateEntityFile(application, ent);
-
-						// geração de particulares a tecnologia da view
-						jsFormGenerator.generateEntityFile(application, ent);
-						// jsColelctionGenerator.generateEntityFile(application,
-						// ent);
-						jsModelGenerator.generateEntityFile(application, ent);
-						jsPageGenerator.generateEntityFile(application, ent);
-						// jsPageColelctionGenerator.generateEntityFile(application,
-						// ent);
-
-						htmlFormGenerator.generateEntityFile(application, ent);
-						htmlPageGenerator.generateEntityFile(application, ent);
-						htmlModalGenerator.generateEntityFile(application, ent);
-
-						JsMultiSelectGenerator.generateEntityFile(application, ent);
-						htmlMultiSelectGenerator.generateEntityFile(application, ent);
-
-						// JsModalMultiSelectGenerator.generateEntityFile(application,
-						// ent);
-						// htmlModalMultiSelectGenerator.generateEntityFile(application,
-						// ent);
-						jsModalGenerator.generateEntityFile(application, ent);
-					}
+					jsFormGenerator.generateEntityFile(application, ent);
+					jsModelGenerator.generateEntityFile(application, ent);
+					jsPageGenerator.generateEntityFile(application, ent);
+					htmlFormGenerator.generateEntityFile(application, ent);
+					htmlPageGenerator.generateEntityFile(application, ent);
+					htmlModalGenerator.generateEntityFile(application, ent);
+					JsMultiSelectGenerator.generateEntityFile(application, ent);
+					htmlMultiSelectGenerator.generateEntityFile(application, ent);
+					jsModalGenerator.generateEntityFile(application, ent);
 
 				}
-				fragmentsGenerator.generateAppFragmentFile(application.getEntities());
-				rbacSeedGenerator.generateAppFragmentFile(application.getEntities());
-
 				jsRouterGenerator.generate(application);
 				jsRouterSpecGenerator.generate(application);
-				// beansGenerator.generate(application);
-
-				testBeansGenerator.generate(application);
-				// testInitData.generate(application);
-				// beansGenerator.generate(application);
-				testSecurityGenerator.generate(application);
-
-				pomGenerator.generate(application);
-
-				buildPropertiesGenerator.generate(application);
-				buildXmlGenerator.generate(application);
-
-				produIndexGenerator.generate(application);
 				desenvIndexGenerator.generate(application);
-				produLoginGenerator.generate(application);
-				desenvLoginGenerator.generate(application);
-				parserGenerator.generate(application);
+
 			}
+
+			for (ApplicationEntity ent : application.getEntities()) {
+				if (notInException(ent.getName(), exceptions)) {
+					LOGGER.info("-------------------------------Processando entidade " + ent.getName() + "-------------------------------");
+					javaJsonGenerator.generateEntityFile(application, ent);
+
+					if (application.getPersistenceFramework().equals("hibernate")) {
+
+						// TODO melhorar isso, mas por enquanto somente não
+						// gerar o User.java já resolve. Certificar que o
+						// user.java é o mesmo SEMPRE.
+						if (!ent.getName().equalsIgnoreCase("User")) {
+							System.out.println(" Gerando o model " + ent.getName());
+							javaModelGenerator.generateEntityFile(application, ent);
+							daoGenerator.generateEntityFile(application, ent);
+						}
+
+						basicServiceGenerator.generateEntityFile(application, ent);
+						basicServiceImpGenerator.generateEntityFile(application, ent);
+						// resourcesGenerator.generateEntityFile(application,
+						// ent);
+						controllerGenerator.generateEntityFile(application, ent);
+						testControllerGenerator.generateEntityFile(application, ent);
+						testErrorMockGenerator.generateEntityFile(application, ent);
+						testInitData.generateEntityFile(application, ent);
+					} else {
+						javaMybatisModelGenerator.generateEntityFile(application, ent);
+						basicMybatisServiceGenerator.generateEntityFile(application, ent);
+						mapperMybatisGenerator.generateEntityFile(application, ent);
+						xmlMybatisGenerator.generateEntityFile(application, ent);
+						mybatisResourcesGenerator.generateEntityFile(application, ent);
+						javaMybatisModelTemplate.generateEntityFile(application, ent);
+					}
+
+					flterGenerator.generateEntityFile(application, ent);
+
+					// geração de particulares a tecnologia da view
+				}
+
+			}
+			fragmentsGenerator.generateAppFragmentFile(application.getEntities());
+			rbacSeedGenerator.generateAppFragmentFile(application.getEntities());
+
+			testBeansGenerator.generate(application);
+			testSecurityGenerator.generate(application);
+			pomGenerator.generate(application);
+			buildPropertiesGenerator.generate(application);
+			buildXmlGenerator.generate(application);
+			produIndexGenerator.generate(application);
+			produLoginGenerator.generate(application);
+			desenvLoginGenerator.generate(application);
+			parserGenerator.generate(application);
 		} catch (TemplateException e) {
 			LOGGER.error(e);
 		}
