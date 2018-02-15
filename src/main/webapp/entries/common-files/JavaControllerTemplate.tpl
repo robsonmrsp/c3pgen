@@ -8,7 +8,6 @@ import org.apache.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,7 +26,6 @@ import ${package}.service.${entity.name}Service;
 import ${package}.model.filter.Filter${entity.name};
 import ${corepackage}.persistence.pagination.Pager;
 import ${corepackage}.persistence.pagination.PaginationParams;
-import ${package}.service.UserService;
 import ${corepackage}.rs.exception.ValidationException;
 import ${corepackage}.security.SpringSecurityUserContext;
 
@@ -192,7 +190,7 @@ public class ${entity.name}Controller {
 			${firstLower(entity.name)}s = ${firstLower(entity.name)}Service.all(paginationParams);
 			</#if>
 
-			JsonPaginator<Json${entity.name}> paginator = new JsonPaginator<Json${entity.name}>(Parser.toListJson${entity.name}s(${firstLower(entity.name)}s.getItens()), ${firstLower(entity.name)}s.getActualPage(), ${firstLower(entity.name)}s.getTotalRecords());
+			JsonPaginator<Json${entity.name}> paginator = new JsonPaginator<Json${entity.name}>(Parser.toListJson${entity.name}s(${firstLower(entity.name)}s.getItems()), ${firstLower(entity.name)}s.getActualPage(), ${firstLower(entity.name)}s.getTotalRecords());
 
 			response = new ResponseEntity(paginator, HttpStatus.OK);
 

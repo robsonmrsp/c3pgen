@@ -84,7 +84,7 @@ public class EntitiesGenerator {
         String appAngularRootFolder = Util.currentDir() + File.separator + "out/" + application.getAppName() + File.separator + "angular/src/app/layout/";
 
         String webAppRootFolder = appRootFolder + "/src/main/webapp/";
-        String jsRootFolder = webAppRootFolder + "js/"; // js/spec/router
+        String jsRootFolder = webAppRootFolder + "js"; // js/spec/router
 
         String jsSpecRootFolder = webAppRootFolder + "js/" + "spec/router/";
         String javaRootFolder = appRootFolder + "/src/main/java/" + application.getRootPackage().replace(".", File.separator);
@@ -131,7 +131,7 @@ public class EntitiesGenerator {
 
         jsModelGenerator = new MarkerGenerator(freeMarkerConfig, application, "JsModelTemplate.tpl", jsRootFolder + "/models/", TemplateFileName.MODEL_JS, FileType.JAVASCRIPT);
 
-        jsFormGenerator = new MarkerGenerator(freeMarkerConfig, application, "JsFormTemplate.tpl", jsRootFolder + "/views/${entity.name}/", TemplateFileName.BASIC_FORM_JS, FileType.JAVASCRIPT);
+        jsFormGenerator = new MarkerGenerator(freeMarkerConfig, application, "JsFormTemplate.tpl", jsRootFolder + "/views/${entity.name}", TemplateFileName.BASIC_FORM_JS, FileType.JAVASCRIPT);
 
         jsPageGenerator = new MarkerGenerator(freeMarkerConfig, application, "JsPageTemplate.tpl", jsRootFolder + "/views/${entity.name}/", TemplateFileName.PAGE_JS, FileType.JAVASCRIPT);
 
@@ -148,7 +148,7 @@ public class EntitiesGenerator {
 
         fragmentsGenerator = new MarkerGenerator(freeMarkerConfig, application, "Fragments.tpl", jsRootFolder + "/fragments", TemplateFileName.FRAGMENT_TEMPLATE_HTML, FileType.FRAGMENT);
 
-        jsRouterGenerator = new MarkerGenerator(freeMarkerConfig, application, "Router.tpl", jsRootFolder, TemplateFileName.ROUTER_JS, FileType.JAVASCRIPT);
+        jsRouterGenerator = new MarkerGenerator(freeMarkerConfig, application, "Router.tpl", jsRootFolder + "/", TemplateFileName.ROUTER_JS, FileType.JAVASCRIPT);
 
         jsRouterSpecGenerator = new MarkerGenerator(freeMarkerConfig, application, "JSRouterSpecTemplate.js", jsSpecRootFolder, TemplateFileName.ROUTER_SPEC_JS, FileType.JAVASCRIPT);
 
@@ -175,7 +175,7 @@ public class EntitiesGenerator {
         produLoginGenerator = new MarkerGenerator(freeMarkerConfig, application, "produ_login.tpl", appRootFolder + "/produ/", TemplateFileName.LOGIN_HTML, FileType.HTML);
 
         // geração angular
-        htmlPageGenerator = new MarkerGenerator(freeMarkerConfig, application, "HtmlPageTemplate.tpl", jsRootFolder + "/${entity.name}/tpl/", TemplateFileName.PAGE_TEMPLATE_HTML, FileType.HTML);
+        // htmlPageGenerator = new MarkerGenerator(freeMarkerConfig, application, "HtmlPageTemplate.tpl", jsRootFolder + "/${entity.name}/tpl/", TemplateFileName.PAGE_TEMPLATE_HTML, FileType.HTML);
 
         tsFormAngularGenerator = new MarkerGenerator(freeMarkerConfig, application, "TsFormAngularComponentTemplate.tpl", appAngularRootFolder + "$kc{entity.name}/form-$kc{entity.name}/", TemplateFileName.FORM_TS, FileType.TYPESCRIPT);
         try {

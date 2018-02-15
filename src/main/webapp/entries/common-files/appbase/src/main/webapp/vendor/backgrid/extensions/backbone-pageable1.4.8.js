@@ -1213,7 +1213,7 @@
 			if (options.resetState)
 				that.state.currentPage = 1;
 			var sucss = function(_col, _resp, _opts) {
-				if (_resp.itens.length === 0) {
+				if (_resp.items.length === 0) {
 					// gamba Robson para ver outra maneira de resolver
 					that.state.currentPage = 1;
 					that.state.firstPage = 1;
@@ -1235,7 +1235,7 @@
 					that.state.totalPages = Math.floor(that.state.totalRecords / that.state.pageSize) + 1;
 				}
 
-				that.add(_resp.itens)
+				that.add(_resp.items)
 				// clientSuccess();
 				clientSuccess(_col, _resp, _opts);
 				that.trigger("fetched");

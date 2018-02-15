@@ -68,8 +68,8 @@ define(function(require) {
 					}
 					that.collection.fetch({
 						success : function(a, resp, c) {
-							if (resp.itens)
-								callback(resp.itens);
+							if (resp.items)
+								callback(resp.items);
 							else
 								callback(resp);
 
