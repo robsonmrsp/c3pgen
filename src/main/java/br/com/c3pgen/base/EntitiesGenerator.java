@@ -266,6 +266,7 @@ public class EntitiesGenerator {
 		} catch (TemplateException e) {
 			LOGGER.error(e);
 		}
+		
 	}
 
 	private boolean notInException(String id, String... exceptions) {
