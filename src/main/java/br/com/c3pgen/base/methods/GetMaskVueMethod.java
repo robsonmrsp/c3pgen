@@ -16,14 +16,14 @@ public class GetMaskVueMethod implements TemplateMethodModelEx {
 			throw new TemplateModelException("Wrong arguments, getMaskVueMethod");
 		}
 		if (args != null && args.size() > 0 && args.get(0) != null) {
-			Attribute att = (Attribute) args.get(0);
-			if (att.getType().getClassName().equalsIgnoreCase("integer") || att.getType().getClassName().equalsIgnoreCase("long")) {
+			String att = args.get(0).toString();
+			if (att.equalsIgnoreCase("integer") || att.equalsIgnoreCase("long")) {
 				return new SimpleScalar("v-mask=\"'integer'\"");
-			} else if (att.getType().getClassName().equalsIgnoreCase("double") || att.getType().getClassName().equalsIgnoreCase("float")) {
+			} else if (att.equalsIgnoreCase("double") || att.equalsIgnoreCase("float")) {
 				return new SimpleScalar("v-mask=\"'integer'\"");
-			} else if (att.getType().getClassName().equalsIgnoreCase("date")) {
+			} else if (att.equalsIgnoreCase("date")) {
 				return new SimpleScalar("v-mask=\"'date'\"");
-			} else if (att.getType().getClassName().equalsIgnoreCase("datetime")) {
+			} else if (att.equalsIgnoreCase("datetime")) {
 				return new SimpleScalar("v-mask=\"'datetime'\"");
 			}
 		}
