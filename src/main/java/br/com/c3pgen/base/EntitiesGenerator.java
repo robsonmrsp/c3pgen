@@ -83,7 +83,7 @@ public class EntitiesGenerator {
 		String appRootFolder = Util.currentDir() + File.separator + "out/" + application.getAppName();
 
 		String appAngularRootFolder = Util.currentDir() + File.separator + "out/" + application.getAppName() + File.separator + "angular/src/app/layout/";
-		String appVueRootFolder = Util.currentDir() + File.separator + "out/" + application.getAppName() + File.separator + "vue/src/components/";
+		String appVueRootFolder = Util.currentDir() + File.separator + "out/" + application.getAppName() + File.separator + "web/web/src/components/";
 
 		String webAppRootFolder = appRootFolder + "/src/main/webapp/";
 		String jsRootFolder = webAppRootFolder + "js/"; // js/spec/router
@@ -266,6 +266,7 @@ public class EntitiesGenerator {
 		} catch (TemplateException e) {
 			LOGGER.error(e);
 		}
+
 	}
 
 	private boolean notInException(String id, String... exceptions) {

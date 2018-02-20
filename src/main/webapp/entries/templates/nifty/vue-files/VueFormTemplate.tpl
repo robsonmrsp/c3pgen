@@ -15,14 +15,14 @@
 			<#if att.type.className == 'Boolean' && att.viewApproach.type  == 'check'>
 					<div class="form-group">
 						<p class="control-label" for="${firstLower(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}  </p>
-						<toggle-button  v-model="${firstLower(entity.name)}.${firstLower(att.name)}" :width="70" :height="30" :color="{checked: '#7ABE5C', unchecked: '#8F9EA6'}" :sync="true" :labels="{checked: 'Sim', unchecked: 'Não'}"/>
+						<toggle-button  v-model="${firstLower(entity.name)}.${firstLower(att.name)}" name="${firstLower(att.name)}" :width="70" :height="30" :color="{checked: '#7ABE5C', unchecked: '#8F9EA6'}" :sync="true" :labels="{checked: 'Sim', unchecked: 'Não'}"/>
 					</div>					
 			<#elseif att.viewApproach.type  == 'datepicker'>	
 				<#if att.required == true>
 					<div @class="{'form-group': true, 'has-error': errors.has('${firstLower(att.name)}') }">
 						<label class="control-label" for="${firstLower(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)} *</label>
 						<div class="input-group">
-							<date-picker v-validate="'required'" v-mask="'datetime'" v-model="${firstLower(entity.name)}.${firstLower(att.name)}" :config="{format: '${att.dateFormat}',useCurrent: false}"></date-picker>
+							<date-picker v-validate="'required'" ${getVueMask(att.type.className)} v-model="${firstLower(entity.name)}.${firstLower(att.name)}" name="${firstLower(att.name)}" :config="{format: '${att.dateFormat}',useCurrent: false}"></date-picker>
 							<div class="input-group-addon	append-right">
 								<span class="fa fa-calendar"></span>
 							</div>
@@ -33,7 +33,7 @@
 					<div class="form-group">
 						<label class="control-label" for="${firstLower(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}</label>
 						<div class="input-group">
-							<date-picker v-mask="'datetime'" v-model="${firstLower(entity.name)}.${firstLower(att.name)}" :config="{format: '${att.dateFormat}',useCurrent: false}"></date-picker>
+							<date-picker ${getVueMask(att.type.className)} v-model="${firstLower(entity.name)}.${firstLower(att.name)}" name="${firstLower(att.name)}" :config="{format: '${att.dateFormat}',useCurrent: false}"></date-picker>
 							<div class="input-group-addon	append-right">
 								<span class="fa fa-calendar"></span>
 							</div>
@@ -46,13 +46,13 @@
 				<#if att.required == true>
 					<div @class="{'form-group': true, 'has-error': errors.has('${firstLower(att.name)}') }">
 						<label class="control-label" for="${firstLower(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}>${firstUpper(att.displayName)!firstLower(att.name)}</label>
-						<textarea rows="3"  v-model="${firstLower(entity.name)}.${firstLower(att.name)}"  class="form-control" maxlength="2000"></textarea>
+						<textarea rows="3"  v-model="${firstLower(entity.name)}.${firstLower(att.name)}" name="${firstLower(att.name)}" class="form-control" maxlength="2000"></textarea>
 						<span v-show="errors.has('${firstLower(att.name)}')"  class="help-block help-block form-error"  >{{ errors.first('${firstLower(att.name)}') }}</span>
 					</div>					
 				<#else>
 					<div class="form-group">
 						<label class="control-label" for="${firstLower(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}>${firstUpper(att.displayName)!firstLower(att.name)}</label>
-						<textarea rows="3"  v-model="${firstLower(entity.name)}.${firstLower(att.name)}"  class="form-control" maxlength="2000"></textarea>
+						<textarea rows="3"  v-model="${firstLower(entity.name)}.${firstLower(att.name)}" name="${firstLower(att.name)}" class="form-control" maxlength="2000"></textarea>
 					</div>					
 				</#if>
 
@@ -62,13 +62,13 @@
 				<#if att.required == true>			
 					<div @class="{'form-group': true, 'has-error': errors.has('${firstLower(att.name)}') }">
 						<label class="control-label" for="${firstLower(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}  *</label>
-						<input type="text" v-validate="'required'"  name='${firstLower(att.name)}' v-model="${firstLower(entity.name)}.${firstLower(att.name)}" class="form-control"  >
+						<input type="text" v-validate="'required'" ${getVueMask(att.type.className)}  name="${firstLower(att.name)}" v-model="${firstLower(entity.name)}.${firstLower(att.name)}" class="form-control"  >
 						<span v-show="errors.has('${firstLower(att.name)}')"  class="help-block help-block form-error"  >{{ errors.first('${firstLower(att.name)}') }}</span>
 					</div>
 				<#else>
 					<div class=form-group">
 						<label class="control-label" for="${firstLower(att.name)}">${firstUpper(att.displayName)!firstUpper(att.name)}</label>
-						<input type="text" name='${firstLower(att.name)}'  v-model="${firstLower(entity.name)}.${firstLower(att.name)}" class="form-control" >
+						<input type="text" ${getVueMask(att.type.className)} name="${firstLower(att.name)}"  v-model="${firstLower(entity.name)}.${firstLower(att.name)}" class="form-control" >
 					</div>
 				</#if>
 			</#if>
