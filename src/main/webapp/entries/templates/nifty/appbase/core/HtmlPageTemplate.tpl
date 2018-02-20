@@ -45,7 +45,7 @@
 					</div>
 					<div class="panel-body">
 						<!-- inicio dos registros-->							
-						<#list entity.advancedSearches as att>
+					<#list entity.advancedSearches as att>
 						<#if att.showInPages && !att.basicSearch && att.type.className != 'Boolean' && att.viewApproach.type  != 'upload' && att.viewApproach.type  != 'multiselect'>
 						  <#if att.viewApproach?? >
 							<#if att.type.className == 'Boolean' && att.viewApproach.type  == 'check'  >

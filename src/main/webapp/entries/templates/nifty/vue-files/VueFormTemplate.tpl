@@ -123,7 +123,7 @@ export default {
           this.${firstLower(entity.name)} = data;
         },
         error => {
-          console.error("Error gettin By Id, " + error);
+          console.error("Error getting by Id, " + error);
         }
       );
     }
