@@ -143,19 +143,25 @@
 					<table class="table table-striped table-bordered table-hover  no-footer  ">
 						<thead>
 							<tr>
-								<th class="renderable nome">
+						<#list entity.attributes as att>									
+								<th class="th-${firstLower(att.name)}}}">
 									<a >
-										<i class="fa" aria-hidden="true"></i>
-										Titulo Original
+										<i class="fa "></i>
+										${firstUpper(att.displayName)!firstLower(att.name)}
 									</a>
 								</th>
-								<th class="renderable descricao">
+						</#list> 
+						<#list entity.relationships as rel >
+							<#if rel.showInPages >
+								<th class="th-${firstLower(rel.name)}}}">
 									<a >
-										<i class="fa" aria-hidden="true"></i>
-										Diretor
+										<i class="fa "></i>
+										${firstLower(rel.name)}.${rel.viewApproach.comboVal || rel.viewApproach.textField}
 									</a>
 								</th>
-								<th class="renderable action-cell">Ações</th>
+							</#if>
+						</#list>
+								<th > Ações </th>
 							</tr>
 						</thead>
 						<tbody>
@@ -261,7 +267,7 @@ export default {
       this.service.getPage(
         this.datatableConfig,
         data => {
-          console.log("success fetching ${firstLower(entity.name)}´s page");
+          console.debug("success fetching ${firstLower(entity.name)}´s page" , data);
         },
 
         error => {

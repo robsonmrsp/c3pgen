@@ -20,7 +20,8 @@ public class EntitiesGenerator {
 	private static MarkerGenerator jsFormGenerator;
 
 	private static MarkerGenerator tsFormAngularGenerator;
-	private static MarkerGenerator jsFormVueGenerator;
+	private static MarkerGenerator vueFormGenerator;
+	private static MarkerGenerator vuePageGenerator;
 
 	private static MarkerGenerator jsModelGenerator;
 	private static MarkerGenerator jsRouterGenerator;
@@ -181,7 +182,8 @@ public class EntitiesGenerator {
 
 		tsFormAngularGenerator = new MarkerGenerator(freeMarkerConfig, application, "TsFormAngularComponentTemplate.tpl", appAngularRootFolder + "$kc{entity.name}/form-$kc{entity.name}/", TemplateFileName.FORM_TS, FileType.TYPESCRIPT);
 
-		jsFormVueGenerator = new MarkerGenerator(freeMarkerConfig, application, "VueFormTemplate.tpl", appVueRootFolder + "${entity.name}/", TemplateFileName.FORM_VUE, FileType.VUE);
+		vueFormGenerator = new MarkerGenerator(freeMarkerConfig, application, "VueFormTemplate.tpl", appVueRootFolder + "${entity.name}/", TemplateFileName.FORM_VUE, FileType.VUE);
+		vuePageGenerator = new MarkerGenerator(freeMarkerConfig, application, "VuePageTemplate.tpl", appVueRootFolder + "${entity.name}/", TemplateFileName.PAGE_VUE, FileType.VUE);
 
 		try {
 
@@ -191,7 +193,8 @@ public class EntitiesGenerator {
 				}
 			} else if (application.getView().equalsIgnoreCase("vue")) {
 				for (ApplicationEntity ent : application.getEntities()) {
-					jsFormVueGenerator.generateEntityFile(application, ent);
+					vueFormGenerator.generateEntityFile(application, ent);
+					vuePageGenerator.generateEntityFile(application, ent);
 				}
 			} else if (application.getView().equalsIgnoreCase("backbone")) {
 				for (ApplicationEntity ent : application.getEntities()) {

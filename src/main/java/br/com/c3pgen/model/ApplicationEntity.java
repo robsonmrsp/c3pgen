@@ -222,6 +222,7 @@ public class ApplicationEntity extends AbstractTimestampEntity {
 
 	public Attribute getPrimaryAttribute() {
 		if (getAttributes().size() > 0)
+			
 			return getAttributes().get(0);
 		else
 			return null;

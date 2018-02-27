@@ -77,6 +77,9 @@
 	</#list> 
 	<#if entity.relationships??>	
 		<#list entity.relationships as rel>
+			<#if rel.viewApproach.type == 'modal'>
+					<Modal${firstUpper(rel.model)} v-model='${firstUpper(rel.name)}.${firstUpper(rel.viewApproach.textField)}' :displayValue="'${firstUpper(rel.viewApproach.textField)}'"> </Modal${firstUpper(rel.model)}> 
+			</#if>
 		</#list> 
    </#if>
 				</form>
@@ -103,13 +106,30 @@
 	</div>
 </div>
 </template>
-
 <script>
+
 import HttpRequest from "@/components/core/HttpRequest";
+	<#if entity.relationships??>	
+	<#list entity.relationships as rel >
+		<#if rel.viewApproach.type == 'modal'>
+import Modal${firstUpper(rel.model)} from "@/components/${firstLower(rel.model)}/Modal${firstUpper(rel.model)}";
+		</#if>
+	</#list>
+	</#if>
 
 export default {
   name: "Form${entity.name}",
 
+    components: {
+	<#if entity.relationships??>	
+	<#list entity.relationships as rel >
+		<#if rel.viewApproach.type == 'modal'>
+	Modal${firstUpper(rel.model)} ,
+		</#if>
+	</#list>
+	</#if>
+  },
+  
   created() {
     this.service = new HttpRequest("/rs/crud/${firstLower(entity.name)}s");
   },
