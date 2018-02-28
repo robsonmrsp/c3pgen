@@ -55,8 +55,6 @@
 						<textarea rows="3"  v-model="${firstLower(entity.name)}.${firstLower(att.name)}" name="${firstLower(att.name)}" class="form-control" maxlength="2000"></textarea>
 					</div>					
 				</#if>
-
-			
 			<#elseif att.viewApproach.type  == 'upload'>	
 			<#else>	
 				<#if att.required == true>			
@@ -78,7 +76,7 @@
 	<#if entity.relationships??>	
 		<#list entity.relationships as rel>
 			<#if rel.viewApproach.type == 'modal'>
-					<Modal${firstUpper(rel.model)} v-model='${firstUpper(rel.name)}.${firstUpper(rel.viewApproach.textField)}' :displayValue="'${firstUpper(rel.viewApproach.textField)}'"> </Modal${firstUpper(rel.model)}> 
+					<Modal${firstUpper(rel.model)} v-model="${firstLower(entity.name)}.${rel.name}" :displayValue="'${rel.viewApproach.textField}'"> </Modal${firstUpper(rel.model)}> 
 			</#if>
 		</#list> 
    </#if>
@@ -120,7 +118,7 @@ import Modal${firstUpper(rel.model)} from "@/components/${firstLower(rel.model)}
 export default {
   name: "Form${entity.name}",
 
-    components: {
+  components: {
 	<#if entity.relationships??>	
 	<#list entity.relationships as rel >
 		<#if rel.viewApproach.type == 'modal'>

@@ -131,6 +131,7 @@ public class GenService {
 			String zip = Util.currentDir() + File.separator + webPath;
 
 			ZipUtils.zipFiles(Arrays.asList(new File(a)), new File(zip));
+			
 			fileInfo.setRealFilePath(zip);
 			fileInfo.setStaticFilePath(webPath);
 			fileInfo.setGenerateSuccess(true);
