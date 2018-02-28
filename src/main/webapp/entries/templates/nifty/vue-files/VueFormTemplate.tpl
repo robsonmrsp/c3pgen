@@ -42,6 +42,7 @@
 				</#if>
 			<#elseif att.viewApproach.type  == 'radiogroup'>
 			<#elseif att.viewApproach.type  == 'combo'>
+			
 			<#elseif att.viewApproach.type  == 'textarea'>	
 				<#if att.required == true>
 					<div @class="{'form-group': true, 'has-error': errors.has('${firstLower(att.name)}') }">
@@ -77,6 +78,16 @@
 		<#list entity.relationships as rel>
 			<#if rel.viewApproach.type == 'modal'>
 					<Modal${firstUpper(rel.model)} v-model="${firstLower(entity.name)}.${rel.name}" :displayValue="'${rel.viewApproach.textField}'"> </Modal${firstUpper(rel.model)}> 
+			<#elseif rel.viewApproach.type == 'combo'>
+					<div class="form-group">
+						<label class="control-label" for="${firstLower(rel.name)}">${firstUpper(rel.displayName)!firstLower(rel.name)}</label>
+  						<multiselect v-model="${firstLower(entity.name)}.${firstLower(rel.name)}" name="${firstLower(rel.name)}" track-by="${(rel.viewApproach.comboVal)}" label="${(rel.viewApproach.comboVal)}" placeholder="-- Selecione --" :options="${firstLower(rel.model)}s" :searchable="false" selectLabel="" deselectLabel="" ></multiselect>						
+					</div>
+			<#elseif rel.viewApproach.type == 'multiselect'>
+					<div class="form-group">
+						<label class="control-label" for="${firstLower(rel.name)}">${firstUpper(rel.displayName)!firstLower(rel.name)}</label>
+  						<multiselect v-model="${firstLower(entity.name)}.${firstLower(rel.name)}" name="${firstLower(rel.name)}" :multiple="true" track-by="${(rel.viewApproach.comboVal)}" label="${(rel.viewApproach.comboVal)}" placeholder="-- Selecione --" :options="${firstLower(rel.model)}s" :searchable="false" selectLabel="" deselectLabel="" ></multiselect>						
+					</div>					
 			</#if>
 		</#list> 
    </#if>
@@ -122,14 +133,35 @@ export default {
 	<#if entity.relationships??>	
 	<#list entity.relationships as rel >
 		<#if rel.viewApproach.type == 'modal'>
-	Modal${firstUpper(rel.model)} ,
+	 Modal${firstUpper(rel.model)} ,
 		</#if>
 	</#list>
 	</#if>
   },
   
+  data: function() {
+    return {
+      ${firstLower(entity.name)}: {},
+	<#if entity.relationships??>	
+	<#list entity.relationships as rel >
+		<#if rel.viewApproach.type == 'combo' || rel.viewApproach.type == 'multiselect'>
+	  ${firstLower(rel.model)}s : [] , 
+		</#if>
+	</#list>
+	</#if>
+    };
+  },
+  
   created() {
     this.service = new HttpRequest("/rs/crud/${firstLower(entity.name)}s");
+
+	<#if entity.relationships??>	
+	<#list entity.relationships as rel >
+		<#if rel.viewApproach.type == 'combo' || rel.viewApproach.type == 'multiselect'>
+    this.${firstLower(rel.model)}Service = new HttpRequest("/rs/crud/${firstLower(rel.model)}s");
+		</#if>
+	</#list>
+	</#if>
   },
 
   mounted() {
@@ -141,16 +173,24 @@ export default {
           this.${firstLower(entity.name)} = data;
         },
         error => {
-          console.error("Error getting by Id, " + error);
+          console.error("Error fetching  by id", error);
         }
       );
     }
-  },
-
-  data: function() {
-    return {
-      ${firstLower(entity.name)}: {}
-    };
+   	<#if entity.relationships??>	
+	<#list entity.relationships as rel >
+		<#if rel.viewApproach.type == 'combo' || rel.viewApproach.type == 'multiselect' >
+	  this.${firstLower(rel.model)}Service.getAll(
+		data => {
+        	this.${firstLower(rel.model)}s = data;
+        },
+        error => {
+        	console.error("Error fetching  ${firstLower(rel.model)}s", error);
+        }
+	 )
+		</#if>
+	</#list>
+	</#if>
   },
 
   methods: {

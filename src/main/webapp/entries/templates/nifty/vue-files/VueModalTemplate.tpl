@@ -50,7 +50,7 @@
 						<table class="table table-striped table-bordered table-hover  no-footer  ">
 							<thead>
 							<tr>
-						<#list entity.attributes as att>									
+						<#list entity.attributes as att>
 								<th class="th-${firstLower(att.name)}}}">
 									<a >
 										<i class="fa "></i>
@@ -59,11 +59,11 @@
 								</th>
 						</#list> 
 						<#list entity.relationships as rel >
-							<#if rel.showInPages >
+							<#if rel.showInPages && rel.viewApproach?? && rel.viewApproach.type == 'modal'  || rel.viewApproach.type == 'combo'>
 								<th class="th-${firstLower(rel.name)}}}">
 									<a >
 										<i class="fa "></i>
-										${firstLower(rel.name)}.${rel.viewApproach.comboVal || rel.viewApproach.textField}
+										${firstUpper(rel.displayName)!firstUpper(rel.name)}
 									</a>
 								</th>
 							</#if>
@@ -76,8 +76,12 @@
 								<td>{{${firstLower(entity.name)}.${firstLower(att.name)}}}</td>
 						</#list> 
 						<#list entity.relationships as rel >
-							<#if rel.showInPages >
-								<td>{{${firstLower(entity.name)}.${firstUpper(rel.name)}!.${firstUpper(rel.viewApproach.textField)} }}</td>
+							<#if rel.showInPages && rel.viewApproach?? && rel.viewApproach.type == 'modal'  || rel.viewApproach.type == 'combo'>
+								<#if rel.viewApproach.type == 'modal'>
+								<td>{{${firstLower(entity.name)}.${rel.name}!.${rel.viewApproach.textField} }}</td>
+								<#elseif rel.viewApproach.type == 'combo'>
+								<td>{{${firstLower(entity.name)}.${rel.name}!.${rel.viewApproach.comboVal} }}</td>										
+								</#if>
 							</#if>
 						</#list>
 							</tr>

@@ -6,6 +6,7 @@ public interface TemplateFileName {
 
 	final String FORM_VUE = "Form${entity.name}";
 	final String PAGE_VUE = "Page${entity.name}";
+	final String MODAL_VUE = "Modal${entity.name}";
 
 	final String MODEL_JAVA = "${entity.name}";
 	final String FILTER_MODEL_JAVA = "Filter${entity.name}";

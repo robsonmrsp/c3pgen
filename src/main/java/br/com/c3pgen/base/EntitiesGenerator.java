@@ -22,6 +22,7 @@ public class EntitiesGenerator {
 	private static MarkerGenerator tsFormAngularGenerator;
 	private static MarkerGenerator vueFormGenerator;
 	private static MarkerGenerator vuePageGenerator;
+	private static MarkerGenerator vueModalGenerator;
 
 	private static MarkerGenerator jsModelGenerator;
 	private static MarkerGenerator jsRouterGenerator;
@@ -184,6 +185,7 @@ public class EntitiesGenerator {
 
 		vueFormGenerator = new MarkerGenerator(freeMarkerConfig, application, "VueFormTemplate.tpl", appVueRootFolder + "${entity.name}/", TemplateFileName.FORM_VUE, FileType.VUE);
 		vuePageGenerator = new MarkerGenerator(freeMarkerConfig, application, "VuePageTemplate.tpl", appVueRootFolder + "${entity.name}/", TemplateFileName.PAGE_VUE, FileType.VUE);
+		vueModalGenerator = new MarkerGenerator(freeMarkerConfig, application, "VueModalTemplate.tpl", appVueRootFolder + "${entity.name}/", TemplateFileName.MODAL_VUE, FileType.VUE);
 
 		try {
 
@@ -195,6 +197,7 @@ public class EntitiesGenerator {
 				for (ApplicationEntity ent : application.getEntities()) {
 					vueFormGenerator.generateEntityFile(application, ent);
 					vuePageGenerator.generateEntityFile(application, ent);
+					vueModalGenerator.generateEntityFile(application, ent);
 				}
 			} else if (application.getView().equalsIgnoreCase("backbone")) {
 				for (ApplicationEntity ent : application.getEntities()) {
