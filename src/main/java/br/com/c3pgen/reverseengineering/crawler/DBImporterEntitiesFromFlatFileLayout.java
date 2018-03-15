@@ -14,8 +14,8 @@ import br.com.c3pgen.model.ApplicationEntity;
 import br.com.c3pgen.model.Attribute;
 import br.com.c3pgen.model.AttributeType;
 
-public class DBImporterEntitiesFromFileLayout {
-	private static final Logger LOGGER = Logger.getLogger(DBImporterEntitiesFromFileLayout.class);
+public class DBImporterEntitiesFromFlatFileLayout {
+	private static final Logger LOGGER = Logger.getLogger(DBImporterEntitiesFromFlatFileLayout.class);
 
 	public Application extractToApplication(DBImporterOptions options) throws Exception {
 
