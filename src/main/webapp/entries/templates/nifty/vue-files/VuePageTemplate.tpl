@@ -55,18 +55,6 @@
 								<toggle-button  v-model="datatableConfig.filterParameters.${firstLower(att.name)}" :width="70" :height="30" :color="{checked: '#7ABE5C', unchecked: '#8F9EA6'}" :sync="true" :labels="{checked: 'Sim', unchecked: 'Não'}"/>
 							</div>					
 					<#elseif att.viewApproach.type  == 'datepicker'>	
-						<#if att.required == true>
-							<div @class="{'form-group': true, 'has-error': errors.has('${firstLower(att.name)}') }">
-								<label class="control-label" for="${firstLower(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)} *</label>
-								<div class="input-group">
-									<date-picker v-validate="'required'" v-mask="'datetime'" v-model="datatableConfig.filterParameters.${firstLower(att.name)}" :config="{format: '${att.dateFormat}',useCurrent: false}"></date-picker>
-									<div class="input-group-addon	append-right">
-										<span class="fa fa-calendar"></span>
-									</div>
-								</div>
-								<span v-show="errors.has('${firstLower(att.name)}')"  class="help-block help-block form-error"  >{{ errors.first('${firstLower(att.name)}') }}</span>
-							</div>							
-						<#else>
 							<div class="form-group">
 								<label class="control-label" for="${firstLower(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}</label>
 								<div class="input-group">
@@ -76,38 +64,19 @@
 									</div>
 								</div>
 							</div>
-						</#if>
 					<#elseif att.viewApproach.type  == 'radiogroup'>
 					<#elseif att.viewApproach.type  == 'combo'>
 					<#elseif att.viewApproach.type  == 'textarea'>	
-						<#if att.required == true>
-							<div @class="{'form-group': true, 'has-error': errors.has('${firstLower(att.name)}') }">
-								<label class="control-label" for="${firstLower(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}>${firstUpper(att.displayName)!firstLower(att.name)}</label>
-								<textarea rows="3"  v-model="datatableConfig.filterParameters.${firstLower(att.name)}"  class="form-control" maxlength="2000"></textarea>
-								<span v-show="errors.has('${firstLower(att.name)}')"  class="help-block help-block form-error"  >{{ errors.first('${firstLower(att.name)}') }}</span>
-							</div>					
-						<#else>
 							<div class="form-group">
 								<label class="control-label" for="${firstLower(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}>${firstUpper(att.displayName)!firstLower(att.name)}</label>
 								<textarea rows="3"  v-model="datatableConfig.filterParameters.${firstLower(att.name)}"  class="form-control" maxlength="2000"></textarea>
 							</div>					
-						</#if>
-		
-					
 					<#elseif att.viewApproach.type  == 'upload'>	
 					<#else>	
-						<#if att.required == true>			
-							<div @class="{'form-group': true, 'has-error': errors.has('${firstLower(att.name)}') }">
-								<label class="control-label" for="${firstLower(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}  *</label>
-								<input type="text" v-validate="'required'"  name='${firstLower(att.name)}' v-model="datatableConfig.filterParameters.${firstLower(att.name)}" class="form-control"  >
-								<span v-show="errors.has('${firstLower(att.name)}')"  class="help-block help-block form-error"  >{{ errors.first('${firstLower(att.name)}') }}</span>
-							</div>
-						<#else>
-							<div class=form-group">
+							<div class="form-group">
 								<label class="control-label" for="${firstLower(att.name)}">${firstUpper(att.displayName)!firstUpper(att.name)}</label>
 								<input type="text" name='${firstLower(att.name)}'  v-model="datatableConfig.filterParameters.${firstLower(att.name)}" class="form-control" >
 							</div>
-						</#if>
 					</#if>
 		  	   <#else>
 		  	   </#if>
@@ -172,9 +141,9 @@
 						<#list entity.relationships as rel >
 							<#if rel.showInPages && rel.viewApproach?? && rel.viewApproach.type == 'modal'  || rel.viewApproach.type == 'combo'>
 								<#if rel.viewApproach.type == 'modal'>
-								<td>{{${firstLower(entity.name)}.${rel.name}!.${rel.viewApproach.textField} }}</td>
+								<td>{{${firstLower(entity.name)}.${rel.name}.${rel.viewApproach.textField} }}</td>
 								<#elseif rel.viewApproach.type == 'combo'>
-								<td>{{${firstLower(entity.name)}.${rel.name}!.${rel.viewApproach.comboVal} }}</td>										
+								<td>{{${firstLower(entity.name)}.${rel.name}.${rel.viewApproach.comboVal} }}</td>										
 								</#if>
 							</#if>
 						</#list>
@@ -271,7 +240,7 @@ export default {
       this.service.getPage(
         this.datatableConfig,
         data => {
-          console.debug("success fetching ${firstLower(entity.name)}´s page" , data);
+          console.debug("success fetching ${firstLower(entity.name)}´s page", data);
         },
 
         error => {
