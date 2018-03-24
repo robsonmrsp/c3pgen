@@ -87,8 +87,8 @@ public class EntitiesGenerator {
 		String appRootFolder = Util.currentDir() + File.separator + "out/" + application.getAppName();
 
 		String appAngularRootFolder = Util.currentDir() + File.separator + "out/" + application.getAppName() + File.separator + "angular/src/app/layout/";
-		String appVueRootSrcFolder = File.separator + "out/" + application.getAppName() + File.separator + "web/web/src/";
-		String appVueComponentsFolder = Util.currentDir() + appVueRootSrcFolder + "components/";
+		String appVueRootSrcFolder = Util.currentDir() + File.separator + "out/" + application.getAppName() + File.separator + "web/web/src/";
+		String appVueComponentsFolder = appVueRootSrcFolder + "components/";
 
 		String webAppRootFolder = appRootFolder + "/src/main/webapp/";
 		String jsRootFolder = webAppRootFolder + "js/"; // js/spec/router
@@ -189,7 +189,9 @@ public class EntitiesGenerator {
 		vueFormGenerator = new MarkerGenerator(freeMarkerConfig, application, "VueFormTemplate.tpl", appVueComponentsFolder + "${entity.name}/", TemplateFileName.FORM_VUE, FileType.VUE);
 		vuePageGenerator = new MarkerGenerator(freeMarkerConfig, application, "VuePageTemplate.tpl", appVueComponentsFolder + "${entity.name}/", TemplateFileName.PAGE_VUE, FileType.VUE);
 		vueModalGenerator = new MarkerGenerator(freeMarkerConfig, application, "VueModalTemplate.tpl", appVueComponentsFolder + "${entity.name}/", TemplateFileName.MODAL_VUE, FileType.VUE);
+
 		vueRouterGenerator = new MarkerGenerator(freeMarkerConfig, application, "VueRouterTemplate.tpl", appVueRootSrcFolder + "router/", TemplateFileName.ROUTER_VUE, FileType.JAVASCRIPT);
+
 		vueSidebarGenerator = new MarkerGenerator(freeMarkerConfig, application, "VueSidebarTemplate.tpl", appVueComponentsFolder + "layout/", TemplateFileName.SIDEBAR_VUE, FileType.VUE);
 
 		try {

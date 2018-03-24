@@ -141,9 +141,10 @@
 						<#list entity.relationships as rel >
 							<#if rel.showInPages && rel.viewApproach?? && rel.viewApproach.type == 'modal'  || rel.viewApproach.type == 'combo'>
 								<#if rel.viewApproach.type == 'modal'>
-								<td>{{${firstLower(entity.name)}.${rel.name}.${rel.viewApproach.textField} }}</td>
+								
+								<td>{{ ${firstLower(entity.name)}.${rel.name} && ${firstLower(entity.name)}.${rel.name}.${rel.viewApproach.textField} }}</td>
 								<#elseif rel.viewApproach.type == 'combo'>
-								<td>{{${firstLower(entity.name)}.${rel.name}.${rel.viewApproach.comboVal} }}</td>										
+								<td>{{ ${firstLower(entity.name)}.${rel.name} && ${firstLower(entity.name)}.${rel.name}.${rel.viewApproach.comboVal} }}</td>										
 								</#if>
 							</#if>
 						</#list>

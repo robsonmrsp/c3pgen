@@ -1,3 +1,31 @@
+1) public static <T> T createObjectFrom(Class<T> clazz, Map<String, String> mapfields) {
+ devemos codificar o bloco  dentro do for com um try catch para que ele possa continuar.
+ 
+2) por algum moti  não está levando os arquivos da pasta resources.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 1 - testar se a geração está funcionando para o col e para as notificações.
 2 - Criar uma branch para a geração dos testes de integração/controller. Mas antes definir o melhor layout usando a alicação netflics
 3 - Alterar o POM.xml para atualização das libs do hibernate e spring no pom.xml 

@@ -154,7 +154,6 @@ export default {
   
   created() {
     this.service = new HttpRequest("/rs/crud/${firstLower(entity.name)}s");
-
 	<#if entity.relationships??>	
 	<#list entity.relationships as rel >
 		<#if rel.viewApproach.type == 'combo' || rel.viewApproach.type == 'multiselect'>
