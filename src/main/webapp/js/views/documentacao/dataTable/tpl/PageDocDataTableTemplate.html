@@ -15,11 +15,13 @@
 		<p>Please consider that this layout has a bit different html structure that other layouts.</p>
 		<pre>
 			<code class="language-javascript">
-Prism.hooks.add('wrap', function(env) {
-	if (env.token === 'entity') {
-		env.attributes['title'] = env.content.replace(/&amp;/, '&');
-	}
-});				
+					this.dataTableFilme = new JSetup.DataTable({
+						columns : this.getColumns(),
+						collection : this.filmes,
+						onFetching : this.startFetch,
+						onFetched : this.stopFetch,
+						view : this
+					});				
 			</code>
 		</pre>
 	</section>

@@ -521,9 +521,9 @@ define(function(require) {
 				theColValue = model.get(this.column.get("name"));
 			}
 
-			var theFormattedColValue = this.formatter.fromRaw(theColValue || '', model);
+			var theFixedValue = (_.isUndefined(theColValue) || _.isNull(theColValue)) ? '' : theColValue;
 
-			this.$el.text(this.formatter.fromRaw(theColValue || '', model));
+			this.$el.text(this.formatter.fromRaw(theFixedValue, model));
 
 			this.delegateEvents();
 			return this;

@@ -1343,13 +1343,28 @@ html {
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0)
 }
 
+/* body { */
+/* 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; */
+/* 	font-size: 14px; */
+/* 	line-height: 1.42857143; */
+/* 	color: #333; */
+/* 	background-color: #fff */
+/* } */
+
 body {
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-size: 14px;
-	line-height: 1.42857143;
-	color: #333;
-	background-color: #fff
+  font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+
+/*   font-family: Raleway, "Helvetica Neue", Helvetica, Arial, sans-serif; */
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #34495e;
+  background-color: #fff;
+  margin: 0;
 }
+
+
+
 
 button, input, select, textarea {
 	font-family: inherit;
@@ -10959,7 +10974,8 @@ body[data-spy] {
 }
 
 .main-content {
-	padding: 50px 50px 50px 0;
+/* 	padding: 50px 50px 50px 0; */
+	padding: 20px 20px 20px 0;
 	font-size: 16px;
 	line-height: 27px
 }
@@ -11042,7 +11058,7 @@ body[data-spy] {
 
 .site-header .navbar {
 	background-color: #5cc7b2;
-	padding: 20px 15px;
+	padding: 2px 1px;
 	margin: 0;
 	border: none;
 	border-radius: 0;
@@ -11611,13 +11627,17 @@ body[data-spy] {
 }
 
 .sidebar-boxed ~ header .banner, .sidebar-boxed ~ footer .row {
-	padding-left: 60px;
-	padding-right: 60px
+/* 	padding-left: 60px; */
+/* 	padding-right: 60px */
+	padding-left: 20px;
+	padding-right: 20px;
 }
 
 .sidebar-boxed ~ main .main-content {
-	padding-left: 75px;
-	padding-right: 75px
+/* 	padding-left: 75px; */
+/* 	padding-right: 75px */
+	padding-left: 25px;
+	padding-right: 25px;
 }
 
 .sidebar-boxed.sidebar-right {
@@ -11662,8 +11682,8 @@ body[data-spy] {
 }
 
 .sidebar-boxed .sidenav>li>a {
-	padding-top: 6px !important;
-	padding-bottom: 6px !important;
+/* 	padding-top: 6px !important; */
+/* 	padding-bottom: 6px !important; */
 	color: #777
 }
 
@@ -11740,8 +11760,8 @@ body[data-spy] {
 		padding-right: 120px
 	}
 	.sidebar-boxed ~ main .main-content {
-		padding-left: 135px;
-		padding-right: 135px
+/* 		padding-left: 135px; */
+/* 		padding-right: 135px */
 	}
 }
 
@@ -11918,10 +11938,10 @@ body[data-spy] {
 	right: 20px
 }
 
-body {
-	font-family: Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
-	color: #333
-}
+/* body { */
+/* 	font-family: Lato, "Helvetica Neue", Helvetica, Arial, sans-serif; */
+/* 	color: #333 */
+/* } */
 
 a, a:focus, a:hover {
 	color: #5cc7b2
@@ -12003,7 +12023,7 @@ h6 {
 }
 
 h1, h2, h3, h4, h5, h6 {
-	font-family: Raleway, "Helvetica Neue", Helvetica, Arial, sans-serif
+/* 	font-family: Raleway, "Helvetica Neue", Helvetica, Arial, sans-serif */
 }
 
 h1 a, h1 a:focus, h1 a:hover, h2 a, h2 a:focus, h2 a:hover, h3 a, h3 a:focus,

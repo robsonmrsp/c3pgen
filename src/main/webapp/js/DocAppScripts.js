@@ -20,11 +20,11 @@ define([ 'jquery' ], function($) {
 
 		// Smoothscroll to anchor in page load
 		var hash = location.hash.replace('#', '');
-		if (hash != '' && $("#" + hash).length > 0) {
-			$('html, body').animate({
-				scrollTop : $("#" + hash).offset().top - 100
-			}, 600);
-		}
+		// if (hash != '' && $("#" + hash).length > 0) {
+		// $('html, body').animate({
+		// scrollTop : $("#" + hash).offset().top - 100
+		// }, 600);
+		// }
 
 		// Full height body to make sure footer will place in bottom of the
 		// page
@@ -41,9 +41,7 @@ define([ 'jquery' ], function($) {
 		 * 
 		 * if ( $('.site-header.sticky').length ) { offset_top = 100; }
 		 * 
-		 * var sidenav_max_height = $(window).height() -
-		 * $('.sidenav.sticky').position().top - offset_top;
-		 * $('.sidenav.sticky').height(sidenav_max_height); }
+		 * var sidenav_max_height = $(window).height() - $('.sidenav.sticky').position().top - offset_top; $('.sidenav.sticky').height(sidenav_max_height); }
 		 */
 
 		//
@@ -104,8 +102,7 @@ define([ 'jquery' ], function($) {
 		// 
 		// Remove it, because it make a jump on page load
 		/*
-		 * if ('.navbar-brand > img') { $('.navbar-brand').prepend('<span
-		 * class="force-middle"></span>'); }
+		 * if ('.navbar-brand > img') { $('.navbar-brand').prepend('<span class="force-middle"></span>'); }
 		 */
 
 		//
