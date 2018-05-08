@@ -1,0 +1,31 @@
+Sobre fontes:
+Tentar a configuração abaixo:
+https://blog.christopherlis.com/loading-fonts-webpack/
+
+Sobre o aprendizado até agora, aparentemente a fonte DEVE ser copiada de onde for
+ usada e depois referenciada pelo código. 
+Imaginava que os loaders do webpack iriam lá no node_modules e pegariam os arquivos de fonte e levariam para o build/fonts/..., o que me parece não acontecer.
+
+De qualquer forma VOU seguir o codigo do artigo acima, definido em: https://github.com/christopher4lis/webpack-fonts-tutorial-complete
+e ver no que dá. Aparentemene é uma simples configuração que pode ser reproduzida a fim de ajudar no aprendizado.
+
+
+
+dia 26
+Fazer a validação baseada nisso:
+https://github.com/atomicobject/elegant-form-validation-react
+
+
+dia 27
+usado para fazer a máscara.
+
+dia 30
+validacao de formularios caseira
+https://medium.com/code-monkey/client-side-form-validation-in-react-40e367de47ba
+
+dia 03-05
+Fazer funcionar a pesquisa, e a paginação.
+
+dia 04-05
+- Ainda existe o problema na paginação, como o problema pode ser corrigido no futuro melhorando a o componente de paginação estamos deixando isso para resolver depois
+- Foi feita uma mlhoria no visual da pagina.

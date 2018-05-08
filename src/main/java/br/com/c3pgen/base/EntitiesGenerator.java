@@ -20,8 +20,16 @@ public class EntitiesGenerator {
 	private static MarkerGenerator jsFormGenerator;
 
 	private static MarkerGenerator tsFormAngularGenerator;
+
 	private static MarkerGenerator vueFormGenerator;
 	private static MarkerGenerator vuePageGenerator;
+
+	private static MarkerGenerator reactFormGenerator;
+	private static MarkerGenerator reactPageGenerator;
+
+	private static MarkerGenerator reactRouterGenerator;
+	private static MarkerGenerator reactSidebarGenerator;
+
 	private static MarkerGenerator vueModalGenerator;
 	private static MarkerGenerator vueRouterGenerator;
 	private static MarkerGenerator vueSidebarGenerator;
@@ -186,11 +194,18 @@ public class EntitiesGenerator {
 
 		tsFormAngularGenerator = new MarkerGenerator(freeMarkerConfig, application, "TsFormAngularComponentTemplate.tpl", appAngularRootFolder + "$kc{entity.name}/form-$kc{entity.name}/", TemplateFileName.FORM_TS, FileType.TYPESCRIPT);
 
-		vueFormGenerator = new MarkerGenerator(freeMarkerConfig, application, "VueFormTemplate.tpl", appVueComponentsFolder + "${entity.name}/", TemplateFileName.FORM_VUE, FileType.VUE);
-		vuePageGenerator = new MarkerGenerator(freeMarkerConfig, application, "VuePageTemplate.tpl", appVueComponentsFolder + "${entity.name}/", TemplateFileName.PAGE_VUE, FileType.VUE);
+		vueFormGenerator = new MarkerGenerator(freeMarkerConfig, application, "VueFormTemplate.tpl", appVueComponentsFolder + "${entity.name}/", TemplateFileName.FORM, FileType.VUE);
+		vuePageGenerator = new MarkerGenerator(freeMarkerConfig, application, "VuePageTemplate.tpl", appVueComponentsFolder + "${entity.name}/", TemplateFileName.PAGE, FileType.VUE);
+
 		vueModalGenerator = new MarkerGenerator(freeMarkerConfig, application, "VueModalTemplate.tpl", appVueComponentsFolder + "${entity.name}/", TemplateFileName.MODAL_VUE, FileType.VUE);
-		vueRouterGenerator = new MarkerGenerator(freeMarkerConfig, application, "VueRouterTemplate.tpl", appVueRootSrcFolder + "router/", TemplateFileName.ROUTER_VUE, FileType.JAVASCRIPT);
-		vueSidebarGenerator = new MarkerGenerator(freeMarkerConfig, application, "VueSidebarTemplate.tpl", appVueComponentsFolder + "layout/", TemplateFileName.SIDEBAR_VUE, FileType.VUE);
+
+		vueRouterGenerator = new MarkerGenerator(freeMarkerConfig, application, "VueRouterTemplate.tpl", appVueRootSrcFolder + "router/", TemplateFileName.ROOT, FileType.JAVASCRIPT);
+		vueSidebarGenerator = new MarkerGenerator(freeMarkerConfig, application, "VueSidebarTemplate.tpl", appVueComponentsFolder + "layout/", TemplateFileName.SIDEBAR, FileType.VUE);
+
+		reactFormGenerator = new MarkerGenerator(freeMarkerConfig, application, "ReactFormTemplate.tpl", appVueComponentsFolder + "${entity.name}/", TemplateFileName.FORM, FileType.JAVASCRIPT);
+		reactPageGenerator = new MarkerGenerator(freeMarkerConfig, application, "ReactPageTemplate.tpl", appVueComponentsFolder + "${entity.name}/", TemplateFileName.PAGE, FileType.JAVASCRIPT);
+		reactRouterGenerator = new MarkerGenerator(freeMarkerConfig, application, "ReactRouterTemplate.tpl", appVueRootSrcFolder + "router/", TemplateFileName.ROOT, FileType.JAVASCRIPT);
+		reactSidebarGenerator = new MarkerGenerator(freeMarkerConfig, application, "ReactSidebarTemplate.tpl", appVueComponentsFolder + "layout/", TemplateFileName.SIDEBAR, FileType.JAVASCRIPT);
 
 		try {
 
@@ -203,6 +218,13 @@ public class EntitiesGenerator {
 					vueFormGenerator.generateEntityFile(application, ent);
 					vuePageGenerator.generateEntityFile(application, ent);
 					vueModalGenerator.generateEntityFile(application, ent);
+				}
+				vueRouterGenerator.generate(application);
+				vueSidebarGenerator.generate(application);
+			} else if (application.getView().equalsIgnoreCase("react")) {
+				for (ApplicationEntity ent : application.getEntities()) {
+					reactFormGenerator.generateEntityFile(application, ent);
+					reactPageGenerator.generateEntityFile(application, ent);
 				}
 				vueRouterGenerator.generate(application);
 				vueSidebarGenerator.generate(application);

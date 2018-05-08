@@ -19,6 +19,7 @@ define(function(require) {
 		defaults : {
 			id : null,
 			name : '',
+			view : '',
 			skin : null,
 			description : '',
 			rootPackage : '',
