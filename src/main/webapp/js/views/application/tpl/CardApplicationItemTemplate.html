@@ -3,25 +3,34 @@
 	<div class="panel-body" style="min-height: 180px">
 		<span class="label label-success pull-right"></span>
 		<div class="row">
+			<h4>
+				<a style="color: #3498db; font-size: 1.5em" href="#app/editApplication/{{id}}">{{name}}</a>
+			</h4>
 			<div class="col-sm-8 col-md-9">
-				<h4>
-					<a style="color: #3498db; font-size: 1.5em" href="#app/editApplication/{{id}}">{{name}}</a>
-				</h4>
 				<p>{{description}}</p>
 				<div class="row">
+					<div class="project-label">ENTIDADES</div>
 					<div class="col-sm-12">
-						<div class="project-label">ENTIDADES</div>
 						<small>
 							<p class="text-left desc-entities"></p>
 						</small>
 					</div>
 				</div>
+				
 				<div class="row">
-					<div class="col-sm-12">
-						<div class="project-label">CARACTERÍSTICAS</div>
+					<div class="project-label">CARACTERÍSTICAS</div>
+					<div class="col-sm-6">
 						<small>
 							<p class="text-left desc-modules">Multitenancy : {{multitenancy ? 'Sim' :'Não' }}</p>
 							<p class="text-left desc-modules">Template usado: {{skin}}</p>
+							<p class="text-left desc-modules">Pacote : {{rootPackage }}</p>
+						</small>
+					</div>
+					<div class="col-sm-6">
+						<small>
+							<p class="text-left desc-modules">Auditado: {{useAudit ? 'Sim' :'Não' }}</p>
+							<p class="text-left desc-modules">Módulo: {{asModule ? 'Sim' :'Não' }}</p>
+							<p class="text-left desc-modules">Testes: {{generateTest ? 'Sim' :'Não' }}</p>
 						</small>
 					</div>
 				</div>

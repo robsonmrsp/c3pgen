@@ -68,7 +68,7 @@
 					<#elseif att.viewApproach.type  == 'combo'>
 					<#elseif att.viewApproach.type  == 'textarea'>	
 							<div class="form-group">
-								<label class="control-label" for="${firstLower(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}>${firstUpper(att.displayName)!firstLower(att.name)}</label>
+								<label class="control-label" for="${firstLower(att.name)}">${firstUpper(att.displayName)!firstLower(att.name)}</label>
 								<textarea rows="3"  v-model="datatableConfig.filterParameters.${firstLower(att.name)}"  class="form-control" maxlength="2000"></textarea>
 							</div>					
 					<#elseif att.viewApproach.type  == 'upload'>	

@@ -1,0 +1,77 @@
+.multiselect__tags{
+    min-height:30px;
+    display:block;
+    padding:4px 30px 0 8px;
+    border-radius:0px;
+    border:1px solid #e8e8e8;
+    background:#fff
+}
+.multiselect__select{   
+    position:absolute;
+    width:40px;
+    height:32px;
+    right:1px;
+    top:1px;
+    padding:4px 8px;
+    text-align:center;
+    transition:transform .2s ease
+}
+.multiselect__single {
+    position: absolute;
+    display: inline-block;
+    min-height: 20px;
+    line-height: 20px;
+    border: none;
+    border-radius: 5px;
+    background: #fff;
+    padding: 0 0 0 5px;
+    width: 100%;
+    -webkit-transition: border .1s ease;
+    transition: border .1s ease;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin-bottom: 8px;
+    vertical-align: top;
+}
+.error-block {
+    font-size: 11px;
+    color :#a94442
+}
+.td-actions button{
+    margin: 2px;
+}
+.td-actions {
+    max-width: 160px !important;
+	width: 160px !important;
+	padding: 8px;
+    text-align: center;
+    padding-top: 0px ! important;
+    padding-bottom: 0px !important;
+    vertical-align: middle !important;
+}
+table th[class*="th"] {
+    padding: 8px;
+    text-align: center;
+    padding-top: 0px ! important;
+    padding-bottom: 0px !important;
+    vertical-align: middle !important;
+}
+.table-responsive{
+    min-height: .01%;
+    overflow-x: auto;
+}
+.page-toolbar{
+    padding-bottom: 15px !important;
+    padding-left: 7px !important;
+    padding-right: 7px !important;
+    margin-bottom: 30px;
+}
+.page-footer-components{
+    padding-bottom: 15px !important;
+    padding-left: 7px !important;
+    padding-right: 7px !important;
+    margin-bottom: 30px;
+}
+.combo-page-size{
+    margin: 5px;
+}

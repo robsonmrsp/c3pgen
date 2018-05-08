@@ -53,7 +53,10 @@ require.config({
 		'plugins' : '../vendor/docs/assets/js/theDocs.all',
 		'prism' : '../vendor/prism/prism',
 
+		'bootstrapSwitch' : '../vendor/bootstrap-switch-3.3.4/dist/js/bootstrap-switch',
+
 	},
+
 	shim : {
 		'underscore' : {
 			exports : '_'
@@ -149,6 +152,8 @@ require.config({
 		'editable' : [ 'jquery', 'bootstrap' ],
 		'jqueryForm' : [ 'jquery' ],
 		'plugins' : [ 'jquery' ],
+
+		'bootstrapSwitch' : [ 'jquery' ],
 	},
 	wrapShim : true,
 });

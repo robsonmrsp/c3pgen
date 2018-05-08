@@ -4,11 +4,13 @@ public interface TemplateFileName {
 
 	final String FORM_TS = "form-$kc{entity.name}.component";
 
-	final String FORM_VUE = "Form${entity.name}";
-	final String PAGE_VUE = "Page${entity.name}";
+	final String FORM = "Form${entity.name}";
+	final String PAGE = "Page${entity.name}";
+
 	final String MODAL_VUE = "Modal${entity.name}";
-	final String SIDEBAR_VUE = "Sidebar";
 	final String ROUTER_VUE = "index";
+	final String SIDEBAR = "Sidebar";
+	final String ROOT = "Root";
 
 	final String MODEL_JAVA = "${entity.name}";
 	final String FILTER_MODEL_JAVA = "Filter${entity.name}";

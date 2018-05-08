@@ -1,0 +1,9 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "theme/demo/css/nifty.css";
+@import "theme/demo/css/nifty-demo-icons.css";
+@import "theme/demo/css/theme-ocean.css";
+
+@import "backgrid.css";
+@import "custom.css";
+
