@@ -92,6 +92,10 @@ public class EntitiesGenerator {
 
 	public void generate(String... exceptions) throws Exception {
 
+		// React
+		String appReactRootSrcFolder = Util.currentDir() + File.separator + "out/" + application.getAppName() + File.separator + "web/web/app/";
+		String appReactComponentsFolder = appReactRootSrcFolder + "components/";
+
 		String appRootFolder = Util.currentDir() + File.separator + "out/" + application.getAppName();
 
 		String appAngularRootFolder = Util.currentDir() + File.separator + "out/" + application.getAppName() + File.separator + "angular/src/app/layout/";
@@ -202,10 +206,10 @@ public class EntitiesGenerator {
 		vueRouterGenerator = new MarkerGenerator(freeMarkerConfig, application, "VueRouterTemplate.tpl", appVueRootSrcFolder + "router/", TemplateFileName.ROOT, FileType.JAVASCRIPT);
 		vueSidebarGenerator = new MarkerGenerator(freeMarkerConfig, application, "VueSidebarTemplate.tpl", appVueComponentsFolder + "layout/", TemplateFileName.SIDEBAR, FileType.VUE);
 
-		reactFormGenerator = new MarkerGenerator(freeMarkerConfig, application, "ReactFormTemplate.tpl", appVueComponentsFolder + "${entity.name}/", TemplateFileName.FORM, FileType.JAVASCRIPT);
-		reactPageGenerator = new MarkerGenerator(freeMarkerConfig, application, "ReactPageTemplate.tpl", appVueComponentsFolder + "${entity.name}/", TemplateFileName.PAGE, FileType.JAVASCRIPT);
-		reactRouterGenerator = new MarkerGenerator(freeMarkerConfig, application, "ReactRouterTemplate.tpl", appVueRootSrcFolder + "router/", TemplateFileName.ROOT, FileType.JAVASCRIPT);
-		reactSidebarGenerator = new MarkerGenerator(freeMarkerConfig, application, "ReactSidebarTemplate.tpl", appVueComponentsFolder + "layout/", TemplateFileName.SIDEBAR, FileType.JAVASCRIPT);
+		reactFormGenerator = new MarkerGenerator(freeMarkerConfig, application, "ReactFormTemplate.tpl", appReactComponentsFolder + "${entity.name}/", TemplateFileName.FORM, FileType.JAVASCRIPT);
+		reactPageGenerator = new MarkerGenerator(freeMarkerConfig, application, "ReactPageTemplate.tpl", appReactComponentsFolder + "${entity.name}/", TemplateFileName.PAGE, FileType.JAVASCRIPT);
+		reactRouterGenerator = new MarkerGenerator(freeMarkerConfig, application, "ReactRouterTemplate.tpl", appReactRootSrcFolder + "router/", TemplateFileName.ROOT, FileType.JAVASCRIPT);
+		reactSidebarGenerator = new MarkerGenerator(freeMarkerConfig, application, "ReactSidebarTemplate.tpl", appReactComponentsFolder + "layout/", TemplateFileName.SIDEBAR, FileType.JAVASCRIPT);
 
 		try {
 
@@ -226,8 +230,8 @@ public class EntitiesGenerator {
 					reactFormGenerator.generateEntityFile(application, ent);
 					reactPageGenerator.generateEntityFile(application, ent);
 				}
-				vueRouterGenerator.generate(application);
-				vueSidebarGenerator.generate(application);
+				reactRouterGenerator.generate(application);
+				reactSidebarGenerator.generate(application);
 			} else if (application.getView().equalsIgnoreCase("backbone")) {
 				for (ApplicationEntity ent : application.getEntities()) {
 					jsFormGenerator.generateEntityFile(application, ent);

@@ -338,9 +338,6 @@ public class Attribute extends AbstractTimestampEntity {
 			if (type.getClassName().equalsIgnoreCase("datetime")) {
 				setPlugin("datetime");
 			}
-			if (viewApproach.get) {
-				setPlugin("datetime");
-			}
 		}
 		return plugin;
 	}
