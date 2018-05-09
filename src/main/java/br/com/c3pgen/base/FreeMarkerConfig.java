@@ -63,6 +63,8 @@ public class FreeMarkerConfig {
 			String templatePathName = Util.currentDir() + File.separator + "entries" + File.separator + "templates" + File.separator + skin + File.separator;
 
 			String templateVuePathName = templatePathName + "vue-files";
+			
+			String templateReactPathName = templatePathName + "react-files";
 
 			String templateCorePathName = Util.currentDir() + File.separator + "entries" + File.separator + "templates" + File.separator + skin + File.separator + "appbase" + File.separator + "core" + File.separator;
 			// String mobileTemplateCorePathName = Util.currentDir() + File.separator + "entries" + File.separator + "mobile-templates" + File.separator + "nativedroid" + File.separator + "appbase" + File.separator + "core" + File.separator;
@@ -70,6 +72,7 @@ public class FreeMarkerConfig {
 			FileTemplateLoader ftl1 = new FileTemplateLoader(new File(commonPathName));
 			FileTemplateLoader ftlAngular = new FileTemplateLoader(new File(commonPathNameAngular));
 			FileTemplateLoader ftlVue = new FileTemplateLoader(new File(templateVuePathName));
+			FileTemplateLoader ftlReact = new FileTemplateLoader(new File(templateReactPathName));
 			// FileTemplateLoader ftlMobileCommon = new FileTemplateLoader(new File(commonMobilePathName));
 			// FileTemplateLoader ftlMobileTemplateCommon = new FileTemplateLoader(new File(mobileTemplateCorePathName));
 			FileTemplateLoader ftlTests = new FileTemplateLoader(new File(testTemplates));
@@ -104,7 +107,7 @@ public class FreeMarkerConfig {
 			// quando adiciona esse rtemplate a geração para de funcionar, por isso foi removido
 			// FileTemplateLoader fileTemplateRestControllerTests = new FileTemplateLoader(new File(commonPathName + "appbase/src/test/java/br/com/app/integration/controller"));
 
-			TemplateLoader[] loaders = new TemplateLoader[] { ftlAngular, ftlVue, ftl1, ftlTests, fileTemplateBase, fileTemplateroot, fileTemplateProdu, fileTemplateAudit, fileTemplateJson, fileTemplateConfig, fileTemplateModel, fileTemplatePersistence,
+			TemplateLoader[] loaders = new TemplateLoader[] { ftlAngular, ftlVue,ftlReact, ftl1, ftlTests, fileTemplateBase, fileTemplateroot, fileTemplateProdu, fileTemplateAudit, fileTemplateJson, fileTemplateConfig, fileTemplateModel, fileTemplatePersistence,
 					fileTemplatePersistencePagination, fileTemplateReports, fileTemplateRs, fileTemplateRsException, fileTemplateSecuriy, fileTemplateSerialization, fileTemplateService, fileTemplateUtils, fileTemplateResources, fileTemplateWebApp, fileTemplateWEB_INF,
 					fileTemplateTestResources, fileTemplateBaseTests };
 

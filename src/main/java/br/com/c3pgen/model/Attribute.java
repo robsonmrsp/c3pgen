@@ -16,7 +16,7 @@ import org.hibernate.annotations.CascadeType;
 import br.com.c3pgen.base.util.Util;
 
 @Entity
-//@Audited
+// @Audited
 @Table(name = "ATTRIBUTE")
 @SequenceGenerator(name = "ATTRIBUTE_SEQUENCE", sequenceName = "ATTRIBUTE_SEQUENCE")
 public class Attribute extends AbstractTimestampEntity {
@@ -53,6 +53,9 @@ public class Attribute extends AbstractTimestampEntity {
 	@Column(name = "DATE_FORMAT")
 	private String dateFormat;
 
+	@Column(name = "PLUGIN")
+	private String plugin;
+
 	@Column(name = "REQUIRED")
 	private Boolean required;
 
@@ -66,7 +69,7 @@ public class Attribute extends AbstractTimestampEntity {
 	private Boolean basicSearch;
 
 	@ManyToOne
-	@JoinColumn(name = "ID_ENTITY" )
+	@JoinColumn(name = "ID_ENTITY")
 	private ApplicationEntity entity;
 
 	@ManyToOne
@@ -316,6 +319,34 @@ public class Attribute extends AbstractTimestampEntity {
 		} else if (!name.equals(other.name))
 			return false;
 		return true;
+	}
+
+	public String getPlugin() {
+		if (plugin == null) {
+			if (type.getClassName().equalsIgnoreCase("integer")) {
+				setPlugin("integer");
+			}
+			if (type.getClassName().equalsIgnoreCase("double")) {
+				setPlugin("decimal");
+			}
+			if (type.getClassName().equalsIgnoreCase("long")) {
+				setPlugin("long");
+			}
+			if (type.getClassName().equalsIgnoreCase("date")) {
+				setPlugin("date");
+			}
+			if (type.getClassName().equalsIgnoreCase("datetime")) {
+				setPlugin("datetime");
+			}
+			if (viewApproach.get) {
+				setPlugin("datetime");
+			}
+		}
+		return plugin;
+	}
+
+	public void setPlugin(String plugin) {
+		this.plugin = plugin;
 	}
 
 }

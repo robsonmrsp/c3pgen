@@ -107,7 +107,11 @@ public class BaseAppGenerator {
 
 		String fileInputWebApp = "";
 		String fileOutput = "";
-		if (application.getView().equalsIgnoreCase("vue")) {
+		if (application.getView().equalsIgnoreCase("react")) {
+			fileInputWebApp = Util.currentDir() + File.separator + "/entries/templates/nifty/react-files/web";
+			fileOutput = Util.currentDir() + File.separator + "out" + File.separator + application.getAppName() + "/web";
+
+		} else if (application.getView().equalsIgnoreCase("vue")) {
 			fileInputWebApp = Util.currentDir() + File.separator + "/entries/templates/nifty/vue-files/web";
 			fileOutput = Util.currentDir() + File.separator + "out" + File.separator + application.getAppName() + "/web";
 
