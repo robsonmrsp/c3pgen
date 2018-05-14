@@ -32,7 +32,7 @@ public class BaseAppGenerator {
 		String javaRootTestFolder = Util.currentDir() + File.separator + "out/" + application.getAppName() + "/src/test/java/" + application.getRootPackage().replace(".", File.separator) + File.separator;
 
 		String javaRootTestResourcesFolder = Util.currentDir() + File.separator + "out/" + application.getAppName() + "/src/test/resources/";
-		String javaRootResourcesFolder = Util.currentDir() + File.separator + "out/" + application.getAppName() + "/src/main/resources/";
+		String javaRootResourcesFolder = Util.currentDir() + File.separator + "out/" + application.getAppName() + "/src/main/resources/"; 
 
 		String serviceFolder = javaCoreFolder;
 		new File(serviceFolder).mkdirs();

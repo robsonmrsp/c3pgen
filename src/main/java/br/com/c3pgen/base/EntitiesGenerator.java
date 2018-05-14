@@ -26,6 +26,7 @@ public class EntitiesGenerator {
 
 	private static MarkerGenerator reactFormGenerator;
 	private static MarkerGenerator reactPageGenerator;
+	private static MarkerGenerator reactModalGenerator;
 
 	private static MarkerGenerator reactRouterGenerator;
 	private static MarkerGenerator reactSidebarGenerator;
@@ -201,13 +202,15 @@ public class EntitiesGenerator {
 		vueFormGenerator = new MarkerGenerator(freeMarkerConfig, application, "VueFormTemplate.tpl", appVueComponentsFolder + "${entity.name}/", TemplateFileName.FORM, FileType.VUE);
 		vuePageGenerator = new MarkerGenerator(freeMarkerConfig, application, "VuePageTemplate.tpl", appVueComponentsFolder + "${entity.name}/", TemplateFileName.PAGE, FileType.VUE);
 
-		vueModalGenerator = new MarkerGenerator(freeMarkerConfig, application, "VueModalTemplate.tpl", appVueComponentsFolder + "${entity.name}/", TemplateFileName.MODAL_VUE, FileType.VUE);
+		vueModalGenerator = new MarkerGenerator(freeMarkerConfig, application, "VueModalTemplate.tpl", appVueComponentsFolder + "${entity.name}/", TemplateFileName.MODAL, FileType.VUE);
 
 		vueRouterGenerator = new MarkerGenerator(freeMarkerConfig, application, "VueRouterTemplate.tpl", appVueRootSrcFolder + "router/", TemplateFileName.ROOT, FileType.JAVASCRIPT);
 		vueSidebarGenerator = new MarkerGenerator(freeMarkerConfig, application, "VueSidebarTemplate.tpl", appVueComponentsFolder + "layout/", TemplateFileName.SIDEBAR, FileType.VUE);
 
 		reactFormGenerator = new MarkerGenerator(freeMarkerConfig, application, "ReactFormTemplate.tpl", appReactComponentsFolder + "${entity.name}/", TemplateFileName.FORM, FileType.JAVASCRIPT);
 		reactPageGenerator = new MarkerGenerator(freeMarkerConfig, application, "ReactPageTemplate.tpl", appReactComponentsFolder + "${entity.name}/", TemplateFileName.PAGE, FileType.JAVASCRIPT);
+		reactModalGenerator = new MarkerGenerator(freeMarkerConfig, application, "ReactModalTemplate.tpl", appReactComponentsFolder + "${entity.name}/", TemplateFileName.MODAL, FileType.JAVASCRIPT);
+
 		reactRouterGenerator = new MarkerGenerator(freeMarkerConfig, application, "ReactRouterTemplate.tpl", appReactRootSrcFolder + "router/", TemplateFileName.ROOT, FileType.JAVASCRIPT);
 		reactSidebarGenerator = new MarkerGenerator(freeMarkerConfig, application, "ReactSidebarTemplate.tpl", appReactComponentsFolder + "layout/", TemplateFileName.SIDEBAR, FileType.JAVASCRIPT);
 
@@ -229,6 +232,7 @@ public class EntitiesGenerator {
 				for (ApplicationEntity ent : application.getEntities()) {
 					reactFormGenerator.generateEntityFile(application, ent);
 					reactPageGenerator.generateEntityFile(application, ent);
+					reactModalGenerator.generateEntityFile(application, ent);
 				}
 				reactRouterGenerator.generate(application);
 				reactSidebarGenerator.generate(application);

@@ -123,15 +123,13 @@ export default class Page${firstUpper(entity.name)} extends React.Component {
                                 </div>
                                 <div className="panel-body">
 								<#list entity.attributes as att>
-	                                <FormGroup controlId="titulo" validationState={this.getValidationState("${firstLower(att.name)}")} >
+	                                <FormGroup controlId="controlId${firsUpper(att.name)}"  > 
 	                                    <ControlLabel>${firstUpper(att.displayName)}</ControlLabel>
 									<#if att.plugin??>
 	                                    <JSInputField name="${firstLower(att.name)}" plugin="${firstLower(att.plugin)}" type="text" value={this.state.${firstLower(entity.name)}.${firstLower(att.name)}}  onChange={this.changeFormHandle} className="form-control" />
 	                                <#else>    
 	                                    <JSInputField name="${firstLower(att.name)}" type="text" value={this.state.${firstLower(entity.name)}.${firstLower(att.name)}}  onChange={this.changeFormHandle} className="form-control" />
 									</#if>                                    
-	                                    <FormControl.Feedback />
-	                                    <HelpBlock className={this.state.validationFields.${firstLower(att.name)}.isValid() ? "hide" : "block"} >{this.state.validationFields.${firstLower(att.name)}.message}</HelpBlock>
 	                                </FormGroup>
 	                            </#list>
                                     <div>

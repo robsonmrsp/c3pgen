@@ -225,6 +225,8 @@ public class FSItemDescription {
 		List<FSItemDescription> list = new ArrayList<FSItemDescription>();
 
 		list.add(new FSItemDescription("application", resourceFolder, "application", FileType.PROPERTIES));
+		list.add(new FSItemDescription("log4j", resourceFolder, "application", FileType.XML));
+		list.add(new FSItemDescription("seed", resourceFolder + "db/", "seed", FileType.SQL));
 		return list;
 	}
 

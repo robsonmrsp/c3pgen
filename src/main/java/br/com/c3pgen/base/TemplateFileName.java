@@ -7,7 +7,7 @@ public interface TemplateFileName {
 	final String FORM = "Form${entity.name}";
 	final String PAGE = "Page${entity.name}";
 
-	final String MODAL_VUE = "Modal${entity.name}";
+	final String MODAL = "Modal${entity.name}";
 	final String ROUTER_VUE = "index";
 	final String SIDEBAR = "Sidebar";
 	final String ROOT = "Root";
