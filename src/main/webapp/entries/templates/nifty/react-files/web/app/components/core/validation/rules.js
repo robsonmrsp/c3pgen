@@ -1,18 +1,14 @@
 import * as ErrorMessages from './errorMessages';
 
-// export const required = (message) => {
-//   return (text) => {
-//     if (text) {
-//       return null;
-//     }
-//     return ErrorMessages.isRequired(message);
-//   }
-// };
-export const required = (value) => {
-  if (value) {
-    return true;
+const _ = require("underscore")
+
+export const required = (message) => {
+  return {
+    isValid: (value) => {
+      return !(_.isNull(value) || _.isUndefined(value) || _.isEmpty(value));
+    },
+    message
   }
-  return false;
 };
 
 export const mustMatch = (field, fieldName) => {

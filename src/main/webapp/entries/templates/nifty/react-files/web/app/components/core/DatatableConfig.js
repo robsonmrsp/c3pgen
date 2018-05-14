@@ -1,7 +1,7 @@
 export default class DatatableConfig {
-  constructor() {
+  constructor(size = 10) {
     this.page = 1;
-    this.pageSize = 10;
+    this.pageSize = size;
     this.totalRecords = 0;
     this.orderBy = 'id';
     this.order = 'desc';

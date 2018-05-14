@@ -3,37 +3,53 @@ import { FormGroup, ControlLabel, FormControl, HelpBlock } from "react-bootstrap
 
 import HttpRequest from "../core/HttpRequest";
 import JSInputField from "../core/JSInputField";
-import { required, mustMatch, minLength } from '../core/validation/rules';
+import JSCombobox from "../core/JSCombobox";
 
+import { isEmpty, isNotEmpty } from "../core/JSUtils";
+
+import ModalLinguagem from "../filme/ModalLinguagem";
 
 export default class FormFilme extends React.Component {
 
     constructor() {
         super();
         this.service = new HttpRequest("/rs/crud/filmes");
+        this.serviceClassificacao = new HttpRequest("/rs/crud/classificacaos");
         this.state = {
             filme: {
                 id: '',
-                titulo: "ABC",
-                tituloOriginal: "ABCDE",
+                titulo: "",
+                tituloOriginal: "",
                 poster: '',
-                duracao: 125.5,
+                duracao: '',
                 dataLancamento: '',
                 sinopse: '',
                 diretor: '',
             },
-
-            // criar um objeto para encapsular o validador abaixo... assim poderemos NAO definir a mensagem. Tal objeto teria apenas o metodo isValid e a message.
+            classificacaoList: [],
             validationFields: {
                 titulo: {
                     isValid: () => {
-                        return this.state.filme.titulo.length !== 0;
+                        return isNotEmpty(this.state.filme.titulo);
                     },
-                    message: "Título é obrigatorio",
-                }
+                    message: "Campo Obrigatório!",
+                },
             }
         }
     }
+
+    componentDidMount = () => {
+        this.serviceClassificacao.getAll(
+            classificacaoList => {
+                this.setState({ classificacaoList  });
+            },
+            error => {
+                console.error("error fetching forr combobox", error);
+            }
+        );
+
+    }
+
     getValidationState = (fieldName) => {
         if (this.state.validationFields[fieldName]) {
             if (!(this.state.validationFields[fieldName].isValid())) {
@@ -43,7 +59,7 @@ export default class FormFilme extends React.Component {
         return null;
     }
     submitFormHandle = (clickEvent) => {
-        console.log("Salvando o objeto: " + this.state.filme);
+        console.log("Salvando o objeto: ", this.state.filme);
         this.service.save(
             this.state.filme,
             data => {
@@ -55,7 +71,14 @@ export default class FormFilme extends React.Component {
         );
     }
 
-    // precisa ser melhorado para exibir menos código e tratar os campos de valores diferentes, como booleanos com on, e off, por exemplo
+    changeFormDateHandle = (name, value) => {
+        console.log("Nome ", name);
+        console.log("value ", value);
+
+        const filme = { ...this.state.filme };
+        filme[name] = value;
+        this.setState({ filme });
+    }
     changeFormHandle = (changeEvent) => {
         /* Jogar essa atualização do state para fora, COMO?? */
         const target = changeEvent.target;
@@ -110,7 +133,15 @@ export default class FormFilme extends React.Component {
 
                                 <FormGroup controlId="diretor" validationState={this.getValidationState("diretor")} >
                                     <ControlLabel>Diretor</ControlLabel>
-                                    <JSInputField name="diretor" type="text" value={this.state.filme.diretor} placeholder="Diretor" onChange={this.changeFormHandle} className="form-control" />
+                                    <JSInputField name="diretor" type="text" value={this.state.filme.diretor} placeholder="Diretor" onChange={(event) => this.changeFormDateHandle("diretor", event.target.value)} className="form-control" />
+                                    <FormControl.Feedback />
+                                </FormGroup>
+                                <FormGroup controlId="modalFilme" validationState={this.getValidationState("linguagem")} >
+                                    <ModalLinguagem value={this.state.filme.linguagem} displayValue="nome" idValue="id" onChange={(language) => this.changeFormDateHandle("linguagem", language)} />
+                                    <FormControl.Feedback />
+                                </FormGroup>
+                                <FormGroup controlId="classificacao" validationState={this.getValidationState("classificacao")} >
+                                    <JSCombobox value={this.state.filme.classificacao} values={this.state.classificacaoList} displayValue="nome" idValue="id" onChange={(classificacao) => this.changeFormDateHandle("classificacao", classificacao)} className="form-control" />
                                     <FormControl.Feedback />
                                 </FormGroup>
                             </form>

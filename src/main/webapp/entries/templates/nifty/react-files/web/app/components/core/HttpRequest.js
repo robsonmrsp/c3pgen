@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:8082/netflics'
+const BASE_URL = 'http://localhost:8083/netflics'
 
 export default class HttpRequest {
     constructor(url) {
@@ -47,7 +47,7 @@ export default class HttpRequest {
         axios.get(BASE_URL + this.url, { headers: this.createAuthHeaders(), params: jsonParans })
             .then((response) => {
                 datatablePageConfig.loading = false;
-                datatablePageConfig.items = response.data.itens;
+                datatablePageConfig.items = response.data.items;
 
                 if (successCallback) {
                     successCallback(response.data);
@@ -62,9 +62,10 @@ export default class HttpRequest {
     }
 
     getAll = (successCallback, errorCalback) => {
-        axios.get(BASE_URL + this.url, { headers: this.createAuthHeaders() })
+        axios.get(BASE_URL + this.url + "/all", { headers: this.createAuthHeaders() })
             .then((response) => {
                 if (successCallback) {
+                    console.log("request result: ", response.data);
                     successCallback(response.data);
                 }
             }).catch((error) => {

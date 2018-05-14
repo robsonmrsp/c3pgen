@@ -1,5 +1,4 @@
 import React from "react"
-import { Panel } from "react-bootstrap"
 import JSPagination from "../core/JSTablePagination"
 import DatatableConfig from "../core/DatatableConfig"
 import HttpRequest from "../core/HttpRequest"
@@ -57,7 +56,6 @@ export default class PageFilme extends React.Component {
                 datatableConfig.loading = false;
                 datatableConfig.totalRecords = data.totalRecords;
                 this.setState({ datatableConfig });
-
             },
 
             error => {

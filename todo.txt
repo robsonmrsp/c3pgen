@@ -1,3 +1,7 @@
+https://egghead.io/lessons/vue-js-configure-vue-js-to-enable-rxjs-streams
+
+
+
 Hoje dia 23/03
 1) public static <T> T createObjectFrom(Class<T> clazz, Map<String, String> mapfields) {
  devemos codificar o bloco  dentro do for com um try catch para que ele possa continuar.

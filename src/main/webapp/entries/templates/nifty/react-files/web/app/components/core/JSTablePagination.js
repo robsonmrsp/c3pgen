@@ -2,6 +2,7 @@ import React from 'react'
 import { Pagination } from "react-bootstrap";
 
 export default class JSTablePagination extends React.Component {
+
     constructor(props) {
         super(props);
         this.totalItems = this.props.totalItems || 185;
@@ -17,8 +18,6 @@ export default class JSTablePagination extends React.Component {
             activeButtomItemNumber: 1,
             firstVisiblePage: 1
         }
-
-        console.log('')
     }
     onClickPrevItemHandler = (event) => {
         const prev = this.state.activeButtomItemNumber > 1 ? this.state.activeButtomItemNumber - 1 : 1;
@@ -68,12 +67,12 @@ export default class JSTablePagination extends React.Component {
     render = () => {
         // pra melhorar mais ainda...vai ser necessário "apagar" os botões que não deveriam existir e estão sendo desenhados... 
         // Exemplo: são 19 paginas ele ele gera até o ultimo botão
-        console.log("totalItems " + this.props.totalItems);
-        console.log("page " + this.props.page);
-        console.log("pageSize " + this.props.pageSize);
+        // console.log("totalItems " + this.props.totalItems);
+        // console.log("page " + this.props.page);
+        // console.log("pageSize " + this.props.pageSize);
 
-        console.log("this.state.firstVisiblePage " + this.state.firstVisiblePage);
-        console.log("this.state.activeButtomItemNumber " + this.state.activeButtomItemNumber);
+        // console.log("this.state.firstVisiblePage " + this.state.firstVisiblePage);
+        // console.log("this.state.activeButtomItemNumber " + this.state.activeButtomItemNumber);
 
         const activeButtomItemNumber = this.state.activeButtomItemNumber;
 
@@ -82,8 +81,8 @@ export default class JSTablePagination extends React.Component {
         const items = Array.from(new Array(this.numPages), (x, i) => (10 * (firstPage - 1)) + i + 1)
         this.totalNumPages = Math.round((this.props.totalItems / this.props.pageSize) + 1);
 
-        console.log("const items" + items);
-        console.log("this.totalNumPages " + this.totalNumPages);
+        // console.log("const items" + items);
+        // console.log("this.totalNumPages " + this.totalNumPages);
         return (
             <Pagination>
                 <Pagination.First onClick={(event) => this.onClickFirstItemHandler(event)} />
