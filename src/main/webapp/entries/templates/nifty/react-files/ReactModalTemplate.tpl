@@ -153,7 +153,7 @@ export default class Modal${firstUpper(entity.name)} extends React.Component {
                                  					<#list entity.attributes as att>
                                                         <td>{${firstLower(entity.name)}.${firstLower(att.name)}}</td>
 													</#list>
-                                                        )
+                                                    </tr>)
                                                     })
                                                 }
                                                 {this.state.datatableConfig.items.length === 0 ?
