@@ -38,11 +38,60 @@ export default class Sidebar extends React.Component {
                                                 <i className="arrow" />
                                             </a>
                                             <ul className="">
-                                                <li id="newFilme">
-                                                    <NavLink to="/filmes/new"> Novo Filme </NavLink>
+													                                       <li id="linguagems">
+                                                    <NavLink to="/linguagems/list"> Pesquisa de Linguagem </NavLink>
                                                 </li>
-                                                <li id="filmes">
+                                            </ul>
+		                                       <li id="avaliacaos">
+                                                    <NavLink to="/avaliacaos/list"> Pesquisa de Avaliacao </NavLink>
+                                                </li>
+                                            </ul>
+		                                       <li id="assinantes">
+                                                    <NavLink to="/assinantes/list"> Pesquisa de Assinante </NavLink>
+                                                </li>
+                                            </ul>
+		                                       <li id="generos">
+                                                    <NavLink to="/generos/list"> Pesquisa de Genero </NavLink>
+                                                </li>
+                                            </ul>
+		                                       <li id="criticos">
+                                                    <NavLink to="/criticos/list"> Pesquisa de Critico </NavLink>
+                                                </li>
+                                            </ul>
+		                                       <li id="filmes">
                                                     <NavLink to="/filmes/list"> Pesquisa de Filme </NavLink>
+                                                </li>
+                                            </ul>
+		                                       <li id="visualizacaos">
+                                                    <NavLink to="/visualizacaos/list"> Pesquisa de Visualizacao </NavLink>
+                                                </li>
+                                            </ul>
+		                                       <li id="classificacaos">
+                                                    <NavLink to="/classificacaos/list"> Pesquisa de Classificacao </NavLink>
+                                                </li>
+                                            </ul>
+		                                       <li id="ators">
+                                                    <NavLink to="/ators/list"> Pesquisa de Ator </NavLink>
+                                                </li>
+                                            </ul>
+		                                       <li id="users">
+                                                    <NavLink to="/users/list"> Pesquisa de User </NavLink>
+                                                </li>
+                                            </ul>
+		                                       <li id="roles">
+                                                    <NavLink to="/roles/list"> Pesquisa de Role </NavLink>
+                                                </li>
+                                            </ul>
+		                                       <li id="permissions">
+                                                    <NavLink to="/permissions/list"> Pesquisa de Permission </NavLink>
+                                                </li>
+                                            </ul>
+		                                       <li id="groups">
+                                                    <NavLink to="/groups/list"> Pesquisa de Group </NavLink>
+                                                </li>
+                                            </ul>
+		                                       <li id="items">
+                                                    <NavLink to="/items/list"> Pesquisa de Item </NavLink>
                                                 </li>
                                             </ul>
                                         </li>

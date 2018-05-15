@@ -1,5 +1,9 @@
 https://egghead.io/lessons/vue-js-configure-vue-js-to-enable-rxjs-streams
 
+gerar a pesquisa principal no page... tá levando as infos do filme tituloOriginal
+
+
+
 
 
 Hoje dia 23/03
