@@ -43,10 +43,11 @@ public class FreeMarkerConfig {
 	private Configuration configuration;
 
 	public FreeMarkerConfig(Application application) {
-		if (!POOL.containsKey(application.getSkin())) {
-			POOL.put(application.getSkin(), initConfiguration(application.getSkin()));
+		String lowerCase = application.getSkin().toLowerCase();
+		if (!POOL.containsKey(lowerCase)) {
+			POOL.put(lowerCase, initConfiguration(lowerCase));
 		}
-		configuration = POOL.get(application.getSkin());
+		configuration = POOL.get(lowerCase);
 	}
 
 	private Configuration initConfiguration(String skin) {
@@ -63,7 +64,7 @@ public class FreeMarkerConfig {
 			String templatePathName = Util.currentDir() + File.separator + "entries" + File.separator + "templates" + File.separator + skin + File.separator;
 
 			String templateVuePathName = templatePathName + "vue-files";
-			
+
 			String templateReactPathName = templatePathName + "react-files";
 
 			String templateCorePathName = Util.currentDir() + File.separator + "entries" + File.separator + "templates" + File.separator + skin + File.separator + "appbase" + File.separator + "core" + File.separator;
@@ -108,9 +109,9 @@ public class FreeMarkerConfig {
 			// quando adiciona esse rtemplate a geração para de funcionar, por isso foi removido
 			// FileTemplateLoader fileTemplateRestControllerTests = new FileTemplateLoader(new File(commonPathName + "appbase/src/test/java/br/com/app/integration/controller"));
 
-			TemplateLoader[] loaders = new TemplateLoader[] { ftlAngular, ftlVue,ftlReact, ftl1, ftlTests, fileTemplateBase, fileTemplateroot, fileTemplateProdu, fileTemplateAudit, fileTemplateJson, fileTemplateConfig, fileTemplateModel, fileTemplatePersistence,
-					fileTemplatePersistencePagination, fileTemplateReports, fileTemplateRs, fileTemplateRsException, fileTemplateSecuriy, fileTemplateSerialization, fileTemplateService, fileTemplateUtils, fileTemplateResources,fileTemplateResourcesDb, fileTemplateWebApp, fileTemplateWEB_INF,
-					fileTemplateTestResources, fileTemplateBaseTests };
+			TemplateLoader[] loaders = new TemplateLoader[] { ftlAngular, ftlVue, ftlReact, ftl1, ftlTests, fileTemplateBase, fileTemplateroot, fileTemplateProdu, fileTemplateAudit, fileTemplateJson, fileTemplateConfig, fileTemplateModel, fileTemplatePersistence,
+					fileTemplatePersistencePagination, fileTemplateReports, fileTemplateRs, fileTemplateRsException, fileTemplateSecuriy, fileTemplateSerialization, fileTemplateService, fileTemplateUtils, fileTemplateResources, fileTemplateResourcesDb, fileTemplateWebApp,
+					fileTemplateWEB_INF, fileTemplateTestResources, fileTemplateBaseTests };
 
 			MultiTemplateLoader loader = new MultiTemplateLoader(loaders);
 			configuration = new Configuration();

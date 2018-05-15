@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:tx="http://www.springframework.org/schema/tx"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:jaxrs="http://cxf.apache.org/jaxrs"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jaxrs="http://cxf.apache.org/jaxrs" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
 
 	xsi:schemaLocation="
 					http://www.springframework.org/schema/beans 
@@ -26,34 +21,26 @@
 	<tx:annotation-driven />
 	<context:property-placeholder />
 	<context:annotation-config />
-	<bean
-		class="org.springframework.web.context.support.ServletContextPropertyPlaceholderConfigurer" />
-	<bean
-		class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer" />
+	<bean class="org.springframework.web.context.support.ServletContextPropertyPlaceholderConfigurer" />
+	<bean class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer" />
 	<jaxrs:server address="/" basePackages="br.com.c3pgen.rs">
 		<jaxrs:providers>
-			<bean
-				class="com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider" />
+			<bean class="com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider" />
 			<bean class="br.com.c3pgen.rs.exception.ExceptionHandler" />
 		</jaxrs:providers>
 	</jaxrs:server>
 
 
 	<context:annotation-config />
-	<context:component-scan
-		base-package="br.com.c3pgen" />
+	<context:component-scan base-package="br.com.c3pgen" />
 
-	<jdbc:initialize-database
-		ignore-failures="ALL">
+	<jdbc:initialize-database ignore-failures="ALL">
 		<jdbc:script location="classpath:db/seed.sql" />
 	</jdbc:initialize-database>
 
-	<bean id="dataSource"
-		class="com.mchange.v2.c3p0.ComboPooledDataSource"
-		destroy-method="close">
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
 		<property name="driverClass" value="org.postgresql.Driver" />
-		<property name="jdbcUrl"
-			value="jdbc:postgresql://localhost:5432/db_c3pgen_outubro" />
+		<property name="jdbcUrl" value="jdbc:postgresql://localhost:5432/db_c3pgen" />
 		<property name="user" value="postgres" />
 		<property name="password" value="MasterKey@123" />
 
@@ -64,14 +51,11 @@
 	</bean>
 
 
-	<bean id="transactionManager"
-		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
-	<bean id="sessionFactory"
-		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"
-		scope="singleton">
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean" scope="singleton">
 		<property name="dataSource" ref="dataSource" />
 		<property name="packagesToScan" value="br.com.c3pgen.model" />
 
@@ -85,10 +69,8 @@
 			</props>
 		</property>
 	</bean>
-	<bean id="afterThrow"
-		class="br.com.c3pgen.persistence.CatchThrowConstraintViolationException" />
-	<bean
-		class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+	<bean id="afterThrow" class="br.com.c3pgen.persistence.CatchThrowConstraintViolationException" />
+	<bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
 		<property name="beanNames">
 			<list>
 				<value>*Service</value>
