@@ -319,9 +319,6 @@ define(function(require) {
 
 			var posX = 120 + (250 * coluna++);
 
-			console.log(coluna, linha);
-			console.log(posX, posY);
-
 			if (!entity.get('posX'))
 				entity.set('posX', posX);
 			if (!entity.get('posY'))
@@ -379,7 +376,7 @@ define(function(require) {
 			that.graph.addCell(relation);
 
 			window.globalVisualRelations.put(relation.id, relation);
-			console.log('Adicionado o seguinte relacionamento: ' + relation.id, relation);
+//			console.log('Adicionado o seguinte relacionamento: ' + relation.id, relation);
 		},
 
 		validateApplication : function() {
@@ -390,7 +387,7 @@ define(function(require) {
 				success : function(_model, _resp, _options) {
 					that.model.url = old;
 					util.showMessage('info', _resp.resp);
-					console.log(download);
+//					console.log(download);
 					download(_resp.resp);
 				},
 				error : function(_model, _resp, _options) {
@@ -461,7 +458,7 @@ define(function(require) {
 				},
 			});
 			// console.log(entidadesCollection.toJSON());
-			console.log(applicationRelationshipCollection.toJSON());
+//			console.log(applicationRelationshipCollection.toJSON());
 		},
 
 		_getEntityView : function(relation) {
@@ -533,7 +530,7 @@ define(function(require) {
 						}
 					})
 				} else {
-					console.log(" Leaving  alone link", linkView);
+//					console.log(" Leaving  alone link", linkView);
 				}
 			});
 		},
@@ -584,7 +581,7 @@ define(function(require) {
 							} catch (e) {
 								console.error(e);
 							}
-							console.log('Entidade removida com sucesso.');
+//							CONSOLE.log('Entidade removida com sucesso.');
 						},
 
 						error : function(_model, resp, xhr) {
@@ -592,7 +589,7 @@ define(function(require) {
 						}
 					})
 				} else {
-					console.log(" Leaving  alone link", visualE);
+//					console.log(" Leaving  alone link", visualE);
 				}
 			});
 

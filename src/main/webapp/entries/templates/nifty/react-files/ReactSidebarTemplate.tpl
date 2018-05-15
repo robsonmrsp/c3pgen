@@ -40,7 +40,7 @@ export default class Sidebar extends React.Component {
 											<#list application.entities as entity>
                                             <ul className="ul_${firstLower(entity.name)}s">
 		                                       <li id="${firstLower(entity.name)}s">
-                                                    <NavLink to="/${firstLower(entity.name)}s/list"> Pesquisa de ${entity.name} </NavLink>
+                                                    <NavLink to="/${firstLower(entity.name)}s/list">${entity.displayName} </NavLink>
                                                 </li>
                                             </ul>
 											</#list>
