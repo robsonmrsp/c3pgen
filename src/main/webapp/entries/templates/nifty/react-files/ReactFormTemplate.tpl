@@ -166,10 +166,11 @@ export default class Form${firstUpper(entity.name)} extends React.Component {
                                 &nbsp; Salvar e continuar
                             </button>
                             &nbsp;
-                            <button onClick={this.handleClick} className="btn-lg btn btn-light" >
-                                <i className=" fa fa-undo " />
+                            
+                            <NavLink to="/${firstLower(entity.name)}s/list" className="btn-lg btn btn-light">
+								<i className=" fa fa-undo " />
                                 &nbsp; Voltar para a listagem
-                            </button>
+                             </NavLink>
                         </div >
                     </div >
                 </div >
