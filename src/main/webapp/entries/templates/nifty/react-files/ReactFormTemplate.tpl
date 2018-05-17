@@ -4,21 +4,45 @@ import { FormGroup, ControlLabel, FormControl, HelpBlock } from "react-bootstrap
 
 import HttpRequest from "../core/HttpRequest";
 import JSInputField from "../core/JSInputField";
+import JSCombobox from "../core/JSCombobox";
+<#if entity.relationships??>	
+	<#list entity.relationships as rel >
+		<#if rel.viewApproach.type == 'modal'>
+import Modal${firstUpper(rel.model)} from "../${firstLower(rel.model)}/Modal${firstUpper(rel.model)}";
+		</#if>
+		<#if rel.viewApproach.type == 'multiselectmodal'>
+		</#if>		
+	</#list>
+</#if>
 
 import { isEmpty, isNotEmpty } from "../core/JSUtils";
 
 export default class Form${firstUpper(entity.name)} extends React.Component {
-
     constructor() {
         super();
         this.service = new HttpRequest("/rs/crud/${firstLower(entity.name)}s");
+<#if entity.relationships??>	
+	<#list entity.relationships as rel >
+		<#if rel.viewApproach.type == 'combo'>
+        this.service${firstUpper(rel.model)} = new HttpRequest("/rs/crud/${firstLower(rel.model)}s");
+		</#if>		
+	</#list>
+</#if>
+        
         this.state = {
             ${firstLower(entity.name)}: {
-                id: '',
+				id: '',
 			<#list entity.attributes as att>
-		    	${firstLower(att.name)}: '',    	
+				${firstLower(att.name)}: '',    	
 			</#list>
             },
+		<#if entity.relationships??>	
+			<#list entity.relationships as rel >
+				<#if rel.viewApproach.type == 'combo'>
+			${firstLower(rel.name)}List: [],
+				</#if>		
+			</#list>
+		</#if>
 
             validationFields: {
             <#list entity.attributes as att>
@@ -33,6 +57,23 @@ export default class Form${firstUpper(entity.name)} extends React.Component {
 			</#list>
             }
         }
+    }
+    componentDidMount = () => {
+<#if entity.relationships??>	
+	<#list entity.relationships as rel >
+		<#if rel.viewApproach.type == 'combo'>
+        this.service${firstUpper(rel.model)}.getAll(
+            ${firstLower(rel.name)}List => {
+                this.setState({ ${firstLower(rel.name)}List  });
+            },
+            error => {
+                console.error("error fetching forr combobox", error);
+            }
+        );
+		</#if>		
+	</#list>
+</#if>
+    
     }
     getValidationState = (fieldName) => {
         if (this.state.validationFields[fieldName]) {
@@ -55,13 +96,8 @@ export default class Form${firstUpper(entity.name)} extends React.Component {
         );
     }
 
-    changeFormHandle = (changeEvent) => {
-        /* Jogar essa atualização do state para fora, COMO?? */
-        const target = changeEvent.target;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
-        const name = target.name;
-
-        const ${firstLower(entity.name)} = { ...this.state.${firstLower(entity.name)} };
+    changeFormDateHandle = (name, value) => {
+    	const ${firstLower(entity.name)} = { ...this.state.${firstLower(entity.name)} };
         ${firstLower(entity.name)}[name] = value;
         this.setState({ ${firstLower(entity.name)} });
     }
@@ -77,17 +113,44 @@ export default class Form${firstUpper(entity.name)} extends React.Component {
                         <div className="panel-body">
                             <form>
                             <#list entity.attributes as att>
-                                <FormGroup controlId="titulo" validationState={this.getValidationState("${firstLower(att.name)}")} >
+                            
+                                <FormGroup controlId="${firstLower(att.name)}" validationState={this.getValidationState("${firstLower(att.name)}")} >
                                     <ControlLabel>${firstUpper(att.displayName)}</ControlLabel>
 								<#if att.plugin??>
-                                    <JSInputField name="${firstLower(att.name)}" plugin="${firstLower(att.plugin)}" type="text" value={this.state.${firstLower(entity.name)}.${firstLower(att.name)}}  onChange={this.changeFormHandle} className="form-control" />
+                                    <JSInputField name="${firstLower(att.name)}" plugin="${firstLower(att.plugin)}" type="text" value={this.state.${firstLower(entity.name)}.${firstLower(att.name)}}  onChange={(${firstLower(att.name)}) => this.changeFormDateHandle("${firstLower(att.name)}", ${firstLower(att.name)})} className="form-control" />
                                 <#else>    
-                                    <JSInputField name="${firstLower(att.name)}" type="text" value={this.state.${firstLower(entity.name)}.${firstLower(att.name)}}  onChange={this.changeFormHandle} className="form-control" />
+                                    <JSInputField name="${firstLower(att.name)}" type="text" value={this.state.${firstLower(entity.name)}.${firstLower(att.name)}}  onChange={(${firstLower(att.name)}) => this.changeFormDateHandle("${firstLower(att.name)}", ${firstLower(att.name)})} className="form-control" />
 								</#if>                                    
                                     <FormControl.Feedback />
                                     <HelpBlock className={this.state.validationFields.${firstLower(att.name)}.isValid() ? "hide" : "block"} >{this.state.validationFields.${firstLower(att.name)}.message}</HelpBlock>
                                 </FormGroup>
                             </#list>
+				<#list entity.relationships as rel>
+					<#if (rel.type == 'OneToMany' || rel.type == 'ManyToMany' ) && rel.viewApproach.type == 'multiselectmodal'>
+					</#if>
+					<#if (rel.type == 'OneToMany' || rel.type == 'ManyToMany' ) && rel.viewApproach.type == 'multiselect'>
+					<#elseif rel.type == 'ManyToOne'>
+						<#if rel.viewApproach?? >
+							<#if rel.viewApproach.type  == 'combo'  >
+							
+		                        <FormGroup controlId="titulo" validationState={this.getValidationState("${firstLower(rel.name)}")} >
+		                            <ControlLabel>${firstUpper(rel.displayName)}</ControlLabel>
+		                            <FormControl.Feedback />
+		                            <JSCombobox value={this.state.${firstLower(entity.name)}.${firstLower(rel.name)}} values={this.state.${firstLower(rel.name)}List} displayValue="${(rel.viewApproach.comboVal)!'name'}" idValue="${(rel.viewApproach.comboId)!'id'}" onChange={(${firstLower(rel.name)}) => this.changeFormDateHandle("${firstLower(rel.name)}", ${firstLower(rel.name)})} className="form-control" />
+		                            <HelpBlock className={this.state.validationFields.${firstLower(rel.name)}.isValid() ? "hide" : "block"} >{this.state.validationFields.${firstLower(rel.name)}.message}</HelpBlock>
+		                        </FormGroup>      					
+							<#elseif rel.viewApproach.type  == 'modal'  >
+							
+		                        <FormGroup controlId="titulo" validationState={this.getValidationState("${firstLower(rel.name)}")} >
+		                            <ControlLabel>${firstUpper(rel.displayName)}</ControlLabel>
+		                            <FormControl.Feedback />
+									<Modal${firstUpper(rel.model)} value={this.state.${firstLower(entity.name)}.${firstLower(rel.name)}} displayValue="${(rel.viewApproach.textField)!'name'}" idValue="${(rel.viewApproach.hiddenField)!'id'}" onChange={(${firstLower(rel.name)}) => this.changeFormDateHandle("${firstLower(rel.name)}", ${firstLower(rel.name)})}  />
+		                            <HelpBlock className={this.state.validationFields.${firstLower(rel.name)}.isValid() ? "hide" : "block"} >{this.state.validationFields.${firstLower(rel.name)}.message}</HelpBlock>
+		                        </FormGroup>      					
+							</#if>
+						</#if>
+					</#if>
+                 </#list>
                             </form>
                         </div>
                     </div >
