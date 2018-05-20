@@ -92,15 +92,22 @@ export default class Form${firstUpper(entity.name)} extends React.Component {
         return null;
     }
     
-   validateField = (fieldName) => {
+	getValidationMessage = (fieldName) => {
+        const fieldValidator = this.state.validationFields[fieldName];
+        if (fieldValidator) {
+            return fieldValidator.message;
+        }
+        return false;
+    }
+    
+    validateField = (fieldName) => {
         const fieldValidator = this.state.validationFields[fieldName];
         if (fieldValidator) {
             return fieldValidator.isValid && fieldValidator.isValid();
         }
-        return false;
+        return "";
     }
 
-    
     submitFormHandle = (clickEvent) => {
         console.log("Salvando o objeto: " + this.state.${firstLower(entity.name)});
         this.service.save(
@@ -150,7 +157,7 @@ export default class Form${firstUpper(entity.name)} extends React.Component {
                                     <JSInputField name="${firstLower(att.name)}" type="text" value={this.state.${firstLower(entity.name)}.${firstLower(att.name)}}  onChange={(event) => this.changeFormDateHandle("${firstLower(att.name)}", event.target.value)} className="form-control" />
 								</#if>                                    
                                     <FormControl.Feedback />
-                                    <HelpBlock className={this.validateField("${firstLower(att.name)}") ? "hide" : "block"} >{this.state.validationFields.${firstLower(att.name)}.message}</HelpBlock>
+                                    <HelpBlock className={this.validateField("${firstLower(att.name)}") ? "hide" : "block"} >{this.getValidationMessage("${firstLower(att.name)}")}</HelpBlock>
                                 </FormGroup>
                                 
                             </#list>
@@ -165,7 +172,7 @@ export default class Form${firstUpper(entity.name)} extends React.Component {
 		                            <ControlLabel>${firstUpper(rel.displayName)}</ControlLabel>
 		                            <FormControl.Feedback />
 		                            <JSCombobox value={this.state.${firstLower(entity.name)}.${firstLower(rel.name)}} values={this.state.${firstLower(rel.name)}List} displayValue="${(rel.viewApproach.comboVal)!'name'}" idValue="${(rel.viewApproach.comboId)!'id'}" onChange={(event) => this.changeFormDateHandle("${firstLower(rel.name)}", event.target.value)} className="form-control" />
-		                            <HelpBlock className={this.validateField("${firstLower(rel.name)}") ? "hide" : "block"} >{this.state.validationFields.${firstLower(rel.name)}.message}</HelpBlock>
+		                            <HelpBlock className={this.validateField("${firstLower(rel.name)}") ? "hide" : "block"} >{this.getValidationMessage("${firstLower(rel.name)}")}</HelpBlock>
 		                        </FormGroup>      	
 		                        				
 							<#elseif rel.viewApproach.type  == 'modal'  >
@@ -173,7 +180,7 @@ export default class Form${firstUpper(entity.name)} extends React.Component {
 		                            <ControlLabel>${firstUpper(rel.displayName)}</ControlLabel>
 		                            <FormControl.Feedback />
 									<Modal${firstUpper(rel.model)} value={this.state.${firstLower(entity.name)}.${firstLower(rel.name)}} displayValue="${(rel.viewApproach.textField)!'name'}" idValue="${(rel.viewApproach.hiddenField)!'id'}" onChange={(event) => this.changeFormDateHandle("${firstLower(rel.name)}", event.target.value)}  />
-		                            <HelpBlock className={this.validateField("${firstLower(rel.name)}") ? "hide" : "block"} >{this.state.validationFields.${firstLower(rel.name)}.message}</HelpBlock>
+		                            <HelpBlock className={this.validateField("${firstLower(rel.name)}") ? "hide" : "block"} >{this.getValidationMessage("${firstLower(rel.name)}")}</HelpBlock>
 		                        </FormGroup>
 		                              					
 							</#if>
