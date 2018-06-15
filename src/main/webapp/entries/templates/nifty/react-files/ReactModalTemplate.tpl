@@ -111,9 +111,9 @@ export default class Modal${firstUpper(entity.name)} extends React.Component {
                             <FormGroup controlId="controlId${firstUpper(att.name)}"  >
                                 <ControlLabel>${firstUpper(att.displayName)}</ControlLabel>
 							<#if att.plugin??>
-                                <JSInputField name="${firstLower(att.name)}" plugin="${firstLower(att.plugin)}" type="text" value={this.state.filterParameters.${firstLower(att.name)}}  onChange={this.changeFormHandle} className="form-control" />
+                                <JSInputField name="${firstLower(att.name)}" plugin="${firstLower(att.plugin)}" type="text" value={this.state.datatableConfig.filterParameters.${firstLower(att.name)}}  onChange={this.changeFormHandle} className="form-control" />
                             <#else>    
-                                <JSInputField name="${firstLower(att.name)}" type="text" value={this.state.filterParameters.${firstLower(att.name)}}  onChange={this.changeFormHandle} className="form-control" />
+                                <JSInputField name="${firstLower(att.name)}" type="text" value={this.state.datatableConfig.filterParameters.${firstLower(att.name)}}  onChange={this.changeFormHandle} className="form-control" />
 							</#if>                                    
                             </FormGroup>
                         </#list>
