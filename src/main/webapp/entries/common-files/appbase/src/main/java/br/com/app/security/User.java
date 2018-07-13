@@ -70,10 +70,12 @@ public class User extends AbstractTimestampEntity implements UserDetails {
 	@JoinTable(name = "USER_ROLE", joinColumns = @JoinColumn(name = "ID_USER", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "ID_ROLE", referencedColumnName = "ID"))
 	private List<Role> roles;
 
-	
+
+	<#if application.multitenancy>
 	@ManyToOne
 	@JoinColumn(name = "ID_OWNER")
 	private Owner owner;
+	</#if>	
 	
 	public User() {
 
