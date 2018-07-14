@@ -413,11 +413,14 @@
 								<cssSourceFile>../vendor/Backgrid.ColumnManager/lib/Backgrid.ColumnManager.css</cssSourceFile>
 								<cssSourceFile>../vendor/chosen_v1.6.2/bootstrap-chosen.css</cssSourceFile>
 								<cssSourceFile>../vendor/sweetalert-1.1.3/dist/sweetalert.css</cssSourceFile>
+								<cssSourceFile>../vendor/bootstrap-tagsinput-0.8.0/dist/bootstrap-tagsinput.css</cssSourceFile>
+								<cssSourceFile>../vendor/bootstrap-switch-3.3.4/dist/css/bootstrap3/bootstrap-switch.css</cssSourceFile>
 								<cssSourceFile>../vendor/theme/demo/css/nifty.css</cssSourceFile>
 								<cssSourceFile>../vendor/theme/demo/css/nifty-demo-icons.css</cssSourceFile>
 								<cssSourceFile>../vendor/theme/demo/css/theme-ocean.css</cssSourceFile>		
 								<cssSourceFile>../vendor/noty-3.1.3/lib/noty.css</cssSourceFile>
 								<cssSourceFile>../vendor/animate.css/animate.css</cssSourceFile>	
+								<cssSourceFile>../vendor/magic-check-master/css/magic-check.css</cssSourceFile>
 								<cssSourceFile>custom.css</cssSourceFile>
 								</cssSourceFiles>
 							<cssFinalFile>main-built.css</cssFinalFile>
