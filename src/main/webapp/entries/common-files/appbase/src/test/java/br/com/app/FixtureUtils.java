@@ -4,7 +4,7 @@ import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.Rule;
 
 <#list application.entities as entity>
-import br.com.netflics.model.${entity.name};
+import ${application.rootPackage}.model.${entity.name};
 </#list>
 public class FixtureUtils {
 

@@ -340,47 +340,6 @@ public class Dao${entity.name} extends HibernateDao<${entity.name}> {
 		return filter(filter${entity.name},  equals);
 	}
 
-	public List<${entity.name}> filter(PaginationParams<Filter${entity.name}> queryParams) {
-		Filter${entity.name} filter${entity.name} = queryParams.getFilter();
-		CriteriaBuilder builder = builder();
-		CriteriaQuery<${entity.name}> query = query();
-		Root<${entity.name}> root = root();
-				
-		Predicate whereClause = builder.and();
-
-	<#if entity.attributes??>	
-	<#list entity.attributes as att>
-      	<#if att.type.className == 'String'>	
-		if (filter${entity.name}.get${firstUpper(att.name)}() != null) {
-			whereClause = builder.and(whereClause, builder.like(builder.upper(root.<String>get("${att.name}")), "%" + filter${entity.name}.get${firstUpper(att.name)}().toUpperCase() + "%"));
-		}
-		<#else>
-		if (filter${entity.name}.get${firstUpper(att.name)}() != null) {
-			whereClause = builder.and(whereClause, builder.equal(root.get("${att.name}"), filter${entity.name}.get${firstUpper(att.name)}()));
-		}				
-		</#if>	
-	</#list>
-	</#if>	
-	<#if entity.relationships??>	
-	<#list entity.relationships as rel>
-		<#if rel.type == 'ManyToOne'>
-		if (filter${entity.name}.get${firstUpper(rel.name)!firstLower(rel.model)}() != null) {
-			whereClause = builder.and(whereClause, builder.equal(root.get("${firstLower(rel.name)!firstLower(rel.model)}").get("id"), filter${entity.name}.get${firstUpper(rel.name)!firstLower(rel.model)}() ));
-		}
-		</#if>	
-	</#list>
-	</#if>
-	
-		Order orderBy = getOrderBy(queryParams);
-
-		TypedQuery<${entity.name}> typedQuery = getSession().createQuery(query.select(root).where(whereClause).orderBy(orderBy));
-
-		List<${entity.name}> results = typedQuery.setFirstResult(queryParams.getFirstResults()).setMaxResults(queryParams.getPageSize()).getResultList();
-
-		return results;
-	}
-
-
 	public List<${entity.name}> filter(Filter${entity.name} filter${entity.name}, Boolean equals) {
 		if (equals) {
 			return filterEqual(filter${entity.name});
