@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:8083/netflics'
+const BASE_URL = 'http://localhost:8082/locadora-react'
 
 export default class HttpRequest {
     constructor(url) {

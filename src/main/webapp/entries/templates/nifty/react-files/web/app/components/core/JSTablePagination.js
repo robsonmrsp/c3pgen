@@ -79,7 +79,7 @@ export default class JSTablePagination extends React.Component {
         const firstPage = this.props.page === 1 ? 1 : this.state.firstVisiblePage;
 
         const items = Array.from(new Array(this.numPages), (x, i) => (10 * (firstPage - 1)) + i + 1)
-        this.totalNumPages = Math.round((this.props.totalItems / this.props.pageSize) + 1);
+        this.totalNumPages = Math.floor((this.props.totalItems / this.props.pageSize)) + 1;
 
         // console.log("const items" + items);
         // console.log("this.totalNumPages " + this.totalNumPages);

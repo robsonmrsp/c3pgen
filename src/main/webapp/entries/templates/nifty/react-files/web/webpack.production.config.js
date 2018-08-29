@@ -10,6 +10,7 @@ const config = {
   entry: [
     './main.js',
     './assets/scss/main.scss',
+    './assets/scss/nifty.scss',
   ],
 
   context: resolve(__dirname, 'app'),
@@ -50,6 +51,13 @@ const config = {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
+      },
+      {
+        test: /\.css$/,
+        use: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: "css-loader"
+        })
       },
       {
         test: /\.scss$/,

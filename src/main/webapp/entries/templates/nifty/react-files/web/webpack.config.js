@@ -13,19 +13,21 @@ const config = {
     'webpack/hot/only-dev-server',
     './main.js',
     './assets/scss/main.scss',
-  ],
+    './assets/scss/nifty.scss',
+    './assets/custom/nifty-demo.css',
+    './assets/custom/nifty-demo-icons.css',
+    ],
 
   output: {
     filename: 'bundle.js',
     path: resolve(__dirname, 'dist'),
-    publicPath: '',
   },
 
   context: resolve(__dirname, 'app'),
 
   devServer: {
     hot: true,
-    contentBase: resolve(__dirname, 'build'),
+    contentBase: resolve(__dirname, 'dist'),
     historyApiFallback: true,
     publicPath: '/'
   },

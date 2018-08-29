@@ -12,7 +12,6 @@ import 'eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'font-awesome/css/font-awesome.min.css';
-import './assets/css/app.css';
 
 
 import App from './App';
@@ -21,10 +20,10 @@ window.jQuery = $;
 window.$ = $;
 global.jQuery = $;
 
-const nifty = require('./assets/css/theme/demo/js/nifty');
 const bootstrap = require('bootstrap');
 const nanoscroller = require('nanoscroller/bin/javascripts/jquery.nanoscroller.js');
 const metisMenu = require('metismenu/dist/metisMenu.js');
+const nifty = require('./assets/css/theme/demo/js/nifty');
 
 
 const render = (Component) => {

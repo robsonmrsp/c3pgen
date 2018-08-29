@@ -16,7 +16,17 @@ export default class App extends React.Component {
           <Header />
           <div className="boxed">
             <div id="content-container">
-              <div className="main-content">
+              <div id="page-head">
+                <div id="page-title">
+                  <h1 className="page-header text-overflow">Bootstrap Tables</h1>
+                </div>
+                <ol className="breadcrumb">
+                  <li><a href="#"><i className="demo-pli-home" /></a></li>
+                  <li><a href="#">Tables</a></li>
+                  <li className="active">Bootstrap Tables</li>
+                </ol>
+              </div>
+              <div id="page-content">
                 <Root />
               </div>
             </div>
@@ -27,3 +37,4 @@ export default class App extends React.Component {
     )
   }
 }
+
