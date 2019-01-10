@@ -204,7 +204,7 @@ public class EntitiesGenerator {
 
 		vueModalGenerator = new MarkerGenerator(freeMarkerConfig, application, "VueModalTemplate.tpl", appVueComponentsFolder + "${entity.name}/", TemplateFileName.MODAL, FileType.VUE);
 
-		vueRouterGenerator = new MarkerGenerator(freeMarkerConfig, application, "VueRouterTemplate.tpl", appVueRootSrcFolder + "router/", TemplateFileName.ROOT, FileType.JAVASCRIPT);
+		vueRouterGenerator = new MarkerGenerator(freeMarkerConfig, application, "VueRouterTemplate.tpl", appVueComponentsFolder + "router/", TemplateFileName.ROOT, FileType.JAVASCRIPT);
 		vueSidebarGenerator = new MarkerGenerator(freeMarkerConfig, application, "VueSidebarTemplate.tpl", appVueComponentsFolder + "layout/", TemplateFileName.SIDEBAR, FileType.VUE);
 
 		reactFormGenerator = new MarkerGenerator(freeMarkerConfig, application, "ReactFormTemplate.tpl", appReactComponentsFolder + "${entity.name}/", TemplateFileName.FORM, FileType.JAVASCRIPT);
