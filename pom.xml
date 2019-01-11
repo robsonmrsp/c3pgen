@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>br.com.c3pgen</groupId>
 	<artifactId>c3pgen</artifactId>
@@ -218,9 +216,7 @@
 			<scope>compile</scope>
 		</dependency>
 
-		<!-- não sei porque quando adicionamos essa dependencia o projeto deixa 
-			de ser um projeto web. Pos isso somente adicionaremos quando for executar 
-			algum teste. -->
+		<!-- não sei porque quando adicionamos essa dependencia o projeto deixa de ser um projeto web. Pos isso somente adicionaremos quando for executar algum teste. -->
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-servlet-api</artifactId>
@@ -254,8 +250,7 @@
 			<scope>runtime</scope>
 		</dependency>
 
-		<!-- JSR 330 é a especificação da injeção de dependencia. Significa que 
-			não pretendemos usar as Annotations do Spring , a não ser que seja necessário. -->
+		<!-- JSR 330 é a especificação da injeção de dependencia. Significa que não pretendemos usar as Annotations do Spring , a não ser que seja necessário. -->
 		<dependency>
 			<groupId>javax.inject</groupId>
 			<artifactId>javax.inject</artifactId>
@@ -449,9 +444,7 @@
 				</executions>
 			</plugin>
 
-			<!-- A longo prazo, será mais simples manter a minificação dos css e js 
-				com os plugins abaixo. Isso porque, dada a maneira que estamos criando a 
-				view, serão vários arquivos js. -->
+			<!-- A longo prazo, será mais simples manter a minificação dos css e js com os plugins abaixo. Isso porque, dada a maneira que estamos criando a view, serão vários arquivos js. -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
@@ -542,29 +535,6 @@
 		</plugins>
 	</build>
 	<repositories>
-		<repository>
-			<id>Jasper</id>
-			<url>https://jaspersoft.artifactoryonline.com/jaspersoft/jr-ce-releases</url>
-		</repository>
 
-		<repository>
-			<id>OSGEO GeoTools repo</id>
-			<url>http://download.osgeo.org/webdav/geotools</url>
-		</repository>
-
-		<repository>
-			<id>SqlServer repo</id>
-			<url>http://clojars.org/repo</url>
-		</repository>
-
-		<repository>
-			<id>maven2-repository.dev.java.net</id>
-			<name>Java.net Maven 2 Repository</name>
-			<url>http://download.java.net/maven/2</url>
-			<layout>default</layout>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
 	</repositories>
 </project>

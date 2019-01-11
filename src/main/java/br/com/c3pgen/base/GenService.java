@@ -131,7 +131,7 @@ public class GenService {
 			String zip = Util.currentDir() + File.separator + webPath;
 
 			ZipUtils.zipFiles(Arrays.asList(new File(a)), new File(zip));
-			
+
 			fileInfo.setRealFilePath(zip);
 			fileInfo.setStaticFilePath(webPath);
 			fileInfo.setGenerateSuccess(true);
@@ -163,7 +163,6 @@ public class GenService {
 
 		Application newApplication = fixApplication(application);
 		ApplicationValidator appValidator = new ApplicationValidator();
-
 
 		if (!application.getAsModule()) {
 			fixModules(newApplication);
@@ -200,7 +199,7 @@ public class GenService {
 				LOGGER.info("Concluida a geração da aplicação");
 			}
 			String a = Util.currentDir() + File.separator + "out/" + newApplication.getAppName();
-			String webPath = "out/" + newApplication.getAppName() + DateUtil.asString(LocalDateTime.now(), "_dd_MM_yyyy_HH_mm_ss") + ".zip";
+			String webPath = "out/" + application.getView() + "_" + newApplication.getAppName() + DateUtil.asString(LocalDateTime.now(), "_dd_MM_yyyy_HH_mm_ss") + "_.zip";
 			String zip = Util.currentDir() + File.separator + webPath;
 
 			ZipUtils.zipFiles(Arrays.asList(new File(a)), new File(zip));
@@ -233,7 +232,8 @@ public class GenService {
 		// List<ApplicationEntity> entities = oldApplication.getEntities();
 		// for (ApplicationEntity applicationEntity : entities) {
 		// applicationEntity.setRelationships(null);
-		// applicationEntity.setRelationships(getNewRelations(applicationEntity, oldApplication.getApplicationRelationships()));
+		// applicationEntity.setRelationships(getNewRelations(applicationEntity,
+		// oldApplication.getApplicationRelationships()));
 		// }
 
 		return oldApplication;
@@ -247,11 +247,13 @@ public class GenService {
 			Relationship source = applicationRelationship.getSource();
 			Relationship target = applicationRelationship.getTarget();
 
-			// if (source != null && source.getEntity() != null && source.getEntity().equals(applicationEntity)) {
+			// if (source != null && source.getEntity() != null &&
+			// source.getEntity().equals(applicationEntity)) {
 			// relationships.add(source);
 			// }
 			//
-			// if (target != null && target.getEntity() != null && target.getEntity().equals(applicationEntity)) {
+			// if (target != null && target.getEntity() != null &&
+			// target.getEntity().equals(applicationEntity)) {
 			// relationships.add(target);
 			// }
 
