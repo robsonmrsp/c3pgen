@@ -208,18 +208,25 @@ public class DaoRelationship extends AccessibleHibernateDao<Relationship> {
 
 		Session session = getSession();
 
-		int deletedEntitiesEntRel = session.createSQLQuery(hqlDeleteEntRel) //
-				.setInteger("entityId", entity.getId())//
-				.setInteger("idClient", entity.getOwner().getId())//
-				.setString("entityName", entity.getName())//
-				.executeUpdate();
-
-		int deletedEntities = session.createSQLQuery(hqlDelete)//
-				.setInteger("entityId", entity.getId())//
-				.setInteger("idClient", entity.getOwner().getId())//
-				.setString("entityName", entity.getName())//
-				.executeUpdate();
-
+		int deletedEntitiesEntRel = 0;
+		try {
+			deletedEntitiesEntRel = session.createSQLQuery(hqlDeleteEntRel) //
+					.setInteger("entityId", entity.getId())//
+					.setInteger("idClient", entity.getOwner().getId())//
+					.setString("entityName", entity.getName())//
+					.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		try {
+			int deletedEntities = session.createSQLQuery(hqlDelete)//
+					.setInteger("entityId", entity.getId())//
+					.setInteger("idClient", entity.getOwner().getId())//
+					.setString("entityName", entity.getName())//
+					.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		int deletedOrfanRel = session.createSQLQuery(hqlDeleteOrfanRel).executeUpdate();//
 
 		return deletedEntitiesEntRel;
