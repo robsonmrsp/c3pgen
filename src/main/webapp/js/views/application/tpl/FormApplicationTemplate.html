@@ -36,14 +36,14 @@
 									</ol>
 									<!-- Wrapper for slides -->
 									<div class="carousel-inner" role="listbox">
-										<div class="item {{(skin === 'Nifty' || skin === '' || skin === null) ? 'active' : '' }}" skin="Nifty">
-											<img src="images/templates/Nifty.png" alt="Nifty">
+										<div class="item {{(skin === 'nifty' || skin === '' || skin === null) ? 'active' : '' }}" skin="nifty">
+											<img src="images/templates/nifty.png" alt="nifty">
 											<div class="carousel-caption">
 												<h3 style="font-size: 60px; color: #6a6c6f">Nifty</h3>
 											</div>
 										</div>
-										<div class="item {{skin === 'Ace' ? 'active' : '' }}" skin="Ace">
-											<img src="images/templates/Ace.png" alt="Ace">
+										<div class="item {{skin === 'ace' ? 'active' : '' }}" skin="ace">
+											<img src="images/templates/ace.png" alt="ace">
 											<div class="carousel-caption">
 												<h3 style="font-size: 60px; color: #6a6c6f">Ace</h3>
 											</div>
@@ -65,7 +65,7 @@
 									<input type="hidden" id="inputId" value="{{id}}">
 									<div id="groupInputSkin" class="form-group" style='display: none;'>
 										<label class="control-label" for="inputSkin">Template</label>
-										<input type="text" id="inputSkin" placeholder="Template" value="{{skin || 'Ace'}}" class="form-control" readonly="readonly">
+										<input type="text" id="inputSkin" placeholder="Template" value="{{skin || 'ace'}}" class="form-control" readonly="readonly">
 									</div>
 									<div id="groupInputAsModule" class="form-group ">
 										<input type="checkbox" id="inputAsModule" {{asModule ? 'checked' :''}} class="magic-checkbox">
