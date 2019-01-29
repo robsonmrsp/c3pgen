@@ -22,7 +22,6 @@ import org.hibernate.annotations.CascadeType;
  * generated: 03/09/2015 14:51:47
  **/
 @Entity
-// @Audited
 @SequenceGenerator(name = "APPLICATION_SEQUENCE", sequenceName = "APPLICATION_SEQUENCE")
 public class Application extends AbstractTimestampEntity {
 
@@ -119,7 +118,7 @@ public class Application extends AbstractTimestampEntity {
 	}
 
 	public String getSkin() {
-		return skin;
+		return ("" + skin).toLowerCase();
 	}
 
 	public void setSkin(String skin) {

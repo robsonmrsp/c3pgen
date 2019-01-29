@@ -172,7 +172,9 @@ public class EntitiesGenerator {
 
 		jsRouterSpecGenerator = new MarkerGenerator(freeMarkerConfig, application, "JSRouterSpecTemplate.js", jsSpecRootFolder, TemplateFileName.ROUTER_SPEC_JS, FileType.JAVASCRIPT);
 
-		// beansGenerator = new MarkerGenerator(freeMarkerConfig, application, "beans.tpl", webAppRootFolder + "WEB-INF/", TemplateFileName.BEANS_XML, FileType.XML);
+		// beansGenerator = new MarkerGenerator(freeMarkerConfig, application,
+		// "beans.tpl", webAppRootFolder + "WEB-INF/", TemplateFileName.BEANS_XML,
+		// FileType.XML);
 
 		testBeansGenerator = new MarkerGenerator(freeMarkerConfig, application, "test-beans.tpl", javaTestResourcesRootFolder, TemplateFileName.TEST_BEANS_XML, FileType.XML);
 
@@ -195,8 +197,6 @@ public class EntitiesGenerator {
 		produLoginGenerator = new MarkerGenerator(freeMarkerConfig, application, "produ_login.tpl", appRootFolder + "/produ/", TemplateFileName.LOGIN_HTML, FileType.HTML);
 
 		// geração angular
-		htmlPageGenerator = new MarkerGenerator(freeMarkerConfig, application, "HtmlPageTemplate.tpl", jsRootFolder + "/${entity.name}/tpl/", TemplateFileName.PAGE_TEMPLATE_HTML, FileType.HTML);
-
 		tsFormAngularGenerator = new MarkerGenerator(freeMarkerConfig, application, "TsFormAngularComponentTemplate.tpl", appAngularRootFolder + "$kc{entity.name}/form-$kc{entity.name}/", TemplateFileName.FORM_TS, FileType.TYPESCRIPT);
 
 		vueFormGenerator = new MarkerGenerator(freeMarkerConfig, application, "VueFormTemplate.tpl", appVueComponentsFolder + "${entity.name}/", TemplateFileName.FORM, FileType.VUE);
