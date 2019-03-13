@@ -71,6 +71,8 @@ public interface TemplateFileName {
 
 	// persistencia
 	final String DAO_JAVA = "Dao${entity.name}";
+	final String REPOSITORY_JAVA = "${entity.name}Repository";
+	final String SPECIFICATION_HELPER_JAVA = "${entity.name}SpecificationHelper";
 
 	final String ACCESSIBLE_HIBERNATE_DAO = "AccessibleHibernateDao";
 	final String COLUMN_DEFINITIONS = "ColumnDefinitions";

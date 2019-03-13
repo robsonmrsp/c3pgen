@@ -60,6 +60,8 @@ public class EntitiesGenerator {
 	private static MarkerGenerator testInitData;
 	private static MarkerGenerator mybatisResourcesGenerator;
 	private static MarkerGenerator daoGenerator;
+	private static MarkerGenerator specificationHelperGenerator;
+	private static MarkerGenerator repositoryGenerator;
 	private static MarkerGenerator mapperMybatisGenerator;
 	private static MarkerGenerator xmlMybatisGenerator;
 
@@ -128,6 +130,8 @@ public class EntitiesGenerator {
 
 		basicServiceGenerator = new MarkerGenerator(freeMarkerConfig, application, "JavaBasicServiceTemplate.tpl", javaRootFolder + "/service/", TemplateFileName.SERVICE_JAVA, FileType.JAVA);
 		daoGenerator = new MarkerGenerator(freeMarkerConfig, application, "JavaDaoTemplate.tpl", javaRootFolder + "/persistence/", TemplateFileName.DAO_JAVA, FileType.JAVA);
+		repositoryGenerator = new MarkerGenerator(freeMarkerConfig, application, "JavaRepositoryTemplate.tpl", javaRootFolder + "/persistence/", TemplateFileName.REPOSITORY_JAVA, FileType.JAVA);
+		specificationHelperGenerator = new MarkerGenerator(freeMarkerConfig, application, "JavaSpecificationHelperTemplate.tpl", javaRootFolder + "/persistence/", TemplateFileName.SPECIFICATION_HELPER_JAVA, FileType.JAVA);
 
 		basicServiceImpGenerator = new MarkerGenerator(freeMarkerConfig, application, "JavaBasicServiceImpTemplate.tpl", javaRootFolder + "/service/", TemplateFileName.SERVICE_JAVA_IMP, FileType.JAVA);
 
@@ -269,7 +273,9 @@ public class EntitiesGenerator {
 						if (!ent.getName().equalsIgnoreCase("User")) {
 							System.out.println(" Gerando o model " + ent.getName());
 							javaModelGenerator.generateEntityFile(application, ent);
-							daoGenerator.generateEntityFile(application, ent);
+//							daoGenerator.generateEntityFile(application, ent);
+							repositoryGenerator.generateEntityFile(application, ent);
+							specificationHelperGenerator.generateEntityFile(application, ent);
 						}
 
 						basicServiceGenerator.generateEntityFile(application, ent);
