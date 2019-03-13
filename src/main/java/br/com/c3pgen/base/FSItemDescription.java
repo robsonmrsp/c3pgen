@@ -54,7 +54,7 @@ public class FSItemDescription {
 		// persistences.add(new FSItemDescription("AccessibleHibernateDao", rootFolder + "persistence" + File.separator, "AccessibleHibernateDao", FileType.JAVA));
 
 		persistences.add(new FSItemDescription("Pagination", rootFolder + "persistence" + File.separator + "pagination" + File.separator, "Pagination", FileType.JAVA));
-		persistences.add(new FSItemDescription("PaginationParams", rootFolder + "persistence" + File.separator + "pagination" + File.separator, "PaginationParams", FileType.JAVA));
+		persistences.add(new FSItemDescription("SearchParameters", rootFolder + "persistence" + File.separator + "pagination" + File.separator, "SearchParameters", FileType.JAVA));
 		// persistences.add(new FSItemDescription("Paginator", rootFolder + "persistence" + File.separator + "pagination" + File.separator, "Paginator", FileType.JAVA));
 		persistences.add(new FSItemDescription("Pager", rootFolder + "persistence" + File.separator + "pagination" + File.separator, "Pager", FileType.JAVA));
 		persistences.add(new FSItemDescription("HibernateEventWiring", rootFolder + "persistence" + File.separator, "HibernateEventWiring", FileType.JAVA));
@@ -113,7 +113,7 @@ public class FSItemDescription {
 	public static List<FSItemDescription> model(String rootFolder) {
 
 		List<FSItemDescription> list = new ArrayList<FSItemDescription>();
-		list.add(new FSItemDescription("Owner", rootFolder + File.separator + "model" + File.separator, "Owner", FileType.JAVA));
+		list.add(new FSItemDescription("Tenant", rootFolder + File.separator + "model" + File.separator, "Tenant", FileType.JAVA));
 		list.add(new FSItemDescription("ColumnDefinitions", rootFolder + File.separator + "model" + File.separator, "ColumnDefinitions", FileType.JAVA));
 		list.add(new FSItemDescription("CustomRevisionEntity", rootFolder + File.separator + "model" + File.separator, "CustomRevisionEntity", FileType.JAVA));
 		list.add(new FSItemDescription("AbstractTimestampEntity", rootFolder + File.separator + "model" + File.separator, "AbstractTimestampEntity", FileType.JAVA));
