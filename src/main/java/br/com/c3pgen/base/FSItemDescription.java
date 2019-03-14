@@ -51,7 +51,7 @@ public class FSItemDescription {
 //		persistences.add(new FSItemDescription("HibernateDao", rootFolder + "persistence" + File.separator, "HibernateDao", FileType.JAVA));
 		persistences.add(new FSItemDescription("CatchThrowConstraintViolationException", rootFolder + "persistence" + File.separator, "CatchThrowConstraintViolationException", FileType.JAVA));
 
-		// persistences.add(new FSItemDescription("AccessibleHibernateDao", rootFolder + "persistence" + File.separator, "AccessibleHibernateDao", FileType.JAVA));
+		 persistences.add(new FSItemDescription("DataCreateUpdateListener", rootFolder + "persistence" + File.separator, "DataCreateUpdateListener", FileType.JAVA));
 
 		persistences.add(new FSItemDescription("Pagination", rootFolder + "persistence" + File.separator + "pagination" + File.separator, "Pagination", FileType.JAVA));
 		persistences.add(new FSItemDescription("SearchParameters", rootFolder + "persistence" + File.separator + "pagination" + File.separator, "SearchParameters", FileType.JAVA));
@@ -116,7 +116,7 @@ public class FSItemDescription {
 		list.add(new FSItemDescription("Tenant", rootFolder + File.separator + "model" + File.separator, "Tenant", FileType.JAVA));
 		list.add(new FSItemDescription("ColumnDefinitions", rootFolder + File.separator + "model" + File.separator, "ColumnDefinitions", FileType.JAVA));
 		list.add(new FSItemDescription("CustomRevisionEntity", rootFolder + File.separator + "model" + File.separator, "CustomRevisionEntity", FileType.JAVA));
-		list.add(new FSItemDescription("AbstractTimestampEntity", rootFolder + File.separator + "model" + File.separator, "AbstractTimestampEntity", FileType.JAVA));
+		list.add(new FSItemDescription("AbstractEntity", rootFolder + File.separator + "model" + File.separator, "AbstractEntity", FileType.JAVA));
 		// list.add(new FSItemDescription("SyncInfo", rootFolder + File.separator + "model" + File.separator, "SyncInfo", FileType.JAVA));
 		// list.add(new FSItemDescription("User", rootFolder + File.separator +
 		// "model" + File.separator, "User", FileType.JAVA));
