@@ -12,6 +12,9 @@ import ${application.rootPackage}.model.filter.Filter${entity.name};
 
 import org.springframework.data.jpa.domain.Specification;
 
+<#if application.multitenancy>
+import ${application.corePackage}.model.Tenant;
+</#if>	
 @SuppressWarnings("serial")
 public class ${entity.name}SpecificationHelper {
 
@@ -29,7 +32,7 @@ public class ${entity.name}SpecificationHelper {
 		};
 	}
 
-	public static Specification<${entity.name}> filter(Filter${entity.name} filter, Tenant tenant) {
+	public static Specification<${entity.name}> filter(Filter${entity.name} filter${entity.name}, Tenant tenant) {
 		return new Specification<${entity.name}>() {
 
 			@Override
@@ -42,7 +45,7 @@ public class ${entity.name}SpecificationHelper {
 			<#list entity.attributes as att>
 			  	<#if att.type.className == 'String'>	
 				if (filter${entity.name}.get${firstUpper(att.name)}() != null) {
-					predicates.add(criteriaBuilder.like(builder.upper(root.<String>get("${att.name}")), "%" + filter${entity.name}.get${firstUpper(att.name)}().toUpperCase() + "%"));
+					predicates.add(criteriaBuilder.like(criteriaBuilder.upper(root.<String>get("${att.name}")), "%" + filter${entity.name}.get${firstUpper(att.name)}().toUpperCase() + "%"));
 				}
 				<#else>
 				if (filter${entity.name}.get${firstUpper(att.name)}() != null) {

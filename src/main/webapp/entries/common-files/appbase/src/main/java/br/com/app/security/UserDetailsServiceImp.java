@@ -29,16 +29,16 @@ public class UserDetailsServiceImp implements UserDetailsService {
 	SpringSecurityUserContext context;
 
 	@Inject
-	public UserDetailsServiceImp(DaoUser userDao) {
-		if (userDao == null) {
-			throw new IllegalArgumentException("UserDao cannot be null");
+	public UserDetailsServiceImp(UserRepository userRepository) {
+		if (userRepository == null) {
+			throw new IllegalArgumentException("userRepository cannot be null");
 		}
-		this.userDao = userDao;
+		this.userRepository = userRepository;
 	}
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		User appUser = userDao.findByUsername(username);
+		User appUser = userRepository.findByUsername(username);
 		if (appUser == null) {
 			throw new UsernameNotFoundException("Invalid username...");
 		}

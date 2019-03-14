@@ -38,7 +38,7 @@ public class FSItemDescription {
 
 		List<FSItemDescription> persistences = new ArrayList<FSItemDescription>();
 
-		persistences.add(new FSItemDescription("DaoUser", folder + "persistence" + File.separator, "DaoUser", FileType.JAVA));
+//		persistences.add(new FSItemDescription("DaoUser", folder + "persistence" + File.separator, "DaoUser", FileType.JAVA));
 		return persistences;
 	}
 
@@ -48,7 +48,7 @@ public class FSItemDescription {
 
 		// persistences.add(new FSItemDescription("DaoUser", rootFolder + "persistence" + File.separator, "DaoUser", FileType.JAVA));
 
-		persistences.add(new FSItemDescription("HibernateDao", rootFolder + "persistence" + File.separator, "HibernateDao", FileType.JAVA));
+//		persistences.add(new FSItemDescription("HibernateDao", rootFolder + "persistence" + File.separator, "HibernateDao", FileType.JAVA));
 		persistences.add(new FSItemDescription("CatchThrowConstraintViolationException", rootFolder + "persistence" + File.separator, "CatchThrowConstraintViolationException", FileType.JAVA));
 
 		// persistences.add(new FSItemDescription("AccessibleHibernateDao", rootFolder + "persistence" + File.separator, "AccessibleHibernateDao", FileType.JAVA));
@@ -57,7 +57,7 @@ public class FSItemDescription {
 		persistences.add(new FSItemDescription("SearchParameters", rootFolder + "persistence" + File.separator + "pagination" + File.separator, "SearchParameters", FileType.JAVA));
 		// persistences.add(new FSItemDescription("Paginator", rootFolder + "persistence" + File.separator + "pagination" + File.separator, "Paginator", FileType.JAVA));
 		persistences.add(new FSItemDescription("Pager", rootFolder + "persistence" + File.separator + "pagination" + File.separator, "Pager", FileType.JAVA));
-		persistences.add(new FSItemDescription("HibernateEventWiring", rootFolder + "persistence" + File.separator, "HibernateEventWiring", FileType.JAVA));
+//		persistences.add(new FSItemDescription("HibernateEventWiring", rootFolder + "persistence" + File.separator, "HibernateEventWiring", FileType.JAVA));
 		// persistences.add(new FSItemDescription("DaoSyncInfo", rootFolder + "persistence" + File.separator, "DaoSyncInfo", FileType.JAVA));
 
 		return persistences;

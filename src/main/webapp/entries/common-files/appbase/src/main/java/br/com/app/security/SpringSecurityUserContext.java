@@ -12,7 +12,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 import ${application.rootPackage}.model.User;
 <#if application.multitenancy>
-import ${application.corePackage}.model.Owner;
+import ${application.corePackage}.model.Tenant;
 </#if>
 
 /**
@@ -63,9 +63,9 @@ public class SpringSecurityUserContext implements UserContext {
 	}
 	
 	<#if application.multitenancy>
-	public Owner getOwner() {
+	public Tenant getTenant() {
 		if (getCurrentUser() != null) {
-			return getCurrentUser().getOwner();
+			return getCurrentUser().getTenant();
 		}
 		
 		return null;

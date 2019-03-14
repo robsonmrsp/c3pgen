@@ -26,7 +26,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 <#if application.multitenancy>
-import ${application.corePackage}.model.Owner;
+import ${application.corePackage}.model.Tenant;
 </#if>
 
 import ${application.corePackage}.model.AbstractTimestampEntity;
@@ -75,7 +75,7 @@ public class User extends AbstractTimestampEntity implements UserDetails {
 	<#if application.multitenancy>
 	@ManyToOne
 	@JoinColumn(name = "ID_OWNER")
-	private Owner owner;
+	private Tenant tenant;
 	</#if>	
 	
 	public User() {
@@ -189,11 +189,11 @@ public class User extends AbstractTimestampEntity implements UserDetails {
 	}
 
 	<#if application.multitenancy>
-	public Owner getOwner() {
-		return owner;
+	public Tenant getTenant() {
+		return tenant;
 	}
-	public void setOwner(Owner owner) {
-		this.owner = owner;
+	public void setTenant(Tenant tenant) {
+		this.tenant = tenant;
 	}
 	</#if>
 }

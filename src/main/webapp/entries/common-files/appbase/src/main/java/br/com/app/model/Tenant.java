@@ -42,7 +42,7 @@ public class Tenant {
 	private String corporateName;  			
 	
 		
-	public  Owner() {
+	public  Tenant() {
 		
 	}
 	public Integer getId() {

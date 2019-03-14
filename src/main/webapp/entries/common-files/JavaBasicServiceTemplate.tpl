@@ -6,7 +6,7 @@ import java.util.List;
 import java.time.LocalDateTime;
 import java.time.LocalDate;
 <#if application.multitenancy?? && application.multitenancy>
-import ${application.corePackage}.model.Owner;
+import ${application.corePackage}.model.Tenant;
 </#if>
 import ${application.rootPackage}.model.${entity.name};
 import ${application.rootPackage}.model.filter.Filter${entity.name};
