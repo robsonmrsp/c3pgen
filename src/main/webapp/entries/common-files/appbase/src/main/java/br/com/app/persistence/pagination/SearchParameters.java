@@ -3,7 +3,12 @@ package ${application.corePackage}.persistence.pagination;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.util.MultiValueMap;
+import org.springframework.util.StringUtils;
 
 import ${application.corePackage}.utils.Util;
 
@@ -30,7 +35,7 @@ public class SearchParameters<Filter> {
 
 	private void setPaginationValues(MultiValueMap<String, String> pathParameters) {
 		page = pathParameters.get("page") != null ? Integer.valueOf(pathParameters.getFirst("page")) : 1;
-		pageSize = pathParameters.get("pageSize") != null ? Integer.valueOf(pathParameters.getFirst("pageSize")) : 15;
+		pageSize = pathParameters.get("pageSize") != null ? Integer.valueOf(pathParameters.getFirst("pageSize")) : 30;
 		totalPages = pathParameters.get("totalPages") != null ? Integer.valueOf(pathParameters.getFirst("totalPages")) : 1;
 		order = pathParameters.getFirst("direction") != null ? pathParameters.getFirst("direction") : "";
 		orderBy = pathParameters.getFirst("orderBy") != null ? pathParameters.getFirst("orderBy") : "";
@@ -117,5 +122,13 @@ public class SearchParameters<Filter> {
 
 	public void setFilter(Filter filterObject) {
 		this.filter = filterObject;
+	}
+	
+	public Pageable getPageRequest() {
+		if (StringUtils.isEmpty(getOrder()) || StringUtils.isEmpty(getOrderBy())) {
+			return PageRequest.of(page, pageSize);
+		} else {
+			return PageRequest.of(page, pageSize, Sort.by(Direction.valueOf(getOrder().toUpperCase()), getOrderBy()));
+		}
 	}
 }

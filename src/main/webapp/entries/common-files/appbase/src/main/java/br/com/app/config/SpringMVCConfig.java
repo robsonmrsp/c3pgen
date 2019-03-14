@@ -8,6 +8,7 @@ import javax.inject.Inject;
 
 import org.hibernate.SessionFactory;
 import org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -36,7 +37,7 @@ import ${application.corePackage}.serialization.CustomLocalDateTimeSerializer;
 @ComponentScan(basePackages = "${application.rootPackage}")
 public class SpringMVCConfig extends WebMvcConfigurerAdapter {
 
-    @Inject
+    @Autowired
     OpenSessionInViewInterceptor interceptor;
 
     @Override

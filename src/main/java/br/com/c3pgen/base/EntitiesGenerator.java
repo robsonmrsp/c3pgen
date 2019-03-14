@@ -306,7 +306,7 @@ public class EntitiesGenerator {
 
 			testBeansGenerator.generate(application);
 			testSecurityGenerator.generate(application);
-			pomGenerator.generate(application);
+//			pomGenerator.generate(application);
 			buildPropertiesGenerator.generate(application);
 			buildXmlGenerator.generate(application);
 			produIndexGenerator.generate(application);

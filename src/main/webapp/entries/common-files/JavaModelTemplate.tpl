@@ -29,7 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 <#if application.multitenancy>
-import ${application.corePackage}.model.Owner;
+import ${application.corePackage}.model.Tenant;
 </#if>
 
 import ${corepackage}.model.AbstractTimestampEntity;
@@ -44,7 +44,7 @@ import ${corepackage}.model.AbstractTimestampEntity;
 	<#list entity.attributes as att >
 		<#if att.unique>
 			<#if application.multitenancy>
-		@UniqueConstraint(name = "${dataBasePrefix}_${uppercase(entity.tableName!entity.name)}_${uppercase(att.tableFieldName!att.name)}", columnNames = { "${uppercase(att.tableFieldName!att.name)}", "ID_OWNER" }),
+		@UniqueConstraint(name = "${dataBasePrefix}_${uppercase(entity.tableName!entity.name)}_${uppercase(att.tableFieldName!att.name)}", columnNames = { "${uppercase(att.tableFieldName!att.name)}", "ID_TENANT" }),
 			<#else>		
 		@UniqueConstraint(name = "${dataBasePrefix}_${uppercase(entity.tableName!entity.name)}_${uppercase(att.tableFieldName!att.name)}", columnNames = { "${uppercase(att.tableFieldName!att.name)}" }), 
 			</#if >
@@ -56,7 +56,7 @@ import ${corepackage}.model.AbstractTimestampEntity;
 	<#list entity.attributes as att >
 		<#if att.unique>
 			<#if application.multitenancy>
-		@UniqueConstraint(name = "${uppercase(entity.tableName!entity.name)}_${uppercase(att.tableFieldName!att.name)}", columnNames = { "${uppercase(att.tableFieldName!att.name)}",  "ID_OWNER"}), 
+		@UniqueConstraint(name = "${uppercase(entity.tableName!entity.name)}_${uppercase(att.tableFieldName!att.name)}", columnNames = { "${uppercase(att.tableFieldName!att.name)}",  "ID_TENANT"}), 
 			<#else >
 		@UniqueConstraint(name = "${uppercase(entity.tableName!entity.name)}_${uppercase(att.tableFieldName!att.name)}", columnNames = { "${uppercase(att.tableFieldName!att.name)}" }), 
 			</#if >
@@ -154,15 +154,15 @@ public class ${entity.name} extends AbstractTimestampEntity{
 	</#if>
 		<#if application.multitenancy?? && application.multitenancy>
 	@ManyToOne
-	@JoinColumn(name = "ID_OWNER")
-	private Owner owner;
+	@JoinColumn(name = "ID_TENANT")
+	private Tenant tenant;
 	
-	public  Owner getOwner() {
-		return owner;
+	public  Tenant getTenant() {
+		return tenant;
 	}
 	
-	public void setOwner(Owner owner) {
-		this.owner = owner;
+	public void setTenant(Tenant tenant) {
+		this.tenant = tenant;
 	}
 	</#if>
 		
