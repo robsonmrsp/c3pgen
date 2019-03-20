@@ -38,7 +38,7 @@ public class FSItemDescription {
 
 		List<FSItemDescription> persistences = new ArrayList<FSItemDescription>();
 
-//		persistences.add(new FSItemDescription("DaoUser", folder + "persistence" + File.separator, "DaoUser", FileType.JAVA));
+		persistences.add(new FSItemDescription("UserRepository", folder + "persistence" + File.separator, "UserRepository", FileType.JAVA));
 		return persistences;
 	}
 
