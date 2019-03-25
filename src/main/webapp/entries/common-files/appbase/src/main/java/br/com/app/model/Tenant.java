@@ -8,7 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import ${application.corePackage}.model.AbstractTimestampEntity;
 
 <#if application.hasAudit()>
 import org.hibernate.envers.Audited;

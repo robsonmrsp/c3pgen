@@ -14,21 +14,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import ${package}.core.model.Owner;
-import ${package}.core.persistence.pagination.PaginationParams;
+import ${package}.core.model.Tenant;
+import ${package}.core.persistence.pagination.SearchParameters;
 import ${package}.core.security.SpringSecurityUserContext;
+import ${package}.core.rs.exception.ValidationException;
 
 import ${package}.json.Json${entity.name};
 import ${package}.model.${entity.name};
 import ${package}.rs.${entity.name}Controller;
 import ${package}.service.${entity.name}Service;
+import ${package}.util.MockMvcTestUtil;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(${entity.name}Controller.class)
 public class ${entity.name}ErrorMockTest {
+
+	static MockHttpSession mockHttpSession = MockMvcTestUtil.getSession();
 
 	@Autowired
 	private MockMvc mockMvc;
@@ -41,94 +46,97 @@ public class ${entity.name}ErrorMockTest {
 	@Test
 	public void errorGetiting${entity.name}ById() throws Exception {
 <#if application.multitenancy>
-		when(service.get(any(Integer.class), any(Owner.class))).thenThrow(new RuntimeException("Error Getting ${entity.name}"));
-		when(context.getOwner()).thenReturn(new Owner());
+		when(service.get(any(Integer.class), any(Tenant.class))).thenThrow(new RuntimeException("Error Getting ${entity.name}"));
+		when(context.getTenant()).thenReturn(new Tenant());
 <#else>
 		when(service.get(any(Integer.class))).thenThrow(new RuntimeException("Error Getting ${entity.name}"));
 </#if>
-		this.mockMvc.perform(get("/rs/crud/${firstLower(entity.name)}s/1")).andDo(print()).andExpect(status().is5xxServerError()).andExpect(content().string(containsString("Error Getting ${entity.name}")));
-	}
-
-	@Test
-	public void errorGetitingFilterEqual${entity.name}() throws Exception {
-<#if application.multitenancy>
-		when(service.filter(any(PaginationParams.class), any(Owner.class), any(Boolean.class))).thenThrow(new RuntimeException("Error Getting ${entity.name}"));
-		when(context.getOwner()).thenReturn(new Owner());
-<#else>
-		when(service.filter(any(PaginationParams.class), any(Boolean.class))).thenThrow(new RuntimeException("Error Getting ${entity.name}"));
-</#if>
-		this.mockMvc.perform(get("/rs/crud/${firstLower(entity.name)}s/filterEqual")).andDo(print()).andExpect(status().is5xxServerError()).andExpect(content().string(containsString("Error Getting ${entity.name}")));
-	}
-
-	@Test
-	public void errorGetitingFilterAlike${entity.name}() throws Exception {
-	
-<#if application.multitenancy>
-		when(service.filter(any(PaginationParams.class), any(Owner.class), any(Boolean.class))).thenThrow(new RuntimeException("Error Getting ${entity.name}"));
-		when(context.getOwner()).thenReturn(new Owner());
-<#else>
-		when(service.filter(any(PaginationParams.class), any(Boolean.class))).thenThrow(new RuntimeException("Error Getting ${entity.name}"));
-</#if>		
-		this.mockMvc.perform(get("/rs/crud/${firstLower(entity.name)}s/filterAlike")).andDo(print()).andExpect(status().is5xxServerError()).andExpect(content().string(containsString("Error Getting ${entity.name}")));
-	}
-
-	@Test
-	public void errorGetitingAll${entity.name}() throws Exception {
-<#if application.multitenancy>
-		when(service.all(any(Owner.class))).thenThrow(new RuntimeException("Error Getting ${entity.name}"));
-		when(context.getOwner()).thenReturn(new Owner());
-<#else>
-		when(service.all()).thenThrow(new RuntimeException("Error Getting ${entity.name}"));
-</#if>		
-
-		this.mockMvc.perform(get("/rs/crud/${firstLower(entity.name)}s/all")).andDo(print()).andExpect(status().is5xxServerError()).andExpect(content().string(containsString("Error Getting ${entity.name}")));
+		this.mockMvc.perform(get("/rs/crud/${firstLower(entity.name)}s/1").session(mockHttpSession))
+			.andExpect(status().is5xxServerError())
+			.andExpect(content().string(containsString("Error Getting ${entity.name}")));
 	}
 
 	@Test
 	public void errorGetitingAllPager${entity.name}() throws Exception {
 <#if application.multitenancy>
-		when(service.all(any(PaginationParams.class),any(Owner.class))).thenThrow(new RuntimeException("Error Getting ${entity.name}"));
-		when(context.getOwner()).thenReturn(new Owner());
+		when(service.get(any(SearchParameters.class),any(Tenant.class))).thenThrow(new RuntimeException("Error Getting ${entity.name}"));
+		when(context.getTenant()).thenReturn(new Tenant());
 <#else>
-		when(service.all(any(PaginationParams.class))).thenThrow(new RuntimeException("Error Getting ${entity.name}"));
+		when(service.all(any(SearchParameters.class))).thenThrow(new RuntimeException("Error Getting ${entity.name}"));
 </#if>		
 
-		this.mockMvc.perform(get("/rs/crud/${firstLower(entity.name)}s")).andDo(print()).andExpect(status().is5xxServerError()).andExpect(content().string(containsString("Error Getting ${entity.name}")));
+		this.mockMvc.perform(get("/rs/crud/${firstLower(entity.name)}s").session(mockHttpSession))
+			.andExpect(status().is5xxServerError())
+			.andExpect(content().string(containsString("Error Getting ${entity.name}")));
 	}
 
 	@Test
-	public void errorPostiting${entity.name}() throws Exception {
+	public void errorSaving${entity.name}() throws Exception {
 <#if application.multitenancy>
 		when(service.save(any(${entity.name}.class))).thenThrow(new RuntimeException("Error creating ${entity.name}"));
-		when(context.getOwner()).thenReturn(new Owner());
+		when(context.getTenant()).thenReturn(new Tenant());
 <#else>
 		when(service.save(any(${entity.name}.class))).thenThrow(new RuntimeException("Error creating ${entity.name}"));
 </#if>		
 
-		this.mockMvc.perform(post("/rs/crud/${firstLower(entity.name)}s").contentType(MediaType.APPLICATION_JSON).content("{}")).andDo(print()).andExpect(status().is5xxServerError()).andExpect(content().string(containsString("Error creating ${entity.name}")));
+		this.mockMvc.perform(post("/rs/crud/${firstLower(entity.name)}s").session(mockHttpSession).contentType(MediaType.APPLICATION_JSON).content("{}"))
+			.andExpect(status().is5xxServerError())
+			.andExpect(content().string(containsString("Error creating ${entity.name}")));
+	}
+	
+	@Test
+	public void errorSavingWithValidation${entity.name}() throws Exception {
+<#if application.multitenancy>
+		when(service.save(any(${entity.name}.class))).thenThrow(new ValidationException("Error creating-validating ${entity.name}"));
+		when(context.getTenant()).thenReturn(new Tenant());
+<#else>
+		when(service.save(any(${entity.name}.class))).thenThrow(new ValidationException("Error creating-validating ${entity.name}"));
+</#if>		
+
+		this.mockMvc.perform(post("/rs/crud/${firstLower(entity.name)}s").session(mockHttpSession).contentType(MediaType.APPLICATION_JSON).content("{}"))
+			.andExpect(status().isBadRequest())
+			.andExpect(content().string(containsString("Error creating-validating ${entity.name}")));
 	}
 	
 	@Test
 	public void errorUpdating${entity.name}() throws Exception {
 <#if application.multitenancy>
 		when(service.update(any(${entity.name}.class))).thenThrow(new RuntimeException("Error updating ${entity.name}"));
-		when(context.getOwner()).thenReturn(new Owner());
+		when(context.getTenant()).thenReturn(new Tenant());
 <#else>
 		when(service.update(any(${entity.name}.class))).thenThrow(new RuntimeException("Error updating ${entity.name}"));
 </#if>		
 
-		this.mockMvc.perform(put("/rs/crud/${firstLower(entity.name)}s/1").contentType(MediaType.APPLICATION_JSON).content("{}")).andDo(print()).andExpect(status().is5xxServerError()).andExpect(content().string(containsString("Error updating ${entity.name}")));
+		this.mockMvc.perform(put("/rs/crud/${firstLower(entity.name)}s/1").session(mockHttpSession).contentType(MediaType.APPLICATION_JSON).content("{}"))
+			.andExpect(status().is5xxServerError())
+			.andExpect(content().string(containsString("Error updating ${entity.name}")));
+	}
+	
+	@Test
+	public void errorUpdatingWithValidation${entity.name}() throws Exception {
+<#if application.multitenancy>
+		when(service.update(any(${entity.name}.class))).thenThrow(new ValidationException("Error updating-validating ${entity.name}"));
+		when(context.getTenant()).thenReturn(new Tenant());
+<#else>
+		when(service.update(any(${entity.name}.class))).thenThrow(new ValidationException("Error updating-validating ${entity.name}"));
+</#if>		
+
+		this.mockMvc.perform(put("/rs/crud/${firstLower(entity.name)}s/1").session(mockHttpSession).contentType(MediaType.APPLICATION_JSON).content("{}"))
+			.andExpect(status().isBadRequest())
+			.andExpect(content().string(containsString("Error updating-validating ${entity.name}")));
 	}
 
 	@Test
 	public void errorDeleting${entity.name}() throws Exception {
 <#if application.multitenancy>
-		when(service.delete(any(Integer.class))).thenThrow(new RuntimeException("Error removing ${entity.name}"));
-		when(context.getOwner()).thenReturn(new Owner());
+		when(service.delete(any(Integer.class),any(Tenant.class))).thenThrow(new RuntimeException("Error removing ${entity.name}"));
+		when(context.getTenant()).thenReturn(new Tenant());
 <#else>
 		when(service.delete(any(Integer.class))).thenThrow(new RuntimeException("Error removing ${entity.name}"));
 </#if>		
-		this.mockMvc.perform(delete("/rs/crud/${firstLower(entity.name)}s/1")).andDo(print()).andExpect(status().is5xxServerError()).andExpect(content().string(containsString("Error removing ${entity.name}")));
+		this.mockMvc.perform(delete("/rs/crud/${firstLower(entity.name)}s/1").session(mockHttpSession))
+			.andExpect(status().is5xxServerError())
+			.andExpect(content().string(containsString("Error removing ${entity.name}")));
 	}
 
 }

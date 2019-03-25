@@ -152,19 +152,6 @@ public class ${entity.name} extends AbstractEntity{
 		</#if>
 	</#list>
 	</#if>
-		<#if application.multitenancy?? && application.multitenancy>
-	@ManyToOne
-	@JoinColumn(name = "ID_TENANT")
-	private Tenant tenant;
-	
-	public  Tenant getTenant() {
-		return tenant;
-	}
-	
-	public void setTenant(Tenant tenant) {
-		this.tenant = tenant;
-	}
-	</#if>
 		
 	public  ${entity.name}() {
 		

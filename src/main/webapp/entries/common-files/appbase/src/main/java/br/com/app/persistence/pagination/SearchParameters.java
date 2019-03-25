@@ -126,9 +126,9 @@ public class SearchParameters<Filter> {
 	
 	public Pageable getPageRequest() {
 		if (StringUtils.isEmpty(getOrder()) || StringUtils.isEmpty(getOrderBy())) {
-			return PageRequest.of(page, pageSize);
+			return PageRequest.of(getPage() - 1, getPageSize());
 		} else {
-			return PageRequest.of(page, pageSize, Sort.by(Direction.valueOf(getOrder().toUpperCase()), getOrderBy()));
+			return PageRequest.of(getPage() - 1, getPageSize(), Sort.by(Direction.valueOf(getOrder().toUpperCase()), getOrderBy()));
 		}
 	}
 }

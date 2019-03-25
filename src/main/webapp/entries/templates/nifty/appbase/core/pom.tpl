@@ -8,134 +8,80 @@
 	<name>${application.appName}</name>
 
 	<properties>
-			<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-			<jackson.version>2.8.8</jackson.version>
-			<spring.version>4.3.11.RELEASE</spring.version>			
-			<spring.boot.test.version>1.5.7.RELEASE</spring.boot.test.version>
-			<spring.security.version>4.2.2.RELEASE</spring.security.version>
-			<hibernate.version>5.2.10.Final</hibernate.version>
-			<jasperreports.version>6.3.0</jasperreports.version>
-			<tomcat.version>8.5.20</tomcat.version>
-			<postgresql.version>42.1.4</postgresql.version>
-			<hikari.version>2.7.2</hikari.version>
+		<java.version>1.8</java.version>
 	</properties>
 	
-	<dependencies>
-	
+		<dependencies>
+		<!-- ==============particulares=============== -->
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-xml -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-xml</artifactId>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.3.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.thetransactioncompany</groupId>
+			<artifactId>cors-filter</artifactId>
+			<version>2.4</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>27.0.1-jre</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-envers -->
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-envers</artifactId>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/postgresql/postgresql -->
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+		</dependency>
+		<!-- as ptoximas 3 dependencias foram necessárias para compilar o index.jsp -->
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>br.com.six2six</groupId>
 			<artifactId>fixture-factory</artifactId>
 			<version>3.1.0</version>
 			<scope>test</scope>
 		</dependency>
-		
+
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports -->
 		<dependency>
 			<groupId>net.sf.jasperreports</groupId>
 			<artifactId>jasperreports</artifactId>
-			<version>${r"${jasperreports.version}"}</version>
-			<exclusions>
-				<exclusion>
-					<groupId>com.fasterxml.jackson.core</groupId>
-					<artifactId>jackson-core</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>com.fasterxml.jackson.core</groupId>
-					<artifactId>jackson-databind</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>com.fasterxml.jackson.core</groupId>
-					<artifactId>jackson-annotations</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		
-		<dependency>
-			<groupId>com.thetransactioncompany</groupId>
-			<artifactId>cors-filter</artifactId>
-			<version>2.4</version>
-		</dependency>
-				
-		<dependency>
-			<groupId>org.reflections</groupId>
-			<artifactId>reflections</artifactId>
-			<version>0.9.10</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>com.fasterxml.jackson.dataformat</groupId>
-			<artifactId>jackson-dataformat-xml</artifactId>
-			<version>${r"${jackson.version}"}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<version>${r"${spring.boot.test.version}"}</version>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-			<version>${r"${spring.boot.test.version}"}</version>
-			<scope>test</scope>
-		</dependency>
-
-		
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-messaging</artifactId>
-			<version>${r"${spring.version}"}</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-orm</artifactId>
-			<version>${r"${spring.version}"}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context</artifactId>
-			<version>${r"${spring.version}"}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-core</artifactId>
-			<version>${r"${spring.security.version}"}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-web</artifactId>
-			<version>${r"${spring.security.version}"}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-config</artifactId>
-			<version>${r"${spring.security.version}"}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-taglibs</artifactId>
-			<version>${r"${spring.security.version}"}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-web</artifactId>
-			<version>${r"${spring.version}"}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
-			<version>${r"${spring.version}"}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-test</artifactId>
-			<version>${r"${spring.version}"}</version>
-			<scope>test</scope>
+			<version>6.7.1</version>
 		</dependency>
 
 		<dependency>
@@ -146,160 +92,48 @@
 			<scope>compile</scope>
 		</dependency>
 
-		<!-- não sei porque quando adicionamos essa dependencia o projeto deixa de ser um projeto web. Pos isso somente adicionaremos quando for executar algum teste. -->
+		<!-- ============================= -->
 		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-servlet-api</artifactId>
-			<version>${r"${tomcat.version}"}</version>
-			<scope>provided</scope>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-			<version>1.2</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-coyote</artifactId>
-			<version>${r"${tomcat.version}"}</version>
-			<scope>provided</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>javax.websocket</groupId>
-			<artifactId>javax.websocket-api</artifactId>
-			<version>1.0</version>
-		</dependency>
-
-		<dependency>
-			<groupId>cglib</groupId>
-			<artifactId>cglib</artifactId>
-			<version>2.2.2</version>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-
-		<!-- JSR 330 é a especificação da injeção de dependencia. Significa que não pretendemos usar as Annotations do Spring , a não ser que seja necessário.-->
 		<dependency>
-			<groupId>javax.inject</groupId>
-			<artifactId>javax.inject</artifactId>
-			<version>1</version>
-		</dependency>
-
-		<dependency>
-			<groupId>commons-dbcp</groupId>
-			<artifactId>commons-dbcp</artifactId>
-			<version>1.4</version>
-		</dependency>
-		
-		<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
-		<dependency>
-			<groupId>commons-fileupload</groupId>
-			<artifactId>commons-fileupload</artifactId>
-			<version>1.3.1</version>
-		</dependency>
-		
-
-		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-			<version>3.1</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-core</artifactId>
-			<version>${r"${hibernate.version}"}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-envers</artifactId>
-			<version>${r"${hibernate.version}"}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-java8</artifactId>
-			<version>${r"${hibernate.version}"}</version>
-		</dependency>
-
-		<dependency>
-		    <groupId>com.zaxxer</groupId>
-		    <artifactId>HikariCP</artifactId>
-		    <version>${r"${hikari.version}"}</version>
-		    <scope>compile</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.16</version>
-		</dependency>
-		<dependency>
-			<groupId>commons-codec</groupId>
-			<artifactId>commons-codec</artifactId>
-			<version>1.10</version>
-		</dependency>
-
-
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>1.6.6</version>
-		</dependency>
-
-
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.12</version>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
 		<dependency>
-		    <groupId>org.postgresql</groupId>
-		    <artifactId>postgresql</artifactId>
-			<version>${r"${postgresql.version}"}</version>
-		</dependency>
-
-
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-validator</artifactId>
-			<version>5.4.1.Final</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-aop</artifactId>
-			<version>${r"${spring.version}"}</version>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
+	
 	<build>
 		<pluginManagement>
 			<plugins>
-				<plugin>
-					<groupId>org.apache.tomcat.maven</groupId>
-					<artifactId>tomcat7-maven-plugin</artifactId>
-					<version>2.0</version>
-					<executions>
-						<execution>
-							<id>default-cli</id>
-							<goals>
-								<goal>run</goal>
-							</goals>
-							<configuration>
-								<port>13000</port>
-								<path>/jaxrs-service</path>
-								<useSeparateTomcatClassLoader>true</useSeparateTomcatClassLoader>
-							</configuration>
-						</execution>
-					</executions>
-				</plugin>
-
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
@@ -325,6 +159,11 @@
 
 		<plugins>
 			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+					
+			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>build-helper-maven-plugin</artifactId>
 				<version>1.5</version>
@@ -344,7 +183,6 @@
 				</executions>
 			</plugin>
 			
-
 			<!-- A longo prazo, será mais simples manter a minificação dos css e js com os plugins abaixo. Isso porque, dada a maneira que estamos criando a view, serão vários arquivos js. -->
 				<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -434,30 +272,34 @@
 			</plugin>
 		</plugins>
 	</build>
-	<repositories>
+		<repositories>
 		<repository>
-			<id>Jasper</id>
-			<url>https://jaspersoft.artifactoryonline.com/jaspersoft/jr-ce-releases</url>
-		</repository>
-		
-		<repository>
-			<id>OSGEO GeoTools repo</id>
-			<url>http://download.osgeo.org/webdav/geotools</url>
-		</repository>
-		
-		<repository>
-			<id>SqlServer repo</id>
-			<url>http://clojars.org/repo</url>
-		</repository>
-		
-		<repository>
-			<id>maven2-repository.dev.java.net</id>
-			<name>Java.net Maven 2 Repository</name>
-			<url>http://download.java.net/maven/2</url>
-			<layout>default</layout>
+			<id>spring-snapshots</id>
+			<name>Spring Snapshots</name>
+			<url>https://repo.spring.io/snapshot</url>
 			<snapshots>
 				<enabled>true</enabled>
 			</snapshots>
 		</repository>
+		<repository>
+			<id>spring-milestones</id>
+			<name>Spring Milestones</name>
+			<url>https://repo.spring.io/milestone</url>
+		</repository>
 	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>spring-snapshots</id>
+			<name>Spring Snapshots</name>
+			<url>https://repo.spring.io/snapshot</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</pluginRepository>
+		<pluginRepository>
+			<id>spring-milestones</id>
+			<name>Spring Milestones</name>
+			<url>https://repo.spring.io/milestone</url>
+		</pluginRepository>
+	</pluginRepositories>
 </project>

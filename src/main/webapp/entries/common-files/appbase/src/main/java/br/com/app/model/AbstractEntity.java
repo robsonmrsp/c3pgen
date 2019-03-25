@@ -9,11 +9,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 
-import org.hibernate.annotations.Type;
 import java.time.LocalDateTime;
 
 import ${application.corePackage}.persistence.DataCreateUpdateListener;
-import ${application.corePackage}.Tenant;
 
 @EntityListeners(DataCreateUpdateListener.class)
 @MappedSuperclass

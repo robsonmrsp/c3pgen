@@ -119,7 +119,10 @@ public class BaseAppGenerator {
 			// baseCommonFolder = Util.currentDir() + File.separator + "entries/" + "angular-common-files" + File.separator;
 		} else if (application.getView().equalsIgnoreCase("backbone")) {
 			fileInputWebApp = baseCommonFolder + "/appbase/src/main/webapp";
+			String fileInputWebAppOptimizeJs = baseCommonFolder + "/appbase/src/main/resources/optimizejs";
 			fileOutput = Util.currentDir() + File.separator + "out" + File.separator + application.getAppName() + "/src/main";
+			String fileOutputOptimize = Util.currentDir() + File.separator + "out" + File.separator + application.getAppName() + "/src/main/resources";
+			FileUtils.copyDirectoryToDirectory(new File(fileInputWebAppOptimizeJs), new File(fileOutputOptimize));
 		}
 
 		// FileUtils.copyDirectoryToDirectory(new File(fileInputResources), new File(fileOutput));

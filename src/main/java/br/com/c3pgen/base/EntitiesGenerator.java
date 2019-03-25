@@ -190,9 +190,9 @@ public class EntitiesGenerator {
 
 		buildXmlGenerator = new MarkerGenerator(freeMarkerConfig, application, "buildXml.tpl", appRootFolder + "/", TemplateFileName.BUILD_XML, FileType.XML);
 
-		desenvIndexGenerator = new MarkerGenerator(freeMarkerConfig, application, "desenv_index.tpl", webAppRootFolder, TemplateFileName.INDEX_JSP, FileType.JSP);
+		desenvIndexGenerator = new MarkerGenerator(freeMarkerConfig, application, "desenv_index.tpl", webAppRootFolder + "WEB-INF/jsp/", TemplateFileName.INDEX_JSP, FileType.JSP);
 
-		produIndexGenerator = new MarkerGenerator(freeMarkerConfig, application, "produ_index.tpl", appRootFolder + "/produ/", TemplateFileName.INDEX_JSP, FileType.JSP);
+		produIndexGenerator = new MarkerGenerator(freeMarkerConfig, application, "produ_index.tpl", appRootFolder + "/produ/WEB-INF/jsp/", TemplateFileName.INDEX_JSP, FileType.JSP);
 
 		rbacSeedGenerator = new MarkerGenerator(freeMarkerConfig, application, "sqlRbacSeedTemplate.tpl", appRootFolder + "/src/main/resources/db/", TemplateFileName.RBAC_SEED, FileType.SQL);
 
@@ -273,11 +273,9 @@ public class EntitiesGenerator {
 						if (!ent.getName().equalsIgnoreCase("User")) {
 							System.out.println(" Gerando o model " + ent.getName());
 							javaModelGenerator.generateEntityFile(application, ent);
-//							daoGenerator.generateEntityFile(application, ent);
 							repositoryGenerator.generateEntityFile(application, ent);
-							specificationHelperGenerator.generateEntityFile(application, ent);
 						}
-
+						specificationHelperGenerator.generateEntityFile(application, ent);
 						basicServiceGenerator.generateEntityFile(application, ent);
 						basicServiceImpGenerator.generateEntityFile(application, ent);
 						// resourcesGenerator.generateEntityFile(application,
@@ -296,17 +294,15 @@ public class EntitiesGenerator {
 					}
 
 					flterGenerator.generateEntityFile(application, ent);
-
-					// geração de particulares a tecnologia da view
 				}
 
 			}
 			fragmentsGenerator.generateAppFragmentFile(application.getEntities());
 			rbacSeedGenerator.generateAppFragmentFile(application.getEntities());
 
-			testBeansGenerator.generate(application);
-			testSecurityGenerator.generate(application);
-//			pomGenerator.generate(application);
+//			testBeansGenerator.generate(application);
+//			testSecurityGenerator.generate(application);
+			pomGenerator.generate(application);
 			buildPropertiesGenerator.generate(application);
 			buildXmlGenerator.generate(application);
 			produIndexGenerator.generate(application);
