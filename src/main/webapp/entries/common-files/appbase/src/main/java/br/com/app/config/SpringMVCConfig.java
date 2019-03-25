@@ -9,6 +9,7 @@ import org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -16,12 +17,14 @@ import org.springframework.http.converter.xml.MappingJackson2XmlHttpMessageConve
 import org.springframework.orm.hibernate5.support.OpenSessionInViewInterceptor;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.HandlerExceptionResolver;
+import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import ${application.corePackage}.persistence.CatchThrowConstraintViolationException;
 import ${application.corePackage}.rs.exception.SimpleErrorMessageHandlerExceptionResolver;
@@ -31,12 +34,9 @@ import ${application.corePackage}.serialization.CustomLocalDateSerializer;
 import ${application.corePackage}.serialization.CustomLocalDateTimeDeserializer;
 import ${application.corePackage}.serialization.CustomLocalDateTimeSerializer;
 
+@Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = "${application.rootPackage}")
 public class SpringMVCConfig extends WebMvcConfigurerAdapter {
-
-    @Autowired
-    OpenSessionInViewInterceptor interceptor;
 
     @Override
     public void addResourceHandlers(final ResourceHandlerRegistry registry) {
@@ -44,7 +44,6 @@ public class SpringMVCConfig extends WebMvcConfigurerAdapter {
         registry.addResourceHandler("/SpecRunner.html").addResourceLocations("/SpecRunner.html");
         registry.addResourceHandler("/vendor/**").addResourceLocations("/vendor/");
         registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
-        registry.addResourceHandler("/applets/**").addResourceLocations("/applets/");
         registry.addResourceHandler("/c/**").addResourceLocations("/c/");
         registry.addResourceHandler("/css/**").addResourceLocations("/css/");
         registry.addResourceHandler("/decorators/**").addResourceLocations("/decorators/");
@@ -56,13 +55,16 @@ public class SpringMVCConfig extends WebMvcConfigurerAdapter {
         registry.addResourceHandler("/js/**").addResourceLocations("/js/");
         registry.addResourceHandler("/j/**").addResourceLocations("/j/");
         registry.addResourceHandler("/uploads/**").addResourceLocations("/uploads/");
-
     }
+    
+	@Bean
+	public ViewResolver getViewResolver() {
+		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+		resolver.setPrefix("/WEB-INF/jsp/");
+		resolver.setSuffix(".jsp");
+		return resolver;
+	}
 
-    @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("forward:/index.jsp");
-    }
 
     @Override
     public void configureHandlerExceptionResolvers(List<HandlerExceptionResolver> exceptionResolvers) {
@@ -76,18 +78,6 @@ public class SpringMVCConfig extends WebMvcConfigurerAdapter {
         resolver.setMaxInMemorySize(1048576);
 
         return resolver;
-    }
-
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addWebRequestInterceptor(interceptor);
-    }
-
-    @Bean
-    public OpenSessionInViewInterceptor openSessionInViewInterceptor(SessionFactory sf) {
-        final OpenSessionInViewInterceptor openSessionInViewInterceptor = new OpenSessionInViewInterceptor();
-        openSessionInViewInterceptor.setSessionFactory(sf);
-        return openSessionInViewInterceptor;
     }
 
     @Override
@@ -125,7 +115,4 @@ public class SpringMVCConfig extends WebMvcConfigurerAdapter {
 
         return autoProxyCreator;
     }
-
-
-
 }

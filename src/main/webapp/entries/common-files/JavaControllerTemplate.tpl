@@ -135,7 +135,7 @@ public class ${entity.name}Controller {
 		} catch (ValidationException e) {
 			String message = String.format("Não foi possivel salvar  o registro [ %s ] parametros [ %s ]", e.getOrigem().getMessage(), json${entity.name}.toString());
 			LOGGER.error(message, e.getOrigem());
-			return ResponseEntity.status(INTERNAL_SERVER_ERROR).body(new JsonError(e, message, json${entity.name}, e.getLegalMessage()));
+			return ResponseEntity.status(BAD_REQUEST).body(new JsonError(e, message, json${entity.name}, e.getLegalMessage()));
 		} catch (Exception e) {
 			String message = String.format("Não foi possivel salvar  ${firstLower(entity.name)} [ %s ] parametros [ %s ]", e.getMessage(), json${entity.name}.toString());
 			LOGGER.error(message, e);
@@ -158,8 +158,7 @@ public class ${entity.name}Controller {
 		} catch (ValidationException e) {
 			String message = String.format("Não foi possivel salvar  o registro [ %s ] parametros [ %s ]", e.getOrigem().getMessage(), json${entity.name}.toString());
 			LOGGER.error(message, e.getOrigem());
-
-			return ResponseEntity.status(INTERNAL_SERVER_ERROR).body(new JsonError(e, message, json${entity.name}, e.getLegalMessage()));
+			return ResponseEntity.status(BAD_REQUEST).body(new JsonError(e, message, json${entity.name}, e.getLegalMessage()));
 		} catch (Exception e) {
 			String message = String.format("Não foi possivel salvar o registro [ %s ] parametros [ %s ]", e.getMessage(), json${entity.name}.toString());
 			LOGGER.error(message, e);
@@ -176,11 +175,6 @@ public class ${entity.name}Controller {
 			${firstLower(entity.name)}Service.delete(id, context.getTenant());
 
 			return ResponseEntity.noContent().build();
-		} catch (ValidationException e) {
-			String message = String.format("Não foi possivel remover  o registro [ %s ] parametros [ %s ]", e.getOrigem().getMessage(), id);
-			LOGGER.error(message, e.getOrigem());
-			return ResponseEntity.status(INTERNAL_SERVER_ERROR).body(new JsonError(e, message, id, e.getLegalMessage()));
-
 		} catch (Exception e) {
 			String message = String.format("Não foi possivel remover o registro [ %s ] parametros [ %s ]", e.getMessage(), id);
 			LOGGER.error(message, e);

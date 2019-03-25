@@ -1,15 +1,34 @@
-package com.jsetup.firstboot;
+package ${application.corePackage}.persistence;
+
+import java.time.LocalDateTime;
 
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
-import ${application.corePackage}.Tenant;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import br.com.netflics.core.model.AbstractEntity;
+import br.com.netflics.core.security.SpringSecurityUserContext;
+import ${application.corePackage}.model.AbstractEntity;
+
+@Component
 public class DataCreateUpdateListener {
 
-	@PrePersist
-	@PreUpdate
-	private void beforeAnyOperation(AbstractEntity entity) {
+	@Autowired
+	private SpringSecurityUserContext context;
 
-		System.out.println("AuditListener.beforeAnyOperation()" + entity.getTenant());
+	@PreUpdate
+	private void preUpdate(AbstractEntity entity) {
+		entity.setTenant(context.getTenant());
+		entity.setLastUpdateDatetime(LocalDateTime.now());
+		entity.setUserChange(context.getCurrentUserName());
+	}
+
+	@PrePersist
+	private void preInsert(AbstractEntity entity) {
+		entity.setTenant(context.getTenant());
+		entity.setCreateDatetime(LocalDateTime.now());
+		entity.setUserCreate(context.getCurrentUserName());
 	}
 }

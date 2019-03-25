@@ -29,7 +29,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import ${application.corePackage}.model.Tenant;
 </#if>
 
-import ${application.corePackage}.model.AbstractTimestampEntity;
+import ${application.corePackage}.model.AbstractEntity;
 import ${application.corePackage}.security.UserAuthorityUtils;
 
 /**
@@ -41,7 +41,7 @@ import ${application.corePackage}.security.UserAuthorityUtils;
 @Audited
 </#if>
 @Table(name = "APP_USER", uniqueConstraints = { @UniqueConstraint(name = "APP_USER_NAME", columnNames = { "NAME" }), @UniqueConstraint(name = "APP_USER_USERNAME", columnNames = { "USERNAME" }), })
-public class User extends AbstractTimestampEntity implements UserDetails {
+public class User extends AbstractEntity implements UserDetails {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -71,13 +71,6 @@ public class User extends AbstractTimestampEntity implements UserDetails {
 	@JoinTable(name = "USER_ROLE", joinColumns = @JoinColumn(name = "ID_USER", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "ID_ROLE", referencedColumnName = "ID"))
 	private List<Role> roles;
 
-
-	<#if application.multitenancy>
-	@ManyToOne
-	@JoinColumn(name = "ID_OWNER")
-	private Tenant tenant;
-	</#if>	
-	
 	public User() {
 
 	}
@@ -187,13 +180,4 @@ public class User extends AbstractTimestampEntity implements UserDetails {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	<#if application.multitenancy>
-	public Tenant getTenant() {
-		return tenant;
-	}
-	public void setTenant(Tenant tenant) {
-		this.tenant = tenant;
-	}
-	</#if>
 }

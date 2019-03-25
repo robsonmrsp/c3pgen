@@ -3,11 +3,12 @@ package ${application.corePackage}.utils;
 
 import java.io.IOException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.InputStream;
 import java.util.Properties;
 
-import org.apache.log4j.Logger;
-import org.slf4j.LoggerFactory;
 public class ApplicationConfig {
 	public static final Logger LOGGER = LoggerFactory.getLogger(ApplicationConfig.class);
 	public static String UPLOADS_FOLDER_LOCATION = null;
