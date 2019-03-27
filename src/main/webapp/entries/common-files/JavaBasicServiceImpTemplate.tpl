@@ -57,7 +57,7 @@ public class ${entity.name}ServiceImp implements ${entity.name}Service {
 	}
 <#else>
 	public Optional<${entity.name}> get(Integer id) {
-		return ${firstLower(entity.name)}Repository.findOne(${entity.name}SpecificationHelper.fromId(id));
+		return ${firstLower(entity.name)}Repository.findById(id);
 	}
 
 	public Pager<${entity.name}> get(SearchParameters<Filter${entity.name}> searchParams) {
