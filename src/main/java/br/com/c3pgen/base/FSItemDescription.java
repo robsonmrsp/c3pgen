@@ -109,23 +109,17 @@ public class FSItemDescription {
 	public static List<FSItemDescription> rbac(String rootFolder) {
 
 		List<FSItemDescription> list = new ArrayList<FSItemDescription>();
-		// list.add(new FSItemDescription("Manager", rootFolder + File.separator +
-		// "model" + File.separator + "rbac" + File.separator, "Manager",
-		// FileType.JAVA));
-		// list.add(new FSItemDescription("Object", rootFolder + File.separator +
-		// "model" + File.separator + "rbac" + File.separator, "Object",
-		// FileType.JAVA));
-		// list.add(new FSItemDescription("ObjectType", rootFolder + File.separator +
-		// "model" + File.separator + "rbac" + File.separator, "ObjectType",
-		// FileType.JAVA));
-		// list.add(new FSItemDescription("Operation", rootFolder + File.separator +
-		// "model" + File.separator + "rbac" + File.separator, "Operation",
-		// FileType.JAVA));
-		// list.add(new FSItemDescription("Permission", rootFolder + File.separator +
-		// "model" + File.separator + "rbac" + File.separator, "Permission",
-		// FileType.JAVA));
-		// list.add(new FSItemDescription("Role", rootFolder + File.separator + "model"
-		// + File.separator + "rbac" + File.separator, "Role", FileType.JAVA));
+//		list.add(new FSItemDescription("ObjectType", rootFolder + File.separator +
+//				"model" + File.separator + "rbac" + File.separator, "ObjectType",
+//				FileType.JAVA));
+//		list.add(new FSItemDescription("Operation", rootFolder + File.separator +
+//				"model" + File.separator + "rbac" + File.separator, "Operation",
+//				FileType.JAVA));
+//		list.add(new FSItemDescription("Permission", rootFolder + File.separator +
+//				"model" + File.separator + "rbac" + File.separator, "Permission",
+//				FileType.JAVA));
+//		list.add(new FSItemDescription("Role", rootFolder + File.separator + "model"
+//				+ File.separator + "rbac" + File.separator, "Role", FileType.JAVA));
 		list.add(new FSItemDescription("User", rootFolder + File.separator + "model" + File.separator, "User", FileType.JAVA));
 		return list;
 	}
@@ -137,6 +131,7 @@ public class FSItemDescription {
 		list.add(new FSItemDescription("ColumnDefinitions", rootFolder + File.separator + "model" + File.separator, "ColumnDefinitions", FileType.JAVA));
 		list.add(new FSItemDescription("CustomRevisionEntity", rootFolder + File.separator + "model" + File.separator, "CustomRevisionEntity", FileType.JAVA));
 		list.add(new FSItemDescription("AbstractEntity", rootFolder + File.separator + "model" + File.separator, "AbstractEntity", FileType.JAVA));
+		list.add(new FSItemDescription("AbstractMultitenantEntity", rootFolder + File.separator + "model" + File.separator, "AbstractMultitenantEntity", FileType.JAVA));
 		// list.add(new FSItemDescription("SyncInfo", rootFolder + File.separator +
 		// "model" + File.separator, "SyncInfo", FileType.JAVA));
 		// list.add(new FSItemDescription("User", rootFolder + File.separator +

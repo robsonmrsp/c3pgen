@@ -41,7 +41,7 @@ import io.swagger.annotations.ApiOperation;
 public class ${entity.name}Controller {
 	@Autowired
 	${entity.name}Service ${firstLower(entity.name)}Service;
-	<#if application.multitenancy == true>
+	<#if application.multitenancy == true && entity.multitenancy>
 	@Autowired
 	private SpringSecurityUserContext context;
 	</#if>
@@ -77,7 +77,7 @@ public class ${entity.name}Controller {
 		try {
 			SearchParameters<Filter${entity.name}> paginationParams = new SearchParameters<Filter${entity.name}>(mapParams, Filter${entity.name}.class);
 
-			<#if application.multitenancy == true>
+			<#if application.multitenancy == true && entity.multitenancy>
 			${firstLower(entity.name)}s = ${firstLower(entity.name)}Service.get(paginationParams, context.getTenant());
 			<#else>
 			${firstLower(entity.name)}s = ${firstLower(entity.name)}Service.get(paginationParams);
@@ -101,7 +101,7 @@ public class ${entity.name}Controller {
 	@RequestMapping(value = "{id:\\d+}", method = GET, produces = APPLICATION_JSON_VALUE)
 	public ResponseEntity get(@PathVariable("id") int id) {
 		try {
-			<#if application.multitenancy == true>
+			<#if application.multitenancy == true && entity.multitenancy>
 			Optional<${entity.name}> optional = ${firstLower(entity.name)}Service.get(id, context.getTenant());
 			<#else>
 			Optional<${entity.name}> optional = ${firstLower(entity.name)}Service.get(id);
@@ -172,8 +172,11 @@ public class ${entity.name}Controller {
 	@RequestMapping(value = "{id:\\d+}", method = DELETE)
 	public ResponseEntity delete(@PathVariable("id") Integer id) {
 		try {
+		<#if application.multitenancy == true && entity.multitenancy>
 			${firstLower(entity.name)}Service.delete(id, context.getTenant());
-
+		<#else>
+			${firstLower(entity.name)}Service.delete(id);
+		</#if>
 			return ResponseEntity.noContent().build();
 		} catch (Exception e) {
 			String message = String.format("Não foi possivel remover o registro [ %s ] parametros [ %s ]", e.getMessage(), id);

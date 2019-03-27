@@ -27,9 +27,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 <#if application.multitenancy>
 import ${application.corePackage}.model.Tenant;
-</#if>
-
+import ${application.corePackage}.model.AbstractMultitenantEntity;
+<#else>
 import ${application.corePackage}.model.AbstractEntity;
+</#if>
 import ${application.corePackage}.security.UserAuthorityUtils;
 
 /**
@@ -41,7 +42,11 @@ import ${application.corePackage}.security.UserAuthorityUtils;
 @Audited
 </#if>
 @Table(name = "APP_USER", uniqueConstraints = { @UniqueConstraint(name = "APP_USER_NAME", columnNames = { "NAME" }), @UniqueConstraint(name = "APP_USER_USERNAME", columnNames = { "USERNAME" }), })
+<#if application.multitenancy >
+public class User extends AbstractMultitenantEntity implements UserDetails {
+<#else>
 public class User extends AbstractEntity implements UserDetails {
+	</#if>
 	private static final long serialVersionUID = 1L;
 
 	@Id

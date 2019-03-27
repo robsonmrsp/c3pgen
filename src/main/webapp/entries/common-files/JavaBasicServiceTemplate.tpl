@@ -17,7 +17,7 @@ import ${application.corePackage}.persistence.pagination.SearchParameters;
 public interface ${entity.name}Service {
 
 	
-<#if application.multitenancy?? &&  application.multitenancy>
+<#if application.multitenancy?? &&  application.multitenancy && entity.multitenancy>
 	public Optional<${entity.name}> get(Integer id, Tenant tenant) ;
 
 	public Pager<${entity.name}> get(SearchParameters<Filter${entity.name}> searchParams, Tenant tenant) ;

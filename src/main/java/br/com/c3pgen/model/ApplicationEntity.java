@@ -82,6 +82,8 @@ public class ApplicationEntity extends AbstractTimestampEntity {
 	@JoinColumn(name = "id_client")
 	private Client owner;
 
+	private Boolean multitenancy;
+
 	public Client getOwner() {
 		return owner;
 	}
@@ -98,8 +100,13 @@ public class ApplicationEntity extends AbstractTimestampEntity {
 	}
 
 	public ApplicationEntity(String name, String displayName, String tableName) {
+		this(name, displayName, tableName, true);
+	}
+
+	public ApplicationEntity(String name, String displayName, String tableName, Boolean multitenancy) {
 		this(name, tableName);
 		this.displayName = displayName;
+		this.setMultitenancy(multitenancy);
 	}
 
 	public ApplicationEntity(String name, String tableName) {
@@ -222,7 +229,7 @@ public class ApplicationEntity extends AbstractTimestampEntity {
 
 	public Attribute getPrimaryAttribute() {
 		if (getAttributes().size() > 0)
-			
+
 			return getAttributes().get(0);
 		else
 			return null;
@@ -426,6 +433,17 @@ public class ApplicationEntity extends AbstractTimestampEntity {
 
 	public void setColor(String color) {
 		this.color = color;
+	}
+
+	public Boolean getMultitenancy() {
+		if (multitenancy == null) {
+			setMultitenancy(Boolean.TRUE);
+		}
+		return multitenancy;
+	}
+
+	public void setMultitenancy(Boolean multitenancy) {
+		this.multitenancy = multitenancy;
 	}
 
 }

@@ -56,7 +56,7 @@ public class GenService {
 	}
 
 	private ApplicationEntity role() {
-		ApplicationEntity role = new ApplicationEntity("Role", "Papel", "ROLE");
+		ApplicationEntity role = new ApplicationEntity("Role", "Papel", "ROLE", false);
 
 		role.addAttributes(new Attribute("authority", "Autoridade", "AUTHORITY", true, true, true, AttributeType.STRING, ViewApproach.noneInstance()));
 		role.addAttributes(new Attribute("description", "Descrição", "DESCRIPTION", true, true, true, AttributeType.STRING, ViewApproach.noneInstance()));
@@ -68,7 +68,7 @@ public class GenService {
 	}
 
 	private ApplicationEntity permission() {
-		ApplicationEntity permission = new ApplicationEntity("Permission", "Permissão", "PERMISSION");
+		ApplicationEntity permission = new ApplicationEntity("Permission", "Permissão", "PERMISSION", false);
 
 		permission.addAttributes(new Attribute("name", "Nome", "NAME", true, true, true, AttributeType.STRING, ViewApproach.noneInstance()));
 		permission.addAttributes(new Attribute("description", "Descrição", "DESCRIPTION", true, false, true, AttributeType.STRING, ViewApproach.noneInstance()));
@@ -82,7 +82,7 @@ public class GenService {
 	}
 
 	private ApplicationEntity groupPermission() {
-		ApplicationEntity permission = new ApplicationEntity("Group", "Grupo de Permissões", "ACCESS_GROUP");
+		ApplicationEntity permission = new ApplicationEntity("Group", "Grupo de Permissões", "ACCESS_GROUP", false);
 
 		permission.addAttributes(new Attribute("name", "Nome", "NAME", true, true, true, AttributeType.STRING));
 		permission.addAttributes(new Attribute("description", "Descrição", "DESCRIPTION", true, false, true, AttributeType.STRING));
@@ -93,7 +93,7 @@ public class GenService {
 	}
 
 	private ApplicationEntity item() {
-		ApplicationEntity item = new ApplicationEntity("Item", "Item", "ITEM");
+		ApplicationEntity item = new ApplicationEntity("Item", "Item", "ITEM", false);
 
 		item.addAttributes(new Attribute("name", "Nome", "NAME", true, true, true, AttributeType.STRING));
 		item.addAttributes(new Attribute("itemType", "Tipo", "TYPE", true, false, true, AttributeType.STRING));
