@@ -20,22 +20,18 @@ public class ${entity.name}SpecificationHelper {
 
 <#if application.multitenancy && entity.multitenancy>
 	public static Specification<${entity.name}> fromId(Integer id, Tenant tenant) {
-<#else>
-	public static Specification<${entity.name}> fromId(Integer id) {
-</#if>	
 		return new Specification<${entity.name}>() {
 			@Override
 			public Predicate toPredicate(Root<${entity.name}> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
 				List<Predicate> predicates = new ArrayList<>();
-			<#if application.multitenancy && entity.multitenancy>
 				predicates.add(criteriaBuilder.equal(root.get("tenant"), tenant));
-			</#if>	
-				predicates.add(criteriaBuilder.equal(root.get("id"), id));
+					predicates.add(criteriaBuilder.equal(root.get("id"), id));
 
 				return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
 			}
 		};
 	}
+</#if>	
 <#if application.multitenancy && entity.multitenancy>
 	public static Specification<${entity.name}> filter(Filter${entity.name} filter${entity.name}, Tenant tenant) {
 <#else>
