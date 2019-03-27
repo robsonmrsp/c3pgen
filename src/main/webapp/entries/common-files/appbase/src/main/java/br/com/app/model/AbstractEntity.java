@@ -5,10 +5,7 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.EntityListeners;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
-
 import java.time.LocalDateTime;
 
 import ${application.corePackage}.persistence.DataCreateUpdateListener;
@@ -29,10 +26,6 @@ public abstract class AbstractEntity implements Serializable {
 
 	@Column(name = "USER_CHANGE")
 	private String userChange;
-
-	@ManyToOne
-	@JoinColumn(name = "ID_TENANT")
-	private Tenant tenant;
 
 	public LocalDateTime getCreateDatetime() {
 		return createDatetime;
@@ -64,12 +57,5 @@ public abstract class AbstractEntity implements Serializable {
 
 	public void setUserChange(String userChange) {
 		this.userChange = userChange;
-	}
-	public Tenant getTenant() {
-		return tenant;
-	}
-
-	public void setTenant(Tenant tenant) {
-		this.tenant = tenant;
 	}
 }

@@ -7,6 +7,13 @@
 	<packaging>war</packaging>
 	<name>${application.appName}</name>
 
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.2.0.BUILD-SNAPSHOT</version>
+		<relativePath /> <!-- lookup parent from repository -->
+	</parent>
+
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
@@ -163,26 +170,6 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 					
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>build-helper-maven-plugin</artifactId>
-				<version>1.5</version>
-				<executions>
-					<execution>
-						<id>reserve-network-port</id>
-						<goals>
-							<goal>reserve-network-port</goal>
-						</goals>
-						<phase>process-test-resources</phase>
-						<configuration>
-							<portNames>
-								<portName>test.server.port</portName>
-							</portNames>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			
 			<!-- A longo prazo, será mais simples manter a minificação dos css e js com os plugins abaixo. Isso porque, dada a maneira que estamos criando a view, serão vários arquivos js. -->
 				<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

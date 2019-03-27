@@ -8,9 +8,11 @@ import javax.persistence.PreUpdate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import br.com.netflics.core.model.AbstractEntity;
-import br.com.netflics.core.security.SpringSecurityUserContext;
 import ${application.corePackage}.model.AbstractEntity;
+<#if application.multitenancy>
+import ${application.corePackage}.model.AbstractMultitenantEntity;
+</#if>
+import br.com.netflics.core.security.SpringSecurityUserContext;
 
 @Component
 public class DataCreateUpdateListener {
@@ -19,16 +21,32 @@ public class DataCreateUpdateListener {
 	private SpringSecurityUserContext context;
 
 	@PreUpdate
-	private void preUpdate(AbstractEntity entity) {
-		entity.setTenant(context.getTenant());
-		entity.setLastUpdateDatetime(LocalDateTime.now());
-		entity.setUserChange(context.getCurrentUserName());
+	private void preUpdate(Object object) {
+		if (object instanceof AbstractEntity) {
+			AbstractEntity entity = (AbstractEntity) object;
+			entity.setLastUpdateDatetime(LocalDateTime.now());
+			entity.setUserChange(context.getCurrentUserName());
+		}
+		<#if application.multitenancy >
+		if (object instanceof AbstractMultitenantEntity) {
+			AbstractMultitenantEntity entity = (AbstractMultitenantEntity) object;
+			entity.setTenant(context.getTenant());
+		}
+		</#if>
 	}
 
 	@PrePersist
-	private void preInsert(AbstractEntity entity) {
-		entity.setTenant(context.getTenant());
-		entity.setCreateDatetime(LocalDateTime.now());
-		entity.setUserCreate(context.getCurrentUserName());
+	private void preInsert(Object object) {
+		if (object instanceof AbstractEntity) {
+			AbstractEntity entity = (AbstractEntity) object;
+			entity.setCreateDatetime(LocalDateTime.now());
+			entity.setUserCreate(context.getCurrentUserName());
+		}
+		<#if application.multitenancy >
+		if (object instanceof AbstractMultitenantEntity) {
+			AbstractMultitenantEntity entity = (AbstractMultitenantEntity) object;
+			entity.setTenant(context.getTenant());
+		}
+		</#if>
 	}
 }

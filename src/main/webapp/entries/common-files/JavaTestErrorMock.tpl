@@ -18,7 +18,10 @@ import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+<#if application.multitenancy && entity.multitenancy>
 import ${package}.core.model.Tenant;
+</#if>
+
 import ${package}.core.persistence.pagination.SearchParameters;
 import ${package}.core.security.SpringSecurityUserContext;
 import ${package}.core.rs.exception.ValidationException;
@@ -45,7 +48,7 @@ public class ${entity.name}ErrorMockTest {
 
 	@Test
 	public void errorGetiting${entity.name}ById() throws Exception {
-<#if application.multitenancy>
+<#if application.multitenancy && entity.multitenancy>
 		when(service.get(any(Integer.class), any(Tenant.class))).thenThrow(new RuntimeException("Error Getting ${entity.name}"));
 		when(context.getTenant()).thenReturn(new Tenant());
 <#else>
@@ -58,11 +61,11 @@ public class ${entity.name}ErrorMockTest {
 
 	@Test
 	public void errorGetitingAllPager${entity.name}() throws Exception {
-<#if application.multitenancy>
+<#if application.multitenancy && entity.multitenancy>
 		when(service.get(any(SearchParameters.class),any(Tenant.class))).thenThrow(new RuntimeException("Error Getting ${entity.name}"));
 		when(context.getTenant()).thenReturn(new Tenant());
 <#else>
-		when(service.all(any(SearchParameters.class))).thenThrow(new RuntimeException("Error Getting ${entity.name}"));
+		when(service.get(any(SearchParameters.class))).thenThrow(new RuntimeException("Error Getting ${entity.name}"));
 </#if>		
 
 		this.mockMvc.perform(get("/rs/crud/${firstLower(entity.name)}s").session(mockHttpSession))
@@ -72,7 +75,7 @@ public class ${entity.name}ErrorMockTest {
 
 	@Test
 	public void errorSaving${entity.name}() throws Exception {
-<#if application.multitenancy>
+<#if application.multitenancy && entity.multitenancy>
 		when(service.save(any(${entity.name}.class))).thenThrow(new RuntimeException("Error creating ${entity.name}"));
 		when(context.getTenant()).thenReturn(new Tenant());
 <#else>
@@ -86,7 +89,7 @@ public class ${entity.name}ErrorMockTest {
 	
 	@Test
 	public void errorSavingWithValidation${entity.name}() throws Exception {
-<#if application.multitenancy>
+<#if application.multitenancy && entity.multitenancy>
 		when(service.save(any(${entity.name}.class))).thenThrow(new ValidationException("Error creating-validating ${entity.name}"));
 		when(context.getTenant()).thenReturn(new Tenant());
 <#else>
@@ -100,7 +103,7 @@ public class ${entity.name}ErrorMockTest {
 	
 	@Test
 	public void errorUpdating${entity.name}() throws Exception {
-<#if application.multitenancy>
+<#if application.multitenancy && entity.multitenancy>
 		when(service.update(any(${entity.name}.class))).thenThrow(new RuntimeException("Error updating ${entity.name}"));
 		when(context.getTenant()).thenReturn(new Tenant());
 <#else>
@@ -114,7 +117,7 @@ public class ${entity.name}ErrorMockTest {
 	
 	@Test
 	public void errorUpdatingWithValidation${entity.name}() throws Exception {
-<#if application.multitenancy>
+<#if application.multitenancy && entity.multitenancy>
 		when(service.update(any(${entity.name}.class))).thenThrow(new ValidationException("Error updating-validating ${entity.name}"));
 		when(context.getTenant()).thenReturn(new Tenant());
 <#else>
@@ -128,7 +131,7 @@ public class ${entity.name}ErrorMockTest {
 
 	@Test
 	public void errorDeleting${entity.name}() throws Exception {
-<#if application.multitenancy>
+<#if application.multitenancy && entity.multitenancy>
 		when(service.delete(any(Integer.class),any(Tenant.class))).thenThrow(new RuntimeException("Error removing ${entity.name}"));
 		when(context.getTenant()).thenReturn(new Tenant());
 <#else>

@@ -34,7 +34,7 @@ public class ${entity.name}ServiceImp implements ${entity.name}Service {
 	@Autowired
 	${entity.name}Repository ${firstLower(entity.name)}Repository;
 	
-<#if application.multitenancy>
+<#if application.multitenancy && entity.multitenancy>
 	public Optional<${entity.name}> get(Integer id, Tenant tenant) {
 		return ${firstLower(entity.name)}Repository.findOne(${entity.name}SpecificationHelper.fromId(id, tenant));
 	}
@@ -70,7 +70,7 @@ public class ${entity.name}ServiceImp implements ${entity.name}Service {
 	}
 	
 	public Boolean delete(Integer id) {
-		Optional<${entity.name}> optional = this.get(id, tenant);
+		Optional<${entity.name}> optional = this.get(id);
 		if (optional.isPresent()) {
 			${firstLower(entity.name)}Repository.delete(optional.get());
 		}
