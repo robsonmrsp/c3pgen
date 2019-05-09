@@ -600,7 +600,7 @@ h6,
   line-height: 40px;
 }
 .brand-icon {
-  width: 40px;
+/*   width: 40px; */
   height: 40px;
   float: left;
   margin: 0 5px;
@@ -701,7 +701,7 @@ h6,
   margin-top: -1.5em;
   min-width: 1.85em;
   padding: 3px 5px;
-  right: 3px;
+  right: -4px;
 }
 .badge-header:empty {
   display: inline;
@@ -4043,7 +4043,7 @@ hr {
 /*======================================*/
 .form-control {
   font-size: 13px;
-/*   height: 100%; removido por robson*/
+/*   height: 100%;  removido por robson*/
   border-radius: 0;
   box-shadow: none;
   border: 1px solid #e9e9e9;
@@ -4764,7 +4764,7 @@ a.list-group-item-dark:focus {
   border-radius: 0;
   box-shadow: 0 5px 12px 2px rgba(0, 0, 0, 0.25);
   margin: 0;
-  padding: 10px;
+  padding: 0;
   border: 0;
 }
 .dropdown-menu > li > a {
@@ -6759,15 +6759,15 @@ a.text-dark:focus {
   height: 32px;
 }
 .img-md {
-  width: 64px;
+/*   width: 64px; */
   height: 64px;
 }
 .img-sm {
-  width: 46px;
+/*   width: 46px; */
   height: 46px;
 }
 .img-lg {
-  width: 96px;
+/*   width: 96px; */
   height: 96px;
 }
 .img-holder img {
@@ -6933,7 +6933,7 @@ a.disabled-link:hover {
 
 #container .invoice-summary thead>tr>th {
 	font-weight: 700;
-	padding-bottom: 15px
+	padding-bottom: 5px
 }
 
 #container .invoice-summary tbody>tr>td {
@@ -6993,6 +6993,10 @@ a.disabled-link:hover {
 	.panel {
 		border-color: transparent;
 		box-shadow: none
+	}
+	.invoice-print{
+		padding-left: 0px !important;
+		padding-right: 0px !important;
 	}
 	#container .no-print, #demo-set, .print-content #mainnav-container,
 		.print-content #aside-container, .print-content #navbar,

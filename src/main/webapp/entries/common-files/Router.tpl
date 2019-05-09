@@ -20,7 +20,7 @@ define(function(require) {
 	util.NProgress.setBlockerPanel('block_panel');
 	
 	var CustomRegion = Marionette.Region.extend({
-		el : ".main-content",
+		el : "#page-content",
 		attachHtml : function(view) {
 			this.$el.hide();
 			this.$el.html(view.el);
