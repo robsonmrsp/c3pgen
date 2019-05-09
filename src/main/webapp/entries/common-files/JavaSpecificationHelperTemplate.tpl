@@ -10,6 +10,9 @@ import javax.persistence.criteria.Root;
 import ${application.rootPackage}.model.${entity.name};
 import ${application.rootPackage}.model.filter.Filter${entity.name};
 
+import ${application.rootPackage}.core.persistence.pagination.SearchParameters;
+import ${application.rootPackage}.core.utils.Util;
+
 import org.springframework.data.jpa.domain.Specification;
 
 <#if application.multitenancy && entity.multitenancy>
@@ -33,15 +36,16 @@ public class ${entity.name}SpecificationHelper {
 	}
 </#if>	
 <#if application.multitenancy && entity.multitenancy>
-	public static Specification<${entity.name}> filter(Filter${entity.name} filter${entity.name}, Tenant tenant) {
+	public static Specification<${entity.name}> filter(SearchParameters<Filter${entity.name}> searchParam, Tenant tenant) {
 <#else>
-	public static Specification<${entity.name}> filter(Filter${entity.name} filter${entity.name}) {
+	public static Specification<${entity.name}> filter(SearchParameters<Filter${entity.name}> searchParam) {
 </#if>	
 		return new Specification<${entity.name}>() {
 
 			@Override
 			public Predicate toPredicate(Root<${entity.name}> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
 				List<Predicate> predicates = new ArrayList<>();
+				Filter${entity.name} filter${entity.name} = searchParam.getFilter();
 			<#if application.multitenancy && entity.multitenancy>
 				predicates.add(criteriaBuilder.equal(root.get("tenant"), tenant));
 			</#if>					
@@ -49,8 +53,8 @@ public class ${entity.name}SpecificationHelper {
 			<#list entity.attributes as att>
 			  	<#if att.type.className == 'String'>	
 				if (filter${entity.name}.get${firstUpper(att.name)}() != null) {
-					predicates.add(criteriaBuilder.like(criteriaBuilder.upper(root.<String>get("${att.name}")), "%" + filter${entity.name}.get${firstUpper(att.name)}().toUpperCase() + "%"));
-				}
+					predicates.add(criteriaBuilder.like(criteriaBuilder.upper(root.<String>get("${att.name}")), Util.wrapSufix(filter${entity.name}.get${firstUpper(att.name)}().toUpperCase(), searchParam.isExact())));
+				}  
 				<#else>
 				if (filter${entity.name}.get${firstUpper(att.name)}() != null) {
 					predicates.add(criteriaBuilder.equal(root.get("${att.name}"), filter${entity.name}.get${firstUpper(att.name)}()));

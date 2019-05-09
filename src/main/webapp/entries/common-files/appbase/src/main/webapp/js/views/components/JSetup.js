@@ -67,7 +67,7 @@ define(function(require) {
 				that.url = oldUrl;
 			}
 
-			this.url = oldUrl.replace('all', 'filterEqual');
+			this.url = oldUrl.replace('all', '');
 
 			this.fetch(options);
 		},
@@ -122,6 +122,29 @@ define(function(require) {
 			return state;
 		},
 
+		filterEqual : function(options) {
+			var that = this;
+			var oldUrl = this.url;
+			var _success = options.success
+			var _error = options.error
+
+			options.success = function(model, data, options) {
+				if (_success)
+					_success(model, data, options);
+			}
+			options.error = function(model, data, options) {
+				if (_error)
+					_error(model, data, options);
+			}
+			options.complete = function(model, data, options) {
+				that.url = oldUrl;
+			}
+
+			options.data.exact = true;
+			
+			this.fetch(options);
+		},
+		
 		queryParams : {
 			totalPages : null,
 			pageSize : "pageSize",

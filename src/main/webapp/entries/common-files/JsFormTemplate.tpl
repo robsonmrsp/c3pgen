@@ -373,7 +373,7 @@ define(function(require) {
 				fieldDisplayName : '${att.displayName}',
 				//onlyNumber : true,     
 				view : that,
-				collection : ${entity.name}.Collection,
+				collection : ${entity.name}.PageCollection,
 			})
 		},				
 			</#if>

@@ -20,6 +20,7 @@ public class SearchParameters<Filter> {
 	private Integer totalPages;
 	private String orderBy;
 	private String order;
+	private Boolean exact;
 	private Filter filter;
 
 	private Map<String, Object> searchParams;
@@ -34,6 +35,7 @@ public class SearchParameters<Filter> {
 	}
 
 	private void setPaginationValues(MultiValueMap<String, String> pathParameters) {
+		exact = pathParameters.get("exact") != null ? Boolean.valueOf(pathParameters.getFirst("exact")) : Boolean.FALSE;
 		page = pathParameters.get("page") != null ? Integer.valueOf(pathParameters.getFirst("page")) : 1;
 		pageSize = pathParameters.get("pageSize") != null ? Integer.valueOf(pathParameters.getFirst("pageSize")) : 30;
 		totalPages = pathParameters.get("totalPages") != null ? Integer.valueOf(pathParameters.getFirst("totalPages")) : 1;
@@ -123,12 +125,20 @@ public class SearchParameters<Filter> {
 	public void setFilter(Filter filterObject) {
 		this.filter = filterObject;
 	}
-	
+
 	public Pageable getPageRequest() {
 		if (StringUtils.isEmpty(getOrder()) || StringUtils.isEmpty(getOrderBy())) {
 			return PageRequest.of(getPage() - 1, getPageSize());
 		} else {
 			return PageRequest.of(getPage() - 1, getPageSize(), Sort.by(Direction.valueOf(getOrder().toUpperCase()), getOrderBy()));
 		}
+	}
+
+	public Boolean isExact() {
+		return exact;
+	}
+
+	public void setExact(Boolean exact) {
+		this.exact = exact;
 	}
 }
