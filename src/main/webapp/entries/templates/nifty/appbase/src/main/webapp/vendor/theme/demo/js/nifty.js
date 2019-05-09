@@ -18,7 +18,7 @@
     $(document).ready(function(){
     	setTimeout(function() {
     		$(document).trigger('nifty.ready');
-		},2000)
+		},1000)
     });
 
 
@@ -1557,4 +1557,5 @@
             }
         });
     }
+    
 }(jQuery);

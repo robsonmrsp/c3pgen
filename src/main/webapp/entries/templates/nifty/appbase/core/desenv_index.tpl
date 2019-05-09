@@ -21,23 +21,35 @@
 <security:authorize access="isAuthenticated()">
 	<c:set var="authenticated" value="true" />
 	<c:set var="userName">
+		<security:authentication property="principal.username" />
+	</c:set>
+	<c:set var="name">
 		<security:authentication property="principal.name" />
 	</c:set>
 	<c:set var="userEmail">
 		<security:authentication property="principal.email" />
 	</c:set>
-
+	<c:set var="image">
+		<security:authentication property="principal.image" />
+	</c:set>
 </security:authorize>
-<body class=" pace-done">
-
-	<div class="splash" id="loadInitialPanel" class="fader" style="position: fixed; text-align: center; height: 100%; width: 100%; top: 0; right: 0; left: 0; z-index: 99999999999; opacity: 0.99;">
-		<div class="color-line"></div>
-		<div class="splash-title">
-			<h1>Aguarde, carregando...</h1>
-			<i class="fa fa-spinner fa-pulse fa-4x "></i>
+<body class="  pace-done">
+	<div class="pace  pace-inactive">
+		<div class="pace-progress" data-progress-text="100%" data-progress="99" style="width: 100%;">
+			<div class="pace-progress-inner"></div>
 		</div>
+		<div class="splash" id="loadInitialPanel" class="fader" style="background-image: url('images/green-background.jpg'); text-align: center; height: 100%; width: 100%; top: 0; right: 0; left: 0; z-index: 99999999999; opacity: 0.99;">
+			<div class="color-line"></div>
+			<div class="splash-title">
+				<h1>Aguarde, carregando...</h1>
+				<small>Versão 0.7.45 30-08-2018 23:00 </small>
+				<br>
+				<i class="fa fa-spinner fa-pulse fa-4x "></i>
+			</div>
+		</div>
+		<div class="pace-activity"></div>
 	</div>
-	<div id="container" class="effect aside-float aside-bright mainnav-lg navbar-fixed mainnav-fixed aside-fixed">
+	<div id="container" class="effect aside-float aside-bright mainnav-lg mainnav-fixed navbar-fixed">
 		<!--NAVBAR-->
 		<!--===================================================-->
 		<header id="navbar">
@@ -45,10 +57,10 @@
 				<!--Brand logo & name-->
 				<!--================================-->
 				<div class="navbar-header">
-					<a href="" class="navbar-brand">
-						<img src="images/logo.png" alt="Nifty Logo" class="brand-icon">
+					<a href="javascript:void(-1)" class="navbar-brand">
+						<img src="images/logo.png" alt="Ymbu" height="36" width="36px" class="brand-icon">
 						<div class="brand-title">
-							<span class="brand-text">${application.appName}</span>
+							<span class="brand-text">JSETUP</span>
 						</div>
 					</a>
 				</div>
@@ -56,8 +68,8 @@
 				<!--End brand logo & name-->
 				<!--Navbar Dropdown-->
 				<!--================================-->
-				<div class="navbar-content clearfix">
-					<ul class="nav navbar-top-links pull-left">
+				<div class="navbar-content">
+					<ul class="nav navbar-top-links">
 						<!--Navigation toogle button-->
 						<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 						<li class="tgl-menu-btn">
@@ -67,71 +79,161 @@
 						</li>
 						<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 						<!--End Navigation toogle button-->
-						<!--Mega dropdown-->
+						<!--Search-->
 						<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-						<li class="mega-dropdown">
-							<a href="#" class="mega-dropdown-toggle">
-								<i class="demo-pli-layout-grid"></i>
-							</a>
-							<div class="dropdown-menu mega-dropdown-menu"></div>
+						<li>
+							<div class="main-header"></div>
 						</li>
 						<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-						<!--End mega dropdown-->
+						<!--End Search-->
 					</ul>
-					<ul class="nav navbar-top-links pull-right">
+					<ul class="nav navbar-top-links">
+						<!--Mega dropdown-->
 						<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-						<li id="dropdown-user" class="dropdown">
-							<a href="#" data-toggle="dropdown" class="dropdown-toggle text-right">
-								<span class="pull-right">
-									<!--<img class="img-circle img-user media-object" src="images/no_photo.jpg" alt="Profile Picture">-->
-									<i class="fa fa-user-o ic-user"></i>
-								</span>
-								<div class="index-username hidden-xs">${r"${userName}"}</div>
-							</a>
-							<div class="dropdown-menu dropdown-menu-md dropdown-menu-right panel-default">
-								<!-- Dropdown heading  -->
-								<div class="pad-all bord-btm">
-									<p class="text-main mar-btm">
-										<span class="text-bold">750GB</span>
-										of 1,000GB Used
-									</p>
-									<div class="progress progress-sm">
-										<div class="progress-bar" style="width: 70%;">
-											<span class="sr-only">70%</span>
-										</div>
+						<!-- 						<li class="mega-dropdown"> -->
+						<!-- 							<a href="#" class="mega-dropdown-toggle"> -->
+						<!-- 								<i class="demo-pli-layout-grid"></i> -->
+						<!-- 							</a> -->
+						<!-- 						</li> -->
+						<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+						<!--End mega dropdown-->
+						<!--Notification dropdown-->
+						<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+						<li class="dropdown">
+							<!-- 							<a href="#" data-toggle="dropdown" class="dropdown-toggle" aria-expanded="false"> -->
+							<!-- 								<i class="demo-pli-bell"></i> -->
+							<!-- 								<span class="badge badge-header badge-danger"></span> -->
+							<!-- 							</a> -->
+							<!--Notification dropdown menu-->
+							<div class="dropdown-menu dropdown-menu-md dropdown-menu-right" style="">
+								<div class="nano scrollable has-scrollbar" style="height: 265px;">
+									<div class="nano-content" tabindex="0" style="right: -17px;">
+										<ul class="head-list">
+											<li>
+												<a href="#" class="media add-tooltip" data-title="Used space : 95%" data-container="body" data-placement="bottom" data-original-title="" title="">
+													<div class="media-left">
+														<i class="demo-pli-data-settings icon-2x text-main"></i>
+													</div>
+													<div class="media-body">
+														<p class="text-nowrap text-main text-semibold">HDD is full</p>
+														<div class="progress progress-sm mar-no">
+															<div style="width: 95%;" class="progress-bar progress-bar-danger">
+																<span class="sr-only">95% Complete</span>
+															</div>
+														</div>
+													</div>
+												</a>
+											</li>
+											<li>
+												<a class="media" href="#">
+													<div class="media-left">
+														<i class="demo-pli-file-edit icon-2x"></i>
+													</div>
+													<div class="media-body">
+														<p class="mar-no text-nowrap text-main text-semibold">Write a news article</p>
+														<small>Last Update 8 hours ago</small>
+													</div>
+												</a>
+											</li>
+											<li>
+												<a class="media" href="#">
+													<span class="label label-info pull-right">New</span>
+													<div class="media-left">
+														<i class="demo-pli-speech-bubble-7 icon-2x"></i>
+													</div>
+													<div class="media-body">
+														<p class="mar-no text-nowrap text-main text-semibold">Comment Sorting</p>
+														<small>Last Update 8 hours ago</small>
+													</div>
+												</a>
+											</li>
+											<li>
+												<a class="media" href="#">
+													<div class="media-left">
+														<i class="demo-pli-add-user-star icon-2x"></i>
+													</div>
+													<div class="media-body">
+														<p class="mar-no text-nowrap text-main text-semibold">New User Registered</p>
+														<small>4 minutes ago</small>
+													</div>
+												</a>
+											</li>
+											<li>
+												<a class="media" href="#">
+													<div class="media-left">
+														<img class="img-circle img-sm" alt="Profile Picture" src="img/profile-photos/9.png">
+													</div>
+													<div class="media-body">
+														<p class="mar-no text-nowrap text-main text-semibold">Lucy sent you a message</p>
+														<small>30 minutes ago</small>
+													</div>
+												</a>
+											</li>
+											<li>
+												<a class="media" href="#">
+													<div class="media-left">
+														<img class="img-circle img-sm" alt="Profile Picture" src="img/profile-photos/3.png">
+													</div>
+													<div class="media-body">
+														<p class="mar-no text-nowrap text-main text-semibold">Jackson sent you a message</p>
+														<small>40 minutes ago</small>
+													</div>
+												</a>
+											</li>
+										</ul>
+									</div>
+									<div class="nano-pane" style="">
+										<div class="nano-slider" style="height: 169px; transform: translate(0px, 0px);"></div>
 									</div>
 								</div>
-								<!-- User dropdown menu -->
-								<ul class="head-list">
-									<li>
-										<a href="javascript:void(-1)">
-											<i class="fa fa-user-o icon-lg icon-fw"></i>
-											Profile
-										</a>
-									</li>
-									<li>
-										<a href="javascript:void(-1)">
-											<i class="fa fa-info-circle icon-lg icon-fw"></i>
-											Ajuda
-										</a>
-									</li>
-								</ul>
-								<!-- Dropdown footer -->
-								<div class="pad-all text-right">
-									<a href="j_spring_security_logout" class="btn btn-primary">
-										<i class="fa fa-sign-out"></i>
-										Logout
+								<!--Dropdown footer-->
+								<div class="pad-all bord-top">
+									<a href="#" class="btn-link text-main box-block">
+										<i class="pci-chevron chevron-right pull-right"></i>
+										Show All Notifications
 									</a>
 								</div>
 							</div>
 						</li>
 						<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-						<!--End user dropdown-->
-						<li>
-							<a href="javascript:void(-1)" class="aside-toggle navbar-aside-icon">
-								<i class="pci-ver-dots"></i>
+						<!--End notifications dropdown-->
+						<!--User dropdown-->
+						<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+						<li id="dropdown-user" class="dropdown">
+							<a href="#" data-toggle="dropdown" class="dropdown-toggle text-right">
+								<%-- 								<div class="index-username hidden-xs">${r"${userName}"}</div> --%>
+								<span class="pull-right">
+									<i class="fa fa-user-o ic-user"></i>
+								</span>
 							</a>
+							<div class="dropdown-menu dropdown-menu-md dropdown-menu-right panel-default">
+								<br>
+								<!-- User dropdown menu -->
+								<ul class="head-list">
+									<li>
+										<a href="#app/profile">
+											<i class="fa fa-user-o icon-lg icon-fw"></i>
+											Meus Dados
+										</a>
+									</li>
+									<li>
+										<a href="uploads/CHANGELOG.txt" target="_blank">
+											<i class="fa  fa-history icon-lg icon-fw"></i>
+											Changelog
+										</a>
+									</li>
+									<li class="list-divider"></li>
+									<li>
+										<a href="j_spring_security_logout">
+											<i class="icon-lg fa fa-sign-out"></i>
+											Sair
+										</a>
+									</li>
+								</ul>
+							</div>
 						</li>
+						<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+						<!--End user dropdown-->
 					</ul>
 				</div>
 				<!--================================-->
@@ -142,104 +244,129 @@
 		<!--END NAVBAR-->
 		<div class="boxed">
 			<!--CONTENT CONTAINER-->
+			<!--===================================================-->
 			<div id="content-container">
-				<div class="main-content">
-					<div id="page-content">
-                    
-					<hr class="new-section-sm bord-no">
-					<div class="row">
-					    <div class="col-lg-6 col-lg-offset-3">
-					        <div class="panel panel-trans text-center">
-					        <div class="panel-heading">
-					            <h3 class="panel-title">Seja Bem vindo ao ${application.appName}</h3>
-					        </div>
-					        <div class="panel-body">
-					            <p>Escolha qualquer item do menu a esquerda ou do menu acima para iniciar o uso.
-					        </div>
-					        </div>
-					    </div>
+				<div id="page-head">
+					<div id="page-title">
+						<h1 class="page-header text-overflow page-name"></h1>
 					</div>
-                </div>
+					<ol class="breadcrumb hide">
+						<li>
+							<a href="#">
+								<i class="demo-pli-home"></i>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:void(-1)" class="breadcrumb-label"></a>
+						</li>
+						<li class="active breadcrumb-item"></li>
+					</ol>
 				</div>
+				<div id="page-content"></div>
+				<!--===================================================-->
+				<!--End page content-->
 			</div>
+			<!--===================================================-->
 			<!--END CONTENT CONTAINER-->
 			<!--ASIDE-->
 			<!--===================================================-->
-			<aside id="aside-container">
-				<div id="aside">
-					<div class="nano">
-						<div class="nano-content">
-							<!--Nav tabs-->
-							<!--================================-->
-							<ul class="nav nav-tabs nav-justified">
-								<li class="active">
-									<a href="javascript:void(-1)" data-toggle="tab">
-										<i class="fa fa-comments"></i>
-										Mensagens
-									</a>
-								</li>
-								<li>
-									<a href="javascript:void(-1)" data-toggle="tab">
-										<i class="fa fa-info-circle"></i>
-										Relatorios
-									</a>
-								</li>
-								<li>
-									<a href="javascript:void(-1)" data-toggle="tab">
-										<i class="fa fa-wrench"></i>
-										Configurações
-									</a>
-								</li>
-							</ul>
-							<!--================================-->
-							<!--End nav tabs-->
-							<!-- Tabs Content -->
-							<!--================================-->
-						</div>
-					</div>
-				</div>
-			</aside>
 			<!--===================================================-->
 			<!--END ASIDE-->
 			<!--MAIN NAVIGATION-->
 			<!--===================================================-->
 			<nav id="mainnav-container">
 				<div id="mainnav">
+					<!--OPTIONAL : ADD YOUR LOGO TO THE NAVIGATION-->
+					<!--It will only appear on small screen devices.-->
+					<!--================================
+                    <div class="mainnav-brand">
+                        <a href="index.html" class="brand">
+                            <img src="img/logo.png" alt="Nifty Logo" class="brand-icon">
+                            <span class="brand-text">Nifty</span>
+                        </a>
+                        <a href="#" class="mainnav-toggle"><i class="pci-cross pci-circle icon-lg"></i></a>
+                    </div>
+                    -->
 					<!--Menu-->
 					<!--================================-->
 					<div id="mainnav-menu-wrap">
-						<div class="nano">
-							<div class="nano-content">
+						<div class="nano has-scrollbar">
+							<div class="nano-content" tabindex="0" style="right: -17px;">
 								<!--Profile Widget-->
 								<!--================================-->
-								<div id="mainnav-profile" class="mainnav-profile" style="padding: 30px 20px 12px;  background-image: url('images/nav-profile.png') ; background-repeat: no-repeat;  background-size: cover;">
-									<div class="profile-wrap">
+								<div id="mainnav-profile" class="mainnav-profile">
+									<div class="profile-wrap text-center">
+										<h4 class="text-lg text-overflow mar-no">
+											<p class="mnp-name">${r"${ownerName}"}</p>
+										</h4>
 										<div class="pad-btm">
-											<img class="img-circle img-sm img-border" src="images/no_photo.jpg" alt="Imagem usuário">
+											<img class="img-circle img-md" src="${r"${ empty logo  ? 'images/no_photo.jpg' : image }"}" alt="usuario">
 										</div>
-										<a href="javascript:void(-1)" class="box-block" data-toggle="collapse" aria-expanded="false">
+										<a href="javascript:void(-1)" class="box-block"">
+											<!-- 											<span class="pull-right dropdown-toggle"> -->
+											<!-- 												<i class="dropdown-caret"></i> -->
+											<!-- 											</span> -->
 											<p class="mnp-name">${r"${userName}"}</p>
 											<span class="mnp-desc">${r"${userEmail}"}</span>
+										</a>
+									</div>
+									<div id="profile-nav" class="collapse list-group bg-trans">
+										<a href="#" class="list-group-item">
+											<i class="demo-pli-male icon-lg icon-fw"></i>
+											View Profile
+										</a>
+										<a href="#" class="list-group-item">
+											<i class="demo-pli-gear icon-lg icon-fw"></i>
+											Settings
+										</a>
+										<a href="#" class="list-group-item">
+											<i class="demo-pli-information icon-lg icon-fw"></i>
+											Help
+										</a>
+										<a href="#" class="list-group-item">
+											<i class="demo-pli-unlock icon-lg icon-fw"></i>
+											Logout
 										</a>
 									</div>
 								</div>
 								<!--Shortcut buttons-->
 								<!--================================-->
+								<div id="mainnav-shortcut" class="hidden">
+									<ul class="list-unstyled shortcut-wrap">
+										<li class="col-xs-3" data-content="My Profile" data-original-title="" title="">
+											<a class="shortcut-grid" href="#">
+												<div class="icon-wrap icon-wrap-sm icon-circle bg-mint">
+													<i class="demo-pli-male"></i>
+												</div>
+											</a>
+										</li>
+										<li class="col-xs-3" data-content="Messages" data-original-title="" title="">
+											<a class="shortcut-grid" href="#">
+												<div class="icon-wrap icon-wrap-sm icon-circle bg-warning">
+													<i class="demo-pli-speech-bubble-3"></i>
+												</div>
+											</a>
+										</li>
+										<li class="col-xs-3" data-content="Activity" data-original-title="" title="">
+											<a class="shortcut-grid" href="#">
+												<div class="icon-wrap icon-wrap-sm icon-circle bg-success">
+													<i class="demo-pli-thunder"></i>
+												</div>
+											</a>
+										</li>
+										<li class="col-xs-3" data-content="Lock Screen" data-original-title="" title="">
+											<a class="shortcut-grid" href="#">
+												<div class="icon-wrap icon-wrap-sm icon-circle bg-purple">
+													<i class="demo-pli-lock-2"></i>
+												</div>
+											</a>
+										</li>
+									</ul>
+								</div>
 								<!--================================-->
-								<!--End shortcut buttons-->
 								<ul id="mainnav-menu" class="list-group">
-									<!--Category name-->
-									<li class="list-header">Menu</li>
-									<!--Menu list item-->
-									<li>
-										<a href="">
-											<i class="fa fa-area-chart"></i>
-											<span class="menu-title">
-												<strong>Dashboard</strong>
-											</span>
-										</a>
-									</li>
 									<li class="list-divider"></li>
+									<li class="list-header">Menu</li>
 									<!--Category name-->
 									<li>
 										<a href="javascript:void(-1)">
@@ -260,42 +387,13 @@
 										</#list>
 										</ul>
 									</li>
-									<li class="list-divider"></li>
-									<li class="list-header">Extras</li>
-									<li>
-										<a href="javascript:void(-1)">
-											<i class="demo-psi-inbox-full"></i>
-											<span class="menu-title">Menu de extras</span>
-										</a>
-									</li>
 								</ul>
-								<!--Widget-->
 								<!--================================-->
-								<div class="mainnav-widget">
-									<!-- Show the button on collapsed navigation -->
-									<div class="show-small">
-										<a href="javascript:void(-1)" data-toggle="menu-widget" data-target="#demo-wg-server">
-											<i class="demo-pli-monitor-2"></i>
-										</a>
-									</div>
-									<!-- Hide the content on collapsed navigation -->
-									<div id="demo-wg-server" class="hide-small mainnav-widget-content">
-										<ul class="list-group">
-											<li class="list-header pad-no pad-ver">Server Status</li>
-											<li class="mar-btm">
-												<span class="label label-primary pull-right">15%</span>
-												<p>CPU Usage</p>
-												<div class="progress progress-sm">
-													<div class="progress-bar progress-bar-primary" style="width: 15%;">
-														<span class="sr-only">15%</span>
-													</div>
-												</div>
-											</li>
-										</ul>
-									</div>
-								</div>
 								<!--================================-->
 								<!--End widget-->
+							</div>
+							<div class="nano-pane" style="display: none;">
+								<div class="nano-slider" style="height: 452px; transform: translate(0px, 0px);"></div>
 							</div>
 						</div>
 					</div>
@@ -306,12 +404,45 @@
 			<!--===================================================-->
 			<!--END MAIN NAVIGATION-->
 		</div>
+		<!-- FOOTER -->
+		<!--===================================================-->
+		<footer id="footer">
+			<!-- Visible when footer positions are fixed -->
+			<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+			<div class="show-fixed pad-rgt pull-right">
+				You have
+				<a href="#" class="text-main">
+					<span class="badge badge-danger">3</span>
+					pending action.
+				</a>
+			</div>
+			<!-- Visible when footer positions are static -->
+			<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+			<!-- 			<div class="hide-fixed pull-right pad-rgt"> -->
+			<!-- 				14GB of -->
+			<!-- 				<strong>512GB</strong> -->
+			<!-- 				Free. -->
+			<!-- 			</div> -->
+			<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+			<!-- Remove the class "show-fixed" and "hide-fixed" to make the content always appears. -->
+			<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+			<p class="pad-lft">
+				© 2019
+				<a href="http://jsetup.com.br/" target="blanck">Jsetup Soluções Tecnológicas </a>
+			</p>
+		</footer>
+		<!--===================================================-->
+		<!-- END FOOTER -->
+		<!-- SCROLL PAGE BUTTON -->
+		<!--===================================================-->
+		<button class="scroll-top btn">
+			<i class="pci-chevron chevron-up"></i>
+		</button>
+		<!--===================================================-->
+		<div class="mainnav-backdrop"></div>
 	</div>
 	<!--===================================================-->
 	<!-- END OF CONTAINER -->
-	<div id="toTop">
-		<img src="images/backtop.png" style="width: 48px; display: inline;">
-	</div>
 	<script data-main="js/main" src="vendor/require/require.js"></script>
 </body>
-</html>
+</html>	

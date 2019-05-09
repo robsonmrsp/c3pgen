@@ -1,4 +1,12 @@
-define([ 'Noty', 'nprogress', 'moment', 'spin', 'adapters/underscore-adapter', 'adapters/jquery-adapter', 'bootstrap' ], function(Noty, NProgress, moment, Spinner, _, $) {
+define(function(require) {
+	var _ = require('adapters/underscore-adapter');
+	var $ = require('adapters/jquery-adapter');
+	var NProgress = require('nprogress');
+	var download = require('download');
+	var moment = require('moment');
+	var Spinner = require('spin');
+	var numeral = require('numeral');
+
 	Number.prototype.formatMoney = function(c, d, t) {
 		var n = this, c = isNaN(c = Math.abs(c)) ? 2 : c, d = d == undefined ? "." : d, t = t == undefined ? "," : t, s = n < 0 ? "-" : "", i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "", j = (j = i.length) > 3 ? j % 3 : 0;
 		return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
@@ -7,10 +15,57 @@ define([ 'Noty', 'nprogress', 'moment', 'spin', 'adapters/underscore-adapter', '
 	LOG_FILE = window.logFile || new List();
 
 	window.logFile = LOG_FILE;
-	// adapters/col-adapter
+	numeral.register('locale', 'pt-br', {
+		delimiters : {
+			thousands : '.',
+			decimal : ','
+		},
+		abbreviations : {
+			thousand : 'mil',
+			million : 'milhões',
+			billion : 'b',
+			trillion : 't'
+		},
+		ordinal : function(number) {
+			return 'º';
+		},
+		currency : {
+			symbol : 'R$'
+		}
+	});
+	numeral.locale("pt-br");
+
+	function decimalAdjust(type, value, exp) {
+		// If the exp is undefined or zero...
+		if (typeof exp === 'undefined' || +exp === 0) {
+			return Math[type](value);
+		}
+		value = +value;
+		exp = +exp;
+		// If the value is not a number or the exp is not an integer...
+		if (isNaN(value) || !(typeof exp === 'number' && exp % 1 === 0)) {
+			return NaN;
+		}
+		// Shift
+		value = value.toString().split('e');
+		value = Math[type](+(value[0] + 'e' + (value[1] ? (+value[1] - exp) : -exp)));
+		// Shift back
+		value = value.toString().split('e');
+		return +(value[0] + 'e' + (value[1] ? (+value[1] + exp) : exp));
+	}
+
+	// Decimal round
+	if (!Math.round10) {
+		Math.round10 = function(value, exp) {
+			return decimalAdjust('round', value, exp);
+		};
+	}
+
 	ion.sound({
 		sounds : [ {
 			name : "beer_can_opening"
+		}, {
+			name : "Siren_Noise"
 		}, {
 			name : "bell_ring"
 		}, {
@@ -71,7 +126,7 @@ define([ 'Noty', 'nprogress', 'moment', 'spin', 'adapters/underscore-adapter', '
 	};
 	var spinner = new Spinner(spinnerOpts);
 
-	return {
+	util = {
 		moment : moment,
 		NProgress : NProgress.configure({
 			minimum : 0.2,
@@ -154,19 +209,22 @@ define([ 'Noty', 'nprogress', 'moment', 'spin', 'adapters/underscore-adapter', '
 		markActiveItem : function(itemId) {
 			try {
 				var itens = $('.nav .sub li a');
-				itens.parent().removeClass('active');
+				itens.parent().removeClass('active-sub');
 				itens.parent().parent().removeClass('show');
-				itens.removeClass('active');
+				itens.removeClass('active-link');
+				itens.removeClass('active-sub');
 
-				$('#' + itemId).addClass('active');
+				$('#mainnav-menu > li').removeClass('open');
+				$('#' + itemId).addClass('active-link');
 
 				var parent = $('#' + itemId).parent();
 				if (parent) {
-					$('#mainnav-menu').find('li').removeClass('active')
-					parent.parent().addClass('active').addClass('open');
-					parent.find('li').removeClass('active');
+					$('#mainnav-menu').find('li').removeClass('active-sub')
+					$('#mainnav-menu').find('li').removeClass('active-link')
+					parent.parent().addClass('active-sub').addClass('open');
+					parent.find('li').removeClass('active-link');
 					parent.addClass('collapse in');
-					$('#' + itemId).addClass('active');
+					$('#' + itemId).addClass('active-link');
 				}
 				itens.parent().parent().addClass('show')
 			} catch (exception) {
@@ -189,7 +247,7 @@ define([ 'Noty', 'nprogress', 'moment', 'spin', 'adapters/underscore-adapter', '
 				} else {
 					this.showMessage('error', message, containerMessage);
 				}
-				// this.logError(xhr);
+				this.logError(xhr);
 			} else {
 				this.showMessage('error', message, containerMessage);
 			}
@@ -225,7 +283,7 @@ define([ 'Noty', 'nprogress', 'moment', 'spin', 'adapters/underscore-adapter', '
 			if (wait)
 				window.setTimeout(function() {
 					window.location.hash = hash;
-				}, 2000);
+				}, 1200);
 			else {
 				window.location.hash = hash;
 			}
@@ -267,13 +325,16 @@ define([ 'Noty', 'nprogress', 'moment', 'spin', 'adapters/underscore-adapter', '
 		},
 
 		/*
-		 * Usage: breadcrumb({iconClass:'',itemLabel:'', itemSubFolderName:'',url:''});
+		 * Usage: breadcrumb({iconClass:'',itemLabel:'',
+		 * itemSubFolderName:'',url:''});
 		 */
 		breadcrumb : function(itemMenu) {
+
 			if (itemMenu) {
-				var content = "<ul class='breadcrumb'>" + "	<li>" + "		<i class='fa " + itemMenu.iconClass + " '></i>" + "		<a href='#" + itemMenu.url + " '> &nbsp; " + itemMenu.itemLabel + "</a>" + "	</li>" + "	<li class='active realce-breadcumb'>" + itemMenu.itemSubFolderName
-						+ "</li>" + "</ul>";
-				$('#breadcrumbs').html(content);
+				$('.breadcrumb').removeClass('hide');
+				$('.page-name').text(itemMenu.itemLabel);
+				$('.breadcrumb-label').text(itemMenu.itemLabel);
+				$('.breadcrumb-item').text(itemMenu.itemSubFolderName);
 			}
 		},
 
@@ -363,6 +424,8 @@ define([ 'Noty', 'nprogress', 'moment', 'spin', 'adapters/underscore-adapter', '
 			return newNumber.replace(/[^\d.,-]/g, '')
 		},
 
+		// problemas com arredondamento de muitas casas decimais... evitar...
+		// use o formatNumeric
 		formatFinalNumber : function(num) {
 			var number = this.formatNumber(num);
 			if (number.indexOf(',') < 0) {
@@ -371,9 +434,14 @@ define([ 'Noty', 'nprogress', 'moment', 'spin', 'adapters/underscore-adapter', '
 				return number;
 			}
 		},
+
 		formatNumber : function(num) {
 
-			num = this.toStrNumber(num);
+			if (_.isNumber(num)) {
+				num = this.toStrNumber(parseFloat(num.toFixed(2)));
+			} else {
+				num = this.toStrNumber(num);
+			}
 
 			var str = num.toString().replace("$", ""), parts = false, output = [], i = 1, formatted = null;
 			if (str.indexOf(",") > 0) {
@@ -419,174 +487,27 @@ define([ 'Noty', 'nprogress', 'moment', 'spin', 'adapters/underscore-adapter', '
 				return valor.replace(/[^0-9]+/, '');
 			return '';
 		},
+		toJsNumber : function(strNumber) {
+			var numb = numeral(strNumber);
+			numb.value();
 
-		notificationError : function(text) {
-			this.notification('error', text, 'bottomRight');
+			return numb.value();
 		},
-		notificationInfo : function(text) {
-			this.notification('info', text, 'topRight');
-		},
-		notificationWarn : function(text) {
-			this.notification('warn', text, 'topRight');
-		},
-		notificationSuccess : function(text) {
-			this.notification('succses', text, 'topRight');
-		},
-		notification : function() {
-			var options = {};
-			var args = arguments;
 
-			if (arguments.length == 0) {
-				if (_.isObject(arguments[0])) {
-					options = _.isObject(arguments[0]) ? arguments[0] : {};
-				} else {
-					options.type = "info";
-					options.text = arguments[0];
-					options.layout = 'topRight';
-				}
+		notificationError : function(options) {
 
-			} else if (arguments.length == 2) {
-				options.type = arguments[0];
-				options.text = arguments[1];
-				options.layout = 'topRight';
-
-			} else if (arguments.length == 3) {
-				options.type = arguments[0];
-				options.text = arguments[1];
-				options.layout = arguments[2];
-			}
-
-			var noty = new Noty({
-				type : options.type || 'info',
-				text : options.text || 'informação',
-				layout : options.layout || 'bottomRight',
-				closeWith : [ 'click', 'button' ],
-				killer : options.killer || true,
-				timeout : options.timout || 10000,
-				callbacks : {
-					onTemplate : function() {
-						if (this.options.type === 'success') {
-							this.barDom.innerHTML = "<div class='media-body  notification-success-right'>                 " + //
-							"	<div class='notification-success'>                                       " + //
-							"		<div class='notification-success-heading'>                           " + //
-							"			<span style='float: left;'>                                    " + //
-							"				<strong> 												   " + //
-							"				<i class='fa fa-exclamation-circle ' aria-hidden='true'></i>" + //
-							"					Sucesso													" + //
-							"				</strong>   			                                  " + //
-							"			</span>                                                        " + //
-							"			<span class='notification-success-time' style='float: right:;'>  " + //
-							"				<i class='demo-pli-clock icon-fw'></i>                     " + //
-							moment().format("HH:mm:ss") + //
-							"			</span>                                                        " + //
-							"		</div>                                                             " + //
-							"		<p class='notification-text'>" + this.options.text + "</p>    " + //
-							"	</div>                                                                 " + //
-							"</div>                                                                    ";
-						}
-
-						if (this.options.type === 'info') {
-							this.barDom.innerHTML = "<div class='media-body  notification-info-right'>                 " + //
-							"	<div class='notification-info'>                                       " + //
-							"		<div class='notification-info-heading'>                           " + //
-							"			<span style='float: left;'>                                    " + //
-							"				<strong> 												   " + //
-							"				<i class='fa fa-exclamation-circle ' aria-hidden='true'></i>" + //
-							"					Informação													" + //
-							"				</strong>   			                                  " + //
-							"			</span>                                                        " + //
-							"			<span class='notification-info-time' style='float: right:;'>  " + //
-							"				<i class='demo-pli-clock icon-fw'></i>                     " + //
-							moment().format("HH:mm:ss") + //
-							"			</span>                                                        " + //
-							"		</div>                                                             " + //
-							"		<p class='notification-text'>" + this.options.text + "</p>    " + //
-							"	</div>                                                                 " + //
-							"</div>                                                                    ";
-						}
-						if (this.options.type === 'warning' || this.options.type === 'warn') {
-							this.barDom.innerHTML = "<div class='media-body  notification-warning-right'>                 " + //
-							"	<div class='notification-warning'>                                       " + //
-							"		<div class='notification-warning-heading'>                           " + //
-							"			<span style='float: left;'>                                    " + //
-							"				<strong> 												   " + //
-							"				<i class='fa fa-exclamation-circle ' aria-hidden='true'></i>" + //
-							"					Atenção													" + //
-							"				</strong>   			                                  " + //
-							"			</span>                                                        " + //
-							"			<span class='notification-warning-time' style='float: right:;'>  " + //
-							"				<i class='demo-pli-clock icon-fw'></i>                     " + //
-							moment().format("HH:mm:ss") + //
-							"			</span>                                                        " + //
-							"		</div>                                                             " + //
-							"		<p class='notification-text'>" + this.options.text + "</p>    " + //
-							"	</div>                                                                 " + //
-							"</div>                                                                    ";
-						}
-
-						if (this.options.type === 'error') {
-							this.barDom.innerHTML = "<div class='media-body  notification-error-right'>                 " + //
-							"	<div class='notification-error'>                                       " + //
-							"		<div class='notification-error-heading'>                           " + //
-							"			<span style='float: left;'>                                    " + //
-							"				<strong> 												   " + //
-							"				<i class='fa fa-exclamation-circle ' aria-hidden='true'></i>" + //
-							"					Erro													" + //
-							"				</strong>   			                                  " + //
-							"			</span>                                                        " + //
-							"			<span class='notification-error-time' style='float: right:;'>  " + //
-							"				<i class='demo-pli-clock icon-fw'></i>                     " + //
-							moment().format("HH:mm:ss") + //
-							"			</span>                                                        " + //
-							"		</div>                                                             " + //
-							"		<p class='notification-text'>" + this.options.text + "</p>    " + //
-							"	</div>                                                                 " + //
-							"</div>                                                                    ";
-						}
-						if (this.options.type === 'danger' || this.options.type === 'severe') {
-							this.barDom.innerHTML = "<div class='media-body  notification-danger-right'>                 " + //
-							"	<div class='notification-danger'>                                       " + //
-							"		<div class='notification-danger-heading'>                           " + //
-							"			<span style='float: left;'>                                    " + //
-							"				<strong> 												   " + //
-							"				<i class='fa fa-exclamation-circle ' aria-hidden='true'></i>" + //
-							"					Erro													" + //
-							"				</strong>   			                                  " + //
-							"			</span>                                                        " + //
-							"			<span class='notification-danger-time' style='float: right:;'>  " + //
-							"				<i class='demo-pli-clock icon-fw'></i>                     " + //
-							moment().format("HH:mm:ss") + //
-							"			</span>                                                        " + //
-							"		</div>                                                             " + //
-							"		<p class='notification-text'>" + this.options.text + "</p>    " + //
-							"	</div>                                                                 " + //
-							"</div>                                                                    ";
-						}
-
-					}
-				},
-				animation : {
-					open : 'animated bounceInRight',
-					close : 'animated bounceOutRight'
-				}
+			$.gritter.add({
+				title : options.title || 'Aviso !',
+				text : options.text,
+				time : 10000, // 10 segundos
+				sticky : false,
+				// close_icon : 'fa fa-times',
+				icon : options.icon || 'fa fa-exclamation-circle',
+				class_name : options.className || 'warn-notice',
 			});
-			noty.show();
-		},
 
-		// notificationError : function(options) {
-		//
-		// $.gritter.add({
-		// title : options.title || 'Aviso !',
-		// text : options.text,
-		// time : 10000, // 10 segundos
-		// sticky : false,
-		// // close_icon : 'fa fa-times',
-		// icon : options.icon || 'fa fa-exclamation-circle',
-		// class_name : options.className || 'warn-notice',
-		// });
-		//
-		// return false;
-		// },
+			return false;
+		},
 		validateUnique : function(options) {
 			var that = this;
 			if (!options.collection) {
@@ -613,7 +534,10 @@ define([ 'Noty', 'nprogress', 'moment', 'spin', 'adapters/underscore-adapter', '
 				success : function() {
 					localCol.each(function(obj) {
 						if (obj.get('id') != validateField.val()) {
-							that.notificationWarn(options.text || 'Já existe registro com ' + (options.displayFieldName || options.fieldName) + ' ' + fieldValue);
+							that.notificationError({
+								title : 'Erro',
+								text : options.text || 'Já existe registro com ' + (options.displayFieldName || options.fieldName) + ' ' + fieldValue,
+							})
 							options.element.val('');
 						}
 					});
@@ -627,7 +551,6 @@ define([ 'Noty', 'nprogress', 'moment', 'spin', 'adapters/underscore-adapter', '
 		},
 
 		handleError : function(xhr, resp, opt) {
-			this.logError(xhr);
 			if (xhr.status === 0 && xhr.readyState === 0) {
 				this.notificationError({
 					title : 'Sem conexão',
@@ -645,7 +568,7 @@ define([ 'Noty', 'nprogress', 'moment', 'spin', 'adapters/underscore-adapter', '
 					text : 'Aparentemente voce não está conectado',
 				})
 			}
-
+			this.logError(xhr);
 		},
 
 		// no futuro será verificado a melhor maneira de fazer isso
@@ -653,11 +576,26 @@ define([ 'Noty', 'nprogress', 'moment', 'spin', 'adapters/underscore-adapter', '
 			return "R$";
 		},
 
+		// Campeão dos campeões.
 		formatNumeric : function(number, places) {
-			var _number = number || 0;
+
+			if (_.isNull(number) || _.isUndefined(number) || number.length === 0) {
+				return 0;
+			}
+			if (_.isNumber(number) === false) {
+				throw new Error('Cannot format [' + number + ' ]as number');
+			}
+			var _number = 0 + number;
 			return _number.formatMoney(places, ',', '.')
 		},
+		getStatusOrderDescription : function(statusOrder) {
 
+			if (statusOrder == 'AguardandoPagamento') {
+				return "Aguardando Pagamento";
+			}
+
+			return statusOrder;
+		},
 		configureSuggest : function(suggestConfig) {
 			var bloodhound = new Bloodhound({
 				datumTokenizer : Bloodhound.tokenizers.obj.whitespace(suggestConfig.showValue),
@@ -673,7 +611,7 @@ define([ 'Noty', 'nprogress', 'moment', 'spin', 'adapters/underscore-adapter', '
 			var field = $(suggestConfig.field);
 			field.typeahead({
 				hint : false,
-				// minLength : 1,
+				minLength : 3,
 				highlight : true,
 				highlighter : function(item) {
 					var regex = new RegExp('(' + this.query + ')', 'gi');
@@ -721,7 +659,6 @@ define([ 'Noty', 'nprogress', 'moment', 'spin', 'adapters/underscore-adapter', '
 					}
 				}
 			})
-
 		},
 
 		logError : function(_resp) {
@@ -738,7 +675,7 @@ define([ 'Noty', 'nprogress', 'moment', 'spin', 'adapters/underscore-adapter', '
 			}
 			window.addLogEntry(entry);
 
-			console.error("veja no console o erro: [ digite showStoreLog() ]");
+			console.error("veja no console o erro: [ window.showStoreLog()]");
 		},
 
 		alert : function(options) {
@@ -759,15 +696,45 @@ define([ 'Noty', 'nprogress', 'moment', 'spin', 'adapters/underscore-adapter', '
 				}
 			});
 		},
+
+		prompt : function(options) {
+			swal({
+				title : options.title || "IMPORTANTE!",
+				text : options.text || "Are You Sure?",
+				type : 'input',
+				inputType : options.inputType || "text",
+				showCancelButton : true,
+				closeOnConfirm : false,
+			}, function(inputValue) {
+				if (_.isString(inputValue)) {
+					if (options.onConfirm) {
+						options.onConfirm(inputValue);
+					}
+				}
+			});
+		},
 		truncDate : function(dateTime) {
 			if (dateTime.length > 10) {
 				return dateTime.substring(0, 11);
 			}
 			return dateTime;
 		},
+		playSound : function(sound) {
+			if (sound === "SIREN") {
+				this.toSiren();
+			} else {
+				this.toRing()
+			}
+		},
+
 		toRing : function() {
 			ion.sound.play("bell_ring");
 		},
+
+		toSiren : function() {
+			ion.sound.play("Siren_Noise");
+		},
+
 		truncHour : function(dateTime) {
 			if (dateTime.length > 10) {
 				return dateTime.substring(10, dateTime.length + 1);
@@ -777,15 +744,22 @@ define([ 'Noty', 'nprogress', 'moment', 'spin', 'adapters/underscore-adapter', '
 
 		formatTelefone : function(numTelefone) {
 
-			var v = numTelefone.replace(/\D/g, ""); // Remove tudo o que não é
-			// dígito
-			var len = v.length;
-			v = v.replace(/^(\d{2})(\d)/g, "($1) $2");
-			if (len == 10) {
-				v = v.replace(/(\d)(\d{4})$/, "$1-$2");
-			} else if (len == 11) {
-				v = v.replace(/(\d)(\d{5})$/, "$1-$2");
+			if (!numTelefone) {
+				return "";
 			}
+
+			var v = numTelefone.replace(/\D/g, ""); // Remove tudo o que não é
+
+			if (v.substring(0, 1) === "0") {
+				v = v.substring(1, v.length)
+			}
+			var len = v.length;
+
+			if (len > 9) {
+				v = v.replace(/^(\d{2})(\d)/g, "($1) $2");
+			}
+
+			v = v.replace(/(\d)(\d{4})$/, "$1-$2");
 			return v;
 		},
 		getFiletype : function(responseType) {
@@ -804,6 +778,13 @@ define([ 'Noty', 'nprogress', 'moment', 'spin', 'adapters/underscore-adapter', '
 			if (responseType === 'application/pdf') {
 				return 'PDF'
 			}
+		},
+
+		now : function(withoutTime) {
+			if (withoutTime) {
+				return moment().format('DD/MM/YYYY');
+			}
+			return moment().format('DD/MM/YYYY HH:mm');
 		},
 
 		disableAll : function(element) {
@@ -832,6 +813,7 @@ define([ 'Noty', 'nprogress', 'moment', 'spin', 'adapters/underscore-adapter', '
 				return false;
 			})
 		},
+
 		loadButton : function($el) {
 			if (!_.isUndefined($el) && _.isString($el)) {
 				return false;
@@ -850,7 +832,163 @@ define([ 'Noty', 'nprogress', 'moment', 'spin', 'adapters/underscore-adapter', '
 				$el.button('reset');
 			}
 
-		}
+		},
 
+		Colors : {
+			DODGER_BLUE : '#1E90FF',
+			DARK_ORANGE : '#FF8C00',
+			MED_SPRING_GREEN : '#00FA9A',
+			SKY_BLUE : '#87CEEB',
+			INDIAN_RED : '#CD5C5C',
+			YELLOW_GREEN : '#9ACD32',
+			DARK_KHAKI : '#BDB76B',
+			DEEP_SKY_BLUE : '#00BFFF',
+			GOLD : '#FFD700',
+			TAN2 : '#EE9A49',
+			LIGHT_GREEN : '#90EE90',
+			LIGHT_GREY : '#D3D3D3',
+			DARK_CYAN : '#008B8B',
+			TOMATO : '#FF6347',
+		},
+
+		WAY_PAYMENT_TYPES : [ {
+			'id' : 'CARD',
+			'value' : 'Cartão'
+		}, {
+			'id' : 'CHECK',
+			'value' : 'Cheque'
+		}, {
+			'id' : 'CASH',
+			'value' : 'Dinheiro'
+		}, {
+			'id' : 'BANK_SLIP',
+			'value' : 'Boleto Bancário'
+		}, {
+			'id' : 'DEBIT',
+			'value' : 'Cartão de Débito'
+		}, {
+			'id' : 'VOUCHER',
+			'value' : 'Voucher'
+		} ],
+
+		DAYS_OF_THE_WEEK : [ {
+			'id' : 'SUNDAY',
+			'value' : 'Domingo'
+		},
+
+		{
+			'id' : 'MONDAY',
+			'value' : 'Segunda'
+		},
+
+		{
+			'id' : 'TUESDAY',
+			'value' : 'Terça'
+		},
+
+		{
+			'id' : 'WEDNESDAY',
+			'value' : 'Quarta'
+		},
+
+		{
+			'id' : 'THURSDAY',
+			'value' : 'Quinta'
+		},
+
+		{
+			'id' : 'FRIDAY',
+			'value' : 'Sexta'
+		}, {
+			'id' : 'SATURDAY',
+			'value' : 'Sábado'
+		},
+
+		],
+
+		getAppName : function() {
+			var path = location.pathname.split('/');
+			return path[1];
+		},
+
+		getAppUrl : function() {
+			return location.origin + "/" + this.getAppName() + "/";
+		},
+		downloadFile : function(uri) {
+			//
+			if (uri && uri.indexOf('http') < 0) {
+				download(this.getAppUrl() + uri);
+			} else {
+				download(uri);
+			}
+		},
+
+		isImageFile : function(file) {
+			var file = "" + file.toUpperCase();
+			if (file.endsWith("PNG") || file.endsWith("JPG") || file.endsWith("JPEG") || file.endsWith("GIF")) {
+				return true
+			}
+			return false;
+		},
+
+		getNumber : function(num) {
+			if (_.isNumber(num)) {
+				return num;
+			}
+
+			if (_.isString(num)) {
+				return new Number(num);
+			}
+			return null;
+		},
+
+		addressComponentsToJson : function(address_components, formatted_address) {
+			var enderecoCompleto = {
+				lineAddress : '',
+				complement : '',
+				numero : '',
+				complemento : '',
+				state : '',
+				city : '',
+				district : '',
+				zipCode : '',
+			}
+			_.each(address_components, function(address_component) {
+				if (address_component.types[0] === 'administrative_area_level_1') {
+					enderecoCompleto['state'] = address_component.long_name;
+				}
+				if (address_component.types[0] === 'locality' || address_component.types[0] === 'administrative_area_level_2') {
+					enderecoCompleto['city'] = address_component.long_name;
+				}
+				if (address_component.types[0] === 'street_number') {
+					enderecoCompleto['number'] = address_component.long_name;
+				}
+				if (address_component.types[0] === 'route') {
+					enderecoCompleto['lineAddress'] = address_component.long_name;
+				}
+				if (address_component.types[0] === 'political' || address_component.types[0] === 'sublocality_level_1' || address_component.types[1] === 'sublocality') {
+					enderecoCompleto['district'] = address_component.long_name;
+				}
+				if (address_component.types[0] === 'postal_code') {
+					enderecoCompleto['zipCode'] = address_component.long_name;
+				}
+			});
+			return enderecoCompleto;
+		},
+
+		resultGeocodeToJson : function(result) {
+			var enderecoCompleto = this.addressComponentsToJson(result.address_components, result.formatted_address);
+			enderecoCompleto.latitude = result.geometry.location.lat();
+			enderecoCompleto.longitude = result.geometry.location.lng();
+			return enderecoCompleto;
+		},
+
+		addressToQueryString : function(address) {
+			return address.lineAddress + " n. " + address.number + " " + address.district + " " + address.state;
+		}
 	};
+
+	window.util = util;
+	return util;
+
 });
