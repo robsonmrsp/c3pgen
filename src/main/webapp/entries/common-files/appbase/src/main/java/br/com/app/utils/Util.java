@@ -95,4 +95,8 @@ public class Util {
 
 		return returnValue;
 	}
+
+	public static String wrapSufix(String input, Boolean exact) {
+		return exact ? input : "%" + input + "%";
+	}
 }

@@ -40,10 +40,9 @@ public class ${entity.name}ServiceImp implements ${entity.name}Service {
 	}
 
 	public Pager<${entity.name}> get(SearchParameters<Filter${entity.name}> searchParams, Tenant tenant) {
-		Filter${entity.name} filter = searchParams.getFilter();
 		Pageable pageRequest = searchParams.getPageRequest();
 
-		Page<${entity.name}> page = ${firstLower(entity.name)}Repository.findAll(${entity.name}SpecificationHelper.filter(filter, tenant), pageRequest);
+		Page<${entity.name}> page = ${firstLower(entity.name)}Repository.findAll(${entity.name}SpecificationHelper.filter(searchParams, tenant), pageRequest);
 
 		return new Pager<${entity.name}>(page.getContent(), page.getPageable().getPageNumber(), page.getTotalElements());
 	}
@@ -61,10 +60,9 @@ public class ${entity.name}ServiceImp implements ${entity.name}Service {
 	}
 
 	public Pager<${entity.name}> get(SearchParameters<Filter${entity.name}> searchParams) {
-		Filter${entity.name} filter = searchParams.getFilter();
 		Pageable pageRequest = searchParams.getPageRequest();
 
-		Page<${entity.name}> page = ${firstLower(entity.name)}Repository.findAll(${entity.name}SpecificationHelper.filter(filter), pageRequest);
+		Page<${entity.name}> page = ${firstLower(entity.name)}Repository.findAll(${entity.name}SpecificationHelper.filter(searchParams), pageRequest);
 
 		return new Pager<${entity.name}>(page.getContent(), page.getPageable().getPageNumber(), page.getTotalElements());
 	}
