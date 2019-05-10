@@ -67,6 +67,7 @@ define(function(require) {
 		regions : {
 			diagramApplicationToolsRegion : '.diagramToolsModal',
 			inspetorRegion : '.inspetor',
+
 			inspetorRelacionamentosRegion : '.inspetor-relacionamentos'
 		},
 		events : {
@@ -74,12 +75,19 @@ define(function(require) {
 			'click #addRelation' : 'addRelation',
 			'click #saveApp' : 'saveApplication',
 			'click #openTools' : 'openTools',
-
+			'keyup .select-entity-notes' : 'saveCurrentEntityNotes',
 			'click #generateApplication' : 'generateApplication',
 		},
-
+		saveCurrentEntityNotes : function() {
+			if (this.currentSelectModel) {
+				console.log(this.ui.entityTextareaNotes.val().trim())
+				this.currentSelectModel.set('notes', this.ui.entityTextareaNotes.val().trim());
+			}
+		},
 		ui : {
-			'tootips' : '.tooltips'
+			entityTextareaNotes : '.select-entity-notes',
+			'tootips' : '.tooltips',
+			entityNotes : '.entity-notes',
 		},
 		initialize : function() {
 			var that = this;
@@ -117,6 +125,9 @@ define(function(require) {
 
 				this.ui.tootips.tooltip();
 				this.modalError.initIn(this);
+				this.ui.entityNotes.draggable({
+					cursor : "crosshair"
+				});
 
 				this.inspetorRegion.show(this.inspetorView);
 				this.diagramApplicationToolsRegion.show(this.diagramApplicationTools);
@@ -174,8 +185,12 @@ define(function(require) {
 						// pegar a referencia ao Diagrama associado a esse
 						// cellView
 						var view = globalVisualEntities.get(_cellView.model.id);
+
 						that.inspetorView.setVisualEntity(view);
-						// console.log('pointerdown')
+						that.currentSelectModel = that.inspetorView.entity;
+
+						that.ui.entityTextareaNotes.val(that.inspetorView.entity.get('notes'));
+						that.currentSelectModel = that.inspetorView.entity;
 					}
 				});
 				window.paper.on('cell:pointerup', function(_cellView, evt, x, y) {
@@ -313,7 +328,8 @@ define(function(require) {
 				contador = 0;
 				++linha;
 			}
-			// var posY = 100 + ((contador++ % 2 - 1) * 260) + linha * 260; // TOP
+			// var posY = 100 + ((contador++ % 2 - 1) * 260) + linha * 260; //
+			// TOP
 			// var posX = 120 + ((contador - 1) * 180); // LEFT
 			var posY = 50 + (linha * 250);
 
@@ -376,7 +392,8 @@ define(function(require) {
 			that.graph.addCell(relation);
 
 			window.globalVisualRelations.put(relation.id, relation);
-//			console.log('Adicionado o seguinte relacionamento: ' + relation.id, relation);
+			// console.log('Adicionado o seguinte relacionamento: ' +
+			// relation.id, relation);
 		},
 
 		validateApplication : function() {
@@ -387,7 +404,7 @@ define(function(require) {
 				success : function(_model, _resp, _options) {
 					that.model.url = old;
 					util.showMessage('info', _resp.resp);
-//					console.log(download);
+					// console.log(download);
 					download(_resp.resp);
 				},
 				error : function(_model, _resp, _options) {
@@ -458,7 +475,7 @@ define(function(require) {
 				},
 			});
 			// console.log(entidadesCollection.toJSON());
-//			console.log(applicationRelationshipCollection.toJSON());
+			// console.log(applicationRelationshipCollection.toJSON());
 		},
 
 		_getEntityView : function(relation) {
@@ -530,7 +547,7 @@ define(function(require) {
 						}
 					})
 				} else {
-//					console.log(" Leaving  alone link", linkView);
+					// console.log(" Leaving alone link", linkView);
 				}
 			});
 		},
@@ -581,7 +598,7 @@ define(function(require) {
 							} catch (e) {
 								console.error(e);
 							}
-//							CONSOLE.log('Entidade removida com sucesso.');
+							// CONSOLE.log('Entidade removida com sucesso.');
 						},
 
 						error : function(_model, resp, xhr) {
@@ -589,7 +606,7 @@ define(function(require) {
 						}
 					})
 				} else {
-//					console.log(" Leaving  alone link", visualE);
+					// console.log(" Leaving alone link", visualE);
 				}
 			});
 
