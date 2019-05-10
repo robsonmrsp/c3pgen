@@ -101,6 +101,7 @@ define(function(require) {
 				this.ui.inputEntityName.editable();
 				this.ui.inputDisplayName.editable();
 				this.ui.inputTableName.editable();
+				this.ui.editableFields.editable();
 
 				this.ui.inputEntityName.on('hidden', function() {
 					util.refreshEditable(that.ui.inputDisplayName, util.toFrase(that.ui.inputEntityName.text()));
