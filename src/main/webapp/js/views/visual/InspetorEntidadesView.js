@@ -156,7 +156,7 @@ define(function(require) {
 							}
 						})
 						targetEntity.set('relationships', relationships);
-						targetEntity.set('notes', new Date());
+						targetEntity.set('hash', new Date());
 					}
 
 				}

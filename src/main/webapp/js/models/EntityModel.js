@@ -24,6 +24,7 @@ define(function(require) {
 			hasOwner : '',
 			hasMobile : '',
 			notes : '',
+			hash : '',
 			application : null,
 			attributes : null,
 			relationships : null,

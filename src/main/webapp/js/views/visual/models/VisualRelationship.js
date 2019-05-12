@@ -167,12 +167,12 @@ define(function(require) {
 
 							_sourceEntityRelations.push(_sourceRelationModel.toJSON());
 							_sourceEntity.set('relationships', _sourceEntityRelations);
-							_sourceEntity.set('notes', 'add' + _sourceRelationModel.name);
+							_sourceEntity.set('hash', 'add' + _sourceRelationModel.name);
 							_sourceEntity.set('posX', _sourceEntity.get('posX') + 1);
 
 							_targetEntityRelations.push(_targetRelationModel.toJSON());
 							_targetEntity.set('relationships', _targetEntityRelations);
-							_targetEntity.set('notes', 'add' + _targetRelationModel.name);
+							_targetEntity.set('hash', 'add' + _targetRelationModel.name);
 
 							_targetEntity.set('posX', _targetEntity.get('posX') + 1);
 						}

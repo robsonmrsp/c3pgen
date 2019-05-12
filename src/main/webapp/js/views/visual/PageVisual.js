@@ -533,7 +533,7 @@ define(function(require) {
 
 							var index = _.indexOf(relations, relation);
 							relations.splice(index, 1);
-							sourceEntity.set('notes', 'rem ' + new Date());
+							sourceEntity.set('hash', 'rem ' + new Date());
 						}
 					})
 
@@ -543,7 +543,7 @@ define(function(require) {
 
 							var index = _.indexOf(relations, relation);
 							relations.splice(index, 1);
-							targetEntity.set('notes', 'rem ' + new Date());
+							targetEntity.set('hash', 'rem ' + new Date());
 						}
 					})
 				} else {

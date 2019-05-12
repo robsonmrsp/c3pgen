@@ -19,12 +19,13 @@ public class JsonTheEntity implements Serializable {
 	private Integer id;
 	private Integer posX;
 	private Integer posY;
-	
+
 	private SyncOperation syncOperation;
 
 	private String name;
 	private String color;
 	private String notes;
+	private String hash;
 	private String displayName;
 	private String tableName;
 	private Boolean hasOwner;
@@ -151,6 +152,17 @@ public class JsonTheEntity implements Serializable {
 
 	public void setColor(String color) {
 		this.color = color;
+	}
+
+	public String getHash() {
+		if (hash == null) {
+			setHash(notes);
+		}
+		return hash;
+	}
+
+	public void setHash(String hash) {
+		this.hash = hash;
 	}
 
 }
