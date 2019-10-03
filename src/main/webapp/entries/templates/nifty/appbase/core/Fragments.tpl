@@ -176,6 +176,7 @@
 	############################################################################
 						Seed permissions
 	############################################################################
+
 <#list entities as entity>
 -- registros de autorização para ${firstUpper(entity.displayName)}	
 	-- campos de tela
@@ -237,3 +238,10 @@
 
 </#list>			
 	
+<#list entities as entity>
+import ${entity.name}Controller from './presentation/http/controllers/${entity.name}Controller';
+</#list>			
+<#list entities as entity>
+appExpress.use('/${firstLower(entity.name)}s', ${entity.name}Controller)
+</#list>			
+

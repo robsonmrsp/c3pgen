@@ -1,0 +1,17 @@
+/build/
+/config/
+/dist/
+src/assets/
+src//assets/*.js
+/assets/*.css
+/assets/**.js
+/assets/**.css
+assets/**.js
+assets/**.css
+/**/nifty.js
+/*.js
+assets/js/bootstrap/dist/js/bootstrap.js
+src/assets/js/bootstrap/dist/js/bootstrap.js
+assets/js/bootstrap/dist/css/bootstrap.css
+src/assets/js/bootstrap/dist/css/bootstrap.css
+/test/unit/coverage/

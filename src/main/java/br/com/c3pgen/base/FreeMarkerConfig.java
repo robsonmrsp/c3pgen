@@ -55,6 +55,7 @@ public class FreeMarkerConfig {
 		try {
 			String commonPathName = Util.currentDir() + File.separator + "entries" + File.separator + "common-files" + File.separator;
 			String commonPathNameAngular = commonPathName + "angular-files" + File.separator;
+			String commonPathNameNodeExpress = commonPathName + "appbaseNodeExpress" + File.separator;
 
 			String commonPathNameVue = commonPathName + "angular-files" + File.separator;
 
@@ -72,6 +73,7 @@ public class FreeMarkerConfig {
 			boolean exists = new File(commonPathName).exists();
 			FileTemplateLoader ftl1 = new FileTemplateLoader(new File(commonPathName));
 			FileTemplateLoader ftlAngular = new FileTemplateLoader(new File(commonPathNameAngular));
+			FileTemplateLoader ftlNodeExpress = new FileTemplateLoader(new File(commonPathNameNodeExpress));
 			FileTemplateLoader ftlVue = new FileTemplateLoader(new File(templateVuePathName));
 			FileTemplateLoader ftlReact = new FileTemplateLoader(new File(templateReactPathName));
 			// FileTemplateLoader ftlMobileCommon = new FileTemplateLoader(new File(commonMobilePathName));
@@ -109,7 +111,7 @@ public class FreeMarkerConfig {
 			// quando adiciona esse rtemplate a geração para de funcionar, por isso foi removido
 			// FileTemplateLoader fileTemplateRestControllerTests = new FileTemplateLoader(new File(commonPathName + "appbase/src/test/java/br/com/app/integration/controller"));
 
-			TemplateLoader[] loaders = new TemplateLoader[] { ftlAngular, ftlVue, ftlReact, ftl1, ftlTests, fileTemplateBase, fileTemplateroot, fileTemplateProdu, fileTemplateAudit, fileTemplateJson, fileTemplateConfig, fileTemplateModel, fileTemplatePersistence,
+			TemplateLoader[] loaders = new TemplateLoader[] { ftlAngular,ftlNodeExpress, ftlVue, ftlReact, ftl1, ftlTests, fileTemplateBase, fileTemplateroot, fileTemplateProdu, fileTemplateAudit, fileTemplateJson, fileTemplateConfig, fileTemplateModel, fileTemplatePersistence,
 					fileTemplatePersistencePagination, fileTemplateReports, fileTemplateRs, fileTemplateRsException, fileTemplateSecuriy, fileTemplateSerialization, fileTemplateService, fileTemplateUtils, fileTemplateResources, fileTemplateResourcesDb, fileTemplateWebApp,
 					fileTemplateWEB_INF, fileTemplateTestResources, fileTemplateBaseTests };
 

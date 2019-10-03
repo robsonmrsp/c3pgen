@@ -83,6 +83,13 @@ public class EntitiesGenerator {
 	private static MarkerGenerator buildXmlGenerator;
 	private static MarkerGenerator htmlLeftPanelViewGenerator;
 
+	// para a geracao do node
+	private static MarkerGenerator jsNodeExpressDomainModelGenerator;
+	private static MarkerGenerator jsNodeExpressDomainServiceGenerator;
+	private static MarkerGenerator jsNodeExpressInfrastructureModelGenerator;
+	private static MarkerGenerator jsNodeExpressInfrastructureRepositoryGenerator;
+	private static MarkerGenerator jsNodeExpressPresentationControllerGenerator;
+
 	// para o angular
 	private Application application;
 
@@ -104,6 +111,9 @@ public class EntitiesGenerator {
 		String appAngularRootFolder = Util.currentDir() + File.separator + "out/" + application.getAppName() + File.separator + "angular/src/app/layout/";
 		String appVueRootSrcFolder = File.separator + "out/" + application.getAppName() + File.separator + "web/web/src/";
 		String appVueComponentsFolder = Util.currentDir() + appVueRootSrcFolder + "components/";
+
+		// NodeExpress
+		String baseAppNodeExpress = Util.currentDir() + File.separator + "out/" + application.getAppName() + File.separator + "node" + File.separator + "src" + File.separator;
 
 		String webAppRootFolder = appRootFolder + "/src/main/webapp/";
 		String jsRootFolder = webAppRootFolder + "js/"; // js/spec/router
@@ -218,7 +228,27 @@ public class EntitiesGenerator {
 		reactRouterGenerator = new MarkerGenerator(freeMarkerConfig, application, "ReactRouterTemplate.tpl", appReactRootSrcFolder + "router/", TemplateFileName.ROOT, FileType.JAVASCRIPT);
 		reactSidebarGenerator = new MarkerGenerator(freeMarkerConfig, application, "ReactSidebarTemplate.tpl", appReactComponentsFolder + "layout/", TemplateFileName.SIDEBAR, FileType.JAVASCRIPT);
 
+		// NodeExpress
+		jsNodeExpressDomainModelGenerator = new MarkerGenerator(freeMarkerConfig, application, "NodeExpressDomainModelTemplate.tpl", baseAppNodeExpress + "domain/${entity.name}/", TemplateFileName.NODE_EXPRESS_DOMAIN_MODEL,
+				FileType.JAVASCRIPT);
+		jsNodeExpressDomainServiceGenerator = new MarkerGenerator(freeMarkerConfig, application, "NodeExpressDomainServiceTemplate.tpl", baseAppNodeExpress + "domain/${entity.name}/", TemplateFileName.NODE_EXPRESS_DOMAIN_SERVICE,
+				FileType.JAVASCRIPT);
+		jsNodeExpressInfrastructureModelGenerator = new MarkerGenerator(freeMarkerConfig, application, "NodeExpressInfrastructureModelTemplate.tpl", baseAppNodeExpress + "infra/database/models/", TemplateFileName.NODE_EXPRESS_INFRA_MODEL,
+				FileType.JAVASCRIPT);
+		jsNodeExpressInfrastructureRepositoryGenerator = new MarkerGenerator(freeMarkerConfig, application, "NodeExpressInfrastructureRepositoryTemplate.tpl", baseAppNodeExpress + "infra/repositories/",
+				TemplateFileName.NODE_EXPRESS_INFRA_REPOSITORY, FileType.JAVASCRIPT);
+		jsNodeExpressPresentationControllerGenerator = new MarkerGenerator(freeMarkerConfig, application, "NodeExpressPresentationControllerTemplate.tpl", baseAppNodeExpress + "presentation/http/controllers/",
+				TemplateFileName.NODE_EXPRESS_PRESENTATION_CONTROLLER, FileType.JAVASCRIPT);
+
 		try {
+
+			for (ApplicationEntity ent : application.getEntities()) {
+				jsNodeExpressDomainModelGenerator.generateEntityFile(application, ent);
+				jsNodeExpressDomainServiceGenerator.generateEntityFile(application, ent);
+				jsNodeExpressInfrastructureModelGenerator.generateEntityFile(application, ent);
+				jsNodeExpressInfrastructureRepositoryGenerator.generateEntityFile(application, ent);
+				jsNodeExpressPresentationControllerGenerator.generateEntityFile(application, ent);
+			}
 
 			if (application.getView().equalsIgnoreCase("angular")) {
 				for (ApplicationEntity ent : application.getEntities()) {

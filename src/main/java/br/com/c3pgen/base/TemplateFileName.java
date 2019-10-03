@@ -95,4 +95,14 @@ public interface TemplateFileName {
 	final String ANGULAR_ROUTER = "Router";
 	final String MYBATIS_MAPPER_JAVA = "${entity.name}Mapper";
 	final String MYBATIS_XML = "${entity.name}";
+
+	final String NODE_EXPRESS_DOMAIN_MODEL = "${entity.name}";
+
+	final String NODE_EXPRESS_DOMAIN_SERVICE = "${entity.name}Service";
+
+	final String NODE_EXPRESS_INFRA_MODEL = "${entity.name}Model";
+
+	final String NODE_EXPRESS_INFRA_REPOSITORY = "${entity.name}Repository";
+
+	final String NODE_EXPRESS_PRESENTATION_CONTROLLER = "${entity.name}Controller";
 }
