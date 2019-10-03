@@ -1,3 +1,4 @@
+
 package ${application.corePackage}.persistence;
 
 import java.util.regex.Matcher;

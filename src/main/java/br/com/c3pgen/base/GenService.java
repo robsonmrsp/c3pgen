@@ -111,7 +111,7 @@ public class GenService {
 
 		ApplicationValidator appValidator = new ApplicationValidator();
 
-		FreeMarkerConfig freeMarkerConfig = new FreeMarkerConfig(newApplication);
+		FreeMarkerConfig freeMarkerConfig = FreeMarkerConfig.getInstance(newApplication);
 
 		GenerateFileInfo fileInfo = new GenerateFileInfo();
 
@@ -168,7 +168,7 @@ public class GenService {
 			fixModules(newApplication);
 		}
 
-		FreeMarkerConfig freeMarkerConfig = new FreeMarkerConfig(newApplication);
+		FreeMarkerConfig freeMarkerConfig = FreeMarkerConfig.getInstance(newApplication);
 		GenerateFileInfo fileInfo = new GenerateFileInfo();
 
 		// fix module-entities

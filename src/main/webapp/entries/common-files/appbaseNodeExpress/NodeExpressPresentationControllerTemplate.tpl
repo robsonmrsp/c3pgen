@@ -20,24 +20,35 @@ ${entity.name}Controller.get('/', async (req, res) => {
 ${entity.name}Controller.post('/', async (req, res) => {
     const ${firstLower(entity.name)} = { title: req.body.title, sinopse: req.body.sinopse, releaseDate: req.body.releaseDate };
 
-    const saved${entity.name} = await ${firstLower(entity.name)}Service.save(${firstLower(entity.name)});
-
-    return res.status(201).send(saved${entity.name});
+    try {
+        const saved${entity.name} = await ${firstLower(entity.name)}Service.save(${firstLower(entity.name)});
+        return res.status(200).send(saved${entity.name});
+    } catch (error) {
+        return res.status(error.name === 'ValidationError' ? 401 : 503).send({ message: error.message });
+    }
 });
 
 ${entity.name}Controller.put('/:id', async (req, res) => {
     const { id } = req.params;
     const ${firstLower(entity.name)} = { title: req.body.title, sinopse: req.body.sinopse, releaseDate: req.body.releaseDate };
 
-    const saved${entity.name} = await ${firstLower(entity.name)}Service.update(id, ${firstLower(entity.name)});
-
-    return res.status(200).send(saved${entity.name});
+    try {
+        const saved${entity.name} = await ${firstLower(entity.name)}Service.update(id, ${firstLower(entity.name)});
+        return res.status(200).send(saved${entity.name});
+    } catch (error) {
+        return res.status(error.name === 'ValidationError' ? 401 : 503).send({ message: error.message });
+    }
 });
 
 ${entity.name}Controller.delete('/:id', async (req, res) => {
     const { id } = req.params;
-    await ${firstLower(entity.name)}Service.delete(id);
-    return res.status(200).send();
+    
+    try {
+        await ${firstLower(entity.name)}Service.delete(id);
+        return res.status(200).send();
+    } catch (error) {
+        return res.status(error.name === 'ValidationError' ? 401 : 503).send({ message: error.message });
+    }
 });
 
 // Generated ${.now}

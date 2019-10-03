@@ -71,7 +71,6 @@ public class MarkerGenerator {
 
 	public Boolean generateEntityFile(Application application, ApplicationEntity entity) throws IOException, TemplateException {
 
-		Template template = freeMarkerConfig.getTemplate(templateName);
 
 		String folderName = destinationFolder.replace("${entity.name}", Util.firstLowerCase(entity.getName())).replace("$kc{entity.name}", Util.camelCaseToKebabCase(entity.getName()));
 		String fileName = templateFileName.replace("${entity.name}", entity.getName()).replace("$kc{entity.name}", Util.camelCaseToKebabCase(entity.getName())) + "." + fileType.getSufix();
@@ -86,6 +85,7 @@ public class MarkerGenerator {
 		// PrintWriter fileWriter = new PrintWriter( fileName, "UTF-8" );
 
 		try {
+			Template template = freeMarkerConfig.getTemplate(templateName);
 			template.process(adjustData(application, entity), fileWriter);
 		} catch (Exception e) {
 			LOGGER.error("Erro gerando entidade " + entity.getName() + " Arquivo: " + fileName, e);
