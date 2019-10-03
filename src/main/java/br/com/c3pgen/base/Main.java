@@ -32,7 +32,7 @@ public class Main {
 
 		Application application = Util.getApplicationFromFolder(folderInputName, generatorFilesFolder);
 
-		FreeMarkerConfig freeMarkerConfig = new FreeMarkerConfig(application);
+		FreeMarkerConfig freeMarkerConfig = FreeMarkerConfig.getInstance(application);
 
 		GenerateFileInfo fileInfo = new GenerateFileInfo();
 

@@ -2,7 +2,11 @@ package br.com.c3pgen.base;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
@@ -40,90 +44,25 @@ public class FreeMarkerConfig {
 	static Map<String, Configuration> POOL = new HashMap<String, Configuration>();
 
 	private static final Logger LOGGER = Logger.getLogger(FreeMarkerConfig.class);
-	private Configuration configuration;
+	private static Configuration configuration;
 
-	public FreeMarkerConfig(Application application) {
+	public static FreeMarkerConfig getInstance(Application application) {
 		String lowerCase = application.getSkin().toLowerCase();
-		if (!POOL.containsKey(lowerCase)) {
-			POOL.put(lowerCase, initConfiguration(lowerCase));
-		}
-		configuration = POOL.get(lowerCase);
+		configuration = initConfiguration(lowerCase);
+		return new FreeMarkerConfig();
 	}
 
-	private Configuration initConfiguration(String skin) {
+	private static Configuration initConfiguration(String skin) {
 		Configuration configuration = new Configuration();
 		try {
-			String commonPathName = Util.currentDir() + File.separator + "entries" + File.separator + "common-files" + File.separator;
-			String commonPathNameAngular = commonPathName + "angular-files" + File.separator;
-			String commonPathNameNodeExpress = commonPathName + "appbaseNodeExpress" + File.separator;
-
-			String commonPathNameVue = commonPathName + "angular-files" + File.separator;
-
-			// String commonMobilePathName = Util.currentDir() + File.separator + "entries" + File.separator + "mobile-common-files" + File.separator;
-			String testTemplates = Util.currentDir() + File.separator + "entries" + File.separator + "common-files" + File.separator + "tests" + File.separator;
-
-			String templatePathName = Util.currentDir() + File.separator + "entries" + File.separator + "templates" + File.separator + skin + File.separator;
-
-			String templateVuePathName = templatePathName + "vue-files";
-
-			String templateReactPathName = templatePathName + "react-files";
-
-			String templateCorePathName = Util.currentDir() + File.separator + "entries" + File.separator + "templates" + File.separator + skin + File.separator + "appbase" + File.separator + "core" + File.separator;
-			// String mobileTemplateCorePathName = Util.currentDir() + File.separator + "entries" + File.separator + "mobile-templates" + File.separator + "nativedroid" + File.separator + "appbase" + File.separator + "core" + File.separator;
-			boolean exists = new File(commonPathName).exists();
-			FileTemplateLoader ftl1 = new FileTemplateLoader(new File(commonPathName));
-			FileTemplateLoader ftlAngular = new FileTemplateLoader(new File(commonPathNameAngular));
-			FileTemplateLoader ftlNodeExpress = new FileTemplateLoader(new File(commonPathNameNodeExpress));
-			FileTemplateLoader ftlVue = new FileTemplateLoader(new File(templateVuePathName));
-			FileTemplateLoader ftlReact = new FileTemplateLoader(new File(templateReactPathName));
-			// FileTemplateLoader ftlMobileCommon = new FileTemplateLoader(new File(commonMobilePathName));
-			// FileTemplateLoader ftlMobileTemplateCommon = new FileTemplateLoader(new File(mobileTemplateCorePathName));
-			FileTemplateLoader ftlTests = new FileTemplateLoader(new File(testTemplates));
-
-			FileTemplateLoader fileTemplateBase = new FileTemplateLoader(new File(templateCorePathName));
-
-			FileTemplateLoader fileTemplateroot = new FileTemplateLoader(new File(commonPathName + "appbase"));
-			FileTemplateLoader fileTemplateProdu = new FileTemplateLoader(new File(commonPathName + "appbase/produ"));
-			FileTemplateLoader fileTemplateAudit = new FileTemplateLoader(new File(commonPathName + "appbase/src/main/java/br/com/app/audit"));
-			FileTemplateLoader fileTemplateJson = new FileTemplateLoader(new File(commonPathName + "appbase/src/main/java/br/com/app/json"));
-			FileTemplateLoader fileTemplateConfig = new FileTemplateLoader(new File(commonPathName + "appbase/src/main/java/br/com/app/config"));
-			FileTemplateLoader fileTemplateModel = new FileTemplateLoader(new File(commonPathName + "appbase/src/main/java/br/com/app/model"));
-			FileTemplateLoader fileTemplatePersistence = new FileTemplateLoader(new File(commonPathName + "appbase/src/main/java/br/com/app/persistence"));
-			FileTemplateLoader fileTemplatePersistencePagination = new FileTemplateLoader(new File(commonPathName + "appbase/src/main/java/br/com/app/persistence/pagination"));
-			FileTemplateLoader fileTemplateReports = new FileTemplateLoader(new File(commonPathName + "appbase/src/main/java/br/com/app/reports"));
-
-			FileTemplateLoader fileTemplateRs = new FileTemplateLoader(new File(commonPathName + "appbase/src/main/java/br/com/app/rs"));
-			FileTemplateLoader fileTemplateRsException = new FileTemplateLoader(new File(commonPathName + "appbase/src/main/java/br/com/app/rs/exception"));
-			FileTemplateLoader fileTemplateSecuriy = new FileTemplateLoader(new File(commonPathName + "appbase/src/main/java/br/com/app/security"));
-			FileTemplateLoader fileTemplateSerialization = new FileTemplateLoader(new File(commonPathName + "appbase/src/main/java/br/com/app/serialization"));
-			FileTemplateLoader fileTemplateService = new FileTemplateLoader(new File(commonPathName + "appbase/src/main/java/br/com/app/service"));
-			FileTemplateLoader fileTemplateUtils = new FileTemplateLoader(new File(commonPathName + "appbase/src/main/java/br/com/app/utils"));
-			FileTemplateLoader fileTemplateResources = new FileTemplateLoader(new File(commonPathName + "appbase/src/main/resources"));
-			FileTemplateLoader fileTemplateResourcesDb = new FileTemplateLoader(new File(commonPathName + "appbase/src/main/resources/db"));
-
-			FileTemplateLoader fileTemplateWebApp = new FileTemplateLoader(new File(commonPathName + "appbase/src/main/webapp"));
-			FileTemplateLoader fileTemplateWEB_INF = new FileTemplateLoader(new File(commonPathName + "appbase/src/main/webapp/WEB-INF"));
-
-			// FileTemplateLoader fileTemplateRestClientTests = new FileTemplateLoader(new File(commonPathName + "appbase/src/test/java/br/com/app/restclientes"));
-			FileTemplateLoader fileTemplateTestResources = new FileTemplateLoader(new File(commonPathName + "appbase/src/test/resources"));
-			FileTemplateLoader fileTemplateBaseTests = new FileTemplateLoader(new File(commonPathName + "appbase/src/test/java/br/com/app"));
-
-			// quando adiciona esse rtemplate a geração para de funcionar, por isso foi removido
-			// FileTemplateLoader fileTemplateRestControllerTests = new FileTemplateLoader(new File(commonPathName + "appbase/src/test/java/br/com/app/integration/controller"));
-
-			TemplateLoader[] loaders = new TemplateLoader[] { ftlAngular,ftlNodeExpress, ftlVue, ftlReact, ftl1, ftlTests, fileTemplateBase, fileTemplateroot, fileTemplateProdu, fileTemplateAudit, fileTemplateJson, fileTemplateConfig, fileTemplateModel, fileTemplatePersistence,
-					fileTemplatePersistencePagination, fileTemplateReports, fileTemplateRs, fileTemplateRsException, fileTemplateSecuriy, fileTemplateSerialization, fileTemplateService, fileTemplateUtils, fileTemplateResources, fileTemplateResourcesDb, fileTemplateWebApp,
-					fileTemplateWEB_INF, fileTemplateTestResources, fileTemplateBaseTests };
-
-			MultiTemplateLoader loader = new MultiTemplateLoader(loaders);
+			MultiTemplateLoader loader = new MultiTemplateLoader(getLoaders(skin));
 			configuration = new Configuration();
 			configuration.setTemplateLoader(loader);
 			configuration.setObjectWrapper(new DefaultObjectWrapper());
 			configuration.setDefaultEncoding("UTF-8");
 			configuration.setTemplateExceptionHandler(TemplateExceptionHandler.HTML_DEBUG_HANDLER);
 			configuration.setIncompatibleImprovements(new Version(2, 3, 20));
-		} catch (IOException e) {
-
+		} catch (Exception e) {
 			LOGGER.error("Problemas ao obter configuracao.", e);
 		}
 
@@ -153,6 +92,60 @@ public class FreeMarkerConfig {
 		data.put("getOwnerName", new getOwnerNameMethod());
 		data.put("JSetupVersion", Util.JSETUP_VERSION);
 		return data;
+	}
+
+	private static FileTemplateLoader[] getLoaders(String skin) {
+		ArrayList<TemplateLoader> loaders = new ArrayList<>();
+
+		List<String> paths = new ArrayList<String>();
+		String entriesPath                 = Util.currentDir() + File.separator + "entries" + File.separator;
+		String commonFilesPathName         = entriesPath + File.separator + "common-files" + File.separator;
+		String commonPathNameNodeExpress   = commonFilesPathName + "appbaseNodeExpress" + File.separator;
+		String testTemplates               = commonFilesPathName + File.separator + "tests" + File.separator;
+		String templatePathName            = entriesPath + "templates" + File.separator + skin + File.separator;
+		String templateVuePathName         = templatePathName + "vue-files";
+		String templateReactPathName       = templatePathName + "react-files";
+		String templateCorePathName        = entriesPath + "templates" + File.separator + skin + File.separator + "appbase" + File.separator + "core" + File.separator;
+
+		paths.add(commonPathNameNodeExpress);
+		paths.add(templateVuePathName);
+		paths.add(templateReactPathName);
+		paths.add(testTemplates);
+		paths.add(templateCorePathName);
+		paths.add(commonFilesPathName);
+		paths.add(commonFilesPathName + "appbase");
+		paths.add(commonFilesPathName + "appbase/produ");
+		paths.add(commonFilesPathName + "appbase/src/main/java/br/com/app/audit");
+		paths.add(commonFilesPathName + "appbase/src/main/java/br/com/app/json");
+		paths.add(commonFilesPathName + "appbase/src/main/java/br/com/app/config");
+		paths.add(commonFilesPathName + "appbase/src/main/java/br/com/app/model");
+		paths.add(commonFilesPathName + "appbase/src/main/java/br/com/app/persistence");
+		paths.add(commonFilesPathName + "appbase/src/main/java/br/com/app/persistence/pagination");
+		paths.add(commonFilesPathName + "appbase/src/main/java/br/com/app/reports");
+		paths.add(commonFilesPathName + "appbase/src/main/java/br/com/app/rs");
+		paths.add(commonFilesPathName + "appbase/src/main/java/br/com/app/rs/exception");
+		paths.add(commonFilesPathName + "appbase/src/main/java/br/com/app/security");
+		paths.add(commonFilesPathName + "appbase/src/main/java/br/com/app/serialization");
+		paths.add(commonFilesPathName + "appbase/src/main/java/br/com/app/service");
+		paths.add(commonFilesPathName + "appbase/src/main/java/br/com/app/utils");
+		paths.add(commonFilesPathName + "appbase/src/main/resources");
+		paths.add(commonFilesPathName + "appbase/src/main/resources/db");
+		paths.add(commonFilesPathName + "appbase/src/main/webapp");
+		paths.add(commonFilesPathName + "appbase/src/main/webapp/WEB-INF");
+		paths.add(commonFilesPathName + "appbase/src/test/resources");
+		paths.add(commonFilesPathName + "appbase/src/test/java/br/com/app");
+		for (String path : paths) {
+			File file = new File(path);
+			try {
+				if (file.exists()) {
+					loaders.add(new FileTemplateLoader(file));
+				} else {
+					System.out.println("FreeMarkerConfig.getLoaders()" + path);
+				}
+			} catch (IOException e) {
+			}
+		}
+		return loaders.toArray(new FileTemplateLoader[loaders.size()]);
 	}
 
 	public Template getTemplate(String templateName) throws IOException {

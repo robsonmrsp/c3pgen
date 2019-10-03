@@ -28,7 +28,11 @@ public class GenericGenerator {
 
 	public void generate(List<FSItemDescription> seeds) throws IOException, TemplateException {
 		for (FSItemDescription item : seeds) {
-			generate(item);
+			try {
+				generate(item);
+			} catch (Exception e) {
+				LOGGER.warn(e);
+			}
 		}
 	}
 

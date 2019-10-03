@@ -49,10 +49,10 @@ public class FSItemDescription {
 		// persistences.add(new FSItemDescription("DaoUser", rootFolder + "persistence"
 		// + File.separator, "DaoUser", FileType.JAVA));
 
+		persistences.add(new FSItemDescription("DataCreateUpdateListener", rootFolder + "persistence" + File.separator, "DataCreateUpdateListener", FileType.JAVA));
 //		persistences.add(new FSItemDescription("HibernateDao", rootFolder + "persistence" + File.separator, "HibernateDao", FileType.JAVA));
 		persistences.add(new FSItemDescription("CatchThrowConstraintViolationException", rootFolder + "persistence" + File.separator, "CatchThrowConstraintViolationException", FileType.JAVA));
 
-		persistences.add(new FSItemDescription("DataCreateUpdateListener", rootFolder + "persistence" + File.separator, "DataCreateUpdateListener", FileType.JAVA));
 
 		persistences.add(new FSItemDescription("Pagination", rootFolder + "persistence" + File.separator + "pagination" + File.separator, "Pagination", FileType.JAVA));
 		persistences.add(new FSItemDescription("SearchParameters", rootFolder + "persistence" + File.separator + "pagination" + File.separator, "SearchParameters", FileType.JAVA));
