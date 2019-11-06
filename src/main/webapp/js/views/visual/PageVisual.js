@@ -208,6 +208,10 @@ define(function(require) {
 							} else {
 								that.targetViewTempRelation = _cellView;
 								that.targetTempRelation = view;
+								var modelTarget = that.targetTempRelation.model;
+								var modelSource = that.sourceTempRelation.model;
+
+								modelTarget.set('ownerName', modelSource.get('name'));
 								// _cellView.highlight();
 
 								var relation = new VisualRelationship({

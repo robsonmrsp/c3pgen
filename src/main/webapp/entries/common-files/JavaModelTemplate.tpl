@@ -126,8 +126,8 @@ public class ${entity.name} extends AbstractEntity{
 	private ${firstUpper(rel.model)} ${firstLower(rel.name)};
 			
 		<#elseif rel.type == 'ManyToMany'>			
-			<#if rel.origin && rel.ownerName?has_content> 
-    @ManyToMany(mappedBy="${rel.ownerName}")
+			<#if rel.origin > 
+    @ManyToMany(mappedBy="${rel.targetName}")
         		<#if rel.viewApproach?? >
 				</#if>
     private List<${firstUpper(rel.model)}> ${(rel.name)!firstLower(rel.model)};
@@ -136,6 +136,7 @@ public class ${entity.name} extends AbstractEntity{
 				<#if dataBasePrefix??>
     @JoinTable(name="${dataBasePrefix}_${uppercase(entity.name)}_${uppercase(rel.model)}", joinColumns = @JoinColumn(name = "ID_${uppercase(entity.name)}", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "ID_${uppercase(rel.model)}", referencedColumnName = "ID") )
     private List<${firstUpper(rel.model)}> ${(rel.name)};
+    
     			<#else>
     @JoinTable(name="${uppercase(entity.name)}_${uppercase(rel.model)}", joinColumns = @JoinColumn(name = "ID_${uppercase(entity.name)}", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "ID_${uppercase(rel.model)}", referencedColumnName = "ID") )
     private List<${firstUpper(rel.model)}> ${(rel.name)};
@@ -143,8 +144,8 @@ public class ${entity.name} extends AbstractEntity{
 				</#if>		
 			</#if>		
 		<#elseif rel.type == 'OneToOne'>
-			<#if rel.origin && rel.ownerName?has_content>
-	@OneToOne(optional=false, mappedBy="${rel.ownerName}")
+			<#if rel.origin >
+	@OneToOne(optional=false, mappedBy="${rel.targetName}")
 	@JoinColumn(name = "ID_${uppercase(rel.name)}")
 	private ${firstUpper(rel.model)} ${firstLower(rel.name)!firstLower(rel.model)};
 	
