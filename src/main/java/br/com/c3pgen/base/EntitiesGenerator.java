@@ -241,14 +241,14 @@ public class EntitiesGenerator {
 				TemplateFileName.NODE_EXPRESS_PRESENTATION_CONTROLLER, FileType.JAVASCRIPT);
 
 		try {
-
-			for (ApplicationEntity ent : application.getEntities()) {
-				jsNodeExpressDomainModelGenerator.generateEntityFile(application, ent);
-				jsNodeExpressDomainServiceGenerator.generateEntityFile(application, ent);
-				jsNodeExpressInfrastructureModelGenerator.generateEntityFile(application, ent);
-				jsNodeExpressInfrastructureRepositoryGenerator.generateEntityFile(application, ent);
-				jsNodeExpressPresentationControllerGenerator.generateEntityFile(application, ent);
-			}
+//GERACAO NODE
+//			for (ApplicationEntity ent : application.getEntities()) {
+//				jsNodeExpressDomainModelGenerator.generateEntityFile(application, ent);
+//				jsNodeExpressDomainServiceGenerator.generateEntityFile(application, ent);
+//				jsNodeExpressInfrastructureModelGenerator.generateEntityFile(application, ent);
+//				jsNodeExpressInfrastructureRepositoryGenerator.generateEntityFile(application, ent);
+//				jsNodeExpressPresentationControllerGenerator.generateEntityFile(application, ent);
+//			}
 
 			if (application.getView().equalsIgnoreCase("angular")) {
 				for (ApplicationEntity ent : application.getEntities()) {

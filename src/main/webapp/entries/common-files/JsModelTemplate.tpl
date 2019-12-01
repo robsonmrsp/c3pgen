@@ -31,9 +31,9 @@ define(function(require) {
 		model : ${entity.name}Model,
 		
 		<#if application.persistenceFramework == 'hibernate'>	
-		url : 'rs/crud/${firstLower(entity.name)}s/all',
+		url : 'rs/crud/${firstLower(entity.name)}s',
 		<#else>
-		url : '../rs/crud/${firstLower(entity.name)}s/all',
+		url : '../rs/crud/${firstLower(entity.name)}s',
 		</#if>
 	});
 	

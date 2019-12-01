@@ -22,18 +22,24 @@ define(function(require) {
 			this.comboId = options.comboId;
 			this.$el.find('option').remove();
 			this.$el.append('<option value selected>       -- Selecione --      </option>');
-			
+
 			this.setValue(options.initialValue);
-			
+
 			if (this.collectionEntity) {
 				this.comboVal = options.comboVal;
 				this.comboId = options.comboId;
 				this.collection = new this.collectionEntity();
 				this.collection.fetch({
-					success : function() {
-						that.collection.each(function(model) {
-							that.addModel(model);
-						})
+					success : function(collection, response, xhr) {
+						if (response && _.isArray(response.items)) {
+							_.each(response.items, function(model) {
+								that.addModel(model);
+							});
+						} else {
+							that.collection.each(function(model) {
+								that.addModel(model);
+							})
+						}
 						that.setValue(that.modelValue);
 						that.collectionLoaded = true;
 					},
@@ -131,9 +137,9 @@ define(function(require) {
 				}
 			}
 		},
-		
+
 		clear : function() {
-			this.$el && this.$el.val('');	
+			this.$el && this.$el.val('');
 			this.modelValue = null;
 		},
 
