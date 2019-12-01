@@ -37,7 +37,7 @@ public class SearchParameters<Filter> {
 	private void setPaginationValues(MultiValueMap<String, String> pathParameters) {
 		exact = pathParameters.get("exact") != null ? Boolean.valueOf(pathParameters.getFirst("exact")) : Boolean.FALSE;
 		page = pathParameters.get("page") != null ? Integer.valueOf(pathParameters.getFirst("page")) : 1;
-		pageSize = pathParameters.get("pageSize") != null ? Integer.valueOf(pathParameters.getFirst("pageSize")) : 30;
+		pageSize = pathParameters.get("pageSize") != null ? Integer.valueOf(pathParameters.getFirst("pageSize")) : 50;
 		totalPages = pathParameters.get("totalPages") != null ? Integer.valueOf(pathParameters.getFirst("totalPages")) : 1;
 		order = pathParameters.getFirst("direction") != null ? pathParameters.getFirst("direction") : "";
 		orderBy = pathParameters.getFirst("orderBy") != null ? pathParameters.getFirst("orderBy") : "";

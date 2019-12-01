@@ -10,12 +10,12 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.2.0.M2</version>
+		 <version>2.2.1.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
 	<properties>
-		<java.version>1.8</java.version>
+		<java.version>1.12</java.version>
 	</properties>
 	
 		<dependencies>
