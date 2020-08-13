@@ -38,7 +38,7 @@ define(function(require) {
 
 		removeEntity : function() {
 			if (this.onClickRemove) {
-				this.onClickRemove();
+				this.onClickRemove(this);
 			}
 		},
 

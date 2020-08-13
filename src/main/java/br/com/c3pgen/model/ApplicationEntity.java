@@ -59,7 +59,7 @@ public class ApplicationEntity extends AbstractTimestampEntity {
 	private String tableName;
 
 	@Column(name = "HAS_OWNER")
-	private Boolean hasOwner = Boolean.FALSE;
+	private Boolean hasOwner = Boolean.TRUE;
 
 	@Column(name = "HAS_MOBILE")
 	private Boolean hasMobile;
@@ -298,9 +298,9 @@ public class ApplicationEntity extends AbstractTimestampEntity {
 
 	public Boolean getHasOwner() {
 		if (hasOwner == null) {
-			setHasOwner(Boolean.FALSE);
+			setHasOwner(Boolean.TRUE);
 		}
-		return hasOwner;
+		return true;
 	}
 
 	public void setHasOwner(Boolean hasOwner) {

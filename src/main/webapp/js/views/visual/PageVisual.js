@@ -502,7 +502,7 @@ define(function(require) {
 
 		removeVisualEntity : function(visualE) {
 			var model = new EntityModel({
-				id : visualE.entity.get('id')
+				id : visualE.model.get('id')
 			});
 
 			util.Bootbox.confirm("Tem certeza que deseja remover a entidade ?", function(yes) {

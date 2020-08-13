@@ -19,6 +19,8 @@ define(function(require) {
 		defaults : {
 			id : null,
 			name : '',
+			multitenancy : null,
+			useAudit : null,
 			skin : null,
 			description : '',
 			rootPackage : '',

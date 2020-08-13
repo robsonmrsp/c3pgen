@@ -180,12 +180,12 @@ public class Parser {
 			}
 		}
 		Set<ApplicationRelationship> listRels = application.getApplicationRelationships();
-//		if (listRels != null) {
-//
-//			for (ApplicationRelationship loopRel : listRels) {
-//				jsonApplication.getApplicationRelationships().add(toJson(loopRel));
-//			}
-//		}
+		//		if (listRels != null) {
+		//
+		//			for (ApplicationRelationship loopRel : listRels) {
+		//				jsonApplication.getApplicationRelationships().add(toJson(loopRel));
+		//			}
+		//		}
 		return jsonApplication;
 	}
 
@@ -549,7 +549,8 @@ public class Parser {
 		relationship.setDisplayName(jsonRelationship.getDisplayName());
 		relationship.setOwnerName(jsonRelationship.getOwnerName());
 		relationship.setModel(jsonRelationship.getModel());
-		relationship.setViewApproach(toBasicEntity(jsonRelationship.getViewApproach()));
+		if (jsonRelationship.getViewApproach() != null)
+			relationship.setViewApproach(toBasicEntity(jsonRelationship.getViewApproach()));
 		relationship.setUniDirecional(jsonRelationship.getUniDirecional());
 	}
 
