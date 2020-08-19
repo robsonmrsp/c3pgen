@@ -34,8 +34,8 @@ define(function(require) {
 		events : {
 			'click 	.save' : 'save',
 			'click 	#saveAndVisual' : 'saveAndVisual',
-			'change  #inputSkin' : 'changeSkin',
-			'change  #inputRootPackage' : 'changeRootPackage',
+//			'change  #inputSkin' : 'changeSkin',
+//			'change  #inputRootPackage' : 'changeRootPackage',
 		},
 
 		ui : {

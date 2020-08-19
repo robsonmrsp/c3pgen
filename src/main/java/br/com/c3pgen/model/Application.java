@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -132,11 +133,16 @@ public class Application extends AbstractTimestampEntity {
 		if (this.entities == null) {
 			setEntities(new ArrayList<ApplicationEntity>());
 		}
+		List<ApplicationEntity> retuned = this.entities.stream().map(entity -> {
+			entity.setHasOwner(this.getMultitenancy());
+			return entity;
+		}).collect(Collectors.toList());
 		return this.entities;
 	}
 
 	public boolean addEntities(ApplicationEntity theEntity) {
 		theEntity.setApplication(this);
+		theEntity.setHasOwner(this.getMultitenancy());
 		return getEntities().add(theEntity);
 	}
 
