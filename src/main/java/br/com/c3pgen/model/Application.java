@@ -193,7 +193,7 @@ public class Application extends AbstractTimestampEntity {
 
 	public Boolean hasDocRestApi() {
 		if (useDocRestApi == null) {
-			return Boolean.FALSE;
+			return Boolean.TRUE;
 		}
 		return useDocRestApi;
 	}
