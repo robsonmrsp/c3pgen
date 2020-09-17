@@ -29,10 +29,13 @@ import ${corepackage}.security.SpringSecurityUserContext;
 
 import ${package}.utils.Parser;
 <#if application.hasDocRestApi()>
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import springfox.documentation.annotations.ApiIgnore;
+
 @Api("${firstUpper(entity.name)}'s CRUD API")
 </#if>
 @RestController
@@ -70,7 +73,11 @@ public class ${entity.name}Controller {
 	})	
 	</#if>
 	@RequestMapping(method = GET, produces = APPLICATION_JSON_VALUE)
+	<#if application.hasDocRestApi()>
+	public ResponseEntity get(@ApiIgnore @RequestParam MultiValueMap<String, String> mapParams) {
+	<#else>
 	public ResponseEntity get(@RequestParam MultiValueMap<String, String> mapParams) {
+	</#if>
 		ResponseEntity response = null;
 
 		Pager<${entity.name}> ${firstLower(entity.name)}s = null;

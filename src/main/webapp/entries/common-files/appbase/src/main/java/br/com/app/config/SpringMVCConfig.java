@@ -26,7 +26,16 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
-import ${application.corePackage}.persistence.CatchThrowConstraintViolationException;
+import $
+import io.swagger.annotations.ApiOperation;
+import springfox.documentation.builders.ApiInfoBuilder;
+import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.Contact;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import ${application.corePackage}.rs.exception.SimpleErrorMessageHandlerExceptionResolver;
 import ${application.corePackage}.serialization.CustomDoubleDeserializer;
 import ${application.corePackage}.serialization.CustomLocalDateDeserializer;
@@ -36,6 +45,9 @@ import ${application.corePackage}.serialization.CustomLocalDateTimeSerializer;
 
 @Configuration
 @EnableWebMvc
+<#if application.hasDocRestApi()>
+@EnableSwagger2
+</#if>
 public class SpringMVCConfig extends WebMvcConfigurerAdapter {
 
     @Override
@@ -115,4 +127,23 @@ public class SpringMVCConfig extends WebMvcConfigurerAdapter {
 
         return autoProxyCreator;
     }
+    <#if application.hasDocRestApi()>
+    @Bean
+    public Docket createRestApi() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .apiInfo(apiInfo())
+                .select()
+                .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
+                .paths(PathSelectors.any())
+                .build();
+    }
+    private ApiInfo apiInfo() {
+        ApiInfoBuilder apiInfoBuilder = new ApiInfoBuilder();
+        apiInfoBuilder.title("Docs");
+        apiInfoBuilder.description("Rest API Docs");
+        apiInfoBuilder.contact(new Contact("robson", "https://github.com/jsetup", ""));
+        apiInfoBuilder.version("1.0");
+        return apiInfoBuilder.build();
+    }
+    </#if>
 }

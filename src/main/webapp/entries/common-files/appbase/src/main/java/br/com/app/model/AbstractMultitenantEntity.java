@@ -17,7 +17,7 @@ public abstract class AbstractMultitenantEntity extends AbstractEntity {
 
 	private static final long serialVersionUID = -7964355524118760783L;
 	@ManyToOne
-	@JoinColumn(name = "ID_TENANT")
+	@JoinColumn(name = "ID_TENANT", nullable = false, updatable = false)
 	private Tenant tenant;
 
 	public Tenant getTenant() {
