@@ -20,6 +20,7 @@ public class SearchParameters<Filter> {
 	private Integer totalPages;
 	private String orderBy;
 	private String order;
+	
 	private Boolean exact;
 	private Filter filter;
 

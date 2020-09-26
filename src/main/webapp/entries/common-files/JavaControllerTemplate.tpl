@@ -90,7 +90,8 @@ public class ${entity.name}Controller {
 			${firstLower(entity.name)}s = ${firstLower(entity.name)}Service.get(paginationParams);
 			</#if>
 			
-			JsonPaginator<Json${entity.name}> paginator = new JsonPaginator<Json${entity.name}>(Parser.toListJson${entity.name}s(${firstLower(entity.name)}s.getItems()), ${firstLower(entity.name)}s.getActualPage(), ${firstLower(entity.name)}s.getTotalRecords());
+			JsonPaginator<Json${entity.name}> paginator = JsonPaginator.of(Parser.toListJson${entity.name}s(${firstLower(entity.name)}s.getItems()),
+				 ${firstLower(entity.name)}s.getActualPage(), ${firstLower(entity.name)}s.getPageSize(), ${firstLower(entity.name)}s.getOrder(), ${firstLower(entity.name)}s.getOrderBy(),${firstLower(entity.name)}s.getTotalRecords());
 
 			response = ResponseEntity.ok(paginator);
 

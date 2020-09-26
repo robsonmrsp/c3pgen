@@ -44,6 +44,7 @@ define(function(require) {
 			inputSkin : '#inputSkin',
 			skinCarousel : '#skinCarousel',
 			inputRootPackage : '#inputRootPackage',
+			inputRootPackage : '#inputRootPackage',
 			form : '#formApplication',
 		},
 
@@ -136,6 +137,7 @@ define(function(require) {
 				applicationType : util.escapeById('inputApplicationType'),
 				criteriaType : util.escapeById('inputCriteriaType'),
 				useAudit : util.escapeById('inputUseAudit'),
+				useDocRestApi : util.escapeById('inputUseDocRestApi'),
 				
 //				entities : that.entities.toJSON(),
 			});

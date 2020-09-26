@@ -67,10 +67,10 @@
 										<label class="control-label" for="inputSkin">Template</label>
 										<input type="text" id="inputSkin" placeholder="Template" value="{{skin || 'ace'}}" class="form-control" readonly="readonly">
 									</div>
-									<div id="groupInputAsModule" class="form-group ">
-										<input type="checkbox" id="inputAsModule" {{asModule ? 'checked' :''}} class="magic-checkbox">
-										<label class="checkbox-label" for="inputAsModule">Módulo</label>
-									</div>
+									<!-- 									<div id="groupInputAsModule" class="form-group "> -->
+									<!-- 										<input type="checkbox" id="inputAsModule" {{asModule ? 'checked' :''}} class="magic-checkbox"> -->
+									<!-- 										<label class="checkbox-label" for="inputAsModule">Módulo</label> -->
+									<!-- 									</div> -->
 									<div id="groupInputName" class="form-group">
 										<label class="control-label" for="inputName">Nome</label>
 										<input type="text" id="inputName" placeholder="Nome" value="{{name}}" class="form-control  validate[required]">
@@ -100,23 +100,21 @@
 											<label class="control-label" for="inputConfigurationType">Configuração</label>
 											<select id="inputConfigurationType" class="form-control ">
 												<option value="JAVA" {{configurationType=='JAVA' ? 'selected' : '' }}>Baseada em Java</option>
-												<option value="XML" {{configurationType=='XML' ? 'selected' : '' }}>Baseada em Xml</option>
 											</select>
 										</div>
 										<div id="groupCriteriaType" class="form-group col-sm-12 col-md-4 col-lg-4">
 											<label class="control-label" for="inputCriteriaType">Tipo de Criteria</label>
 											<select id="inputCriteriaType" class="form-control ">
 												<option value="JPA" {{criteriaType=='JPA' ? 'selected' : '' }}>JPA</option>
-												<option value="HIBERNATE" {{criteriaType=='HIBERNATE' ? 'selected' : '' }}>Hibernate</option>
 											</select>
 										</div>
 										<div id="groupView" class="form-group col-sm-12 col-md-4 col-lg-4">
 											<label class="control-label" for="inputView">Framework da View</label>
 											<select id="inputView" class="form-control ">
-<!-- 												<option value="ANGULAR" {{view=='ANGULAR' ? 'selected' : '' }}>Angular 2.0</option> -->
+												<!-- 												<option value="ANGULAR" {{view=='ANGULAR' ? 'selected' : '' }}>Angular 2.0</option> -->
 												<option value="BACKBONE" {{view=='BACKBONE' ? 'selected' : '' }}>Backbone/Marionette</option>
 												<option value="REACT" {{view=='REACT' ? 'selected' : '' }}>ReactJS 16</option>
-												<option value="VUE" {{view=='VUE' ? 'selected' : '' }}>VueJS 2.0</option>
+<!-- 												<option value="VUE" {{view=='VUE' ? 'selected' : '' }}>VueJS 2.0</option> -->
 											</select>
 										</div>
 									</div>
@@ -133,9 +131,9 @@
 											<input type="checkbox" id="inputGenerateTest" {{generateTest ? 'checked' :''}} class="magic-checkbox">
 											<label class="checkbox-label" for="inputGenerateTest">Gerar testes</label>
 										</div>
-										<div id="groupInputGenerateTest" class="form-group col-sm-12 col-md-3 col-lg-3">
-											<input type="checkbox" id="inputGenerateTest" {{generateTest ? 'checked' :''}} class="magic-checkbox">
-											<label class="checkbox-label" for="inputGenerateTest">Gerar testes</label>
+										<div id="groupInputUseDocRestApi" class="form-group col-sm-12 col-md-3 col-lg-3">
+											<input type="checkbox" id="inputUseDocRestApi" {{useDocRestApi ? 'checked' :''}} class="magic-checkbox">
+											<label class="checkbox-label" for="inputUseDocRestApi">Doc Swagger</label>
 										</div>
 									</div>
 								</div>

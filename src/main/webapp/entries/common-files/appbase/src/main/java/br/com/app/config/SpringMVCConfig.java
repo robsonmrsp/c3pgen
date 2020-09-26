@@ -2,40 +2,38 @@ package ${application.rootPackage}.config;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 
-import org.hibernate.SessionFactory;
 import org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.http.converter.xml.MappingJackson2XmlHttpMessageConverter;
-import org.springframework.orm.hibernate5.support.OpenSessionInViewInterceptor;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
-import $
+<#if application.hasDocRestApi()>
 import io.swagger.annotations.ApiOperation;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.BasicAuth;
 import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
+</#if>
+import ${application.corePackage}.persistence.CatchThrowConstraintViolationException;
 import ${application.corePackage}.rs.exception.SimpleErrorMessageHandlerExceptionResolver;
 import ${application.corePackage}.serialization.CustomDoubleDeserializer;
 import ${application.corePackage}.serialization.CustomLocalDateDeserializer;
@@ -48,7 +46,7 @@ import ${application.corePackage}.serialization.CustomLocalDateTimeSerializer;
 <#if application.hasDocRestApi()>
 @EnableSwagger2
 </#if>
-public class SpringMVCConfig extends WebMvcConfigurerAdapter {
+public class SpringMVCConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(final ResourceHandlerRegistry registry) {
@@ -130,18 +128,19 @@ public class SpringMVCConfig extends WebMvcConfigurerAdapter {
     <#if application.hasDocRestApi()>
     @Bean
     public Docket createRestApi() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .apiInfo(apiInfo())
-                .select()
-                .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
-                .paths(PathSelectors.any())
-                .build();
-    }
+		return new Docket(DocumentationType.SWAGGER_2)
+				.securitySchemes(Arrays.asList(new BasicAuth("basicAuth")))
+				.apiInfo(apiInfo())
+				.select()
+				.apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
+				.paths(PathSelectors.any())
+				.build();
+	}
     private ApiInfo apiInfo() {
         ApiInfoBuilder apiInfoBuilder = new ApiInfoBuilder();
         apiInfoBuilder.title("Docs");
         apiInfoBuilder.description("Rest API Docs");
-        apiInfoBuilder.contact(new Contact("robson", "https://github.com/jsetup", ""));
+        apiInfoBuilder.contact(new Contact("Robson", "https://github.com/c3pgen", ""));
         apiInfoBuilder.version("1.0");
         return apiInfoBuilder.build();
     }

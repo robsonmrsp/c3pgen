@@ -31,6 +31,7 @@ public class JsonApplication implements Serializable {
     private String rootPackage;
     private String corePackage;
     private Boolean useAudit;
+	private Boolean useDocRestApi;
     private Boolean multitenancy;
     private Boolean generateTest;
     private Boolean asModule;
@@ -185,5 +186,13 @@ public class JsonApplication implements Serializable {
     public void setView(String view) {
         this.view = view;
     }
+
+	public Boolean getUseDocRestApi() {
+		return useDocRestApi;
+	}
+
+	public void setUseDocRestApi(Boolean useDocRestApi) {
+		this.useDocRestApi = useDocRestApi;
+	}
 
 }

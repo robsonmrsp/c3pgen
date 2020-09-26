@@ -32,6 +32,7 @@ define(function(require) {
 			criteriaType : '',
 			asModule : '',
 			generateTest : '',
+			useDocRestApi : '',
 			entities : null,
 		},
 		updateOnlyApplication : function(obj, options) {
