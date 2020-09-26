@@ -42,7 +42,7 @@
 		<property name="driverClass" value="org.postgresql.Driver" />
 		<property name="jdbcUrl" value="jdbc:postgresql://localhost:5432/db_c3pgen_netflics" />
 		<property name="user" value="postgres" />
-		<property name="password" value="Aersoftwares@123" />
+		<property name="password" value="123456a" />
 
 		<property name="acquireIncrement" value="10" />
 		<property name="minPoolSize" value="10" />

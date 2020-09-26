@@ -44,7 +44,8 @@ public class ${entity.name}ServiceImp implements ${entity.name}Service {
 
 		Page<${entity.name}> page = ${firstLower(entity.name)}Repository.findAll(${entity.name}SpecificationHelper.filter(searchParams, tenant), pageRequest);
 
-		return new Pager<${entity.name}>(page.getContent(), page.getPageable().getPageNumber(), page.getTotalElements());
+		return new Pager<${entity.name}>(page.getContent(), searchParams.getPage(), searchParams.getPageSize(),
+		        searchParams.getOrder(), searchParams.getOrderBy(), page.getTotalElements());
 	}
 
 	public Boolean delete(Integer id, Tenant tenant) {
@@ -64,7 +65,8 @@ public class ${entity.name}ServiceImp implements ${entity.name}Service {
 
 		Page<${entity.name}> page = ${firstLower(entity.name)}Repository.findAll(${entity.name}SpecificationHelper.filter(searchParams), pageRequest);
 
-		return new Pager<${entity.name}>(page.getContent(), page.getPageable().getPageNumber(), page.getTotalElements());
+		return new Pager<${entity.name}>(page.getContent(), searchParams.getPage(), searchParams.getPageSize(),
+		        searchParams.getOrder(), searchParams.getOrderBy(), page.getTotalElements());
 	}
 	
 	public Boolean delete(Integer id) {

@@ -193,9 +193,9 @@ public class Application extends AbstractTimestampEntity {
 
 	public Boolean hasDocRestApi() {
 		if (useDocRestApi == null) {
-			return Boolean.TRUE;
+			setUseDocRestApi(Boolean.FALSE);
 		}
-		return useDocRestApi;
+		return getUseDocRestApi();
 	}
 
 	public Boolean hasClient() {
@@ -322,6 +322,14 @@ public class Application extends AbstractTimestampEntity {
 
 	public void setCriteriaType(CriteriaType criteriaType) {
 		this.criteriaType = criteriaType;
+	}
+
+	public Boolean getUseDocRestApi() {
+		return useDocRestApi;
+	}
+
+	public void setUseDocRestApi(Boolean useDocRestApi) {
+		this.useDocRestApi = useDocRestApi;
 	}
 
 }
