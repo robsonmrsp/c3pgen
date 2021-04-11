@@ -33,7 +33,7 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
 <#if entity.hasOwner>
-import ${application.corePackage}.model.Client;
+import ${application.corePackage}.model.Owner;
 </#if>
 
 import ${corepackage}.serialization.CustomLocalDateTimeSerializer;
@@ -151,13 +151,13 @@ public class ${entity.name} extends AbstractTimestampEntity{
 	<#if entity.hasOwner?? && entity.hasOwner>
 	@ManyToOne
 	@JoinColumn(name = "id_client")
-	private Client owner;
+	private Owner owner;
 	
-	public  Client getOwner() {
+	public  Owner getOwner() {
 		return owner;
 	}
 	
-	public void setOwner(Client owner) {
+	public void setOwner(Owner owner) {
 		this.owner = owner;
 	}
 	</#if>
