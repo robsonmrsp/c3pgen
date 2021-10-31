@@ -3,7 +3,7 @@ import org.springframework.mock.web.MockHttpSession;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 
-import br.com.netflics.model.User;
+import ${application.rootPackage}.model.User;
 
 public class MockMvcTestUtil {
 

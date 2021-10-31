@@ -1,11 +1,12 @@
 package br.com.c3pgen.rs;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.handler;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.List;
 
-import javax.activation.DataHandler;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
@@ -383,12 +384,12 @@ public class ApplicationResources {
 		DataUpload dataUpload = null;
 		String uploadFolder = httpServletRequest.getServletContext().getRealPath("/uploads");
 		for (Attachment attr : attachments) {
-			DataHandler handler = attr.getDataHandler();
+//			DataHandler handler = attr.getDataHandler();
 			String nameFile = "";
 			try {
-				InputStream stream = handler.getInputStream();
+				InputStream stream = null;//handler.getInputStream();
 
-				nameFile = System.currentTimeMillis() + "_" + Util.removeNonUnicodeCharAndSpaces(handler.getName());
+				nameFile = System.currentTimeMillis() + "_" + Util.removeNonUnicodeCharAndSpaces("");
 
 				String folder = uploadFolder + File.separator;
 

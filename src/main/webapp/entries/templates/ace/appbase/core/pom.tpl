@@ -105,6 +105,12 @@
 			<version>${r"${spring.security.version}"}</version>
 		</dependency>
 		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-config</artifactId>
+			<version>${r"${spring.security.version}"}</version>
+		</dependency>
+		
+		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-config</artifactId>
 			<version>${r"${spring.security.version}"}</version>

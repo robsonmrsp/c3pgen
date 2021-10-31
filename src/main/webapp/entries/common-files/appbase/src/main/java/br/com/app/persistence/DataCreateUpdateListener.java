@@ -12,7 +12,7 @@ import ${application.corePackage}.model.AbstractEntity;
 <#if application.multitenancy>
 import ${application.corePackage}.model.AbstractMultitenantEntity;
 </#if>
-import br.com.netflics.core.security.SpringSecurityUserContext;
+import ${application.corePackage}.security.SpringSecurityUserContext;
 
 @Component
 public class DataCreateUpdateListener {
