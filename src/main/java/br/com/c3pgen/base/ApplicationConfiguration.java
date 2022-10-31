@@ -30,7 +30,7 @@ public class ApplicationConfiguration {
 
 	// public static final String TEMPLATES_FOLDER_NAME =
 	// getProperty("templates.folder.name", "ace");;
-	public static final String MAIN_PACKAGE = getProperty("main.package", "br.com.sints.app");
+	public static final String MAIN_PACKAGE = getProperty("main.package", "br.com.jsetup.app");
 	public static final String BASE_FOLDER = Util.currentDir() + File.separator + "out" + File.separator + ApplicationConfiguration.MAIN_PACKAGE.replace(".", File.separator) + File.separator;
 	public static final String PERSISTENCE_FOLDER = Util.currentDir() + File.separator + "out" + File.separator + ApplicationConfiguration.MAIN_PACKAGE.replace(".", File.separator) + File.separator + "persistence" + File.separator;
 	public static final String SERVICE_FOLDER = Util.currentDir() + File.separator + "out" + File.separator + ApplicationConfiguration.MAIN_PACKAGE.replace(".", File.separator) + File.separator + "service" + File.separator;

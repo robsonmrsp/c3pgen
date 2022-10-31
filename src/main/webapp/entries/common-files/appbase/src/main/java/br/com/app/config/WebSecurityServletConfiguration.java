@@ -1,4 +1,4 @@
-package ${application.rootPackage}.config;
+package ${application.rootPackage};
 
 import javax.servlet.FilterRegistration;
 import javax.servlet.ServletContext;

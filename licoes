@@ -23,5 +23,5 @@ Tudo isso por causa de uma implementação que havia feito para o tratamento das
 	Originalmente não havia essa config:  
 	
 	<property name="proxyTargetClass" value="true" />
-	
-	só depois de adicionalá deu tudo certo
+	\
+	só depois de adicionalá deu tudo certo\de

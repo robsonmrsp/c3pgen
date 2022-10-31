@@ -53,7 +53,6 @@ public class FSItemDescription {
 //		persistences.add(new FSItemDescription("HibernateDao", rootFolder + "persistence" + File.separator, "HibernateDao", FileType.JAVA));
 		persistences.add(new FSItemDescription("CatchThrowConstraintViolationException", rootFolder + "persistence" + File.separator, "CatchThrowConstraintViolationException", FileType.JAVA));
 
-
 		persistences.add(new FSItemDescription("Pagination", rootFolder + "persistence" + File.separator + "pagination" + File.separator, "Pagination", FileType.JAVA));
 		persistences.add(new FSItemDescription("SearchParameters", rootFolder + "persistence" + File.separator + "pagination" + File.separator, "SearchParameters", FileType.JAVA));
 		// persistences.add(new FSItemDescription("Paginator", rootFolder +
@@ -267,11 +266,11 @@ public class FSItemDescription {
 	public static List<FSItemDescription> config(String javaRootFolder) {
 		List<FSItemDescription> list = new ArrayList<FSItemDescription>();
 
-		list.add(new FSItemDescription("SpringMVCConfig", javaRootFolder + File.separator + "config" + File.separator, "SpringMVCConfig", FileType.JAVA));
-		list.add(new FSItemDescription("SpringSecurityConfig", javaRootFolder + File.separator + "config" + File.separator, "SpringSecurityConfig", FileType.JAVA));
-		list.add(new FSItemDescription("JPAConfig", javaRootFolder + File.separator + "config" + File.separator, "JPAConfig", FileType.JAVA));
-		list.add(new FSItemDescription("Application", javaRootFolder + File.separator + "config" + File.separator, "Application", FileType.JAVA));
-		list.add(new FSItemDescription("WebSecurityServletConfiguration", javaRootFolder + File.separator + "config" + File.separator, "WebSecurityServletConfiguration", FileType.JAVA));
+		list.add(new FSItemDescription("SpringMVCConfig", javaRootFolder + File.separator, "SpringMVCConfig", FileType.JAVA));
+		list.add(new FSItemDescription("SpringSecurityConfig", javaRootFolder + File.separator, "SpringSecurityConfig", FileType.JAVA));
+		list.add(new FSItemDescription("JPAConfig", javaRootFolder + File.separator, "JPAConfig", FileType.JAVA));
+		list.add(new FSItemDescription("Application", javaRootFolder + File.separator, "Application", FileType.JAVA));
+		list.add(new FSItemDescription("WebSecurityServletConfiguration", javaRootFolder + File.separator, "WebSecurityServletConfiguration", FileType.JAVA));
 		return list;
 	}
 
