@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.beans.factory.annotation.Autowired;
-import ${application.corePackage}.model.User;
+import ${application.rootPackage}.model.User;
 import ${application.rootPackage}.persistence.UserRepository;
 
 @Service

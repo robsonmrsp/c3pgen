@@ -82,7 +82,7 @@ public class ApplicationEntity extends AbstractTimestampEntity {
 	@JoinColumn(name = "id_client")
 	private Client owner;
 
-	private Boolean multitenancy;
+	private Boolean multitenancy = true;
 
 	public Client getOwner() {
 		return owner;

@@ -33,7 +33,7 @@
 	</logger>
 	
 	<logger name="org.hibernate">
-		<level value="INFO" />
+		<level value="TRACE" />
 	</logger>
 	
 	<logger name="org.hibernate.type">
