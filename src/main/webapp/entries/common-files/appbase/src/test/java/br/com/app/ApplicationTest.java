@@ -1,9 +1,9 @@
 package ${application.rootPackage};
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootApplication
+@SpringBootTest
 public class ApplicationTest {
 
 	public static void main(String[] args) {

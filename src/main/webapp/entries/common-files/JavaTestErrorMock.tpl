@@ -1,5 +1,5 @@
 /** generated: ${.now} **/
-package ${package}.integration.controller;
+package ${package}.integration;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.mockito.Mockito.*;

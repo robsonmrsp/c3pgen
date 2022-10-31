@@ -1,4 +1,4 @@
-package ${application.rootPackage}.config;
+package ${application.rootPackage};
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,9 +8,9 @@ import org.springframework.context.annotation.ImportResource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@ComponentScan("${application.rootPackage}")
-@EntityScan({ "${application.rootPackage}.model", "${application.rootPackage}.core.model" })
-@EnableJpaRepositories("${application.rootPackage}")
+@ComponentScan()
+@EntityScan()
+@EnableJpaRepositories()
 public class Application {
 
 	public static void main(String[] args) {

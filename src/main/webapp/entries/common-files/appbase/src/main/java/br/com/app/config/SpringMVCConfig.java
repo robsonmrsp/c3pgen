@@ -1,7 +1,8 @@
-package ${application.rootPackage}.config;
+package ${application.rootPackage};
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator;

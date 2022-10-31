@@ -1,21 +1,21 @@
 /** generated: ${.now} **/
-package ${package}.integration.controller;
+package ${package}.integration;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
-import java.util.Arrays;
 import java.util.function.Consumer;
 
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -23,15 +23,14 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.jdbc.Sql;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.web.util.UriComponentsBuilder;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import ${package}.core.persistence.pagination.Pager;
 import ${package}.model.${entity.name};
 import ${package}.fixture.FixtureUtils;
 import br.com.six2six.fixturefactory.Fixture;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @Sql("classpath:init-data-${entity.name}.sql")
 public class ${entity.name}ControllerTest {
@@ -41,12 +40,12 @@ public class ${entity.name}ControllerTest {
 
 	private static final String URL = "/rs/crud/${firstLower(entity.name)}s";
 
-	@BeforeClass
+	@BeforeAll
 	public static void setUp() {
 		FixtureUtils.init();
 	}
 
-	@Before
+	@BeforeEach
 	public void before() {
 	}
 
@@ -167,6 +166,11 @@ public class ${entity.name}ControllerTest {
 		assertNull(result${entity.name});
 
 		assertEquals("Incorrect Response Status", HttpStatus.NO_CONTENT, status);
+
+	}
+	
+	@TestConfiguration
+	static class MyTestConfig {
 
 	}
 }

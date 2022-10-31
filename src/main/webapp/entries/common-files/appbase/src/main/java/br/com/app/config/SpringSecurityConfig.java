@@ -1,4 +1,4 @@
-package ${application.rootPackage}.config;
+package ${application.rootPackage};
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.beans.factory.annotation.Autowired;

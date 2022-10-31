@@ -155,9 +155,9 @@ public class EntitiesGenerator {
 
 		controllerGenerator = new MarkerGenerator(freeMarkerConfig, application, "JavaControllerTemplate.tpl", javaRootFolder + "/rs/", TemplateFileName.CONTROLLER_JAVA, FileType.JAVA);
 
-		testControllerGenerator = new MarkerGenerator(freeMarkerConfig, application, "JavaTestControllerTemplate.tpl", javaTestRootFolder + "/integration/controller/", TemplateFileName.TEST_CONTROLLER_JAVA, FileType.JAVA);
+		testControllerGenerator = new MarkerGenerator(freeMarkerConfig, application, "JavaTestControllerTemplate.tpl", javaTestRootFolder + "/integration/", TemplateFileName.TEST_CONTROLLER_JAVA, FileType.JAVA);
 
-		testErrorMockGenerator = new MarkerGenerator(freeMarkerConfig, application, "JavaTestErrorMock.tpl", javaTestRootFolder + "/integration/controller/", TemplateFileName.TEST_ERROR_MOCK, FileType.JAVA);
+		testErrorMockGenerator = new MarkerGenerator(freeMarkerConfig, application, "JavaTestErrorMock.tpl", javaTestRootFolder + "/integration/", TemplateFileName.TEST_ERROR_MOCK, FileType.JAVA);
 
 		testInitData = new MarkerGenerator(freeMarkerConfig, application, "init-data.tpl", javaTestResourcesRootFolder, TemplateFileName.TEST_INIT_DATA, FileType.SQL);
 

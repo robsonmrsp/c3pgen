@@ -1,4 +1,4 @@
-package ${application.rootPackage}.config;
+package ${application.rootPackage};
 
 import javax.sql.DataSource;
 
