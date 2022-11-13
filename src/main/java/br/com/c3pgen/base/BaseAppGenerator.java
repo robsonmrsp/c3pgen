@@ -90,7 +90,7 @@ public class BaseAppGenerator {
 		String baseCommonFolder = Util.currentDir() + File.separator + "entries/" + "mobile-common-files" + File.separator;
 
 		String fileOutput = Util.currentDir() + File.separator + "out" + File.separator + "MobApp" + application.getAppName();
-		String fileInputWebApp = baseCommonFolder + "/appbase/www";
+		String fileInputWebApp = baseCommonFolder + "/appbase/www/base";
 		FileUtils.copyDirectoryToDirectory(new File(fileInputWebApp), new File(fileOutput));
 	}
 
@@ -107,7 +107,11 @@ public class BaseAppGenerator {
 
 		String fileInputWebApp = "";
 		String fileOutput = "";
-		if (application.getView().equalsIgnoreCase("react")) {
+		if (application.getView().equalsIgnoreCase("react16")) {
+			fileInputWebApp = Util.currentDir() + File.separator + "/entries/templates/mui/react16-files/base/";
+			fileOutput = Util.currentDir() + File.separator + "out" + File.separator + application.getAppName() + "/web/";
+
+		}else if (application.getView().equalsIgnoreCase("react")) {
 			fileInputWebApp = Util.currentDir() + File.separator + "/entries/templates/nifty/react-files/web";
 			fileOutput = Util.currentDir() + File.separator + "out" + File.separator + application.getAppName() + "/web";
 

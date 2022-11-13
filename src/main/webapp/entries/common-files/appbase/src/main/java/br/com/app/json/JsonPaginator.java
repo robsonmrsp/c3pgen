@@ -22,7 +22,7 @@ public class JsonPaginator<JsonEntity> {
 	}
 
 	public static <JsonEntity> JsonPaginator of(List<JsonEntity> items, Integer actualPage, Integer pageSize, String orderBy, String order, Long totalRecords) {
-		return new JsonPaginator<>(items, actualPage, pageSize, orderBy, order, totalRecords);
+		return new JsonPaginator<JsonEntity>(items, actualPage, pageSize, orderBy, order, totalRecords);
 	}
 
 	public List<JsonEntity> getItems() {
@@ -47,5 +47,11 @@ public class JsonPaginator<JsonEntity> {
 
 	public String getOrder() {
 		return order;
+	}
+	
+	@Override
+	public String toString() {
+		return "JsonPaginator [items.size=" + (items!= null ? items.size() : 0) + ", actualPage=" + actualPage + ", totalRecords=" + totalRecords
+				+ ", pageSize=" + pageSize + ", orderBy=" + orderBy + ", order=" + order + "]";
 	}
 }

@@ -35,7 +35,7 @@ public class Application extends AbstractTimestampEntity {
 	private String appName;
 
 	@Column(name = "SKIN")
-	private String skin;
+	private String skin = "nifty";
 
 	@Column(name = "DESCRIPTION")
 	private String description;
@@ -80,7 +80,7 @@ public class Application extends AbstractTimestampEntity {
 	private Boolean asModule;
 
 	@Column(name = "MULTITENANCY")
-	private Boolean multitenancy;
+	private Boolean multitenancy = Boolean.TRUE;
 
 	@Column(name = "DATA_BASE_PREFIX")
 	private String dataBasePrefix;

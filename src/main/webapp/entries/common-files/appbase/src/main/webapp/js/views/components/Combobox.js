@@ -35,6 +35,7 @@ define(function(require) {
 							_.each(response.items, function(model) {
 								that.addModel(model);
 							});
+							that.collection.set(response.items);			
 						} else {
 							that.collection.each(function(model) {
 								that.addModel(model);
