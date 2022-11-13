@@ -105,11 +105,13 @@ public class FreeMarkerConfig {
 		String templatePathName            = entriesPath + "templates" + File.separator + skin + File.separator;
 		String templateVuePathName         = templatePathName + "vue-files";
 		String templateReactPathName       = templatePathName + "react-files";
+		String templateReact16PathName     = entriesPath + "templates" + File.separator + "mui" + File.separator + "react16-files";
 		String templateCorePathName        = entriesPath + "templates" + File.separator + skin + File.separator + "appbase" + File.separator + "core" + File.separator;
 
 		paths.add(commonPathNameNodeExpress);
 		paths.add(templateVuePathName);
 		paths.add(templateReactPathName);
+		paths.add(templateReact16PathName);
 		paths.add(testTemplates);
 		paths.add(templateCorePathName);
 		paths.add(commonFilesPathName);

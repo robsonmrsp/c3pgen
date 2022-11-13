@@ -48,4 +48,10 @@ public class JsonPaginator<JsonEntity> {
 	public String getOrder() {
 		return order;
 	}
+	
+	@Override
+	public String toString() {
+		return "JsonPaginator [items.size=" + (items!= null ? items.size() : 0) + ", actualPage=" + actualPage + ", totalRecords=" + totalRecords
+				+ ", pageSize=" + pageSize + ", orderBy=" + orderBy + ", order=" + order + "]";
+	}
 }

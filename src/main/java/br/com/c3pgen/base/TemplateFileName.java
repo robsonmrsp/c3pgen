@@ -4,6 +4,7 @@ public interface TemplateFileName {
 
 	final String FORM_TS = "form-$kc{entity.name}.component";
 
+	final String INDEX_JS = "index";
 	final String FORM = "Form${entity.name}";
 	final String PAGE = "Page${entity.name}";
 
