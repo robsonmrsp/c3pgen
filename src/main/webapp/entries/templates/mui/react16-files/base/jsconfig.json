@@ -8,7 +8,7 @@
       "@/contexts/*": [
         "src/contexts/*"
       ],
-      "@/icon/*": [
+      "@/icons/*": [
         "src/icons/*"
       ],
       "@/lib/*": [
@@ -22,7 +22,7 @@
       ],
       "@/pages/*": [
         "src/pages/*"
-      ],
+      ]
     }
   }
 }
