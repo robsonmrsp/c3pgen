@@ -1,6 +1,5 @@
 package br.com.c3pgen.rs;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.handler;
 
 import java.io.File;
 import java.io.FileOutputStream;
