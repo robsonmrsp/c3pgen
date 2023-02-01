@@ -407,7 +407,6 @@ public class EntitiesGenerator {
 			}
 
 			for (ApplicationEntity ent : application.getEntities()) {
-				if(true) return;
 				if (notInException(ent.getName(), exceptions)) {
 					LOGGER.info("-------------------------------Processando entidade " + ent.getName()
 							+ "-------------------------------");

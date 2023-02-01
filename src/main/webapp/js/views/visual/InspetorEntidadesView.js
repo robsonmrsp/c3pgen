@@ -202,7 +202,7 @@ define(function(require) {
 
 			util.refreshEditableVisual(this.ui.inputEntityName);
 			util.refreshEditableVisual(this.ui.inputDisplayName);
-			util.refreshEditableVisual(this.ui.inputTableName);
+//			util.refreshEditableVisual(this.ui.inputTableName);
 			util.refreshEditableVisual(this.ui.inputHasMobile);
 
 			// this.visualEntity.updateEntityPosition();

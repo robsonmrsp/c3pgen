@@ -132,7 +132,7 @@ define(function(require) {
 
 				this.ui.inputAtributeName.on('hidden', function() {
 					util.refreshEditable(that.ui.inputDisplayName, util.toFrase(that.ui.inputAtributeName.text()));
-					util.refreshEditable(that.ui.inputTableFieldName, util.toUnderscore(that.ui.inputAtributeName.text(), true));
+//					util.refreshEditable(that.ui.inputTableFieldName, util.toUnderscore(that.ui.inputAtributeName.text(), true));
 					util.refreshEditable(that.ui.inputMaxLen, 255)
 				});
 
