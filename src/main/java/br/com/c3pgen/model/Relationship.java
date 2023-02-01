@@ -255,10 +255,30 @@ public class Relationship extends AbstractTimestampEntity {
 	public void setTableFieldName(String tableFieldName) {
 		this.tableFieldName = tableFieldName;
 	}
+//
+//	@Override
+//	public String toString() {
+//		return "Relationship [name=" + name + ", displayName=" + displayName + ", ownerName=" + ownerName + "]";
+//	}
+
 
 	@Override
 	public String toString() {
-		return "Relationship [name=" + name + ", displayName=" + displayName + ", ownerName=" + ownerName + "]";
+		return "Relationship{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", targetName='" + targetName + '\'' +
+				", origin=" + origin +
+				", type='" + type + '\'' +
+				", displayName='" + displayName + '\'' +
+				", ownerName='" + ownerName + '\'' +
+				", model='" + model + '\'' +
+				", uniDirecional=" + uniDirecional +
+				", showInPages=" + showInPages +
+				", fk='" + fk + '\'' +
+				", tableJoinFieldName='" + tableJoinFieldName + '\'' +
+				", tableFieldName='" + tableFieldName + '\'' +
+				'}';
 	}
 
 	public Boolean getOrigin() {

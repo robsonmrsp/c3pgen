@@ -126,7 +126,7 @@ public class ${entity.name} extends AbstractEntity{
 	private ${firstUpper(rel.model)} ${firstLower(rel.name)};
 			
 		<#elseif rel.type == 'ManyToMany'>			
-			<#if rel.origin > 
+			<#if rel.origin >
     @ManyToMany(mappedBy="${rel.targetName}")
         		<#if rel.viewApproach?? >
 				</#if>
@@ -198,7 +198,7 @@ public class ${entity.name} extends AbstractEntity{
 	public boolean add${firstUpper(rel.name)}(${firstUpper(rel.model)} ${firstLower(rel.model)}){
 		<#if rel.uniDirecional == false>
 		<#if rel.ownerName?has_content>
-		${firstLower(rel.model)}.set${firstUpper(rel.ownerName)}(this);
+		${firstLower(rel.model)}.add${firstUpper(rel.ownerName)}(this);
 		</#if>
 		</#if>
 		return get${firstUpper(rel.name)}().add(${firstLower(rel.model)});
