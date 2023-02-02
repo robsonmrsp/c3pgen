@@ -198,7 +198,8 @@ public class ${entity.name} extends AbstractEntity{
 	public boolean add${firstUpper(rel.name)}(${firstUpper(rel.model)} ${firstLower(rel.model)}){
 		<#if rel.uniDirecional == false>
 		<#if rel.ownerName?has_content>
-		${firstLower(rel.model)}.add${firstUpper(rel.ownerName)}(this);
+
+		${firstLower(rel.model)}.set${firstUpper(rel.ownerName)}(this);
 		</#if>
 		</#if>
 		return get${firstUpper(rel.name)}().add(${firstLower(rel.model)});

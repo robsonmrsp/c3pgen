@@ -298,6 +298,16 @@
 			<name>Spring Milestones</name>
 			<url>https://repo.spring.io/milestone</url>
 		</repository>
+       <repository>
+            <id>jr-releases</id>
+            <name>jr-releases</name>
+            <url>https://jaspersoft.jfrog.io/jaspersoft/jr-ce-releases</url>
+        </repository>
+        <repository>
+            <id>jr-releases-3-parts</id>
+            <name>jr-releases-3-parts</name>
+            <url>https://jaspersoft.jfrog.io/jaspersoft/third-party-ce-artifacts</url>
+        </repository>
 	</repositories>
 	<pluginRepositories>
 		<pluginRepository>
