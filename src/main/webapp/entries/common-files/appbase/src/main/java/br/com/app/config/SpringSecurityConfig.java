@@ -2,7 +2,7 @@ package ${application.rootPackage};
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -15,20 +15,17 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import com.google.common.collect.ImmutableList;
 
 @EnableWebSecurity
+@Configuration
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     UserDetailsService userDetailsService;
 
     @Bean
-	public BCryptPasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder(11);
-	};
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder(11);
+    };
 
-	@Autowired
-	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-	}
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         final CorsConfiguration configuration = new CorsConfiguration();
@@ -45,29 +42,29 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-            .authorizeRequests()
+                .authorizeRequests()
                 .antMatchers("/js/**", "/css/**", "/images/**", "fonts/**").permitAll()
                 .antMatchers("/").fullyAuthenticated()
-				.antMatchers("/index").fullyAuthenticated()
+                .antMatchers("/index").fullyAuthenticated()
                 .antMatchers("/index.jsp").fullyAuthenticated()
                 .antMatchers("/rs/**").fullyAuthenticated()
                 .and()
                 .formLogin()
-                    .loginPage("/login.html")//
-                    .loginProcessingUrl( "/j_spring_security_check" )
-                    .usernameParameter("j_username")//
-                    .passwordParameter("j_password")//
-                    .defaultSuccessUrl( "/" )
-                    .failureUrl("/login.html?error=INVALID_USER_OR_PASSWORD" )
-                    .permitAll()
+                .loginPage("/login.html")//
+                .loginProcessingUrl( "/j_spring_security_check" )
+                .usernameParameter("j_username")//
+                .passwordParameter("j_password")//
+                .defaultSuccessUrl( "/" )
+                .failureUrl("/login.html?error=INVALID_USER_OR_PASSWORD" )
+                .permitAll()
                 .and()
                 .httpBasic()
                 .and()
                 .userDetailsService(this.userDetailsService)//
                 .logout()
-                    .logoutUrl( "/j_spring_security_logout" )
-                    .logoutSuccessUrl( "/login.html" )
-                    .invalidateHttpSession( true )
+                .logoutUrl( "/j_spring_security_logout" )
+                .logoutSuccessUrl( "/login.html" )
+                .invalidateHttpSession( true )
                 .and()
                 .cors()
                 .and()
