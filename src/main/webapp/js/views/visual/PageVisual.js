@@ -80,7 +80,6 @@ define(function(require) {
 		},
 		saveCurrentEntityNotes : function() {
 			if (this.currentSelectModel) {
-				console.log(this.ui.entityTextareaNotes.val().trim())
 				this.currentSelectModel.set('notes', this.ui.entityTextareaNotes.val().trim());
 			}
 		},
@@ -185,7 +184,9 @@ define(function(require) {
 						// pegar a referencia ao Diagrama associado a esse
 						// cellView
 						var view = globalVisualEntities.get(_cellView.model.id);
+                        that.currentEntityView = view;
 
+                        console.log("that.currentEntityView", that.currentEntityView)
 						that.inspetorView.setVisualEntity(view);
 						that.currentSelectModel = that.inspetorView.entity;
 
@@ -297,6 +298,12 @@ define(function(require) {
 			// // comentando por enquanto
 			// // that.addVisualRelation(appRelation);
 			// });
+
+            if(that.currentEntityView){
+                that.inspetorView.setVisualEntity(that.currentEntityView);
+                that.currentSelectModel = that.inspetorView.entity;
+                that.ui.entityTextareaNotes.val(that.inspetorView.entity.get('notes'));
+            }
 		},
 
 		drawRelations : function(application) {
@@ -473,6 +480,7 @@ define(function(require) {
 					if (messages && messages.messages && messages.messages.length > 0) {
 						that.modalError.showMessage(messages.messages);
 					}
+
 				},
 				error : function(_coll, _resp, _opt) {
 					console.error('erro ao salvar: ', _coll.toJSON());

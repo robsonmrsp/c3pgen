@@ -1,24 +1,16 @@
 package br.com.c3pgen.reverseengineering.crawler;
 
+import br.com.c3pgen.base.util.Util;
+import com.google.common.base.CaseFormat;
+import org.springframework.jdbc.datasource.SingleConnectionDataSource;
+import schemacrawler.schema.*;
+import schemacrawler.schemacrawler.*;
+import schemacrawler.tools.utility.SchemaCrawlerUtility;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
-import org.springframework.jdbc.datasource.SingleConnectionDataSource;
-
-import com.google.common.base.CaseFormat;
-
-import br.com.c3pgen.base.util.Util;
-import schemacrawler.schema.Catalog;
-import schemacrawler.schema.Column;
-import schemacrawler.schema.ForeignKey;
-import schemacrawler.schema.Schema;
-import schemacrawler.schema.Table;
-import schemacrawler.schemacrawler.InclusionRule;
-import schemacrawler.schemacrawler.SchemaCrawlerOptions;
-import schemacrawler.schemacrawler.SchemaInfoLevelBuilder;
-import schemacrawler.utility.SchemaCrawlerUtility;
 
 public class DBImporter {
 	final String url;
@@ -44,6 +36,8 @@ public class DBImporter {
 			return "org.postgresql.Driver";
 		else if (databasetype.equalsIgnoreCase("oracle"))
 			return "oracle.jdbc.driver.OracleDriver";
+		else if (databasetype.equalsIgnoreCase("mysql"))
+			return "com.mysql.jdbc.Driver";
 
 		return "org.postgresql.Driver";//
 	}
@@ -155,58 +149,21 @@ public class DBImporter {
 	}
 
 	private SchemaCrawlerOptions createCrawlerOptions(final DBImporterOptions options) {
-		SchemaCrawlerOptions crawlerOptions = new SchemaCrawlerOptions();
 
-		crawlerOptions.setSchemaInfoLevel(SchemaInfoLevelBuilder.standard());
 
-		crawlerOptions.setColumnInclusionRule(new InclusionRule() {
 
-			@Override
-			public boolean test(String columnName) {
-				for (String regex : options.getExcludeColumnNamePatterns()) {
-					if (columnName.matches(regex)) {
-						return false;
-					}
-				}
-				return true;
-			}
-		});
-		crawlerOptions.setTableInclusionRule(new InclusionRule() {
-			@Override
-			public boolean test(String tableName) {
-				if (options.getTableNamesToImport().size() > 0) {
-					for (String regex : options.getTableNamesToImport()) {
-						if (tableName.endsWith(regex.trim())) {
-							return true;
-						}
-					}
-					return false;
-
-				} else {
-					for (String regex : options.getExcludeTableNamePatterns()) {
-						if (tableName.matches(regex)) {
-							return false;
-						}
-					}
-				}
-				System.out.println("Utilizando a tabela: " + tableName);
-				return true;
-			}
-		});
-
-		crawlerOptions.setSchemaInclusionRule(new InclusionRule() {
-			@Override
-			public boolean test(String schemaName) {
-				// System.out.println(t);
-				return options.getIncludeSchemaNames().contains(schemaName);
-			}
-		});
-
-		
-		ArrayList<String> arrayList = new ArrayList<String>();
-		arrayList.add("TABLE");
-		crawlerOptions.setTableTypes(arrayList);
-
+		// Create the options
+		final LimitOptionsBuilder limitOptionsBuilder =
+				LimitOptionsBuilder.builder();
+		final LoadOptionsBuilder loadOptionsBuilder =
+				LoadOptionsBuilder.builder()
+						// Set what details are required in the schema - this affects the
+						// time taken to crawl the schema
+						.withSchemaInfoLevel(SchemaInfoLevelBuilder.maximum());
+		final SchemaCrawlerOptions crawlerOptions =
+				SchemaCrawlerOptionsBuilder.newSchemaCrawlerOptions()
+						.withLimitOptions(limitOptionsBuilder.toOptions())
+						.withLoadOptions(loadOptionsBuilder.toOptions());
 		return crawlerOptions;
 	}
 

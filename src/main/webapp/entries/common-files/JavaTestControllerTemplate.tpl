@@ -38,7 +38,7 @@ public class ${entity.name}ControllerTest {
 	@Autowired
 	TestRestTemplate testRestTemplate;
 
-	private static final String URL = "/rs/crud/${firstLower(entity.name)}s";
+	private static final String URL = "/api/crud/${firstLower(entity.name)}s";
 
 	@BeforeAll
 	public static void setUp() {

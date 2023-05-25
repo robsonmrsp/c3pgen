@@ -153,11 +153,11 @@ export default {
   },
   
   created() {
-    this.service = new HttpRequest("/rs/crud/${firstLower(entity.name)}s");
+    this.service = new HttpRequest("/api/crud/${firstLower(entity.name)}s");
 	<#if entity.relationships??>	
 	<#list entity.relationships as rel >
 		<#if rel.viewApproach.type == 'combo' || rel.viewApproach.type == 'multiselect'>
-    this.${firstLower(rel.model)}Service = new HttpRequest("/rs/crud/${firstLower(rel.model)}s");
+    this.${firstLower(rel.model)}Service = new HttpRequest("/api/crud/${firstLower(rel.model)}s");
 		</#if>
 	</#list>
 	</#if>

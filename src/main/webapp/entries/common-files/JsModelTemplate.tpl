@@ -10,7 +10,7 @@ define(function(require) {
 		<#if application.persistenceFramework == 'hibernate'>	
 		urlRoot : 'rs/crud/${firstLower(entity.name)}s',
 		<#else>
-		urlRoot : '../rs/crud/${firstLower(entity.name)}s',
+		urlRoot : '../api/crud/${firstLower(entity.name)}s',
 		</#if>
 
 		defaults : {
@@ -33,7 +33,7 @@ define(function(require) {
 		<#if application.persistenceFramework == 'hibernate'>	
 		url : 'rs/crud/${firstLower(entity.name)}s',
 		<#else>
-		url : '../rs/crud/${firstLower(entity.name)}s',
+		url : '../api/crud/${firstLower(entity.name)}s',
 		</#if>
 	});
 	

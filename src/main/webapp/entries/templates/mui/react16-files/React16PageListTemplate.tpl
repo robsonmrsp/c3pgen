@@ -56,7 +56,7 @@ const columns = [
 
 
 const Page = () => {
-  const service = new HttpRequest("/rs/crud/${firstLower(entity.name)}s");
+  const service = new HttpRequest("/api/crud/${firstLower(entity.name)}s");
 
   const [pageSize, setPageSize] = useState(5);
   const [pageItems, setPageItems] = useState([]);

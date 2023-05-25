@@ -145,7 +145,7 @@ export default {
   },
 
   created: function() {
-    this.service = new HttpRequest("/rs/crud/${firstLower(entity.name)}s");
+    this.service = new HttpRequest("/api/crud/${firstLower(entity.name)}s");
   },
 
   mounted: function() {

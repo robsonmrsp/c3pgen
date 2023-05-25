@@ -50,7 +50,7 @@ import ${corepackage}.model.AbstractEntity;
 		@UniqueConstraint(name = "${dataBasePrefix}_${uppercase(entity.tableName!entity.name)}_${uppercase(att.tableFieldName!att.name)}", columnNames = { "${uppercase(att.tableFieldName!att.name)}" }), 
 			</#if >
 		</#if >
-	</#list>		
+	</#list>
 })
 	<#else>
 @Table(name = "${uppercase(entity.tableName!entity.name)}", uniqueConstraints = {

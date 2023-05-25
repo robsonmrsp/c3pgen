@@ -11,7 +11,7 @@ import JSInputField from "../core/JSInputField";
 export default class Page${firstUpper(entity.name)} extends React.Component {
     constructor(props) {
         super(props)
-        this.service = new HttpRequest("/rs/crud/${firstLower(entity.name)}s");
+        this.service = new HttpRequest("/api/crud/${firstLower(entity.name)}s");
         this.state = {
             datatableConfig: new DatatableConfig(),
             showFilter: false,

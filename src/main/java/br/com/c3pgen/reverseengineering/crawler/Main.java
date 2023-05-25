@@ -1,3 +1,4 @@
+/*
 package br.com.c3pgen.reverseengineering.crawler;
 
 import java.sql.SQLException;
@@ -72,3 +73,4 @@ public class Main {
 
 	}
 }
+*/

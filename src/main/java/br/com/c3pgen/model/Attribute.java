@@ -35,6 +35,9 @@ public class Attribute extends AbstractTimestampEntity {
 	@Column(name = "MAX_LEN")
 	private Integer maxLen;
 
+	@Column(name = "SORT_ORDER")
+	private Integer sortOrder;
+
 	@Column(name = "TABLE_FIELD_NAME")
 	private String tableFieldName;
 
@@ -346,4 +349,11 @@ public class Attribute extends AbstractTimestampEntity {
 		this.plugin = plugin;
 	}
 
+	public Integer getSortOrder() {
+		return sortOrder;
+	}
+
+	public void setSortOrder(Integer sortOrder) {
+		this.sortOrder = sortOrder;
+	}
 }

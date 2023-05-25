@@ -73,6 +73,7 @@ public class ApplicationEntity extends AbstractTimestampEntity {
 
 	@OneToMany(mappedBy = "entity", cascade = { javax.persistence.CascadeType.ALL }, orphanRemoval = true)
 	@Cascade(CascadeType.ALL)
+	@OrderBy(clause = "sortOrder ASC")
 	private List<Attribute> attributes;
 
 	@OneToMany

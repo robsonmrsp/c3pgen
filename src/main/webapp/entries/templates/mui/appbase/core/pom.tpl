@@ -7,15 +7,16 @@
 	<packaging>war</packaging>
 	<name>${application.appName}</name>
 
+    <!-- ==============mui=============== -->
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		 <version>2.7.8</version>
+		 <version>2.7.12</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
 	<properties>
-		<java.version>1.12</java.version>
+		<java.version>11</java.version>
 	</properties>
 	
 		<dependencies>
@@ -169,146 +170,34 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
-					<version>3.1</version>
 					<configuration>
-						<source>1.8</source>
-						<target>1.8</target>
-					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-eclipse-plugin</artifactId>
-					<configuration>
-						<downloadSources>true</downloadSources>
-						<projectNameTemplate>[artifactId]-[version]</projectNameTemplate>
-						<wtpmanifest>true</wtpmanifest>
-						<wtpapplicationxml>true</wtpapplicationxml>
-						<wtpversion>2.0</wtpversion>
+					<version></version>
+						<source>${r"${java.version}"}</source>
+						<target>${r"${java.version}"}</target>
 					</configuration>
 				</plugin>
 			</plugins>
 		</pluginManagement>
-
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-					
-			<!-- A longo prazo, será mais simples manter a minificação dos css e js com os plugins abaixo. Isso porque, dada a maneira que estamos criando a view, serão vários arquivos js. -->
-				<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>3.2.0</version>
-				<configuration>
-					<warSourceExcludes>j/**,js/**,css/**,produ/**, assets/**, vendor/**</warSourceExcludes>
-					
-					<webResources>
-						<resource>
-							<!-- this is relative to the pom.xml directory -->
-							<directory>produ</directory>
-						</resource>
-					</webResources>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>com.github.mcheely</groupId>
-				<artifactId>requirejs-maven-plugin</artifactId>
-				<version>2.0.0</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>optimize</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<configFile>
-						${r"${basedir}"}/src/main/resources/optimizejs/build.js
-					</configFile>
-					<optimizerFile>
-						${r"${basedir}"}/src/main/resources/optimizejs/r.js
-					</optimizerFile>
-					<filterConfig>
-						true
-					</filterConfig>
-					<skip>
-						false
-					</skip>
-				</configuration>
-			</plugin>
-			
-			<plugin>
-				<groupId>com.samaxes.maven</groupId>
-				<artifactId>minify-maven-plugin</artifactId>
-				<version>1.7.4</version>
-				<executions>
-					<execution>
-						<id>default-minify</id>
-						<phase>process-resources</phase>
-						<configuration>
-							<charset>UTF-8</charset>
-							<cssSourceDir>css</cssSourceDir>
-							<cssSourceFiles>
-								<cssSourceFile>../vendor/bootstrap/css/bootstrap.css</cssSourceFile>
-								<cssSourceFile>../vendor/jquery.ui/jquery-ui-1.10.4.custom.min.css</cssSourceFile>
-								<cssSourceFile>../vendor/font.awesome/font-awesome-4.7.0/css/font-awesome.css</cssSourceFile>
-								<cssSourceFile>../vendor/backgrid/backgrid.css</cssSourceFile>
-								<cssSourceFile>../vendor/bootstrap.datetimepicker/bootstrap-datetimepicker.css</cssSourceFile>
-								<cssSourceFile>../vendor/jquery.validationEngine/validationEngine.jquery.css</cssSourceFile>
-								<cssSourceFile>../vendor/nprogressbar/nprogress.css</cssSourceFile>
-								<cssSourceFile>../vendor/jquery.gritter-1.7.4/css/jquery.gritter.css</cssSourceFile>
-								<cssSourceFile>../vendor/selectize/css/selectize.bootstrap3.css</cssSourceFile>
-								<cssSourceFile>../vendor/chosen_v1.6.2/chosen.css</cssSourceFile>
-								<cssSourceFile>../vendor/Backgrid.ColumnManager/lib/Backgrid.ColumnManager.css</cssSourceFile>
-								<cssSourceFile>../vendor/chosen_v1.6.2/bootstrap-chosen.css</cssSourceFile>
-								<cssSourceFile>../vendor/sweetalert-1.1.3/dist/sweetalert.css</cssSourceFile>
-								<cssSourceFile>../vendor/bootstrap-tagsinput-0.8.0/dist/bootstrap-tagsinput.css</cssSourceFile>
-								<cssSourceFile>../vendor/bootstrap-switch-3.3.4/dist/css/bootstrap3/bootstrap-switch.css</cssSourceFile>
-								<cssSourceFile>../vendor/theme/demo/css/nifty.css</cssSourceFile>
-								<cssSourceFile>../vendor/theme/demo/css/nifty-demo-icons.css</cssSourceFile>
-								<cssSourceFile>../vendor/theme/demo/css/theme-ocean.css</cssSourceFile>		
-								<cssSourceFile>../vendor/noty-3.1.3/lib/noty.css</cssSourceFile>
-								<cssSourceFile>../vendor/animate.css/animate.css</cssSourceFile>	
-								<cssSourceFile>../vendor/magic-check-master/css/magic-check.css</cssSourceFile>
-								<cssSourceFile>custom.css</cssSourceFile>
-								</cssSourceFiles>
-							<cssFinalFile>main-built.css</cssFinalFile>
-							<jsEngine>CLOSURE</jsEngine>
-						</configuration>
-						<goals>
-							<goal>minify</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
 	</build>
+
 		<repositories>
-		<repository>
-			<id>spring-snapshots</id>
-			<name>Spring Snapshots</name>
-			<url>https://repo.spring.io/snapshot</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-		<repository>
-			<id>spring-milestones</id>
-			<name>Spring Milestones</name>
-			<url>https://repo.spring.io/milestone</url>
-		</repository>
-       <repository>
-            <id>jr-releases</id>
-            <name>jr-releases</name>
-            <url>https://jaspersoft.jfrog.io/jaspersoft/jr-ce-releases</url>
-        </repository>
-        <repository>
-            <id>jr-releases-3-parts</id>
-            <name>jr-releases-3-parts</name>
-            <url>https://jaspersoft.jfrog.io/jaspersoft/third-party-ce-artifacts</url>
-        </repository>
-	</repositories>
+    		<repository>
+    			<id>jasper</id>
+    			<url>https://jaspersoft.jfrog.io/jaspersoft/third-party-ce-artifacts/</url>
+    		</repository>
+    		<repository>
+    			<id>central</id>
+    			<url>https://repo.maven.apache.org/maven2/</url>
+    		</repository>
+    		<repository>
+    			<snapshots>
+    				<enabled>false</enabled>
+    			</snapshots>
+    			<id>bintray</id>
+    			<name>bintray</name>
+    			<url>https://jcenter.bintray.com</url>
+    		</repository>
+    	</repositories>
 	<pluginRepositories>
 		<pluginRepository>
 			<id>spring-snapshots</id>

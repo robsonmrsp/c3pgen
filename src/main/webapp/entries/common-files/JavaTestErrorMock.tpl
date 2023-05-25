@@ -54,7 +54,7 @@ public class ${entity.name}ErrorMockTest {
 <#else>
 		when(service.get(any(Integer.class))).thenThrow(new RuntimeException("Error Getting ${entity.name}"));
 </#if>
-		this.mockMvc.perform(get("/rs/crud/${firstLower(entity.name)}s/1").session(mockHttpSession))
+		this.mockMvc.perform(get("/api/crud/${firstLower(entity.name)}s/1").session(mockHttpSession))
 			.andExpect(status().is5xxServerError())
 			.andExpect(content().string(containsString("Error Getting ${entity.name}")));
 	}
@@ -68,7 +68,7 @@ public class ${entity.name}ErrorMockTest {
 		when(service.get(any(SearchParameters.class))).thenThrow(new RuntimeException("Error Getting ${entity.name}"));
 </#if>		
 
-		this.mockMvc.perform(get("/rs/crud/${firstLower(entity.name)}s").session(mockHttpSession))
+		this.mockMvc.perform(get("/api/crud/${firstLower(entity.name)}s").session(mockHttpSession))
 			.andExpect(status().is5xxServerError())
 			.andExpect(content().string(containsString("Error Getting ${entity.name}")));
 	}
@@ -82,7 +82,7 @@ public class ${entity.name}ErrorMockTest {
 		when(service.save(any(${entity.name}.class))).thenThrow(new RuntimeException("Error creating ${entity.name}"));
 </#if>		
 
-		this.mockMvc.perform(post("/rs/crud/${firstLower(entity.name)}s").session(mockHttpSession).contentType(MediaType.APPLICATION_JSON).content("{}"))
+		this.mockMvc.perform(post("/api/crud/${firstLower(entity.name)}s").session(mockHttpSession).contentType(MediaType.APPLICATION_JSON).content("{}"))
 			.andExpect(status().is5xxServerError())
 			.andExpect(content().string(containsString("Error creating ${entity.name}")));
 	}
@@ -96,7 +96,7 @@ public class ${entity.name}ErrorMockTest {
 		when(service.save(any(${entity.name}.class))).thenThrow(new ValidationException("Error creating-validating ${entity.name}"));
 </#if>		
 
-		this.mockMvc.perform(post("/rs/crud/${firstLower(entity.name)}s").session(mockHttpSession).contentType(MediaType.APPLICATION_JSON).content("{}"))
+		this.mockMvc.perform(post("/api/crud/${firstLower(entity.name)}s").session(mockHttpSession).contentType(MediaType.APPLICATION_JSON).content("{}"))
 			.andExpect(status().isBadRequest())
 			.andExpect(content().string(containsString("Error creating-validating ${entity.name}")));
 	}
@@ -110,7 +110,7 @@ public class ${entity.name}ErrorMockTest {
 		when(service.update(any(${entity.name}.class))).thenThrow(new RuntimeException("Error updating ${entity.name}"));
 </#if>		
 
-		this.mockMvc.perform(put("/rs/crud/${firstLower(entity.name)}s/1").session(mockHttpSession).contentType(MediaType.APPLICATION_JSON).content("{}"))
+		this.mockMvc.perform(put("/api/crud/${firstLower(entity.name)}s/1").session(mockHttpSession).contentType(MediaType.APPLICATION_JSON).content("{}"))
 			.andExpect(status().is5xxServerError())
 			.andExpect(content().string(containsString("Error updating ${entity.name}")));
 	}
@@ -124,7 +124,7 @@ public class ${entity.name}ErrorMockTest {
 		when(service.update(any(${entity.name}.class))).thenThrow(new ValidationException("Error updating-validating ${entity.name}"));
 </#if>		
 
-		this.mockMvc.perform(put("/rs/crud/${firstLower(entity.name)}s/1").session(mockHttpSession).contentType(MediaType.APPLICATION_JSON).content("{}"))
+		this.mockMvc.perform(put("/api/crud/${firstLower(entity.name)}s/1").session(mockHttpSession).contentType(MediaType.APPLICATION_JSON).content("{}"))
 			.andExpect(status().isBadRequest())
 			.andExpect(content().string(containsString("Error updating-validating ${entity.name}")));
 	}
@@ -137,7 +137,7 @@ public class ${entity.name}ErrorMockTest {
 <#else>
 		when(service.delete(any(Integer.class))).thenThrow(new RuntimeException("Error removing ${entity.name}"));
 </#if>		
-		this.mockMvc.perform(delete("/rs/crud/${firstLower(entity.name)}s/1").session(mockHttpSession))
+		this.mockMvc.perform(delete("/api/crud/${firstLower(entity.name)}s/1").session(mockHttpSession))
 			.andExpect(status().is5xxServerError())
 			.andExpect(content().string(containsString("Error removing ${entity.name}")));
 	}

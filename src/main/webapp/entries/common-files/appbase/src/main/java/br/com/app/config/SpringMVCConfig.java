@@ -124,6 +124,7 @@ public class SpringMVCConfig implements WebMvcConfigurer {
         return new CatchThrowConstraintViolationException();
     }
 
+    // Configuração imcompativel com o spring-graphql pois força o proxy para a classe DefaultExecutionGraphQlService, o que causa erro no momento em que se tenta subir o graphiql
     @Bean
     public BeanNameAutoProxyCreator autoProxyCreator() {
         BeanNameAutoProxyCreator autoProxyCreator = new BeanNameAutoProxyCreator();

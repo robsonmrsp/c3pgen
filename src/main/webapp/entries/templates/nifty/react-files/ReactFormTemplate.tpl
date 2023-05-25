@@ -30,11 +30,11 @@ const empty${firstUpper(entity.name)} = {
 export default class Form${firstUpper(entity.name)} extends React.Component {
     constructor() {
         super();
-        this.service = new HttpRequest("/rs/crud/${firstLower(entity.name)}s");
+        this.service = new HttpRequest("/api/crud/${firstLower(entity.name)}s");
 <#if entity.relationships??>	
 	<#list entity.relationships as rel >
 		<#if rel.viewApproach.type == 'combo'>
-        this.service${firstUpper(rel.model)} = new HttpRequest("/rs/crud/${firstLower(rel.model)}s");
+        this.service${firstUpper(rel.model)} = new HttpRequest("/api/crud/${firstLower(rel.model)}s");
 		</#if>		
 	</#list>
 </#if>

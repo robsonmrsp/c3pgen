@@ -85,7 +85,6 @@ public class FreeMarkerConfig {
 		data.put("getVueMask", new GetMaskVueMethod());
 		data.put("getDataInputFormat", new DataInputFormatMethod());
 		data.put("dataType", new DataTypeMethod());
-		data.put("package", application.getRootPackage());
 		data.put("toListString", new ToStringMethod());
 		data.put("application", application);
 		data.put("package", application.getRootPackage());
@@ -104,7 +103,7 @@ public class FreeMarkerConfig {
 		String testTemplates               = commonFilesPathName + File.separator + "tests" + File.separator;
 		String templatePathName            = entriesPath + "templates" + File.separator + skin + File.separator;
 		String templateVuePathName         = templatePathName + "vue-files";
-		String templateReactPathName       = templatePathName + "react-files";
+		String templateReactPathName       = templatePathName + "react16-files";
 		String templateReact16PathName     = entriesPath + "templates" + File.separator + "mui" + File.separator + "react16-files";
 		String templateCorePathName        = entriesPath + "templates" + File.separator + skin + File.separator + "appbase" + File.separator + "core" + File.separator;
 

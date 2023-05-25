@@ -65,9 +65,13 @@
 		<dependency>
 			<groupId>us.fatehi</groupId>
 			<artifactId>schemacrawler</artifactId>
-			<version>14.09.01</version>
+			<version>16.19.1</version>
 		</dependency>
-
+		<dependency>
+			<groupId>us.fatehi</groupId>
+			<artifactId>schemacrawler-mysql</artifactId>
+			<version>16.19.1</version>
+		</dependency>
 		<dependency>
 			<groupId>com.restfuse</groupId>
 			<artifactId>com.eclipsesource.restfuse</artifactId>
@@ -354,9 +358,13 @@
 			<artifactId>postgresql</artifactId>
 			<version>9.4.1212</version>
 		</dependency>
-
-      
-
+		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>6.0.4</version>
+		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>

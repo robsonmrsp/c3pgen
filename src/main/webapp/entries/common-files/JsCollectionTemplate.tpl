@@ -18,7 +18,7 @@ define(function(require) {
 		<#if application.persistenceFramework == 'hibernate'>	
 		url : 'rs/crud/${firstLower(entity.name)}s/all',
 		<#else>
-		url : '../rs/crud/${firstLower(entity.name)}s/all',
+		url : '../api/crud/${firstLower(entity.name)}s/all',
 		</#if>
 		
 	});

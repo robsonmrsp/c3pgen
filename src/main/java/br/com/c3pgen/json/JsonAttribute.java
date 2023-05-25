@@ -21,6 +21,7 @@ public class JsonAttribute implements Serializable {
 	private String name;
 	private String displayName;
 	private Integer maxLen;
+	private Integer sortOrder;
 	private String tableFieldName;
 	private String mask;
 	private String defaultValue;
@@ -146,5 +147,12 @@ public class JsonAttribute implements Serializable {
 	public void setInputAs(String inputAs) {
 		this.inputAs = inputAs;
 	}
-	
+
+	public Integer getSortOrder() {
+		return sortOrder;
+	}
+
+	public void setSortOrder(Integer sortOrder) {
+		this.sortOrder = sortOrder;
+	}
 }

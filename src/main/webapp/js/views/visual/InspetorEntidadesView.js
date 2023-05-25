@@ -61,7 +61,7 @@ define(function(require) {
 
 		addAttribute : function() {
 			this.ui.panelBody.show();
-			var newAtribute = new AttributeModel();
+			var newAtribute = new AttributeModel({sortOrder: this.attributesCollection.size()+1});
 			this.attributesCollection.add(newAtribute);
 		},
 

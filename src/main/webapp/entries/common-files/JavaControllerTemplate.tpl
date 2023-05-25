@@ -39,7 +39,7 @@ import springfox.documentation.annotations.ApiIgnore;
 @Api("${firstUpper(entity.name)}'s CRUD API")
 </#if>
 @RestController
-@RequestMapping("/rs/crud/${firstLower(entity.name)}s")
+@RequestMapping("/api/crud/${firstLower(entity.name)}s")
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class ${entity.name}Controller {
 	@Autowired

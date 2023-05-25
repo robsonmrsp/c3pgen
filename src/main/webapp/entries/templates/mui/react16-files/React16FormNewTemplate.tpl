@@ -42,7 +42,7 @@ const to${firstUpper(entity.name)} = (values) => {
 }
 
 const ${firstUpper(entity.name)} = () => {
-  const service = new HttpRequest("/rs/crud/${firstLower(entity.name)}s");
+  const service = new HttpRequest("/api/crud/${firstLower(entity.name)}s");
   const router = useRouter()
   const [formValues, setFormValues] = useState(initValues);
   const { id } = router.query
