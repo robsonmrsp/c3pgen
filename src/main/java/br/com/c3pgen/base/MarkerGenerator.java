@@ -10,23 +10,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import br.com.c3pgen.base.methods.*;
 import org.apache.log4j.Logger;
 
-import br.com.c3pgen.base.methods.DataInputFormatMethod;
-import br.com.c3pgen.base.methods.DataTypeMethod;
-import br.com.c3pgen.base.methods.FirstLowerCaseMethod;
-import br.com.c3pgen.base.methods.FirstUpperCaseMethod;
-import br.com.c3pgen.base.methods.GetMaskVueMethod;
-import br.com.c3pgen.base.methods.IsNumericMethod;
-import br.com.c3pgen.base.methods.IsRequiredMethod;
-import br.com.c3pgen.base.methods.MaxLenMethod;
-import br.com.c3pgen.base.methods.OnlyFirstUpperCaseMethod;
-import br.com.c3pgen.base.methods.SnakeCaseStringMethod;
-import br.com.c3pgen.base.methods.ToKebabCaseMethod;
-import br.com.c3pgen.base.methods.ToLowerCaseMethod;
-import br.com.c3pgen.base.methods.ToStringMethod;
-import br.com.c3pgen.base.methods.ToUpperCaseMethod;
-import br.com.c3pgen.base.methods.getOwnerNameMethod;
 import br.com.c3pgen.base.util.Util;
 import br.com.c3pgen.model.Application;
 import br.com.c3pgen.model.ApplicationEntity;
@@ -104,6 +90,7 @@ public class MarkerGenerator {
 		data.put("snakeCase", new SnakeCaseStringMethod());
 		data.put("uppercase", new ToUpperCaseMethod());
 		data.put("kebabCase", new ToKebabCaseMethod());
+		data.put("upperCamelCase", new UpperSnakeCaseStringMethod());
 		data.put("lowercase", new ToLowerCaseMethod());
 		data.put("isNumeric", new IsNumericMethod());
 		data.put("getRequiredClass", new IsRequiredMethod());
@@ -138,7 +125,7 @@ public class MarkerGenerator {
 		data.put("lowercase", new ToLowerCaseMethod());
 
 		data.put("kebabCase", new ToKebabCaseMethod());
-
+		data.put("upperCamelCase", new UpperSnakeCaseStringMethod());
 		data.put("dataType", new DataTypeMethod());
 		data.put("package", ApplicationConfiguration.MAIN_PACKAGE);
 		data.put("entities", object);

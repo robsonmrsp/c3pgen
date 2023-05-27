@@ -96,7 +96,7 @@ public class ${entity.name} extends AbstractEntity{
 				
 		<#elseif  dataType(att.type.className) ==  "String" >
 		<#if att.viewApproach.type == 'textarea'>
-	@Column(name = "${uppercase(att.tableFieldName!att.name)}" , columnDefinition="varchar" ) 
+	@Column(name = "${uppercase(att.tableFieldName!att.name)}" , columnDefinition="varchar" )
 		<#else>
 	@Column(name = "${uppercase(att.tableFieldName!att.name)}" )
 		</#if>

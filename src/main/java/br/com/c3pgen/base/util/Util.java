@@ -106,7 +106,7 @@ public class Util {
     public static String toUpperSnakeCase(String camelCaseString) {
         String returnString = camelCaseString;
 
-        for (int index = 0; index < camelCaseString.length(); index++) {
+        for (int index = 1; index < camelCaseString.length(); index++) {
             char charAt = camelCaseString.charAt(index);
             if (Character.isUpperCase(charAt)) {
                 String charStr = "" + camelCaseString.charAt(index);
