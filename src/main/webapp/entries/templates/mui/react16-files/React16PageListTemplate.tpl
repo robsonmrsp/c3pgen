@@ -6,6 +6,7 @@ import Router from 'next/router';
 import { Box,Stack, Container, Typography, Button, Card, CardContent, CardHeader, Divider, TextField } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid'
 import { DatePicker } from '@mui/x-date-pickers';
+import VendorDashboardLayout from "components/layouts/vendor-dashboard";
 
 import { Layout } from '@/components/layout/layout';
 import { ActionCell } from '@/components/grid/ActionCell';
@@ -120,110 +121,111 @@ const Page = () => {
     setPageSize(newPageSize)
   }
 
-  return <>
-    <Head>
-      <title>
-        Listagem de ${firstUpper(entity.name)}s
-      </title>
-    </Head>
-    <Card>
-      <CardHeader
-        title="Filtro de pesquisa"
-      />
-      <Divider />
-      <CardContent>
-<#list entity.attributes as att>
-  <#if att.viewApproach?? >
-	<#if att.type.className == 'Boolean' && att.viewApproach.type  == 'check'  >
-	<#elseif att.type.className == 'Date' && att.viewApproach.type  == 'datepicker' >
-        <DatePicker
-          inputFormat='DD/MM/YYYY'
-          format="DD/MM/YYYY"
-          label="${att.displayName}"
-          openTo="day"
-          views={['day', 'month', 'year']}
-          value={values.${firstLower(att.name)}}
-          name="${firstLower(att.name)}"
-          onChange={(newValue) => {
-            const newDate = dayjs(newValue)
-            setValues({ ...values, ${firstLower(att.name)}: newDate })
-          }}
-          renderInput={(params) => <TextField {...params} />}
-        />
-	<#elseif att.viewApproach.type  == 'radiogroup'>
-	<#elseif att.viewApproach.type  == 'combo'  >
-	<#else>
-        <TextField
-          fullWidth
-          label="${att.displayName}"
-          margin="normal"
-          name="${firstLower(att.name)}"
-          onChange={handleChange}
-          type="text"
-          value={values.${firstLower(att.name)}}
-          variant="outlined"
-        />
-	</#if>
-  </#if>
-</#list>              
-      </CardContent>
-      <Divider />
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'flex-start',
-          p: 2
-        }}
-      >
-        <Stack direction="row" spacing={2}>
-          <Button
-            color="primary"
-            variant="contained"
-            onClick={searchByFilter}
-          >
-            Pesquisar
-          </Button>
-          <Button
-            color="secondary"
-            variant="contained"
-            onClick={() => Router.push('/${firstLower(entity.name)}/new').catch(console.error)}
-          >
-            Novo
-          </Button>
-        </Stack>
-      </Box>
-    </Card>
-    <Card>
-      <CardHeader
-        title="Listagem"
-      />
-      <Divider />
-      <CardContent>
-        <Box sx={{ pt: 3 }}>
-          <Box sx={{ height: 400, width: '100%' }}>
-            <DataGrid
-              rows={pageItems}
-              columns={columns}
-              pageSize={pageSize}
-              rowCount={totalItems}
-              rowsPerPageOptions={[5, 10, 20]}
-              onSortModelChange={sortChange}
-              onPageChange={pageChange}
-              onPageSizeChange={pageSizeChange}
-              sortingMode='server'
-              paginationMode='server'
+  return (
+    <Box py={4}>
+        <Head>
+          <title>
+            Listagem de ${firstUpper(entity.name)}s
+          </title>
+        </Head>
+        <Card>
+          <CardHeader
+            title="Filtro de pesquisa"
+          />
+          <Divider />
+          <CardContent>
+    <#list entity.attributes as att>
+      <#if att.viewApproach?? >
+        <#if att.type.className == 'Boolean' && att.viewApproach.type  == 'check'  >
+        <#elseif att.type.className == 'Date' && att.viewApproach.type  == 'datepicker' >
+            <DatePicker
+              inputFormat='DD/MM/YYYY'
+              format="DD/MM/YYYY"
+              label="${att.displayName}"
+              openTo="day"
+              views={['day', 'month', 'year']}
+              value={values.${firstLower(att.name)}}
+              name="${firstLower(att.name)}"
+              onChange={(newValue) => {
+                const newDate = dayjs(newValue)
+                setValues({ ...values, ${firstLower(att.name)}: newDate })
+              }}
+              renderInput={(params) => <TextField {...params} />}
             />
+        <#elseif att.viewApproach.type  == 'radiogroup'>
+        <#elseif att.viewApproach.type  == 'combo'  >
+        <#else>
+            <TextField
+              fullWidth
+              label="${att.displayName}"
+              margin="normal"
+              name="${firstLower(att.name)}"
+              onChange={handleChange}
+              type="text"
+              value={values.${firstLower(att.name)}}
+              variant="outlined"
+            />
+        </#if>
+      </#if>
+    </#list>
+          </CardContent>
+          <Divider />
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'flex-start',
+              p: 2
+            }}
+          >
+            <Stack direction="row" spacing={2}>
+              <Button
+                color="primary"
+                variant="contained"
+                onClick={searchByFilter}
+              >
+                Pesquisar
+              </Button>
+              <Button
+                color="secondary"
+                variant="contained"
+                onClick={() => Router.push('/${firstLower(entity.name)}/new').catch(console.error)}
+              >
+                Novo
+              </Button>
+            </Stack>
           </Box>
-        </Box>
-      </CardContent>
-    </Card>
-  </>
+        </Card>
+        <Card>
+          <CardHeader
+            title="Listagem"
+          />
+          <Divider />
+          <CardContent>
+            <Box sx={{ pt: 3 }}>
+              <Box sx={{ height: 400, width: '100%' }}>
+                <DataGrid
+                  rows={pageItems}
+                  columns={columns}
+                  pageSize={pageSize}
+                  rowCount={totalItems}
+                  rowsPerPageOptions={[5, 10, 20]}
+                  onSortModelChange={sortChange}
+                  onPageChange={pageChange}
+                  onPageSizeChange={pageSizeChange}
+                  sortingMode='server'
+                  paginationMode='server'
+                />
+              </Box>
+            </Box>
+          </CardContent>
+        </Card>
+    </Box>
+  );
 };
 
-Page.getLayout = (page) => (
-  <Layout>
-    {page}
-  </Layout>
-);
+
+Page.getLayout = function getLayout(page) {
+  return <VendorDashboardLayout>{page}</VendorDashboardLayout>;
+};
 
 export default Page;

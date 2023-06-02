@@ -79,98 +79,100 @@ const ${firstUpper(entity.name)} = () => {
     return errors;
   }
 
-  return <>
-    <Head>
-      <title>
-        Cadastro de ${firstUpper(entity.displayName)}
-      </title>
-    </Head>
-    <Card>
-      <CardHeader
-        title="Novo ${firstUpper(entity.displayName)}"
-      />
+  return (
+    <Box py={4}>
+        <Head>
+          <title>
+            Cadastro de ${firstUpper(entity.displayName)}
+          </title>
+        </Head>
+        <Card>
+          <CardHeader
+            title="Novo ${firstUpper(entity.displayName)}"
+          />
 
-      <Divider />
-      <CardContent>
-        <Formik
-          enableReinitialize={true}	
-          initialValues={formValues}
-          validate={formValidate}
-          
-          onSubmit={(values, { setSubmitting }) => {
-          	save(values);
-          	setSubmitting(false);
-          }}
-        >
-          {({ submitForm, isSubmitting }) => (
-            <Form>
-<#list entity.attributes as att>
-  <#if att.viewApproach?? >
-	<#if att.type.className == 'Boolean' && att.viewApproach.type  == 'check'  >
-              <Box marginTop={2}>
-                <Field
-                  component={CheckboxWithLabel}
-                  type="checkbox"
-                  name="${firstLower(att.name)}"
-                  Label={{ label: '${firstUpper(att.displayName)}' }}
-                />
-              </Box>	
-	<#elseif att.type.className == 'Date' && att.viewApproach.type  == 'datepicker' >
-              <Box marginTop={2}>
-                <Field
-                  component={DatePicker}
-                  type="text"
-                  name="${firstLower(att.name)}"
-                  label="${firstUpper(att.displayName)}"
-                  views={['year', 'month', 'day']}
-                  inputFormat="DD/MM/YYYY"
-                />
-              </Box>
-	<#elseif att.viewApproach.type  == 'radiogroup'>
-	<#elseif att.viewApproach.type  == 'combo'  >
-	<#else>
-              <Box marginTop={2}>
-                <Field
-                  component={TextField}
-                  name="${firstLower(att.name)}"
-                  type="text"
-                  label="${firstUpper(att.displayName)}"
-                  variant="outlined"
-                  fullWidth
-                />
-              </Box>	
-	</#if>
-  </#if>
-</#list>              
-              {isSubmitting && <LinearProgress />}
-              <Divider />
-              <Box marginTop={2}>
-                <Stack direction="row" spacing={2}>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    disabled={isSubmitting}
-                    onClick={submitForm}
-                  >
-                    Salvar
-                  </Button>
-                  <Button
-                    variant="text"
-                    color="secondary"
-                    disabled={isSubmitting}
-                    onClick={() => Router.push('/${firstLower(entity.name)}/list').catch(console.error)}
-                  >
-                    Ver listagem
-                  </Button>
-                </Stack>
-              </Box>
-            </Form>
-          )}
-        </Formik>
-      </CardContent>
-      <Divider />
-    </Card>
-  </>
+          <Divider />
+          <CardContent>
+            <Formik
+              enableReinitialize={true}
+              initialValues={formValues}
+              validate={formValidate}
+
+              onSubmit={(values, { setSubmitting }) => {
+                save(values);
+                setSubmitting(false);
+              }}
+            >
+              {({ submitForm, isSubmitting }) => (
+                <Form>
+    <#list entity.attributes as att>
+      <#if att.viewApproach?? >
+        <#if att.type.className == 'Boolean' && att.viewApproach.type  == 'check'  >
+                  <Box marginTop={2}>
+                    <Field
+                      component={CheckboxWithLabel}
+                      type="checkbox"
+                      name="${firstLower(att.name)}"
+                      Label={{ label: '${firstUpper(att.displayName)}' }}
+                    />
+                  </Box>
+        <#elseif att.type.className == 'Date' && att.viewApproach.type  == 'datepicker' >
+                  <Box marginTop={2}>
+                    <Field
+                      component={DatePicker}
+                      type="text"
+                      name="${firstLower(att.name)}"
+                      label="${firstUpper(att.displayName)}"
+                      views={['year', 'month', 'day']}
+                      inputFormat="DD/MM/YYYY"
+                    />
+                  </Box>
+        <#elseif att.viewApproach.type  == 'radiogroup'>
+        <#elseif att.viewApproach.type  == 'combo'  >
+        <#else>
+                  <Box marginTop={2}>
+                    <Field
+                      component={TextField}
+                      name="${firstLower(att.name)}"
+                      type="text"
+                      label="${firstUpper(att.displayName)}"
+                      variant="outlined"
+                      fullWidth
+                    />
+                  </Box>
+        </#if>
+      </#if>
+    </#list>
+                  {isSubmitting && <LinearProgress />}
+                  <Divider />
+                  <Box marginTop={2}>
+                    <Stack direction="row" spacing={2}>
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        disabled={isSubmitting}
+                        onClick={submitForm}
+                      >
+                        Salvar
+                      </Button>
+                      <Button
+                        variant="text"
+                        color="secondary"
+                        disabled={isSubmitting}
+                        onClick={() => Router.push('/${firstLower(entity.name)}/list').catch(console.error)}
+                      >
+                        Ver listagem
+                      </Button>
+                    </Stack>
+                  </Box>
+                </Form>
+              )}
+            </Formik>
+          </CardContent>
+          <Divider />
+        </Card>
+    </Box>
+  );
 };
 
 ${firstUpper(entity.name)}.getLayout = (${firstLower(entity.name)}) => (
