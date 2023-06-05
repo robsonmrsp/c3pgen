@@ -1,0 +1,18 @@
+<svg width="1920" height="911" viewBox="0 0 1920 911" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_9741_91777)">
+<mask id="mask0_9741_91777" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="1920" height="911">
+<path d="M0 0H1920V911H0V0Z" fill="#F6F9FC"/>
+</mask>
+<g mask="url(#mask0_9741_91777)">
+<path d="M1070 1109C1182.67 1109 1274 1017.67 1274 905C1274 792.334 1182.67 701 1070 701C957.334 701 866 792.334 866 905C866 1017.67 957.334 1109 1070 1109Z" stroke="#E94560" stroke-opacity="0.07" stroke-width="90"/>
+<path d="M700 1030C769.036 1030 825 974.036 825 905C825 835.964 769.036 780 700 780C630.964 780 575 835.964 575 905C575 974.036 630.964 1030 700 1030Z" stroke="#E94560" stroke-opacity="0.13" stroke-width="248"/>
+<path opacity="0.5" d="M1827 1131C1932.49 1131 2018 1045.49 2018 940C2018 834.514 1932.49 749 1827 749C1721.51 749 1636 834.514 1636 940C1636 1045.49 1721.51 1131 1827 1131Z" stroke="#0F3460" stroke-opacity="0.2" stroke-width="60"/>
+<path opacity="0.5" d="M4 1131C109.486 1131 195 1045.49 195 940C195 834.514 109.486 749 4 749C-101.486 749 -187 834.514 -187 940C-187 1045.49 -101.486 1131 4 1131Z" stroke="#0F3460" stroke-opacity="0.2" stroke-width="60"/>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_9741_91777">
+<rect width="1920" height="911" fill="white"/>
+</clipPath>
+</defs>
+</svg>

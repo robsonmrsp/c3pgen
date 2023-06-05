@@ -11,6 +11,7 @@ public interface TemplateFileName {
 	final String MODAL = "Modal${entity.name}";
 	final String ROUTER_VUE = "index";
 	final String SIDEBAR = "Sidebar";
+	final String NAVIGATION_LIST = "NavigationList";
 	final String ROOT = "Root";
 
 	final String MODEL_JAVA = "${entity.name}";

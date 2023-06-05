@@ -6,10 +6,10 @@ import Router from 'next/router';
 import { TextField, CheckboxWithLabel } from 'formik-mui';
 import { Formik, Form, Field } from 'formik';
 import { DatePicker } from 'formik-mui-x-date-pickers';
+import AlertMessage from "components/alert/AlertMessage";
 
 import { Button, LinearProgress, Card, CardContent, CardHeader, Divider, Box, Stack } from '@mui/material';
-
-import { Layout } from '@/components/layout/layout';
+import DashboardLayout from "components/layouts/admin";
 import HttpRequest from '@/lib/HttpRequest'
 import { useRouter } from 'next/router'
 
@@ -45,6 +45,8 @@ const ${firstUpper(entity.name)} = () => {
   const service = new HttpRequest("/api/crud/${firstLower(entity.name)}s");
   const router = useRouter()
   const [formValues, setFormValues] = useState(initValues);
+  const [alertModel, setAlertModel] = useState({ displayAlert: false, messageAlert: '' });
+
   const { id } = router.query
 
   useEffect(() => {
@@ -66,6 +68,17 @@ const ${firstUpper(entity.name)} = () => {
     const json = await response.data;
     console.log(json)
   }
+  const save = async (formValues) => {
+    try {
+      const response = await service.save(to${firstUpper(entity.name)}(formValues));
+      const json = await response.data;
+      setFormValues(initValues);
+      setAlertModel({ displayAlert: true, type: 'success', messageAlert: '${firstUpper(entity.displayName)} salvo com sucesso!' });
+    } catch (error) {
+      setAlertModel({ displayAlert: true, type: 'error', messageAlert: 'Problemas ao salvar ${firstUpper(entity.displayName)}!' });
+    }
+  }
+
 
   const formValidate = (values) => {
     const errors = {};
@@ -93,6 +106,7 @@ const ${firstUpper(entity.name)} = () => {
 
           <Divider />
           <CardContent>
+            {alertModel.displayAlert && <AlertMessage onClickClose={() => setAlertModel({ displayAlert: false })} type={alertModel.type} message={alertModel.messageAlert} />}
             <Formik
               enableReinitialize={true}
               initialValues={formValues}
@@ -175,10 +189,8 @@ const ${firstUpper(entity.name)} = () => {
   );
 };
 
-${firstUpper(entity.name)}.getLayout = (${firstLower(entity.name)}) => (
-  <Layout>
-    {${firstLower(entity.name)}}
-  </Layout>
-);
+${firstUpper(entity.name)}.getLayout = (${firstLower(entity.name)}) => {
+  return <DashboardLayout>  {${firstLower(entity.name)}} </DashboardLayout>;
+};
 
 export default ${firstUpper(entity.name)};

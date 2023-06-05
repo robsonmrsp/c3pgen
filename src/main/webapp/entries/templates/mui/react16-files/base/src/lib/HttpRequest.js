@@ -1,6 +1,8 @@
 import axios from 'axios';
+import Cookies from 'js-cookie';
+import Config from '@/config/api';
 
-const BASE_URL = 'http://localhost:8081'
+const token = Cookies.get('token');
 
 export default class HttpRequest {
     constructor(url) {
@@ -8,33 +10,29 @@ export default class HttpRequest {
             throw new Error('Deve ser definida uma url para o serviço!');
         }
         this.url = url;
+        this.config = {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'application/json',
+            }
+        }
     }
 
-    createAuth = () => {
-        const auth = {
-            username: 'jsetup',
-            password: '123456',
-        };
-        return auth;
-    }
-
-    /**
-     * 
-     * @param {*} searchParameters 
-     */
     getPage = (parameters) => {
         console.log('Chamando getPage com os parametros: ', parameters);
-        return axios.get(BASE_URL + this.url, { auth: this.createAuth(), params: { ...parameters } });
+        console.log('config: ', this.config);
+        return axios.get(Config.api.baseURL + this.url, { params: parameters, ...this.config });
     }
 
     getById = (id) => {
         console.log('Chamando getById com o parametro: ', id);
-        return axios.get(BASE_URL + this.url + "/" + id, { auth: this.createAuth() });
+        return axios.get(Config.api.baseURL + this.url + "/" + id, { ...this.config });
     }
 
     save = (pojo = {}) => {
         if (pojo.id)
-            return axios.put(BASE_URL + this.url + '/' + pojo.id, { ...pojo }, { auth: this.createAuth() });
-        return axios.post(BASE_URL + this.url, { ...pojo }, { auth: this.createAuth() });
+            return axios.post(Config.api.baseURL + this.url + pojo.id, { ...object }, this.config);
+        return axios.post(Config.api.baseURL + this.url, { ...object }, this.config);
     }
 }
