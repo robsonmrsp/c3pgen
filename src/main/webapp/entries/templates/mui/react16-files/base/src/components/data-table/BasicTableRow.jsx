@@ -15,7 +15,7 @@ const BasicTableRow = ({ columns = [], item, actionCell }) => {
   return (
     <StyledTableRow tabIndex={-1} role="checkbox">
       {columns.filter(column => column.show || column.show == undefined).map((column) => (
-        <StyledTableCell align={column.align} id={item[column.field]}>
+        <StyledTableCell align={column.align} key={column.field}>
           {item[column.field]}
         </StyledTableCell>
       ))}

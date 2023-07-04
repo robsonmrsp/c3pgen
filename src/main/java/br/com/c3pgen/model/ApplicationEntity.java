@@ -43,6 +43,9 @@ public class ApplicationEntity extends AbstractTimestampEntity {
 	@Column(name = "NAME")
 	private String name;
 
+	@Column(name = "VIEW_ID")
+	private String viewId;
+
 	@Column(name = "COLOR")
 	private String color;
 
@@ -449,4 +452,11 @@ public class ApplicationEntity extends AbstractTimestampEntity {
 		this.multitenancy = multitenancy;
 	}
 
+	public String getViewId() {
+		return viewId;
+	}
+
+	public void setViewId(String viewId) {
+		this.viewId = viewId;
+	}
 }

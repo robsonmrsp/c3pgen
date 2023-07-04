@@ -19,6 +19,7 @@ public class JsonTheEntity implements Serializable {
 	private Integer id;
 	private Integer posX;
 	private Integer posY;
+	private String viewId;
 
 	private SyncOperation syncOperation;
 
@@ -165,4 +166,11 @@ public class JsonTheEntity implements Serializable {
 		this.hash = hash;
 	}
 
+	public String getViewId() {
+		return viewId;
+	}
+
+	public void setViewId(String viewId) {
+		this.viewId = viewId;
+	}
 }

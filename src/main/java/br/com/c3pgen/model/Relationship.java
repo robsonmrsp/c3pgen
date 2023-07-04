@@ -23,6 +23,8 @@ import br.com.c3pgen.base.util.Util;
 public class Relationship extends AbstractTimestampEntity {
 	private static final long serialVersionUID = 1L;
 
+
+
 	public enum Types {
 		None, ManyToMany, OneToMany, ManyToOne, OneToOne,
 	}
@@ -51,6 +53,9 @@ public class Relationship extends AbstractTimestampEntity {
 
 	@Column(name = "MODEL")
 	private String model;
+
+	@Column(name = "MODEL_VIEW_ID")
+	private String modelViewId;
 
 	@Column(name = "UNI_DIRECIONAL")
 	private Boolean uniDirecional;
@@ -315,5 +320,11 @@ public class Relationship extends AbstractTimestampEntity {
 	public void setTargetName(String targetName) {
 		this.targetName = targetName;
 	}
+	public String getModelViewId() {
+		return modelViewId;
+	}
 
+	public void setModelViewId(String modelViewId) {
+		this.modelViewId = modelViewId;
+	}
 }

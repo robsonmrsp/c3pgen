@@ -12,134 +12,142 @@ import br.com.c3pgen.serialization.CustomSyncObjectIdDeserializer;
  **/
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class JsonRelationship implements Serializable {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@JsonDeserialize(using = CustomSyncObjectIdDeserializer.class)
-	private Integer id;
-	private SyncOperation syncOperation;
+    @JsonDeserialize(using = CustomSyncObjectIdDeserializer.class)
+    private Integer id;
+    private SyncOperation syncOperation;
 
-	private String name;
-	private String targetName;
-	private Boolean origin;
-	private String type;
-	private String displayName;
-	private String ownerName;
-	private String model;
-	private Boolean uniDirecional;
-	private JsonTheEntity entity;
-	private JsonViewApproach viewApproach;
+    private String name;
+    private String targetName;
+    private Boolean origin;
+    private String type;
+    private String displayName;
+    private String ownerName;
+    private String model;
+    private String modelViewId;
+    private Boolean uniDirecional;
+    private JsonTheEntity entity;
+    private JsonViewApproach viewApproach;
 
-	private JsonRelationship target;
+    private JsonRelationship target;
 
-	public JsonRelationship() {
+    public JsonRelationship() {
 
-	}
+    }
 
-	public Integer getId() {
-		return id;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getType() {
-		return type;
-	}
+    public String getType() {
+        return type;
+    }
 
-	public void setType(String type) {
-		this.type = type;
-	}
+    public void setType(String type) {
+        this.type = type;
+    }
 
-	public String getDisplayName() {
-		return displayName;
-	}
+    public String getDisplayName() {
+        return displayName;
+    }
 
-	public void setDisplayName(String displayName) {
-		this.displayName = displayName;
-	}
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
 
-	public String getOwnerName() {
-		return ownerName;
-	}
+    public String getOwnerName() {
+        return ownerName;
+    }
 
-	public void setOwnerName(String ownerName) {
-		this.ownerName = ownerName;
-	}
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
+    }
 
-	public String getModel() {
-		return model;
-	}
+    public String getModel() {
+        return model;
+    }
 
-	public void setModel(String model) {
-		this.model = model;
-	}
+    public void setModel(String model) {
+        this.model = model;
+    }
 
-	public Boolean getUniDirecional() {
-		return uniDirecional;
-	}
+    public Boolean getUniDirecional() {
+        return uniDirecional;
+    }
 
-	public void setUniDirecional(Boolean uniDirecional) {
-		this.uniDirecional = uniDirecional;
-	}
+    public void setUniDirecional(Boolean uniDirecional) {
+        this.uniDirecional = uniDirecional;
+    }
 
-	public JsonTheEntity getEntity() {
-		return entity;
-	}
+    public JsonTheEntity getEntity() {
+        return entity;
+    }
 
-	public void setEntity(JsonTheEntity theEntity) {
-		this.entity = theEntity;
-	}
+    public void setEntity(JsonTheEntity theEntity) {
+        this.entity = theEntity;
+    }
 
-	public JsonViewApproach getViewApproach() {
-		return viewApproach;
-	}
+    public JsonViewApproach getViewApproach() {
+        return viewApproach;
+    }
 
-	public void setViewApproach(JsonViewApproach viewApproach) {
-		this.viewApproach = viewApproach;
-	}
+    public void setViewApproach(JsonViewApproach viewApproach) {
+        this.viewApproach = viewApproach;
+    }
 
-	public SyncOperation getSyncOperation() {
-		if (syncOperation == null) {
-			this.syncOperation = SyncOperation.NONE;
-		}
-		return syncOperation;
-	}
+    public SyncOperation getSyncOperation() {
+        if (syncOperation == null) {
+            this.syncOperation = SyncOperation.NONE;
+        }
+        return syncOperation;
+    }
 
-	public void setSyncOperation(SyncOperation syncOperation) {
-		this.syncOperation = syncOperation;
-	}
+    public void setSyncOperation(SyncOperation syncOperation) {
+        this.syncOperation = syncOperation;
+    }
 
-	public JsonRelationship getTarget() {
-		return target;
-	}
+    public JsonRelationship getTarget() {
+        return target;
+    }
 
-	public void setTarget(JsonRelationship target) {
-		this.target = target;
-	}
+    public void setTarget(JsonRelationship target) {
+        this.target = target;
+    }
 
-	public Boolean getOrigin() {
-		return origin;
-	}
+    public Boolean getOrigin() {
+        return origin;
+    }
 
-	public void setOrigin(Boolean origin) {
-		this.origin = origin;
-	}
+    public void setOrigin(Boolean origin) {
+        this.origin = origin;
+    }
 
-	public String getTargetName() {
-		return targetName;
-	}
+    public String getTargetName() {
+        return targetName;
+    }
 
-	public void setTargetName(String targetName) {
-		this.targetName = targetName;
-	}
+    public void setTargetName(String targetName) {
+        this.targetName = targetName;
+    }
 
+    public String getModelViewId() {
+        return modelViewId;
+    }
+
+    public void setModelViewId(String modelViewId) {
+        this.modelViewId = modelViewId;
+    }
 }

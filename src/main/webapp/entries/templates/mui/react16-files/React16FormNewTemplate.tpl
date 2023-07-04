@@ -61,18 +61,12 @@ const ${firstUpper(entity.name)} = () => {
       }
     }
     fetchData().catch(console.error);
-  }, []);
+  }, [router]);
 
-  const save = async (formValues) => {
-    const response = await service.save(to${firstUpper(entity.name)}(formValues));
-    const json = await response.data;
-    console.log(json)
-  }
   const save = async (formValues) => {
     try {
       const response = await service.save(to${firstUpper(entity.name)}(formValues));
       const json = await response.data;
-      setFormValues(initValues);
       setAlertModel({ displayAlert: true, type: 'success', messageAlert: '${firstUpper(entity.displayName)} salvo com sucesso!' });
     } catch (error) {
       setAlertModel({ displayAlert: true, type: 'error', messageAlert: 'Problemas ao salvar ${firstUpper(entity.displayName)}!' });
@@ -101,7 +95,7 @@ const ${firstUpper(entity.name)} = () => {
         </Head>
         <Card>
           <CardHeader
-            title="Novo ${firstUpper(entity.displayName)}"
+            title="Cadastro de ${firstUpper(entity.displayName)}"
           />
 
           <Divider />
@@ -112,8 +106,12 @@ const ${firstUpper(entity.name)} = () => {
               initialValues={formValues}
               validate={formValidate}
 
-              onSubmit={(values, { setSubmitting }) => {
+              onSubmit={(values, { resetForm, setSubmitting }) => {
+                const { id } = values;
                 save(values);
+                if (!id) {
+                  resetForm({ values: initValues })
+                }
                 setSubmitting(false);
               }}
             >

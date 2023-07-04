@@ -32,7 +32,7 @@ export default class HttpRequest {
 
     save = (pojo = {}) => {
         if (pojo.id)
-            return axios.post(Config.api.baseURL + this.url + pojo.id, { ...object }, this.config);
+            return axios.put(Config.api.baseURL + this.url + "/" + pojo.id, { ...pojo }, this.config);
         return axios.post(Config.api.baseURL + this.url, { ...object }, this.config);
     }
 }
