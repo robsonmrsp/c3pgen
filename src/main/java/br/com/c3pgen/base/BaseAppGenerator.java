@@ -107,7 +107,11 @@ public class BaseAppGenerator {
 
 		String fileInputWebApp = "";
 		String fileOutput = "";
-		if (application.getView().equalsIgnoreCase("react16")) {
+		if (application.getView().equalsIgnoreCase("next13")) {
+			fileInputWebApp = Util.currentDir() + File.separator + "/entries/templates/tailwind/react16-files/base/";
+			fileOutput = Util.currentDir() + File.separator + "out" + File.separator + application.getAppName() + "/web/";
+
+		}else if (application.getView().equalsIgnoreCase("react16")) {
 			fileInputWebApp = Util.currentDir() + File.separator + "/entries/templates/mui/react16-files/base/";
 			fileOutput = Util.currentDir() + File.separator + "out" + File.separator + application.getAppName() + "/web/";
 

@@ -202,7 +202,7 @@ public class GenService {
 			String webPath = "out/" + application.getView() + "_" + newApplication.getAppName() + DateUtil.asString(LocalDateTime.now(), "_dd_MM_yyyy_HH_mm_ss") + "_.zip";
 			String zip = Util.currentDir() + File.separator + webPath;
 
-			ZipUtils.zipFiles(Arrays.asList(new File(a)), new File(zip));
+			//ZipUtils.zipFiles(Arrays.asList(new File(a)), new File(zip));
 			fileInfo.setRealFilePath(zip);
 			fileInfo.setStaticFilePath(webPath);
 			fileInfo.setGenerateSuccess(true);

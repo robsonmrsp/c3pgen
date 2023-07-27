@@ -124,7 +124,7 @@ define(function(require) {
 			application.set({
 				id : util.escapeById('inputId') || null,
 				name : util.escapeById('inputName') ,
-				skin : util.escapeById('inputSkin') || 'nifty',
+				skin : util.escapeById('inputSkin') || 'tailwind',
 				description : util.escapeById('inputDescription'),
 				rootPackage : util.escapeById('inputRootPackage'),
 				corePackage : util.escapeById('inputCorePackage'),

@@ -8,6 +8,11 @@ public interface TemplateFileName {
 	final String FORM = "Form${entity.name}";
 	final String PAGE = "Page${entity.name}";
 
+	final String NEXT_PAGE = "page";
+	final String NEXT_FORM = "Form${entity.name}";
+	final String NEXT_LIST = "List${entity.name}";
+	final String NEXT_SIDEBAR_MENU = "SidebarMenu";
+
 	final String MODAL = "Modal${entity.name}";
 	final String ROUTER_VUE = "index";
 	final String SIDEBAR = "Sidebar";

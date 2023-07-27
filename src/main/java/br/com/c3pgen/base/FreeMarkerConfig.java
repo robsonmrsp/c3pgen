@@ -25,7 +25,7 @@ import freemarker.template.Version;
 
 //criar um para cada skin
 
-//NOTA IMPORTANTE: aquele erro do template not found acontece quando voce pasa um caminho que não existe para a gerencia dos templates. Arranquei as pastas de templates mobile e deu erro, foi quando arranquei as definições que apontavam pra lá e volou a funcionar.
+//NOTA IMPORTANTE: aquele erro do template not found acontece quando voce passa um caminho que não existe para a gerencia dos templates. Arranquei as pastas de templates mobile e deu erro, foi quando arranquei as definições que apontavam pra lá e volou a funcionar.
 public class FreeMarkerConfig {
 
 	static Map<String, Configuration> POOL = new HashMap<String, Configuration>();

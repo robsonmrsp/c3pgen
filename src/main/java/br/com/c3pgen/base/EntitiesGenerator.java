@@ -100,6 +100,15 @@ public class EntitiesGenerator {
     private static MarkerGenerator jsNodeExpressInfrastructureRepositoryGenerator;
     private static MarkerGenerator jsNodeExpressPresentationControllerGenerator;
 
+
+    private static MarkerGenerator formNextGenerator;
+    private static MarkerGenerator listNextGenerator;
+    private static MarkerGenerator pageCreateNextGenerator;
+    private static MarkerGenerator pageEditNextGenerator;
+    private static MarkerGenerator pageListNextGenerator;
+
+    private static MarkerGenerator sidebarNextGenerator;
+
     // para o angular
     private Application application;
 
@@ -119,10 +128,18 @@ public class EntitiesGenerator {
 
         String appReact16RootSrcFolder = Util.currentDir() + File.separator + "out/" + application.getAppName()
                 + File.separator + "web/base/src/";
+
+        String appNextRootSrcFolder = Util.currentDir() + File.separator + "out/" + application.getAppName()
+                + File.separator + "web/base/src/";
+
         String appReact16PagesFolder = Util.currentDir() + File.separator + "out/" + application.getAppName()
                 + File.separator + "web/base/pages/";
 
         String appReact16ComponentsFolder = appReact16RootSrcFolder + "components/";
+
+        String appNextAppFolder = appNextRootSrcFolder + "app/";
+        String appNextPageSessionsFolder = appNextRootSrcFolder + "page-sessions/";
+        String appNextComponentsFolder = appNextRootSrcFolder + "components/";
 
         String appRootFolder = Util.currentDir() + File.separator + "out/" + application.getAppName();
 
@@ -330,6 +347,7 @@ public class EntitiesGenerator {
         react16SidebarGenerator = new MarkerGenerator(freeMarkerConfig, application, "React16SidebarTemplate.tpl",
                 appReact16ComponentsFolder + "layouts/admin/", TemplateFileName.NAVIGATION_LIST, FileType.JSX);
 
+
         // NodeExpress
         jsNodeExpressDomainModelGenerator = new MarkerGenerator(freeMarkerConfig, application,
                 "NodeExpressDomainModelTemplate.tpl", baseAppNodeExpress + "domain/${entity.name}/",
@@ -346,6 +364,27 @@ public class EntitiesGenerator {
         jsNodeExpressPresentationControllerGenerator = new MarkerGenerator(freeMarkerConfig, application,
                 "NodeExpressPresentationControllerTemplate.tpl", baseAppNodeExpress + "presentation/http/controllers/",
                 TemplateFileName.NODE_EXPRESS_PRESENTATION_CONTROLLER, FileType.JAVASCRIPT);
+
+
+        pageEditNextGenerator = new MarkerGenerator(freeMarkerConfig, application, "PageEditNextTemplate.tpl",
+                appNextAppFolder + "/adm/${entity.name}/[id]/", TemplateFileName.NEXT_PAGE, FileType.JAVASCRIPT);
+
+        pageCreateNextGenerator = new MarkerGenerator(freeMarkerConfig, application, "PageCreateNextTemplate.tpl",
+                appNextAppFolder + "/adm/${entity.name}/create/", TemplateFileName.NEXT_PAGE, FileType.JAVASCRIPT);
+
+        pageListNextGenerator = new MarkerGenerator(freeMarkerConfig, application, "PageListNextTemplate.tpl",
+                appNextAppFolder + "/adm/${entity.name}/list/", TemplateFileName.NEXT_PAGE, FileType.JAVASCRIPT);
+
+
+        formNextGenerator = new MarkerGenerator(freeMarkerConfig, application, "FormNextTemplate.tpl",
+                appNextPageSessionsFolder + "/${entity.name}/", TemplateFileName.NEXT_FORM, FileType.JAVASCRIPT);
+
+        listNextGenerator = new MarkerGenerator(freeMarkerConfig, application, "ListNextTemplate.tpl",
+                appNextPageSessionsFolder + "/${entity.name}/", TemplateFileName.NEXT_LIST, FileType.JAVASCRIPT);
+
+        sidebarNextGenerator = new MarkerGenerator(freeMarkerConfig, application, "sidebarMEnuNExtTemplate.tpl",
+                appNextComponentsFolder + "layout/internal/", TemplateFileName.NEXT_SIDEBAR_MENU, FileType.JAVASCRIPT);
+
 
         try {
 //GERACAO NODE
@@ -388,6 +427,15 @@ public class EntitiesGenerator {
                     react16PageListIndexGenerator.generateEntityFile(application, ent);
                 }
                 react16SidebarGenerator.generate(application);
+            } else if (application.getView().equalsIgnoreCase("next13")) {
+                for (ApplicationEntity ent : application.getEntities()) {
+                    pageEditNextGenerator.generateEntityFile(application, ent);
+                    pageCreateNextGenerator.generateEntityFile(application, ent);
+                    pageListNextGenerator.generateEntityFile(application, ent);
+                    formNextGenerator.generateEntityFile(application, ent);
+                    listNextGenerator.generateEntityFile(application, ent);
+                }
+                sidebarNextGenerator.generate(application);
             } else if (application.getView().equalsIgnoreCase("backbone")) {
                 for (ApplicationEntity ent : application.getEntities()) {
                     jsFormGenerator.generateEntityFile(application, ent);
