@@ -479,7 +479,7 @@ public class EntitiesGenerator {
                         // ent);
                         controllerGenerator.generateEntityFile(application, ent);
                         testControllerGenerator.generateEntityFile(application, ent);
-                        testErrorMockGenerator.generateEntityFile(application, ent);
+//                        testErrorMockGenerator.generateEntityFile(application, ent);
                         testInitData.generateEntityFile(application, ent);
                     } else {
                         javaMybatisModelGenerator.generateEntityFile(application, ent);

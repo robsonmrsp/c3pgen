@@ -1,17 +1,13 @@
 /** generated: ${.now} **/
 package ${package}.integration;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-
-import java.util.function.Consumer;
-
+import br.com.six2six.fixturefactory.Fixture;
+import ${package}.core.persistence.pagination.Pager;
+import ${package}.fixture.FixtureUtils;
+import ${package}.model.${firstUpper(entity.name)};
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
@@ -22,156 +18,139 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.testcontainers.junit.jupiter.Testcontainers;
 
-import ${package}.core.persistence.pagination.Pager;
-import ${package}.model.${entity.name};
-import ${package}.fixture.FixtureUtils;
-import br.com.six2six.fixturefactory.Fixture;
+import static org.junit.jupiter.api.Assertions.*;
 
-@ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-@Sql("classpath:init-data-${entity.name}.sql")
-public class ${entity.name}ControllerTest {
+@Testcontainers
+@ActiveProfiles("test-containers")
+@Sql("classpath:init-data-${firstUpper(entity.name)}.sql")
+public class ${firstUpper(entity.name)}ControllerTest {
 
-	@Autowired
-	TestRestTemplate testRestTemplate;
+    @Autowired
+    TestRestTemplate testRestTemplate;
 
-	private static final String URL = "/api/crud/${firstLower(entity.name)}s";
+    private static final String URL = "/api/crud/${firstLower(entity.name)}s";
 
-	@BeforeAll
-	public static void setUp() {
-		FixtureUtils.init();
-	}
+    @BeforeAll
+    public static void setUp() {
+        FixtureUtils.init();
+    }
 
-	@BeforeEach
-	public void before() {
-	}
+    @BeforeEach
+    public void before() {
+    }
 
-	@Test
-	public void testAdd${entity.name}() throws Exception {
+    @Test
+    void testAdd${firstUpper(entity.name)}() throws Exception {
 
-		${entity.name} ${firstLower(entity.name)} = Fixture.from(${entity.name}.class).gimme("novo");
-		TestRestTemplate withBasicAuth = testRestTemplate.withBasicAuth("jsetup", "123456");
+        ${firstUpper(entity.name)} ${firstLower(entity.name)} = Fixture.from(${firstUpper(entity.name)}.class).gimme("novo");
+        TestRestTemplate withBasicAuth = testRestTemplate.withBasicAuth("jsetup", "123456");
 
-		ResponseEntity<${entity.name}> responseEntity = withBasicAuth.postForEntity(URL, ${firstLower(entity.name)}, ${entity.name}.class);
+        ResponseEntity<${firstUpper(entity.name)}> responseEntity = withBasicAuth.postForEntity(URL, ${firstLower(entity.name)}, ${firstUpper(entity.name)}.class);
 
-		HttpStatus status = responseEntity.getStatusCode();
-		${entity.name} result${entity.name} = responseEntity.getBody();
+        HttpStatus status = responseEntity.getStatusCode();
+        ${firstUpper(entity.name)} result${firstUpper(entity.name)} = responseEntity.getBody();
 
-		assertEquals("Incorrect Response Status: ", HttpStatus.CREATED, status);
-		assertNotNull("A not null gender should be returned: ", result${entity.name});
-		assertNotNull("A not null gender identifier should be returned:", result${entity.name}.getId());
-	}
+        assertEquals(HttpStatus.CREATED, status, "Incorrect Response Status: ");
+        assertNotNull(result${firstUpper(entity.name)}, "A not null ${firstLower(entity.name)} should be returned: ");
+        assertNotNull(result${firstUpper(entity.name)}.getId(), "A not null ${firstLower(entity.name)} identifier should be returned:");
+    }
 
-	@Test
-	public void testGet${entity.name}() throws Exception {
+    @Test
+    void testGet${firstUpper(entity.name)}() throws Exception {
 
-		TestRestTemplate withBasicAuth = testRestTemplate.withBasicAuth("jsetup", "123456");
+        TestRestTemplate withBasicAuth = testRestTemplate.withBasicAuth("jsetup", "123456");
 
-		ResponseEntity<${entity.name}> responseEntity = withBasicAuth.getForEntity(URL + "/{id}", ${entity.name}.class, new Integer(1));
+        ResponseEntity<${firstUpper(entity.name)}> responseEntity = withBasicAuth.getForEntity(URL + "/{id}", ${firstUpper(entity.name)}.class, 1);
 
-		HttpStatus status = responseEntity.getStatusCode();
-		${entity.name} result${entity.name} = responseEntity.getBody();
+        HttpStatus status = responseEntity.getStatusCode();
+        ${firstUpper(entity.name)} result${firstUpper(entity.name)} = responseEntity.getBody();
 
-		assertEquals("Incorrect Response Status", HttpStatus.OK, status);
-		assertNotNull("A not null gender should be returned: ", result${entity.name});
-		assertEquals("A id gender == 1 must be returned: ", result${entity.name}.getId(), new Integer(1));
-	}
+        assertEquals(HttpStatus.OK, status,"Incorrect Response Status");
+        assertNotNull(result${firstUpper(entity.name)}, "A not null ${firstLower(entity.name)} should be returned: ");
+        assertEquals(1, result${firstUpper(entity.name)}.getId(), "A id ${firstLower(entity.name)} == 1 must be returned: ");
+    }
 
-	@Test
-	public void testGetPager${entity.name}() throws Exception {
+    @Test
+    void testGet${firstUpper(entity.name)}NotExist() throws Exception {
 
-		TestRestTemplate withBasicAuth = testRestTemplate.withBasicAuth("jsetup", "123456");
+        TestRestTemplate withBasicAuth = testRestTemplate.withBasicAuth("jsetup", "123456");
 
-		ResponseEntity<Pager> responseEntity = withBasicAuth.getForEntity(URL, Pager.class);
+        ResponseEntity<${firstUpper(entity.name)}> responseEntity = withBasicAuth.getForEntity(URL + "/{id}", ${firstUpper(entity.name)}.class, 100);
 
-		HttpStatus status = responseEntity.getStatusCode();
-		Pager<${entity.name}> resultPager${entity.name} = responseEntity.getBody();
+        HttpStatus status = responseEntity.getStatusCode();
+        ${firstUpper(entity.name)} result${firstUpper(entity.name)} = responseEntity.getBody();
 
-		assertEquals("Incorrect Response Status", HttpStatus.OK, status);
-		assertNotNull("A not null gender should be returned: ", resultPager${entity.name});
-	}
+        assertEquals(HttpStatus.NOT_FOUND, status, "Incorrect Response Status");
+        assertNull(result${firstUpper(entity.name)});
+    }
+<#if entity.getPrimaryStringAttribute()?has_content>
+    @Test
+    void testGet${firstUpper(entity.name)}ByParameter() throws Exception {
 
-	@Test
-	public void testGet${entity.name}NotExist() throws Exception {
+        TestRestTemplate withBasicAuth = testRestTemplate.withBasicAuth("jsetup", "123456");
 
-		TestRestTemplate withBasicAuth = testRestTemplate.withBasicAuth("jsetup", "123456");
+        ResponseEntity<Pager<${firstUpper(entity.name)}>> responseEntity = withBasicAuth
+                .exchange(URL + "?${entity.getPrimaryStringAttribute().name}={${entity.getPrimaryStringAttribute().name}}", HttpMethod.GET, null, new ParameterizedTypeReference<>() {
+                }, "${entity.getPrimaryStringAttribute().name} ${firstLower(entity.name)}1");
 
-		ResponseEntity<${entity.name}> responseEntity = withBasicAuth.getForEntity(URL + "/{id}", ${entity.name}.class, new Long(100));
+        Pager<${firstUpper(entity.name)}> ${firstLower(entity.name)}s = responseEntity.getBody();
+        HttpStatus status = responseEntity.getStatusCode();
 
-		HttpStatus status = responseEntity.getStatusCode();
-		${entity.name} result${entity.name} = responseEntity.getBody();
+        ${firstLower(entity.name)}s.getItems().forEach(${firstLower(entity.name)} -> assertEquals("${entity.getPrimaryStringAttribute().name} ${firstLower(entity.name)}1", ${firstLower(entity.name)}.get${firstUpper(entity.getPrimaryStringAttribute().name)}(), "A not null ${firstUpper(entity.name)} should be returned white the 'name' = 'name ${firstLower(entity.name)}1'"));
 
-		assertEquals("Incorrect Response Status", HttpStatus.NOT_FOUND, status);
-		assertNull(result${entity.name});
-	}
+        assertEquals(HttpStatus.OK, status, "Incorrect Response Status");
+        assertFalse(${firstLower(entity.name)}s.getItems().isEmpty(), "A Array of ${firstUpper(entity.name)} should be returned ");
+    }
+</#if>
 
-	@Test
-	public void testGet${entity.name}ByParameter() throws Exception {
+    @Test
+    void testUpdate${firstUpper(entity.name)}() throws Exception {
 
-		TestRestTemplate withBasicAuth = testRestTemplate.withBasicAuth("jsetup", "123456");
+        TestRestTemplate withBasicAuth = testRestTemplate.withBasicAuth("jsetup", "123456");
 
-		ResponseEntity<Pager<${entity.name}>> responseEntity = withBasicAuth.exchange(URL + "?${firstLower(entity.primaryStringAttribute)}={${firstLower(entity.primaryStringAttribute)}}", HttpMethod.GET, null, new ParameterizedTypeReference<Pager<${entity.name}>>() {}, "${firstLower(entity.primaryStringAttribute)} ${firstLower(entity.name)}1");
-		Pager<${entity.name}> ${firstLower(entity.name)}s = responseEntity.getBody();
-		HttpStatus status = responseEntity.getStatusCode();
+        ${firstUpper(entity.name)} ${firstLower(entity.name)} = Fixture.from(${firstUpper(entity.name)}.class).gimme("novo");
+        ${firstLower(entity.name)}.setId(1);
 
-		${firstLower(entity.name)}s.getItems().forEach(new Consumer<${entity.name}>() {
-			@Override
-			public void accept(${entity.name} ${firstLower(entity.name)}) {
-			<#if entity.primaryStringAttribute??>
-				assertEquals("A not null ${entity.name} should be returned white the 'name' = '${firstLower(entity.primaryStringAttribute)} ${firstLower(entity.name)}1'", ${firstLower(entity.name)}.get${firstUpper(entity.primaryStringAttribute)}(), "${firstLower(entity.primaryStringAttribute)} ${firstLower(entity.name)}1");
-			</#if>
-			}
-		});
+        HttpEntity<${firstUpper(entity.name)}> requestEntity = new HttpEntity<${firstUpper(entity.name)}>(${firstLower(entity.name)});
 
-		assertEquals("Incorrect Response Status", HttpStatus.OK, status);
-		assertTrue("A Array of ${entity.name} should be returned ", ${firstLower(entity.name)}s.getItems().size() > 0);
-	}
-	
-	@Test
-	public void testUpdate${entity.name}() throws Exception {
+        ResponseEntity<${firstUpper(entity.name)}> responseEntity = withBasicAuth
+                .exchange(URL + "/{id}", HttpMethod.PUT, requestEntity, ${firstUpper(entity.name)}.class, 1);
 
-		TestRestTemplate withBasicAuth = testRestTemplate.withBasicAuth("jsetup", "123456");
+        HttpStatus status = responseEntity.getStatusCode();
 
-		${entity.name} ${firstLower(entity.name)} = Fixture.from(${entity.name}.class).gimme("novo");
-		${firstLower(entity.name)}.setId(1);
+        assertEquals(HttpStatus.OK, status, "Incorrect Response Status");
+    }
 
-		HttpEntity<${entity.name}> requestEntity = new HttpEntity<${entity.name}>(${firstLower(entity.name)});
 
-		ResponseEntity<${entity.name}> responseEntity = withBasicAuth.exchange(URL + "/{id}", HttpMethod.PUT, requestEntity, ${entity.name}.class, new Integer(1));
+    @Test
+    public void testDelete${firstUpper(entity.name)}() throws Exception {
 
-		HttpStatus status = responseEntity.getStatusCode();
+        TestRestTemplate withBasicAuth = testRestTemplate.withBasicAuth("jsetup", "123456");
 
-		assertEquals("Incorrect Response Status", HttpStatus.OK, status);
+        ResponseEntity<Boolean> responseEntity = withBasicAuth.exchange(URL + "/{id}", HttpMethod.DELETE, null, Boolean.class, 1);
 
-	}
+        HttpStatus status = responseEntity.getStatusCode();
 
-	@Test
-	public void testDelete${entity.name}() throws Exception {
+        ResponseEntity<${firstUpper(entity.name)}> responseTesteDelete = withBasicAuth.getForEntity(URL + "/{id}", ${firstUpper(entity.name)}.class, 1);
 
-		TestRestTemplate withBasicAuth = testRestTemplate.withBasicAuth("jsetup", "123456");
+        HttpStatus responseTesteDeleteStatus = responseTesteDelete.getStatusCode();
+        ${firstUpper(entity.name)} result${firstUpper(entity.name)} = responseTesteDelete.getBody();
 
-		ResponseEntity<Boolean> responseEntity = withBasicAuth.exchange(URL + "/{id}", HttpMethod.DELETE, null, Boolean.class, new Integer(1));
+        assertEquals(HttpStatus.NOT_FOUND, responseTesteDeleteStatus, "Incorrect Response Status after delete the ${firstLower(entity.name)} id = 1");
+        assertNull(result${firstUpper(entity.name)});
 
-		HttpStatus status = responseEntity.getStatusCode();
+        assertEquals(HttpStatus.NO_CONTENT, status, "Incorrect Response Status");
+    }
 
-		ResponseEntity<${entity.name}> responseTesteDelete = withBasicAuth.getForEntity(URL + "/{id}", ${entity.name}.class, new Integer(1));
+    @TestConfiguration
+    static class MyTestConfig {
 
-		HttpStatus responseTesteDeleteStatus = responseTesteDelete.getStatusCode();
-		${entity.name} result${entity.name} = responseTesteDelete.getBody();
-
-		assertEquals("Incorrect Response Status after delete the ${firstLower(entity.name)} id = 1", HttpStatus.NOT_FOUND, responseTesteDeleteStatus);
-		assertNull(result${entity.name});
-
-		assertEquals("Incorrect Response Status", HttpStatus.NO_CONTENT, status);
-
-	}
-	
-	@TestConfiguration
-	static class MyTestConfig {
-
-	}
+    }
 }
+
 //generated by JSetup ${JSetupVersion} :  at ${.now}

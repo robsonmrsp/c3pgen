@@ -3,6 +3,11 @@ package ${package}.model;
 
 import java.io.Serializable;
 
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -35,6 +40,10 @@ import ${corepackage}.model.AbstractMultitenantEntity;
 import ${corepackage}.model.AbstractEntity;
 </#if>
 
+@Getter
+@Data
+@Builder
+@EqualsAndHashCode(callSuper = true)
 @Entity
 <#if application.hasAudit()>
 @Audited
@@ -160,7 +169,7 @@ public class ${entity.name} extends AbstractEntity{
 	</#if>
 		
 	public  ${entity.name}() {
-		
+		super();
 	}
 	public Integer getId() {
 		return id;

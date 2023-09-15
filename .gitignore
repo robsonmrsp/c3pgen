@@ -10,3 +10,7 @@ src/main/webapp/out/*
 src/main/webapp/temp
 
 /bin/
+.idea/
+*.iml
+
+

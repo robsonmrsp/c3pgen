@@ -2,6 +2,7 @@ package br.com.c3pgen.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,6 +16,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
+import com.google.common.base.Strings;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
@@ -35,7 +37,7 @@ public class Application extends AbstractTimestampEntity {
 	private String appName;
 
 	@Column(name = "SKIN")
-	private String skin = "nifty";
+	private String skin = "tailwind";
 
 	@Column(name = "DESCRIPTION")
 	private String description;
@@ -118,7 +120,10 @@ public class Application extends AbstractTimestampEntity {
 	}
 
 	public String getSkin() {
-		return ("" + skin).toLowerCase();
+		if(Strings.isNullOrEmpty(skin)){
+			setSkin("tailwind");
+		}
+		return skin.toLowerCase();
 	}
 
 	public void setSkin(String skin) {

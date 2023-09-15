@@ -461,6 +461,7 @@ public class Parser {
 				jsonTheEntity.getAttributes().add(toJson(loopAttribute));
 			}
 		}
+		jsonTheEntity.setFirstStringAttribute(toBasicJson(theEntity.getPrimaryStringAttribute()));
 		List<Relationship> listRelationships = theEntity.getRelationships();
 		if (listRelationships != null) {
 			for (Relationship loopRelationship : listRelationships) {
