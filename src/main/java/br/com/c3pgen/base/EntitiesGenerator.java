@@ -479,7 +479,7 @@ public class EntitiesGenerator {
                         // ent);
                         controllerGenerator.generateEntityFile(application, ent);
                         testControllerGenerator.generateEntityFile(application, ent);
-//                        testErrorMockGenerator.generateEntityFile(application, ent);
+                        testErrorMockGenerator.generateEntityFile(application, ent);
                         testInitData.generateEntityFile(application, ent);
                     } else {
                         javaMybatisModelGenerator.generateEntityFile(application, ent);
@@ -500,11 +500,11 @@ public class EntitiesGenerator {
 //			testBeansGenerator.generate(application);
 //			testSecurityGenerator.generate(application);
             pomGenerator.generate(application);
-            buildPropertiesGenerator.generate(application);
-            buildXmlGenerator.generate(application);
-            produIndexGenerator.generate(application);
-            produLoginGenerator.generate(application);
-            desenvLoginGenerator.generate(application);
+            //buildPropertiesGenerator.generate(application);
+            //buildXmlGenerator.generate(application);
+            //produIndexGenerator.generate(application);
+            //produLoginGenerator.generate(application);
+            //desenvLoginGenerator.generate(application);
             parserGenerator.generate(application);
         } catch (TemplateException e) {
             LOGGER.error(e);

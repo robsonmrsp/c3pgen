@@ -2,8 +2,11 @@ package ${application.rootPackage};
 
 import javax.sql.DataSource;
 
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -27,6 +30,40 @@ public class JPAConfig {
 
 	@Value("classpath:db/seed.sql")
 	private Resource seedScript;
+
+	@Value("${r"${spring.datasource.driver-class-name}"}")
+	private String className;
+
+	@Value("${r"${spring.datasource.url}"}")
+	private String url;
+
+	@Value("${r"${spring.datasource.username}"}")
+	private String username;
+
+	@Value("${r"${spring.datasource.password}"}")
+	private String pass;
+
+
+	@Bean()
+	public DataSource dataSource() {
+		HikariConfig hikariConfig = new HikariConfig();
+		hikariConfig.setDriverClassName(className);
+		hikariConfig.setJdbcUrl(url);
+		hikariConfig.setUsername(username);
+		hikariConfig.setPassword(pass);
+
+		hikariConfig.setMaximumPoolSize(5);
+		hikariConfig.setConnectionTestQuery("SELECT 1");
+		hikariConfig.setPoolName("springHikariCP");
+
+		hikariConfig.addDataSourceProperty("dataSource.cachePrepStmts", "true");
+		hikariConfig.addDataSourceProperty("dataSource.prepStmtCacheSize", "250");
+		hikariConfig.addDataSourceProperty("dataSource.prepStmtCacheSqlLimit", "2048");
+		hikariConfig.addDataSourceProperty("dataSource.useServerPrepStmts", "true");
+
+
+		return new HikariDataSource(hikariConfig);
+	}
 
 	@Bean
 	public DataSourceInitializer dataSourceInitializer(final DataSource dataSource) {

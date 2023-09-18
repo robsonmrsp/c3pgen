@@ -102,6 +102,7 @@ public class FreeMarkerConfig {
 		paths.add(templateCorePathName);
 		paths.add(commonFilesPathName);
 		paths.add(commonFilesPathName + "appbase");
+		paths.add(commonFilesPathName + "appbase/docker");
 		paths.add(commonFilesPathName + "appbase/produ");
 		paths.add(commonFilesPathName + "appbase/src/main/java/br/com/app/audit");
 		paths.add(commonFilesPathName + "appbase/src/main/java/br/com/app/json");

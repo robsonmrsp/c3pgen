@@ -8,7 +8,7 @@ public enum FileType {
 	HTML("html"),
 	FRAGMENT("fra"),
 	XML("xml"),
-	PROPERTIES("properties"), JSP("jsp"), SQL("sql"), TYPESCRIPT("ts");
+	PROPERTIES("properties"), JSP("jsp"), SQL("sql"), TYPESCRIPT("ts"), CONFIG("config"), YML("YML");
 	private final String sufix;
 
 	private FileType(String sufix) {

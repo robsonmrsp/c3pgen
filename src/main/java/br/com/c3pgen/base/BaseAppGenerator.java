@@ -25,6 +25,7 @@ public class BaseAppGenerator {
 
 		GenericGenerator genericGenerator = new GenericGenerator(freeMarkerConfig, application);
 
+		String rootFolder = Util.currentDir() + File.separator + "out/" + application.getAppName();
 		String webInfFolder = Util.currentDir() + File.separator + "out/" + application.getAppName() + "src/main/webapp/WEB-INF/" + File.separator;
 
 		String javaCoreFolder = Util.currentDir() + File.separator + "out/" + application.getAppName() + "/src/main/java/" + application.getCorePackage().replace(".", File.separator) + File.separator;
@@ -57,8 +58,11 @@ public class BaseAppGenerator {
 
 		genericGenerator.generate(FSItemDescription.utils(javaCoreFolder));
 
+		genericGenerator.generate(FSItemDescription.otherConfig(rootFolder));
+
 		if (application.getConfigurationType().equals(ApplicationConfigurationType.JAVA)) {
 			genericGenerator.generate(FSItemDescription.config(javaRootFolder));
+
 			genericGenerator.generate(FSItemDescription.resources(javaRootResourcesFolder));
 
 		} else {

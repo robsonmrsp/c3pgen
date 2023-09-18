@@ -1,26 +1,32 @@
 /** generated: ${.now} **/
 package ${package}.integration;
 
-import static org.hamcrest.Matchers.containsString;
-import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
-import org.springframework.mock.web.MockHttpSession;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.servlet.MockMvc;
-
 <#if application.multitenancy && entity.multitenancy>
 import ${package}.core.model.Tenant;
 </#if>
+
+import ${package}.core.persistence.pagination.SearchParameters;
+import ${package}.core.rs.exception.ValidationException;
+import ${package}.core.security.SpringSecurityUserContext;
+import ${package}.model.Customer;
+import ${package}.service.CustomerService;
+import ${package}.util.MockMvcTestUtil;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockHttpSession;
+import org.springframework.test.web.servlet.MockMvc;
+
+import static org.hamcrest.Matchers.containsString;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import ${package}.core.persistence.pagination.SearchParameters;
 import ${package}.core.security.SpringSecurityUserContext;
@@ -32,9 +38,9 @@ import ${package}.rs.${entity.name}Controller;
 import ${package}.service.${entity.name}Service;
 import ${package}.util.MockMvcTestUtil;
 
-@RunWith(SpringRunner.class)
-@WebMvcTest(${entity.name}Controller.class)
-public class ${entity.name}ErrorMockTest {
+@SpringBootTest
+@AutoConfigureMockMvc
+class ${entity.name}ErrorMockTest {
 
 	static MockHttpSession mockHttpSession = MockMvcTestUtil.getSession();
 
@@ -74,7 +80,7 @@ public class ${entity.name}ErrorMockTest {
 	}
 
 	@Test
-	public void errorSaving${entity.name}() throws Exception {
+	void errorSaving${entity.name}() throws Exception {
 <#if application.multitenancy && entity.multitenancy>
 		when(service.save(any(${entity.name}.class))).thenThrow(new RuntimeException("Error creating ${entity.name}"));
 		when(context.getTenant()).thenReturn(new Tenant());
@@ -88,7 +94,7 @@ public class ${entity.name}ErrorMockTest {
 	}
 	
 	@Test
-	public void errorSavingWithValidation${entity.name}() throws Exception {
+	void errorSavingWithValidation${entity.name}() throws Exception {
 <#if application.multitenancy && entity.multitenancy>
 		when(service.save(any(${entity.name}.class))).thenThrow(new ValidationException("Error creating-validating ${entity.name}"));
 		when(context.getTenant()).thenReturn(new Tenant());
@@ -102,7 +108,7 @@ public class ${entity.name}ErrorMockTest {
 	}
 	
 	@Test
-	public void errorUpdating${entity.name}() throws Exception {
+	void errorUpdating${entity.name}() throws Exception {
 <#if application.multitenancy && entity.multitenancy>
 		when(service.update(any(${entity.name}.class))).thenThrow(new RuntimeException("Error updating ${entity.name}"));
 		when(context.getTenant()).thenReturn(new Tenant());
@@ -116,7 +122,7 @@ public class ${entity.name}ErrorMockTest {
 	}
 	
 	@Test
-	public void errorUpdatingWithValidation${entity.name}() throws Exception {
+	void errorUpdatingWithValidation${entity.name}() throws Exception {
 <#if application.multitenancy && entity.multitenancy>
 		when(service.update(any(${entity.name}.class))).thenThrow(new ValidationException("Error updating-validating ${entity.name}"));
 		when(context.getTenant()).thenReturn(new Tenant());
@@ -130,7 +136,7 @@ public class ${entity.name}ErrorMockTest {
 	}
 
 	@Test
-	public void errorDeleting${entity.name}() throws Exception {
+	void errorDeleting${entity.name}() throws Exception {
 <#if application.multitenancy && entity.multitenancy>
 		when(service.delete(any(Integer.class),any(Tenant.class))).thenThrow(new RuntimeException("Error removing ${entity.name}"));
 		when(context.getTenant()).thenReturn(new Tenant());
@@ -141,5 +147,4 @@ public class ${entity.name}ErrorMockTest {
 			.andExpect(status().is5xxServerError())
 			.andExpect(content().string(containsString("Error removing ${entity.name}")));
 	}
-
 }

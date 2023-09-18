@@ -128,7 +128,7 @@ public class ${firstUpper(entity.name)}ControllerTest {
 
 
     @Test
-    public void testDelete${firstUpper(entity.name)}() throws Exception {
+    void testDelete${firstUpper(entity.name)}() throws Exception {
 
         TestRestTemplate withBasicAuth = testRestTemplate.withBasicAuth("jsetup", "123456");
 

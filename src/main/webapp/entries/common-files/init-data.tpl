@@ -12,20 +12,25 @@
  INSERT INTO app_user( id, id_tenant, enable, image, name, password, username, email) VALUES (101, 101, true, '', 'Usuário JSetup Comum', '$2a$10$teJrCEnsxNT49ZpXU7n22O27aCGbVYYe/RG6/XxdWPJbOLZubLIi2', 'jsetup', 'contato@jsetup.com');
  INSERT INTO user_role(id_role, id_user) values (101, 101);
 
-TRUNCATE TABLE ${uppercase(entity.tableName!entity.name)} CASCADE;
 <#list 1..5 as ind>
-INSERT INTO ${uppercase(entity.tableName!entity.name)} 	( id, id_tenant
+INSERT INTO ${uppercase(entity.tableName!entity.name)} 	( id
+<#if application.multitenancy && entity.multitenancy>
+                , id_tenant
+</#if>
 				<#if entity.attributes??>	
 				<#list entity.attributes as att>
 					<#if att.name != 'id'>
 						<#if dataType(att.type.className) ==  "String" >
-			,${uppercase(att.tableFieldName!att.name)}
+			, ${uppercase(att.tableFieldName!att.name)}
 						</#if>
 					</#if>
 				</#list>
 				</#if>
-			)values(${ind}, 101
-				<#if entity.attributes??>	
+			)values(${ind}
+<#if application.multitenancy && entity.multitenancy>
+                , 101
+</#if>
+				<#if entity.attributes??>
 				<#list entity.attributes as att>
 					<#if att.name != 'id'>
 						<#if dataType(att.type.className) ==  "String" >
