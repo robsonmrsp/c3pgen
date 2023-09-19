@@ -8,6 +8,7 @@ import lombok.Data;
 @Data
 @Builder
 @AllArgsConstructor
-public class JsonOk {
-	private final Serializable resp;
+public class DataUpload {
+	private String dataType;
+	private String dataUrl;
 }

@@ -4,6 +4,7 @@ package ${application.rootPackage}.service;
 import ${application.rootPackage}.core.model.Tenant;
 import ${application.rootPackage}.core.persistence.pagination.Pager;
 import ${application.rootPackage}.core.persistence.pagination.SearchParameters;
+import ${application.rootPackage}.core.rs.exception.NotFoundException;
 import ${application.rootPackage}.model.${entity.name};
 import ${application.rootPackage}.model.filter.Filter${entity.name};
 import ${application.rootPackage}.persistence.${entity.name}Repository;
@@ -47,6 +48,16 @@ public class ${entity.name}ServiceImp implements ${entity.name}Service {
 		optional.ifPresent(${firstLower(entity.name)} -> ${firstLower(entity.name)}Repository.delete(${firstLower(entity.name)}));
 		return true;
 	}
+
+    public ${entity.name} update(Integer id, Tenant tenant, ${entity.name} entity) {
+        Optional<${entity.name}> optional = this.get(id, tenant);
+
+        if (optional.isEmpty()) {
+            throw new NotFoundException("Not found");
+        }
+        entity.setId(id);
+        return ${firstLower(entity.name)}Repository.save(entity);
+    }
 <#else>
 	public Optional<${entity.name}> get(Integer id) {
 		return ${firstLower(entity.name)}Repository.findById(id);
@@ -68,13 +79,19 @@ public class ${entity.name}ServiceImp implements ${entity.name}Service {
 		}
 		return true;
 	}
+
+	 public ${entity.name} update(Integer id, ${entity.name} entity) {
+        Optional<${entity.name}> optional = this.get(id);
+
+        if (optional.isEmpty()) {
+            throw new NotFoundException("Not found");
+        }
+        entity.setId(id);
+        return ${firstLower(entity.name)}Repository.save(entity);
+ }
 </#if>
 
 	public ${entity.name} save(${entity.name} entity) {
-		return ${firstLower(entity.name)}Repository.save(entity);
-	}
-
-	public ${entity.name} update(${entity.name} entity) {
 		return ${firstLower(entity.name)}Repository.save(entity);
 	}
 }

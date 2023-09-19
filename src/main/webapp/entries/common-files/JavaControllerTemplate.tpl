@@ -6,6 +6,7 @@ import ${corepackage}.json.JsonPaginator;
 import ${corepackage}.persistence.pagination.Pager;
 import ${corepackage}.persistence.pagination.SearchParameters;
 import ${corepackage}.rs.exception.ValidationException;
+import ${corepackage}.rs.exception.NotFoundException;
 import ${corepackage}.security.SpringSecurityUserContext;
 import ${package}.json.Json${entity.name};
 import ${package}.model.${entity.name};
@@ -156,10 +157,21 @@ public class ${entity.name}Controller {
 		try {
 			${entity.name} ${firstLower(entity.name)} = Parser.toEntity(json${entity.name});
 
-			${firstLower(entity.name)} = ${firstLower(entity.name)}Service.update(${firstLower(entity.name)});
+            <#if application.multitenancy == true && entity.multitenancy>
+			${firstLower(entity.name)} = ${firstLower(entity.name)}Service.update(id, context.getTenant(), ${firstLower(entity.name)});
+			<#else>
+			${firstLower(entity.name)} = ${firstLower(entity.name)}Service.update(id, ${firstLower(entity.name)});
+			</#if>
+
+
 
 			return ResponseEntity.ok(Parser.toJson(${firstLower(entity.name)}));
-		} catch (ValidationException e) {
+        } catch (NotFoundException e) {
+             String message = String.format("Não foi possivel encontrar o registro [ %s ]", id);
+             LOGGER.error(message, e);
+             return ResponseEntity.status(NOT_FOUND).body(new JsonError(message));
+         }
+		catch (ValidationException e) {
 			String message = String.format("Não foi possivel salvar  o registro [ %s ] parametros [ %s ]", e.getOrigem().getMessage(), json${entity.name}.toString());
 			LOGGER.error(message, e.getOrigem());
 			return ResponseEntity.status(BAD_REQUEST).body(new JsonError(e, message, json${entity.name}, e.getLegalMessage()));

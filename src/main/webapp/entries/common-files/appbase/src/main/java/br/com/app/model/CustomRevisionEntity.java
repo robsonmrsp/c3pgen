@@ -2,6 +2,7 @@
 package ${application.corePackage}.model;
 
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -20,7 +21,8 @@ import ${application.corePackage}.audit.CustomEnversListener;
 
 @Data
 @Builder
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode
+@NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "revinfo")

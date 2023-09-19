@@ -153,6 +153,7 @@ public class FSItemDescription {
         List<FSItemDescription> list = new ArrayList<FSItemDescription>();
         list.add(new FSItemDescription("SimpleErrorMessageHandlerExceptionResolver", rootFolder + File.separator + "rs" + File.separator + "exception" + File.separator, "SimpleErrorMessageHandlerExceptionResolver", FileType.JAVA));
         list.add(new FSItemDescription("ValidationException", rootFolder + File.separator + "rs" + File.separator + "exception" + File.separator, "ValidationException", FileType.JAVA));
+        list.add(new FSItemDescription("NotFoundException", rootFolder + File.separator + "rs" + File.separator + "exception" + File.separator, "NotFoundException", FileType.JAVA));
         return list;
     }
 

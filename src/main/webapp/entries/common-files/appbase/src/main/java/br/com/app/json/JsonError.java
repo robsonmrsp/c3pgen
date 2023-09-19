@@ -25,6 +25,11 @@ public class JsonError implements Serializable {
 		this(errorMessage, parameters, "");
 	}
 
+	public JsonError(String errorMessage) {
+		this(errorMessage, errorMessage);
+	}
+
+
 	public JsonError(Exception e, String errorMessage, Object parameters, String legalMessage) {
 		this(ExceptionUtils.getStackTrace(e) + " " + errorMessage, parameters, legalMessage);
 	}

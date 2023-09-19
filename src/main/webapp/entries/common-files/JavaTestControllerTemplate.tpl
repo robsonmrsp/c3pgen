@@ -126,6 +126,24 @@ public class ${firstUpper(entity.name)}ControllerTest {
         assertEquals(HttpStatus.OK, status, "Incorrect Response Status");
     }
 
+    @Test
+    void testUpdate${firstUpper(entity.name)}NotExist() throws Exception {
+
+        TestRestTemplate withBasicAuth = testRestTemplate.withBasicAuth("jsetup", "123456");
+
+        ${firstUpper(entity.name)} ${firstLower(entity.name)} = Fixture.from(${firstUpper(entity.name)}.class).gimme("novo");
+        ${firstLower(entity.name)}.setId(1);
+
+        HttpEntity<${firstUpper(entity.name)}> requestEntity = new HttpEntity<${firstUpper(entity.name)}>(${firstLower(entity.name)});
+
+        ResponseEntity<${firstUpper(entity.name)}> responseEntity = withBasicAuth
+                .exchange(URL + "/{id}", HttpMethod.PUT, requestEntity, ${firstUpper(entity.name)}.class, 0);
+
+        HttpStatus status = responseEntity.getStatusCode();
+
+        assertEquals(HttpStatus.NOT_FOUND, status, "Incorrect Response Status");
+    }
+
 
     @Test
     void testDelete${firstUpper(entity.name)}() throws Exception {

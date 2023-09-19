@@ -4,14 +4,12 @@ package ${package}.integration;
 <#if application.multitenancy && entity.multitenancy>
 import ${package}.core.model.Tenant;
 </#if>
-
 import ${package}.core.persistence.pagination.SearchParameters;
 import ${package}.core.rs.exception.ValidationException;
 import ${package}.core.security.SpringSecurityUserContext;
-import ${package}.model.Customer;
-import ${package}.service.CustomerService;
+import ${package}.model.${entity.name};
+import ${package}.service.${entity.name}Service;
 import ${package}.util.MockMvcTestUtil;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -24,19 +22,12 @@ import org.springframework.test.web.servlet.MockMvc;
 import static org.hamcrest.Matchers.containsString;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-import ${package}.core.persistence.pagination.SearchParameters;
-import ${package}.core.security.SpringSecurityUserContext;
-import ${package}.core.rs.exception.ValidationException;
-
-import ${package}.json.Json${entity.name};
-import ${package}.model.${entity.name};
-import ${package}.rs.${entity.name}Controller;
-import ${package}.service.${entity.name}Service;
-import ${package}.util.MockMvcTestUtil;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -53,7 +44,7 @@ class ${entity.name}ErrorMockTest {
 	private SpringSecurityUserContext context;
 
 	@Test
-	public void errorGetiting${entity.name}ById() throws Exception {
+	void errorGetiting${entity.name}ById() throws Exception {
 <#if application.multitenancy && entity.multitenancy>
 		when(service.get(any(Integer.class), any(Tenant.class))).thenThrow(new RuntimeException("Error Getting ${entity.name}"));
 		when(context.getTenant()).thenReturn(new Tenant());
@@ -66,7 +57,7 @@ class ${entity.name}ErrorMockTest {
 	}
 
 	@Test
-	public void errorGetitingAllPager${entity.name}() throws Exception {
+	void errorGetitingAllPager${entity.name}() throws Exception {
 <#if application.multitenancy && entity.multitenancy>
 		when(service.get(any(SearchParameters.class),any(Tenant.class))).thenThrow(new RuntimeException("Error Getting ${entity.name}"));
 		when(context.getTenant()).thenReturn(new Tenant());
@@ -110,10 +101,10 @@ class ${entity.name}ErrorMockTest {
 	@Test
 	void errorUpdating${entity.name}() throws Exception {
 <#if application.multitenancy && entity.multitenancy>
-		when(service.update(any(${entity.name}.class))).thenThrow(new RuntimeException("Error updating ${entity.name}"));
+		when(service.update(any(), any(),any(${entity.name}.class))).thenThrow(new RuntimeException("Error updating ${entity.name}"));
 		when(context.getTenant()).thenReturn(new Tenant());
 <#else>
-		when(service.update(any(${entity.name}.class))).thenThrow(new RuntimeException("Error updating ${entity.name}"));
+		when(service.update(any(), any(${entity.name}.class))).thenThrow(new RuntimeException("Error updating ${entity.name}"));
 </#if>		
 
 		this.mockMvc.perform(put("/api/crud/${firstLower(entity.name)}s/1").session(mockHttpSession).contentType(MediaType.APPLICATION_JSON).content("{}"))
@@ -124,10 +115,10 @@ class ${entity.name}ErrorMockTest {
 	@Test
 	void errorUpdatingWithValidation${entity.name}() throws Exception {
 <#if application.multitenancy && entity.multitenancy>
-		when(service.update(any(${entity.name}.class))).thenThrow(new ValidationException("Error updating-validating ${entity.name}"));
+		when(service.update(any(), any(),any(${entity.name}.class))).thenThrow(new ValidationException("Error updating-validating ${entity.name}"));
 		when(context.getTenant()).thenReturn(new Tenant());
 <#else>
-		when(service.update(any(${entity.name}.class))).thenThrow(new ValidationException("Error updating-validating ${entity.name}"));
+		when(service.update(any(),any(${entity.name}.class))).thenThrow(new ValidationException("Error updating-validating ${entity.name}"));
 </#if>		
 
 		this.mockMvc.perform(put("/api/crud/${firstLower(entity.name)}s/1").session(mockHttpSession).contentType(MediaType.APPLICATION_JSON).content("{}"))

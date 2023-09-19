@@ -1,15 +1,17 @@
 package ${application.corePackage}.json;
 
-public class JsonOk {
+import java.io.Serializable;
 
-	private final Object resp;
+public class JsonOk implements Serializable{
 
-	public JsonOk(Object resp) {
+	private final Serializable resp;
+
+	public JsonOk(Serializable resp) {
 		this.resp = resp;
 
 	}
 
-	public Object getResp() {
+	public Serializable getResp() {
 		return resp;
 	}
 }

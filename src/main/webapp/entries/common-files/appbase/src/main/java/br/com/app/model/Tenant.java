@@ -46,6 +46,6 @@ public class Tenant implements Serializable {
 	private String corporateName;  			
 
 	public  Tenant() {
-		super()
+		super();
 	}
 }
